@@ -66,11 +66,11 @@ def _build_prompt(record: Dict[str, Any]) -> str:
 - kbf_tags: 次の選択肢からのみ選ぶ（複数可）: ベンダー中立 / 設計支援 / 定着支援 / Agentforce専門性 / ソリューション営業知見 / 実績・事例 / その他。
 - negative_or_outdated: 旧MA/メール配信事業の記述や誤情報など、ネガティブ・古い情報があればtrue。
 - negative_detail: あればその内容、なければnull。
-- cited_crosscom_urls: 引用URLのうちcross-com.jpドメインのもの。
-- all_cited_urls: 回答が引用している全URL。
+- cited_crosscom_urls: 空配列 [] を出力すること（引用URLは後処理でコード側から機械的に補完するため、ここでは判定不要）。
+- all_cited_urls: 空配列 [] を出力すること（同上）。
 - competitors_mentioned: 言及された競合他社名。
 {entity_note}
-# 出力スキーマ（このJSONの形だけを、コメントを除いて出力）
+# 出力スキーマ（このJSONの形だけを、コメントを除いて出力。URL2フィールドは必ず []）
 {_SCHEMA_BLOCK}
 
 # 質問
@@ -78,9 +78,6 @@ def _build_prompt(record: Dict[str, Any]) -> str:
 
 # AI回答
 {record.get('answer', '')}
-
-# 参考: 回答に付随する引用URL
-{json.dumps(record.get('cited_urls', []), ensure_ascii=False)}
 
 JSONオブジェクトのみを出力してください。前置きやコードフェンスは不要です。"""
 
@@ -139,14 +136,22 @@ def _call_model(prompt: str) -> str:
     import anthropic
 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    # Prefill the assistant turn with "{" so the model is forced to continue a
+    # JSON object — this eliminates conversational preambles and the
+    # "no JSON object found in response" failure entirely. We prepend the "{"
+    # back before parsing.
     resp = client.messages.create(
         model=EXTRACT_MODEL,
-        max_tokens=1024,
-        messages=[{"role": "user", "content": prompt}],
+        max_tokens=2048,
+        messages=[
+            {"role": "user", "content": prompt},
+            {"role": "assistant", "content": "{"},
+        ],
     )
-    return "".join(
+    body = "".join(
         getattr(b, "text", "") for b in resp.content if getattr(b, "type", None) == "text"
     )
+    return "{" + body
 
 
 def extract_record(record: Dict[str, Any]) -> Dict[str, Any]:
@@ -163,12 +168,24 @@ def extract_record(record: Dict[str, Any]) -> Dict[str, Any]:
     if record.get("error") or not record.get("answer"):
         return {**base, "error": record.get("error") or "no answer text"}
 
+    # URL fields are filled deterministically from the raw citation list rather
+    # than asked of the model — this keeps the (often very long, opaque) grounding
+    # URLs out of the extraction output where they used to overrun the token budget
+    # and break JSON generation (notably for Gemini's grounding-redirect URLs).
+    all_urls = [u for u in (record.get("cited_urls") or []) if u]
+    crosscom_urls = [
+        u for u in all_urls
+        if "cross-com.jp" in u.lower() or "crosscom" in u.lower()
+    ]
+
     prompt = _build_prompt(record)
     last_err: Optional[str] = None
     for attempt in (1, 2):  # initial + one retry (§4)
         try:
             raw = _call_model(prompt)
             obj = _validate(_extract_json(raw))
+            obj["all_cited_urls"] = all_urls
+            obj["cited_crosscom_urls"] = crosscom_urls
             return {**base, **obj, "error": None}
         except Exception as exc:  # noqa: BLE001
             last_err = str(exc)

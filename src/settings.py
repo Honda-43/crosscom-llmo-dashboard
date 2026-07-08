@@ -47,7 +47,10 @@ def _flag(name: str, default: bool) -> bool:
 
 MODEL_CONFIG: Dict[str, Dict[str, Any]] = {
     "chatgpt": {
-        "enabled": _flag("ENABLE_CHATGPT", True),
+        # Disabled by default (same treatment as Perplexity). Register
+        # OPENAI_API_KEY and set ENABLE_CHATGPT=true to activate — no code change.
+        # A missing OPENAI_API_KEY never raises; the model is simply skipped.
+        "enabled": _flag("ENABLE_CHATGPT", False),
         "model": os.getenv("OPENAI_MODEL", "gpt-4o"),
         "api_key_env": "OPENAI_API_KEY",
     },
@@ -89,7 +92,7 @@ BACKOFF_BASE_SECONDS = float(os.getenv("BACKOFF_BASE_SECONDS", "2"))
 # --------------------------------------------------------------------------
 # Google / analytics configuration
 # --------------------------------------------------------------------------
-SHEET_ID = os.getenv("SHEET_ID", "")
+SHEET_ID = os.getenv("SHEETS_SPREADSHEET_ID", "")
 GA4_PROPERTY_ID = os.getenv("GA4_PROPERTY_ID", "")
 # Search Console property, e.g. "https://cross-com.jp/" or "sc-domain:cross-com.jp"
 GSC_SITE_URL = os.getenv("GSC_SITE_URL", "sc-domain:cross-com.jp")
@@ -125,12 +128,12 @@ GOOGLE_SCOPES = [
 def google_credentials():
     """Build google.oauth2 service-account credentials.
 
-    Accepts either GOOGLE_SERVICE_ACCOUNT_JSON (raw JSON string, preferred for
+    Accepts either GCP_SERVICE_ACCOUNT_JSON (raw JSON string, preferred for
     CI secrets) or GOOGLE_APPLICATION_CREDENTIALS (path to a JSON file).
     """
     from google.oauth2.service_account import Credentials
 
-    raw = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
+    raw = os.getenv("GCP_SERVICE_ACCOUNT_JSON")
     if raw:
         info = json.loads(raw)
         return Credentials.from_service_account_info(info, scopes=GOOGLE_SCOPES)
@@ -140,7 +143,7 @@ def google_credentials():
         return Credentials.from_service_account_file(path, scopes=GOOGLE_SCOPES)
 
     raise RuntimeError(
-        "No Google credentials found. Set GOOGLE_SERVICE_ACCOUNT_JSON "
+        "No Google credentials found. Set GCP_SERVICE_ACCOUNT_JSON "
         "(raw JSON) or GOOGLE_APPLICATION_CREDENTIALS (file path)."
     )
 

@@ -16,8 +16,8 @@ Brand Radar(Ahrefs)は Lite プランで利用不可のため、**LLM API 定点
                          │            GitHub Actions (cron)             │
                          │                                              │
   daily.yml 07:00 JST ──▶│  run_daily.py                                │
-  (cron: 0 22 * * * UTC) │   ├─ collect_llm.py  ── 7 prompts × 3 models │
-                         │   │      │  (ChatGPT / Gemini / Claude)      │
+  (cron: 0 22 * * * UTC) │   ├─ collect_llm.py  ── 7 prompts × 2 models │
+                         │   │      │  (Gemini / Claude, 既定)          │
                          │   │      └─▶ data/raw/YYYY-MM-DD/*.json ──┐   │
                          │   ├─ extract.py (Anthropic Haiku) ◀───────┘   │
                          │   │      └─▶ 構造化(§4スキーマ)             │
@@ -83,14 +83,14 @@ crosscom-llmo-dashboard/
 
 | モデルキー | 初期状態 | API | 既定モデル |
 |-----------|---------|-----|-----------|
-| chatgpt | 有効 | OpenAI Responses API + `web_search` | `gpt-4o` |
 | gemini | 有効 | Gemini API + Google Search Grounding | `gemini-2.5-flash` |
 | claude | 有効 | Anthropic Messages API + Web Search | `claude-sonnet-5` |
+| chatgpt | **無効** | OpenAI Responses API + `web_search` | `gpt-4o` |
 | perplexity | **無効** | Perplexity API | `sonar` |
 
-- 日次観測 = 7プロンプト × 有効3モデル = **21クエリ**。
+- 日次観測 = 7プロンプト × 有効2モデル(gemini / claude)= **14クエリ**。
 - 有効/無効は `settings.py`(環境変数 `ENABLE_CHATGPT` / `ENABLE_GEMINI` / `ENABLE_CLAUDE` / `ENABLE_PERPLEXITY`)で切替。
-- **Perplexity 有効化は「キー登録 + `ENABLE_PERPLEXITY=true`」のみでコード変更不要**。`PERPLEXITY_API_KEY` 未設定でもパイプラインはエラーにならない。
+- **chatgpt / Perplexity 有効化は「キー登録 + `ENABLE_CHATGPT=true` / `ENABLE_PERPLEXITY=true`」のみでコード変更不要**。`OPENAI_API_KEY` / `PERPLEXITY_API_KEY` 未設定でもパイプラインはエラーにならない。
 - モデル名は `OPENAI_MODEL` / `GEMINI_MODEL` / `ANTHROPIC_MODEL` / `EXTRACT_MODEL` で上書き可能。
 
 ---
@@ -99,19 +99,19 @@ crosscom-llmo-dashboard/
 
 | Secret | 必須 | 用途 |
 |--------|------|------|
-| `OPENAI_API_KEY` | ○ | ChatGPT 定点観測 |
 | `GEMINI_API_KEY` | ○ | Gemini 定点観測 |
 | `ANTHROPIC_API_KEY` | ○ | Claude 定点観測 + `extract.py` 構造化抽出 |
+| `OPENAI_API_KEY` | – | ChatGPT(有効化時のみ) |
 | `PERPLEXITY_API_KEY` | – | Perplexity(有効化時のみ) |
-| `GOOGLE_SERVICE_ACCOUNT_JSON` | ○ | サービスアカウントJSON(Sheets / GA4 / GSC 共通) |
-| `SHEET_ID` | ○ | 出力先スプレッドシートID |
+| `GCP_SERVICE_ACCOUNT_JSON` | ○ | サービスアカウントJSON(Sheets / GA4 / GSC 共通) |
+| `SHEETS_SPREADSHEET_ID` | ○ | 出力先スプレッドシートID |
 | `GA4_PROPERTY_ID` | ○ | GA4 プロパティID(数値) |
 | `GSC_SITE_URL` | ○ | 例 `sc-domain:cross-com.jp` または `https://cross-com.jp/` |
 | `AHREFS_API_KEY` | – | 週次 Ahrefs(ベストエフォート) |
 
 ### サービスアカウントの権限付与
 
-`GOOGLE_SERVICE_ACCOUNT_JSON` のサービスアカウントに以下を付与:
+`GCP_SERVICE_ACCOUNT_JSON` のサービスアカウントに以下を付与:
 
 1. **Google Sheets** — 対象スプレッドシートをサービスアカウントのメールアドレスに「編集者」で共有。
 2. **GA4** — 対象プロパティにサービスアカウントを「閲覧者」で追加(Data API 有効化)。
@@ -124,9 +124,9 @@ crosscom-llmo-dashboard/
 
 ```bash
 pip install -r requirements.txt
-export GOOGLE_SERVICE_ACCOUNT_JSON="$(cat service_account.json)"   # or GOOGLE_APPLICATION_CREDENTIALS=path
-export OPENAI_API_KEY=... GEMINI_API_KEY=... ANTHROPIC_API_KEY=...
-export SHEET_ID=... GA4_PROPERTY_ID=... GSC_SITE_URL=sc-domain:cross-com.jp
+export GCP_SERVICE_ACCOUNT_JSON="$(cat service_account.json)"   # or GOOGLE_APPLICATION_CREDENTIALS=path
+export GEMINI_API_KEY=... ANTHROPIC_API_KEY=...                 # OPENAI_API_KEY は任意(chatgpt無効のため)
+export SHEETS_SPREADSHEET_ID=... GA4_PROPERTY_ID=... GSC_SITE_URL=sc-domain:cross-com.jp
 cd src && python run_daily.py            # 日次
 cd src && python run_weekly.py           # 週次(Ahrefs)
 ```
@@ -143,7 +143,7 @@ cd src && python run_weekly.py           # 週次(Ahrefs)
 | `ahrefs_aio`(週次) | 1週 | date, aio_keyword_count, keywords_json |
 | `daily_summary` | 1日 | date, mention_rate_all, mention_rate_pillar_a, mention_rate_pillar_b, negative_flag_count, ai_sessions, branded_clicks |
 
-- **mention_rate** は当日の**有効観測数**(E-1を除く6プロンプト × 有効モデル数。初期は18観測)に対する `mention=true` 比率。有効モデル数に連動し、固定値はハードコードしない。
+- **mention_rate** は当日の**有効観測数**(E-1を除く6プロンプト × 有効モデル数。初期は gemini / claude の2モデルで12観測)に対する `mention=true` 比率。有効モデル数に連動し、固定値はハードコードしない(モデルを増減すれば分母も自動追随)。
 - **冪等性**:同一 `date × prompt_id × model` の行が既に存在する場合は上書き(同日再実行安全)。各タブとも主キーで upsert する。
 - 抽出/観測に失敗した行も欠損として書き込み(`negative_detail` に `[error] ...` を記録)、`daily_summary` の分母からは除外する。
 
@@ -186,17 +186,16 @@ cd src && python run_weekly.py           # 週次(Ahrefs)
 
 ## 概算コスト
 
-LLM API は **日次 21クエリ(観測)+ 21回(抽出)= 42 API呼び出し/日**。
+LLM API は **日次 14クエリ(観測:gemini/claude × 7)+ 14回(抽出)= 28 API呼び出し/日**。
 
 | 項目 | 単価目安 | 月間(30日) |
 |------|----------|-------------|
-| 観測 ChatGPT(gpt-4o + web search)× 7/日 | ~$0.01–0.02/回 | ~$3–4 |
 | 観測 Gemini(2.5 flash + grounding)× 7/日 | ~$0.005/回 | ~$1 |
 | 観測 Claude(sonnet + web search)× 7/日 | ~$0.02/回 | ~$4 |
-| 抽出 Anthropic Haiku × 21/日 | ~$0.002/回 | ~$1.3 |
-| **合計** | | **≈ $9–11 ≒ 月1,400〜1,700円** |
+| 抽出 Anthropic Haiku × 14/日 | ~$0.002/回 | ~$0.9 |
+| **合計** | | **≈ $6 ≒ 月900〜1,000円** |
 
-- **想定:LLM API 合計 月2,000円以内**に収まる。
+- **想定:LLM API 合計 月2,000円以内**に収まる(chatgpt を有効化しても +$3–4/月で 2,000円以内)。
 - Web検索ツールの利用料はモデル・プラン依存。上振れする場合は `EXTRACT_MODEL` を最安モデルに固定、観測モデルを絞る(`ENABLE_*`)ことで調整可能。
 - GA4 / GSC / Sheets API、GitHub Actions(パブリック/一定枠内)は無料枠で運用。
 - Ahrefs は既存 Lite プラン範囲(追加課金なし、AI Overview エンドポイントが 402/403 の場合はスキップ)。
@@ -206,7 +205,7 @@ LLM API は **日次 21クエリ(観測)+ 21回(抽出)= 42 API呼び出し/日*
 ## 完成条件(Definition of Done)対応
 
 1. `workflow_dispatch` で `daily.yml` を手動実行 → 全タブにデータ書き込み。
-2. `data/raw/` に 21件のJSON(7×3、欠損はエラー記録)を保存・commit。
+2. `data/raw/` に 14件のJSON(7プロンプト × 有効2モデル、欠損はエラー記録)を保存・commit。
 3. 同日2回実行しても `date × prompt_id × model` 主キーで上書きされ重複しない。
 4. 本READMEにアーキテクチャ・Secrets一覧・Looker Studio接続手順を記載。
 5. 概算コスト(月2,000円以内想定)を明記。

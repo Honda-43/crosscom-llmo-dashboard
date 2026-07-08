@@ -19,6 +19,14 @@ import os
 import sys
 from typing import Any, Callable, Dict, List, Tuple
 
+try:
+    from zoneinfo import ZoneInfo
+
+    JST = ZoneInfo("Asia/Tokyo")
+except Exception:  # tzdata missing (e.g. bare Windows) — JST has no DST, so a
+    # fixed +09:00 offset is exactly Asia/Tokyo.
+    JST = dt.timezone(dt.timedelta(hours=9), name="JST")
+
 import collect_ga4
 import collect_gsc
 import collect_llm
@@ -47,9 +55,11 @@ def _run(name: str, fn: Callable[[], Any], failures: List[str]) -> Any:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Daily LLMO pipeline")
-    ap.add_argument("--date", help="YYYY-MM-DD for LLM observations (default: today UTC)")
+    ap.add_argument("--date", help="YYYY-MM-DD for LLM observations (default: today JST)")
     args = ap.parse_args()
-    date = args.date or dt.datetime.utcnow().strftime("%Y-%m-%d")
+    # Timezone-aware, Asia/Tokyo-based date so the daily run is keyed to the
+    # Japan business day regardless of the runner's clock (GitHub Actions is UTC).
+    date = args.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
 
     failures: List[str] = []
     summary_lines: List[str] = [f"## LLMO daily pipeline — {date}", ""]

@@ -17,8 +17,8 @@ jobs:
   weekly:
     runs-on: ubuntu-latest
     env:
-      GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
-      SHEET_ID: ${{ secrets.SHEET_ID }}
+      GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+      SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
       AHREFS_API_KEY: ${{ secrets.AHREFS_API_KEY }}
     steps:
       - name: Checkout
