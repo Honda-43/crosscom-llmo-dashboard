@@ -1,0 +1,13 @@
+{
+  "date": "2026-07-08",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "chatgpt",
+  "model_name": "gpt-4o",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-08T08:53:19.534918Z",
+  "answer": null,
+  "cited_urls": [],
+  "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+}

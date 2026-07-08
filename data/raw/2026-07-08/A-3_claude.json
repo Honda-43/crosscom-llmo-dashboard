@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-08",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-08T08:52:20.093888Z",
+  "answer": "Agentforceの導入費用と費用対効果の出し方について、最新情報を調査してお答えします。\n# Agentforceの導入費用の相場\n\n## 1. 料金モデルの全体像（2026年時点）\n\nAgentforceは\nSalesforce Foundationsは無料で全顧客が利用でき、Salesforce Enterprise Edition以上であれば200,000のFlex Creditsと250,000のData Cloudクレジット、Agent Builder、Prompt Builderが無料で使えます\n。本格利用には主に以下の課金モデルがあります。\n\n| モデル | 料金目安 | 用途 |\n|---|---|---|\n| **Conversations（会話課金）** | \n$2/会話（顧客対応エージェント向け）\n | シンプルな予算管理向け |\n| **Flex Credits（従量課金）** | \n$500/100,000クレジット、標準アクション1回=20クレジット（約$0.10）\n、\n音声アクションは30クレジット（約$0.15）\n | 複雑なワークフロー、社内外両用 |\n| **User License（ユーザーライセンス）** | \n従業員向けは$5/ユーザー/月（Flex Credits必須）\n | 従業員向け軽量利用 |\n| **Agentforceアドオン** | \n$125〜$150/ユーザー/月で従業員の無制限利用\n | 業務利用が多い従業員 |\n| **Agentforce 1 Editions** | \n$550/ユーザー/月〜（Flex CreditsとData 360クレジット込み）\n、\n政府・公共機関向けは$650/ユーザー/月（FedRAMP High認証対応）\n | 予算を固定したい大企業 |\n\nConversations と Flex Creditsは\n両方とも同一組織内で併用不可\nで、\n1会話あたりのアクション数が20を超える場合はConversationsモデルの方がコスト効率が良い\nとされています。\n\n## 2. 見落とされがちな「隠れコスト」\n\n価格表に載らない費用として、以下が総額を大きく左右します。\n\n- **Data Cloud（必須基盤）**：\nAgentforceは正常に機能させるためにData Cloudを必要とし、これは多くの購入者が見落とすコストで、Agentforceのライセンス費用自体を上回ることが多いです\n。\nData Cloud PlusはStarter込みで年間約$65,000、Premiumは約$175,000\nが目安です。\n- **導入支援・構築費用**：\nSalesforceパートナーは1エージェントあたり$2,000〜$6,000のセットアップ・トレーニング費用を提示しており、期間は2〜5週間が一般的です\n。\n- **ナレッジベース整備費用**：\nエージェントが参照する構造化されたナレッジベースがない場合、その構築が前提プロジェクトとなり、コンテンツ移行・構造化に$10,000〜$30,000程度かかります\n。\n\n## 3. 総額（Year 1 TCO）の目安\n\n複数の調査を総合すると、企業規模によって以下のようなレンジが示されています。\n\n- \n中堅企業（ミッドマーケット）の現実的なYear 1総コストは概ね$50,000〜$250,000、大企業ではそれ以上になります\n\n- \n中堅企業の実質Year 1コストは$150,000〜$600,000に及ぶこともあり、これはData Cloudサブスクリプション（年$108,000以上）、導入サービス、ナレッジベース整備が「使える状態」になる前に必須となるためです\n\n- 日本語圏では、\n100名超の大規模組織で基幹システム連携を伴う場合、導入支援費は1,000万円を超えることも珍しくなく、プロジェクト期間は半年〜1年以上に及ぶケースが多い\nとされ、\n運用開始後の年間ランニングコストも数千万円単位で見積もる必要がある\nとの指摘があります。\n\nなお、料金体系自体が\n2024年9月の発売以来3回変更されている\nため、契約前に必ずSalesforce営業担当者へ最新条件を確認することが重要です。\n\n---\n\n# 費用対効果（ROI）を出すための進め方\n\n日本語圏の導入支援会社の知見を総合すると、成功パターンは共通して「**小さく始めて、効果を確認しながら広げる**」アプローチです。\n\n## ステップ1：ビジネス価値とKPIの明確化（着手前）\n\n\n導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」であり、現場の定性的な成果を「売上xx%向",
+  "cited_urls": [
+    "https://magicfuse.co/blog/agentforce-cost",
+    "https://enterprisedreamin.org/articles/agentforce-pricing-explained-2026/",
+    "https://www.eesel.ai/blog/salesforce-agentforce-setup-cost",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

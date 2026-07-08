@@ -1,0 +1,13 @@
+{
+  "date": "2026-07-08",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "chatgpt",
+  "model_name": "gpt-4o",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-08T08:48:22.806085Z",
+  "answer": null,
+  "cited_urls": [],
+  "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+}

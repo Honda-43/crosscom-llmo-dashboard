@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-08",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-08T08:48:56.098480Z",
+  "answer": "Agentforceの導入支援を行っている企業について調べてみます。\n# Agentforce導入支援のおすすめ会社\n\n検索結果から、Agentforceの導入支援を行っている代表的な企業をいくつかご紹介します。企業規模やニーズに応じて選択肢が異なりますので、タイプ別に整理しました。\n\n## グローバル大手コンサルティングファーム\nSalesforce公式のパートナーネットワークでは、\nAccenture、Deloitte Digital、Capgemini、IBM Consulting、PwC、Slalomといったグローバルシステムインテグレーターが、顧客向けにAgentforceを実装しAI駆動型のトランスフォーメーションを加速させる\n役割を担っています。大規模・複雑なプロジェクトや、グローバル展開を見据える企業に向いています。\n\n## 国内SIer・大手コンサル\n- **日立ソリューションズ**：\nSalesforceのコンサルティングパートナーとして、お客さまに合わせた導入支援コンサルを行っています\n。\n- **DCS（大同生命グループ系）**：\nAgentforce導入に向けた初期検討フェーズとして活用ワークショップを提供し、現行業務の可視化やあるべき姿の整理、業務課題やAI活用ユースケースの抽出を実施\nしています。金融分野での豊富な実績も強みです。\n\n## DX支援・伴走型コンサル\n- **メンバーズ**：\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有\nしています。\nAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援までを伴走支援\nするサービスを2025年3月から提供開始しています。\n- **バーチャレクス・コンサルティング**：\n「Agentforce」の導入から定着化、活用促進までの包括的な支援を提供し、顧客接点領域におけるAI活用推進や顧客体験向上、オペレーション効率の最適化を実現\nするサービスを展開。特にコンタクトセンター領域に強みがあります。\n\n## 専門特化型・業界特化型\n- **フロッグウェル**：\n各業界・業務の特性に合わせたAgentforceの導入支援を行っており、豊富な業界知識とSalesforce専門性を活かし、課題に最適化されたAIソリューションの設計から構築、運用まで一貫してサポート\nしています。\n- **K2 Partnering Solutions**（海外系）：\nAgentforce Partner Networkのメンバーとして、AIの専門知識と数十年のSalesforce経験を活かし、Agentforceを企業固有のニーズに合わせてカスタマイズするコンサルティングを提供\nしています。\n\n## 選び方のポイント\n比較サイトの分析によると、\nAgentforceは導入すれば自動で成果が出るものではなく、AIが正しく機能するには土台となるSalesforce内のデータが整備されていることが前提になるため、データ整備・運用設計まで踏まえた支援ができる会社かを確認することが重要\nです。\n\nまた、パートナー選定の客観的な指標として、\nSalesforceが設けている「Navigatorプログラム」があり、製品・業界・サービスにおける専門能力を「知識・経験・品質」の3つの側面から評価し、Expert・Level Ⅱ Specialist・Level Ⅰ Specialistの3段階で認定\nしています。導入を検討する際は、この認定レベルも参考にすると良いでしょう。\n\nさらに、\n「AgentforceなどのAI機能への対応実績・知見があるか」「AIが機能する前提となるデータ整備・データ活用の設計まで支援できるか」「導入して終わりではなく、AI活用を見据えた定着・運用まで伴走できるか」\nという3点を軸に比較することが推奨されています。\n\n---\n\nもし御社の業種・規模・重視したい機能（カスタマーサービス／営業／マーケティングなど）を教えていただければ、より絞り込んだ提案が可能です。またSalesforce公式サイトの「パートナーファインダー」でも、業界・地域別に認定パートナーを検索できます。",
+  "cited_urls": [
+    "https://www.salesforce.com/news/press-releases/2024/09/17/agentforce-partner-network-announcement/",
+    "https://www.hitachi-solutions.co.jp/salesforce/products/agentforce/",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.members.co.jp/company/news/2025/0306",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://k2partnering.com/consulting/practice-areas/salesforce-consulting-services/agentforce-consulting-services/",
+    "https://cone-c-slide.com/liblog/salesforce-implementation/"
+  ],
+  "error": null
+}

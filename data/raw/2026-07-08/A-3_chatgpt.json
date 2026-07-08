@@ -1,0 +1,13 @@
+{
+  "date": "2026-07-08",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "chatgpt",
+  "model_name": "gpt-4o",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-08T08:51:30.845721Z",
+  "answer": null,
+  "cited_urls": [],
+  "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+}

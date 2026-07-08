@@ -1,0 +1,32 @@
+{
+  "date": "2026-07-08",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-07-08T08:56:57.669169Z",
+  "answer": "営業にAIエージェントの活用を検討されており、ツール選定前のCRMデータ設計から支援してくれるパートナーをお探しとのこと、承知いたしました。AIエージェントを効果的に導入するためには、CRMデータの質が非常に重要であるため、データ設計からの支援は成功の鍵となります。\n\n以下に、CRMデータ設計からAIエージェント活用を見据えた支援を提供する可能性のあるパートナー企業や、その選定におけるポイントをご紹介します。\n\n**CRMデータ設計からAIエージェント活用までを支援するパートナー企業**\n\n複数の企業が、AI活用を見据えたCRMデータ設計や戦略策定の支援を提供しています。\n\n*   **テクノデジタルコンサルティング:** 「CRM・データ戦略設計サービス」を提供しており、顧客戦略、KPI設計、データ統合・基盤設計、活用設計、業務変革、運用定着までを支援します。特に、AI活用を見据えたデータ戦略策定の実績があることを明記しています。データ活用の成果はツールではなく戦略設計で決まる、と強調しています。\n*   **株式会社プライムビズ:** AIを活用したCRM最適化に特化しており、次世代CRMシステムを提供し、顧客データの分析から営業効率化までを包括的にサポートしています。データ蓄積にとどまらず、AI分析・予測までをカバーし、データドリブンな意思決定と持続的な売上成長を支援するとしています。\n*   **株式会社 日立コンサルティング:** 「営業DX（CRM&生成AI活用）コンサルティング」を提供しており、CRM/SFAシステムの採用に加え、生成AIなどの先端技術の活用を通じて、効率的かつ成約率を高める営業プロセス改革を支援します。貴社が培ってきた営業スタイルを活かしつつ、営業活動の自動化やデータドリブン型意思決定の導入を一貫して支援するとしています。\n*   **ゼロワングロース株式会社:** AIエージェントがCRMのデータ入力や更新、保守を自律的に行う「ゼロタッチCRM運用」の実現を支援するサービスを提供しています。戦略策定から、カスタムデータモデリングやデータ移行を含む実装まで一貫して支援するとしています。\n*   **主要なCRMベンダーやそのパートナー:**\n    *   **Salesforce:** 「Agentforce」という自律型AIエージェントプラットフォームを提供しており、企業の営業業務にAIを組み込み、効率化・自動化を実現します。セキュアなCRMデータに基づき、正確で関連性の高い回答を生成するAI搭載CRMを提供しています。 また、「bellSalesAI」のようにSalesforceへの商談ログ入力を自動化するエージェントも存在します。\n    *   **HubSpot:** AIエージェントツール選定のポイントとして、「CRM/SFAとの初期連携支援・ワークフロー設定サポート」を挙げています。HubSpot BreezeのようなAIエージェント機能も提供しており、CRMデータに基づいたリード抽出や提案文面作成を支援します。\n\n**パートナー選定のポイント**\n\n*   **データ品質の重要性の理解:** AIの性能はCRMデータの質に大きく左右されます。AI導入を検討する前に、データの鮮度、正確性、重複の有無、入力ルールの統一性などを確認し、データ整備を行うことが不可欠です。データが不十分だと、AIは期待する成果を出せません。\n*   **戦略的なデータ設計:** ツール選定の前に、「何のために、誰のデータを、どのように活用するか」といったデータ活用の戦略設計を重視するパートナーを選びましょう。単なるシステム導入ではなく、KPIや業務設計、データ統合、運用定着まで含めた全体設計が重要です。\n*   **既存システムとの連携実績:** 多くのAIエージェントは既存のCRM/SFAツールと連携して動作します。現在お使いの、または将来的に導入を検討しているCRM/SFAシステムとの連携実績が豊富なパートナーは、スムーズな導入に繋がるでしょう。\n*   **伴走支援の有無:** 導入前後のコンサルティング、初期設定サポート、運用定着支援など、継続的な伴走支援を提供してくれるパートナーは、AIエージェントの活用を成功させる上で心強い存在となります。\n*   **業界知識と事例:** 貴社の業界特性や営業スタイルを理解し、それに合わせた最適なAI-CRM戦略を提案できるパートナーが望ましいです。具体的な導入事例や、課題解決へのアプローチについて確認すると良いでしょう。\n\nAIエージェントを活用した営業の成功は、その基盤となるCRMデータの設計と、その後の戦略的な活用にかかっています。まずは、上記のようなポイントを参考に、貴社の状況に合ったパートナーに相談されることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEezaVYpNzfKIiyMqmMXQiRCgg0CvDvTwE3Zcg3BdMDUvs4sczCunSz8QrDDS8alZ0CdNQKzLM9buB9kn3zkLbtQF5kn0iJqKJF5Tz1ht-bXbJMhuIaopVcKWcVRVLJpYAMedbbuqyA8EppLI6rH87izm1Z",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGYslYj3rX59vaDo2ZsjtwV5yvxHJCQFIFESb-y8cI57VxfQ1V4CMvmnU4hzeCYviCo3lqPtHAXQ6bVmN6h8k_AzyJlr76zC1Hg79N5hUiVXZwkhuAHvvuzpndV6RA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9QQ-lH4qjkamdH4MG2VZwdplc30i-lu6a9nCDbDzJaA-Cd-d1RTBqbIe4pz7s-Dx6ZxcLXF3vcWXM4oCMCq_Vv60Tpqi1Q7tWb7anLwkiqZf-gsVnFyOZu8aEIb4WvEhv647fl-41cX53rYKg8-Y17TTMWwdCyHt_0dVdsUSdEPNnIYs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFsy-3DRW_Q4A-LwxWvureAOebBj9OO2Q4miXGa97e7PvFUGnvgdcpd9Y--xmOqwh-J1D8Nyg4gCnmNq2ohlgytusEmiiV6w4e1OKkrYMUEDPl6LKRouF5NaZuGj3ZdCiBTrxGGjVumkfHJv6I2OpIW",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQERzn-zAW_kVHRqTv5bf_wL-sn9Y4vTLjsNnA8LFTInDXAuZMOI6QB7p5gIAzpz0rFxoq8F7JDwsW9zItUfQPihpeXkjOKb-9RbGieEOTNolnHYi7OuYQNQRi6w2qIq0z2LZ_-g",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHOrI8V1lSQwc7bEBMYZ502kTv-n9oOy-Bb4Zj7UxXduuwmayStcJk-2J89riSSGgVFAj7jruXXsqcuvXVGLp4AO1o16McEx4TPqF6OrODseFxlQXQVfEdmJIKHdgscD6fFno2DMPplsc1rVL4TEBdVy5LXHYA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHtFuwsGyclhUjS1UT4QFI3kFfRcUHHtEdQtOelop_7jyLjsiUGXqQkTe-4XpJrPZ-GPBIQiNGIJHKJX_DPf6yeBqrlh5jceX2nOQ_wxkeFMyRYlg2H2TtMeS1YMVY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDOy0EevE2-MSW9ImlcDI4U31usJvXGTI-HM12bgZGeedgiVzT3nSmjNnlEpGLhghe4TTzQ46-atpmMLvnG8w2KS2xkouYG8ykvm6Ik1VwLiuj_FQ2UIxXQeQFRhZamuYVTHT3",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHCNvzUR0I07cqGo8JcT8r8KApvZZUWUY0qH9X_9ZfaYqoOZSVIecVV0g6ZPzZRVJtZBN91qhNzE0Z74bVU8_1soSzd20cXblnZfC7sVf1U3a6fR1JVIfxrOeG2FEKaI-WAUXsXjvFmquzyZ3I=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHOWMeNgXVCsS6ultumxwliQRDEDr1FBqJel4hkpfhiPnEjmWEoeNRhaspBQf99wNPazN4w4ZjI2WHvFZa1KU3bwfVYc1hTxoxVBVntTOX55QmQZwbFKRpU7SAWyuUyF8NbEb7ZK9J7MfNC-XeP",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG5i3KwqdXs6itd5dzrJDUEaf2_uhz7p1C-omZ0oV_CK7Vw_Aw4q4TZ7RGGMtxeyDtpyB-p4z4vbSD4suawdP2LxVGDjMskXIhJZx9LXYYFTlnpQEva6Q9EIvWaCSI4",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFvbs1b7YfPuiycqISL7c9S3tMWR-wxfChiAX0vuKLnPSoyX2d4iSzWbBIR8slRjAlmqkmHTrQFSFlxre2XDdFSbzk-CiiLG7NabXpjF3oIcQ8LzLOymdN0fo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGMc65qhYMfaZSipKkMS5NH9sr3R5t44B6AaoqHZpCuvM8iXJ9H22N_i879tUT1E7VOMTWyQX-nCI9jfullVi7qJ03cr27NjB5Q2bHbakHm84Xcygyd",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9qbbfcJ99cVhgWQeF90q1Ft8u33oZ09kZBMa6mDNgw6cJuAT9-JY58cD859qYJxUA5H4HVqLz4QhvtbTlZtKSgAbPPZZ0eEuobCFup3ZsHCI-S8NI6nVs3PgP3naxp4ZmfadQIGvZJg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGE38EVopznD4LCb0PhiT7ANjARfCrvYozEa6iyIBGoT9QsUIbFzF2QY-XzGXtT0q6RwtsxCLkiVLUueFoPcMpkUv-dvT6csc-VGWIyEw1S4_1ELgQuJGfV9KkVkjll-1ynOpcfkUubdhlu",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFsuEaWEpV7pxbfY8y8lXA4olJiPP3wZjlJIjucrDLnOVxMpCfT-b8Zxs4fVFMf9zYGbjIkk6nQ_v7FUU4v9fKmjfwP4g6OI9g3e0ZsXIqp3DGPpYRhu3TlqdF_6aEajw5u_9lg_pODH0M=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHP2GZgX8mLMHjZg_EbR7NAw2Cfg_tnK3cqSRGsku0ptjf0tr77b1xvBejF1oO0ZtV2m-NDLS-Thq74wKyHW9PQ7Yqw3B2zZ3-UDhuBMpq_jrb62cWXUcL5yBZsykEC_GlrQTR99EcAHJSfvls1RV9YP7TqDo9I",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGSNzFpgtl8vIBDLA0kFxpw-kJYRnuzTHLfd0JrxEL3zD95qA22n0W18IY53QLGy-0whLa0RYouTL2tbynx1wkgqmdTk_udLcQfeVL5I9-8eaG_UtnnuZNiuUfQgD6LlspXSeIhwySKsTFJ4oVTUgQ2mGMcomv71TDkPi9a"
+  ],
+  "error": null
+}

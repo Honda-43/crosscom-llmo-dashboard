@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-08",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-08T08:54:05.648327Z",
+  "answer": "# Agentic CRMとは\n\n**Agentic CRM（エージェンティックCRM）** とは、従来のように顧客データを蓄積・表示するだけでなく、AIエージェントが業務フローに組み込まれ、タスクの自動実行や意思決定、次のアクションの提案までを自律的に行う次世代のCRMです。\n\n\nエージェンティックCRMとは、AIエージェントを使ってマーケティングやサービス業務を自律的に管理する顧客関係管理システムであり、従来のCRMがデータを蓄積してユーザーの操作を待つのに対し、設定した戦略やガードレールの範囲内でキャンペーンの立案、顧客対応、パフォーマンス最適化まで能動的に代行します。\nCreatioの定義では、\nAgentic CRMは単に情報を保存したり事前定義済みの手順を自動化したりするだけの従来型CRMとは異なり、データをリアルタイムで分析し、意思決定を行い、顧客エンゲージメントと業務効率を高めるための自律的な行動を取る\n点が特徴とされています。\n\n## 従来型CRM・生成AI CRMとの違い\n\n- **従来型CRM**：\nif-thenのようなルールベースの自動化で、固定条件に基づいてメールを送信する\n仕組みが中心でした。\n- **生成AI CRM**：文章やメール、要約などのコンテンツを生成できますが、\n人が指示を出すことに依存する古い技術\nです。\n- **Agentic CRM**：\nより自律的で、既存の業務フローの中でシームレスに情報を発見・関与・活用できます。\nまた、\n自律的なAIエージェントをCRMに統合し、常時の人の介入なしにゴールに向けて独立して行動できるようにするもので、大規模言語モデルや機械学習を用いて動的に推論・計画・実行し、顧客データを解釈し意思決定を行い、リアルタイムでワークフローを適応させる\nという違いがあります。\n\n## 具体的にできること\n\n- \n予測AI（トレンド予測、リードスコアリング、リスク特定）、生成AI（メールや要約、キャンペーン文の作成）、エージェンティックAI（リード割り当て、フォローアップの予定設定、ダッシュボード作成などの実行）という3層の知能を組み合わせている\nのが典型的な構成です。\n- \nエージェントが新規リード、停滞した商談、サポートチケット、顧客行動やデータ変化などのCRM上のシグナルを監視し、レコード更新やフォローアップ送信、ミーティング設定、チケットのエスカレーション、ワークフローのトリガーといったアクションを実行し、返信率や商談進捗、解決成功率などの結果を追跡して今後の意思決定に反映する\nという「観察→実行→学習」のループで動作します。\n- 営業現場では、\nAIエージェントが業務中に流れている会話やシグナルから自動的にデータを取得・補完・更新し、フォローアップの下書き作成や商談の前進、リスクの早期フラグ付けなど、現実を記録するだけでなく変えていく\n方向にCRMの役割が変化しています。\n\n## 主なプラットフォーム例\n\n- **Salesforce（Agentforce）**：\nエンタープライズCRM分野で最も成熟したエージェンティックAIプラットフォームとされ、Sales CloudをAgentforce Salesとしてリブランドし、自律型エージェントを中心に据えた構成に転換しています。\n\n- **Microsoft Dynamics 365**：\n単なる従来型CRMの延長ではなく、顧客エンゲージメントシステムのあり方そのものを根本から見直すもので、人が硬直的なアプリに合わせるのではなく、会話・ツール・意思決定・ワークフローという実際の働き方にCRM側が適応する\n設計思想を掲げています。\n- **Creatio**：\nアーキテクチャレベルでAIが組み込まれたAIネイティブなノーコードCRMで、全てのデータオブジェクトや関係性、ワークフローが後付けの層ではなくエージェントからネイティブにアクセスできる\n点が特徴です。\n- **HubSpot（Breeze）**：\nBreeze Assistant（プラットフォーム内タスク用の対話型AI）、Breeze Agents（自律的なエンドツーエンドのワークフロー実行）、Breeze Intelligence（データ拡充と購買意",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://sisgain.com/blogs/agentic-ai-crm-automation-guide",
+    "https://www.smartrecruiters.com/resources/glossary/what-is-agentic-crm/",
+    "https://www.linkedin.com/pulse/what-agentic-crm-why-does-your-business-need-one-bits-in-glass-6lbac",
+    "https://www.halsimplify.com/knowledge-center/agentic-ai-integration-crm-systems",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/06/25/agentic-crm-in-the-flow-of-work-how-ai-is-transforming-sales-and-rebuilding-customer-trust/",
+    "https://aimultiple.com/agentic-crm"
+  ],
+  "error": null
+}

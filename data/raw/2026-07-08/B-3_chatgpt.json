@@ -1,0 +1,13 @@
+{
+  "date": "2026-07-08",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "chatgpt",
+  "model_name": "gpt-4o",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-07-08T08:56:43.668545Z",
+  "answer": null,
+  "cited_urls": [],
+  "error": "Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.', 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}"
+}
