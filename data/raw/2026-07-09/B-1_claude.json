@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-09",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-08T23:09:53.253203Z",
+  "answer": "# Agentic CRMとは\n\n**Agentic CRM（エージェンティックCRM）**は、AIエージェントを組み込むことで、従来「データを蓄積して人の指示を待つだけ」だったCRMを、自律的にタスクを遂行するシステムへと進化させたものです。\n\n## 従来のCRMとの違い\n\n\n従来のCRMはデータを蓄積して人が行動を起こすのを待つのに対し、エージェンティックCRMは設定した戦略とガードレールの範囲内で、キャンペーンの立案、顧客への応答、パフォーマンスの最適化などを自ら実行します。多くのCRMは指示待ちですが\n、Agentic CRMは違います。\n\nCreatioの解説によると、\nエージェンティックCRMは単に情報を蓄積したり、定義済みの手順を自動化したりするだけの従来型CRMとは異なり、データを積極的に分析し、リアルタイムで意思決定を行い、顧客エンゲージメントと業務効率を向上させるための自律的なアクションを実行します\n。\n\n## 主な特徴・機能\n\n1. **自律的なタスク実行**：\n目標指向で自律的なAIシステムであり、CRM API、メールシステム、カレンダー、チケッティングプラットフォームなどのツールを使ってタスクをエンドツーエンドで完了させる能力を持ちます\n\n\n2. **観察→実行→学習のループ**：\nエージェントがCRMのシグナル（新規リード、停滞している商談、サポートチケット、顧客行動、データ変更）を監視し、レコード更新・フォローアップ送信・ミーティング設定・チケットエスカレーション・ワークフロートリガーなどのアクションを実行し、結果を追跡してフィードバックを取り込み、将来の意思決定を改善します\n\n\n3. **統合された顧客プロファイル**：マーケティング・営業・サービス全体で一貫した顧客理解を実現\n\n4. **継続的な学習・最適化**：\nやり取りのたびに学習・適応する能力が特徴で、各アクションの後にシステムが結果とユーザーのフィードバックを評価し、その結果を中枢の知能にフィードバックすることで、モデルの精緻化や予測アルゴリズムの更新、意思決定戦略のリアルタイム調整を可能にします\n\n\n## 代表的なプラットフォーム\n\n- **Salesforce（Agentforce）**：\nエンタープライズCRM分野で最も成熟したエージェンティックAIプラットフォームとされ、Sales CloudをAgentforce Salesにリブランドするなど、自律型エージェントを中心とした構成に転換しています\n\n- **Microsoft Dynamics 365**：\n強力なエージェンティックCRM・ERPプラットフォームに加え、営業・エンジニアリング・ビジネス変革の分野で世界規模の専門知識のエコシステムを提供しています\n\n- **Creatio**：\nAIネイティブなノーコードCRMプラットフォームで、営業・マーケティング・サービスを単一システムでカバーし、AIがアーキテクチャレベルで組み込まれている点が差別化要因です\n\n- 他にHubSpot（Breeze）、Klaviyo、Zoho なども対応を進めています。\n\n---\n\n# 導入・設計を支援してくれる会社\n\n## グローバル系コンサルティング・SIer\n\n| 会社 | 特徴 |\n|---|---|\n| **CRMIT** | \n信頼できるSalesforceコンサルティングパートナーとして、エージェンティックAIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供し、企業がデータをリアルタイムの意思決定に変換して測定可能な事業成果を生み出す支援をしています\n |\n| **Kanerika** | \nreadiness assessmentからアーキテクチャ設計、ガバナンスフレームワーク構築、統合、本番展開まで、エンタープライズのエージェンティックAI導入プロセス全体をガイドします\n |\n| **RSM US** | \nエージェンティックAIの技術に精通した専門家を擁するだけでなく、顧客のビジネス・業界・成功要因も理解しており、単なるベンダー関係を超えて、個々の事業部門・プロセスの運用方法を熟知した上でAIエージェントの統合・スケーリングを支援します\n |\n| **RITS** | \n低コードのCreatioプラットフォームを用いて、柔軟なCRMおよびビジネスプロセス自動化環境を構築しています\n |\n| **Inogic** | Dynamics 365向けにAzure AI/OpenAIを活用したエージェンティックCRM実装を専門とする |\n\n## 日本国内の企業\n\n- **PwC Japanグループ**：\nAIエージェント導入支援サービスによって、AIエージェントの導入および業務プロセスの見直しに伴走し、クライアントに必要となるエージェントの特定や活用方法・利用するソリューションの検討などを通じて支援します\n\n- **アビームコンサルティング**：大企業向けにCRM導入実績が豊富（住友商事、東京海上等）\n- **セールスフォース・ジャパン**：\n信頼性の高",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.halsimplify.com/knowledge-center/agentic-ai-integration-crm-systems",
+    "https://aimultiple.com/agentic-crm",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2025/06/04/ai-first-crm-systems-learnings-from-organizations-making-the-switch/",
+    "https://www.crmit.com/",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://rits.center/offer/agentic-crm-and-workflows",
+    "https://www.pwc.com/jp/ja/services/consulting/analytics/ai-agent.html",
+    "https://www.salesforce.com/jp/"
+  ],
+  "error": null
+}

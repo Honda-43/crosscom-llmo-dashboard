@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-09",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-08T23:07:52.325913Z",
+  "answer": "Agentforce(Salesforceの AI エージェントプラットフォーム)の導入支援を行っている企業について検索し、最新情報をお伝えします。\n# Agentforce導入支援でおすすめの会社\n\nSalesforceの自律型AIエージェント「Agentforce」の導入支援を行っている企業について、日本国内と選定のポイントをまとめました。\n\n## 日本国内のおすすめ企業\n\n### 1. 富士ソフト\n\n富士ソフト株式会社はSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供開始しました\n。\n富士ソフトでは、同社内で試験導入し、検証してきたセールス向け機能の実践的な知見やノウハウを生かし、顧客の営業DX化に貢献\nする点が特徴です。\n支援ソリューションでは、組織としてAIをどのように活用していきたいか、業務課題や期待する成果を明確にするためのヒアリングを実施し、対象業務やKPI、導入目的を整理\nしてくれます。\n\nさらにグローバルでも、\nFujitsuはドメスティックなセールスフォースパートナーの中で高い顧客満足度を達成し、Japan Partner of the YearやBest Reseller Support Partner of the Yearなどの賞を受賞\nしています。\n\n### 2. 日立ソリューションズ\n\nユースケースの導入効果を定量化し、適合性や難易度を総合的に評価することで、ビジネス価値を可視化\nする支援を行っています。\nSalesforceのコンサルティングパートナーとして、お客さまに合わせた導入支援コンサルを行っています\n。製造業の保守対応事例などの実績もあります。\n\n### 3. メンバーズ（サースプラスカンパニー）\n\nSalesforceが提供する自律型AIエージェントAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nしてくれます。\nメンバーズはSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有\nしています。\n\n### 4. サークレイス\n\nサークレイス株式会社は、セールスフォース・ジャパンが2024年10月30日より日本市場で提供を開始したAgentforceについて、認定パートナーとしていち早く、同年11月より導入・構築サービスの提供を開始\nしました。\n初期導入コンサルティング、PoCから段階的な本格展開までのサポート、人材育成プログラムまで段階的なサービス\nを提供しています。\n\n### 5. フロッグウェル\n実績として\n住宅業界向けコンサルティングを行う企業へ、Salesforceの生成AI技術を活用したマッチングシステムの導入支援\nや、\nストック型ビジネス創出支援企業へのAgentforce導入支援でEinstein Conversation Insightsの活用と会話サマリーの自動化\nを実施しています。\n\n## 選定時のポイント\n\n日本市場全体では、\nSalesforceのSIパートナーエコシステムがこれまでに数百のAgentforceの導入を支援し、豊富な実績を有しており、国内で累積4,300のAgentforce、Data 360関連資格が取得\nされています。パートナー選定の際は以下を確認すると良いでしょう：\n\n- **Salesforce認定パートナー資格の有無**（AppExchange掲載企業など）\n- **業界特化の実績**（自社の業種での導入事例があるか）\n- **PoC〜本番運用までの一気通貫サポート体制**\n- **セキュリティ・ガバナンス設計の実績**（Einstein Trust Layerの活用など）\n\n## まとめ\n\n日本国内では**富士ソフト・日立ソリューションズ**のような大手SIerから、**メンバーズ・サークレイス・フロッグウェル**のようなSalesforce専門コンサルティング会社まで幅広い選択肢があります。企業規模や予算、業界特性に応じて、無料相談から始めて自社の課題にマッチするパートナーを比較検討することをおすすめします。\n\nより具体的な業種・規模での推薦が必要でしたら、詳しい状況を教えていただければさらに絞り込んでご提案できます。",
+  "cited_urls": [
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://global.fujitsu/en-global/offering/customer-engagement-transformation",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://www.hitachi-solutions.co.jp/salesforce/products/agentforce/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://prtimes.jp/main/html/rd/p/000000329.000041550.html"
+  ],
+  "error": null
+}

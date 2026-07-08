@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-09",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-08T23:09:22.917796Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、AIエージェントを組み込んだ顧客関係管理システムであり、インテリジェントな自律型エージェントを活用してタスクやプロセスを自動化します。これは従来のCRMシステムが単に情報を保存・整理するだけでなく、その情報に基づいて自律的に行動できるようになった次世代のCRMと言えます。\n\nAgentic CRMの主な特徴は以下の通りです。\n*   **自律的なタスク実行**: AIエージェントが、データ分析、顧客ニーズの予測、および自律的な行動をリアルタイムで行い、生産性向上とビジネス成果改善に貢献します。\n*   **データに基づいた行動**: AIエージェントは、顧客情報、商談履歴、活動履歴、ナレッジ、見積もり条件などを横断的に読み取り、営業担当者に代わって一次処理や下書き作成を行うことを前提に設計されています。\n*   **人間との協働**: AIエージェントは、状況に応じて自律的に行動したり、人間のマネージャーに承認を求めたりすることができます。\n*   **定型業務の自動化**: 営業、サービス、マーケティング業務における定型的な入力、更新、分析作業をAIが自動化し、従業員はより戦略的な業務や顧客との関係構築に集中できます。\n*   **パーソナライズされた体験**: AIエージェントは顧客データを学習し、顧客一人ひとりに合わせたより関連性の高い体験を継続的に提供します。\n\n従来のCRMやマーケティングオートメーション（MA）ツールとの違いは、MAが人間が事前に設計したシナリオ通りに動く「指示待ち」システムであるのに対し、Agentic CRMは目標を与えられたAIエージェントが、達成するための手順を自ら判断・実行・修正する点にあります。\n\n**Agentic CRMの導入や設計を支援してくれる会社**\n\nAgentic CRMの導入や設計を支援する企業は複数存在します。主要なCRMベンダーやコンサルティング会社がこの分野でサービスを提供し始めています。\n\n*   **Salesforce（セールスフォース・ジャパン）**: AIエージェントを搭載したSFA・CRMを提供しており、コンサルティングや拡張アプリを通じて顧客の成功を支援しています。\n*   **EY Japan（EYストラテジー・アンド・コンサルティング株式会社）**: Agentic AI時代におけるCRMの進化を軸に、データ品質、業務プロセス、組織・人材の再設計による変革支援を行っています。特に製薬業界におけるCRMの役割変化についても言及しています。\n*   **TISI株式会社**: Agentic AI Platformサービスを提供しており、生成AI・AIエージェントの利用に不安がある顧客に対して、トライアルの企画・計画設定支援やプロンプトアドバイスなどの導入支援を提供しています。\n*   **Zoho**: Zoho CRMをはじめとする統合プラットフォーム上でエージェント型AI機能を発表しており、既存ユーザーが追加設定や費用負担なしでAI機能を日常業務に取り込めるよう支援しています。\n*   **Hiway（Hiway CRM）**: AIエージェントが入力・更新・分析を自動化するAgentic CRM自体を提供しており、その導入支援も行っています。\n\nこれらの企業は、Agentic CRMの導入におけるデータ整備、システム統合、業務プロセスの再設計、組織変革など、多岐にわたる支援を提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEs8dbN5SL56hJMOoB_4VTgQRZeBecS11PdRdNgRkQQNeKyhimJHE8FdK4S5noXrsxxV4x87plr3SRwyyjo5YjK83PtGHwV9ndEy2UYbIxhwY9-KQYuRXO3_QbFjp2MUIfdJwNX1tCv",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGCzNQmJeKtvrpfUTgb2VBlID-KUJxVw9cJoRwRid8z4NQlk1Xn_JOD-WM008XiUEHkcmZnzCALtXFpbMYpAUSX9sC6KVkGMdxV_qbANfkgEBo3P334Ch7CeNbbqqQ-b2aEzaYC5AY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2ey4Yp30b6plhHdAC6OvHPv5tWByGnLNLH-f803IDibWPIX5ludslr8I_5ol-pq_HgqtQbr6CChuhTh1HR0N8TBOGiDGl8PV5-4oiWoc2Q6KIRL46nmxNug==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFwD6LgrBwa1XzvIV0wEyB2Fz09KZDf1ux_noZ_4JFPamdByWBeLNGh09B8Oki2NR_6t7TH3YSQ4Ts9i1m_SqCtcCtcF73U5fheMEIwefojaemUdBDRhavafg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXEB8RsxFqrA_hKtbuuarUotPbpTR_j9vki2hTPrzBFff2b8FUVx8jkTtVYsUNEUfVC6TNKC0hbR0LwGKH2C-qyeSI_dsb80EkuA6TArHz4VUtPooTo7DD6Ie7mgva-3qdgE0fZRpZBZAidnqnd0AmmUH6FnY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFiS-Miya6DTSuzlH-NXCfvsj8rigJtgF5axkfm7Z0r_vzDfQYUdhEnwhwQ7sVXpRFQ3n4jChSegH11iBNdxu-pNT07yYbZNsPk7XOyAPRe5-Lt1Lx8844BIdLtQjUwLVu5m9UWTNCoYzplgQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9tQdQDm3rQiFVJWGycG0f_eAPlNr1136ffeOuYWJglCAd06wbpEVqNeYKYhqCxaxF8Pqw5oqkUhg5E34AKBS4w98LgSJrXJGzMDb9_0WC2bYkjCPOMu3zH-cxUxQGZbe-IxD_t6ZJtL3zkTRLyYSHm2if6Rn9UznXzfYa",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1frIWoTqYgmLjzXiK_1jSfDIZ0fub8u83VSpj03TB4sEiErF5pqd5TLQP19niIm8opvOV3ggUAqo1dpOwWAj-eELR6lg_OgkBjun3yqivJhXOn3FdCyr-9asJOiaIjRXtpTCWy_69U5ez9tSddQiM47hmqMlcXMemHg01qs2K3m0JlGunLyQNMHQ9w7scvNee3DY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_xvz67eiyECaH4yzqw9bJNtem5gkXLYXIrPCCr7me774jUBlXEmdMhI6qx9rUXGCfgYW3iFqOnU1LeP3Oa0naQcfthyganbVil8TVuIBK-8nVUw_J4BpMZRfdjRt0Cve92HE5c0SctlRxsTa0dEyIc41CuWn4Xg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-nxH0c0wj9Gzvhd-kgv_ms0ryMriseMo8vRCebyBrsig3aRcyX5s5TnuY25owlfeTAX8Pjbdpp_VC_isObLYeXGXM4S1Ki6dbXhBrzz59-6wC8CrD803tA7rewqCo1Q4jNSFNPmYj"
+  ],
+  "error": null
+}

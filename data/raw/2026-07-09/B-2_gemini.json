@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-09",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-07-08T23:09:59.890099Z",
+  "answer": "中堅企業様で、特定のベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社をお探しなのですね。\n\nCRM導入支援を行う会社は多数ありますが、中立的な立場で支援してくれる会社を選ぶことが重要です。特定のベンダーに特化せず、貴社の現状や課題、将来の展望に合わせて最適なCRMシステムを提案・設計してくれる会社をいくつかご紹介します。\n\n以下に、中立的な立場でのCRM設計支援が期待できる、またはその可能性のある会社を挙げます。\n\n**1. 船井総合研究所**\n船井総合研究所は、CRM導入支援において、システムや業務の全体像を可視化・整理しながら進めることを重視しています。業務プロセスや顧客接点の改善を通じて、CRMの効果を最大限に引き出すことを目指しており、継続的な改善の重要性も提唱しています。特定のCRMツールの導入支援も行っていますが、顧客の課題解決を主眼に置いているため、中立的な提案が期待できます。\n\n**2. ムーブエフコンサルティング合同会社**\nムーブエフコンサルティング合同会社は、貴社の営業スタイルに合ったCRMのスムーズな導入のために、カスタマイズを前提とした導入支援を行っています。経営の見える化と競争力の強化を図るCRM導入支援を行っており、特定のツールに限定せず、顧客のニーズに合わせた提案が期待できます。\n\n**3. 株式会社ripla**\n株式会社riplaは、業務設計からシステム構築・運用まで一貫して支援するDX/開発支援会社です。CRM開発においては、単なる顧客情報管理に留まらず、営業/マーケティング/サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応しています。既存のERP/販売管理/マーケティング基盤との全体最適設計も行うため、特定のベンダーに縛られない提案が期待できます。\n\n**4. グローカルマーケティング株式会社**\nグローカルマーケティング株式会社は、現状分析と要件定義を通じて、CRM導入の目的と要件を明確化することを重視しています。導入後の定着フェーズを特に重視し、利用状況のモニタリングや課題解決、活用好事例の共有などを通じて、継続的な利用を支援しています。\n\n**5. 株式会社Hakuhodo DY ONE**\n株式会社Hakuhodo DY ONEは、顧客との良好な関係を築き、顧客ロイヤルティを高めるための最適なCRM戦略を、策定から実行まで一貫して支援しています。統合的な顧客理解とパーソナライズされたコミュニケーションで、ビジネスの持続的な成長に貢献することを目指しています。\n\n**6. 株式会社Coguru**\n株式会社Coguruは、単なる管理ツールの導入にとどまらず、顧客データの分析から戦略設計、コミュニケーション施策の実行・改善まで一貫してサポートしています。顧客との長期的な関係構築を戦略的に伴走し、顧客満足度を高め、リピート率やLTV（顧客生涯価値）最大化により持続的で安定した事業成長の基盤構築に貢献することを目指しています。\n\n**7. フュージョン株式会社**\nフュージョン株式会社は、「伴走型CRM支援」を重視しており、CRM戦略設計、顧客分析・データ基盤整備、コミュニケーション設計、実行・改善サイクル構築まで一体で捉え、クライアント企業のCRM成熟度に応じて支援しています。\n\n**会社選定のポイント**\n\n中立的な立場でCRM設計を支援してくれる会社を選ぶ際には、以下の点を考慮すると良いでしょう。\n\n*   **コンサルティング実績:** 特定の製品に偏らず、様々な企業のCRM導入を支援してきた実績があるか。\n*   **業務理解力:** 貴社の業界や業務プロセスを深く理解し、それに合わせた最適なCRMを提案できるか。\n*   **要件定義力:** 貴社の「何のために」「どのように」CRMを活用するのかを明確にし、具体的な要件に落とし込めるか。\n*   **定着支援:** システム導入だけでなく、導入後の運用定着や継続的な改善までサポートしてくれるか。\n*   **複数ベンダーの比較検討:** 複数のCRMツールを比較検討し、貴社に最適なものを中立的な立場で提案してくれるか。\n\nまずは複数の会社に相談し、貴社の状況や要望を伝え、最も信頼できるパートナーを見つけることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEurA9vOwf3FhilUqPDmGTVNWmaCI4vYRZ9lAlKwEE6_yccvrgLFrzr36QOfRrDB-wmdaHHtQJWKyepfKdlI8y9RLZGHd2HBL5gaOR70-KyHXKMrBqS08UZ10XMMjz6N2JLwyOPlfqMUYo_ZRqTMC7M",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFqnB8m5f1KJdircA26HWhqrziL5_Ps8YMe8CCLzFgVKVRdm4WQ3i0A9rougog2MNg7qKWepv1Pd-MUc_CvolX2D7riBdyc3p3VOB5VvOZJEqrHJms=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxodVA3bdwzccIonbSgJpqdyun89sIq-zeLLibyJ1AhkhXhzJU3CyXrvCf88RuuRQxxVNWGyqsoROyMZoX-zaNNbzUvs5x_WaQrBpcwOO01GnNLb6OHZCDJvuW8AmY3fAtV32LB2W9LWSL",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGdWWtJT1WsVC_2XbE9ZtmghkJQzW0E316DTcPUcKkQrNGuQlNE59zl4fuGNcd6HM1VUBijjd62q-wzrhfZgWtUTVXeEn11G00wMBlhuaNUJEpW5X4FSegG9liNFFXKoCNGEPA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEuG7kqqQv9LGPlVDLC9FhgZjeiszO-063T8h6gsUpAMxU5A4dFABcf7jpEPkkmbGcxoTZshCi6lNwYq1Y-ErqNrHQRBZGUL6XrL5iDD2N7g1FBtEyEPrzumjltEI4hQ434inATyT1ejv53mqc-J56JnS_bXHY2lsEEfNbbvx9ydGFsZl-zQw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHKjJkzQBnZ0rchNilqSTSWkMm-pskMdJqP6IwpfttgTCECrcXMG0gHsQ5iFQuROTymZpQoariUrw5fkA7x2zZwt2p3Mf_2SbtZ5FoqITNXEg8e8oGGLPsk59b-",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwL3W58SmAsrVUXof4gcktWbODAIvafT55n4Du8QWFpXZHavzPpOh8FAjCIw6MYKiNyV_EosVfIPwAznImK1gyXbFkC88QREUNj_XR563ec1oQFdwQtftW8Fe1wgtXtheX8Ngx_dWtrgTMm3s5YYeliyruVgc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDdVzT9tDl8NYwQwvWOB6WZp18DY8o0-a1R_B7XIpNEBq9IeIdcQmTYfgCWcD2q245ylTjPgDi-QygnJy7lOoaT34HdZDRgOwj9tx2XHhrnXItpklm7l6iOkuiadjHq7IaBcYn5bY0",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHeTV026N51setTf-of653Ha5r2W02Tip245kIFV6RH2Gzs2s9WGY55OQTr8dBkR_njG3PM1Y7frKrUTGghUkH1OQVSUkI_wxuMevp-6h4DSStnbF1WQId4Foa-2nu6TWKMtLlNkELDvUprbnErgwo="
+  ],
+  "error": null
+}
