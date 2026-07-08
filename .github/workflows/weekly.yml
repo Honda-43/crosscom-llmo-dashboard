@@ -1,0 +1,38 @@
+name: weekly
+
+on:
+  schedule:
+    # Monday 08:00 JST = Sunday 23:00 UTC
+    - cron: '0 23 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: llmo-weekly
+  cancel-in-progress: false
+
+jobs:
+  weekly:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+      SHEET_ID: ${{ secrets.SHEET_ID }}
+      AHREFS_API_KEY: ${{ secrets.AHREFS_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run weekly pipeline (Ahrefs AI Overview -> Sheets)
+        working-directory: src
+        run: python run_weekly.py
