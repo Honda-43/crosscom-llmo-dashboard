@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-10",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-09T23:11:34.011560Z",
+  "answer": "# Agentforce導入支援がおすすめの会社\n\nSalesforceが提供する自律型AIエージェント「Agentforce」の導入支援を行う会社は国内に多数あります。それぞれ得意領域や特徴が異なるため、いくつかご紹介します。\n\n## 大手SI・コンサルティング系\n\n**日立ソリューションズ**\n\nAgentforceの導入・活用支援サービスを通じて、さまざまな業種・業態のお客さまにおけるDX推進を支援しており、製造業での保守対応効率化など具体的なユースケースの導入実績があります\n。ビジネス価値の明確化から本番運用まで4ステップで支援する体系的なアプローチが特徴です。\n\n**富士ソフト**\n\nSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供開始し、社内で試験導入・検証してきたセールス向け機能の実践的な知見やノウハウを生かして顧客の営業DX化に貢献\nしています。\n\n**大興電子通信（DCS）**\n\nAgentforce導入に向けた初期検討フェーズとして活用ワークショップを提供し、現行業務の可視化やあるべき姿の整理、業務課題やAI活用ユースケースの抽出を実施\n。\nSalesforce単体導入に留まらず、社内の基幹・周辺システムに分散するデータの統合も含めたAgentforceの導入を一気通貫で支援\nできる点が強みです。\n\n## Salesforce専門・ブティック系\n\n**メンバーズ（サースプラスカンパニー）**\n\n初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nしており、\nSalesforceコンサルティングパートナーに認定され、130名以上の社員が認定資格を保有\nしている点が特徴です。\n金融、製造、小売、IT、不動産など多様な業界の企業を支援してきた実績\nがあります。\n\n**ウフル（Uhuru）**\n\nSalesforceのテクノロジーを活かした業務支援の現場に数多く携わってきた経験をもとに、Agentforceの導入・活用を現実的かつ実践的に支援\n。\nまずは「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供し、最短3カ月のスケジュールで導入を支援\nします。\n\n**バーチャレクス・コンサルティング**\nコンタクトセンター運営に強みを持ち、\nAI導入の初期段階から本格的な活用、そして戦略的な展開に至るまであらゆるフェーズに寄り添い、確実な成果創出を支援\nすることを目指しています。\n\n**フロッグウェル**\n\n各業界・業務の特性に合わせたAgentforceの導入支援を行っており、豊富な業界知識とSalesforce専門性を活かして課題に最適化されたAIソリューションの設計から構築、運用まで一貫してサポート\n。住宅業界やストック型ビジネスなど、複数の導入支援事例があります。\n\n**クロスコム**\n\nSales Cloud(CRM)、Account Engagement(MA)の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装\nする、実務定着に強みを持つ企業です。\n\n## 選び方のポイント\n\n会社選定にあたっては、\nAgentforceは導入すれば自動で成果が出るものではなく、AIが正しく機能するには土台となるSalesforce内のデータが整備されていることが前提\nとなるため、**データ整備・運用設計まで踏まえた支援ができるか**が重要な選定基準です。\n\nまた、\nSalesforceのパートナー企業の専門能力を評価する「Navigatorプログラム」があり、製品・業界・サービスにおける専門能力を知識・経験・品質の3側面からExpert・Level Ⅱ Specialist・Level Ⅰ Specialistの3段階で認定\nしているので、この認定レベルも参考になります。\n\nさらに、**Salesforce公式のパートナーディレクトリ**では\n業界と地域に合わせたコンサルティングパートナーを検索でき、カスタマーレビューを通じて導入パートナーの専門分野を確認\nできるので、そちらも合わせて確認すると良いでしょう。\n\n---\n\n貴社の業種・目的（営業DX、カスタマーサービス、マーケティング等）や規模によって最適な会社は変わってきますので、具体的な課題があれば教えていただければ、より絞った提案も可能です。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.members.co.jp/company/news/2025/0306",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cone-c-slide.com/liblog/salesforce-implementation/",
+    "https://www.salesforce.com/jp/partners/"
+  ],
+  "error": null
+}

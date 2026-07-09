@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-10",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-09T23:14:33.391504Z",
+  "answer": "## Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、AIエージェントを組み込み、従来のように人が指示を出さないと動かないCRMとは異なり、AIが自律的に判断・実行するCRMのことです。\nこれは、AIエージェントを使って自律的にマーケティングやサービスのタスクを管理する顧客関係管理システムです。従来のCRMがデータを保存し、行動を起こすまで待つのに対し、エージェンティックCRMはキャンペーンの計画、顧客対応、パフォーマンスの最適化など、設定した戦略とガードレールの範囲内で、あなたに代わって能動的に動きます。\n\n\n**従来のCRMとの違い**\n\n従来の多くのCRMは顧客記録を保存し、対応履歴を記録し、レポートを生成しますが、次に何をすべきかを指示されるまで待っています。\nこれに対しAgentic CRMは異なる働き方をします。\n\n**主な特徴**\n- **自律的な実行**：\n人間に指示を待つのではなく、Agentic CRMは特定の役割を持つAIエージェントを展開し、観察・判断・行動を代行します。「エージェンティック」という言葉は「エージェント」から来ており、観察した状況に基づいて自律的に行動できる自律システムを指します。\n\n- **複数の専門エージェントが連携**：\n現代のエージェンティックCRMが以前の「スマートCRM」と異なるのは、一つのAIが何でもやろうとするのではなく、特定の機能ごとに設計された複数の専門エージェントが、統一されたデータ基盤の上で協調して動作する点です。\n\n- **継続的な学習**：\nエージェンティックCRMの特徴の一つは、各やり取りから学習・適応する能力です。行動の後、システムは結果とユーザーのフィードバックを評価し、その結果を中枢の知能にフィードバックします。この継続的なフィードバックループにより、AIはモデルを改善し、予測アルゴリズムを更新し、意思決定戦略をリアルタイムで調整できます。\n\n- **人による承認・ガードレール**：完全自動ではなく、重要な判断は人がレビュー・承認する仕組みを組み込むのが一般的です（例：\nAIマーケティングエージェントはURLやブリーフ、製品リスト、アイデアからマーケティング戦略を作り、ブランドガイドラインとコンテンツのガードレールの範囲内でレビュー用に提示します\n）。\n\n**代表的なプラットフォーム**\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションが、Agentic CRMが市場を再形成し、今後の標準を築いていることを示しています。\nMicrosoftのDynamics 365も、\n単なる強力なエージェンティックCRM/ERPプラットフォームだけでなく、営業・エンジニアリング・事業変革における専門知識のグローバルなエコシステム\nを提供するとしています。\n\n---\n\n## 導入・設計を支援してくれる会社\n\n### 海外・グローバル系（大手プラットフォームベンダー系コンサル）\n- **Salesforce（Agentforce）**：\nAIを活用した自動化と専用エージェントをワークフローに統合し、生産性を高め、手作業を減らし、Agentforceと連携データを活用してリアルタイムの洞察を提供します。エージェンティックAIを活用し、現在のクライアントニーズに対応しつつ将来のニーズを予測し、独自にパーソナライズされた体験を提供します。\n\n- **Microsoft（Dynamics 365）**：\n営業・マーケティング・サービス全体で顧客関係を強化するエージェンティックCRMソリューションを提供しています。\n\n- **Accenture**：\nエンタープライズ規模のCRM導入における市場リーダーであり、異なる業務プロセスやデータモデル、コンプライアンス要件を持つ複数国でのCRM展開を行うFortune 500企業が依頼する企業です。\n\n- **Cognizant**：\nCRMとデータ分析の交差点で本当の価値を提供し、BIプラットフォーム、予測分析、AI駆動の販売予測に直結したCRMシステムを求める企業向けにサービスを構築しています。\n\n- **RSM US**：\nAIエージェントが最も価値をもたらす領域を理解し、エージェンティックAIの開発・展開のための包括的な戦略策定を支援するAIアドバイザーを提供しています。\n\n- **CRMIT（Salesforceパートナー）**：\nSalesforceの信頼されるコンサルティングパートナーとして、エージェンティックAIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供しています。\n\n- **Inogic（Microsoftエコシステム）**：Dynamics 365向けにAzure AIを活用した自律型サービスエージェントの構築を支援しており、\n自律システムの構築はDIYプロジェクトではなく、深い技術・業務両面のコンサルティング知見と1,000件以上の実績を要する\nとしています",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.fullpath.com/blog/what-is-an-agentic-crm-understanding-the-future-of-dealership-customer-management/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2025/06/04/ai-first-crm-systems-learnings-from-organizations-making-the-switch/",
+    "https://www.salesforce.com/professional-services/consulting-crm/",
+    "https://www.microsoft.com/en-us/dynamics-365/",
+    "https://integrateiq.com/blogs/crm-consulting-services-companies/",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://www.crmit.com/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai"
+  ],
+  "error": null
+}
