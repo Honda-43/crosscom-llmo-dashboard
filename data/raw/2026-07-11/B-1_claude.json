@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-11",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-10T23:01:33.948266Z",
+  "answer": "Agentic CRMについて調べて回答します。\n十分な情報が集まりましたので、日本語で回答します。日本国内の支援会社についても補足で調べます。\n# Agentic CRMとは\n\n**Agentic CRM（エージェンティックCRM）**は、AIエージェントが顧客関係管理の業務を「自律的に」実行するCRMシステムです。従来のCRMとは根本的に異なる考え方に基づいています。\n\n## 従来のCRMとの違い\n\n\nAgentic CRMは、AIエージェントを使ってマーケティングやサービス業務を自律的に管理する顧客関係管理システムです。従来のCRMがデータを保存してユーザーのアクションを待つのに対し、Agentic CRMはキャンペーンの立案、顧客への対応、パフォーマンスの最適化など、設定した戦略とガードレールの範囲内で能動的に働きます。\n\n\nMicrosoftも同様の視点を示しており、\nこれまでCRMは30年間、仕事が終わった後にセールス担当者が報告する場所であり、顧客の真実を記録するために作られたシステムであって、それに基づいて行動するためのものではありませんでした\n。Agentic CRMはこの構造を反転させ、\nAIエージェントがビジネス全体を流れる会話やシグナルから自動的にデータを取得・拡充・更新し、システムはセラーに現実を記述させることをやめ、それを変え始めます\n。\n\n## 主な特徴・機能\n\n1. **自律的なタスク実行**：\n単なる情報の保存や定型ステップの自動化にとどまらず、データを能動的に分析し、リアルタイムで意思決定を行い、顧客エンゲージメントや業務効率を向上させるための自律的なアクションを実行します\n\n\n2. **統合された顧客プロファイル**：\nあらゆるインタラクションが単一のプロファイルに集約され、閲覧行動・購入履歴・サポート履歴・チャネル選好などを把握し、人間チームとAIエージェントの両方に必要なコンテキストを提供します\n\n\n3. **継続的な学習**：\nあらゆるインタラクションを通じて学習・適応する能力が特徴で、各アクション後にシステムは結果とユーザーフィードバックを評価し、その結果を中央インテリジェンスにフィードバックすることで、モデルの精緻化や予測アルゴリズムの更新、意思決定戦略のリアルタイム調整を行います\n\n\n4. **生成AIとの違い**：\n単にデータを保存する従来のCRMと異なり、Agentic CRMはワークフローにAIエージェントを組み込み、タスクの自動化、次のステップの提案、さらにはアクションの実行までを行います\n。予測AI・生成AI・エージェンティックAIの3層を組み合わせています。\n\n## 導入・設計を支援する会社\n\n### 海外の主要プラットフォーム提供企業\n- **Salesforce（Agentforce）**：\nAI主導の自動化と専用エージェントをワークフローに統合し、生産性向上、手作業削減、シームレスなCRM主導のコラボレーションを実現\nする支援を提供\n- **Microsoft（Dynamics 365）**：\n企業は単なるベンダーではなく、変化をナビゲートし、インテリジェントに拡張し、データと共感をもってリードする戦略的パートナーを求めており、Dynamics 365は強力なAgentic CRM・ERPプラットフォームに加え、営業・エンジニアリング・ビジネス変革のグローバルなエキスパートエコシステムをもたらします\n\n- **Creatio**：\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションがAgentic CRMを既に市場で再構築しています\n\n\n### コンサルティング・SIer企業（海外）\n- **CRMIT**：\nSalesforceコンサルティングパートナーとして、Agentic AIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供\n\n- **Accenture / Cognizant**：\nAccentureはエンタープライズ規模のCRM導入における市場リーダーで、複数国にまたがるCRM展開を行うFortune 500企業が依頼する企業\n。\nCognizantはCRMとデータ分析の交差点で活動し、BIプラットフォーム、予測分析、AI主導の営業予測と直結したCRMシステムの構築を得意とします\n\n- **RSM US**：\nエージェンティックAIの技術に精通した専門家を擁するだけでなく、業界やビジネス上の重要な推進要因も理解しており、単なるベンダー関係を超えて、個々の事業部門やプロセスがどのように機能するかを熟知しています\n\n- **Kanerika**：\n複雑なワークフローを実行し、コンテキストを考慮した意思決定を行い、最小限の人間の監視で運用する自律型エージェントの構築を支援\n\n\n### 日本国内の支援会社\n- **電通総研**：\nSalesforceの自律型AIエージェント「Agentforce」の短期導入・活用支援サービスを提供しており、業務要件整理から環境構築、プロンプト設計、活用支援や運用サポートまで一気通貫で提供",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/06/25/agentic-crm-in-the-flow-of-work-how-ai-is-transforming-sales-and-rebuilding-customer-trust/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.linkedin.com/pulse/what-agentic-crm-why-does-your-business-need-one-bits-in-glass-6lbac",
+    "https://www.salesforce.com/professional-services/consulting-crm/",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2025/06/04/ai-first-crm-systems-learnings-from-organizations-making-the-switch/",
+    "https://www.crmit.com/",
+    "https://integrateiq.com/blogs/crm-consulting-services-companies/",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://www.dentsusoken.com/news/topics/2025/0808.html"
+  ],
+  "error": null
+}

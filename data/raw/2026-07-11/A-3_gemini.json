@@ -1,0 +1,13 @@
+{
+  "date": "2026-07-11",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-10T23:00:18.315905Z",
+  "answer": "",
+  "cited_urls": [],
+  "error": null
+}

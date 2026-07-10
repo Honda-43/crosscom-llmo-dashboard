@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-11",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-10T23:00:51.848488Z",
+  "answer": "Agentforceの導入費用と費用対効果を高める進め方について調べてご説明します。\nAgentforceの導入費用は料金体系が複雑で「一律いくら」とは言いにくいのが実情ですが、最新の情報をもとに相場観と、費用対効果を高める進め方を整理します。\n\n## 1. Agentforceの料金体系（複数モデルから選択）\n\nSalesforceは\n従量課金制（Flex CreditsまたはConversations）、またはユーザー単位のライセンスから選べる料金設計を提供しており、AIをどのように、どの場面で導入するかに合わせて設計されたオプションが用意されています\n。\n\n**① Conversations（会話課金）モデル**\n\n顧客対応向けのシンプルなモデルで、1会話あたり定額2ドル。「会話」とは1つの課題解決のための一連のやり取り全体を指します\n。ただし\n「会話」の定義（24時間以内のやり取り全体）が当初混乱を招き、単発の簡単な質問も複雑な複数ターンのやり取りも同額になるという批判がありました\n。\n\n**② Flex Credits（従量課金）モデル**\n2025年5月に導入された新しいモデルで、\n従来の予測しにくい会話課金モデルに代わる、消費ベースの新しい支払い単位です\n。\n標準は10万クレジットで500ドル。ナレッジベースからの単純な回答は20クレジット（0.10ドル）、複数ステップにわたる複雑なタスクは60クレジット（0.30ドル）程度消費します\n。なお\nFlex CreditsとConversationsは同一組織内で併用できず、どちらか一方を選ぶ必要があります\n。\n\n**③ 従業員向けアドオン（定額制）**\n予測しやすいコストを求める場合、\nAgentforceアドオンは、無制限使用を月額固定のユーザー単位料金で提供し、無制限のAgentforce利用、フルAIスイート、Prompt Builder、分析機能を含み、既存のSalesforceクラウドに直接統合されます\n。目安は\nユーザーあたり月125〜150ドル程度\nです。\n\n**④ Agentforce 1 Editions（大企業向け包括パッケージ）**\n\n大企業向けには、すべてを一つにまとめたAgentforce 1 Editionsがあり、ユーザーあたり月550ドルから。大規模なユーザーベースを持ち、複数部門にわたる広範なAIアクセスを必要とする組織に適しています\n。\n\n## 2. 見落としがちな「隠れコスト」\n\n料金表の金額だけでは実際の総費用は把握できません。\n\n- **前提となる基盤ライセンス**：\nAgentforceはSalesforce Clouds（Sales Cloud、Service Cloud、Field Service Cloud）の上で動作し、Enterprise EditionまたはUnlimited Editionが必要です。既存のSalesforce顧客でない場合、Agentforceを評価する前に大きな投資判断が必要になります\n。\n- **Data Cloud**：\nAgentforceはData Cloudの契約（年間10万8千ドル以上）が前提となり、有用に機能する前に実装サービスやナレッジベース整備が必要です\n。\n- **実装・導入支援費用**：\nSalesforceパートナーはエージェント1つあたりセットアップとトレーニングで2,000〜6,000ドルを見積もっており、これはほとんどの組織にとって必須です\n。\n- **総所有コスト（TCO）の実例**：\n50人規模のチームであれば、ライセンスだけで年間9万ドル程度を想定していても、実装・トレーニング・従量課金分を含めると実際のコストは20万ドルを超えることがあります\n。\n- **日本の相場感（大規模基幹連携の場合）**：\n100名を超える大規模組織でERPや会計・在庫・人事システムとの連携まで求める場合、要件定義から開発・データ移行・テストまでフルセットで取り組む必要があり、導入支援費は1,000万円を超える場合が珍しくなく、プロジェクト期間も半年〜1年以上に及ぶケースが多い\nとされ、\n保守運用も含めた年間ランニングコストは数千万円単位になることもあります\n。\n\n## 3. 費用対効果（ROI）の実例\n\n\nある試算例では、68%のケース解決自動化により、従来10名のサービス担当者（年間人件費55万ドル）が必要だった業務を3〜4名で対応できるようになり、年間33万〜38.5万ドルの粗利益が生まれ、Agentforceの運用コストを差し引いても年間9.6万〜15.1万ドルの純利益となり、投資回収は約21〜",
+  "cited_urls": [
+    "https://www.salesforce.com/agentforce/pricing/",
+    "https://www.eesel.ai/blog/salesforce-agentforce-pricing",
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://www.eesel.ai/blog/salesforce-agentforce-setup-cost",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.eesel.ai/blog/salesforce-service-cloud-ai-add-on-pricing",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026"
+  ],
+  "error": null
+}

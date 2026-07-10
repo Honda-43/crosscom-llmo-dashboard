@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-11",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-10T22:59:24.493701Z",
+  "answer": "Agentforceの導入支援を行っている企業について、最新情報を調べてみます。\n# Agentforce導入支援でおすすめの会社\n\n日本国内でAgentforceの導入・活用支援を提供している会社はここ1〜2年で急速に増えています。代表的な企業を目的別にご紹介します。\n\n## 1. Salesforce公式「FDE Partner Network」認定パートナー（最も信頼性が高い）\n\n2026年6月、Salesforceは\n企業規模や取引年数ではなく、Agentforceの実装実績と技術的な知見の深さを基準に審査された、厳選されたパートナー企業群\nとして「Forward Deployed Engineering（FDE）Partner Network」を発表しました。\nSalesforceのエンジニアリングノウハウをパートナーとFDE Partner Networkは共有することで、この壁を解消するために設計されました\nとのことで、初期パートナー9社が選定されています。単なる導入支援ではなく、本番稼働まで確実に導く体制がある点が特徴です（具体的な9社名は個別にSalesforceの発表資料でご確認いただくことをおすすめします）。\n\n## 2. 大手SIer・コンサルティングファーム\n\n- **電通総研**：\nSalesforce製品の導入実績や顧客接点改革領域でのコンサルティング・システム導入実績を基に、Agentforceを活用した業務要件整理から、環境構築、プロンプトの設計、活用支援や運用サポートまで、一気通貫で提供\nしています。\n- **富士通**：\n2025年1月からAgentforceをSalesforceサポートデスクに採用\nし、\n従来のチャットボットや人による応対と比較して、どれほど効率よく対応できるかを検証\nした実績を持ちます。自社での実証データに基づいた支援が可能です。\n\n## 3. Salesforce専門コンサルティング会社\n\n- **メンバーズ**：\nAgentforceについて、2025年3月より、企業向け導入・活用支援サービスの提供を開始\nし、\n初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nします。\n- **サークレイス**：\n認定パートナーとしていち早く、2024年11月より導入・構築サービスの提供を開始\nし、\n初期導入コンサルティング、PoCから段階的な本格展開までのサポート、人材育成プログラム\nを提供しています。\n- **バーチャレクス・コンサルティング**：\n「Agentforce」の導入から定着化、活用促進までの包括的な支援を提供\nし、特にコンタクトセンター領域に強みがあります。\n- **DCS（大興電子通信）**：\n業務内容や課題をヒアリングし、最適なAgentforceの設計・導入から、運用開始後の活用支援や現場での定着化まで伴走型でトータルサポート\nしています。PoCによる段階的導入アプローチも特徴です。\n\n## 4. 中小規模・特化型の会社\n\n- **フロッグウェル**：業界別の導入実績があり、\n住宅業界向けコンサルティング企業へ、Salesforceの生成AI技術を活用したマッチングシステムの導入支援\nなどの事例があります。\n- **クロスコム**：\nSalesforce公式パートナー企業として、実務で活用できるまでしっかり定着までサポートするAgentforce導入・定着支援\nを行っています。\n\n## 選び方のポイント\n\n1. **実績・認定資格**：Salesforceの認定コンサルティングパートナーであるか、FDE Partner Networkのような厳選プログラムに参加しているかを確認。\n2. **業界特化度**：自社の業界（金融、製造、小売など）での導入実績があるかを重視。\n3. **PoCからの段階導入**：多くの企業が\nまずはスモールスタートで短期間に導入し、実業務における効果やROIを検証\nする進め方を提案しており、いきなり全社展開せず小さく試せる会社が安心です。\n4. **内製化支援の有無**：長期的な運用を見据え、社員教育・内製化まで支援してくれるかも重要な判断材料です。\n\n貴社の業界や導入したい業務領域（カスタマーサービス、営業支援、マーケティングなど）が分かれば、より絞り込んだご提案も可能です。",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/news/press-releases/2026/06/08/japan-forward-deployed-engineer-partner-network/",
+    "https://www.dentsusoken.com/news/topics/2025/0808.html",
+    "https://global.fujitsu/ja-jp/events/reports/sf-agentforce-20250416",
+    "https://www.members.co.jp/company/news/2025/0306",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://cross-com.jp/service/agentforce-support/"
+  ],
+  "error": null
+}
