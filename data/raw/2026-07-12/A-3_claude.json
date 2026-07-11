@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-12",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-11T22:48:58.070466Z",
+  "answer": "Agentforceの導入費用について、最新の情報を整理してお伝えします。\n\n## 1. 料金体系の全体像\n\nAgentforceは単一の料金プランではなく、複数の課金モデルが並存しており、これが「わかりにくさ」の一因になっています。\nSalesforce Agentforce pricing now comes in three different models: $2 per conversation, Flex Credits at $500 per 100,000 credits, or per-user licensing starting at $125 per user per month.\n\n\n- **会話単位課金**：\n1つの会話とはエンドユーザーとエージェント間の一連のやり取りを指し、ユーザーセッションの終了、ケースの解決、または24時間の非活動期間の経過で1会話が終了します。1セッション内の複数のやり取りは1会話としてカウントされ、12往復のやり取りも即座に解決する1メッセージのやり取りも同じ料金になります。\n\n- **Flex Credits（従量課金）**：\n2025年5月に導入された消費ベースの課金モデルで、10万クレジットあたり500ドル（最低購入単位、1クレジットあたり約0.005ドル）です。標準的なエージェントアクションは20クレジット（約0.10ドル）、音声アクションは30クレジット（約0.15ドル）を消費します。\n 実際の会話1件あたりのアクション数は8〜15程度になることが多く、\n1アクションあたり約0.10ドルで、標準的なカスタマーサービスの会話は8〜15アクションを伴うため、実質コストは1会話あたり0.80〜1.50ドルとなり、規模が大きくなるほど会話単位課金より割安になります。\n\n- **ユーザー単位ライセンス**：\n従業員向けの導入では、Agentforce User Licenseが月額5ドル/ユーザー（Flex Creditsが必要）、Agentforceアドオンが月額125〜150ドル/ユーザーで従業員の無制限利用が可能、Agentforce 1 Editionsは月額550ドル/ユーザーからでFlex CreditsとData 360クレジットがバンドルされます。\n\n\n## 2. 見落とされがちな前提コスト\n\nAgentforce単体では機能せず、いくつかの前提条件があります。\n\n- **ベースとなるSalesforce Edition**：\nAgentforceは既存のSalesforce Cloud（Sales Cloud、Service Cloud、Field Service Cloud）の上に構築され、EnterpriseまたはUnlimited Editionが必須です。既にSalesforce顧客でない場合、Agentforceを評価する前に大きな投資が必要になります。\n\n- **Data Cloud（データ基盤）**：これが最大の見落としコストになりがちです。\nAgentforceは適切に機能するためにData Cloudを必要とし、これは購入者が見落としがちなコストで、Agentforce自体のライセンス費用を上回ることもあります。SalesforceのセールスチームはAgentforceのライセンスをData Cloudとは別に見積もることが多く、購入者は5万ドルのAgentforce予算を承認した後にData Cloudライセンスに6.5万〜17.5万ドルが必要だと気づくことになります。\n\n- **導入支援サービス**：\nSalesforceパートナーは1エージェントあたりのセットアップとトレーニングに2,000〜6,000ドルを見積もっており、期間は2〜5週間かかります。これはほとんどの組織にとって省略できない工程です。\n\n\n## 3. 実際の総額（TCO）の目安\n\n複数の分析を総合すると、実質的な年間投資額は当初提示された金額よりかなり大きくなる傾向があります。\n\n- 中堅企業（ミッドマーケット）の場合：\n50ユーザーの企業はAgentforceライセンスに年間9万ドルを予算化するかもしれませんが、実装・トレーニング・従量課金費用を含めると実際のコストは20万ドルを超えることがあります。\n\n- 別の分析でも同様の傾向：\n$2/会話から始まりますが、中堅企業の実質的な初年度コストは15万〜60万ドルに及びます。これはAgentforceがData Cloudの契約（10.8万ドル/年以上）、導入支援サービス、ナレッジベース構築を必要とするためです。\n\n- 導入期間についても留意が必要です",
+  "cited_urls": [
+    "https://coworker.ai/blog/salesforce-agentforce-pricing",
+    "https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026",
+    "https://enterprisedreamin.org/articles/agentforce-pricing-explained-2026/",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://magicfuse.co/blog/agentforce-cost",
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://www.eesel.ai/blog/salesforce-service-cloud-ai-add-on-pricing"
+  ],
+  "error": null
+}

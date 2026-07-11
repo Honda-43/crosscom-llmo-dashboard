@@ -1,0 +1,21 @@
+{
+  "date": "2026-07-12",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-11T22:47:11.639492Z",
+  "answer": "Agentforceの導入支援を検討されている方へ、以下におすすめの会社をご紹介します。これらの会社は、Agentforceの導入から活用、定着までをサポートし、企業のDX推進や業務効率化に貢献しています。\n\n### Agentforce導入支援でおすすめの会社\n\n*   **株式会社enucolor**\n    enucolorは、Salesforceが提供する自律型AIエージェントの導入に対し、業務整理からPoC開発、活用推進まで一貫してサポートしています。現場の声を重視したオーダーメイド支援が特徴で、要件定義から本番リリースまで最短3ヶ月での導入実績や、保守運用コスト50%削減、現場要望100%反映を強みとしています。営業DX支援や営業企画コンサルティングも展開しており、幅広い視点での支援が期待できます。\n\n*   **Uhuru 株式会社（ウフル）**\n    ウフルは、Salesforceのテクノロジーを活用した業務支援の経験に基づき、Agentforceの導入・活用を現実的かつ実践的に支援しています。特に「Agentforce for Service」を対象としたカスタマーサービス領域に特化した支援を提供しており、プロジェクト進捗や状況に応じた柔軟な支援内容の調整、Salesforce Data 360の設計・設定から活用までの一貫したサポートを特長としています。標準スケジュールは3ヶ月を基本としています。\n\n*   **株式会社日立ソリューションズ**\n    日立ソリューションズは、「導入・活用支援サービス for Agentforce」を提供し、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援しています。AIワークショップを通じて現場の業務課題を深く理解し、全社戦略と整合した「ビジネス価値を生むAIエージェント」の実装を支援することに注力しています。製造業の保守対応における初回完了率向上や、建物の運用業務における作業員調整の自動化など、具体的なユースケースに基づいた導入実績があります。\n\n*   **K2 Partnering Solutions**\n    K2 Partnering Solutionsは、Salesforceの包括的なソリューション提供における豊富な実績を活かし、Agentforce導入の理想的なパートナーとしています。効率的でスケーラブルなAgentforce導入を実現し、カスタマイズされたソリューションでビジネス成果の向上を支援します。Agentforceのカスタマイズ、サードパーティとの統合、Salesforceインテグレーション、Agentforceトレーニング、パフォーマンス分析、ガバナンスとコンプライアンスなど、多岐にわたるコンサルティングサービスを提供しています。\n\n*   **株式会社メンバーズ サースプラスカンパニー**\n    メンバーズ サースプラスカンパニーは、Agentforceの導入・運用支援を提供しており、現状業務ヒアリングから導入目的・KPIの明確化、投資対効果(ROI)の試算といった導入前コンサルティングから、ユースケースのPoC、カスタムエージェントの設計・実装、利用状況の可視化と改善提案、業務プロセス統合支援まで幅広く対応しています。特に「Agentforce for Service」「Agentforce for Marketing」「Agentforce for Sales」といった日本で公開済みのエージェントテンプレートへの支援が可能です。\n\n*   **合同会社クロスコム**\n    クロスコムは、カスタマーサクセスチームによる伴走支援を特長とし、顧客の目標から逆算して「どの業務で・誰が・何を判断できるようにするか」を定義し、マーケティング・営業・サポートのユースケースに合わせてAgentforceを業務フローへ組み込みます。公開後も利用状況と出力品質を継続的にモニタリングし、定着支援を行います。BtoBマーケティングとプロダクト営業の経験に基づいたビジネス理解と、Sales Cloud・Account Engagementの運用知見を強みとしています。\n\n*   **株式会社Parkour Japan**\n    Parkour Japanは、Salesforce Agentforce向けの「自律型AI導入・活用支援サービス」を提供しています。人とAIエージェントが協働する新たな業務体制の構築を支援し、社内ヘルプデスク・営業支援・カスタマーサポートの各領域での生産性向上を目指します。従来のSIアプローチでは数ヶ月かかっていた導入期間を、ユースケース限定の「Starter Package」によって最短1週間での稼働へと大幅に短縮できる点が特徴です。経営層・管理職向けのワークショップも実施しています。\n\nこれらの会社はそれぞれ異なる強みやアプローチを持っていますので、自社のニーズや目的に合わせて最適なパートナーを選定することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGdGVhSiXCfC4PuOrZkdjsu2RBtorMNCk0cu9FecB3paJSoNZX9jyyQfvRyIIjSWXIXryIEPqDSNQTotqE88D6ZHVsHA6uSMcauYmhuuzTAKqMKWImiDH93gGgRo5zG",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE1EiodW9yEz2LOiTlhOgHSyJVOCC7dOQ-4V58D_ZF8vTlqSDHcFzN2xk4G2DySErq1nPncbF0kpFPJp5rCIFiGKHIAszstF2452C2jYJxN0Isi15GMrAKgSTXtjuPFAK0K14sVdYWE5Q8G",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGa9GSP3NcfSv2H2UJVLxGmmcNgVmTi5weyarB_FZGR3kdSAxa-DJXoq-5pnvXkzBR3-PviBeA2bwqNskhzOhVB2Jr4G7XhRz7DJwkuLflAj3hp_Nba_Yx20Ec-WOowPQBZVn1yD3Jxp3SlqpKnpnaONpZ22-9i_lRFEm7cCw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHirUdqRrqvPk8rTvLHxAUJzRn9kapuo1zcWvzkDICg9YNy_U157aEnX3bfskwaEtePfOOPlbO5x94T_VFh5PzK5pPvKAMVP8z3DVkvzdLLg6nc7qo1Ocm-Hc8H3gN4UT4zhaRbOjYLpxKet-G39RiCOU98lxZdgH-IJyt0TcyegY0AFyudA65jdgoiB49z6BtqddaLn2xzl0iQjIElmWIbl218EWfRJWYIryTOiTKu",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEEQIgfhT1CiioSoBG-A8IlWIxoBAPm4BeYE0atfUetCC3-w2nY2Boxsqdeh67HM16na1i9PQ-iWVidLOH9IPPkCtP0yrs29CYxPAL7C-ZLTDXcPGYhVtAWT1YaTV1KXNxuDY2Ge3g=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFrD2pG-RbW_QnLTOesFPMq9Y6vQtCkazuyQ0L8nthuiwukM6eNP0qRrLDrehaUw2lxMbZSs7V-_uqU0jwgAinrkuxKRkHjILVT74zHxTdFT_X6XTY9rPT4vC4JnPK_cQJB8bAsyr_9nQT6mg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEh8xDWkqmo8UQ08Gqy1pX7tDWieTsBkc6Bl8qyO9B1dBRzDSXpseSzqbCN68c4nugQCvfkofgcW6EZbiUFAW7ZWDjapXJSGXsyIktmO4QI-F5fAAAzaAva1KYDcocQ36Gcopy_LxVj9PHwFfjeCiVZ8ExQVbE="
+  ],
+  "error": null
+}

@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-12",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-11T22:49:35.603347Z",
+  "answer": "# Agentic CRMとは\n\n**Agentic CRM（エージェンティックCRM）**とは、自律的に判断・行動するAIエージェントを組み込んだ次世代の顧客関係管理（CRM）システムです。\n\n## 従来のCRMとの違い\n\n従来のCRMは「データを蓄積し、人間の指示を待つ」受け身のシステムでした。\n従来のCRMがデータを保存して人間の行動を待つのに対し、エージェンティックCRMは設定した戦略とガードレールの範囲内で、キャンペーンの立案、顧客対応、パフォーマンスの最適化など、能動的に業務を代行します。\n\n\nMicrosoftも同様に、\nCRMは30年間、仕事が終わった後に営業担当者が報告する場所であり、顧客の真実を記録するために作られたシステムであって、それを基に行動するものではなかったが、エージェンティックAIが定義する市場においては、それはもはや資産ではなく負債になっていると指摘しています。\n\n\n## 主な特徴\n\n1. **自律実行**：\n人間からの指示を待つのではなく、エージェンティックCRMは観察・判断・行動を代行する専門特化型のAIエージェントを配置します。\n\n\n2. **複数の専門エージェント**：\n最新のエージェンティックCRMが従来の「スマートCRM」と異なる点は、1つのAIが全てをこなそうとするのではなく、統一されたデータ基盤の上で、それぞれ特定の機能に特化した複数のエージェントが連携して働くことです。\n\n\n3. **継続学習**：\nエージェンティックCRMの特筆すべき強みは、あらゆるインタラクションから学習し適応する能力であり、各アクションの後、システムは結果とユーザーのフィードバックを評価し、その結果を中央の知能にフィードバックすることで、AIがモデルを改善し、予測アルゴリズムを更新し、意思決定戦略をリアルタイムで調整します。\n\n\n4. **統合された顧客プロファイル**：\nあらゆるインタラクションが単一のプロファイルに集約され、閲覧行動・購買履歴・サポート履歴・チャネル選好が反映されることで、人間チームとAIエージェント双方に各接点をパーソナライズするための文脈を提供します。\n\n\n## 代表的なプラットフォーム\n\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションが、エージェンティックCRMがすでに市場を再構築し、今後の標準を確立しつつあることを示しています。\n特にSalesforceは\nエンタープライズCRM領域で最も成熟したエージェンティックAIプラットフォームであるAgentforceを展開しており、Sales CloudをAgentforce Salesとしてリブランドし、クラウド製品ではなく自律型エージェントを中心に据えたプラットフォームであることを示しています。\n\n\n日本国内では、\nHiway CRMが、入力・更新・分析を自動化し、営業担当者のタスク実行まで支援するAgentic CRMとして提供されています。\n\n\n---\n\n# 導入・設計を支援してくれる会社\n\nAgentic CRMの導入・設計支援には、大きく分けて「プラットフォームベンダー自身による支援」と「専門コンサル・SIパートナー」の2種類があります。\n\n## 1. プラットフォームベンダー（自社+パートナー網で支援）\n\n- **Microsoft（Dynamics 365）**：\n単なるベンダーではなく、変革をナビゲートし、賢く拡張し、データと共感を持ってリードする戦略的パートナーを企業は求めており、Dynamics 365を通じてMicrosoftは強力なエージェンティックCRM・ERPプラットフォームだけでなく、営業・エンジニアリング・ビジネス変革に関するグローバルな専門知識のエコシステムも提供しています。\n\n- **Salesforce（Agentforce）**、**Creatio**、**HubSpot（Breeze Agents）**、**Zoho** なども、それぞれ自社エコシステム内に認定パートナー・SIerを抱えています。\n\n## 2. 専門コンサル・システムインテグレーター\n\n海外では例えば、Creatioのエージェンティック機能導入を専門に支援する会社として\nBits In Glassが、企業がCreatioのAgentic CRMを測定可能な成果、迅速な定着、スマートなワークフロー、より強固な顧客関係へと変えるための支援を行っています。\n\n\n## 3. 日本国内での支援\n\n日本では、CRM全般（AI搭載型含む）の選定・導入支援を行う会社や、AI活用に特化したコンサルティング会社が存在します。例えば\n「AI活用研究所」のような専門家に相談すると、業務の負担を減らしながら営業DXなどを進められるとされています。\nまた、Salesforceの認定パートナーやZoho・Pipedriveなどの正規販売代理店も、\nCRM導入における目的設定から施策設計まで支援する実績を持っています。\n\n\n---\n\n## 導入を検討する際の",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/06/25/agentic-crm-in-the-flow-of-work-how-ai-is-transforming-sales-and-rebuilding-customer-trust/",
+    "https://www.fullpath.com/blog/what-is-an-agentic-crm-understanding-the-future-of-dealership-customer-management/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://aimultiple.com/agentic-crm",
+    "https://product.hiway.app/crm/",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2025/06/04/ai-first-crm-systems-learnings-from-organizations-making-the-switch/",
+    "https://www.linkedin.com/pulse/what-agentic-crm-why-does-your-business-need-one-bits-in-glass-6lbac",
+    "https://www.aidma-hd.jp/ai/crm-ai/",
+    "https://www.salesforce.com/jp/blog/jp-crm-company-case/"
+  ],
+  "error": null
+}

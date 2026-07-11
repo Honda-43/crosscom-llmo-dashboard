@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-12",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-11T22:47:45.833820Z",
+  "answer": "Agentforce導入支援企業について検索し、最新情報をお調べします。\nFDE Partner Networkの9社について詳細を確認します。\n# Agentforce導入支援のおすすめ企業\n\nAgentforce導入支援企業を選ぶ際は、「Salesforce認定パートナーとしての実績」と「AIエージェント特有のデータ整備・運用設計の知見」の両方を見ることが重要です。最新情報をもとに、大きく3つのカテゴリーでご紹介します。\n\n## 1. Salesforce公認「FDE Partner Network」参画企業（最も信頼性が高い）\n\n2026年6月、Salesforceは\n「Forward Deployed Engineering（FDE）Partner Network」を本格展開すると発表しました。セールスフォースのAIエージェント「Agentforce」の顧客企業での実装などを担当します\n。この審査基準は\n企業規模や取引年数ではなく、Agentforceの実装実績と技術的な知見の深さです\n。\n\n**国内初期パートナー9社**（\n五十音順\n）：\n\nアクセンチュア、NTTデータ、グローバルウェイ、テラスカイ、デロイト トーマツ、電通総研および電通デジタル、PwCコンサルティング、富士通、フレクト\n\n\n特にフレクトは\nAgentforceに関しても、Salesforceによるサービス提供開始と同時期にいち早く導入支援サービスを立ち上げ、自社内での本番運用、複数顧客への導入支援と、先行して着実に実績を積み上げてきました\nと述べています。\n\nグローバルでも\nFDE Partner Networkに参加する企業はAgentforceの全成功実装事例の3分の1を牽引しており\n、\nAccenture・DeloitteをはじめCapgemini、Cognizant、IBM Consulting、KPMG、PwC、Slalom、Tata Consultancy Servicesなど\nグローバルSIerも名を連ねています。\n\n## 2. 中堅・専門特化型の支援企業\n\n**メンバーズ（サースプラスカンパニー）**\n\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\n。特徴として\n内製化を見据えたあたかも社員のような伴走型支援\nを掲げ、\nSalesforceが提供する自律型AIエージェントAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながらご支援します\n。\n\n**日鉄ソリューションズ（NSSOL）**\n\nSalesforce社のパートナーであり、Salesforce社が昨年リリースしたAIエージェント\"Agentforce\"についても、ソリューション化に向けた企画開発や検証を進めています\n。\n様々なユースケースに応じたエージェントの開発を通じて、技術力や知見を積み上げ、Agentforce国内No.1パートナーを目指しています\n。\n\n**NTTドコモビジネス（旧NTTコミュニケーションズ）**\n2026年のSalesforce Japan Partner Awardで\n「Japan Partner of the Year - Customer Success Management」を受賞\nしており、\nSalesforce社の自律型のAIエージェントプラットフォーム「Agentforce」およびその導入支援の提供などを通じて、お客さまのビジネスに貢献\nしています。\n\n## 選び方のポイント\n\n比較サイトの分析によれば、\nAgentforceは導入すれば自動で成果が出るものではなく、AIが正しく機能するには土台となるSalesforce内のデータが整備されていることが前提になります\n。そのため\nデータ整備・運用設計まで踏まえた支援ができる会社かを確認することが重要です\n。\n\nまた、Salesforceには\nパートナー企業の専門能力を評価する「Navigatorプログラム」があり、Expert・Level Ⅱ Specialist・Level Ⅰ Specialistの3段階で認定\nされているため、導入予定の業界・製品領域でどのレベルの認定を受けているか確認するのも有効です。\n\n## まとめのおすすめ\n\n- **大規模・全社的な本番導入を目指すなら**：FDE Partner Network参画企業（アクセンチュア、NTTデータ、テラスカイ、フレクトなど）\n- **中小規模で伴走型・内製化支援を求めるなら**：メンバーズ、クロスコムなど\n- **業界特化型の高度な実装を求めるなら**：日鉄ソリューションズ（見積対応など製造・IT業界事例あり）\n\n自社の規模・業界・目的（PoCなのか本番稼働なのか）によって最適な企業は変わるため、まずは複数社に相談し、実際のAgentforce実装事例や体制を比較されることをおすすめします。",
+  "cited_urls": [
+    "https://news.yahoo.co.jp/articles/53ae7db8bd913825e3d5f5e7201fd3e9c39aa74e",
+    "https://www.salesforce.com/jp/news/press-releases/2026/06/08/japan-forward-deployed-engineer-partner-network/",
+    "https://bizzine.jp/news/detail/13168",
+    "https://www.flect.co.jp/news/20260609/%E3%83%95%E3%83%AC%E3%82%AF%E3%83%88%E3%80%81salesforce-forward-deployed-engineering-partner-network%E3%81%AB%E5%8F%82%E7%94%BB%E3%80%81agentforce%E3%81%AE%E6%88%90%E5%8A%9F%E3%82%92%E6%8B%A1%E5%A4%A7/",
+    "https://www.salesforce.com/news/stories/salesforce-launches-forward-deployed-engineer-partner-network-announcement/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://note.com/nssol_note/n/n1839fa740632",
+    "https://www.ntt.com/about-us/press-releases/news/article/2026/0410.html",
+    "https://cone-c-slide.com/liblog/salesforce-implementation/"
+  ],
+  "error": null
+}
