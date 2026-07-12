@@ -1,0 +1,18 @@
+{
+  "date": "2026-07-13",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-07-12T22:50:31.873601Z",
+  "answer": "特定ベンダーに依存せず、中立的な立場でCRMの設計支援を行う会社をお探しとのこと、以下の企業やサービスが選択肢として考えられます。\n\n### 特定ベンダーに依存しないCRM設計支援が期待できる会社・サービス\n\n*   **株式会社ArchRise（アーチライズ）**\n    CRM・SFA領域において、ツール選定や要件整理から設計・初期構築、導入後の運用定着まで一貫してサポートしています。Salesforce、Zoho、HubSpotなど複数のクラウドCRM・SFAを比較した上で、特定のベンダーに偏らない構成を提案することを強みとしています。\n\n*   **Chatwork DX相談窓口**\n    国内利用者数No.1のビジネスチャット「Chatwork」が提供する、中小企業のDX推進を支援するオンライン相談サービスです。特定の製品を売ることを目的とせず、中立的な立場の専門家が、企業の現状課題をヒアリングし、CRMなどのツールの選定から業務フローの整理、社内体制の構築まで、DXに関するあらゆる相談に応じています。\n\n*   **独立系コンサルティングファーム**\n    特定のITベンダーや大企業グループに属さず、資本的に独立して経営されているコンサルティング会社です。このようなファームは、「中立性」を強みとしており、企業の課題解決に対して客観的な視点から最適な提案を行うことが期待できます。\n\n### 中立的な立場で支援を受けるメリット\n\nCRMコンサルティング会社を活用する大きなメリットは、CRM/MA/SFAに関する専門知識と客観的な視点を取り入れられる点にあります。自社内だけでは見落としがちな課題や改善ポイントを明確にし、特定の製品に偏らず、SalesforceやHubSpot、Zohoなど複数ツールを比較した上で最適な選定が可能となります。\n\nCRM導入支援会社は、ツールベンダーのセールストークに流されることなく、中立的な立場から企業に合ったアドバイスを提供します。特に社内のITリソースが限られている中堅企業にとっては、業務設計支援や社内教育まで担ってくれる強力なサポーターとなり得ます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFBSiXTbDtHFJB2xz0C5-MhnJ2b1pWQ9kmaMPqX_5clMkpE0zdrTQoI4ZCUDvlXArGF_MxVavd31lF9b_AjU6kskQ2MtQyPVklfuBk42LcLWwtZsFl7BA1GwIoMe2-7iuCj-ks1IL7g",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE_BaZHmK43hUI4y-75BIUaPu8ssMtasue3JLkANuUJdt1VdVYsUwlG4asertpdGBgg0uRziyk9V1kvvX35bNG9T4F0y6CRJYik3PyxYZe1VzYgpQTrdVJrjF5LJmuZ8DnYTWkRa9eHsPxz0rNz8HL5asIw8xA7o1A1lfLiaiWQ0Jc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHELaIPX1kuY8yjUE0xMgvvORzAkH2HOoUudT2dS8rb0TGs_h2vdcusntLoCq6tUH7MYbVmxLjF4H_OiMBAgiZUAWM1RwubHNM-MmtJVfLBJMW87Ub6pAM4S9FsbkPD73aw4zQleqSPU1PQv6wE78vobhMY",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZ1TLbtcvw3f9HEFI_s75X-IQQviCvmRKg_Zeao2BNaGjjAvZ9PA8GSZWw-t2fcRmu6RJ0r6o1PInC002wEUZ4xvDfFv9jLmdONGtfOsRWN9ZdjcJ3N58rMk7-s9wxoNFOw0wELWiFIpnpmkIO3fE="
+  ],
+  "error": null
+}

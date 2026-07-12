@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-13",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-12T22:49:45.429865Z",
+  "answer": "# Agentforce導入費用の相場\n\n## 料金体系の全体像\n\nAgentforceは単体では利用できず、複数のコスト要素が積み重なる構造になっています。\nAgentforceは単体の製品ではなく、Salesforceの既存プラットフォームの上に構築される新しいレイヤーです。\nそのため、以下の費用を合算して考える必要があります。\n\n### 1. 基盤となるSalesforceライセンス費用\n\nAgentforceはSales Cloud、Service Cloud、Field ServiceCloudなどの上に乗る形で提供され、Enterprise EditionまたはUnlimited Editionが必須です。既存のSalesforce顧客でなければ、Agentforceを評価する前にまず大きな契約コミットメントが発生します。\n\n\n### 2. Agentforce本体の料金モデル\n日本市場向けには主に以下の課金方式があります。\n- **会話単位課金**：\nAgentforceは「1会話あたり240円」というシンプルな料金体系です\n\n- **Flexクレジット（従量課金）**：\nFlexクレジットは、AgentforceでAIエージェントが実行する各アクションに応じて消費される、新しい従量課金型の支払い単位で、Agentforce アクションは20 Flexクレジット、Agentforce Voiceアクションは30 Flexクレジットです。\n日本円では\n「Flexクレジット」エディションでは60,000円/100,000クレジット利用できます。\n\n- **ユーザー単位ライセンス（アドオン）**：米国基準では\n対象ライセンスがあれば、Agentforce for Serviceを1ユーザーあたり月額125ドルで追加でき、ここでAI機能が実際に使えるようになります。\n業界特化型は\nFinancial Services Cloud、Health Cloud、Manufacturing Cloudなど専門エディションは1ユーザーあたり月額125ドルではなく150ドルです。\n\n- **フルバンドル（Agentforce 1 Editions）**：\nAgentforce 1 Sales / Serviceは1ユーザーあたり月額550ドルで、CRMライセンス＋Agentforceアドオン＋年間100万クレジット（Flex）＋250万クレジット（Data Cloud）がパッケージされています。\n\n\n### 3. Data Cloud（Data 360）の費用\n\nAgentforceにはData360が必須で、これも課金対象のため、大きく２つの機能の契約が必要になります。\n\n\n### 4. 見落としがちな追加コスト\n- **導入支援・構築費用**：\nSalesforceパートナーは1エージェントあたり2,000〜6,000ドルの設定・トレーニング費用を見積もっており、期間は2〜5週間です。これはほとんどの組織にとってオプションではありません。\n\n- **総保有コストの実態**：\n50ユーザーの中堅企業がAgentforceライセンスに年間9万ドルを予算計上しても、導入・トレーニング・消費料金を含めると実際のコストは20万ドルを超えることがあります。\n\n- 日本の大規模案件では\nユーザ数が100名を超える大規模組織で基幹システム連携を伴う場合、導入支援費は1,000万円を超える場合が珍しくなく、プロジェクト期間も半年〜1年以上に及ぶケースが多いです。\n年間の運用コストも\n保守運用チームの確保やサポートプラン活用など、年間のランニングコストも数千万円単位で見積もる必要があります。\n\n\n### 5. 価格変動リスク\n\n2024年9月の1会話2ドルという料金体系から2025年5月にはFlexクレジット（1アクション約0.10ドル）、2025年後半〜2026年にはユーザー単位ライセンス（125ドル/月〜550ドル以上/月）へと、価格モデルが3回変更されています。\nこれは\n価格が普及の大きな障壁と見なされ、導入が伸び悩んだこと（2025年5月時点でSalesforceの15万社以上の顧客のうち約8,000社のみが採用）を反映しています。\n\n\n---\n\n# 費用対効果を出すための進め方\n\n## ステップ1：技術検証ではなく「ビジネス価値」から入る\n\n導入検討フェーズにおける最大のハードルは、技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定です。\n\n\n## ステップ2：定量的な成功指標を事前に定義する\n\n「議事録が楽になった」「検索が早くなった」という現場の定性的な成果ではなく、「売上xx%向上」や「何人月の工数削減」といった定量的な指標を明確にすることでROIが明確になり、本番導入への道が開かれます。\n実務的には、まず\n現在の成約率・平均対応時間・CSATスコアなど、現状のベースラインを把握することが本番導入後のROI証明に不可欠です。\n\n\n## ステップ3：ユースケースを「効果×実現難易度」で評価する",
+  "cited_urls": [
+    "https://www.eesel.ai/blog/salesforce-agentforce-setup-cost",
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://www.eesel.ai/blog/salesforce-service-cloud-ai-add-on-pricing",
+    "https://blogbloggerbloggesta.hatenablog.jp/entry/agentforce-price",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://www.concret.io/blog/maximizing-roi-with-agentforce"
+  ],
+  "error": null
+}
