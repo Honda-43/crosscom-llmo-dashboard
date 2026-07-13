@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-14",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-13T22:56:00.606187Z",
+  "answer": "Agentforceの導入支援を提供している会社は複数あり、それぞれ異なる強みを持っています。以下に主な会社とその支援内容をご紹介します。\n\n*   **K2 Partnering Solutions**\n    K2 Partnering Solutionsは、Agentforceのコンサルティングサービスをエンドツーエンドで提供しており、迅速なROI（投資収益率）と生産性向上を重視しています。戦略的アドバイザリー、カスタマイズ、サードパーティおよびSalesforceとの統合、トレーニング、パフォーマンス分析、ガバナンスとコンプライアンスまで幅広くサポートします。彼らはSalesforce全体に精通したチームにより、効率的でスケーラブルなAgentforceの導入を実現すると謳っています。\n\n*   **株式会社ウフル**\n    ウフルは、Agentforceのクイック導入支援サービスを提供しており、最短3ヶ月での導入を目標としています。現在のSalesforce組織の確認、ユースケースの整理、Salesforce Data 360の設定、Agentforceの構築やシステム設定、動作確認、リリース準備、簡易レクチャーまで一貫して支援します。プロジェクトの進捗に応じて柔軟に支援内容を調整し、実用を重視した支援が特徴です。\n\n*   **株式会社enucolor**\n    enucolorは、Agentforce導入支援サービスを通じて、業務整理からPoC開発、活用推進まで一気通貫でサポートしています。3ヶ月での導入スピードと、業務プロセスの最適化による保守運用コスト50%削減を目指しており、現場要望の反映を重視した業務フロー分析に基づいた要件定義を行っています。\n\n*   **Girikon**\n    Girikonは、業界の優先事項に合わせてコンサルティングを調整し、スケーラブルな導入のための戦略を策定することに重点を置いています。Agentforceのコンサルティングおよび戦略サービスを提供し、測定可能な成果のためのフレームワーク構築を支援します。\n\n*   **株式会社メンバーズ**\n    メンバーズは、Agentforceの初期導入コンサルティングから設計、実装、運用、内製化、社員育成支援まで伴走型でサポートします。導入目的やKPI（重要業績評価指標）の明確化、リスクや課題の洗い出し、ROIの試算にも力を入れています。多様な業界での豊富な支援実績があり、ツール導入をゴールとせず、KGI・KPIに基づいた効果測定とPDCAサイクルを通じてビジネスグロースをサポートします。\n\n*   **三菱総研ＤＣＳ**\n    三菱総研ＤＣＳは、Agentforceの導入・活用支援サービスを提供し、データ分析・活用基盤の構築、クラウド利活用、多様なシステムの横断的な統合において豊富な実績を持っています。Salesforce単体導入に留まらず、社内基幹システムや周辺システムに分散するデータの統合も含めた導入を一気通貫で支援することが強みです。金融分野で培った実績に基づく、確かなセキュリティと信頼性も特徴です。\n\n*   **株式会社日立ソリューションズ**\n    日立ソリューションズは、「導入・活用支援サービス for Agentforce」を提供し、ビジネス価値の明確化から本番運用・活用推進までを4つのステップでトータルに支援します。AIワークショップを通じて現場の業務課題を深く理解し、全社戦略と整合した「ビジネス価値を生むAIエージェント」の実装を支援することに注力しています。\n\n*   **Ascendix Technologies**\n    Ascendix Technologiesは、Agentforceのコンサルティングと導入、カスタムApp Cloud開発、システム統合、マネージドサービスを提供している企業の一つです。Damco Solutions、Coastal Cloud、Plative、SP Tech、TechForce Services、Peeklogic、CloudgaiaなどもAgentforceのコンサルティングパートナーとして挙げられています。\n\n*   **furuCRM**\n    furuCRMは、Agentforceの戦略コンサルティングサービスを提供し、明確なAIロードマップの作成、影響力の高いユースケースの定義、インテリジェントエージェントの統合戦略計画を支援します。顧客のユニークなビジネスニーズに合わせた包括的な戦略策定を強みとしています。\n\n*   **ブリッジプロセステクノロジー**\n    ブリッジプロセステクノロジーのSalesforce／Agentforce導入・活用支援サービスは、導入前後の課題に応じた設計から開発、運用保守まで対応します。Salesforceを自動更新して営業実務で使えるデータ基盤を整える支援も行っています。\n\nこれらの会社は、Agentforceの導入から活用、そして運用まで、企業のニーズに合わせて様々なレベルの支援を提供しています。貴社の具体的な要件や目指すゴールに応じて、各社の強みを比較検討し、最適なパートナーを選ぶことをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXWtQspL0csSRu5AnEN_wGEe07BfbfEYs_u10Tjb5v3F3GvOF7PaDL0NE_6cm-2hjpcOcpypMIIopB8KYjeDtKWLpFxD81yoncWmpVAYHxWMeavs6Tca5KdWuJPVJpgwGrqkBKsIJ5ZHRvPu6x5SDy9tIg-C21cT0lhB-ePuvCfHab_iXt8wH9cOt07aua6YdXPWsz187YAk5A0_jFRD1VKlZoY24QdQfYqznyOwwu",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGzog7BD2cNg1rGIh-6qo6_PkaPIHoD8lS_CqYN8augf1wScFuD_IoNusXMK7wIpHDIiDEzQejlsMFX9lxgUNqvXLeU6HL6boq4La5JONFq71U56SA1NitfKmoigGODIwcYoAdoW_o4g-KT",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHM9ygjz66yh69jqm44UcpoBLx1v1d7YjqOMdF7htDnM4rue8CYdu3tKm5uIj80L-5WVUDYs2O7kqNkhWtiqbmdakSO5bea_Ha-ojjYRuq04X25R_fSdKuyTZ0Gi-Bd",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoyn4jdit3hPeUvsxlj4Mn8y88BW4wuDiPGB6tewc4WXbna5fNxij91QutjLcPSjYnfYO_8UmZcCJxphKPvGGsF7LvCGYxnlzcNXk9CLr9CiJ_7ci5pt3o9Rv4VcqRGb8agkDhq_u-dNZW-8QZ3FiUp58=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHTq6E4sUMkP-yoreiWyPG22CTp7bpy9ZLfpCLFdufMubDgYrXg5nuaPuiqCpHmu5uyCNSKj7Ad89c1YWKws9j1aNP6V_9Niodb7_BXO9cncTAVdoKStQMjHLLjzzlUiGX8YjdyId8Pv_BnHMHfNZNRtA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH3jk4-Cx69ptViCwRXhjQ9FDflI7VPlYbUTPChdIpGsgj9_Y8L3Df5ki9fEDlqDBhO-lr9GyGrLmJyvKGW1zVtebtK021C-HSimwUwBl3NWMeCX7WuzomwXsIpUdw5Y7Dr0EuxcV176_w=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG6WdWvnjbea8LPVN6rr2EmE-ejhyVYDuhKvT9Cr1ZKFxSrjXcJ_G2yZ5aXmzKjNEnXKTJIJdtGd6RVZUnLO4QrjdyBSaEDseOawY1zIX6ra_Bh0HadfvAzkYL2j8E6BVsY44FCH6mi3im9mabmOEVnwdGCuSTQRihICs4u7w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHam-SYZLExAFCLyNQiw4Nl8GXFvUX0rVF_HWN6cGpbXU3-xvfIb-Ecs_1wwU-eLt8XMx497reY1aw97Pmbq93uRQvviFhwv2C4mAjn5cEiK-ORlA1gxg_P6DkWZ_DZp2qtlzk5_kDPQ54q5txoiX-GTeAuRg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyJKfZgLXl9cEqns3qIZjoIn-0Mog33Ovve9npUEIs3LttDPKLEGv3qpmS5I6SoR4g8OpUzvQO-m-Bi5tscNKbXvWc-O7LW7Nn5-_EHMpSwwIuN5KUnY2UILoT-X0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEP46lJW48DfipBfDu-g3gn17m5-x8yfqC0xwindHRdFNKWDmA5X3A1ZdZxBwB1y-5Tqah6Y0FrwH_K9ilHAHrETyQKxc7klQOXkLHZRyBzJFxrImTcTA=="
+  ],
+  "error": null
+}

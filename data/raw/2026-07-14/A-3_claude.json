@@ -1,0 +1,20 @@
+{
+  "date": "2026-07-14",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-13T22:57:57.987737Z",
+  "answer": "# Agentforceの導入費用の相場\n\n## 費用構造は3層に分かれる\n\nAgentforceのコストは「エージェント利用料」だけでは収まりません。実際には3つのレイヤーで構成されています。\nSalesforceが公表する料金は氷山の一角で、実際には①会話・アクションごとの利用料、②Data Cloud（Data 360）などのデータ基盤費、③ナレッジ整備・連携・専門サービスなどの実装費という3層構造になっており、①だけを予算化すると想定外の費用に驚くことになります。\n\n\n### ① 利用料（課金モデル）\n\n現在、大きく分けて以下の支払い方法があります。\n\n- **会話課金**：\n1会話あたり2ドルを支払うモデルで、Salesforce Enterpriseプランを持っていない場合や容量を超えた場合に利用します。大量利用の企業には割引が適用されます。\n \n1回のやり取りが20往復しても1会話としてカウントされる一方、1行のFAQ対応でも1会話分課金されるため、規模が大きくなると年間5万会話で10万ドルに達することもあります。\n\n\n- **Flex Credits（2025年5月導入の新モデル）**：\n1アクション0.10ドル（10万クレジットで500ドル）という消費ベースの課金で、実際の使用量に費用を近づける狙いがあります。標準アクションは20クレジット、複雑な多段階タスクはより多く消費します。\n 会話課金とFlex Creditsは\n同一組織内で混在させることはできず、組織ごとに1つのモデルを選ぶ必要があります。\n\n\n- **ユーザー単位アドオン**：\n月額125〜150ドルの従業員1人あたりの追加料金で、従業員が消費コストを上回るほど頻繁に利用する場合にのみ有効です。\n\n\n- **Agentforce 1 Edition（エンタープライズ向け）**：\n大企業向けに全機能を1つにまとめたパッケージで、1ユーザーあたり月額550ドルから始まり、複数部門で大規模にAIを利用する組織に適しています。\n 公共機関向けは\nFedRAMP High認証などのセキュリティ要件から月額650ドルとなり、最も高額な価格帯です。\n\n\n### ② データ基盤費（見落としがちな最大コスト）\n\n\nAgentforceは1会話約2ドル、または10万Flex Creditsで500ドルという見出し価格が有名ですが、実際の予算を決めるのはData Cloud（Data 360）で、そのStarterプランは年間約6万ドルから始まります。\n \nAgentforceは回答を自社データに基づかせる仕組みのため、本格運用ではRAG（検索拡張生成）やデータ統合を実現するData Cloudの有償契約がほぼ必須になります。\n\n\n### ③ 実装・構築費\n\n\nSalesforceパートナーの見積もりでは、1エージェントあたりのセットアップ・トレーニングに2,000〜6,000ドル、期間は2〜5週間かかるのが一般的で、多くの組織にとってこれは省略できない費用です。\n\n\n## 総額イメージ\n\n\n50ユーザー規模のチームがEnterpriseでAgentforceを使う場合、ライセンス費用だけで月1.5万ドル（消費コスト別）かかり、中堅企業が年間9万ドルの予算を見込んでいても、実装・トレーニング・消費料金を加えると実際は20万ドルを超えることがあります。\n\n\n日本市場向けの目安としては、\n会話課金なら1回のやり取りで約2ドル（レート変動あり）、月100件の利用なら月額200ドル前後から試せます。\n また、Agentforce自体の料金に加え、\nSalesforce本体（Enterprise Edition等）のライセンス費用（1ユーザー月額数万円規模）との合計がTCO（総保有コスト）になる点に注意が必要です。\n\n\nなお前提として、\nAgentforceは単体では購入できず、既存のService Cloudなどのライセンスへのアドオンとしてのみ存在するため、これがコスト理解を複雑にする最初の要因です。\n\n\n---\n\n# 費用対効果（ROI）を出すための進め方\n\n日本国内の導入支援事例や海外のPlaybookを見ると、成功パターンには共通するステップがあります。\n\n## STE",
+  "cited_urls": [
+    "https://enterprisedreamin.org/articles/agentforce-pricing-explained-2026/",
+    "https://tldv.io/blog/salesforce-agentforce-review/",
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://www.eesel.ai/blog/salesforce-agentforce-setup-cost",
+    "https://www.eesel.ai/blog/salesforce-service-cloud-ai-add-on-pricing",
+    "https://ai-industry.jp/salesforce-agentforce-japan/"
+  ],
+  "error": null
+}
