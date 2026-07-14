@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-15",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-14T22:56:51.234778Z",
+  "answer": "Agentforceの導入支援をしてくれるおすすめの会社についてですね。Agentforceが何を指すのか明確でないため、一般的なSaaS導入支援会社や、もし特定の製品名であればその製品に特化した導入支援を行っている会社を探すことになります。\n\nAgentforceが Salesforce の導入支援を指している可能性も考慮し、Salesforceの導入支援会社を探すことにします。もし、Agentforceが別の特定のソフトウェアやサービスを指す場合は、その名称を教えていただければ、より的確な情報を提供できます。\n\nSalesforce導入支援を行っている会社は多数存在しますので、いくつかの会社を調べてみます。\n\n「Agentforce」の導入支援についてのご質問ですが、一般的なサービス名としては「Salesforce（セールスフォース）」が広く知られており、関連する導入支援会社が多く存在します。検索結果でも「Salesforce」に関する情報が多数見つかりました。\n\nもし「Agentforce」がSalesforceに関連する特定のソリューションや、Salesforceのサービスを指す場合は、以下のSalesforce導入支援会社が参考になるでしょう。特に、ブリッジプロセステクノロジーは「Salesforce／Agentforce導入・活用支援サービス」を提供していると明記されています。\n\nSalesforceの導入支援でおすすめの会社をいくつかご紹介します。これらの会社は、導入コンサルティングから運用定着、内製化支援まで幅広くサポートしています。\n\n**Salesforce導入支援でおすすめの会社**\n\n*   **サークレイス株式会社**\n    Salesforceの標準機能を最大限活用したノンコード導入を支援しており、独自のアプリケーション開発や既存システムとの連携にも対応可能です。将来のビジネス拡大を見据えた戦略的なシステム設計も行っています。\n*   **株式会社CloudFit**\n    クラウドサービスの選定から業務設計、運用までをワンストップで支援し、大手企業を中心にSalesforce導入・活用を通じた営業DXの実績が豊富です。Sales Cloud、Service Cloudなど全てのアプリに対応し、認定コンサルティングパートナーとして幅広いサービスを提供しています。\n*   **インフォテック・サービス株式会社**\n    40名以上の認定Platformデベロッパーを含む多数の認定資格者が在籍しており、開発・カスタマイズに強みを持つSalesforceサービスを提供しています。\n*   **TDCソフト株式会社**\n    長年のシステム開発ノウハウと多数のクラウド導入経験に基づき、Salesforceの導入コンサルティングから保守・サポートまで幅広く提供しています。基幹システムや他のクラウドサービスとのデータ連携・統合も得意としています。\n*   **株式会社ユー・エス・イー**\n    導入からサポートまでワンストップでサービス提供を行っており、スピーディーな導入を希望する企業におすすめです。\n*   **株式会社テラスカイ**\n    国内トップクラスの導入実績を誇り、金融、保険業界をはじめとする多様な業界で数千件を超える導入実績があります。ライセンス選定から導入、開発、運用まで一貫して任せることができます。\n*   **株式会社SHIFT**\n    Salesforceの公式コンサルティングパートナーであり、導入から運用、テスト、定着化までをトータルでサポートします。運用目線の導入・運用設計を得意とし、カスタマーサクセスに強みを持っています。\n*   **knou**\n    業務課題の整理からSalesforce導入、開発、運用支援までワンストップで提供し、現場の課題を踏まえた使いやすいSalesforce環境構築に強みがあります。\n*   **サンブリッジ**\n    Salesforce導入支援に加え、マーケティング領域の活用支援も行っており、営業管理だけでなくリード管理やマーケティング施策との連携を強化したい企業に適しています。\n*   **株式会社ripla**\n    Salesforce導入支援・改修を単なる設定作業ではなく、営業活動や顧客管理の業務改善を支える基盤づくりとして設計・支援しています。現行業務の整理から要件定義、設計、開発、運用改善まで一貫して支援します。\n\nこれらの会社は、Salesforceの導入実績が豊富で、企業の課題や目的に合わせた柔軟な支援を提供しています。導入を検討される際は、自社のニーズに合ったサービス内容や得意分野を持つ会社を選ぶことが重要です。\n\nもし「Agentforce」がSalesforceとは全く異なる、特定の別のソフトウェアやサービスを指す場合は、その詳細を教えていただければ、再度情報をお探しいたします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGhEZUbzoIkXMkCuZYSQ8UeC51E3Uf0R3_IQanpZxB7baPMpQd5QbdqJczAWxhDQHWCu3e8owrzsM8XPQY8qFELK9bp788Ofy6PHABTgxeISMaSuohR",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQER0IptNMKGwC5iASTZeWBxZERL1k1z9WsOuebwBy5DX-r9K6iCFsPA_3Ot_Weo80sbclIA2rAdVpEgfqC_b2iI4q0_YoY2R3EpjF5Ng9g1ldb5SWd58SZ2fFv4OPhIeREytDWM_rQMr8925fki5Q85a61vhw7qkLkGIbscmVHn-sYtP5-n7xydQ1acWHbU5YzV",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF8-St_o_R3XcEaV5ZWfVDVD8DydiZRTYfeJrQgpUMI0IYx1lI6dRBCLfgynxXpS9V8g5yS4yBDKtCiI6iT-3bY81mU_1RJHqpcaXnkCH5kb3jfVcEdIkTBqf8b6FM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG4RiO7NHXZwWIlEbR8wf2oIVdGFjeaZ8otyxhzyQo1SwzjqnSN20Lrth-An3RxXKKwmkKSiOWsiZJ2gLpn0-z5FsZ7nByghF0kbmfvXnarnf2f8r5si4P8gBXNGA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE5CG7ucduDRgKXJumLyP15669-T3JuNjp2wWnI0elvXs2zYnLxvTy37fmbUU8815Q8N4sW_8bSujV5_k4-xhmXDcXCUMMzmiuAXdqnssPYF7e3b4vgbrL3PYwHidrt9fYtfKG9ot3BVijDIEy6lV5xRbzF0j4c17yKptH0hZX3DrCVCnAK53WYDRPkSttuxTLoMEZ3of0otw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFdp4ryWM3nSXmM7QN7_DL-JmU7Y5T8pqXcAWzj3um6E_Hb5oJEEQoVx8kxtslrtsAtcs-yTHyG1nfa6Qq2AI6seLkKMX-08tVc_AYjTmfXgOFWd7rz7BTCjvoghAgh7J0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFav_WbGX4WuB32NmAzH5nWjzZ2YmfQFj8aMuDTZl6IXZsa81XqRlk7CcueeVfqL9zB-1eq7T_cBsvIk6EurGNzMPchCFDXMSLqENIk0hIhC5fVCTG9ih7h6TP6n6EuxQVQP8xb3qv3rq6Xh6c=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFLIJzmmgouxTpUJFgeuFFU4mD3oW7LOfBA9Fn0B-GAVEHkhszl3qAp2xvFpUx-Cw1fwFJL2eQ0NkCbnwKjY9p9uXVmZWNN_0xYXlAirANoycb4ELMVkSQN9hjMSA6OZSuWG7_tzdBisIA="
+  ],
+  "error": null
+}

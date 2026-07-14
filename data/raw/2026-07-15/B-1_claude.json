@@ -1,0 +1,27 @@
+{
+  "date": "2026-07-15",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-14T22:59:27.996357Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、AIエージェントを組み込み、自律的にタスクを実行する次世代のCRM（顧客関係管理）システムのことです。従来のCRMとの本質的な違いは「記録」から「実行」への転換にあります。\n\n## 従来のCRMとの違い\n\n\nAgentic CRMは従来のCRMの単なる進化形ではなく、顧客対応システムのあり方を根本的に変える考え方です。人がシステムに合わせるのではなく、会話やツール、意思決定、ワークフローといった実際の働き方にシステムが適応します。\n従来のCRMは\n30年間、営業担当者が仕事を終えた後に報告する場所であり、顧客の真実を記録するために作られたシステムで、それをもとに行動するためのものではありませんでした\n。\n\nこれに対しAgentic CRMは\nAIエージェントがビジネス全体を流れる会話やシグナルから自動的にデータを取得・充実化・更新する仕組みへと転換します。システムは営業担当者に現実を記述させることをやめ、フォローアップの下書き、案件の推進、リスクが顧客体験に影響を与える前のフラグ付けなど、実際に現実を変え始めます\n。\n\n## 主な特徴\n\n1. **自律的な実行**：\n単に情報を保存したり、あらかじめ定義された手順を自動化したりするだけでなく、データを積極的に分析し、リアルタイムで意思決定を行い、顧客エンゲージメントと業務効率を向上させるための自律的なアクションを実行します\n\n\n2. **継続的な学習**：\nあらゆるやり取りから学習し適応する能力が特徴で、各アクションの後、システムは結果とユーザーのフィードバックを評価し、その結果を中央の知能にフィードバックします。この継続的なフィードバックループにより、メインAIはモデルを精緻化し、予測アルゴリズムを更新し、リアルタイムで意思決定戦略を調整できます\n\n\n3. **アーキテクチャの分離**：\nヘッドレスアーキテクチャにより、統合モデルコンテキストプロトコル（MCP）やスキルに支えられ、顧客データやビジネスロジックといったコアCRMの価値をエンドユーザー体験やエージェントオーケストレーターから切り離し、あらゆるアプリやエージェントを通じてインサイト機能にアクセス・実行できるようになります\n\n\n## 主な提供企業（プラットフォーム）\n\n- **Salesforce**：Agentforceを中心としたAI CRM\n- **Microsoft**：\nDynamics 365は強力なエージェンティックCRM・ERPプラットフォームを提供\n\n- **Creatio**：\nユーザー数、エージェント数、ワークフロー数、規模に制限のないAI CRMおよびワークフロープラットフォーム\n\n- **Klaviyo**：\nAIエージェントを使ってマーケティングとサービスタスクを自律的に実行するエージェンティックCRM\n\n\n# 導入・設計を支援する企業\n\n## グローバル系コンサルティング企業\n\n- **CRMIT**：\nSalesforceコンサルティングパートナーとしてエージェンティックソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供\n\n- **Kanerika**：\n戦略、アーキテクチャ、開発、統合、継続的な運用まで一つの契約モデルで対応し、第三者への引き継ぎがないエージェンティックAIコンサルティング\n\n- **RSM US**：\nAIアドバイザーが組織にとってAIエージェントが最も価値をもたらす領域を理解し、エージェンティックAIの開発・展開のための包括的な戦略策定を支援\n\n- **RITS**：\nローコードのCreatioプラットフォームを使った柔軟なCRM・業務プロセス自動化環境の構築、自己最適化するインテリジェントなCRMエコシステムの再定義を支援\n\n- **Inogic**（Microsoft Dynamics特化）：\n自律システムの構築はDIYプロジェクトではなく、テクノファンクショナルコンサルティングへの深い理解と1,000件以上の導入実績が必要とされる分野\n\n\n## 日本国内の選択肢\n\n日本語対応が必要な場合、以下のような選択肢があります：\n\n- **セールスフォース・ジャパン**：\nCRM(顧客関係管理)ソリューション事業の米国Salesforceの日本法人で、AIエージェント「Agentforce」の展開を行っています\n\n- **Hiway CRM**：\n入力・更新・分析を自動化し、営業担当者のタスク実行まで支援する国産のAgentic CRM\n\n- **NTTコミュニケーションズ**：\n日本企業のニーズに特化したAIエージェントソリューションを展開し、日本語処理の精度の高さと国内企業の業務フローへの理解が強み\n\n\n## 導入検討時のポイント\n\n\nCR",
+  "cited_urls": [
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/06/25/agentic-crm-in-the-flow-of-work-how-ai-is-transforming-sales-and-rebuilding-customer-trust/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2025/06/04/ai-first-crm-systems-learnings-from-organizations-making-the-switch/",
+    "https://www.creatio.com/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.crmit.com/",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://rits.center/offer/agentic-crm-and-workflows",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://news.yahoo.co.jp/articles/d20ba8989259fdaf4e96a2e67c31a7b467864b1d",
+    "https://product.hiway.app/crm/",
+    "https://digital-leadx.com/?p=1282"
+  ],
+  "error": null
+}

@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-15",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-14T22:58:48.195783Z",
+  "answer": "# Agentforce導入費用の相場\n\n## 1. 基本料金モデル（3種類から選択）\n\nAgentforceの価格体系は複雑で、複数のモデルから選ぶ形になっています。\n\n**① 会話（Conversation）課金**\n\n$2 per conversationが顧客対応エージェントに適用される固定モデルの価格\nです。日本円では\n「1会話あたり240円」というシンプルな料金体系\nとして案内されています。ただし\n「会話」は24時間以内のやり取り単位で定義され、単純な一問一答でも複雑な複数ターンのやり取りでも同額という問題が指摘されています\n。\n\n**② Flex Credits（従量課金）**\n2025年5月に導入された新モデルで、\n各標準アクションが20クレジット（0.10ドル）、音声アクションが30クレジット（0.15ドル）消費し、クレジットは10万クレジットあたり500ドルで購入\nします。\n100人のユーザーが1日3件のケースを月20日処理する例では、月額1,800ドル程度\nという試算も公開されています。\n\n**③ ユーザー単位ライセンス（アドオン）**\n\n従業員向けアドオンは月額125〜150ドル、エンタープライズ向けのAgentforce 1 Editionは月額550ドル\nからとなり、\n政府・公共機関向けは月額650ドル（FedRAMP High認証などのコンプライアンス要件のため）\nとさらに高額です。\n\n## 2. 見落とされがちな追加コスト\n\n料金表に出てこない「隠れコスト」が総費用を大きく左右します。\n\n- **基盤となるSalesforce本体のライセンス**：\nAgentforceは単体では使えず、Sales Cloud・Service Cloud・Field Service CloudのEnterpriseまたはUnlimited Editionが前提となるため、既存のSalesforce契約がない場合は大きな追加投資が必要\nです。\n- **Data Cloud**：\nAgentforceは統合顧客データのためData Cloud上で稼働する仕組みで、これはオプションではありません\n。無料枠を超えると追加課金が発生します。\n- **構築・導入支援費用**：\nSalesforceパートナーはエージェント1体あたり2,000〜6,000ドル、期間2〜5週間のセットアップ・トレーニング費用を提示しており、これはほとんどの組織にとって必須\nです。エンタープライズ規模ではさらに高額になり、\n50ユーザー規模の中堅企業がライセンスに年間9万ドルを見込んでいても、導入・トレーニング・従量課金を含めると実際のコストが20万ドルを超えるケースがある\nと報告されています。\n- **総額の目安**：\nAgentforceは1会話2ドルからと謳われますが、中堅企業の初年度実質コストは15万〜60万ドルに達することが多く、これはData Cloudの必須契約（年間10万8千ドル以上）や導入費用が理由\nです。\n\n日本の商習慣に照らすと、\nクラウドサービスのためインフラ費用は発生しないものの、自社業務プロセスに合わせたカスタマイズには開発費（構築費）が必要になる場合があり、費用は要件の複雑さや依頼先企業によって変動する\nため、パートナー企業への見積もり依頼が前提となります。\n\n---\n\n# 費用対効果を出すための進め方\n\n## 1. 「技術導入」ではなく「業務変革」として位置づける\n\n多くの組織が陥る失敗は、Agentforceを技術プロジェクトとしてではなく事業変革の取り組みとして捉えられていないことで、すべての展開判断をビジネスゴールに紐づける必要があります\n。売上成長・コスト効率化・顧客体験のどの軸で成果を出すかを最初に定義することが重要です。\n\n## 2. 導入前にベースラインを必ず取得する\n\n最も多いROI測定の失敗は、稼働前にベースラインを設定しないことで、事前のベンチマークがなければ導入後のデータはあっても信頼できる比較ができません\n。\n現状のコンバージョン率、平均対応時間、CSATスコアなどの基準値を事前に押さえておくことが不可欠\nです。\n\n## 3. 小さく始めてROIを検証してから拡大する\n日本企業向けの実践的な",
+  "cited_urls": [
+    "https://ekfrazo.com/resources/blogs/resources-blogs-salesforce-agentforce-pricing-2026/",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://www.salesforce.com/agentforce/pricing/",
+    "https://www.eesel.ai/blog/salesforce-agentforce-setup-cost",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.eesel.ai/blog/salesforce-service-cloud-ai-add-on-pricing",
+    "https://www.e-sales.jp/eigyo-labo/salesforce-price-24280",
+    "https://www.concret.io/blog/maximizing-roi-with-agentforce",
+    "https://www.cloudsciencelabs.com/blog/agentforce-roi-how-to-measure-the-business-impact-of-salesforce-ai-agents"
+  ],
+  "error": null
+}
