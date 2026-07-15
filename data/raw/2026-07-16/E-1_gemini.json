@@ -1,0 +1,26 @@
+{
+  "date": "2026-07-16",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-07-15T23:02:27.591426Z",
+  "answer": "合同会社クロスコムは、BtoB企業に特化したマーケティング支援会社です。データ活用を通じて「100社100通りの購買体験を当たり前にする」ことをビジョンに掲げ、顧客一人ひとりに合った購買体験の提供を支援しています。2023年5月に本田正憲氏によって設立されました。\n\n**強み**\n合同会社クロスコムの強みは以下の通りです。\n\n*   **BtoB領域に特化**：BtoBビジネスの特性を深く理解し、その領域に特化したマーケティング支援を提供しています。\n*   **戦略立案から施策実行までの一貫支援**：マーケティング戦略の策定から具体的な施策の実行、効果測定までを一気通貫でサポートすることで、顧客の事業成長を包括的に支援します。\n*   **営業経験に基づいた戦略設計**：代表がBtoB営業に長年従事した経験を持つため、マーケティングと営業双方の視点を取り入れた実践的な戦略設計が可能です。これにより、商談獲得を最大化する独自のメソッドを有しています。\n*   **データ活用とパーソナライズ戦略**：データに基づいたパーソナライズ戦略を重視し、顧客のニーズや検討度合いに合わせた購買体験を提供することで、商談化率の向上や利益改善に貢献します。\n*   **顧客課題に合わせたカスタマイズ提案**：企業ごとの課題や背景を丁寧にヒアリングし、その企業に最適な提案をカスタマイズして提供します。\n*   **中小企業への手厚いサポート**：中小零細企業向けに月額1万円でマーケティング相談し放題サービスを提供するなど、限られた予算の中でも効果的なマーケティング活動を支援しています。\n\n**提供サービス**\n主な提供サービスは以下の通りです。\n\n*   **MA（マーケティングオートメーション）・CRM（顧客関係管理）導入・運用支援**：Salesforce Account Engagement（旧Pardot）、HubSpot、Zohoなどの主要MAツールの導入から運用までを一貫して支援します。\n*   **Agentforce導入・定着支援**：Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から実務での定着までをサポートします。\n*   **BtoBマーケティング戦略コンサルティング支援**：ターゲット設計から提供価値の策定、施策実行への反映まで、包括的なマーケティング戦略の設計を支援します。\n*   **BtoBコンテンツ企画・制作代行支援**：ホワイトペーパー、ウェビナー、Web記事などのBtoB向けコンテンツの企画から制作までを代行し、顧客の購買プロセスに合わせた高品質なコンテンツを提供します。5万円からのコンテンツ企画・制作サービスも提供しています。\n*   **BtoBメールマーケティング代行支援**：商談数や売上拡大に繋がるBtoB特化型のメールマーケティングを代行支援します。\n*   **BtoB Salesforce導入・構築支援**：Sales CloudやAccount EngagementといったSalesforce製品の導入・構築を支援します。\n*   **BtoB Hubspot導入・構築支援**：HubSpotの導入・構築を支援します。\n*   **無料相談・無料壁打ち**：具体的な相談内容が決まっていない場合でも、気軽に相談できる体制を整えています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfdCy2u9AgFGsgsW-bXqyVV_L43jchBzw5zU8Eol_yKVlJCuviO7TPFEabOITyLmT8-BXXy7vgfi-umssiT5y9zRj6KOkkzWSiQCe_xw8I7g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHft_2cbthxLtce5IMfo_y6sj1OnRpDbyTRIQoTqeJcYoEtbD4f1wpsYBDulKkiWaZ6_RNFJuZv5PHKaEncEBUmcW0eIyfZwzp61BMlUVayrl9My5bDUZV26ctJPYC_FtI-56o1R5GQ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG29DIVZf3K3l7uUNzfKapfdXM6E9oz6wUMBuAxgMZksC3g0vrrKZdNhr9YlAdi7qWF5NFB5Q17KdLzGR6ohvHWhMY1GeAmkg3FxirMvi8CZg4ftc_rcyLHusQLv4qQSYmPtoH7pF1z_g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEswiOCa8--1Gp2XLj7LBscfs2QKyZdfnZ4fDmPJsK0VTq6EccqSkXYBZ6eJP6s80hjL__iI7KTaXZNuSkOn2req_t4RQ3stmytOYVM6JLxHdRRozYDWZQtd6iwXOJNIjdxGEaTwnhEw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGyzTiF-BmoRvkXlPi4meanvFnaxFMzoel7QzVoBVsdkOI4VTeMN85YDizszGC69XA8FsuXBX10E8PC430fvUzDka7hhcC04BeP71WuEm0994a4BWYWuw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHCUFIVcYexioTxWboYW1aDPcgA1m7rZcPyXmdfGDMUxOWRJisNsxwDHNyM3skA_TPELYNXXZTTbLWb5P6-nncUFoCK5ZQeL8dl9LCfajNOu2w_CzNQDbZatS3j7qMiKLk32vWfHtMH1r__tCmzukwn5hKVYmLhifO6o6z6PDSNZ71Zgnov8mDQhbSLbVk7XWSwIrQd8a7I6HehDtUUC5W2rNVQkjg2niqKMnY92-rtds1sJqUJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFZeA8xkom7rPby68YRoPuNlrK66kfvTQkUhQnRtHekCB97KWA7lpQz_cBZrP1VwOO03gBzP-O0kPimrh9GyuOl-DcP7ZxHfEiMWhGFU3ZZ0PewVyAxuFKUI8QGmTSn-uAfUai48hBsFxvdtBFMADKE",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGCIuddL_EVCRkJapbbPxOvSNiozWGsu6Wj3wL0f1wxKCaDG38aBinrUtFROfumQc4IRU7aMk0oiB-bhBQNfXQ5tdgznqOLnaq_UqSjbF5O51HTmt9DNDuFSmhKTGcSB_TQUrWNdYZLIQnQ-CXWXXr1a--WP9o=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG3In7sHJaLEY1Tka5vWg-8syaaQ6eGVwzp0SD0YGfuOO2qlIiawvZWgqh-_WitNaj0DVyIRcalnBPo1UX28p6ILQNulQypCIQTUpeS0GbZUdjjIed3Z_qG",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGjPpi0kKurVLWobVHVeU8OuJpqo_LUQmiUalSWlvHXgVLmzKWU7LudaRdU_-EweileSNXRNhlRicOI4Tu1R0Z2iJMoexASXnqB0JwC0LWC_dc6ZAVRcTvTccbtJnikTMdfAR4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQER0z95Ka4oUW1rQCbkXKrtl8v6GlkxcHLxOO-VpQvNl4dWODAqi2qiihHMFGx4lsdl9C9yesOoXMJqtoi9JGVNP1rfFIu5ckAkWx0LwkI9zkT6GBa3_TVEMM-gUG1wlfMsyw3Rz0u8NxvruOsDdocfgLAWGFs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEfa3B_iYClQzKP2EAWqk_sdQsXJ6UHzy-xe39W35iriVM2N9bmp4IWqGX-1BUW7LTBoIdiPiabLqKDD9Wz7bl9bs-OOfesfAS1kcB6RHta2wG2CRSuuwQPTAxL7pdGUrmBsf5mrNoul5M="
+  ],
+  "error": null
+}

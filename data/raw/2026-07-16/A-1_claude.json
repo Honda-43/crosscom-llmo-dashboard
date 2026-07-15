@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-16",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-15T22:58:19.749891Z",
+  "answer": "# Agentforce導入支援のおすすめ企業\n\nSalesforceの自律型AIエージェント「Agentforce」の導入支援を行っている企業は多数あります。特徴別にいくつかご紹介します。\n\n## 大手SIer系（大規模・複雑な導入向け）\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルでご支援します\n。ビジネス価値の明確化から本番運用まで段階的に支援するのが特徴で、製造業など業種別の導入実績も豊富です。\n\n**DCS（大同生命コンピュータサービス系）**\n\nデータ分析・活用基盤の構築、クラウド利活用、多様なシステムの横断的な統合において豊富な実績を有し、Salesforce単体導入に留まらず社内の基幹・周辺システムに分散するデータの統合も含めたAgentforceの導入を一気通貫で支援\nします。\n\n## Salesforce専門コンサル・パートナー系\n\n**サークレイス**\n\n2024年10月30日より日本市場で提供を開始した自律型AIエージェント「Agentforce」について、認定パートナーとしていち早く同年11月より導入・構築サービスの提供を開始\nした実績があります。\n\n**メンバーズ（サースプラスカンパニー）**\n\nAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\n。\nメンバーズはSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\n。\n\n**ウフル**\n\nSalesforce導入実績6,000件以上。中核機能と業務プロセスの両面に精通した知見を活かし、Agentforceの設計・ユースケース整理、プロンプト設計、定着支援までを現実的かつ実践的に支援\n。まずは「Agentforce for Service」に特化したクイック導入サービスを提供しています。\n\n## コンタクトセンター・CX特化系\n\n**バーチャレクス・コンサルティング**\n\n「Agentforce」の導入から定着化、活用促進までの包括的な支援を提供\n。特に\nコンタクトセンターをはじめとする顧客接点部門での課題解決\nに強みがあります。\n\n## 中小・専門特化系\n\n**フロッグウェル**：\n各業界・業務の特性に合わせたAgentforceの導入支援を行い、豊富な業界知識とSalesforce専門性を活かした設計から構築、運用まで一貫サポート\n。住宅業界などでの導入実績あり。\n\n**enucolor**：\n初期導入前コンサルティング、Agentforce構築（PoC支援）、活用及び改善サポートまで、現場の声と成功事例を組み合わせたオーダーメイド支援\nを提供。\n\n---\n\n## 選び方のポイント\n- **大企業・複雑な業務統合が必要**→日立ソリューションズ、DCSなど大手SIer\n- **Salesforce専門知識・内製化支援を重視**→メンバーズ、ウフル、サークレイスなど認定パートナー\n- **コンタクトセンター/CX特化**→バーチャレクス\n- **スモールスタート・特定業界特化**→フロッグウェル、enucolorなど\n\n実際の選定にあたっては、①自社の業種・業務課題との親和性、②Salesforce認定資格保有者数などの実績、③PoCから本導入までの伴走体制、の3点で複数社に問い合わせて比較することをおすすめします。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}

@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-16",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-15T23:00:44.464923Z",
+  "answer": "# Agentic CRM（エージェンティックCRM）とは\n\nAgentic CRMとは、AIエージェントを組み込み、自律的にマーケティング・営業・カスタマーサービスのタスクを実行するCRM（顧客関係管理システム）のことです。\n従来のCRMが単に顧客データを保存し、人間が次のアクションを指示するのを待つのに対し、Agentic CRMはキャンペーンの立案、顧客対応、パフォーマンスの最適化などを、設定した戦略とガードレールの範囲内で自ら実行します。\n\n\n## 従来のCRM・生成AI CRMとの違い\n\n\nAgentic CRMは単に情報を保存したり、あらかじめ決められた手順を自動化したりするだけではなく、データを能動的に分析し、リアルタイムで意思決定を行い、顧客エンゲージメントと業務効率を改善するための自律的な行動を取ります。\nまた、生成AIとの違いも重要なポイントです。\nAgentic CRMは生成AI CRMとは異なります。生成AI CRMは求職者へのメモなどコンテンツを生成できますが、こうした従来の技術は人間からの指示に依存していました。一方でAgentic CRMはより自律性が高いという特徴があります。\n\n\n## 主な機能・特徴\n\n1. **自律的なタスク実行**：\n人間が何をすべきか指示するのを待つのではなく、Agentic CRMは特定の役割を持つ専門AIエージェントを展開し、観察・判断・行動を代行します。\n\n\n2. **複数の専門エージェントの協働**：\n最新のAgentic CRMが従来の「スマートCRM」と異なる点は、一つのAIがすべてをこなそうとするのではなく、統一されたデータ基盤上で、それぞれ特定の機能のために設計された複数の専門エージェントが協働して働くことです。\n\n\n3. **継続的な学習**：\nAgentic CRMの決定的な強みは、あらゆるインタラクションから学習し適応する能力です。各アクションの後、システムは結果とユーザーのフィードバックを評価し、その結果を中枢の知能へフィードバックします。この継続的なフィードバックループにより、中枢のAIはモデルを洗練させ、予測アルゴリズムを更新し、意思決定戦略をリアルタイムで調整できます。\n\n\n## 代表的なプラットフォーム\n\n- **Salesforce（Agentforce）**：SalesforceのAgentforceは\n人間、アプリケーション、AIエージェント、データを統合することであらゆるエクスペリエンスを向上させる企業向けのエージェント型AIソリューションで、顧客・サプライヤー・従業員向けに24時間365日稼働するAIエージェントを導入できます。\n\n- **Microsoft Dynamics 365**：\nAgentic CRMは従来のCRMの延長というより、顧客エンゲージメントシステムのあり方を根本的に変えるもので、人が硬直的で分断されたアプリに合わせるのではなく、会話・ツール・意思決定・ワークフローを横断する実際の働き方にシステムが適応する形になっています。\n\n- **Creatio、HubSpot、Zoho** なども同様の方向性で機能を展開しています。\nCreatioやSalesforce、Microsoft、HubSpot、Zohoといった主要ソリューションが、Agentic CRMが市場をどのように再形成し、今後の標準を打ち立てつつあるかを示しています。\n\n- **Klaviyo**（B2C・EC向け）：\nKlaviyoはB2C向けの自律型CRMで、同じ顧客プロファイルデータ上で動作するAIマーケティングエージェントとカスタマーサービスエージェントを提供しています。\n\n\n---\n\n# 導入・設計を支援してくれる会社\n\n「Agentic CRM」という言葉自体はまだ新しく（2025〜2026年頃に急速に普及）、日本国内で\"Agentic CRM専門\"を明確に掲げるコンサル会社はまだ多くありません。ただし、実質的には以下のような会社・エコシステムが支援を提供しています。\n\n### ① Salesforce（Agentforce）関連の導入支援会社\n- **国内SIパートナーエコシステム**：\nSalesforceのコンサルティングパートナーは、コンプライアンスやガバナンスを維持しながらビジネス成果を生み出すAIエージェントのコンサルティングやアドバイザリー、導入や実装、稼働をサポートする体制を構築しており、SIパートナーエコシステムは日本市場でこれまでに数百のAgentforceの導入を支援した実績があります。\n\n- 具体例として、**株式会社enucolor**は\n初期",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.smartrecruiters.com/resources/glossary/what-is-agentic-crm/",
+    "https://www.fullpath.com/blog/what-is-an-agentic-crm-understanding-the-future-of-dealership-customer-management/",
+    "https://www.salesforce.com/jp/agentforce/",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/06/25/agentic-crm-in-the-flow-of-work-how-ai-is-transforming-sales-and-rebuilding-customer-trust/",
+    "https://www.salesforce.com/jp/news/press-releases/2025/11/20/agentforce-world-tour-tokyo/",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}

@@ -1,0 +1,21 @@
+{
+  "date": "2026-07-16",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-07-15T23:01:03.889084Z",
+  "answer": "中堅企業様で特定ベンダーに依存しない中立的な立場でCRMの設計支援を求めているとのこと、承知いたしました。そのようなニーズに応えるコンサルティング会社やサービスは複数存在します。\n\n以下に、特定のベンダーに依存せず、中立的な立場でCRMの設計から導入、運用までを支援する企業の特徴と具体的な会社名を挙げます。\n\n**中立的なCRM設計支援を提供する企業の特徴**\n\n*   **複数ツールの比較・選定支援**: Salesforce、HubSpot、Zohoなど、特定のツールに限定せず、貴社の業務や組織体制に最適なCRMツールを比較検討し、選定を支援します。\n*   **業務設計・データ戦略からのアプローチ**: 単にCRMツールを導入するだけでなく、貴社の経営戦略や事業戦略、既存のIT環境を俯瞰し、全体最適のIT戦略を策定します。顧客データ活用基盤の設計や、マーケティング・営業・サポートの業務プロセス設計と連動した支援を行います。\n*   **ベンダーロックインの回避**: 特定のベンダーに囲い込まれることなく、貴社が自律的にCRMを運用・改善できる体制構築を支援します。内製化支援に力を入れている企業もあります。\n*   **成果にコミットした継続的な支援**: 導入後の定着状況の確認や改善提案を継続的に行い、成果創出までを見据えたPDCAサイクルを回すことを重視します。\n*   **データ分析とシナリオ設計**: 顧客データを分析し、「誰に・いつ・どのチャネルで・何を伝えるか」というコミュニケーションの筋道を戦略的に構築するシナリオ設計を支援します。\n\n**特定ベンダーに依存しないCRM設計支援を提供する可能性のある会社**\n\n*   **ストラ株式会社**: 特定のベンダーに依存せず、複数のSFA/CRMツールを比較した上で、業務や組織体制に適した構成を設計します。導入後の社員トレーニングや運用改善も行い、現場で使われ続ける仕組みを整えることに注力しています。\n*   **ECマーケティング株式会社**: ECサイトやマーケティングサイトに特化したWebコンサルティング会社で、CRMツールベンダーと紐づかないコンサルティングサービスを提供していることが示唆されています。\n*   **電通総研**: 「ベンダーロックイン」を避け、より効果的な内製化を目指した支援体制を整えており、顧客の自走化を支援するアプローチを取っています。\n*   **インフォテック・サービス**: 独立系ベンダーとして、特定のメーカーに依存せず、顧客にとってより適切なソリューションを提供できることを強みとしています。\n*   **ヴァイタル・インフォメーション**: 日本の独立系IT企業であり、システムの設計・開発から運用・保守までトータルサービスを提供しています。\n*   **テクノデジタルコンサルティング**: データ、マーケティング、システムを横断的に捉え、最適なCRMの仕組みをプランニングすることに強みを持っています。\n*   **株式会社ripla**: 業務設計からシステム構築・運用まで一気通貫で支援するDX/開発支援会社で、CRM開発において顧客データの活用基盤設計まで対応できます。既存システムとの全体最適設計も行います。\n*   **アーカス・ジャパン株式会社**: CRMの専門的な開発・設計に強いITコンサルティング企業で、日本市場に最適化されたCRM構築のナレッジを活用し、大手CRM基盤のカスタマイズやゼロからの開発も得意としています。\n*   **株式会社EVERRISE**: 顧客データ統合基盤（CDP）などを含めた顧客中心データ戦略を提供し、CRMと分析基盤を連携してマーケティング施策・営業戦略の高度化を支援します。\n*   **株式会社Sota Solutions**: Salesforceなどの主要CRM基盤のカスタマイズ導入や業務設計支援に強みを持ち、標準CRMを自社業務にフィットさせたい企業や運用までトータル支援を受けたい企業に適しています。\n\nこれらの企業は、貴社の現状や課題を丁寧にヒアリングし、中立的な視点から最適なCRM戦略の立案、設計、導入、そしてその後の運用・改善までを一貫して支援してくれるでしょう。複数の会社に相談し、貴社の状況に最も合致するパートナーを選定することをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGTs982VWaU3EL9QE20pJB_Dx7rh2C9wd9LDcZohfmPFuAsL5KyKVHbAx0buEafQv6TsanEjLnp4FsH7_y7cp_VkEd-2oeLcN7B4hJATXI5SPGuUL6-xx4JNWDyR2boWtjn59II_TCK",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEbpUBdRa0fwJJaY8Z--3PO-DjLEhs7vQPzceMk8tDPr6hLqisY5ADDaujlmarKs3iW9yD2vtcuO8K1Z-9y2NmD_C45YEyQ4G8q6ELHs70oE5h51djhKJauk0VueXEWxO6Ud74gRPhtO71O",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGX7joT4aWL_9i2bcLo13VEt0AsPBFUUavYjp67dpoc12S_mJWan3FP-B2z3cV-lxeRDTWbxMjCBqre-JpfYjCFIWwE2FhQ-B6STyABVdW1BY0NJvdBC8csDMWvIgUfZkZNON8H0nqF51g=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFyWkXFX18tjo1fYIRn4DzYruXf-4fjZEzZiXPRTvEP02cj2osGArirY5mrelBr2Hv8wIlwAXO5k2b0zN-hT39TK3-Gbq16F4mgGcKdKfPkf7JZ0DwVvL2ndlavIWGdrP741A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGUPp_oTy5zWCmIDaoEElPBwtBcLQKd_06RG6mKrxDzCjLfUNhO1w2dvEgIqc7HwP1UiR8Z6vhmfJG7EuGoYsX3ESclmO4doGwcF0KT6TeD0HsSsDpSC1_DT0V82J3IvYOJoIeKUa_MdpPTP2whg02T",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE_L4F68HW9FhIbr3aJuhm2YEr3wurB7rDTcM-uHI_pMZNRM-6A0jXEH4o7JUzVOeQCOxTt_SGYNp11AuBfCPVTOPLVHN2CpNtfGO7ZXRbPYZ5LXKqvKBRCZ_TMyk6dP3IG18ApiGKCpHwTVA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFt0_IyjN8odEaoBXUtnm87ZzwLqFUcPi1ZVVOzoNVC3SlKOOLTqIj9kqvG2ojn2DW89dvRWU8zprT-euztvP-kXvm_CNrG5w91UZ9x5sfl4sxdtGSCVdPzDlBPMb7JwYebWw=="
+  ],
+  "error": null
+}
