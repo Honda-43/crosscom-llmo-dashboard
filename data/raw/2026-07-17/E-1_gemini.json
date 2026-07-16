@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-17",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-07-16T23:00:33.541807Z",
+  "answer": "合同会社クロスコムは、BtoB企業に特化したマーケティング支援会社です。データ活用を通じて「100社100通りの購買体験を当たり前にする」というビジョンを掲げ、企業のマーケティング活動を支援しています。\n\n**強み:**\n*   **BtoB領域への特化:** BtoBに特化することで、この分野における深い専門知識と豊富な経験を持っています。\n*   **戦略立案から実行までの一貫支援:** マーケティング戦略の策定から施策の実行まで、一貫したサポートを提供します。\n*   **マーケティングと営業双方の視点:** 代表者がBtoB営業経験が長く、マーケティングと営業の両方の視点を取り入れた戦略設計と、商談獲得を最大化する独自のメソッドが強みです。\n*   **データ活用とパーソナライズ戦略:** データ活用によるパーソナライズ戦略で、商談化や利益改善を支援し、顧客一人ひとりに合った購買体験の提供を目指します。\n*   **本質的な問題解決への注力:** 表面的な課題ではなく、企業の根本的な問題を特定し、データをビジネスにとって価値あるインサイトへ変換することで、ビジネス成長に貢献します。\n*   **豊富な実績とノウハウ:** 累計100社以上のプロモーション戦略支援で培った顧客導線設計力があります。\n*   **中小企業へのきめ細やかなサポート:** 中小零細企業向けに月額1万円のマーケティング相談し放題サービスや、5万円からのコンテンツ企画・制作サービスなど、予算に応じた支援も提供しています。\n\n**提供サービス:**\n*   **BtoB MA（マーケティングオートメーション）導入・運用支援:** Salesforce Account Engagement（旧Pardot）、HubSpot、Zohoなどの主要MAツールの導入から運用まで一貫して支援し、商談数・受注数改善のための戦略提案と実践を得意としています。\n*   **Agentforce導入・定着支援:** Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までを支援し、リアルタイムデータ、機械学習、AIエージェントを駆使したパーソナライズされた顧客体験の推進をサポートします。Salesforceの公式コンサルティングパートナーです。\n*   **BtoB マーケティング戦略コンサルティング支援:** BtoBマーケティングに特化した戦略設計から施策への落とし込みまでを支援し、中長期的な事業成長を推進します。\n*   **BtoB メールマーケティング代行支援:** BtoBに特化したメールマーケティングの代行を通じて、商談数と売上の拡大を支援します。\n*   **BtoB コンテンツ企画・制作代行支援:** ホワイトペーパー、ウェビナー、Web記事などのBtoB向けコンテンツの企画から制作までを、マーケティング戦略にフィットする形で提供します。\n*   **BtoB マーケティング無料相談:** サービスに関する無料相談を受け付けています。\n*   **月額1万円のマーケティング相談し放題サービス:** 中小零細企業向けに、低価格でマーケティングの戦略戦術設計、広告運用、オウンドメディア制作、MA運用などに関する相談が可能です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJmKwrKS1EYUy5MktM5slldutLQGWYzeafR-_jUpdreDPSSbj7pUwIXVe2TXRFkbCPlkqvgDJliT5NCKocFhLgyqSlvSwf2OGdiUnHH8SehA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpryoFW7GEz1UiGoKyf-TDF8aY5RjYwVUj3oEYaxq3gU0vRkRZEieu9scdeXfxCSYvMzd6oi-8k0peigwEuPBMlSaJdpEqsbsJy82AtP8tRdKGcZ6YjH3OTK_6hyyWyjvxmTm391MdzQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGUjeXFe5clM-n6V5h9qzLuxhxwwwAwv_qcTKtDmTeWW0aUriG3fGI67LnLvXfuWIOpTmfZV9rSK5ogwuZL0pghwo86fRB4pujEyQbDTBwOzgv8S3OtLb4ZjDpduArNgiNb-XhJB5AJOg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEuQud1v9aqKsnizIJqrcQjQV4pmSeNEwpETDPAxdsqBdu0kyOslSkGGNnDjEp9WcIBxUqUCm_WxdGb2Aqmg4FLtT4CxKQDi0tZGKoNe5-PeuGiCcR8oA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHQXWCQ4bhMlI3KAXDGH7SKU2oX9B9A_RWRK9pMrebusu8tg26qfhr6yfV7_uqfaL6FLQDMA1k_KzonlYn67sa1TmDGv84b5HVpSWXeSJSYcqGWueiFRjcHtrhxX1UaS2ZfFJli9jHZ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFyvDgN0nXNY4jzcH6eObOdvhgtq12aW_pUEkuaaBVK-uxQ1PtnTk9gDKVDMLGRwoKTLoZEWXGRm47p7C5PWUVEYpTa37kCHABuhf6D4AF3fa6A6yT-GY8K",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFoxJ6MTQ4bY0yP_ZmkhMfN9Qx7oBiC5DIQthLnQ4RLlChBFubOiHJdUVlqMfOfrV-g8lUArsN_5_EtJRymbBw41yIbmwpd91GznoKHCP4r7G2tNoYwB_7qaNl9j1p-_tEM1jsuW-K9FS7Ap8Bn8660FWhv0RM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0uzIqbhwUOvmVjH4TucumGsgT03Akoi7FGvT1xYXcFsZekJoTb7O-P3gxVACrbkk7XIFWWZgs5YWU8ldNnF4iABuuxkrDT7OIJ12QiEtE_n5SDgn4r6_-3j4cvuKxi-avRD8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEWFyNfcB4tisL3zz57pFmjcR_H8WACgQOgiVlVHABXMRyaWmqVgq9wPBvigOJ_F0Wlg1Eapfjxgl8xMQlJNaImllD9el5mZn8U1kGnleFG5HGFwAsXYLf0PnxGQ9U1vIMfHHhBwU7ldEs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFFtEXgmycg6Mf-VJgEc_n4V0ykbutmlXgw3KeJhwIHMO0NWoDrO12QCOOTqI5lTK8NwSpPgkPuxzJ8cN_R9JCqSlWopb4ZdwW8sNP9n0PcaBbrgRm5Yrvq1hHOCCBlsLsA33dThXYRUBOU2qymGysV",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFdPo8AH6NvH3zSIIPR_ArMG-UvXVJ2_if0P-Xg6qCdDLFH_RWBod9VbZgZa37k2VAmLpi-6I-FbHDHetnY0p9rwpzsW13e_sqtHKdNfWL4cDh3aXhRB1DpTmieNJ5PyXOLChP2B2AuK0gREI0mQYdpIA0E0FQ="
+  ],
+  "error": null
+}

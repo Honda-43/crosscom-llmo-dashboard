@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-17",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-16T22:58:17.798581Z",
+  "answer": "Agentforceの導入費用と費用対効果を出す進め方について、最新情報を調査してご説明します。\n# Agentforce導入費用の相場と費用対効果を出す進め方\n\n## 1. 費用相場：料金体系が複雑なため要注意\n\nAgentforceは単一の「定価」がなく、複数の課金モデルが並存しています。まずこの構造を理解することが重要です。\n\n### 料金モデルの種類\n\n**① 会話ベース課金（Conversations）**\n\n1会話あたり2ドルの定額制で、シンプルな質問でも複雑なやり取りでも同じ料金がかかります\n。\nシンプルで予測可能な短いやり取りをする顧客向けチャットボットに向いていますが、短い質問は割高に感じられる場合があります\n。\n\n**② Flex Credits（従量課金・2025年5月導入）**\n\nFlex Creditsは、予測しづらかった従来の会話ベース課金に代わるものとして2025年5月に導入された、Salesforceの新しい消費量ベースのモデルです\n。\n標準アクション1回あたり20クレジット（0.10ドル）、音声アクションは30クレジット（0.15ドル）を消費し、クレジットは10万クレジットあたり500ドルで購入します\n。\n平均的なやり取りが20アクションを超える場合は会話ベースの方がコスト効率が良く、多くの場合はFlex Creditsの方が経済的です\n。\n\n**③ ユーザー単位のアドオンライセンス**\n\n1ユーザーあたり月125ドルで、従業員がケース要約やメール作成、データ自動入力などのタスクに無制限にAIエージェントを利用できます\n。\nより低コストな選択肢として、ユーザーライセンス（月5ドル）があり、基本的なAIアクセスを多くの従業員に提供できますが、利用量自体はFlex Creditsで課金されます\n。\n\n**④ Agentforce 1 Edition（大企業向け包括プラン）**\n\n大企業向けには、Agentforce 1 Editionsがすべてを1パッケージにまとめており、1ユーザーあたり月550ドルから提供されています\n。\n政府・公共部門向けは、FedRAMP High認証要件と最高水準のセキュリティ基準を反映し、1ユーザーあたり月650ドルと最も高い価格設定になっています\n。\n\n### 見落とされがちな「隠れコスト」\n\n料金表に載っている数字は全体像の一部に過ぎません。\n\n- **前提となるSalesforce基盤**：\nAgentforceは単独では機能せず、Sales Cloud・Service Cloud・Field ServiceクラウドのEnterpriseまたはUnlimited Editionの上に構築されるため、既存のSalesforce顧客でなければ評価する前から大きな投資が必要になります\n\n- **Data Cloud（必須）**：\nAgentforceは正しく機能するためにData Cloudを必要とし、これは購入者が見落としがちなコストで、Agentforceのライセンス費用自体を上回ることも多い項目です\n\n- **導入支援費用**：\nSalesforceパートナーは1エージェントあたりのセットアップ・トレーニングに2,000～6,000ドルを提示しており、期間は2～5週間で、ほとんどの組織にとってこれは必須の費用です\n\n- **日本国内の大規模基幹連携案件**：\nユーザ数が100名を超える大規模組織では全社的なデジタル基盤として位置づけ高度なシステム連携を前提とした構築が必要になり\n、\n導入支援費は1,000万円を超える場合が珍しくなく、プロジェクト期間も半年〜1年以上に及ぶケースが多い\nとされています。\n\n### 規模別の目安（海外事例ベース）\n\n\n中堅企業（ユーザー500名規模）ではData Cloud費用を除いて年間1.5万〜5万ドル程度、導入・保守を含めた総保有コスト（TCO）は初年度で15万〜42.5万ドルに達するとの試算もあります\n。\n\n---\n\n## 2. 費用対効果を出すための進め方\n\n### ステップ1：小さく始める（スモールスタート）が鉄則\n\n\nPoC（概念実証）を通じて効果を可視化しながら、活用範囲を段階的に広げる導入アプローチが推奨されます。まずはスモールスタートで短期間に導入し、実業務における効果やROIを検証した結果を踏まえて次の活用領域へと段階的に拡大していくことで、導入リスクを最小限に抑え、無理なくAIの価値を最大化できます\n。\n\n対象業務を選ぶ際のポイントとして、\n最初から全社のあらゆるプロセスを自動化しようとすると頓挫するリスクが高まるため、範囲を極小に絞ってテストし、ROIを確認してから拡張していく順序が鉄則です\n。\n\n### ステップ2：適合性の高いユースケースから着手する\n\n\n導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性・難易度",
+  "cited_urls": [
+    "https://relevantz.com/blog/agentforce-pricing-models-explained-guide/",
+    "https://www.eesel.ai/blog/salesforce-agentforce-setup-cost",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://www.zenml.io/blog/agentforce-pricing",
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://www.dcs.co.jp/solution/crm/agentforce/",
+    "https://www.immedio.io/mag/what-is-agentforce/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}
