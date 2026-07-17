@@ -1,0 +1,29 @@
+{
+  "date": "2026-07-18",
+  "prompt_id": "A-2",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか",
+  "cep": "導入後の定着課題",
+  "timestamp": "2026-07-17T22:50:41.008025Z",
+  "answer": "Agentforceの導入後の定着や活用にお困りの場合、定着支援や活用支援を提供しているコンサルティング会社が複数あります。AgentforceはSalesforceが提供する自律型AIエージェントであるため、Salesforce製品の導入・活用支援に強みを持つコンサルタントや、チェンジマネジメントに特化したコンサルタントが有効です。\n\n以下に、Agentforceの定着・活用支援を提供している主なコンサルティング会社を挙げます。\n\n**Agentforceに特化した定着・活用支援を提供しているコンサルティング会社:**\n\n*   **メンバーズ:** Salesforceが提供するAgentforceの初期導入コンサルティングから、設計、実装、運用、内製化、社員育成支援まで一貫してサポートしています。特に、「利活用・定着化支援」として、現状業務のヒアリングと業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果（ROI）の試算などを提供しています。\n*   **株式会社enucolor:** Agentforceの導入支援において、初期導入コンサルティングから構築、活用および改善サポート、AIトレーニングまで実施しています。現場の要望を業務フロー分析によって要件定義に反映させ、社内の行動変化や情報入力の定着を促進しています。\n*   **バーチャレクス・コンサルティング:** SalesforceのAIエージェント基盤「Agentforce」の導入・活用を支援する新サービスを提供しており、「初期導入」「伴走支援」「構想策定」の3つのプランで構成されています。\n*   **K2 Partnering Solutions:** Agentforceのコンサルティングサービスとして、カスタマイズされたソリューションの提供、サードパーティ連携、Salesforce連携、Agentforceトレーニング、パフォーマンス分析、ガバナンスとコンプライアンスに関する支援を提供しています。\n*   **合同会社クロスコム:** 「Agentforce導入・定着支援」をサービスとして提供しており、エージェント構築からアーキテクチャ構築までを支援します。\n*   **三菱総研ＤＣＳ:** Salesforce AIエージェント「Agentforce」の導入・活用支援サービスを提供しており、データ統合型の導入支援や、金融分野で培ったセキュリティと信頼性に基づいた支援を強みとしています。\n*   **株式会社セラクCCC:** Salesforce全体の定着・活用支援を提供しており、その中でAgentforceについても支援が可能です。\n*   **株式会社日立ソリューションズ:** Salesforce向けの定着化支援サービスを提供しており、「Agentforce導入・活用支援サービス」もその一環として提供しています。\n\n**一般的なSFA/CRM導入・業務改善における定着・活用支援を提供しているコンサルティング会社:**\n\nAgentforceがSalesforce製品であることから、SFA/CRM導入や業務改善における定着支援の実績を持つコンサルティング会社も参考になります。\n\n*   **NIコンサルティング:** SFA/CRMの運用定着に向けたサポート体制を構築しており、タイムリーな情報入力の習慣化やマネージャーからのフィードバックの促進を重視しています。\n*   **FLYO LLC:** CRM/SFAツールの選定から導入、定着支援まで一貫してサポートし、営業生産性の向上を目指します。\n*   **MULTISTYLE:** 業務改善コンサルティングにおいて、運用の改善・定着支援を提供しており、現場の業務を見える化し、生産性向上と属人化解消を支援します。\n*   **PwC Japanグループ:** システム導入の成功にはチェンジマネジメントが不可欠であるとし、経営層と現場の期待値や認識の差を埋める活動の重要性を強調しています。\n*   **ULSコンサルティング株式会社:** 優れたITシステムを導入しても現場に定着しないという課題に対し、人や組織の変革を体系的に導く「チェンジマネジメント資格・研修プログラム」を提供しています。\n\nこれらのコンサルティング会社は、Agentforceの技術的な導入だけでなく、実際の現場での利用を促進し、業務に定着させるための支援を提供しています。具体的なサービス内容は各社で異なるため、まずはいくつかの会社に相談し、自社の状況や課題に合った支援内容を検討することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG29DJG5XAUxiUtj4lfEUdiI1MfHZoxHI7JrCWdkFu8hsRhvCW2GMMV67SoF12H5SAW9tU0Tutd-7J2GPXwABP3XlTU6qjXLP6Njr6Y8EkxyWlimuhbe6Td1rL2e7WxYrBdJGni87Q2eIzkwSjs2FaX",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-QAKLXQ3nt3Ai-YHGC6N5oAUyMD6GXWfJIYzKgDdVifj8W_ehXQ16g4D0_E8cAomKEK-GAof3rUqnVTV1ACQoBgnDTvqlmqNB74aggQFIMq4H4rOdOdSPhNkHiHQr-hzV-7WKyz8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFdW-eG1L46LRpRdro2GwKFkBUU-iu8mNkvx-OKOqacTA2tpaIfr1Cnhfh9M_YHwv1c0NTcAitTB48KdJ4fvcHKPK5qm00oeoZhpICtWyMtD1dUEmawNitJkw7p4cbObPkHQDxs5J_6Pg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGt6r2I2dcUSkHvYkyE-R1NQD4ZbIisXe48PUUffOjtNehJD_JX_vtWBPhzYJqQTuoUk8OjvowG6hJzz3hS-f2Rgvt5Fbdr0ceK4KqU-JQ8jEeD9MX3PRWYdeGby6OQaO8Q3X80Kw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGd-zLHFELdJxJ0KmzUfyRGXFJ9tQ438zGbXGJ2ZgWnAe4vvBFaiyHWlEoCLW_J73iBs3uZYzxYFQsPXpyuRskiLnfGo0RcF2LMltqJEjlXN7FYvkY0DIUCGm-w3TY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHgS6gzVyyHmAcB-ZV0k_6iBDnkjUiEI6kYqW9pKM3c6HdnDyMeRSv4FACnVvozUIiA8-ZjfFEp8XeG_O-CtGc53OYUENMqNDugGT4Q48X60BEdK3F5Rk5BTolbfRIq6Mdwu4yoiJd1c67LoaQIBq22xOfyDccYP0ReOQGK81VNNnj0x_EDMLfkPBzr0DEmDsN-q2gQWMRo9ba3zYyMaNkmaugVGcH5GItNNljKe9c=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGclVR9lxdzCbc4dRiVIcSX2TLMDQPfifBAM_XVCDarYcbVNGF5yI5hLJ9QHre782kUM1xxBv18DPGE4C12MgOK2bWqEzLrY4yW2Z9LV7w346Cj74aig3Ui95Y5VJDOjB_nW9umaixhCS72",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3L7BUuCX_d0xPzdtBNQwNV9C_tpTrc9DKrqExGlXQcpvhbCeOogDJ02Vrd-0uCZAvO6Ta99jExYiOc_i_-0yfXWlMx-KrcVAggnjwVOMW_AzmjlaGqwIzuRBwxPOThrSiWR_MrEgjZMtC",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHQMQdndwrMdctBD3tYph9xdHRy0_kWnZPII1G8JrGj1kDcKQoFUl3amVv3rj9Z5hmwv1Ast47MDtSc7JOI9TnsqeWtuLebJrxH-ac3ib00M6Y-jIQE_7TtBTcRcaQODOB-iLGoDpUuxcQiIPDLxN1Hv1HqLxg3L3bpFD_KRg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3-k26-EKrUfdN4ajG2A5qf3RL4Gylrh14obpn6nS6TVmUvMPsNOrqTxug6A9Oq5yle5RKho4vjbL86dlMeUEMKjp-vKJzpAkG7yBGrp6mfzA7M0ANlczfkKQfcOCQjEutArY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHTLXnPSpxhLqNcSw_Bf-2UfudelJ6KtyemQ1-l74mjsujRbRZzYNkLB1H71C3n-FXh9QujpHl83PXwNPON2-ei909LJMBjGXJkmkDZvgRTR-0CVax_2jNB",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQu4S5Q9hNPl6NgFyCWF5_cytvOwMRYY9RYx7_7Zu5eAatsgA7n8hGZW8x79vR5f0et-Tf6y_UjuC2Y1hA8i65AP6cxbRlHyRLvHbqAllIRNT6JOSdOXDIHvXEJryWMeQvUXQvB_5SDpIHLme2JnpV",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFZ6-tNaw1RZWSgM4lFz-dk_qD6FP1NtzRwQArdBJyBwolzoksQssURN_sZlZaXkDCdMxsmRMZItlg7V_So3kB_VzTXxh-L25Iz-btXCEPBid8kUD4jQaPmf2TSoRsdM7KT_qORHr53ah938S__aqLhTWBf2GqyK7Ifk2lwPkx-GECZ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHGxa8737-g9PbcEt1V9ZCHXiINZc1NgqHncy9cow2beYYz8tCOTNqSaAik0e9kQAnR9kBCpZAdYXW8qPfKp1tTIZU25JVZWC3Oe-kQYsavfVK2jSeTlz8yAM1QdRc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEN_VwP62IZGUn0009is9LnzRxgzY0KPOCLxfrLDwl3kgGR065TcZdlH5YU2gZhBdCXPpqbkBCn4jG5kTLNTlhJHyDboL7iCvmo3BzDtvQr9OR3dThE_Z3X97eXolVAYON9wxnmTjHPAreD0DSvJyfQv5qRpA=="
+  ],
+  "error": null
+}

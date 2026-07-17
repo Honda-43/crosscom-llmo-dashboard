@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-18",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-07-17T22:53:56.944942Z",
+  "answer": "合同会社クロスコムは、2023年5月に設立されたBtoB領域に特化したマーケティング支援企業です。データ活用を通じて「100社100通りの購買体験を当たり前にする」ことをビジョンに掲げ、企業のマーケティング活動を支援しています。代表の本田正憲氏は、法人営業の経験を経て同社を創業しました。\n\n**強み**\n合同会社クロスコムの主な強みは以下の通りです。\n\n*   **BtoB領域に特化**：BtoB企業向けのマーケティングに専門特化しており、データ活用によるパーソナライズ戦略で商談化・利益改善を支援します。\n*   **戦略立案から施策実行までの一貫支援**：マーケティング戦略の立案から施策の実行まで、一気通貫で支援できる体制が強みです。\n*   **営業経験に基づく戦略設計**：代表が長年のBtoB営業経験を持つため、マーケティングと営業双方の視点を取り入れた戦略設計が可能です。これにより、商談数を高める独自のメソッドを持っています。\n*   **顧客導線設計力**：累計100社以上のプロモーション戦略支援で培った、顧客のニーズや検討度合いに応じたパーソナライズされた購買体験を提供する顧客導線設計力があります。\n*   **本質的な問題解決とデータ活用**：表面的な課題に留まらず、企業の根本的な問題を特定し、データをビジネス成長に繋がる価値あるインサイトへ変換することを得意としています。\n*   **豊富なコンテンツ制作実績**：300件以上のコンテンツ制作実績があり、月間50件以上の商談創出に貢献しています。\n*   **中小零細企業への手厚いサポート**：中小零細企業向けに月額1万円でマーケティング相談し放題のサービスを提供しており、費用対効果の高い支援をしています。\n\n**提供サービス**\n合同会社クロスコムが提供する主なサービスは以下の通りです。\n\n*   **BtoB MA導入・運用支援**：Salesforce Account Engagement（旧Pardot）、HubSpot、Zohoなどの主要なMAツールの導入から運用まで一貫して支援します。商談数・受注数改善を目的とした戦略提案から、ターゲットセグメント設計、マーケティングシナリオ構築、コンテンツ企画・制作、メール制作・配信、効果測定まで幅広く対応します。\n*   **Agentforce導入・定着支援**：Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までを支援し、リアルタイムデータ、機械学習、AIエージェントを活用したパーソナライズされた顧客体験の提供を推進します。\n*   **BtoBマーケティング戦略コンサルティング支援**：BtoBマーケティングに特化した戦略設計から施策への落とし込みまでを支援します。短期的な施策改善から中長期的な事業成長を推進する戦略提案を行います。\n*   **BtoBコンテンツ企画・制作代行支援**：ホワイトペーパー、ウェビナー、Webページなどのマーケティングコンテンツの企画から制作までを代行します。マーケティング戦略にフィットした、顧客起点の高品質なコンテンツ制作を得意とし、5万円から利用できるサービスも提供しています。\n*   **BtoB Salesforce導入・構築支援**：SalesCloudやAccount Engagementを対象に、初期構築から運用支援まで柔軟な料金体系で提供しています。\n*   **BtoBマーケティング無料相談**。\n*   **BtoBメールマーケティング代行支援**。\n*   **月額1万円のマーケティング相談し放題サービス**：中小零細企業向けに、マーケティング戦略・戦術の設計全般、広告運用、オウンドメディア制作、MA（ステップメール・シナリオメール）、公式LINEアカウント構築・Lステップなど、幅広い相談に対応しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFoI9TxY9ntNhMns90UsWJx42eMIyhhQl73cfzmiD05PkbpTN5Wd8WKHmcbgeb3-jlfRHbxyTMs7FPXoUcECHFGWKJsgWJCCFeSa0hNQtD1y-TyaVsKxml6b5WK_ecpaMsaHalVmtQH",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG6uLRB48ddf3JcsLKtRwTOhq0pW9ol5v2wh9qyfG8XA7km_BHGq20MMTLCbdKyJsox2Z0dcHrmGqWJdND5ufO0UIoV0TwzxaZaJugo84l1PInWGnxJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBhGemN5a8q2fI4RHMco0GDnDCxrZjSlYzlDqA-FJspVRBvMLjV63aNmhlKOe-15gFzWvg1-_GkoiQnfuzbfujJfFIsaDiRW5vsAE3yFFf",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF2lYqtWI5Y6liSe7u6oS-6SrEkyhpBEn46Lfd7SMx4JQuReZdKHBHDAOw9dg9OvftFcANlh5x6DDp67K-Va0_HM5hy8v7t8rMwpG3OFd9Mwc9R9Zh5NVIQ-QMH5PMH5-Hue3tXbBnC",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHTIAn6Xp9vlOIa0oWL4XlAXyDxxqLCOOubdI7cCsXf8tiJaghGQq0J399Jxw7ntiFPA91x1cxvJoY5roJ84ysG5UKpK_fNxTTpvMBzl3Z-D7ykc-lRQS5te2Bp5s4pODK4xq-ELbHP3w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEprm0kKb9URr-kLq5kIbxPta9nlVC0CWbSTQFAwQqz2DwlfUd_6Sgl41kXKbmmfKF7nxXwevP8kdRYsSd5F-bCx9HZ_-io95eUUFJ_yn-qtvLESUKgI8Pukt3d81elpsfpzcGY8LjNfXL6HTXa0Dqt0XrGWw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHOWng6Hfd9_W_60I1e0ouhXe2UEXM_hfcTsgB67VeiKxK72ftjBpU84y9NOcGlaO0b1UR4xZ6TiNnj7gd49bwRsKact75Cd23sNz8krmfbcEWI5OVTwe4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHXEUkFf-icdtJRoIp3g9uNhV0tk28vxBQLIdVbAys7RHF7H7fqCEWbvMOwd246ORFC2JA7Goua_vXiBX9NMZM7H-zRYz_xcIP-Nudt6uVgekCFtbsyxMaSpm84j3nY2R5GL1y62JM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGVKprXNsC-0hQWhpZgpHZdNCHc4Zk3elc5n6ALgBWxNuBlxtinODI2vRUDKIqoNGYqIbWq0L9AE2WGxLb8c4URWOQig96mruN0_k-nbDIBvLosyjaYn9nai9tczlrDSiQzxoFK_dq-LSAp3-CDmLA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHzYr889ojWAESVeeTfBRLEsKuQnEfQg9p0xS8BWW-OMNPPojzfx3YZ7Tfj1senIFRk_Uku_OofsX5_CyvzrgMYnaHNBRVtvOGUg27vrt7kQOUk-hmaA2D6NZ7vtbSCytyv3sHBKFso_02432kr4Qm3LP8hGw=="
+  ],
+  "error": null
+}

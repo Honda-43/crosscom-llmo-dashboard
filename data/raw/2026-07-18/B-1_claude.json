@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-18",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-17T22:52:25.329971Z",
+  "answer": "# Agentic CRM(エージェント型CRM)とは\n\n## 基本的な定義\n\nAgentic CRMとは、従来のように顧客データを「記録・保管するだけ」のCRMとは異なり、\n情報を保管したり事前定義されたステップを自動化したりするだけでなく、実際にデータを分析し、リアルタイムで意思決定を行い、顧客エンゲージメントと業務効率を改善するために自律的な行動を取る\nシステムです。\n\nKlaviyoの定義によると、\nAgentic CRMは、AIエージェントを使ってマーケティングやサービスタスクを自律的に管理するCRMシステムです。従来のCRMがデータを保存してユーザーの行動を待つのに対し、Agentic CRMはキャンペーンの計画、顧客対応、パフォーマンスの最適化など、設定した戦略とガードレールの範囲内で能動的に働きます\n。\n\n## 従来のCRM・生成AI CRMとの違い\n\n3段階で整理すると分かりやすいです(Bits In Glassの分類):\n- **予測AI**: トレンド予測、リード スコアリング、リスク識別\n- **生成AI**: メール文面や要約、キャンペーンコンテンツの作成\n- **エージェントAI**: リード割り当てや フォローアップのスケジューリング、ダッシュボード作成などの「実行」\n\n\n従来のCRMが単にデータを保存するのに対し、Agentic CRMはワークフローにAIエージェントを組み込み、タスクを自動化し、次のステップを推奨し、実際にアクションを実行します\n。\n\nMicrosoftはさらに踏み込み、\nAgentic CRMは従来型CRMの単なる進化形ではなく、顧客エンゲージメントシステムのあり方そのものを根本的に変える考え方であり、人がシステムに合わせるのではなく、会話・ツール・意思決定・ワークフローという「実際の働き方」にシステムが適応する\nものだと説明しています。\nAIエージェントが会話やシグナルから自動的にデータを取得・強化・更新し、フォローアップの下書き作成、案件の進展、リスクの早期フラグ付けを行うことで、システムが現実を「記録する」のではなく「変える」存在になる\nという発想です。\n\n## 具体的にできること(例)\n\n- **データのクレンジング・重複排除**:\n自動的なデータクレンジングと重複排除の機能を持ち、指示や催促がなくても2つのエントリが同一人物だと認識して統合できる\n\n- **リード対応の自動化**:\n新規リードが来るとエージェントが電話をかけ、応答がなければ適切なタイミングで再架電し、見込みがあれば選別してスコア付きの商談準備が整ったリードを営業担当に知らせる\n\n- **顧客対応**:\n顧客の不満をAIの感情分析で検知し、ERPで配送状況を確認、遅延を発見すると自動でロイヤルティ割引を適用し、顧客に謝罪と説明のメールを送る\nといった一連の対応まで自律的に行うケースもあります。\n\n## 主要ベンダー・プラットフォーム\n\n代表的なものとして、\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどがすでに市場を再構築し、今後の標準を築きつつあります\n。特にSalesforceの「Agentforce」や、Microsoft Dynamics 365の各種エージェント(Sales Qualification Agent、Sales Opportunity Agentなど)が代表例です。\n\n---\n\n# 導入・設計を支援する会社\n\nはい、Agentic CRMの導入・設計を支援するコンサルティング/インテグレーション会社は複数存在します。\n\n## 1. Salesforce系\n- **Salesforce自身のプロフェッショナルサービス**が、\nAIによる自動化や目的特化型エージェントをワークフローに組み込み、生産性向上や手作業削減を支援\nしています。\n- **CRMIT**は、\nエージェントAIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供するSalesforceコンサルティングパートナーで、企業がデータをリアルタイムの意思決定に変換し測定可能な事業成果を生み出すのを支援\nしています。\n\n## 2. Microsoft Dynamics 365系\n- **Inogic**は、\nテクノファンクショナルコンサルティングへの深い理解と1,000件以上の導入実績を持ち、Dynamics 365ユーザー向けにAzure OpenAIの力を活用することに注力\nしています。\n\n## 3. Creatio系\n- **Bits In Glass**は、\nCreatioのエージェント型CRMを測定可能な成果や迅速な導入、スマートなワークフロー、より強固な顧客関係に転換する支援\nを行っています。\n- **RITS**は、\nローコードのCreatioプラットフォームを使い、柔軟なCRMおよびビジネスプロセス自動化環境を構築",
+  "cited_urls": [
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.linkedin.com/pulse/what-agentic-crm-why-does-your-business-need-one-bits-in-glass-6lbac",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/06/25/agentic-crm-in-the-flow-of-work-how-ai-is-transforming-sales-and-rebuilding-customer-trust/",
+    "https://www.smartrecruiters.com/resources/glossary/what-is-agentic-crm/",
+    "https://www.groweon.com/blog/what-is-agentic-crm/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://www.salesforce.com/professional-services/consulting-crm/",
+    "https://www.crmit.com/",
+    "https://rits.center/offer/agentic-crm-and-workflows"
+  ],
+  "error": null
+}

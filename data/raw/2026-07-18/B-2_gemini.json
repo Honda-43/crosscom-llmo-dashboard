@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-18",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-07-17T22:52:38.301146Z",
+  "answer": "中堅企業様で、特定ベンダーに依存せず中立的な立場でCRMの設計支援を求める場合、以下の企業が候補として挙げられます。\n\n**特定ベンダーに依存しない中立的な立場でCRM設計を支援する企業**\n\n*   **株式会社ArchRise（アーチライズ）**:\n    ArchRiseは、CRM・SFA領域において、ツール選定や要件定義から設計・初期構築、導入後の運用定着まで一貫してサポートしています。Salesforce、Zoho、HubSpotなど複数のクラウドCRM・SFAを比較検討し、特定のベンダーに偏らない最適な構成を提案する点を強みとしています。運用フェーズでの改善提案や定例フォロー、API連携による外部ツール統合、マニュアル作成、社内研修まで手厚く支援します。\n*   **ECマーケティング株式会社**:\n    ECサイトやマーケティングサイトに特化したWebコンサルティング会社で、中小・中堅規模の企業から大手企業まで、それぞれの社内状況に合わせたサービスを提供しています。ベンダーに左右されず中立的で豊富な経験を持つコンサルタントが多数在籍しているとされています。\n*   **シースリーインデックス株式会社**:\n    独立系ならではの柔軟な提案が可能で、特定のベンダーやメーカーに縛られず、様々な製品や技術から顧客に適した組み合わせを選定し提案しています。\n*   **独立系コンサルティングファーム全般**:\n    特定の大企業グループやITベンダーなどに属さず、資本的に独立しているコンサルティング会社は、その性質上、中立的な立場での提案が期待できます。業界特化の高い専門性、柔軟な対応、中立性が強みとされています。\n\n**その他、中堅企業向けに包括的なCRMコンサルティングを提供する企業**\n\n*   **株式会社ripla**:\n    業務設計からシステム構築・運用まで一貫したDX/開発支援を提供しており、CRM開発においては、単なる顧客情報管理に留まらず、営業・マーケティング・サポートの業務プロセス設計と連動した顧客データ活用基盤の設計まで対応可能です。既存のERPや販売管理、マーケティング基盤との全体最適設計も行い、中堅～大企業で標準CRMパッケージでは不足する要件がある場合や、自社特有の業務プロセスを反映したCRMが必要な場合におすすめです。\n*   **株式会社GeNee**:\n    CRMやSFAを含む顧客・営業管理系システムの構築実績が豊富で、CRM単体の開発だけでなく、営業支援、案件管理、商談管理、MA連携など多機能領域の統合設計に対応できます。要件定義から運用設計まで一貫して支援し、現場が使い続けられるCRM基盤を構築します。\n*   **アーカス・ジャパン株式会社 (Arcuss Japan Inc.)**:\n    CRMの専門的な開発・設計に強く、Dynamics 365などの主要CRM基盤のカスタマイズや、業務特有の営業・顧客管理要件に合わせた設計・実装を得意としています。CRMをゼロから開発したいケースにも対応可能です。 また、「EMOROCO CRM Lite」を提供しており、優れたカスタマイズ性と低コストで現場主導のDX推進を支援します。\n*   **株式会社船井総合研究所**:\n    中小企業向けの経営コンサルティングに特化しており、CRMコンサルティングにおいても、経営資源の制約や専門人材の不足といった中小企業の課題に寄り添った実践的な支援を提供します。大規模なシステム導入ではなく、既存のツールや簡単な仕組みを活用して顧客関係を強化する方法を提案します。\n*   **山田コンサルティンググループ株式会社**:\n    国内外の中小企業から上場・大企業まで豊富な実績を持つ日系総合コンサルティング会社で、IT分野もカバーしています。\n\n**会社選定のポイント**\n\n*   **中立性**: 特定のベンダー製品ありきではなく、貴社の課題やニーズに合わせて最適なツールやシステムを提案してくれるかを確認しましょう。複数のツールを比較検討できる実績があるかどうかが指標となります。\n*   **中堅企業への支援実績**: 貴社と同規模の企業への導入・設計支援実績が豊富であるかを確認すると、より具体的な提案やノウハウが期待できます。\n*   **サポート範囲**: 要件定義からツール選定、設計、開発・導入、そして導入後の運用定着支援や改善提案まで、一貫してサポートしてくれる会社を選ぶと良いでしょう。\n*   **コンサルタントの経験**: 実際に担当するコンサルタントのスキルや経験も重要です。CRMの知識だけでなく、顧客管理の戦略設計やデータ活用のノウハウを持っているかを確認することが成功の鍵となります。\n\nまずは複数の会社に問い合わせを行い、貴社の現状やCRMで実現したいことを具体的に伝え、中立的な立場での提案を受けられるか、そして実績や費用感を比較検討することをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHz4QmoTIX0yI1heWnB3t2HqBVM1GhiQBIMCh4ijCQ5upcvxz41Utb5Z6wthLa_PiUh___ySdG09crYgnYIX-SxDgoQL6s0RqBY6OATuu5KSZ1oCPskVK4HcUlljiF5T_5RcxkPNIc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEkhYqqgvEMB7YX6Ox9jvTHo7DH-XU__-DxFikjIC_Ois4ZhWwHfy8JM9cvIi9Xrv5nrVHNh4-XWK2AGrw8lVE8L5-ZZQcGdxdWPFVxovDJMJOwHfgQxXrUdMK6LkVusCXgUv0FCO2q7Fto",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEx-W8I8Vd-XCHnIDPGnUrdiuWUKgTduqFy5EER3nMXSX_CFMaHC1RoGv6WTzbsBT1VUM0IBK68L_qENgeixvegRNa4JS6hcXAf8vjXs9OJyA2i7bq8JFxTEVGZaAaOmBu1JyG1YC1YbFzyb34=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFaEfiENrCHrL0zb8jT3qa3_ZcdPTESyz1z7hsWn71TcpM3WV2sbCLx8MsPLjQ_Joxf7n9rGS_kJQ-P6WEq8RXT2SnW0t6n1IcaZ_g8u1qWKy1kqWHP7XBBbpBE5CkZC1yq6qDxejtvY_mErFRYmVvm3jo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGGB-6C7rQptEcvwEkz2n2txO0tZvl_-nH8t6BPZ6No6-T_WjZFSL5YCanwM3mDQJhH9J6BA9st55pPQ32dOPeMt3pEarwvAO2z8mm9jJmVQV0KD0oS5EL7E5MP7r8X_avdpi_oCnwem4I=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEHOJ8TwntZpECbCSgSKpjLpnb99vYIf3NMyer-m9q5cRvCCFk5DOYQn0jIuJTnNHYjx26spPUoS5XIdDLTTlUlXnEG0f9IA8pqKBrSYMWSnK75CwHkCCar9d9WYF6W08Ei",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZeIXUWep1eHgh_RdNmrAAwd4yMVe421GOVs4nQGPzswLIDNWK9Dbnm6vK6SS28zWHCJU3GTFaf6nlSwM_MUvBzuQanMzsRkcJ56w4JZ_zYo-c6ILM5nHP6mMm2yW6QtoGg03Vqow=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHL-rL62nUTLskbC4BcEdxBxNtLPKO5zgAV3JsZOQ6Bm7txUrNc2xrc6BwEeUQG5eIVfaHAT2zIvDtRah_SIeQ0SRDYH7GlGb8vj-6TJbV9lwAcMzgZ2Z-46nFTgr7yDGA3vkcc",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFLUyEoVQK53TKd4vMG3lfRuXGPPFogrpTA91GQ4MSv-wW4FQjqcDfVf05S6Q76zmDfXS5Ecy_bgx7RPY9hWOl1swTNlFUiHzUqg8JY_b2-8DgR2j61"
+  ],
+  "error": null
+}
