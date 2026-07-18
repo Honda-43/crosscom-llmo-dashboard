@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-19",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-18T22:49:16.072556Z",
+  "answer": "Agentforceの導入支援を提供している会社は複数あり、それぞれ強みや特徴が異なります。以下におすすめの会社とその支援内容をご紹介します。\n\n**Agentforce導入支援サービスを提供する会社**\n\n*   **株式会社ウフル**:\n    SalesforceプラットフォームのData 360の設定からAgentforceの構築、システム設定、動作確認、リリース準備、簡易レクチャーまでを最短3ヶ月で支援する「Agentforceクイック導入支援サービス」を提供しています。特に「Agentforce for Service」を対象としたカスタマーサービス領域に特化した支援に強みがあります。\n\n*   **日立ソリューションズ**:\n    「導入・活用支援サービス for Agentforce」を提供しており、Agentforceの設定、API連携、セキュリティ確認などの技術検証から、プロンプトやSalesforceの設定修正による精度向上、業務との親和性評価、効果測定までをトータルで支援します。AIワークショップを通じて現場の業務課題を深く理解し、ビジネス価値を生むAIエージェントの実装を目指しています。\n\n*   **メンバーズ株式会社**:\n    Agentforceの初期導入コンサルティングから設計、実装、運用、内製化、社員育成支援までを伴走型で支援します。金融、製造、小売、IT、不動産など多様な業界での支援実績が豊富で、KGI・KPIに基づいた効果測定とPDCAサイクルを通じて、ビジネスグロースとマーケティング成果の向上をサポートします。\n\n*   **三菱総研ＤＣＳ**:\n    「Agentforce導入・活用 支援サービス」を提供しており、CRMやData 360（旧Data Cloud）を活用したデータ統合型の導入支援に強みがあります。社内の基幹・周辺システムに分散するデータの統合も含めた一気通貫の支援が可能で、金融分野で培った実績に基づく確かなセキュリティと信頼性も特徴です。\n\n*   **K2 Partnering Solutions**:\n    Agentforceパートナーネットワークのメンバーとして、AIに関する専門知識と長年のSalesforce経験を活かし、ビジネスニーズに合わせたAgentforceのカスタマイズに特化したコンサルティングサービスを提供しています。迅速なROI、生産性向上、ビジネス拡大を目指し、カスタマイズ、サードパーティ連携、Salesforce連携、トレーニングなどを実施します。\n\n*   **株式会社enucolor**:\n    Agentforce導入支援サービスを通じて、Salesforceが提供する自律型AIエージェントの導入における業務整理からPoC開発、活用推進まで一貫してサポートし、企業のDX推進と業務改革を支援します。\n\n*   **toBeマーケティング株式会社**:\n    富士通グループとしての先行支援と豊富な知見を活かし、日本で最初にAgentforceライセンスを取得した富士通と共に、データアセスメント、Agentforce導入のPoC支援、PoC完了後のトライアル伴走支援を提供しています。Data 360の活用を前提とした支援も行っています。\n\n*   **furuCRM**:\n    包括的なSalesforce Agentforceコンサルティングサービスを提供し、顧客の独自のニーズに合わせたAIエージェントの設計と導入を支援します。戦略コンサルティングサービス、明確なAIロードマップの作成、影響力の高いユースケースの定義、インテリジェントエージェントの統合戦略計画などを行います。\n\nこれらの会社は、それぞれ異なる得意分野やサービス内容を持っています。貴社の業種、既存のSalesforce環境、求める支援の範囲、導入目的などを考慮し、最適なパートナーを選ぶことをお勧めします。例えば、Salesforce環境への深い理解と自律型AIエージェントの運用実績を持つパートナーを選ぶことが重要です。導入後の運用サポート体制やトラブル対応力も選定時の重要な判断軸となります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcF2cJl6Dh-8fWWxZNp85xhdWb_B9oPziyN4c8Rrsej7eViCqsRRwRXtPixQNEp438bwJm1vJglloXYPV2jdXkbI1trYQ0Hz6iFbIn13gxmURDC8AzzSd_BA5EJ3kq44XUfGSN3q2ak8_z",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH2yjTyNKUt9YoACVKsEmH_bS6dR_dmPClq4Xc7cbNQ4ZWAOxm-jEBNL7EWR3PsTqwSfZb5GCQdv8s69pY4SseXCfLo1N77j9QVnde4RhWzfW8RrGVsF1Z_yCqOjia5IuwmtXRIroEf6_ryHMn495fwE2ycvr-uPBQeQpPdPw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGep7KLfX1iSbT-qZYCjU-2LYIRoZpcuVh12E9_ds17Y5FOKW7s3DwIyn0x6Eo9rNG-klS0k4FGm4l0oxn5wvE7HP2f1_xaAjnPyHMYf2zpU6wnVRTcUyN_srTu-RluunRRmDX39HV10fcNOlW4jkHzvw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFticTlwI-O4Q7Tg08ObUCkaqZfuzt_w9T2BBbZL8jkvn3CNv2ALq1yYuKpyIFuEh-ox1TYz2WontDVuKE8SioQs5-vo6Ehts9mIDnAqOeFuC_Od2QZJ6053Ymfwj-ok7L8gvIIw1es9g4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHDNulVrF_bjX__qRrsDQOgQa3PO33FPirj5RqamOLzZJOwUjUAST2ZX0HGcIcypKIeNwR57YPypj9AJvl4Scct_39VirH_dpoT1jIzF0AhuMogd2quq68-rroF9-y924ybqwqHC0xul2vSDUsp7SGZwJx9ka5etp_XbBwYQHVpdM_OhYC1ZgXku251BpmZ-fjXfR0WgFCBghhhhX_XMTnyPh8cUsp5XnpGSTiIp87h",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHEo1X5TgbVvJFL8RCpXBzMdT26nKxdOj1gO0CK1U5G7KSi1wzdqmhc8NWMrQe2zsKE-j0cpOyPuP6VqWLRNe195pGk11tpj3FntqnmUCBO4NkYe4HUSWXgOEZq2yMB",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxkTXrPgu5VVlS-V6afaCYku0EMvamcMBf49pI7NRW_xkUDp_C1v3Mp9Jp-DmRlwyFdBx9Ej1kbP6A-7eCdw4_qeSubnX7rVln7LypMM2rNhaVZyICx7WFaIV2T5HDJ3Mp-rqUnw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE2_gP9X8VSuP0CFQHr9wZXZJfD9j6xmEty4mOHSnMS_MGsiIo96YX2RQY0RXzT1XUO0yW22jmQv4EyJHzFuBMmXn6tOhx9U3yhtD588sg7fneHHCl3iEPYnHCjMUk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEvxLR3ouZVuOOA4T31dLbB0HUbwxH5pgAmlwQGtf8iP5LF_OEAFODHazXpmEu-g4OQ2RdcKpTLldP1rrBqwoOF_0F0h0D16bbQpuaAVvTscGB9kYSqcP2MU_96B4XRoqZsp270QAXCxl9tT3vxEQk="
+  ],
+  "error": null
+}

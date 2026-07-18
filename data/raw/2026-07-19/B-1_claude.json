@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-19",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-18T22:51:35.703947Z",
+  "answer": "# Agentic CRMとは\n\n**Agentic CRM(エージェンティックCRM)**とは、自律的に判断・実行する「AIエージェント」を組み込んだ次世代の顧客関係管理(CRM)システムのことです。\n\n## 従来のCRMとの違い\n\n従来のCRMは、顧客データを記録・保存し、人間が指示を出すのを待つ「受け身」のツールでした。\n従来型のCRMは、単に情報を保存したり、あらかじめ決められた手順を自動化したりするだけではありません。Agentic CRMは、データをリアルタイムで分析し、意思決定を行い、顧客エンゲージメントや業務効率を高めるための自律的な行動を取ります。\n\n\nMicrosoftも同様の視点を示しており、\nCRMは30年間、仕事が終わった後にセールス担当者が報告する場所であり続けた。それは顧客の真実を記録するために作られたシステムであり、それに基づいて行動するためのものではなかった。エージェンティックAIが定義する市場においては、それは資産ではなく負債になる。\n\n\nまた、生成AI搭載CRMとの違いも重要です。\nAgentic CRMは生成AI CRMとは異なります。生成AI CRMは求職者への連絡文などのコンテンツを作成できますが、こうした従来型のCRM技術は人間からの指示に依存していました。Agentic CRMはより自律的です。\n\n\n## Agentic CRMの主な特徴\n\n1. **自律的なデータ処理**:\nAgentic CRMは、データを解釈し、協働し、自律的に行動できる自律型AIエージェントによって実現されるCRMの次世代進化形です。\n\n\n2. **継続的な学習**:\nAgentic CRMの決定的な強みは、あらゆるインタラクションを通じて学習し適応する能力です。各アクションの後、システムは結果とユーザーのフィードバックを評価し、その結果を中枢の知能にフィードバックします。この継続的なフィードバックループにより、中枢のAIはモデルを洗練し、予測アルゴリズムを更新し、意思決定戦略をリアルタイムで調整できます。\n\n\n3. **業務フローへの組み込み**:\nヘッドレスアーキテクチャは、統一されたモデルコンテキストプロトコル(MCP)とスキルによってサポートされ、顧客データやビジネスロジックといったCRMの中核的価値をエンドユーザー体験やエージェント型オーケストレーターから切り離すことを可能にします。\n\n\n4. **具体的な活用例**として、リード獲得時に\n新しいリードが入ると、エージェントがすぐに電話をかけます。電話に出なかった場合、エージェントは適切なタイミングで再度架電します。見込み客が関心を示すと、エージェントは資格判定を行い、スコア付けされた成約見込みの高いリードを営業担当者に通知します。\nという自動化が可能です。\n\n## 主要なAgentic CRMプラットフォーム\n\n- **Salesforce(Agentforce)**:\nワークフローにAI駆動の自動化と専用エージェントを統合し、生産性を高め、手作業を減らし、どこからでもシームレスかつ標準化されたCRM主導のコラボレーションを実現します。\n\n- **Microsoft Dynamics 365**:\nセールス、マーケティング、サービス全体で顧客関係を強化するエージェント型CRMソリューションです。\n\n- **Creatio**:\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションは、Agentic CRMがすでに市場をどのように再構築し、将来の標準を築いているかを示しています。\n\n- **Klaviyo**:B2C向けに\nマーケティングとサービスのタスクを自律的に管理するためにAIエージェントを使用するCRMシステムです。従来のCRMがデータを保存し行動を待つのに対し、Agentic CRMは戦略とガードレールの範囲内で、キャンペーンの計画、顧客対応、パフォーマンスの最適化を積極的に行います。\n\n\n# 導入・設計を支援する会社\n\nAgentic CRMの導入・設計を支援するコンサルティング会社は数多く存在します。\n\n## Salesforce系\n- **CRMIT**:\nエージェント型AIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供する信頼されたSalesforceコンサルティングパートナーです。企業がデータをリアルタイムの意思決定",
+  "cited_urls": [
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/06/25/agentic-crm-in-the-flow-of-work-how-ai-is-transforming-sales-and-rebuilding-customer-trust/",
+    "https://www.smartrecruiters.com/resources/glossary/what-is-agentic-crm/",
+    "https://www.groweon.com/blog/what-is-agentic-crm/",
+    "https://www.salesforce.com/professional-services/consulting-crm/",
+    "https://www.microsoft.com/en-us/dynamics-365/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.crmit.com/"
+  ],
+  "error": null
+}

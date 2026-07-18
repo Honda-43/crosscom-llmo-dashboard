@@ -1,0 +1,21 @@
+{
+  "date": "2026-07-19",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-18T22:51:01.065505Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を高める進め方について、最新情報を調査してお答えします。\n# Agentforce導入費用の相場と費用対効果を高める進め方\n\n## 1. Agentforceの費用構成（4層構造）\n\nAgentforceは単体では購入できず、複数のコストが積み上がる「レイヤー構造」になっている点がまず重要です。\nSalesforce AI pricing works like a stack. You need each layer before you can add the next, and skipping any layer means you don't get AI functionality at all.\n\n\n**①ベースとなるSalesforceライセンス**\n\nAgentforceは既存のService Cloudライセンスへのアドオンとしてのみ存在し、これがコスト構造を複雑にする第一の要因\nです。\nEnterprise EditionがAgentforceのAI機能を追加できる最低条件であり、Starter Suite（月額25ドル/ユーザー）やPro Suite（月額100ドル/ユーザー）はAIアドオンに対応していません。\n\n\n**②Agentforceアドオン（ユーザー課金モデル）**\n\n対象ライセンスがあれば、Agentforce for Serviceを1ユーザーあたり月額125ドルで追加できます。\n業界特化版はさらに高く、\nFinancial Services Cloud、Health Cloud、Manufacturing Cloudなど特化型エディションは月額150ドル/ユーザー\nとなります。日本円ベースでは、\nAgentforce for Salesは1ユーザあたり15,000円（税別）/月\nという価格例もあります。\n\n**③Flexクレジット（従量課金モデル）**\n2025年5月に導入された新しい消費ベースモデルで、\nフレックスクレジットや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスから選択できます。\n2025年5月からFlex Creditsが導入され、1アクションあたり0.10ドル（10万クレジットあたり500ドル）というモデルに移行し、単純なアクションは20クレジット、複雑な多段階タスクはより多く消費します。\n旧来の会話課金モデルでは\n1会話あたり240円という従量課金制\nが採用されていました。\n\n**④Agentforce 1 Editions（統合パッケージ）**\n大規模利用向けの包括プランで、\n大企業向けにAgentforce 1 Editionsは1ユーザーあたり月額550ドルから始まる包括パッケージ\nとなっており、\n政府・公共部門向けは最高月額650ドル/ユーザーで、FedRAMP High認証などの要件を反映しています。\n\n\n## 2. 総額の目安（規模別）\n\n料金モデルが複雑なため、**表面価格だけで判断すると予算が大きくズレます**。実例として：\n- 中堅企業（50ユーザー規模）：\nEnterprise+Agentforceで50ユーザーの場合、消費コスト抜きでライセンス費用だけで月額15,000ドル\n\n- \n50ユーザー規模の中堅企業は年間9万ドルの予算を見込んでいても、導入・研修・消費料金を含めると実際のコストは20万ドルを超えることがある\nという調査結果もあります。\n\n日本国内の大規模導入では、\n基幹システム連携を伴う大規模モデルでは導入支援費が1,000万円を超える場合が珍しくなく、プロジェクト期間も半年〜1年以上に及ぶケースが多い\nとされています。\n\n## 3. 見落としがちな追加コスト\n\n- **導入支援・研修費用**：\nSalesforceパートナーは1エージェントあたり2,000〜6,000ドルでセットアップ・研修を見積もっており、期間は2〜5週間。これはほとんどの組織にとって省略できない費用\nです。\n- **Data Cloud費用**：Agentforceのフル機能活用にはData Cloudが必須なケースが多く、\n無料のFoundationsに含まれる25万件のData Cloudクレジットではデータ量の多い実装をカバーできず、追加クレジットには別途費用がかかります。\n\n- **ベースライセンスの値上げ**：\nSalesforceは2025年にEnterpriseおよびUnlimitedエディションで6%の値上げを発表しており、Agentforceの土台となる基盤費用に影響します。\n\n\n## 4. 費用対効果（ROI）を出すための進め方\n\n**ステップ1：無料枠でのPoC（概念実証）から着手**\n\nエントリーモデルであるSalesforce Foundationsは月額0ドルで完全無料であり、小規模チームによるテストや限定的なパイロット導入に適しています。\nいきなり本格契約せず、まず自社のユースケースでクレジット消費量を計測することが重要です。\n\n**ステップ2：ユースケースを明確化してから",
+  "cited_urls": [
+    "https://www.eesel.ai/blog/salesforce-service-cloud-ai-add-on-pricing",
+    "https://www.ccc.seraku.co.jp/service/columns/salesforce/01/155/",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://www.eesel.ai/blog/salesforce-agentforce-setup-cost",
+    "https://techtouch.jp/media/salesforce/salesforce-price"
+  ],
+  "error": null
+}
