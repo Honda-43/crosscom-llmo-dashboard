@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-20",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-19T22:53:15.931942Z",
+  "answer": "# Agentforce導入費用の相場と費用対効果を出すための進め方\n\n## 1. 費用の全体構成（想定より複雑です）\n\nAgentforceは単体では購入できず、複数のレイヤーの費用が積み重なる仕組みになっています。\n\n### ① 前提となるベースライセンス\n\nAgentforceはSalesforce Clouds（Sales Cloud、Service Cloud、Field Service Cloud）の上に乗る形で提供され、Enterprise EditionまたはUnlimited Editionが必要\nです。\nすでにSalesforceを契約していない場合、Agentforceを評価する前の段階で大きなコミットメントが発生します\n。\n\n### ② Agentforce本体の料金モデル（3種類から選択）\n公式サイトによると、\nフレックスクレジットや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスから選択可能\nで、状況に応じて拡張できる柔軟性があります。\n\n- **会話ベース課金**：\n$2/会話（1会話あたり約240〜300円）が2024年後半のローンチ時からのモデル\n\n- **Flexクレジット（現在推奨）**：\n標準アクション1回につき20クレジット（約$0.10）を消費、ボイスアクションは30クレジット（約$0.15）。クレジットは10万単位＝$500で購入\n。\n2026年初頭時点ではFlexクレジットが新規導入の推奨モデル\nとなっています。\n- **ユーザー単位アドオン**：\n$125/ユーザー/月で、従業員は会話やFlexクレジットを消費せずAIエージェントを使い放題\nできます。業種特化版（金融・医療等）は\n標準アドオンに対し20%の割増料金\nとなります。\n\n### ③ Data Cloud（実質必須のインフラ）\n多くの解説記事が指摘する「隠れコスト」の最大要因がこれです。\nAgentforceはData Cloudが正常に機能するために必須であり、これは多くの購入者が見落とすコストで、Agentforceのライセンス費用そのものを上回ることが多い\nとされています。\n\n### ④ 導入（実装）支援費用\n\nSalesforceパートナーは1エージェントあたり$2,000〜$6,000、期間2〜5週間でのセットアップ・トレーニングを提示することが多く\n、\nこれはほとんどの組織にとって省略できない費用\nです。より大規模な案件では\n実装費用が$50,000〜$150,000に及ぶケースもある\nとされています。\n\n## 2. 規模別の費用感（海外事例ベースの目安）\n\n中堅企業（数百ユーザー規模）を想定した試算では、\n中堅企業（500ユーザー）でAgentforce単体は年間$15,000〜$50,000程度だが、Data Cloud・導入・保守を含めた総所有コスト（TCO）は初年度で$150,000〜$425,000に達する\nとされています。別の試算でも\n50ユーザー規模の企業がライセンスだけなら年間$90,000程度を想定していても、導入・トレーニング・従量課金を含めると$200,000を超えるケースがある\nと報告されています。\n\n日本国内では、Sales Cloud/Service Cloudなどのベースライセンス費用に加え、\nSalesforceはクラウドサービスのためインフラ費用は不要だが、業務プロセスに合わせたカスタマイズのための開発費（構築費）が別途必要になり、その費用は要件の複雑さによって変動するため一律には言えない\nのが実情です。またAgentforce利用には\nAIクレジットやアドオンの購入が別途必要で、体系が複雑なためパートナー企業への確認が推奨されます\n。\n\n**ポイント**：金額は「ユースケースの複雑さ（1会話あたりのアクション数）」「対象ユーザー数」「Data Cloudの有無」で大きく変動するため、必ず自社ユースケースでの見積りをベンダー・パートナーに依頼することが重要です。\n\n## 3. 費用対効果（ROI）を出すための進め方\n\n海外・国内の実践知見を総合すると、成功パターンには共通のステップがあります。\n\n### STEP1：ビジネス価値の明確化とユースケース選定（着手前が最重要）\n\n導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定\nです。具体的には\nユースケースに対しSalesforce上での実装適合性と、実装に必要な工数・技術の難易度をマトリクスで評価し、効果が高くかつ実現しやすいものから着手する\nことが推奨されます。\n\nPOCの段階で失",
+  "cited_urls": [
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://myaskai.com/blog/salesforce-agentforce-pricing-explained",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://www.zenml.io/blog/agentforce-pricing",
+    "https://www.eesel.ai/blog/salesforce-agentforce-setup-cost",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://www.eesel.ai/blog/salesforce-service-cloud-ai-add-on-pricing",
+    "https://www.e-sales.jp/eigyo-labo/salesforce-price-24280",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

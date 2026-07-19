@@ -1,0 +1,21 @@
+{
+  "date": "2026-07-20",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-19T22:52:43.556177Z",
+  "answer": "Agentforceの導入費用は、その多様な料金体系と利用状況によって大きく変動するため、一概に「相場」を示すことは困難です。しかし、複数の課金モデルと費用対効果を高めるための具体的な進め方が示されています。\n\n### Agentforceの導入費用と相場\n\nAgentforceの料金体系は主に以下の3つのモデルで構成されており、利用形態に応じて組み合わせて課金されます。また、Agentforceの利用にはData 360（旧Data Cloud）が必須となり、これも課金対象となります。正確な費用については、Salesforceの担当営業への問い合わせが推奨されています。\n\n1.  **Flex Credits（アクション課金）**\n    *   単価：10万クレジットあたり60,000円（1クレジットあたり約16円）\n    *   仕組み：AIエージェントが「レコード更新」「要約」「外部API連携」といった1アクションごとに約20クレジット（約0.10ドル相当）を消費します。\n    *   特徴：従業員用・顧客用など用途を問わず利用でき、使わない月は費用を抑えられるメリットがあります。\n\n2.  **Conversation（会話課金）**\n    *   単価：1会話（24時間以内）あたり240円（約2ドル）\n    *   特徴：主にB2Cのチャットボット（顧客対応）向けで、会話の中で何回やり取りしても定額のため、複雑な相談に対応する場合に有利です。\n\n3.  **Agentforce Add-on（ユーザー定額）**\n    *   単価：1ユーザーあたり月額125ドル（2026年5月18日時点の換算で約19,588円）またはSales、Service、Field Serviceの場合は月額125ドル、Industriesの場合は月額150ドル。\n    *   特徴：従業員向けの「使い放題」プランで、営業やサービスの担当者が日常的にAIエージェントを多用する場合に適しています。\n    *   注意点として、一部のユーザーライセンスでは別途Flex Creditsの消費が発生する場合があります。\n\n**「Salesforce Foundations」**という無料プランもあり、クレジット込みの本格的な「Agentforce 1 Editions」は1ユーザーあたり月額550ドルからです。\n\n**導入にかかる総費用**としては、これらのライセンス費用に加えて、データ整備、エージェント設計、社内テストなど、実際にAgentforceを稼働させるまでのリードタイム（半年〜1年以上かかるケースもある）にかかるコストも考慮する必要があります。特に、Agentforceの自律的な行動を支える基盤技術である「Data Cloud（データの統合・文脈化）」の整備コストとデータ品質が導入の大きな障壁となる可能性も指摘されています。\n\n### 費用対効果を出すための進め方\n\nAgentforceで費用対効果を最大化するためには、戦略的な導入と運用が不可欠です。\n\n1.  **ROI（投資対効果）指標の事前定義**\n    *   Agentforce導入によって何を達成したいのか、具体的な目標（例：顧客対応時間の50%削減、商談準備時間の短縮など）を明確にし、その達成度を測るための指標（KPI）を事前に定義することが重要です。\n    *   特に顧客から頻繁に寄せられる質問や対応依頼など、人間に多くの負担がかかっている業務から着手することで、費用対効果を示しやすくなります。\n\n2.  **AIと人間の境界線（エスカレーションルール）の設計**\n    *   AIエージェントが対応できる範囲と、人間のオペレーターにエスカレーションする際の明確なルールを設計することで、スムーズな連携と高品質なサービス提供が可能になります。\n\n3.  **スモールスタートで成功パターンを作る（PoC: Proof of Concept）**\n    *   いきなり大規模な導入を目指すのではなく、特定の業務や部署で小規模にAgentforceを導入し、効果検証を行う「スモールスタート」が推奨されます。\n    *   成功事例を積み重ねることで、全社展開への道筋を立てやすくなります。\n\n4.  **Data Cloudの整備とデータ品質の向上**\n    *   AgentforceはSalesforceのCRMやData Cloudを活用して業務を自動化・最適化するため、Data Cloudによるデータの統合と品質が非常に重要です。\n    *   「ガベージイン・ガベージアウト」とならないよう、質の高いデータをAgentforceが利用できる状態に整備することが、期待する効果を得るための前提となります。\n\n5.  **ユースケースの特定と最適化**\n    *   カスタマーサービスにおけるケース解決や注文管理、営業担当者の会議予約、従業員サポートにおける社内からの質問対応など、Agentforceが貢献できる具体的なユースケースを特定し、それらに特化したエージェントを構築することで、投資対効果を高めることができます。\n\nAgentforceは、自律的なAIエージェントがSalesforce上の業務を遂行することで、営業・サポート部門の劇的な工数削減を実現する可能性を秘めています。しかし、その複雑な料金体系と導入にかかる手間を理解し、戦略的に導入を進めることが成功の鍵となります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHWUNGmd8rHKdYOAm2PYbk2xXCnxkHfSpr4U9zJgsQHTqLAutQSN8svivANznz7VYK7ogeeePqrAy4tqtsQrwe1vikFPRH-GuRsGVzf-fL-3sJVHGlSgI9FYycQhkuuBeIS8AeOzrlMr7AyUiHL3Anjerj_O8G3VEa7Iozq",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHSrvtHqoOCgWzPJWsma3Q-qxhV9uMJJ36OU21sHmIbbXWcG18pOvcORBXKgB678QD3Mqm2vtn0J-ZIOg-px3K1NErefjgteslkkjHzq-xMYU1g4WvI8yh3TqxS9VWdx1oKDoYDeVdgEo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHU5tE47Atb5XOZpULMixpp3KDt467IyixZrEIpOj_2aZTe-84Nvm9upR3kF7SKTnjWSJAnpVCiSYpGT1WRUXdK67I5kzxpkR9sbomRq1QDT7Gti0RNjAb-_LR2Z-kxBtnVH3tVKGlhBUw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGN7zO9TjDF03_cWUJiU_Q3zs-Gzlll2ALop3YWx14qX2rroW_bzx7_pKftJBZbqp7-61A_HWOyfVy2AQ8hf-BBqsQUzpuEfALpvgWM4dboTCdFphqOE43fl7UzJ4Fk2E3zeex_GtnJLZwME-w=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEbnFdObck_2iyEMHWS8ZE9AS5KDE2ORupa2DBqS7ynqOHjR6ntWEDqGNTG6_gcWCFrnWQ_lY2ZK65btIW_-B1GGdYDAZG54vbJDHZdCHgUXh1POiG7VTNT2CNw-EFmqMLyBKxbtroChyVlESHg3fWJmaRYPA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG-_zKo6UGONvpvsry9S8ojwSVAYiA2kWzn_ICz3QH1yQARccbfoYJXk3_3oe_oyMgx-zqy_hOyqyPECu9z5YXfqBgLJ9HceYWlR9gEp4P9vn6oN4rPcFGfh-Gv3i4Av19AScwx9zXWzM1KcKStCS6Xbw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELeX9taYKrzOZeICmdXEE03RKwoQscES9IHRucHOEYObMMtZMUT5b_LU775tWjxW_4N4J_B8yjamKZUvzQQK3tP6J1kz0A68-ZixjhJ3EgLe9eeEX-gHm0JcNjK6eMYLZb3E8dzKLOmTvnZkU_mAMHAZDEHHWTWAOA9LXdpIA8"
+  ],
+  "error": null
+}

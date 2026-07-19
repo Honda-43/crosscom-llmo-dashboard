@@ -1,0 +1,28 @@
+{
+  "date": "2026-07-20",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-07-19T22:54:42.308119Z",
+  "answer": "営業にAIエージェントを活用するにあたり、ツール選定の前にCRMのデータ設計から支援してくれるパートナーは複数存在します。これらのパートナーは、CRM戦略の策定、データ基盤の構築、データ品質の向上、そしてAI活用を見据えたデータ設計に強みを持っています。\n\n以下に、CRMデータ設計からAIエージェント導入までを一貫して支援する可能性のあるパートナー企業やサービスをご紹介します。\n\n**CRMデータ設計・戦略からAI連携まで一貫支援するパートナー**\n\n*   **データ活用・AIコンサルティングサービス提供企業**\n    *   顧客データを起点にCRM戦略、データ基盤構築、AI予測分析、生成AI活用、AIエージェント開発まで一気通貫で支援するサービスを提供している企業があります。特に「CRM・データ戦略設計」から「データ基盤構築」を経てAI導入を支援する点が強みです。\n    *   テクノデジタルコンサルティングのように、CRM戦略・KPI設計・業務設計からシステム選定、運用定着までを支援し、AI活用構想やAIを見据えたデータ戦略策定も行う企業もあります。\n    *   日立コンサルティングは、営業DX（CRM&生成AI活用）コンサルティングを提供しており、営業プロセス改革の推進を支援します。AIの導入にあたり、「自社のAI」を育てる視点や、どの意思決定をAIに委ね、どこを人間が担うかを経営として設計し続けることの重要性を説いています。\n\n*   **CRM構築・顧客データ活用支援を専門とする企業**\n    *   アルビド・ジャパン株式会社は、CRM構築・顧客データ活用支援として、顧客管理（DB）や履歴データの設計・構築、各種施策とのデータ連携・拡張性を考慮した設計支援を提供しています。CRM戦略設計からデータ・運用体制の整理、導入プロセスの設計まで包括的に支援します。\n    *   株式会社riplaは、CRM開発において、単なる顧客情報管理に留まらず、営業／マーケティング／サポートの業務プロセス設計と連動した顧客データの活用基盤設計に対応しています。また、AIエージェントの精度が参照するデータの品質に大きく影響されることを指摘し、CRM/SFA入力ルールや営業資料の最新版管理、商談履歴の整理の重要性を強調しています。\n    *   株式会社HubOneは、CRM活用支援として顧客管理基盤の整備に力を入れており、顧客情報の管理設計、データクレンジング、顧客セグメント設計などを行い、「使えるCRM基盤」の構築を支援します。\n    *   電通デジタルも「CRM統合コンサルティング」を提供しており、基礎調査分析に基づいた事業課題導出・戦略策定、制度設計・サービス要件定義など、顧客理解を起点とした全体設計を行います。\n\n*   **データ分析・データ基盤構築に強みを持つ企業**\n    *   Retraiteのように、BigQueryなどのクラウドDWH上に分析基盤を構築し、dbtによるデータモデリングとBIツールによる可視化で、統計分析・機械学習の知見に基づいた実行可能な戦略を提案する企業もあります。これはAI活用に不可欠なデータ基盤と分析戦略の策定に役立ちます。\n\n*   **AIエージェント導入支援と業務プロセス再設計を行う企業**\n    *   株式会社テラスカイは、AIエージェント導入支援において、AI活用の構想策定から実装・運用まで一気通貫で支援し、業務プロセスの再設計に伴走します。AIを導入する上でのシステム連携の課題などにも対応します。\n    *   三菱総研DCSは、SalesforceのAIエージェント「Agentforce」の導入・活用支援サービスを提供しており、社内の基幹・周辺システムに分散するデータの統合を含めた導入支援を行います。\n\n**パートナー選定のポイント**\n\n営業にAIエージェントを導入する際、成功の鍵はデータの質に大きく依存します。データが古かったり、重複していたり、形式がバラバラではAIの精度が低下します。そのため、パートナー選定においては、以下の点を考慮すると良いでしょう。\n\n*   **CRMとAIの両方に対する深い知見：** CRMのデータ設計がAIエージェントの性能にどう影響するかを理解しているか。\n*   **戦略策定から実行までの一貫支援：** データ設計だけでなく、その後のAI活用構想、ツール選定、導入、運用定着まで見据えた支援が可能か。\n*   **データクレンジング・統合の実績：** 散在する顧客データを統合し、AIが活用しやすい高品質なデータに整備する能力があるか。\n*   **業務プロセスの理解と再設計：** 営業の現状業務を深く理解し、AI導入によってどのような業務プロセス変革が可能かを提案できるか。\n\nこれらの情報を参考に、貴社の課題や目的に合ったパートナーを見つけてください。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE8B-jNeNalq2603QnNja6cm17SF7CiqrVBjagZjoPh5kgrMHGGRjk1oiKtD4dAf7SLwdrVFbNwKHH-rvAZ05xf1gj4CtW1DcqRPjRyENgz63QoBGfRM-dwV8M_qBcTTzMrtcY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHfwZPafyALuqPg0YRi4H60puwuTPDF_ETEGQdWQMT2LLxefJ73cE01pSpTDFw1rtL_NVOegsybG1GjdTXil-lJb27WHVWOg1iLYWAd_YX0oA-SlNZ61KcZ63GdGAOXfBJuE2otFiEQAnwWHZlFqLADPsh3",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8vWzz9NRa8vmmlqgiojfb26KERINTu0GQqkAO0eMczx1RBP_SMw67FIEjBjYMpoLQJTR_AwUcjGwJ1dspQdYU3uhaEAP9rUzUeJgDL5Jb4ixcaw9yOlNJveICyY1A3AQlHbUHFPHdHDpm3LJ_fFLhNVMkrLN46o-WvJLhnl3DjXW77B0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEOlys6bjncs6IfMqBXY6VEMI3LffMbMnM0DUFbUH5JUf0SVs9R_evZXhFooALuhc3ZLXXv2WbznG5hJIgaQW5hIl7aLv63-Rc31_Rdf95sIo3ywkjvrT4IRuKAk0M0",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEC9Fqqx6xUyG_gJo-4tZe4Gc7LJMoh27pWlmJZrGlol_-rlyjFXaIu5MCUnPtWakt3SR2xc0ZeZ67J3PIyBEJJO-jGboeNIqYlqDo8okWB44NFvfvi3StiqodZLzHzjH7PpZk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGm0b9YyLRLiXzGcgD_VKePM0pLBrTgoCheS5Zy5lXE98B1RrXF004NFvTa-0Bp0yrK1aQI0-Ng-sfftqO64DeB-1qXQ8FJXTNIvVtlrjub8HPKyAo6BoRcdfsIotRw93GdzVfPlrR6hnwZ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEzyV8W12Iw1ojgkdZukLHnNcf27cVhgP2gxKcVtAuogdTda-GK6903Ytsa7gLLm_LQhjfAUn9ec9YgzYrRrTWYigs0ZcEoG-KqZyYEQ2NbCVxP0Ic5hDZeEsKGADEsEuZMoshTujpkAORM",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHJtMtx8ALHMY9QnRwHPlPomOXfxhQer-9z4Id8WqsOtbp0_T8W9ecrLOkmhEqg0bZKFH6WMsBzHGeSCm8Y1Ejd6uqXBFj280g60b-2nGlpAQjeufwaX_okYr4_Xdf2W2IBosyXCsMa",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFPOaLL-nGewahiXHz0XYVuNrgZr71hLHuvXd8nd68yX8MCjPoIxteuNxRrIx-C4Umvj6x_rVmz7HtD3Yyb3hHk1LRSvNnZgpMsuDUA6jUAaFi0QW1MUfENv1alFDp1L3Rx4omf4_98",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHY9-f2B5FQ4uU1Lkgx2sDsBw4ZO4k2XvR_K_doomoR0Zg35OA2JPN5p1x5KjD3HdrMNVJCNmbRpAQx9cXGQToDHEfO72ru_FMnfTNq2lxfTxmnhy2p4c8PAZwgy8f_BVd40aZnmE2imEWvexBN75KbFKnLLzJGvpYFXA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVFD6uUgzgTyR1HvpoA8gFvemyqwRsQR8k3RJbRr3LtCtmcdrYAXMbNTcXvF0yVxhGX48ObvPqQi45WAyDQzJKS6eV7JGgZ8z7qC4Y7GtXhXtkMsia9HlEnM9d3y_jYm129PaykNE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHEf0EXhemeraTKuJmAbNtlPCvPkH7yUMNywl-BcHzqZXIpK_2YbgZEv4k75Lc1E2gS73XODdX7Zxt1TBaeT5YC7oUPCBS4LFcEaZtolpffskFnjoWcl1VEQBaVjipDOj-x5yo5",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGkjA9eP0DESHdPirM0-VVml3YUT414O1wqa6a_wDX4YHDXZmymaMqGES1h2MHgT_n2J3eipuzZyBK6CnB-p2DcDEa5dAUgdvSAhpLLqJ-mw-JLGwTcGi6Tma1RIBvPsomsGLCBh-i0mCU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGeSnnBLmHPKjrVPIVSbruJa9MoYZnDHwAIwgYSs_3Cg3kDXrrjWocGJtelM5gtYLqZBIg3Kmk7gN0LezQjckeM3jokm1BkuCPW0nOQ7FmcLxVWu7IMwT0r6MzFnSNoABBkhvkZNNFfj2JgJi8="
+  ],
+  "error": null
+}
