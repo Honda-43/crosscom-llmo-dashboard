@@ -1,0 +1,21 @@
+{
+  "date": "2026-07-21",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-20T23:00:32.741429Z",
+  "answer": "Agentforceの導入支援を行っている企業について調べてみます。\n## Agentforce導入支援のおすすめ会社\n\nSalesforceの自律型AIエージェント「Agentforce」の導入支援を行う会社は、Salesforce公式のコンサルティングパートナーを中心に数多くあります。\nSalesforceのSIパートナーエコシステムは、日本市場でこれまでに数百のAgentforceの導入を支援し、豊富な実績を有しており、国内で累積4,300のAgentforce、Data 360関連資格が取得されています。\nまた\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼります\n。その中から、特徴的な会社をいくつか紹介します。\n\n### 大手・総合系（幅広い業種・大規模プロジェクト向け）\n\n**日立ソリューションズ**\n\nSalesforceのコンサルティングパートナーとして「導入・活用支援サービス for Agentforce」を提供しています。営業・サービス・マーケティング・コマースなど幅広い業務領域に対応し、長年の実績をもとに導入支援コンサルティングを手がけています。金融や医療など、高いセキュリティが求められる業界での支援にも対応します。\n\n\n**富士ソフト**\n\nAgentforceの導入に向けたPoC（概念実証）支援を中心にサービスを組み立てています。ユースケースの整理や導入データの質のチェックから始め、要件定義、技術検証、効果測定、本番移行計画までを反復的に支援します。\n\n\n**メンバーズ（サースプラスカンパニー）**\n\n導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバーしています。Service・Marketing・Salesの各テンプレートに対応し、SlackやTeams、Salesforceなどとの連携や社内ナレッジの統合も支援します。\nまた\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\n。\n\n**バーチャレクス・コンサルティング**\n\n「Agentforce」の導入から定着化、活用促進までの包括的な支援を提供します。多くの企業におけるコンタクトセンターをはじめとする顧客接点部門での、多様化・複雑化する顧客ニーズへの対応、応対品質の維持・向上といった課題を解決します。\n特にコンタクトセンター領域に強みがあります。\n\n**ダイワコンピューターサービス**\n\nSalesforce単体導入に留まらず、社内の基幹・周辺システムに分散するデータの統合も含めたAgentforceの導入を一気通貫で支援します。\n金融分野での実績も豊富です。\n\n### 特化系・伴走系（スモールスタート・特定領域向け）\n\n**クロスコム**\n\nSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っています。\n実務で活用できるまでの定着支援に重点を置いたサービスを提供しており、1ユースケース×3ヶ月のスモールスタートから対応します。\n\n\n**enucolor**\n\nSFA・営業領域のAI活用に向けたAgentforce導入支援サービスを提供しています。\n初期コンサルからPoC、活用改善サポートまで5ステップで支援します。\n\n**ウフル**\n\nまずはSalesforceが提供する「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供します。\nSalesforce導入実績6,000件以上を持ち、Agentforceの設計・ユースケース整理、プロンプト設計、定着支援までを現実的かつ実践的に支援します。\n\n\n**フロッグウェル**\n\n各業界・業務の特性に合わせたAgentforceの導入支援を行っています。豊富な業界知識とSalesforce専門性を活かし、お客様の課題に最適化されたAIソリューションの設計から構築、運用まで一貫してサポートします。\n\n\n---\n\n### 選び方のポイント\n支援会社は大きく「総合系（大規模・幅広い業種対応）」「特化系（特定業務領域に強み）」「伴走系（スモールスタート・定着支援重視）」に分かれます。自社の課題規模や、まず小さく試したいのか本格的に全社展開したいのかによって適した会社が変わってくるため、複数社に相談して比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/news/press-releases/2025/11/20/agentforce-world-tour-tokyo/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://frogwell.co.jp/blogs/agentforce/"
+  ],
+  "error": null
+}

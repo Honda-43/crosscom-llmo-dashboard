@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-21",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-20T23:02:02.478441Z",
+  "answer": "# Agentforceの導入費用の相場\n\n## 1. Agentforce本体の料金モデル（2026年時点で3パターン併存）\n\nSalesforceは短期間で価格モデルを大きく変えてきており、現在は主に以下の3種類が並立しています。\n\n**① 会話（コンバセーション）課金**\n\nAgentforceは1会話あたりで課金される料金体系で、2026年時点のリスト価格は1会話2ドルです（エンタープライズ規模ではボリュームディスカウントの交渉が可能）\n。日本の代理店では\n「1会話あたり240円」というシンプルな料金体系\nとして紹介されるケースもあります。ただし\nこの$2/会話モデルは非営利団体や中小企業、大きなAI予算を持たない組織を排除し、エンタープライズ顧客からも予測不能でコストと実態が結びついていないと言われた\nという経緯があります。\n\n**② Flex Credits（従量課金）**\n2025年5月に導入された、アクション単位の課金モデルです。\nFlex Creditsは$500で100,000クレジット、標準アクション1回が20クレジット（約$0.10）、音声アクション1回が30クレジット（約$0.15）\nという設計です。\n1つのエージェントアクション（データ取得、フロー実行、回答生成など）は約$0.10で、標準的なカスタマーサービス対応は8〜15アクションを要するため、実質的な1会話あたりコストは$0.80〜$1.50となり、会話課金より割安になりやすい\nとされています。なお\n未使用クレジットは繰り越されず、FlexCreditsと会話課金は同一組織内で併用不可、超過分は月次で課金される\n点は注意が必要です。\n\n**③ ユーザー単位ライセンス**\n2025年後半に追加されたモデルです。\nAgentforceアドオンは1ユーザーあたり月額$125から（Enterprise/Unlimited Edition向け）、Agentforce 1 Editionsは1ユーザーあたり月額$550で年間100万Flex Creditsが含まれる\nという設計になっています。\n\n## 2. 見落とされがちな付帯コスト\n\n- **Data Cloud（必須基盤）**：\nAgentforceは正常に機能させるためにData Cloudを必要とし、これはAgentforce本体のライセンス費用を上回ることが多い、見落とされがちなコストです。Data Cloud Plusは年間約$65,000、Data Cloud Premiumは年間約$175,000であり、$50,000のAgentforce予算を承認した後に別途$65,000〜$175,000のData Cloudライセンスが必要になると気づくケースが多発しています\n。\n- **総所有コスト（TCO）の目安**：\n中堅企業（500ユーザー）規模では、Data Cloud費用を除いてAgentforce本体だけで年間$15,000〜$50,000程度が目安となり、Data Cloud・導入・保守を含めた初年度の総コストは$150,000〜$425,000に及ぶ\nとの推計もあります。\nAgentforceは$2/会話から始まるとされますが、中堅企業の実質的な初年度コストは$150,000〜$600,000に達し、これはData Cloudの必須契約（年間$108,000以上）や導入費用が上乗せされるため\nです。\n\n## 3. 導入支援・PoC費用（日本のSIベンダー）\n\n日本では日立ソリューションズ、富士ソフト、メンバーズ、enucolorなどのSalesforceパートナーが、要件定義〜PoC〜本番導入までを段階的に支援するサービスを提供しています。具体的な金額は非公開で、ヒアリングを踏まえた個別見積りが基本です。\n\n---\n\n# 費用対効果（ROI）を出すための進め方\n\n## ステップ1：小さく始めて効果を測る（PoC先行）\n\nPoCにより、企業はAgentforceの有効性を早期に把握し、大規模投資前のリスク評価とROI測定が可能になり、データ連携や業務フロー調整といった潜在的課題を洗い出し、より現実的で円滑な導入計画の基盤を築くことができます\n。富士ソフトも\nAgentforce導入の投資対効果を明確にするため段階的なアプローチが推奨され、まず小規模な業務領域で試験導入を行い、具体的な効果測定を実施した上で、段階的に適用範囲を拡大する方法が効果的\nとしています。\n\n## ステップ2：ユースケースを「効果×難易度」で",
+  "cited_urls": [
+    "https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://myaskai.com/blog/salesforce-agentforce-complete-guide-2026",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://service.is-c.jpn.panasonic.com/column/salesforce-agentforce-2",
+    "https://www.fsi.co.jp/Salesforce/column/column19.html"
+  ],
+  "error": null
+}

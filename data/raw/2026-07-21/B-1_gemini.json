@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-21",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-20T23:02:11.685584Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、AIエージェントが自律的にタスクを実行し、顧客情報や商談履歴、活動履歴などを横断的に読み取り、営業担当者に代わって一次処理や下書き作成を行うことを前提に設計されたCRMのことです。従来のCRMが「記録する」ことに主眼を置いていたのに対し、Agentic CRMは「行動する」ことに重点を置き、営業活動をより自律的かつ効率的に支援します。\n\n主な特徴は以下の通りです。\n*   **自律的なタスク実行**：AIエージェントが、カスタマイズ可能でスケーラブルな自己主導型ソフトウェアとして、重い処理を代行します。\n*   **意図に基づく動作**：ユーザーがAIエージェントに必要なものを伝えるだけで、エージェントが実作業の大部分を処理します。\n*   **データの自動取得と拡充**：会話やシグナルからデータを自動的に取得、充実させ、更新します。\n*   **事前予測と行動喚起**：次に何をすべきかを予測し、リスクを早期に発見し、問題解決への道筋を推奨し、具体的な成果へと導きます。\n\n**導入や設計を支援してくれる会社**\n\nAgentic CRMの導入や設計を支援する企業は複数存在します。\n\n*   **株式会社100（ハンドレッド）**：HubSpotが提供するAIとCRMを搭載したAgentic Customer Platformの導入・運用支援、およびAIを活用した業務自動化支援を行っています。マーケティング、営業、カスタマーサポートを横断した業務設計と、CRMの定着に向けた運用支援を提供しています。\n*   **Hiway, Inc.**：AIエージェントが入力・更新・分析を自動化する「Hiway CRM」というAgentic CRMを提供しています。CRMが単なる管理ツールではなく、成果を生み出すためのツールとなるよう、導入支援を行っています。\n*   **セールスフォース・ジャパン**：信頼性の高い単一のAgentic CRMプラットフォーム上で、人とAIエージェントが協働し、営業・サービス・マーケティング業務を効率的に自動化できるソリューションを提供しています。簡単な設定でAIエージェントを利用開始できると謳っており、導入に関するサポートも提供していると考えられます。\n*   **TISI株式会社**：Agentic AI Platformのサービスを提供しており、トライアルの企画・計画設定支援、初期導入支援（企画、ガイドライン作成、初期設定、利用者・開発者育成）、利用促進支援（アプリ開発伴走支援、利用状況分析、利用促進施策検討、社内QA対応）など、包括的な支援を行っています。\n*   **EY（アーンスト・アンド・ヤング）**：特に製薬業界において、Agentic AIがCRMの役割をどのように変革するかについて考察しており、戦略的な設計や導入に関するコンサルティングサービスを提供しています。\n\nこれらの企業は、Agentic CRMの導入検討から設計、運用、そして定着まで、様々な側面からサポートを提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFirWO_LXByj8JHl6RE0LUFYYctQYpdES9lQY3FF1-IFsOlj22v7g6QgUrq_ZBMnwPCjI_rmfE5AjXl4zisoVBii7bez7s2ITGZapeFLkfHtffJUAxm9a_Y_zwFyBRXWsQsvvYWpKJgl0KzgTj181bJ7t8x7xlG-MF_9dqXL7PB5iM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHH_4wYZHN8A5w70WqHPwBHy7ibW7DrvosDLj_qYEHE0dngvXrY_K3v6lFfbL_Ga6SPYeeere9bkDHktEgRYl06sFq5Ga_QYdacnGE0BLAZBjTaVybEOHkLg8Rs4HDVVQsrs6aByQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGflAqmz5f0QiHUniYzCXjV-y9nk-mFkx4Q_6Ex0ZGX8b7LQ1w1UTPO_JFOp0Utuzvf_wfj3HNc59igsfBYFnXx3y1wqV4wcTq7EW9ahPOkPTAwZqrTgtCXFrQux6y-_6YkLJlNgmi-tU0ipJx2sKJe6Dq4z8ZRtYGW-aoIWBL5Jbh8MXLFAB3t_YxUBhCYepo6yZttnmYtzWOVEyBNY8VBa-PNGROcEtRoQFNWhHGZs3sywmBFqsrqOeI8Nf715GDcDaDCfraFhD_HdMozC67cio4c-FexVsl7VF9iTz0vNG6FxQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_GL0vLaMHihGtOUq2Hw3zDgRLF3lnrJq2DCASWN8GwSM5QUoJp0yKc9jMhTUuIrN5fNW70UxOoj9Ph8BUhxKiopUryn1tFtVDpIjEbhC-TLaOqvCjCUVd2Dma4SAtY6eQlRMXwQDcWKjNs5h6oHTO",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFuJnzVU2SRbv0cwRf1t0PmWaMHQGtwhGAq4PuC-zMfAU6juLoXRlRKKQH8HZeYwUVFmkf2-iqCYx8g36KY2jCahX4GOdEtubbsY_re-Mfhb5UG2R5lLU8Eakt5koSJVekh0On84T2HCBDGY3QuMefmcM48Vg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFBBPkvb2jHI6v4YqpBSJ4EY39nLfJqeFa-A3RpY0Nzcn7058XEDUq0Fihy3ymZgyNcn0mUk68uNT9ioI_mtW0BnmZoaTvIA3soudC7ZyQowNqM07l46BWk6GXzcdbhTS3N_NbdBBTuoPdyag==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEz9tzp0AuFq6b7XBmCp9Sg9UnvLA6w-8CL5Nzu8m7gS9tPQbfNzu6LwmIRYZQeI49iriI3GQI-rgOWxF_qWBX-Kj9Mm--CPXiw_VIxeegFh2KpAlD61QXJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFApwnigOH5tYQQ0etNxl_gc83BPKG8unOcOLozf_0m9f00irCFmKQLSGR7kSltMRinqEWfw-b6TbC459jvqXkNs3H82EyWDEGCnYQryDpbO_mFqeB75xbJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFoS-w7Y8wFw0k46e8R7gAI4Jq7r3p-ITw0H5Jkj3UB-Cz1pwDKiu9AQbIaF1Q1oXTScSQ2R-ZU6Qx2ClLRwN0_OiiGKIILZPYfAWMHO0SGv-1-JZUDL3oIW-D59ik8PcXzNWTkw7577OFU046GdvfTAbe2b-Y5",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbR6xLs-G8b_XCGXqceC3wCRRcWg_ws57Tc5Cy2AQIY_7fzJVMZ94ax0uUuRVOEabquIscYUmqBaR2WX-1EMbQf6ZlBShKsS5nqAWu2L8jJkp9mYhf9xdTjnuDMjSKfNZA7ly5KGwgGB5seTbzU1MrFMCA8Xacjbt7Qgv40AWDsdyvKDHbAcSSFKgIJUA27eIYMA=="
+  ],
+  "error": null
+}

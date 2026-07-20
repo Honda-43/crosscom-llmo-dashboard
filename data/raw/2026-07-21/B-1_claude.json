@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-21",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-20T23:02:42.083793Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRM(エージェンティックCRM)とは、\n組み込みのエージェント型AIを備えた顧客関係管理(CRM)システムで、インテリジェントで自律的なAIエージェントを使ってタスクやプロセスを自動化するもの\nです。\n\n## 従来のCRMとの違い\n\n従来のCRMは、\nデータを保存し、あなたが行動を起こすのを待つのに対し、Agentic CRMはあなたに代わって能動的に働きます。キャンペーンの計画、顧客への対応、パフォーマンスの最適化などを、あなたが設定した戦略とガードレールの範囲内で行います\n。\n\nつまり、\nAgentic CRMは単に情報を保存したり、あらかじめ決められたステップを自動化するだけではなく、積極的にデータを分析し、リアルタイムで意思決定を行い、顧客エンゲージメントと業務効率を改善するための自律的な行動を取ります\n。\n\n## 主な機能・特徴\n\n- **マーケティング支援**:\nURLやブリーフ、製品リスト、自由形式のアイデアをマーケティング戦略に変換し、ブランドガイドラインとコンテンツガードレールの範囲内でレビュー用のキャンペーンやフローを作成\nします。\n\n- **カスタマーサービス**:\nWebチャット、SMS、メール、WhatsAppなど複数のチャネルで質問への対応、注文追跡、返品処理、商品レコメンドを行い、店舗情報やポリシーに基づいた正確でブランドに合った回答を24時間提供\nします。\n\n- **統合された顧客プロファイル**:\nすべてのやり取りが単一のプロファイルに集約され、閲覧履歴・購入履歴・サポート履歴・チャネルの好みなどを蓄積\nし、人間のチームとAIエージェント双方に文脈を提供します。\n\n## 業界の動き\n\n大手CRMベンダーはすでにAgentic CRMへの対応を進めています。\nCreatioやSalesforce、Microsoft、HubSpot、Zohoといった主要ソリューションが、Agentic CRMが市場をどのように再構築し、将来の標準を確立しているかを示しています\n。\n\n例えばMicrosoftは、\n「CRMは現実を記録するために設計されたものであり、現実を変えるためのものではなかった」という従来の課題に対し、次世代のCRMは単に業務を記録するだけでなく、担当者が行動を起こし、あらゆる接点で信頼を築くことを支援する\nと説明しています。Salesforceも\n「Agentforce」を既存CRMの上に構築されたエージェント層として提供し、営業・サービス・マーケティング・コマースにわたる自律エージェントの構築と展開をサポートし、事前構築されたアクションや業界テンプレート、統合機能により、企業がガバナンスと可視性を保ちながらAIエージェントの利用を拡大できるようにしています\n。\n\n## 導入・設計を支援する会社\n\nいくつかのタイプの支援企業があります。\n\n**大手プラットフォーム提供会社(自社ツール＋導入支援)**\n- **Salesforce**:\nクライアントに360度の統合プロファイルを提供し、AIエージェントで業務を効率化することでハイバリューな業務にシフトし、新技術に基づいた革新的な成長を推進するコンサルティングCRMソリューション\nを提供しています。\n- **Microsoft Dynamics 365**:\nエージェント型のCRM、CCaaS、ERPを活用して、チームがより賢く販売し、より速く顧客対応し、より収益性高く運営できるよう支援\nしています。\n- **Creatio**:\n人とAIエージェントを1つのAI CRM・ワークフロープラットフォーム上に統合し、ユーザー数・エージェント数・ワークフロー数・スケールに制限がない\nソリューションを提供しています。\n\n**専門コンサルティング会社**\n- **Kanerika**:\nエージェントをERP、CRM、クラウドプラットフォームに直接接続し、並行して管理・維持する必要のあるシステムを作らない\n形で、\n戦略、アーキテクチャ、開発、統合、継続的な運用までを1つの契約モデルで対応し、サードパーティの実装者への引き渡しは行わない\nサービスを提供しています。\n- **CRMIT**:\nSalesforceのコンサルティングパートナーとして、エージェンティックAIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供し、企業がデータをリアルタイムの意思決定に変換して測定可能な事業成果を生み出すのを支援\nしています。\n- **Inogic**:\n1,000件以上の導入実績を持つテクノファンクショナルコンサルティングの深い知見を活かし、Dynamics 365ユーザーの日常業務にAzure OpenAIの力をもたらすことに注力\nしています",
+  "cited_urls": [
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/06/25/agentic-crm-in-the-flow-of-work-how-ai-is-transforming-sales-and-rebuilding-customer-trust/",
+    "https://www.salesforce.com/professional-services/consulting-crm/",
+    "https://www.microsoft.com/en-us/dynamics-365/",
+    "https://www.creatio.com/",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://www.crmit.com/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai"
+  ],
+  "error": null
+}
