@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-22",
+  "prompt_id": "A-2",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか",
+  "cep": "導入後の定着課題",
+  "timestamp": "2026-07-21T22:57:04.809323Z",
+  "answer": "Agentforceの導入後定着に関するご相談ですね。日本国内での支援企業について調べてみます。\nはい、Agentforceの「導入したものの現場に定着しない」という課題に対応するコンサル・支援会社は複数存在します。タイプ別にご紹介します。\n\n## 総合系（大手SIer・コンサル）\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルでご支援します\n。金融や医療など高いセキュリティが求められる業界での支援実績もあります。\n\n**電通総研**\n\nSalesforce製品の導入実績や顧客接点改革領域でのコンサルティング・システム導入実績を基に、業務要件整理から環境構築、プロンプト設計、活用支援や運用サポートまで一気通貫で提供\nしています。\n\n**バーチャレクス・コンサルティング**\n\n「Agentforce」の導入から定着化、活用促進までの包括的な支援を提供します\n。特にコンタクトセンター領域に強みがあります。\n\n## 伴走型・内製化支援系\n\n**メンバーズ**\n\n初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援。部門ごとにAIを試験導入したが定着していない、といった課題に対応\n。\n130名以上のSalesforce認定資格保有者が在籍し、20以上の業界、1,000社以上の現場支援で得たナレッジをもとに内製化を継続的に支援\nします。\n\n**DCS（大同システム）**\n\nAgentforceの設計・導入から、運用開始後の活用支援や現場での定着化まで伴走型でトータルサポート\nしています。\n\n## 特化系（ソリューション営業・BtoB特化）\n\n**クロスコム**\n\nSalesforce公式パートナー企業として、実務で活用できるまでしっかり定着までサポートするAgentforce導入・定着支援を行っています\n。\nソリューション営業の業務プロセスに特化したAgentforce導入・定着支援を提供\nしており、1ユースケース×3ヶ月のスモールスタートプランもあります。\n\n## その他\n\n- **ウフル**：\nまずはSalesforceが提供する「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供\nし、リリース後の継続支援にも対応。\n- **enucolor**：\nSalesforce活用定着支援サービス、営業DXコンサルティング、Agentforce導入支援サービス\nを展開。\n\n---\n\n### 選び方のポイント\n「定着しない」という状況の場合、以下の観点で選ぶと良さそうです。\n\n1. **現場業務への理解度**：ソリューション営業・カスタマーサポートなど、自社の業務領域に強い会社を選ぶ\n2. **伴走期間の長さ**：3ヶ月程度の短期集中型か、内製化まで見据えた長期伴走型か\n3. **内製化支援の有無**：社内でPDCAを回せる体制作りまで支援してくれるか\n\nもし「どの業務領域（営業/カスタマーサービス/マーケティング）で定着していないか」「社内に運用担当者はいるか」など具体的な状況を教えていただければ、より絞り込んだご提案ができます。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://www.dentsusoken.com/news/topics/2025/0808.html",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}

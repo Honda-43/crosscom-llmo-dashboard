@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-22",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-21T22:56:33.988136Z",
+  "answer": "Agentforce(Salesforce社のAIエージェントプラットフォーム)の導入支援を行っている会社について、最新情報を調べてみます。\nAgentforce（Salesforceの自律型AIエージェント）の導入支援会社について、日本国内・海外それぞれの選択肢をご紹介します。\n\n## 日本国内の導入支援会社\n\n### 1. サークレイス株式会社\n\nサークレイス株式会社は、セールスフォース・ジャパンが2024年10月30日より日本市場で提供を開始した「Agentforce」について、認定パートナーとしていち早く、同年11月より導入・構築サービスの提供を開始しました\n。早期からの実績があるのが強みです。\n\n### 2. Uhuru株式会社（ウフル）\n\nウフルはSalesforceのテクノロジーを活かした業務支援の経験をもとに、Agentforceの導入・活用を現実的かつ実践的に支援しています。まずは「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供し、Data 360の設定から構築、動作確認、リリース準備まで含め、最短3カ月のスケジュールで導入を支援します\n。\n\n### 3. 株式会社メンバーズ\n\nプロフェッショナル人材を中心とした組織改善チームが、Salesforceの導入・運用を一貫して支援するサービスを提供しており、Agentforceの初期導入コンサルティングから設計・実装・運用、内製化、社員育成支援まで伴走支援します\n。\n\n### 4. クロスコム株式会社\n\n「Agentforce導入・定着支援」として、実務で活用できるまでの定着支援に重点を置いたサービスを提供しており、目標から逆算した業務設計を行い、導入後はカスタマーサクセスチームが継続的にモニタリングし、1ユースケース×3ヶ月のスモールスタートから対応しています\n。\n\n### 5. 株式会社enucolor\n\n初期導入前コンサルティング（現状整理や業務課題の把握）、Agentforce構築（PoC支援）、活用及び改善サポートを提供しており、現場の声と成功事例を組み合わせた独自のオーダーメイド支援が特徴です\n。\n\n## 海外・グローバル企業（大規模プロジェクト向け）\n\n- **NTT DATA**：\nIT services provider and one of Salesforce Agentforce consultants that specializes in large-scale enterprise transformations、Agentforce implementation partnerとしてデプロイメント、統合、最適化サービスを提供\n\n- **Cognizant**：\nAgentforce consulting partnerとして、業界を横断したスケーラブルな実装を提供し、大規模ビジネスプロセスへの自動化の組み込みに特化\n\n- **VRP Consulting**：\n12カ国16オフィスで事業展開し、700以上の専門資格認定と350以上のクライアント実績、2000以上のプロジェクトを完了し顧客満足度4.8/5を誇る\n\n\n## 選び方のポイント\n\nAgentforce導入支援会社を選ぶ際は、以下の観点で比較検討することをおすすめします：\n\n1. **Salesforce公式パートナー認定の有無**（コンサルティングパートナー、ISVパートナーなど）\n2. **業界・業務領域の実績**（Service、Sales、Marketingなど、どのAgentforce製品に強みがあるか）\n3. **導入後の定着支援体制**（一時的な構築だけでなく、継続的な運用サポートがあるか）\n4. **スモールスタートの可否**（PoCから始められるか、費用対効果）\n\n貴社の業種・規模・予算・希望する導入スピードによって最適な会社は異なりますので、まずは複数社から見積もりや提案を取り、実際の導入事例（特に同業界での事例）を確認されることをおすすめします。",
+  "cited_urls": [
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://ascendix.com/blog/top-agentforce-implementation-partners/",
+    "https://crm.folio3.com/blog/salesforce-agentforce-consulting-partners/",
+    "https://getoncrm.com/top-salesforce-agentforce-implementation-partner-companies-usa-2026/"
+  ],
+  "error": null
+}

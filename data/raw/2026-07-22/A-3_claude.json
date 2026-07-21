@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-22",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-21T22:57:52.482638Z",
+  "answer": "Agentforceの導入費用と費用対効果について、最新情報を調査してお答えします。\n十分な情報が集まりましたので、Agentforceの導入費用と費用対効果を出すための進め方についてまとめます。\n\n## 1. Agentforceの費用体系（3つの料金モデル）\n\nSalesforceは短期間で料金モデルを刷新しており、現在は3つのモデルが並行運用されています。\n\n**① Conversations（会話課金）**\n\n顧客対応型のチャットエージェント向けのモデルで、1会話あたり定額2ドル（日本語記事では「1会話あたり240円」との紹介も）。「会話」とは、1つの問題解決のために行われる一連のやり取り全体を指します。\nただし\n2024年9月のローンチ当初から「会話」の定義（24時間以内のやり取り全体を1会話とみなす）を巡って混乱が生じました。\n\n\n**② Flex Credits（従量課金・アクション単位）**\n\n2025年5月にSalesforceはアクション単位の課金へ転換し、Flex Creditsは1アクションあたり0.10ドルです。10万クレジットが500ドルで購入でき、レコード更新・ケース要約・問い合わせ回答といった各アクションが20クレジットを消費します。\n複雑なタスクほど消費クレジットは増えます（\n簡単なナレッジベース参照は20クレジット＝0.10ドル、3ステップの複雑なタスクは60クレジット＝0.30ドル程度\n）。\n\n**③ User Licenses（ユーザー単位ライセンス）**\n\n2025年後半には「Agentic Enterprise License Agreement（AELA）」として、月額125ドル以上のユーザー単位ライセンスも登場しました。座席（シート）が再び基本単位となり、CFOが予算化しやすい定額型の契約です。\n大規模導入向けには\nAgentforce 1 Editionsという包括パッケージがあり、1ユーザーあたり月550ドルからで、複数部門にまたがる大規模なAI利用を必要とする組織に向いています。\n\n\n**注意点：**\n- \nFlex CreditsとConversationsは同一組織内で混在利用できず、どちらか一方の課金モデルを選択する必要があります。\n\n- 無料の「Foundations」枠もありますが\n月額0ドルの入門ティアで、小規模チームの試験導入や限定的なPoCには十分ですが、クレジット割当は控えめで、本格利用には早晩アップグレードが必要になります。\n\n\n## 2. 見落としがちな「隠れコスト」\n\nAgentforceの本体価格以外に、以下が総コストに大きく影響します。\n\n- **Data Cloud**：\n本格的なグラウンディング（データ連携）にはData Cloudが必要で、スターターだけでも年間約6万ドル、規模が大きくなると6桁（数十万ドル単位）になることも珍しくありません。この「見えないコスト」が実質的な総額を左右します。\n\n- **実装・SI費用**：\n従来型のSalesforce SIerはタイム＆マテリアル制で時給250〜400ドルが相場で、3人チーム・12週間の導入で43万2,000ドル以上かかることもあり、成果を保証しない「時間への支払い」になりがちです。\n\n- **運用・チューニング費用**：\nエージェントのパフォーマンス監視、会話分析によるトピックカバレッジのギャップ特定、モデル・指示の更新、新規ユースケース追加、四半期ビジネスレビューなどが必要で、多くの組織では導入後6か月間、実運用トラフィックが想定外のエッジケースを表面化させるため継続的なチューニングが必要になります。\n\n- **ボリューム値引き**：\n1日500会話以上を想定する場合は、Salesforce営業担当との交渉でリスト価格とは別の企業向け価格を確保すべきで、契約前にこの交渉を済ませておくことが重要です。規模が大きくなるほど、リスト価格と交渉後価格の差は無視できないものになります。\n\n\n日本国内の導入支援会社では、まず\nユースケースの整理や導入データの質のチェックから始め、要件定義、技術検証、効果測定、本番移行計画までを反復的に支援する\n形でPoC支援を行うケースが多く、費用感は会社・スコープによって幅がありますが「1ユースケース×3か月」のスモールスタートプランを提示するベンダーも見られます（\n1ユースケース×3ヶ月のスモールスタートプランから対応しています\n）。\n\n## 3. 費用対効果を出すための進め方\n\n**ステップ1：現状把握とKPI設定**\n\n現状業務ヒアリングと業務フロー分析を行い、導入目的・KPIを明確化し、リスク・課題を洗い出したうえで投資対効果（ROI）を試算します。\n\n\n**ステップ2：ユースケースの優先順位付け（効果×難易度マトリクス）**\n\n",
+  "cited_urls": [
+    "https://www.eesel.ai/blog/salesforce-agentforce-pricing",
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://www.eesel.ai/blog/salesforce-agentforce-setup-cost",
+    "https://enterprisedreamin.org/articles/agentforce-pricing-explained-2026/",
+    "https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.members-saasplus.com/agentforce",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}
