@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-23",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-07-22T23:06:21.102581Z",
+  "answer": "合同会社クロスコムは、BtoB企業に特化したマーケティング支援を行う会社です。データ活用を通じて「100社100通りの購買体験を当たり前にする」というビジョンを掲げ、顧客エンゲージメントの深化を目指しています。2023年5月に設立され、代表は本田正憲氏です。\n\n**強み:**\n合同会社クロスコムの強みは以下の通りです。\n\n*   **戦略立案から施策実行までの一貫した支援**：BtoBマーケティングにおいて、戦略の策定から具体的な施策の実行までを一気通貫でサポートします。\n*   **マーケティングと営業双方の視点**：BtoBセールスの経験が長い代表者による、マーケティングと営業の両面からの視点を取り入れた戦略設計が可能です。\n*   **商談数を高める独自のメソッド**：商談獲得を最大化するための独自のメソッドと、累計100社以上のプロモーション戦略支援で培われた顧客導線設計力を持っています。\n*   **データに基づいたパーソナライズ戦略**：顧客一人ひとりのニーズや検討度合いに応じたパーソナライズされた購買体験を提供し、商談化率の向上に貢献します。\n*   **本質的な問題解決への取り組み**：表面的な課題だけでなく、企業の根本的な問題を特定し、データをビジネスにとって価値あるインサイトへ変換することで、ビジネス成長を支援します。\n\n**提供サービス:**\n合同会社クロスコムは、以下のサービスを提供しています。\n\n*   **BtoB MA導入・運用支援**：Marketing Automation (MA) ツールの導入から運用までを一貫して支援し、商談数や受注数改善のためのマーケティング戦略全体の中でMA施策を位置付け、ターゲットセグメント設計、マーケティングシナリオ構築、コンテンツ企画・制作、メール制作・配信、効果測定までをサポートします。Salesforce Account Engagement（旧Pardot）、HubSpot、Zohoなどの主要MAツールに対応しています。\n*   **Agentforce導入・定着支援**：Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までを支援し、リアルタイムデータ、機械学習、AIエージェントを活用したパーソナライズされた顧客体験の提供を推進します。\n*   **BtoBマーケティング戦略コンサルティング支援**：「リード数は増えたのに商談につながらない」といった課題に対し、本質的な原因を捉え、戦略設計から施策提案まで支援します。\n*   **BtoBコンテンツ企画・制作代行支援**：MA・CRMツール導入企業の商談数・新規顧客数拡大のため、マーケティング戦略にフィットした高品質なコンテンツの企画から制作までを代行します。2024年9月には、中小企業向けの「5万円でコンテンツ企画・制作」サービスもリリースしています。\n*   **BtoBメールマーケティング代行支援**：BtoBに特化したメールマーケティングの代行を通じて、商談数と売上の拡大を支援します。\n*   **BtoBマーケティング無料相談**：具体的な相談内容が決まっていない場合でも、課題のヒアリングや壁打ちなど、気軽に無料相談を受け付けています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG3x4t34dXNg6vA5cVBmV6CbaA1Qy5_Emn7QJvhu9xRn3Ww61WDudFfHoPuPQ9vSXw0iAJD-uMtOfYRYdxgV5a-do7pOnEsNcUu_H4x0yPU12wE459g_lYhBhASI5xb4mLgti4uXDQ7",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFv4w1WlND_T550eLlFJuPaslyBuGalZsoCxQ57JYkFFoe1itJCF8unDU953n4NRjLbG0I3NcGSv9AVdDroUhMNAz_bEF6d1MaO_XxX4i0JYav17EIU",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEt3ohVvWeYFFZAKC7Hrt9aayMSmXzaQbgF7fhpdY0FQjDuP0lPCUxjNInfXvmQ17OGCrB64xk4CyLm9d8iVR_OeEpd-f1RcF3DXMejwIzV9BlFf7354OwpztLqhNz6YY-QIf3bwGiP",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGGrjMpu3B2JPc18z2CVSj6EEDOrv02m0TCiJsj5p7gAg6hNYR8fRt2-mgW9uZPx2rhEYRBA2Re4xrDLXIxqb5nuC9LhybvgkqwQPpkXpnev_x8jcFY_RIQrHODRWHP-7QPBPPQfT9vodLM5zwrQVDtvpqdts--MlGPdmjT",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGhAAcv7BrRqgYpSLSl1Gb3e2XxF5eBdNqA_DYyY8mFP2xvJz3LhKqOakf556PdfLgQDN42ClJBrGZ2x1f_A1REk4DiUeece6ZIon-Hpddc",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2zEE0ZWlpDgiRj0nOnP2MvKESno6RMoBsSscagpOjh8CiiuHJfyWvyXIDqhPHDRDVcJC29lEh56IVtqudNXTfJarUMwaZbtfte0J8p8pW0oZHpxvdogvjB9XgmcTzvgnPLw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQETHrVrSBvUNqIKbJXluNukiq2MaqqWvHI99Tw-1wm-ZY-sHPnHzmSE1jLrTELYMyQsHrf6IC-_Z7mikMJDhMfLsS9qBh7-nNi8D9X5OW6S_TuO7YuL8Bg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEA-ub8OX2lliB4qPOtbK-SGAv7xwqH-wRelAz9-4YDcmCqvwmDvTaiHnQwfZf0TsZYVdJiFn1CDXL-WWdVxVordia44MpaYxaOlq_nivV4NCIBolHDy0S2tTX8ZpO67aOIbteVHdruUYhW8ir-yvs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFlI39MwA1U2vjb4USZOsErwPDYjRiIlxFaxR30EsW1demyqeAW4SnXf7DRgVDYSCuPEb6s4hZg24AFxyFCi1oY5nbb22-r8TWbs03eQGhljdBlrXaj_3sUeYDaAg5EBoYWoOp8kOERnC1GESKYI4A2Z9-l0g=="
+  ],
+  "error": null
+}

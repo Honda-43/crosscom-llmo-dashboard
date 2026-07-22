@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-23",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-22T23:05:05.443617Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRMとは、AIエージェントが自律的に営業・マーケティング・カスタマーサービスのタスクを実行する次世代のCRM（顧客関係管理システム）です。\n\n従来のCRMとの違いを整理すると以下のようになります。\n\n**従来のCRM（受動的）**\n\n従来のCRMは営業担当者が通話履歴を記録したり、レコードを更新したりするのを待ちますが、Agentic CRMはその情報をもとに、指示されなくても自ら行動します。\n \n情報を蓄積するだけで、人がシステムを開いて操作しない限り、その情報を使って何かをすることはありません。\n\n\n**Agentic CRM（自律的）**\n\nリードの選別、サービスチケットのルーティング、育成シーケンスの調整、パイプラインデータの更新などを行います。Agentic CRMは、人間と自律的なAIエージェントが使用するCRMシステムで、AIエージェントは事前の承認なしに多段階のワークフローを計画・実行・適応させます。\n \nエージェントは事前に設定されたガードレールの範囲内で行動し、必要な場合には人間にエスカレーションします。\n\n\nこれは単純なルールベースの自動化とも異なります。\nルールベースのシステムは「リードスコアが閾値を超えたら定型文のメールを送る」といった固定ロジックに従いますが、Agentic CRMのシステムは文脈を解釈します。単に条件と結果を照合するのではなく、顧客データを推論し、状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整します。\n\n\n主な機能例としては、\nURLやブリーフ、商品リストからマーケティング戦略・キャンペーンを自動生成するAIマーケティングエージェントや、Webチャット・SMS・メール・WhatsAppで質問対応・注文追跡・返品処理・商品推薦を行うカスタマーサービス向けAIエージェント\n、さらに\n重複した顧客データを自動的に検出・統合するデータクレンジング機能\nなどが挙げられます。\n\n代表的な製品としては、\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなど\nが挙げられ、各社がAgentic CRM機能を強化しています。\n\n---\n\n# 導入・設計を支援してくれる会社\n\n「Agentic CRM」という言葉自体はまだ新しく、専業の支援会社は限られますが、実質的にAgentic CRMの中核となっている**Salesforce Agentforce**（AIエージェント基盤）の導入支援を行う会社は日本にも複数あります。\n\n- **メンバーズ サースプラスカンパニー**：\n「Agentforce導入・運用支援」として、導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバー\nしており、\nService・Marketing・Salesの各テンプレートに対応し、SlackやTeams、Salesforceなどとの連携や社内ナレッジの統合も支援\nしています。\n- **enucolor**：\nSFA・営業領域のAI活用に向けたAgentforce導入支援サービスを提供\nしています。\n- その他、Salesforce公式コンサルティングパートナーとして、ユースケース単位のスモールスタートで支援する企業も複数存在します。\n\nまた、Agentic CRM専業ではありませんが、CRM/MA全般の導入・設計を支援する会社としては以下のような実績があります。\n\n- **株式会社トミラ**：\nCRMの導入・構築・運用支援サービスを提供し、コンサルティング支援からデータ統合支援、導入・運用支援、メッセージクリエイティブの制作まで多岐にわたるサービスを展開\nしています。使用ツールは特定せず、HubSpot・Salesforce・Zohoなど幅広く対応可能です。\n- **株式会社ダイヤモンドファンタジー**：\n認知・集客・獲得・育成まで全てのフェーズをカバーしたCRM導入を支援\nしています。\n\nなお、国内スタートアップの中には「Hiway CRM」のように\n入力・更新・分析を自動化し、営業担当者のタスク実行まで支援するAgentic CRM\nを製品として提供する企業も出てきています。\n\n---\n\n## 選び方のポイント\n1. **既存CRM基盤との親和性**：Salesforce・HubSpot・Zohoなど、自社が使っているCRMのエコシステム内でAgentic機能を導入できるパートナーを選ぶとスムーズです。\n2. **ガバナンス・ガードレール設計力**：AIエージェントに任せる範囲と人間の承認プロセスの設計が重要なため、単なるツール導入だけで",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.fullpath.com/blog/what-is-an-agentic-crm-understanding-the-future-of-dealership-customer-management/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.smartrecruiters.com/resources/glossary/what-is-agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://tomira.co.jp/media/t1fq0nzb3/",
+    "https://diamond-f.co.jp/service/digital_crm/",
+    "https://product.hiway.app/crm/"
+  ],
+  "error": null
+}

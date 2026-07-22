@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-23",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-22T23:04:31.024951Z",
+  "answer": "Agentforceの導入費用や進め方について、最新情報を調べてお答えします。\n# Agentforceの導入費用相場と費用対効果を出す進め方\n\n## 1. 費用の構成要素\n\nAgentforceの費用は大きく分けて「①ライセンス・利用料」「②導入・構築費用」「③データ基盤（Data Cloud）費用」の3つで構成されます。\n\n### ① ライセンス・利用料（Salesforce社への支払い）\n\n**基盤ライセンス**\n\nAgentforce for Salesは1ユーザあたり15,000円（税別）/月\nという価格が示されており、\nEnterprise・Unlimitedエディションでは別途有料アドオンの購入が必要\nです。海外価格情報では、\n既存のEnterpriseやUnlimitedライセンスにAI機能を追加するAgentforceアドオンが125ドル/ユーザー/月、ライセンス・AI・Data Cloudアクセスなどをすべて含むAgentforce 1 Editionsが550ドル/ユーザー/月\nという水準感も報告されています。\n\n**従量課金（消費モデル）**\n2025年5月以降、Salesforceは新しい従量課金体系「Flex Credits」を導入しています。\n- \nFlex Creditsは、顧客レコードの更新や複雑なワークフローの自動化、ケースの解決など、Agentforceが実行したアクションに対してのみ料金を支払う仕組みで、1アクションあたり20 Flex Creditsを消費し、1アクションあたり12円程度\nとなります。\n- \n1アクションあたり20クレジット（約12円）を消費し、クレジット購入の際は100,000クレジットを60,000円（500ドル）で購入\nできます。\n- 従来型の「会話単位課金（Conversations）」も選択可能で、\nMicrosoft Copilotが月額固定費とユーザー数に応じたライセンスコストがかかるのに対し、Agentforceは「1会話あたり240円」というシンプルな料金体系を採用\nしています。\n- 注意点として、\nFlex Creditsはアクション課金（¥60,000/100k Credits）、Conversationsは会話課金（¥240/会話）であり、同一org内での混在は不可\nです。\n\n**具体的な試算例**（Salesforce公式）\n\nケースを管理する100人のユーザーが、各ユーザー1日3件のケースを月20日間管理する場合、60 Flex Credit × 3ケース/日 × 20日/月 × 100ユーザー = 1,800米ドル/月\nという試算が示されています。\n\n**総額イメージ（海外事例）**\n\n50ユーザーのチームがEnterprise＋Agentforceを利用する場合、消費コスト抜きでライセンス費用だけで月15,000ドル\nかかり、\n50ユーザー規模の中堅企業がAgentforceライセンスに年間9万ドルを想定していても、導入・トレーニング・消費課金を含めると実際のコストが20万ドルを超えるケースがある\nと指摘されています。日本企業でも、ライセンス費以外の要素を見落とさないことが重要です。\n\n### ② 導入・構築費用（SIer/コンサルへの支払い）\n\nSalesforceパートナー各社は、PoC（概念実証）→本番導入という段階を踏んだ支援サービスを提供しています。\n富士ソフトはAgentforceの導入に向けたPoC支援を中心にサービスを組み立てており、ユースケースの整理や導入データの質のチェックから始め、要件定義、技術検証、効果測定、本番移行計画までを反復的に支援\nしています。\n初期導入前コンサルティング（現状整理や業務課題の把握）、Agentforce構築（PoC支援）、活用及び改善サポートという段階を経る\nのが一般的な進め方です。この構築・支援費用は業務範囲やカスタマイズ度合いによって大きく変動するため、正確",
+  "cited_urls": [
+    "https://www.ccc.seraku.co.jp/service/columns/salesforce/01/155/",
+    "https://www.e-sales.jp/eigyo-labo/salesforce-price-24280",
+    "https://www.eesel.ai/blog/salesforce-service-cloud-ai-add-on-pricing",
+    "https://cloud.watch.impress.co.jp/docs/news/2015263.html",
+    "https://ai-market.jp/services/salesforce-agent-force/",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://zenn.dev/pacific_creator/articles/511209053946bc",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}

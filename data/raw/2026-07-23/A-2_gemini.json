@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-23",
+  "prompt_id": "A-2",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか",
+  "cep": "導入後の定着課題",
+  "timestamp": "2026-07-22T23:03:18.560893Z",
+  "answer": "Agentforceを導入したものの現場に定着しないという課題に対し、定着支援や活用支援を行うコンサルティングサービスは複数存在します。これらのサービスは、AgentforceがSalesforceの自律型AIエージェントであることから、Salesforceの知見を持つ企業が提供していることが多いようです。\n\n具体的には、以下のようなコンサルティング会社がAgentforceの導入・定着支援を行っています。\n\n*   **株式会社メンバーズ**：Agentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走型で支援しています。特に、利活用・定着化支援では、利用状況の可視化と分析レポート提供、改善提案（プロンプト最適化、利活用拡張）、必要な各種設定やローコード開発などを行います。Salesforceコンサルティングパートナーとして、130名以上の認定資格保有者が在籍しています（2024年11月時点のメンバーズグループ全体での保有人数）。\n*   **合同会社クロスコム**：カスタマーサクセスチームが伴走し、貴社の目標から逆算して「どの業務で・誰が・何を判断できるようにするか」を定義し、業務フローへAgentforceを組み込みます。導入後は、利用状況と出力品質を継続的にモニタリングしながら、活用が定着するまで支援します。特に、設定後も継続的に運用を支援するか、現場の業務を理解した設計ができるか、利用状況のモニタリング体制があるか、という観点から定着支援を任せる会社を見極めることを推奨しています。\n*   **株式会社enucolor**：初期導入コンサルティングからAgentforceの導入構築、活用および改善サポート、AIトレーニングまで支援しています。業務フロー分析による要件定義を通じて、現場要望の反映を重視しています。\n*   **三菱総研ＤＣＳ**：Agentforceを中核としたデータ統合型導入支援を提供しており、データ分析・活用基盤の構築や多様なシステムの横断的な統合も含めた導入を一気通貫で支援します。\n\nこれらのコンサルティング会社は、SaaS導入における「定着・活用支援」の重要性を認識しており、利用者向け研修、業務マニュアル整備、利用状況モニタリング、改善提案などを通じて、SaaSの導入効果を最大化することを目指しています。SaaSの導入が簡単であっても、実際に業務に定着させることは難しいという課題に対して、業務の棚卸しからSaaS選定、導入後の定着支援までを一貫してサポートするサービスが提供されています。\n\nもしAgentforceがSalesforce Field Serviceのようなフィールドサービス管理（FSM）システムを指すのであれば、FSMの導入・定着支援に特化したコンサルティングも存在します。例えば、YMG AdvisoryはフィールドサービスDXアドバイザーとして、単なるツールの導入ではなく、現場・経営・システム間の「断絶」を解消し、DXを定着させるための「構造設計」に特化したアドバイザリーを提供しています。NECも「Field Service Management要件策定支援サービス」を提供し、現場・管理作業の効率化や最適化を実現するシステムの検討・定義を支援しています。\n\nコンサルティング会社を選ぶ際には、設定後も継続的に運用を支援してくれるか、現場の業務を理解した設計ができるか、利用状況のモニタリング体制があるか、といった点を確認することが重要です。まずは無料相談などを活用し、自社の課題に合った支援を提供してくれるコンサルタントを見つけることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoxgQLJl8V6_d-TyCd7gXzZ7AqyZsSY0AIZHm6QHG7CKbT17WAjq5m7hHK5cX29vIDcgVqgdB4AvY8VS8Os_a_mFWrU1LjwN_b2hCZ7taYDNKzeaXkEHVLVrUOJIfC8XQ5Fg79r38OFNULTHARGXqnXg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFg9XfxkHF_GznnU5qbZQpS68ZW_EkvXlWoOPjqe8hBKK895CN1jBvIF81ip80P6IkjqLX3z2H1pf1vy5tejfIz6OLvLhPJNsg_cQUp_FZEZh1HpXPYByokLyJXcgMfaYreRwHe7mk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHPgFuMAxUuXuqV0hD7-1ILgpX5q4ZddbdH0lHhIJtdvtmb3djy2RTfCYuhXYmAuVo1mzeVIMDNet3QxnfIvMqwfmdNDdixAGRWyv4cKV9msnBV8S4FtdnjAw15OgxnzzcXZdILHM9D9fwkOA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGw-D-Lze1Z5gbJDzfVvP_73xM90Q9lAnHpfRGLnia3_c58K7osRRPtnn4vRGZdcnI7OBAwjIdqAKAMOXg_VPpF6CQa7_18P8LkwLDwimzC49SiuXib8KL6Ee1wJ9mpyqJmpgxz7Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFVC2kU7RDSPfac-UnPL9AtYFfPV7diZ1AwJypamHEJ5gYKWom6Y96tpgYUL0-ZC2A5lDABdRsSYFA2XYbzGsxY1J7v7LFVgqVWYi-iWkccY7sgHZAYXoQy3trisSyJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFMyrfjkN5g-jkeSOkkYmoBgKsnpchMgowIFJ0v68sPQTr2ZHVmEFxGb1Cqi7D8zIg2CRt--9WBQLb5acqZL1cjM5LsM6IxY4U0hxqaOW0q8HXzVnSUvBrKl8CPAb7HFS7w80ia5grCkCU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGh1ihj76N2CTJ6EK1B_tQ4E4nY2RsYQRirQFSoIvi03Guz3AIUQeg6FM5jUoHSiiDpKtB-kRenzCS30bDB1nJjU45PbD-NO9ugbOv-x9aGj61-NHZZY4w3LnW2I-rcLr4byQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG5J1pDzam8Cu45L1eEY3chZju-CPgneYIAmfqD6cbKya3S_GTOvGX3ShxUTw5BU8myPee3ICYbws4R4wAWqNNSrnJN5DnCk9uiCXrCXFx534kqfAk_2K8lBRqMPbdN1LswfPRBQ0Z2eYj8aSm2kcZP_uFV4m8oz-B6XBdhoqcrAXSKXO5Ow3A=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEU4efnK5H7wxlXi-YHRPCwg5xrzaNLW7APLiLhBGIhIDkbyXBcYWcFl4BQ4QNgwYvwFJ_Uw3U4FwznKfsw5CgT3VyLZSzWi8WIkyj7S2P-eoNILYIZQ7KM",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG4-oxyu-1I73xFdsaTzuSZrLbg0e3gxr5WEOFbr9WhxMc0SWb1Zvc2dftZLwB9JYBFDprRUL0nWawSEG_enhrE-LgqP1HSF0gsi06MZVh-FIbkO-zNfBb6UE3Ds9Ec0YOZ7tR39TXaKKyS9smZs8k1srs="
+  ],
+  "error": null
+}
