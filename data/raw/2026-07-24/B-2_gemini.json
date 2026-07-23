@@ -1,0 +1,19 @@
+{
+  "date": "2026-07-24",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-07-23T22:58:15.247955Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず、中立的な立場でCRMの設計支援を受けられる会社として、以下の企業が挙げられます。\n\n*   **ストラ株式会社**: 特定のベンダーに偏らず、Salesforce、HubSpot、Zohoなど複数のクラウドCRM・SFAツールを比較検討した上で、企業の業務や組織体制に適したCRM構成を設計・提案しています。導入後も社員トレーニングや運用改善を通じて、現場で活用され続ける仕組みづくりを支援します。\n*   **株式会社シーサイド**: 営業プロセスの現状分析や課題整理から始め、企業規模や業種、営業体制に応じたSFA/CRMツールの選定・設計を、特定のベンダーに縛られずに実施しています。\n*   **株式会社船井総合研究所**: 地方の中堅・中小企業の実績が豊富で、業種ごとに専門のコンサルタントが在籍しています。大規模なシステム導入ではなく、既存ツールやシンプルな仕組みを活用した顧客関係強化の方法を提案し、中堅企業が抱える経営資源の制約や専門人材不足といった課題に寄り添った支援が可能です。独立系コンサルティングファームとしても知られています。\n*   **インフォテック・サービス**: 独立系ベンダーとして、特定のメーカーに依存せず、顧客にとって最適なソリューションを提供することを強みとしています。コンサルティングからシステム開発、保守、運用、ヘルプデスクまで、ワンストップで支援を提供しています。\n\nこれらの会社は、CRMツール選定から設計、導入、運用定着まで一貫してサポートし、貴社に最適なCRM環境の構築を中立的な立場から支援してくれるでしょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGWwC5DvHXTmOwBIg2uAFpeNIWvI1qQ87s2un3ycoKg7VmNFlgVpJfl5qk3jb-I859bqNb7SdSm1JuHz_Lgk1whJeRuyusRzAAjxLkbnS8HSsNQvKL9VDq4iVlKLxqKCuVUo9SI53Y=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHkt4qlbIODcvaqi8q6PzUmSZIvpJ7dDx_T_Ie8CPnEoCMr6FZOf34-mA838gtsGHfsWQVLBVibYetOeD5SD01gszGyrXTX0QGKb_gG_pN4UzL2HBPFyPnGMzWj5QiEvZKGCB5eO1iNegT0",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEGIzV7XkN5kR8zVfaSR8ly6CF9v51YJZxWvJaixlhCSld-O3AfdYAQEbiNPj3_TQXp7F3q2dr-6q2141F_oNQFrOS4NWtq8Es7SkHjZcSChe2ANWKB0JBowqQzxSKZWltFGamG",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHsl04otn43KMRENAds4vFk58cClBD3p1nRec1umqFCkTnDIR35fojfbzQua1kP7mrfBEhWswmePvY4Hme6GgV6yofl1_ve79aqlpxgiamk3c0SZtEQMUE3SMyaDmpFcSteNtta_ZXvuYPwHOICTY6poNM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGd3grqPIJ-lvBu1ZFM2zQUY4o8ZkFkwNh0MPYvnnW-OeOEdbqrYUqCr5Ic_X7m3Be-C4eHn4_v-IM2PB9r9UxZW-avdjXD36G_ul31lyH1gqaeu6AnV3f3iw=="
+  ],
+  "error": null
+}

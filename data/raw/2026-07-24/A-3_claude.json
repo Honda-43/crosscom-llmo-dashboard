@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-24",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-23T22:57:25.666037Z",
+  "answer": "# Agentforceの導入費用の相場\n\n## 1. 料金体系（3つのモデル）\n\nAgentforceは伝統的なユーザー課金ではなく、**消費量に応じた従量課金**が基本です。\nSalesforceのエージェント型AIの価格設定は、主に利用者数で払うのではなく、AIエージェントがどれだけ仕事をしたかに応じた消費量ベースのモデルです。\n具体的には以下の3モデルがあります。\n\n**① 会話課金モデル**\n\n会話ベース課金（1会話2ドル）は、ユーザーとAIエージェント間で1回の完結したやり取りが発生するたびに定額で課金される仕組みで、簡単な質問でも長い往復対話でも同じ料金です。\nただし\n「会話」は分岐したり長引いたりして必ずしもビジネス価値を反映しないため、コストと成果の整合性が取れず予算管理が難しいという課題が指摘されており、価格が予測不能でビジネス価値と結びついていないという声も上がっていました。\n\n\n**② Flex Credits（従量課金）**\n\n標準アクション1回あたり20クレジット（0.10ドル）、音声アクションは30クレジット（0.15ドル）で、クレジットは10万クレジット500ドルで購入します。\n会話単位で見ると\n複雑なワークフローでは1会話あたり20アクションを超えることもあり、実質的な会話あたりコストは単純な質問で0.50ドル、複雑なやり取りでは2ドル以上になる場合があります。\n\n\n**③ ユーザー単位ライセンス**\n\n従業員向けの定額無制限利用（月額125〜150ドル/ユーザー）と、低コストで基本的なAI利用を提供するユーザーライセンス（月額5ドル/ユーザー、利用自体はFlex Creditsで計測）があります。\n\n\n## 2. 見落としがちな追加コスト\n\n- **Data Cloud（必須級）**：\nAgentforceを正しく機能させるにはData Cloudが必要で、これはAgentforceライセンス自体より高額になることが多く、Data Cloud Plusは年間約6.5万ドル、Premiumは約17.5万ドルとなり、購入者は5万ドルのAgentforce予算を承認した後にData Cloudライセンスとして6.5万〜17.5万ドルが必要と判明することがあります。\n\n- **Salesforce本体ライセンス**：\nAgentforce単体のコストに加え、Salesforce本体ライセンス費用（Enterprise Editionの場合1ユーザーあたり月額数万円規模）との合算が総保有コスト（TCO）になります。\n\n- **導入・構築・保守費用**：外部パートナーへの設計・実装・プロンプト調整費用など。\n\n## 3. 総額の目安（海外事例ベース）\n\n中堅企業（500ユーザー規模）の場合、\nAgentforce単体の年間費用はData Cloudコストを除いて1.5万〜5万ドル、実装・保守を含めた総保有コストは初年度で15万〜42.5万ドルの範囲になります。\nより幅広い試算では\nAgentforceは1会話2ドルから始まりますが、中堅企業の初年度実質コストは15万〜60万ドルに達するとされ、これはData Cloudの必須契約（年間10.8万ドル以上）などが要因です。\n\n\nなお日本国内では、\n初期構築コストはプロンプト設計・テスト・日本語調整・パートナー委託費用の積み上げによる参考値であり、プロジェクト規模や要件により大きく異なるため、正確な見積もりはSalesforceまたは認定パートナーへの依頼が推奨されます。\n\n\n---\n\n# 費用対効果を出すための進め方\n\n## STEP1：スモールスタート（PoC）から始める\n\n\nPoC（概念実証）を通じて効果を可視化しながら、Agentforceの活用範囲を段階的に広げる導入アプローチが有効で、まずはスモールスタートで短期間に導入し、実業務における効果やROIを検証した結果を踏まえて次の活用領域へと段階的に拡大していくことで、導入リスクを最小限に抑えられます。\n実際の支援会社でも\n1ユースケースから小さく始められるかどうかが重要で、まず一つの業務で3ヶ月ほど運用し、手応えを見て判断するという進め方が推奨されています。\n\n\n## STEP2：ユースケースを「効果×実現性」で評価する\n\n",
+  "cited_urls": [
+    "https://www.eesel.ai/blog/understanding-salesforce-agentic-ai-pricing-a-clear-breakdown",
+    "https://relevantz.com/blog/agentforce-pricing-models-explained-guide/",
+    "https://www.saksoft.com/post/the-evolution-of-salesforce-agentforce-pricing-what-changed-and-what-it-means-for-you/",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.dcs.co.jp/solution/crm/agentforce/",
+    "https://cross-com.jp/agentforce-support-company/"
+  ],
+  "error": null
+}
