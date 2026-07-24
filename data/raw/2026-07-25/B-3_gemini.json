@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-25",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-07-24T23:05:43.970862Z",
+  "answer": "営業にAIエージェントの活用を検討されており、その前段階としてCRMのデータ設計から支援してくれるパートナーをお探しとのこと、承知いたしました。AIエージェントの効果を最大限に引き出すためには、質の高いデータが不可欠であるため、このアプローチは非常に重要です。\n\n以下に、CRMのデータ設計からAIエージェントの活用を見据えた支援を提供している、またはその専門性を持つと考えられるパートナー企業の例を挙げます。\n\n**CRMデータ設計からAI活用まで一貫して支援するパートナー**\n\n*   **PwC Japanグループ**\n    生成AI活用による営業業務の効率化・高度化支援を提供しており、AI導入における「データ品質の課題」を解決することの重要性を指摘しています。CRMに蓄積された情報の入力精度向上や、必要な外部データの統合を支援します。\n*   **三菱総研DCS**\n    Salesforceの自律型AIエージェントプラットフォーム「Agentforce」の導入・活用支援サービスを提供しています。CRMやData 360（旧称：Data Cloud）を通じて社内の様々なデータを活用し、AIエージェントと連携させるための「データ統合型導入支援」に強みを持っています。\n*   **日立コンサルティング**\n    「営業DX（CRM&生成AI活用）コンサルティング」を提供しており、CRMと生成AIなどの先端技術を活用した営業プロセス改革を支援します。データのデジタル化、情報の一元化、営業DXを両輪で推進し、実践データを活用した差別化を支援します。\n*   **ブリッジインターナショナルグループ**\n    AIを活用した営業改革支援において、プロセス設計からAI実装、現場定着、継続改善までを一気通貫で提供しています。特に「AIの効果を最大化するデータ基盤を構築する」ことを重視しており、分断されたデータの統合やデータ基盤へのAI組み込みを支援します。\n*   **テクノデジタルコンサルティング**\n    「AI導入を目的化せず、成果につながる活用基盤を設計します。『AIを使う』前に必要な、データ品質・KPI設計・業務変革まで一体で考える」アプローチを掲げており、AI活用の前提となる顧客データ統合、運用設計、活用ロードマップの整理と段階的な推進を支援します。\n*   **株式会社ripla**\n    CRM開発において、単なる顧客情報管理に留まらず、営業・マーケティング・サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応できます。既存のERPや販売管理、マーケティング基盤との全体最適設計を行い、顧客データの統合・分析・活用による業務革新を支援します。\n*   **株式会社RECHANCE**\n    AIやCRMを活用した再現性のある営業の実現を支援しており、属人化した営業プロセスを可視化・標準化し、「データ基盤の構築」を通じてデータドリブンな意思決定を実現します。\n\n**CRMデータ設計・活用に強みを持つパートナー**\n\n*   **アルビド・ジャパン株式会社**\n    CRM構築・顧客データ活用支援を提供しており、目的や業務要件に応じた柔軟なシステム設計と情報管理の最適化として「顧客管理（DB）や履歴データの設計・構築」に対応しています。\n*   **株式会社HubOne**\n    CRM活用支援サービスとして「顧客管理基盤整備」を行っており、顧客（コンタクト）管理の設計、顧客セグメント設計、データクレンジングなどを通じて、営業・マーケティング・カスタマーサクセスが連携できる「使えるCRM基盤」を構築します。\n*   **ナウビレッジ株式会社**\n    CRM構築・導入支援サービスの中で、要件定義、営業プロセス設計、データ移行・クレンジング支援、レポート・ダッシュボード構築、運用ルール設計などを提供し、顧客情報の一元管理と資産化を支援します。\n*   **株式会社セールスリクエスト**\n    CRM構築支援サービスでは、リード獲得から商談化までのプロセスを可視化し、現場に定着する運用体制を構築します。重要KPIのダッシュボード化や業務フローの自動化を通じて、営業・マーケティング活動の最適化を支援します。\n\nこれらの企業は、CRMのデータ設計の重要性を理解し、AIエージェントの導入を見据えたデータ基盤の構築や、それに伴う業務プロセスの改革を支援するサービスを提供しています。まずは、貴社の現状の課題やAIエージェントで実現したい具体的な目標を明確にし、これらのパートナー企業の中から、そのニーズに最も合致する企業に相談されることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHACKJstzgefFTP7aeh5XSeNX1TwRxwApQZYD-dae15fIuUX_oyhjc3z3KvYygocitIKWxx7hvpEz3D1zKRdpEAl8mw_6MEa7k4v0EyH6qJTi6rDtddr9nSQ_BAw9JR3y4FRQdsC7nBqC1CnrwTF2uQP5wU_aKmbfJghIR6TcYyMLUAKK_mjhe3HZw_zEahe4SmuEyFd5dhTMwRlPXxY4KMOw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXVTBOVU51NLVC9JITHfZRmqH99E3H83VR-WVDxCVwEloZBAyf8jJVjZ4_OyXmz2DCMUIJCanJp84oRRw_prgBbAcpIFcG94ESxA0ELfur46yfQtG44pXy6ccpV4DjgeiOArMOQ3Rcowo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFhbe_fOJd7ll1isTke5pMLg-Kmm6npEHab-MYWu7peNFHyxZhTtnop61ic-Q6xKmFmeDCR4epnZFAxep3LzNk9CX47yJY0kiJeQAQ8n4OOdYP6xcfLiStUAEhYmXeNHerW-MiP-Fhba_-advqdlh7Rz5MQKNt5kAoyQqjq9xTRH2G-RcU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGIdzg07QPx9NESxzVNi7PPra8smu91EoJxC7FX6PFgQvca1e8xq_Wt02QZQk4w0ifJKBJd-rku4_D7c4d2XsRuoo_Iod79qQtqxFRXwInyugU42yLfQfk_JwEEblLGRlXOyKOJTuldkAKNak7H",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFabwc5WzP8KVn7uFsqXMcDluLAUAfxBq5RN2cVt7MIwt6SGvBqkM8vUi9O1MQZANZvhJxNZVPYpXYLG0ADwELjS5Xjigcm7YpCnkdPmnTHDI6k_hzaBpdwZ2fKCA-XzDJrzTVmXLLgqGdvD1OGTnVARO_z",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF9slx0Xlns3CFnf5RLeey9T0aJqNZKnBsi0uUWN60Jj02qFoTmJSKsyHRQHFtQXYOF2bkKsFK8Ejc5teQmWQTMfclMCRMoIa-A5-czY_ch1o7c-IhvF7eKscI9MoSmLMTxGyD8hU-H5IaD",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGnVhjJDK7zaKPe01YHizA4uDzbZwnKdTMBk4V-Gif__XniM9x8sYMWiEq37wLjZ76Jx_cU40-WFkWVvAJMHG4g__N5PmO5rHKqotQ1equGdxCvGomIoWbP9Bxtxa-BeyX19vyyeQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_Ui5slZdbuQNe6GaKx5J9GFVL4glVav8bDJIt-RhMFjMRl1FE76Htw4iDNi9MlZSLmGkn9VEA7FI4Q4aQw_g2WfCYsoeQ2NTrm15XOj7XLii_b_hREWO7WWXsZkFJXS4_Oc0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEsOcCPK1_EZEmlgo9sIuUd7ApzDW-crY244vY8CVlN9_6bObruM02K4_6MdR2a2WYmw4QmhB35M202GrF7VEyncuicZEcOpuQKETEGhKFogc2TMOQ7tPtGfQJspuiK5-A7kiIIh1DS",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHEUWUw9-AiH2tY0uI6Ie7EVwceSDiBynQPsZnIW76PIeRHT11ONOOqd6-g6kKB4b_IiIjjCoh1cWdPs7nMHifOKADc0s9ExpkSbcHH9TZnGoJfSdENFb6sw_o6nBdk69wUr39hYwXdY34a6ho=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoOSukf0UbxFk3_VaIi1sDGgf0Bpp43tfdIS0rSksqrOUY3N9r_R1GtQMSy4z3dpyWmJRp4BLkUradaHWhn_SlKLLS4PG8zROkkW9J7yPctczOcESSOl2kKunlAiY3RWupvj2T"
+  ],
+  "error": null
+}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-25",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-24T23:04:49.122918Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRM（エージェント型CRM）とは、AIエージェントが顧客対応やマーケティング・営業業務を自律的に実行する新しいタイプのCRMシステムです。\n\n## 従来のCRMとの違い\n\n\nAgentic CRMは、人間と自律的なAIエージェントが協働して顧客成功を推進する顧客関係管理システムで、従来のCRMが担当者からの操作を待つのに対し、指示されなくても情報に基づいて自律的にアクションを起こす\n点が最大の特徴です。具体的には、\nリードの選別、サービスチケットのルーティング、育成シーケンスの調整、パイプラインデータの更新\nなどを自動で行います。\n\nSalesforceの定義によれば、\nAgentic CRMは人間だけでなく、各ステップで人間の承認を必要とせずに複数ステップのワークフローを計画・実行・適応させる自律型AIエージェントが利用するCRMシステムであり、あらかじめ設定されたガードレール内で行動し、必要な場合は人間にエスカレーションする\n仕組みです。\n\nまた、ルールベースの自動化とも異なります。\nルールベースのシステムはスコアが閾値を超えたら定型メールを送るといった固定ロジックに従うのに対し、エージェント型システムは文脈を解釈し、条件と出力を単純に一致させるのではなく、顧客データを推論して状況に応じた最適なアクションを判断し、結果に基づいて対応を調整する\nという違いがあります。\n\n## 主な機能例\n\nKlaviyoの説明では、以下のような機能が挙げられています。\n- \nURLやブリーフ、商品リスト、自由形式のアイデアからブランドガイドラインの範囲内でマーケティング戦略・キャンペーン・フローを作成するAIマーケティングエージェント\n\n- \nWebチャット、SMS、メール、WhatsAppなどのチャネルで質問への回答、注文追跡、返品処理、商品レコメンドを行い、店舗情報やポリシーに基づいた正確な対応を24時間行うカスタマーサービス向けAIエージェント\n\n\nさらに、\n重複データの自動クレンジングや名寄せ機能も特徴で、指示や催促がなくても2つのエントリが同一人物であることを認識して統合する\nことも可能です。\n\n## 代表的なプラットフォーム\n\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ベンダーがAgentic CRMを既に市場に投入しており、業界標準を形成しつつあります\n。\n\n- **Salesforce（Agentforce）**：\n既存のSalesforce CRMの上に構築されたエージェント層で、営業・サービス・マーケティング・コマース全体で自律型エージェントの構築・展開が可能。事前構築済みアクションや業界テンプレート、統合機能によりガバナンスと可視性を保ちながらAIエージェント活用を拡大でき、既にSalesforceを利用している組織に特に適している\n\n- **HubSpot（Breeze）**：\n対話型AIのBreeze Assistant、自律的なエンドツーエンドのワークフロー実行を行うBreeze Agents、データ拡充・購買意欲分析のBreeze Intelligenceを組み合わせたプラットフォーム\n\n- **Creatio**：\n700以上のアプリケーションを揃えたマーケットプレイス、業界特化型ワークフローとAIエージェントの標準搭載、ノーコードツールやテンプレートによる導入期間70%短縮などが特徴\n\n\n---\n\n# 導入・設計を支援してくれる会社\n\n## 海外系コンサルティング企業\n\n- **CRMIT**：\nSalesforceの認定コンサルティングパートナーとしてAgentic AIソリューションやCRM導入サービスを提供し、決定とAIエージェントがリアルタイムで実行できるようCRMを刷新、AIエージェントが安全かつスケーラブルに支援・判断・実行できるようビジネスプロセスを再設計する\n支援を行っています。\n- **RSM US**：\nAIアドバイザーがAIエージェントが最も価値を発揮できる領域を見極め、エージェント型AIの開発・展開に向けた包括的な戦略策定を支援\nしています。\n- **Kanerika**：\nERP・CRM・クラウド環境にエージェントを直接連携させ、アクセス制御・監査証跡・説明可能性をアーキテクチャに組み込み、Microsoft認定パートナーとしてAzure AIやCopilot Studio、Power Platform上でエンタープライズガバナンスを備えたソリューションを構築\nしています。\n- **Inogic**：Dynamics 365向けに、\nTechno-Functional Consultingの深い知見と1,000件以上の実績を持ち、Azure OpenAIをDynamics 365ユーザーの日常業務に組み込む支援を行っている",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.smartrecruiters.com/resources/glossary/what-is-agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://aimultiple.com/agentic-crm",
+    "https://www.crmit.com/",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai"
+  ],
+  "error": null
+}

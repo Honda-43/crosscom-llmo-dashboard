@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-25",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-24T23:02:48.056233Z",
+  "answer": "Agentforce導入支援を行っているおすすめの企業について調査します。\n# Agentforce導入支援のおすすめ会社\n\nAgentforceの導入支援を行っている企業を、特徴別にご紹介します。\n\n## 1. 株式会社メンバーズ（サースプラスカンパニー）\n\nSalesforceが2024年10月30日から提供を開始した自律型AIエージェント「Agentforce」について、2025年3月より、企業向け導入・活用支援サービスの提供を開始しています\n。\n初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nしてくれるのが特徴です。DX現場支援の実績が豊富な大手企業です。\n\n## 2. バーチャレクス・コンサルティング株式会社\n\n「Agentforce」の導入から定着化、活用促進までの包括的な支援を提供\nしています。特に\nコンタクトセンターをはじめとする顧客接点部門\nでの活用に強みがあり、CX（顧客体験）向上を重視する企業に向いています。\n\n## 3. Uhuru株式会社（ウフル）\n\nSalesforceのテクノロジーを活かした業務支援の現場に数多く携わってきた経験をもとに、Agentforceの導入・活用を現実的かつ実践的に支援\nしており、\n「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を、最短3カ月のスケジュールで提供\nしています。スピード導入を希望する企業に適しています。\n\n## 4. 株式会社enucolor\n\n初期導入前コンサルティング（現状整理や業務課題の把握）、Agentforce構築（PoC支援）、活用及び改善サポート\nまで一貫して対応。\n経営層から現場まで丁寧にヒアリングを行い、組織固有の課題を解決する実効性の高い仕組みを実現\nする、オーダーメイド型の支援が特徴です。\n\n## 5. フロッグウェル株式会社\n住宅業界やストック型ビジネス企業など、具体的な導入実績を持つ企業です。実際の導入事例として、住宅業界向けでは\nAIエージェントによる住宅購入者と工務店のマッチング業務を自動化\nする支援を行っています。\n\n## 6. KPMGコンサルティング株式会社\n大手コンサルティングファームとして、大規模企業向けの導入実績があります。実際に\n「KPMGジャパンでのSalesforce大規模導入事例とAI活用構想」と題した講演\nを業界イベントで行うなど、大規模導入のノウハウを持っています。\n\n---\n\n## 選び方のポイント\n\n\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼります\n。選ぶ際は以下の観点がおすすめです：\n\n- **企業規模・実績**：大企業向けなら KPMG やメンバーズ、中小〜スピード重視ならUhuruやenucolorなど\n- **得意領域**：カスタマーサービス特化ならUhuru、コンタクトセンターならバーチャレクス、営業DX特化ならenucolor\n- **公式パートナー資格の有無**：\nSalesforce公式のコンサルティングパートナーとして支援を行っている\n企業かどうかを確認すると安心です\n\n貴社の業種・規模・課題（コスト削減、顧客体験向上、営業効率化など）に応じて、複数社に相談・比較検討されることをおすすめします。",
+  "cited_urls": [
+    "https://www.members.co.jp/company/news/2025/0306",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://kpmg.com/jp/ja/media/press-releases/2025/10/kc-salesforce-agentforce.html",
+    "https://cross-com.jp/agentforce-support-company/"
+  ],
+  "error": null
+}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-25",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-24T23:04:10.239296Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出すための進め方について調査します。\n# Agentforce導入費用の相場と費用対効果を出す進め方\n\n## 1. Agentforceの費用構成（ライセンス費用）\n\nAgentforceの料金体系は複雑で、2026年時点で複数のモデルが並行して存在しています。\n\n### 課金モデルは主に3種類\n\nAgentforceの料金体系は2024年10月の会話課金開始から、2025年5月のFlex Credits導入、2025年後半のユーザー単位アドオン追加まで、18ヶ月で3つのモデルを経てきており、これを整理することが最も検索されているテーマになっています。\n\n\n**① Conversations（会話課金）**\n\n1会話あたり定額2ドルで課金され、複雑さに関わらず一律で、事前購入（Pre-Purchase）のみ対応しています。\n\n\n**② Flex Credits（アクション従量課金）**\n\n2025年5月に登場した後継モデルで、10万クレジットあたり500ドル、標準アクション1回が20クレジット（0.10ドル）、音声アクション1回が30クレジット（0.15ドル）です。\n \n未使用クレジットは繰り越されず、Flex CreditsとConversation課金を同一組織内で併用することはできず、超過分は月次で課金されます。\n\n\n**③ ユーザー単位ライセンス（アドオン）**\n\nAgentforceアドオンは、Enterprise/Unlimited Editionでは月額125ドル/ユーザーから、Agentforce 1 Editionsは月額550ドル/ユーザーで年間100万Flex Credits込みという料金です。\n\n\n### 実質的なコスト感\n\n1アクション（データ取得、フロー実行、応答生成など）あたり約0.10ドルで、一般的な問い合わせ対応は8〜15アクションを要するため、実質的な会話単価は0.80〜1.50ドル程度になります。\n\n\n### 見落とされがちな追加コスト（Data Cloud）\nAgentforce単体の価格だけを見て予算化すると失敗します。\nAgentforceはData Cloudを前提として機能する設計になっており、これはバイヤーが見落としがちな、しばしばAgentforceのライセンス費用自体を上回るコストです。\n \nData Cloud Plusは年間約6.5万ドル、Premiumは約17.5万ドルとされ、5万ドルのAgentforce予算を承認した後にData Cloudライセンスとしてさらに6.5万〜17.5万ドルが必要と判明するケースが多いです。\n\n\n**目安となる年間総コスト（海外事例ベース）**：\n中堅企業（500ユーザー）の場合、Data Cloudを除いてAgentforce自体は年間1.5万〜5万ドル程度ですが、Data Cloud・導入・保守を含めた総所有コストは初年度で15万〜42.5万ドルに及びます。\n\n\n## 2. 日本国内での導入支援・コンサル費用相場\n\nSalesforce本体（Sales/Service Cloud）の導入支援費用が土台となり、その上にAgentforce特有の追加設計費用が乗る形が一般的です。\n\n- **クイックスタート**：\n基本的な設定のみをテンプレートベースで短期間に導入する場合は30万円〜100万円程度\n\n- **標準導入支援**：\n業務要件の定義から、カスタム項目の作成、ワークフローの実装、データ移行までを行う一般的なプロジェクトで150万円〜500万円程度\n\n- **フルスクラッチ開発**：\n独自の画面開発や大規模な基幹システム連携を伴う場合は1,000万円〜\n\n\nコンサルティングの月額相場としては\n一般的なIT系コンサルティング費用は月に40〜60万円\nが目安です。Agentforce支援会社の中には\n1ユースケース×3ヶ月のスモールスタートプランから対応\nしている事業者もあり、小さく始めて拡張する契約形態も選べます。\n\n## 3. 費用対効果（ROI）を出すための進め方\n\n### ステップ1：スモールスタートで始める\n料金体系自体が従量課金なので、大規模投資をせず小さく始められる設計になっています。\nAgentforceは従量課金制で、Salesforceユーザーは無料で利用開始でき、その後は利用量に応じて課金され、ボリュームディスカウントも適用されるため、スモールスタートで導入し、コストを最適化しながら柔軟にAIを活用し、段階的に利用規模を拡大できます。\n\n\n### ステップ2：ユースケース選定は「カスタマーサービスのケース対応」から\n最も成功率が高い出発点は明確です。\n成功率が最も高いのは、既存ナレッジを活かせるカスタマーサービスのケース対応自動化から始めることです。\n 理由は3つあります。\n既存のナレッジベースをそのまま活用でき、FAQや過去のケース対応履歴がすでにSalesforceにあれば新たにデータを整備する手間が最小限で済み、自己解決率・応答時間・CSATスコアなど明確なKPIで成果を追え、顧客向けに効果が出たら同じ仕",
+  "cited_urls": [
+    "https://myaskai.com/blog/salesforce-agentforce-complete-guide-2026",
+    "https://www.eesel.ai/blog/agentforce-pricing",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://meetsmore.com/product-services/sales-force-automation/media/186124",
+    "https://www.biz.ne.jp/matome/2004854/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://service.is-c.jpn.panasonic.com/column/salesforce-agentforce-2",
+    "https://hatenabase.jp/blog/salesforce-agentforce-getting-started/"
+  ],
+  "error": null
+}
