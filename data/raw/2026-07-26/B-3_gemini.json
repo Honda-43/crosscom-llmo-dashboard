@@ -1,0 +1,19 @@
+{
+  "date": "2026-07-26",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-07-25T22:58:33.906527Z",
+  "answer": "営業にAIエージェントを活用するにあたり、ツール選定の前にCRMのデータ設計から支援してくれるパートナーは複数存在します。これらのパートナーは、データ戦略の立案からデータ基盤の構築、そしてAIエージェントの活用までを一貫して支援するサービスを提供しています。\n\n具体的な支援内容を提供しているパートナーとしては、以下の企業が挙げられます。\n\n*   **株式会社テクノデジタルコンサルティング**は、「データ活用・AIコンサルティングサービス」の中で、CRM・データ戦略設計からデータ基盤構築、生成AI・AIエージェント活用までを一気通貫で支援しています。彼らは、ツール導入だけでなく、戦略設計から実装・運用定着までを重視しており、CRM戦略コンサルティングでは顧客分析からKPI設計、AI活用シナリオ設計までを総合的に支援します。\n*   **株式会社RECHANCE**は、「営業DX支援」として、AIやCRMを活用した営業プロセスの可視化・標準化を支援しています。データ基盤の構築やAIツールの開発・導入もサービス内容に含まれています。\n*   **株式会社 日立コンサルティング**は、「営業DX（CRM&生成AI活用）コンサルティング」を提供しており、CRM/SFAシステムの採用に加え、生成AIなどの先端技術活用による課題解決策を提案しています。紙や暗黙知のデジタル化、チャネルや社内情報の連結を支援します。\n*   **TDCソフト**は、AI時代のCRMにおいて「業務理解」「UXデザイン」「AI活用を前提にしたプロセス設計を横断的にリードできる存在」であることを強みとしています。 彼らは、標準機能を軸に業務を見直し、シンプルな体験を作ることを重視し、AIを活かせるCRMの構築を支援します。\n\nこれらの企業は、単にAIエージェントツールを導入するだけでなく、貴社の営業課題や目標に基づいたCRMデータ設計を通じて、AIの活用効果を最大化するための基盤作りから支援が可能です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtOP_xcQV9Y49a13ZXe7Phf5pV371qAXqhPB3WnoQ6oa0eJgpyTQ168jRfsLvPKuaqnZnLoNW9c2U-xDyTHT7m6pVsUHddMf-SLLUQh8_doXS6drHWFnLutrK7NAOs1kpSB7c=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE6lnNDVn4OL9AWybp0FQj0ZHNGvZJ2peE_t8QrfWs9-L-9G-ydyTCTc-A7WhnuHcMqVl0l1hK0K5BtwkzWoK311cDN3SWyBUk0sgY8PTgMnmcM6M3C07V0UqkhwCwx5YbW6Mbzx0QQ4HJ67hGKtuPWRVZy",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFI-4wAbw-4UOzcEUh7EH9WcA2FeitD_-Cq6XjZwkGr2EIvjFd_oQxp3cSC8SdBv_BAMyOmeih8021qpOw1Ib30g_s0ciYc0cYoNe1-DsMpY96-usspvxblWeP5wu63Erfdxn-z0A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8n7KkUJJgWVM2-eME4bGpqhn-RCCvdeb7F2S3r-imexJYiVLr-4bEImi-VOW3hKvkbfgm3Pvkz0yJnAnI5ofDPhjqUhjdODplssrhufaVq3LZwd2_82l-4mqOpi7CE7h_HtBclkgtzK94rj0ugM3L1lJzp4oknClUhQ_ffuhFL_Yarq0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFaz0VGfi5b5pbdj9OLOcAB7IUxm8QpmhI-QKyKDFA8aZb2ALyjgb-mSXRyMGvK3Jt9ZF_w-P7_D0bCVrZXYpz5CyyPktHD_YjbEkkohMhAfOpQV5IKcX5b1_OgkTjXyZFyx1i42rcgVHhGqA9_lMNJ"
+  ],
+  "error": null
+}

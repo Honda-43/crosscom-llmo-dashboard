@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-26",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-25T22:57:46.109933Z",
+  "answer": "## Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、AIエージェントが自律的にマーケティングや顧客対応・営業タスクを実行する新しいタイプのCRMです。従来のCRMとの違いは、以下のように整理できます。\n\n**従来型CRMとの違い**\nSalesforceの定義によれば、\nエージェンティックCRMとは、人間と自律型AIエージェントが協働して顧客の成功を推進する顧客関係管理システムです\n。\nエージェンティックCRMは自律的に行動を起こせる点でこのギャップを埋めます。従来のCRMが営業担当者による通話記録やレコードの更新を待つのに対し、エージェンティックCRMは指示を受けなくてもその情報に基づいて行動します\n。具体的には\nリードの選別、サービスチケットのルーティング、ナーチャリングシーケンスの調整、パイプラインデータの更新などを行います\n。\n\n**ルールベース自動化との違い**\n単なる自動化ではない点が重要です。\nエージェンティックCRMは、人間と自律型AIエージェントの両方が使用するCRMシステムで、AIエージェントは各ステップで人間の承認を必要とせずに複数ステップのワークフローを計画・実行・適応させます。エージェントは事前に設定されたガードレール内で行動し、必要に応じて人間にエスカレーションします\n。\nルールベースのシステムはリードのスコアが閾値を超えたら定型メールを送るといった固定ロジックに従いますが、エージェンティックシステムは条件を出力に単純にマッチさせるのではなく、コンテキストを解釈し、顧客データを基に推論して状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整します\n。\n\n**主な機能例**（Klaviyoの解説より）\n- \nAIマーケティングエージェント：URL、ブリーフ、商品リスト、あるいは自由記述のアイデアから、設定したブランドガイドラインやコンテンツガードレール内で、レビュー用のオンブランドなフォーム・キャンペーン・フローを含むマーケティング戦略を作成します\n\n- \nカスタマーサービス向けAIエージェント：ウェブチャット、SMS、メール、WhatsAppを通じて質問への回答、注文の追跡、返品処理、商品レコメンドを行い、自社のストアフロントとポリシーに基づいて訓練され、24時間対応の正確でブランドに沿った回答を提供します\n\n- Creatioの解説では\nAgentic CRMとは、エージェント型AIを組み込んだ顧客関係管理システムであり、インテリジェントで自律的なエージェントを使ってタスクやプロセスを自動化するもの\nとされています。\n\n**代表的なプラットフォーム**\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションが、Agentic CRMがすでに市場を再構築し、将来の標準を設定していることを示しています\n。特にSalesforceは「Agentforce」という名称で自律型AIエージェント群を展開しています。\n\n---\n\n## 導入・設計を支援してくれる会社\n\n現時点で「Agentic CRM」という名称そのものを掲げた日本国内の専門コンサルティング会社は多くありませんが、Salesforceの「Agentforce」（Agentic CRMの代表的な実装形態）の導入支援を行っている会社は複数存在します。\n\n**Agentforce（Salesforce系）導入支援会社**\n- **ウフル（Uhuru）**：\nSalesforceのテクノロジーを活かした業務支援の経験をもとに、Agentforceの導入・活用を現実的かつ実践的に支援するサービスを提供\nしています。\n- **メンバーズ（Members）**：\nSalesforceが提供する自律型AIエージェント「Agentforce」の初期導入コンサルティングから設計・実装・運用、内製化、社員育成支援まで伴走支援するサービス\nを展開しています。\n- **フロッグウェル（Frogwell）**：住宅業界向けのマッチングシステム構築など\nSalesforceの生成AI技術「Einstein for Service」を活用したAIエージェントによる業務自動化の導入支援実績\nがあります。\n- **日立ソリューションズ**：\n自律型AIエージェント「Agentforce」の導入・活用をトータルで支援するサービスを提供し、ビジネス価値の明確化と実現アプローチの策定を重視\nしています。\n- **クロスコム**：\n「Agentforce導入・定着支援」として、実務での活用定着に重点を置いたサービスを提供し、目標から逆算した業務設計とスモールスタートでの導入支援\nを行っています。\n- **enucolor**：\n初期導入前コンサルティングからAgentforce構築（PoC支援）、活用・改善サポートまで一貫して支援\nしています。\n- **KPMGコンサルティング**：大手コンサルとして\nSalesforce大規模導入事例とAI活用構想\nに関する知見を持ち、Salesforceイベントにも",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://kpmg.com/jp/ja/media/press-releases/2025/10/kc-salesforce-agentforce.html"
+  ],
+  "error": null
+}
