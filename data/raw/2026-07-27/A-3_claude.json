@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-27",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-26T23:00:04.067463Z",
+  "answer": "Agentforceの導入費用と費用対効果を出すための進め方について調べます。\n# Agentforceの導入費用相場と費用対効果を出す進め方\n\n## 1. Agentforceの料金体系（2026年時点）\n\nAgentforceは従来のSalesforceライセンスと異なり、**複数の課金モデルが並存**しており、これが費用感を分かりにくくしている最大の要因です。\n\n### 主な3つの課金モデル\n\n**①会話課金（Conversations）**\n\n2024年秋の登場当初、Salesforceは「1会話あたり2米ドル」という従量課金モデルを採用しました\n。日本語資料では\n「1会話あたり240円」というシンプルな料金体系\nと紹介されることもあります。ただしこのモデルは、簡単な会話でも複雑な会話でも一律料金になる点が課題視されていました。\n\n**②Flex Credits（従量課金）**\n\n2025年5月、Salesforceは行動（アクション）ベースの課金に転換し、10万クレジットで500米ドル、1アクションにつき20クレジットを消費する仕組み\nにしました。\nFlex Creditsは1アクションあたり約0.10ドル、1会話あたり約2ドルが目安で、これに加えてData Cloudの費用も必要\nになります。\n1アクション（データ取得、フロー実行、回答生成など）はおよそ0.10ドルで、通常のカスタマーサービス会話は8〜15アクションを伴うため、実質的な1会話あたりのコストは0.80〜1.50ドル程度\nとなるケースが多いようです。\n\n**③ユーザー単位ライセンス**\n\n2025年後半には「Agentic Enterprise License Agreement（AELA）」として、月額125ドル以上のユーザー単位ライセンスも登場し、予算化しやすい契約形態\nが用意されました。\n\n### トータルコスト（TCO）の目安\n海外の分析では、\n中堅企業（500ユーザー規模）でAgentforce単体の費用は年間1.5万〜5万ドル程度だが、Data Cloud・導入構築・保守費用を含めた初年度の総保有コストは15万〜42.5万ドルに及ぶ\nとの試算があります。また\n中堅企業の初年度実質コストは15万〜60万ドルとなり、これはAgentforceが年間10万8千ドル以上のData Cloud契約を前提とするため\nという指摘もあります。\n\n日本国内向けの解説でも、\n利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要がある\n、また\nAgentforce単体のコストに加え、Salesforce本体ライセンス費用（Enterprise Editionの場合、1ユーザーあたり月額数万円規模）との合算が総保有コスト（TCO）になる\nと注意喚起されています。特に\nData Cloud（Salesforce上のデータ統合基盤）の契約を見落としがちで、Agentforceのフル機能を活かすにはData Cloudが必要になるケースが多い\n点は要注意です。\n\n### 大規模導入・基幹連携の場合\n本格的な基幹システム連携を伴う大規模プロジェクトでは、\nユーザ数100名超の大規模組織では全社的なデータハブとしての位置づけと高度なシステム連携が必要で、要件定義から開発・データ移行・テストまでフルセットの導入支援費は1,000万円を超える場合が珍しくなく、プロジェクト期間も半年〜1年以上に及ぶ\nケースもあります。\n\n### 無料枠・お試し\nなお\nEnterprise Edition顧客はSalesforce Foundationsを通じて20万Flex Creditsを無料で利用できる\nほか、\n2026年から中小企業向けSalesforceスイートの全プランにAgentforceの基本機能が統合され、追加費用なしで試せるようになった\nとの情報もあります。\n\n---\n\n## 2. 費用対効果を出すための進め方\n\n複数の国内SIer・支援企業（NSSOL、日立ソリューションズ、メンバーズ等）が共通して示す進め方は、大きく**4フェーズ**にまとめられます。\n\n### フェーズ1：ユースケース発掘・目的の明確化\n\n現場の業務知見に基づくユースケース発掘ノウハウを用いた「テーマ創出」\nが起点です。あわせて\n現状業務ヒアリングと業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果（ROI）の試算\nを最初に行うことが重要です。\n\n### フェーズ2：クイックアセスメント（優先順位づけ）\nすべてのアイデアに手を付けるのではなく、\n投資対効果と技術的実",
+  "cited_urls": [
+    "https://www.getmonetizely.com/blogs/the-doomed-evolution-of-salesforces-agentforce-pricing",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://ekfrazo.com/resources/blogs/salesforce-agentforce-pricing-2026/",
+    "https://www.itis.nssol.nipponsteel.com/data/resource/salesforce-agentforce-case/",
+    "https://www.members-saasplus.com/agentforce"
+  ],
+  "error": null
+}

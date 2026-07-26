@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-27",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-07-26T23:00:54.945510Z",
+  "answer": "中堅企業様で、特定ベンダーに依存せず中立的な立場でCRMの設計支援を希望されているとのこと、承知いたしました。以下に、ベンダーニュートラルな視点でCRMコンサルティングや設計支援を提供する企業をいくつかご紹介します。\n\n*   **株式会社HubOne**: 特定の製品やベンダーに依存しない「第三者的かつ中立的な視点」での製品選定・評価とアドバイスが可能であると明記しています。業務ヒアリングから要件定義、システム選定、カスタマイズ・トレーニング、運用現場の定着化・評価までをワンストップで支援する伴走体制を提供しています。\n*   **テクノデジタルコンサルティング**: CRM戦略設計、データ戦略設計、活用設計、プロジェクト支援を幅広く提供しており、RFP作成支援やベンダー選定も行っています。多様な業界での支援実績があり、特定フェーズのみの支援にも対応しています。\n*   **アスピック**: CRMコンサルティング会社として、Salesforce、HubSpot、Zohoなど複数のツールを比較した上で、特定ベンダーに依存しない構成を提案できると紹介されています。ツール選定から要件整理、設計・初期構築、導入後の運用定着まで一貫してサポートします。\n*   **ケーエスピー株式会社**: 独立系企業であり、ベンダーやメーカーに縛られず、様々な製品や技術の中から顧客にとって最適な組み合わせを選定・提案する柔軟性を持っています。システム導入前のコンサルティングも行っています。\n*   **フュージョン株式会社**: 「伴走型CRM支援」を重視しており、CRM戦略設計から顧客分析、データ基盤整備、コミュニケーション設計、実行・改善サイクル構築までを一体で支援します。クライアント企業のCRM成熟度に応じた支援を提供しており、特定のツールへの依存を排したアプローチが期待できます。\n*   **ECマーケティング株式会社**: 中小・中堅規模のEC/通販企業から大手企業まで対応し、CRMコンサルティングを提供しています。中立的で経験豊富なコンサルタントが少ない現状の中で、選択肢の一つとして挙げられます。\n*   **株式会社ripla**: 業務設計からシステム構築・運用までを一気通貫で支援するDX／開発支援会社です。CRM開発においては、単なる顧客情報管理に留まらず、営業、マーケティング、サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応し、既存のERPなどとの全体最適設計も行います。\n\nこれらの企業は、お客様の現状や課題を丁寧にヒアリングし、特定ベンダーに偏らず最適なCRM戦略の立案から導入、運用までを支援してくれることが期待されます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0Aed8m7JVVzjGlMge4YKNa1sKxGqCUzF9ltPHn479agt7Uqw9VPCbT6_wT7GpbQ8UBAifxFl-R4rNXUB15S6tXpP9rISRokUZaA4oemY42vsv9ltL3vCW2nKwB0TjuR71de0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFUyN6E_QuhZVV4DWU98LGD2fU7rTLWSc8W8cE10KpKfG9SXYthnoAT--GiCWa-gq3JSiSK03dNRJR4omcSlr_mO-RLEPeoIjpJklU6EX9Eb1bP_F8B26XYRjU1MRjmJOXmcLUJDZsGPjGqBNSPHzJUZMWC",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEmABwuFFei05rOjU4lG4UdC_9zCvBzF-Ta1oMuLBhdwINYIzlkhRNs9OL-pwd_y2Ejx3DFZTAwg1klX3IqrsuyViF2_d0a73wbKr77VFj-RFIzqChomj2P6rLd",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEAX3sguX346sFlXI_j3jHIQb4fWd-wglommGC54VqRVXRfmIKfUrtOr7UAmA0oHHYXTADObrq2OluEWg67N61sGlESgS1zFpUSKhZ1zEdvezJqS4qEYv-SHNWPQCNyXoC2iHIdB0Wn",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFCOdshGYHLYqX4JbCrkZ3oLuSY_Vi9eC2P1hJqLUn5biO7sWS59oV3ET9PV4ttEK5_NgJP0VFDzHUjbndQcnClvuAwuhn5rYgTmbrWd9crzZSi6Dzz96LGghlX1kpLAqzw3ao-xfrFaOplgx0k",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHUiva3lpVt6DX9NSKSfeWklzMlCMRustU2Vt32zcQ7BbZBeI9jufivEJL-AhdYc9ZHHGpCxvfYLyAfx96yJSrZSLttstahM3ZwqQSvc_Ugk7ZtBcSnjtHrQmtaEb4GB5itaUbp3vvX7Znu9yRl6ofVraxHCM0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEUFgdjtFYCcn3Jt8tTd3j39bgky_6i2oxRP3BBY6OVzxvE_4he3GklvsiWcdfQUpn3iM_UbtKjRhVOrO_ZmjT3rkSzmBaxacELzIZeIWWuuZVE21aLWeQHoTBo4-mGlEQF_0bvBez6MnpG2A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH3mttVl06-NFTfW-re4kEz71zlMoRiK64BI6cl9FyVG1cicnkx521W3Lb6Ons6Nkf3at5a5j0rQCp7qegQQXdxWQzD1rhAcf9wSL3HMrXydFsSU080l0tLW0One63R4mKunFnXEmMEufED"
+  ],
+  "error": null
+}
