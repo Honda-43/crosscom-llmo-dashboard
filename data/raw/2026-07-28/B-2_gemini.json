@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-28",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-07-27T23:03:59.500488Z",
+  "answer": "中堅企業様が特定のベンダーに依存せず、中立的な立場でCRMの設計支援を求める場合、独立系のコンサルティングファームや、ベンダーニュートラルな視点での支援を強みとするITコンサルティング会社が選択肢となります。\n\n以下に、そのような支援を提供する可能性のある企業や、選定のポイントをご紹介します。\n\n**ベンダーニュートラルなCRM設計支援を強みとする企業**\n\n1.  **独立系コンサルティングファーム**\n    *   **株式会社船井総合研究所、株式会社タナベコンサルティング**: これらは地方・中小企業向けの経営コンサルティングに強みを持つ独立系ファームとして知られています。特定のベンダーに縛られず、貴社の経営課題や業務プロセスに合わせたCRM戦略の立案から支援が期待できます。船井総合研究所は特に中小企業が抱える経営資源の制約や専門人材の不足に寄り添った実践的な支援を提供します。\n    *   **株式会社ベイカレント・コンサルティング**: 特定のインダストリーやソリューション、パッケージや特定の方法論にこだわらず、クライアントニーズに根ざしたITソリューションを提供することを重視しており、ベンダーニュートラルな立場でのITコンサルティング（CRM、SFA含む）を提供しています。\n    *   **株式会社経営共創基盤（IGPI）**: 新規事業開発、構造改革、M&A、企業再生、AI・DXソリューションなど、幅広い分野でコンサルティング事業を展開しており、CRMを含むDX戦略において中立的な支援が期待できます。\n\n2.  **CRMに特化したコンサルティング/開発会社**\n    *   **株式会社ripla**: 業務設計からシステム構築・運用まで一貫して支援するDX/開発支援会社です。CRM開発においては、単なる顧客情報管理に留まらず、営業・マーケティング・サポートの業務プロセスと連動した顧客データ活用基盤の設計まで対応可能です。標準CRMパッケージでは不足する要件や、自社特有の業務プロセスを反映したCRMが必要な中堅～大企業におすすめです。\n    *   **アーカス・ジャパン株式会社**: CRMの専門的な開発・設計に強みを持つITコンサルティング企業です。Dynamics 365などの大手CRM基盤のカスタマイズや、業務特有の営業・顧客管理要件に合わせた設計・実装も得意としています。独自のノーコードCRM「EMOROCO CRM Lite」は、自社業務に合わせて柔軟にシステム設計が可能です。\n    *   **フュージョン株式会社**: 「伴走型CRM支援」を重視し、CRM戦略設計、顧客分析・データ基盤整備、コミュニケーション設計、実行・改善サイクル構築までを一体で捉え、クライアント企業のCRM成熟度に応じて包括的な支援を提供しています。\n    *   **合同会社クロスコム**: BtoB領域に特化したマーケティング支援企業で、MAツールの導入支援も行いますが、「商談数・受注数を改善するために、マーケティング戦略全体の中でMA施策をどう位置付け何をすべきか？」という目的から逆算した戦略提案と実践を得意としています。\n\n**会社選定のポイント**\n\n*   **中立性とベンダー非依存**: 特定のCRMツールの販売代理店ではなく、貴社の課題解決に最適なツールを選定・設計できる会社を選びましょう。ツールベンダーのセールストークに流されず、中立的な立場からのアドバイスが重要です。\n*   **業務理解と設計力**: CRMは単なるツール導入ではなく、業務プロセスの見直しから社内定着までを包括的にサポートする取り組みです。貴社の現状把握と要件整理を丁寧に行い、客観的な視点から業務分析を行い、適切なCRM設計ができる会社を選びましょう。\n*   **中堅企業での実績**: 中堅企業の規模や特性に合わせた支援実績が豊富な会社を選ぶと、より具体的なアドバイスやノウハウの提供が期待できます。\n*   **一気通貫の支援**: CRM戦略の立案から、ツール選定、導入、運用、そして定着化まで、各フェーズを一貫してサポートしてくれる会社を選ぶと、スムーズな導入と成果につながりやすくなります。\n\nこれらの情報を参考に、貴社のニーズに合致する会社を検討されてみてはいかがでしょうか。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFE36PvGW22kYQGqB_X4z5pMO1rXhlt01G2DegXadk-QjJA5Hj0tSOOnwOh-1A-CWMxy2Uk_7iWuuf5n-GTRYCt3vehaNsol7JprkhEbjxACee0fv4xepUOcvkZA051djV2Al6xgytew5Yz2ou93bTT_3Va",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGR1uOtClZnp0LjfrVr8z4vxFNrdgPs-4Nb3uGAqW27EzqSRfx3sATMsvJExU-ythtMj1FG9520qZ_Gjnxtx7id-IjoWZxLJ3mx91Ek-msEPdX2_IoHRzEHd381NOGb59hUoG4UPQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHK1tT80mTvz-gZmrRBF9WIy8qj7hDj7Wifz-FhQEs7LG_TQWuRk8NZWpah6EQym6gTulBrdL5bpQWt5dOYpEMOuYOVE-g2Dtnckf5W90sGTv9ePwcowxQ4vNPbrkQt0ROE4sjiRnI9sLAgBofUUMMPKdqXmily7-Ui7cWYCN8qsmE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8S2vEeVa-NPfFenwt2tospDcBUPBmQ3o033IyNloIuGJ2cQAAFSyzPiYQwJx_wxK_NDPg1sAZyRukqds8koLQi3rHK4Lv-1xm_PkrXu67I-Xu_D7s1V7V9Ut6a32kBAgCXfYRpg2zetyZ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtDouK0adt0Vs_FAnQRu-HN_PRIhbrFls_Lt1Ob_OqD1COXyqEtnO8x8Ror0MbshMFfgyQlVyAaKXWRpMv86_aiDPv6BCpRDjyTwKfJqqFNuFHoc7crSxhmVnx0iu924qrtDNTr5U=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHR2EEqkesnHo3EBcGxQzkwt0ZBbs0VCMYe7dAWQSrgFXTrYdze_yGYW_nhMkEDa53rimpiKtFnK_9_qUEzd-ig69qNb7_HHtA3yWjlQh-0A6V2XP__Tz3s_doGNWnRuFMmv8ljpI7sPoPigmQnTQ6LbAb2aUU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGYUEaMguQQ9a8hGVSBHCX57b5ScROyiYi3EikSf0n8xe2BaNsUfRXztO-a_bSQ03dWXUPSZ2PzbuzXpnS25LAeGlq-eaXpgF5KX9gSgoYGj9ZUCr-u2wOhxpN_1EusUgnDBgw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHS3FPWYjGplVjGZgUgkQz2VbvyHWtVhOptB81nsvBH7qWBpdTaDcrVSRljl7HfxexkXPmRUI1wnAQ7kFNKf4pqGKyIbsrqRwfLUS06EOC9jPR7P6R4mPDgs7SunicJ4it5c-5jXjRTOzn09N-2ce4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHSxTZ5m4ynkgtg8YlshhRUKGIIwIfMbQIyI8n4a-4pXe7_62sctVrVkVxIyFT5zVrKRb3cQKsYqv-h8niUtzaIIGtk0iVhloGwJQJ8u6RNybcSvgXL0C6_NTPHcOUT9Oe2WHPU"
+  ],
+  "error": null
+}

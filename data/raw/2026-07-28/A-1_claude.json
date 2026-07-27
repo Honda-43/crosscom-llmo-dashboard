@@ -1,0 +1,21 @@
+{
+  "date": "2026-07-28",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-27T23:01:36.758191Z",
+  "answer": "Agentforceの導入支援企業について、最新情報を調べてご紹介します。\nAgentforce（Salesforceの自律型AIエージェントプラットフォーム）の導入支援を行っている会社について、タイプ別にご紹介します。\n\n## 大手SIer・システムインテグレーター系\n\n**日立ソリューションズ**\nSalesforceのコンサルティングパートナーとして\n「導入・活用支援サービス for Agentforce」を提供しており、営業・サービス・マーケティング・コマースなど幅広い業務領域に対応し、金融や医療など高いセキュリティが求められる業界での支援にも対応\nしています。\n\n**富士ソフト**\n\nSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供開始しており、自社内で試験導入・検証してきたセールス向け機能の実践的な知見やノウハウを活かしています\n。\nPoC（概念実証）支援を中心に、要件定義、技術検証、効果測定、本番移行計画までを反復的に支援し、Agentforce SDRやセールスコーチ、Agent Builderといった領域を対象としています\n。\n\n**日鉄ソリューションズ（NSSOL）**\n\nSalesforce社のパートナーであり、AIエージェント\"Agentforce\"についてもソリューション化に向けた企画開発や検証を進めており、Agentforce国内No.1パートナーを目指しています\n。\n\n**DCS（大同システム）**\n\nデータ分析・活用基盤の構築、マルチクラウド／ハイブリッドクラウド利活用、多様なシステムの横断的な統合に豊富な実績があり、Salesforce単体導入に留まらず社内基幹システムとのデータ統合も含めた一気通貫の導入支援\nを行っています。\n\n## 専業・特化型パートナー\n\n**ウフル（Uhuru）**\n\nSalesforceのテクノロジーを活かした業務支援経験をもとに、まずは「Agentforce for Service」を対象にカスタマーサービス領域に特化した支援を提供し、Agentforceの構築やシステム設定、動作確認、リリース準備までを含め最短3カ月で導入支援\nしています。\n\n**メンバーズ**\n\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有、内製化を見据えたあたかも社員のような伴走型支援\nが特徴です。\n\n**クロスコム**\n\n実務で活用できるまでの定着支援に重点を置き、目標から逆算した業務設計を行い、導入後はカスタマーサクセスチームが継続的にモニタリングし、1ユースケース×3ヶ月のスモールスタートから対応\nします。\n\n**enucolor（エヌカラー）**\n\n初期導入前コンサルティング、Agentforce構築（PoC支援）、活用及び改善サポートを提供し、Agentforce for Service/Marketing/Salesに対応\nしています。\n\n**フロッグウェル**\n実際の企業（Solvvy株式会社など）のAgentforce導入支援実績があります。\n\n## 選び方のポイント\n\n\nSalesforce公式の「コンサルティングパートナー」は、要件の整理から設計、現場トレーニング、導入後の改善まで一貫して任せられる区分です\n。\n2026年時点で国内のSalesforceコンサルティングパートナーは約300社にのぼり\n、選ぶ際は以下の点を確認すると良いでしょう。\n\n1. **対象業務領域**：Service（カスタマーサービス）/ Sales（営業）/ Marketing のどれに強いか\n2. **支援範囲**：PoCのみか、本番導入・定着まで伴走するか\n3. **業界実績**：金融・医療など自社業界特有のセキュリティ要件への対応可否\n4. **料金体系**：個別見積もりが多いため、スモールスタート（3ヶ月〜など）が可能か\n\n貴社の業種・課題（営業効率化、カスタマーサポート自動化など）によって最適な会社が変わりますので、具体的なユースケースが決まっていれば、それに応じてさらに絞り込むことも可能です。",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://note.com/nssol_note/n/n1839fa740632",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}
