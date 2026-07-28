@@ -1,0 +1,23 @@
+{
+  "date": "2026-07-29",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-28T22:59:26.874508Z",
+  "answer": "Agentforceの導入費用や費用対効果について、最新情報を調査してお答えします。\nAgentforceの導入費用の相場と、費用対効果を高めるための進め方について整理してお伝えします。\n\n## 1. Agentforceの料金モデル（3種類が併存）\n\nSalesforceは2024年10月のローンチ以降、約1年半で3つの料金モデルを展開しており、この複雑さが「結局いくらかかるのか分かりにくい」原因になっています。\n\n**① 会話単位の従量課金（Conversations）**\n\n2024年10月に1会話2ドルでローンチし、「会話」はエージェントの最初の応答から問題解決または24時間の非活動まで続く単位\nと定義されています。日本円換算では\n「1会話あたり240円」というシンプルな料金体系\nという紹介もあります。ただしこのモデルは\n「$2の料率がNPO、中小企業、大きなAI予算のない組織を即座に締め出した」と指摘され\n、市場から不評でした。\n\n**② Flex Credits（従量課金・アクション単位）**\n\n2025年5月に登場したFlex Creditsは10万クレジットあたり500ドルで、標準アクション1回が20クレジット（0.10ドル）、音声アクション1回が30クレジット（0.15ドル）\nという体系です。\n未使用クレジットは繰り越されず、Flex Creditsと会話単位課金を同一組織内で混在させることはできず、超過分は月次で課金されます\n。実際の会話1件あたりのコストは\n複数ステップの推論やAPI呼び出し、データ照会を伴う複雑なワークフローでは1会話20アクションを超えることもあり、実際のコストは単純な問い合わせなら0.50ドル、複雑なやり取りでは2ドル以上になる\nとされます。\n\n**③ ユーザーライセンス（月額固定）**\n\nAgentforceアドオンは、Enterprise・Unlimited Editionで1ユーザーあたり月額125ドルから、Agentforce 1 Editionsは1ユーザーあたり月額550ドルで年間100万Flex Credits込み\nという価格設定です。\n\nSalesforce公式サイトでも\nFlex Creditや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスから選べる柔軟性を提供\nとしています。\n\n## 2. 見落としがちな「隠れコスト」\n\nAgentforceの料金体系で最も注意すべき点は、表面上のライセンス費用だけでは済まないことです。\n\n- **Data Cloud（Data 360）が事実上必須**：\nAgentforceはData Cloudを土台に顧客データを統合する必要があり、これはオプションではありません\n。海外の試算では\nData Cloud Plusが年間約6.5万ドル、Data Cloud Premiumが年間約17.5万ドル\nとされ、\nAgentforce予算5万ドルを承認した後で、それを機能させるために6.5万〜17.5万ドルのData Cloudライセンスが別途必要と判明するケースが多い\nという指摘もあります。\n- **既存Salesforce基盤の維持費**：Agentforceは\n既存のCRM上に乗る形で稼働するため、基盤となるSalesforceエディション（Enterprise、Unlimited、Agentforce 1 Edition）のライセンス費用が別途かかります\n。\n- 中堅企業（500ユーザー規模）の目安として、\nData Cloudを含まない段階で年間1.5万〜5万ドル、実装・保守も含めた初年度の総コストは15万〜42.5万ドルというレンジ\nを挙げる調査もあります。\n\n## 3. 日本国内の「導入支援・構築費用」の相場\n\nAgentforce自体の利用料とは別に、要件定義・設計・実装を担う導入支援会社への支払いも発生します。Salesforce導入支援全般の相場としては、\n小規模で100万〜500万円、中規模で500万〜2,000万円、大規模で複数部門利用や基幹システム連携を含めると2,000万円〜1億円以上\nという水準感が示されています。工程別には、\n要件定義・設計費用が10万〜50万円程度、初期設定・環境構築費用が30万〜100万円程度、カスタム開発費用が50万〜300万円以上、データ移行費用が10万〜50万円程度、トレーニング・定着支援費用が10万〜30万円程度\nという内訳が一般的な目安として紹介されています。\n\n## 4. 費用対効果を出すための進め方\n\n**① スモールスタートで「使われる」仕組みを優先する**\n\n「最初に数百万円かけて構築したのに使われない」という失敗が最も多いパターンであり、スモールスタートで始めて保守の中で育てていく考え方が最も費用対効果の高いアプローチ\nとされています。まず1つの明確なユースケース（問い合",
+  "cited_urls": [
+    "https://myaskai.com/blog/salesforce-agentforce-complete-guide-2026",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.eesel.ai/blog/agentforce-pricing",
+    "https://note.com/ripla_business/n/n4992ae78c229",
+    "https://blog.ripla.co.jp/dx-consulting/salesforce-implementation-costs/",
+    "https://www.ninetech.co.jp/blog/salesforce-implementation-cost/"
+  ],
+  "error": null
+}

@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-29",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-07-28T23:00:43.062709Z",
+  "answer": "営業にAIエージェントを活用するにあたり、ツール選定の前にCRMのデータ設計から支援してくれるパートナーをお探しなのですね。AIエージェントを効果的に導入するためには、CRMのデータ設計が非常に重要になります。\n\n以下に、CRMデータ設計からAIエージェント活用までを支援するパートナーとなり得る企業や、関連サービスを提供している企業を挙げます。\n\n**CRMデータ設計からAIエージェント導入までを一貫して支援する可能性のあるパートナー**\n\n*   **株式会社StartLink**: AI CRMの活用トレンドや導入ステップについて解説しており、HubSpotを軸にしたAI活用支援・経営基盤AXのコンサルティング事業を展開しています。CRM×AIエージェントによる経営管理支援を専門としており、CRMの整備から成果につながる導線設計まで支援を提供しています。\n*   **三菱総研DCS**: SalesforceのAIエージェントプラットフォームであるAgentforceの導入・活用支援サービスを提供しています。データ分析・活用基盤の構築実績が豊富で、Salesforce単体導入だけでなく、社内の基幹・周辺システムに分散するデータの統合も含めた導入を一貫して支援します。\n*   **株式会社日立コンサルティング**: 営業DX（CRM & 生成AI活用）コンサルティングを提供しており、CRM/SFAシステムの採用から生成AIなどの先端技術の活用まで、営業プロセス改革を支援しています。\n*   **NTTデータ**: AIとBI（ビジネスインテリジェンス）を活用した業務変革を推進しており、営業AIエージェントを例に、業務プロセス、データ、システム連携を含めた設計の重要性を強調しています。業務の課題、それを検証するデータ、そしてその設計がAIエージェントを成果創出につなげる鍵であるとしています。\n*   **株式会社RECHANCE**: 営業DX支援として、AIやCRM活用による再現性のある営業を掲げており、営業プロセスの可視化、AIツールの開発・導入、データ基盤の構築などを包括的に支援し、内製化まで伴走すると説明されています。\n*   **テクノデジタルコンサルティング**: CRM・データ戦略設計サービスを提供しており、ツール選定の前に「何のために、誰のデータを、どう活用するか」といった上流設計の重要性を強調しています。顧客戦略・KPI設計、データ統合・基盤設計、活用設計・業務変革、運用定着・継続改善まで含めた設計を支援しています。\n\n**CRMデータ設計に関連する支援を提供する企業**\n\n*   **株式会社フュージョン**: AI（機械学習）を活用したマーケティング支援として「CRM Forecaster」を提供しており、データ分析だけでなく、分析結果を利用したCRM設計やDM企画制作など、顧客のビジネス状況と課題に応じた幅広いサポートを提供しています。\n*   **セゾンテクノロジー**: CRM連携基盤構築サービスを提供しており、マーケティング活動から営業、受注までのデータ連携により費用対効果を正確に測定し、データに基づいた改善サイクルを回すことを支援しています。\n*   **株式会社ripla**: CRM開発の支援を行っており、業務設計・データ戦略・連携設計・運用設計まで見据えたパートナー選びが必須であると述べています。\n\n**AIエージェント導入のポイントとCRMデータ設計の重要性**\n\nAIエージェントを営業に導入する際は、まず導入目的の明確化と課題特定が重要です。そして、その効果を最大化するためには、正確で質の高いデータの整備が欠かせません。過去の商談データや顧客情報、コミュニケーション履歴を整理し、既存のCRMシステムと連携できる環境を構築することが必要です。データの粒度や更新頻度を統一することで、AIの学習精度が高まり、分析結果の信頼性も向上します。\n\nCRMは単なる情報管理ツールではなく、顧客データを活用して顧客理解を深め、継続的な関係構築につなげるための戦略です。そのため、ツール導入だけでなく、KPI・業務・データ統合・運用定着まで含めた設計が重要となります。多くのデータ活用が成果につながらない原因は、ツールの問題ではなく「戦略設計の欠如」にあると指摘されています。\n\nこれらの情報を参考に、貴社のニーズに合ったパートナーを見つけ、AIエージェント活用に向けたCRMデータ設計を進めていくことをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGjJ78BsNxa_0N-mTeifOvn_gShtnY-thuGVJvIm5btOwnE5RgvX7gK-g2suk9Q16fTij_QCO0aRxHIXWDDu3KF0tbjLNKVqauqXxDVUUnb6R7X1OFgudxSbMINxIoAkfvc4FjCx0nDrhMjUkETmVj86UZS7nPWkfN0GVOn00U2B9lS98-AOhT_e4qhRWKHJNJB",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE8l-vIToABIZEbN2hrUvUHeHoQwmpiNhQ9z4x5t-0QokflT7m4sD-aAcz4OxFqaIJpURIzignIYw_ZenmPUlgnqjjrCuYVCXB2_BeM94-Z8vC7runNHq_-g_vMxc7Ct2hZ0_E7qvcS5V8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHF8ISBJlWi0vjmNPRFSc2iB2QehO_HAFpSe3jmZhm6Zr5U1m5qluO6U8nEDEfsu2R3h6aexQgo1AI6Ckz2mr81vf3WBeoxVZoD3fhtBfm4F_F7DUhpvuArscXlHj_D8xAOLrgBEjqqu97hFj9WvcfzRq4wvtxZAjDV1Qe0p5y_1xKyfVQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE72eEPJ-ncMGZu14O_fag4r5bF6C8xNvMmeooyZriF_eWMTZR72nuZm9o42LQ5FJ2GAll2RbpIhm7tehKjvP2cllk14bks-_Wb3rqRFhOJJyRJ6lDfxBUzgxgzGMjUjdajt0ECcew-_GJflL-GGZllHIpkQZCj",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHBgwpdwbyzcg5l9JBzCOpjc5kMQ1wIQlmog7ZBE5HFjlGKJUWXmFEQrpH9TB1BQ1bUmLCzWHo__wE8oBFCu5Utp5FIwBWk5LEyH7dSIXRKWWMMXET134J3bUJBUnA-h067G4ZDmg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGAzomdtDgMMrbvkiQDla6XfhPZ__UhlCP4EUUC-YjBrEZg6ses-4SroQ3soiLd-rY36GByJ-6WUpcFNyhyD9u0kSYsnfuOPInXLZKAOaKV1lqsyCdIRuBBVvt227wwd6gA9fEm9slyAoxKLKQYvXfHO2Dd",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEgH8cHC2Ntxx5E7B0Pj09TL0FaKzpZHp6l6_A8Np7loboH35s2EppUCcGGWY790XDpd3_2FEXwk7kz_VeCEoWYzEIeE2x-kpSUTO3FQfhWsv1UBvDON8_UzsBCZoM9Lz8TYV-VthBgd2X5",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEScz4oYma6ihje4DqvRD3GWcjVZyyqSphyJaPQoJJ4VnqHudgIZ1OuTvUBYu6XWmImJDrPWog_L2FO83gTOa5sANhfophD8knQ_ZdYhbSbbgheuQxWG-p0Pkm80mcU5VyM7GGKHMMfhJAtoEqQpMoTFVam2F7q3_6L",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFLA9YNzHdNZOLf5ObeQjgdvn38D2j8LLjOe4DZ5TER_m433MgiMhzdavGJmm-UsV954Ia00HkIds1sL_-6IxRiwOc5NDNItO1QOzV2ELhhoc4napilLpadPv49Cj2Z3QBYmcuD2eO2Xmt0",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtHwFaVb2SLiQkH8absiFcolK0_m93T5pNpZRXMh1IkubKAQbOPibeqKpZA5483Iqs2A-VGfvDi9I46y4QdnPWWcWrk7MnAZXpFcOFIlKANkC6nOV_a0HgquM7-UKPNLTGcyEhleUHL_Risfo6YoE="
+  ],
+  "error": null
+}

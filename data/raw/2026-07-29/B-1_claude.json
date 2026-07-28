@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-29",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-28T23:00:06.809700Z",
+  "answer": "## Agentic CRMとは\n\nAgentic CRMとは、**自律的に動作するAIエージェントを組み込んだ顧客関係管理（CRM）システム**のことです。従来のCRMとの違いは以下の通りです。\n\n**従来のCRMとの違い**\n従来のCRMは\n担当者が電話履歴を入力したり、記録を更新したりするのを待つだけでしたが、Agentic CRMはその情報をもとに指示を受けずに行動します\n。具体的には\nリードの選定、サービスチケットのルーティング、ナーチャリングシーケンスの調整、パイプラインデータの更新などを行います\n。\n\n**特徴**\nSalesforceの定義によれば、\nAgentic CRMは人間だけでなく、各ステップで人間の承認を必要とせずに複数ステップのワークフローを計画・実行・調整できる自律的なAIエージェントも利用するCRMシステムであり、エージェントは事前に設定されたガードレール内で行動し、必要な場合は人間にエスカレーションできます\n。\n\nこれは単純なルールベースの自動化とは異なります。\nルールベースのシステムはあらかじめ決まったロジックに従いますが、Agentic AIは文脈を解釈するため、単に条件と出力を照合するだけではありません。顧客データを推論し、状況に応じた適切な行動を判断し、その結果に基づいてアプローチを調整します\n。\n\n**具体的な機能例**（Klaviyoの解説より）\n- \nマーケティング向けAIエージェント：URLやブリーフ、商品リストなどから、ブランドガイドラインの範囲内でキャンペーンやフローを含むマーケティング戦略を作成\n\n- \nカスタマーサービス向けAIエージェント：Webチャット、SMS、メール、WhatsAppなどで質問対応、注文追跡、返品処理、商品推薦を行い、24時間対応可能\n\n\n**主要ベンダー**\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどが、Agentic CRMが市場をどのように再構築し、今後の標準を確立しつつあるかを示す代表例です\n。\n\n---\n\n## 導入・設計を支援してくれる会社\n\n日本国内では、特にSalesforceの「Agentforce」（代表的なAgentic CRM/AIエージェント基盤）を中心に、多数の企業が導入・設計支援サービスを提供しています。\n\n**Salesforce Agentforce関連の導入支援会社**\n\n1. **株式会社ウフル** — \nSalesforceのAgentforceの導入・活用を現実的かつ実践的に支援し、まずは「Agentforce for Service」を対象にカスタマーサービス領域に特化した支援を提供\nしています（最短3カ月での導入支援）。\n\n2. **株式会社メンバーズ** — \nSalesforceが提供する自律型AIエージェントAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走支援\nを行っています。Salesforceコンサルティングパートナーとしての認定も受けています。\n\n3. **フロッグウェル株式会社** — 住宅業界向けマッチングシステムや会話サマリー自動化など、\nSalesforceの生成AI技術を活用したAgentforce導入支援の実績\nがあります。\n\n4. **クロスコム** — \n「Agentforce導入・定着支援」として、実務で活用できるまでの定着支援に重点を置き、目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込む\nサービスを提供しています。\n\n5. **日立ソリューションズ** — \nAgentforceの導入・活用をトータルで支援し、PoCで終わらせず着実に成果を出すためのアプローチ策定\nを行っています。\n\n6. **株式会社enucolor** — \n初期導入前コンサルティング、Agentforce構築（PoC支援）、活用及び改善サポートを提供し、要件定義から実装まで戦略的な導入支援\nを行っています。\n\n**一般的なCRMコンサルティング会社**（Agentic機能導入も含め相談可能）\n- **船井総合研究所** — \nCRMで何を達成したいのか目標が定まっていない場合のKGI/KPI設計支援や、必要な機能・カスタマイズの選定アドバイスなど\n幅広く対応しています。\n\n---\n\n### 選び方のポイント\nSalesforce公式には「パートナー」制度があり、\nコンサルティングパートナーは導入支援を専門とするなど、パートナーにも複数のタイプがあります\n。自社の業界（不動産、製造業、サービス業など）や既存のCRM環境（Salesforce、HubSpot、Zohoなど）に応じて、実績のあるパートナーを選ぶことが重要です。まずはPoC（概念実証）レベルの小規模導入から始め、効果を確認しながら本格展開するアプローチを取る会社が多いようです。\n\n具体的にどの業界・どのCRM基盤（Salesforce系か、それ以外か）を想定されているか教えていただければ、より絞り込んだ情報をご提供できます。",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://www.funaisoken.co.jp/solution/dc-crm_705_S092"
+  ],
+  "error": null
+}

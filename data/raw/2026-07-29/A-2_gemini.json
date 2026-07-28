@@ -1,0 +1,28 @@
+{
+  "date": "2026-07-29",
+  "prompt_id": "A-2",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか",
+  "cep": "導入後の定着課題",
+  "timestamp": "2026-07-28T22:58:10.579515Z",
+  "answer": "Agentforceの導入後の現場への定着や活用支援にお困りの場合、専門のコンサルティングサービスを提供している企業が複数あります。これらのコンサルティング会社は、Agentforceの初期導入から、現場での利用促進、運用の最適化、そして最終的な内製化まで、様々なフェーズでの支援を提供しています。\n\n以下に、Agentforceの定着支援や活用支援に強みを持つコンサルティング会社を挙げます。\n\n**Agentforceに特化した導入・活用・定着支援を提供している企業:**\n\n*   **メンバーズ**：Salesforceが提供する自律型AIエージェントであるAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで一貫して支援しています。部門ごとにAIを試験導入したものの定着しないといった課題解決に強みを持っています。\n*   **株式会社enucolor**：Agentforceの導入支援において、初期導入コンサルティング、Agentforceの構築、活用および改善サポート、AIトレーニングなどを提供しています。\n*   **バーチャレクス・コンサルティング**：SalesforceのAIエージェント基盤「Agentforce」の導入・活用を支援する新サービスを提供しており、「初期導入プラン」「伴走支援プラン」「構想策定支援プラン」を通じて、AIトランスフォーメーション（AX）とデジタルトランスフォーメーション（DX）の推進をサポートしています。\n*   **合同会社クロスコム**：Agentforceの導入・定着支援を提供しており、カスタマーサクセスチームが利用状況と出力品質を継続的にモニタリングし、目標達成に向けて活用が定着するまで伴走支援を行います。\n*   **三菱総研ＤＣＳ**：CRMソリューションの一環として「Agentforce導入・活用 支援サービス」を提供し、データ統合やデータ分析・活用基盤構築の経験を活かした支援を行っています。\n*   **株式会社セラクCCC**：Salesforce関連サービスとして「Agentforce導入、定着・活用支援」を提供しており、「Salesforceを導入したけどうまく使えていない」といった課題に対応しています。\n*   **K2 Partnering Solutions**：Agentforceのコンサルティングサービスとして、カスタマイズ、サードパーティ連携、Salesforce連携、トレーニング、パフォーマンス分析、ガバナンスとコンプライアンスの支援を提供し、Agentforceの可能性を最大限に引き出すことを目指しています。\n\n**一般的なIT/DX導入における定着・活用支援に強みを持つ企業:**\n\n*   **株式会社Innovate Lab**：戦略立案だけでなく、実装から定着まで責任を持ってサポートし、現場に寄り添い確実に成果を出すまで伴走することを特徴としています。\n*   **ブリコラージュ合同会社**：目的整理からツール選定、導入・定着支援まで伴走し、現場の業務プロセスやユーザー視点に立って「使えるDX」の実現を支援しています。\n*   **株式会社テコテック**：「成果直結型FDEサービス」として、AI活用やDX推進において、現場に伴走するエンジニアがAI導入から業務改善・運用定着までを一体で支援しています。\n*   **ソルラボ**：システム導入＆定着サポートを提供し、ツールが「業務に溶け込む」までを丁寧にサポートすることで、高額なシステムが宝の持ち腐れになっている状況の改善を目指しています。\n*   **システム導入支援コンサルティング**：ERPや基幹システム導入の例として、計画策定から要件定義、ベンダー選定、データ移行、運用定着までを確実に進めるための専門サービスを提供しており、専門ノウハウや失敗リスクの低減といったメリットがあります。\n\nこれらのコンサルティング会社は、Agentforceの特性や、一般的なシステム導入における現場定着の課題を理解しており、貴社の状況に合わせた支援を提供できると考えられます。まずはいくつかの企業に相談し、具体的な課題やニーズに合致するサービスを見つけることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFs0ee5C1QiuTVBxlAVVkEmhxdmYPh_J12qXqo4RHYQl1jg1CCIyEtgBnCBRtBY8QyR82rUupLbAKrhRsysV9muagAyKDuZP-t0K7ydSzillBdsEP_wMJS47NOzMfPRoJ5eBMwg5FSmwMj7weE0MA9EFA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEoA8Et2o3iYPFzoZA1WgFnC3qzGcPs6v98CDtU_ZaxBDSwJGI6xUKBin3L-rZ8rxVCyssE7nrUBsOyauV2KPGvXBMArvQ7SvgG6jdVXSD8wJ6H-8uG7C94969Ss6ZF",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEyywPis11_LSWtemcA04tRNq9sRKwE2nYxqRSy4SmGgSUREUvq6-N-VM8DdiJAo7LPJkGJ-t3lqJoFIQDtKmproP2qEWLXPVpQ0-pvV7WJpETEPa69gVrNCyGacE56P1y4J5YikAJJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEldmI4KjsCJK6Xrct_y_HnQoF3HsQLs00OzOvmQK3yKYLX_ClCL0yf3BCVMzFFe4U_8Xzkw7jCjXUxf-yVHn5LyzPL94N-NXOjkTxEunwvlbcUkfS-BGBJav-JdCqKDZBuvyzVivTH0XgUPocxxMJ8xZnKZuao_C7j0LEwHXM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFvL7DxwHeGv7dxwqpes6D7VY_WNMKhVM4hzcx_r_lK0rf4wDffMyB7jGjii1S2TNIhOxoxzOFRw6eIZ3obVXkZOlhUMnDauMp3XlbvBso3L_xpCxdTKe9dZ8Lnah-Eou8Rt7f19Bh3tgcfTw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEti3yFiq6Yfsy5joHwsEpwUFSFet4pcluJascgGJFv6u6s-lgse8-RLd8PfhVQZEtKzsOFhyIydItKemL6i2iOSouTPNpySbkrPln1U2hKl2U8YRcAxhQq7h5qaQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEcZwwAT_ECEqtYyCh5yUiPtsXXIMTwJtR8x_60RD2A9ZKwJwJz9Kmuqonptt3F3KtAkJwlssl06eFWqobvfDkCL5m0dXGRGeYZsB99GNkaYwcUVUyqRB_OJHvTwczIF9Me2MRM2oM_RFU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQERrFqIDbbS_sV0JVnMsqJ7wEv5NoYtufvccBbanuMOc0qy7KdpYkDxdcDJlXiGCB0bu9DtjddgjC010HW2WhtOfPtS5Tk5SB3KoAPIFgicd8EVp1THMNwuyccBaDrJW5Z7Ppycz-kDUwMkSw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF_kHfQH0Orj_-sfmFynB1WRcMe9P_8hoTI8ourUWP_OuclGxY_lEwzHT6skCT2LAnbt8P8NPP2AfUa0gE6tkn1MtOttwDpKi9GDn3o46QNne4kwufrQHNgnQSR0lbHWtfZmLQRqSDECHVn-m96sI2glp0xIAK-4MRdmAY3-PCKKH9nSmwBjvGaZjqfSD2yKbM-3VcpkWckNu8_h0laj4QWTNrySe1Rl5Re73qa1u7u",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEfs5qTVizJ5FxBBRZXD_CncVrP1gIXkunqflX3344985jV30onl_AgpU4lhOGKtOiM3nQkypbTdVupvtLP-7wPahsaAVf0zoCL7gW6ewIaZJE7rPvHYXihvknfHIkbftxoA7AkHHj7",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2AGgLyM-L0YqQYOB_piWlAHrxjFIkrbbONs1-mppTIehqt6WJ7zOyFglXb0WrTgYxjbxTt5xhqQ6iG7rqCdyZXYOqMaonIvabLMBFMjalGpJSijFbdz5wj8insWnA7Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHNTgV1Cq18lNiaGqZ-mpoCr4W_jTgQiH5yNLwr4JQSl3Vrs_HUm0P9RIpjphlIJFLRhXuwDGR3wPZ9Av5qnaQpcbmJepEXy07W_uM25ag-WClOc4J2yopqpFSA0h2twB-NCuHssRBJk_junbA9ZZ3pF5w5wKE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHC78uZ5axiCUqaSFnfiPTraAfv4C_NBMma_KJ9JBTL-6q1z6ruA57gJh2828l6e8BUBivCQsxwVdnDou0dUODQIL4v5q2G6ECS08B5U01K5FlQP31rgIPfZVAX9QzoA0U=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEnwkndqnA3mdvv_MYF08eciDHWRfo5yGclw-ZuZcpr4oKjrscol9sXc8ZefYRTL02dUuyY7ax8LAh9JfX6NYKJf-L38EEZNjuO2l-nmzHmfmN6WDY0QkdLC_EkbhD11uI-QZb51tlaj9fxEj0bIvDiF47S_Q=="
+  ],
+  "error": null
+}

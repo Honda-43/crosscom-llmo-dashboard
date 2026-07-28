@@ -1,0 +1,19 @@
+{
+  "date": "2026-07-29",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-07-28T23:00:12.281764Z",
+  "answer": "CRMの設計において、特定のベンダーに依存しない中立的な立場で支援してくれる会社をお探しとのこと、承知いたしました。そのようなご要望に応えられるCRMコンサルティング会社は複数存在します。\n\nCRMコンサルティング会社は、企業のデータ、マーケティング、システムに関する専門知識を活かし、客観的かつ多角的な視点からCRM施策の立案・実行をサポートします。自社だけでは見落としがちな課題や改善点を明確にし、最適なツール選定やデータに基づいた施策設計を通じて、再現性のあるCRM戦略の構築を支援してくれます。\n\n中立的な立場でCRMの設計を支援する企業の主な特徴は以下の通りです。\n\n*   **特定のベンダーに偏らないツール選定**: Salesforce、HubSpot、Zohoなど複数のクラウドCRM/SFAツールを比較検討し、企業の業務や組織体制に最適な構成を提案します。\n*   **要件整理から運用定着まで一貫したサポート**: ツール選定や要件定義から、設計・初期構築、導入後の運用定着、改善提案まで、一貫して支援します。\n*   **専門知識と客観的な視点**: CRM/MA/SFAに関する専門知識と客観的な視点を取り入れ、施策、データ、システムを横断して全体を俯瞰しながら最適化を支援します。\n*   **業務課題の現状把握と分析**: クライアント企業の現状業務プロセスやCRM施策の効果を分析し、具体的な課題を洗い出し、KPI設定に基づいたマーケティング施策の提案を行います。\n*   **LTV（顧客生涯価値）改善への貢献**: 顧客データを分析し、LTV向上につながるCRM手法の提案や、具体的な改善策の提示、PDCAを回す業務のサポートを行います。\n\n具体的な企業としては、ECマーケティング株式会社のようにECサイトやマーケティングサイトに特化し、中小・中堅規模から大手企業まで対応し、CRMツールベンダーと紐づかないコンサルティングを提供している会社があります。 また、株式会社GeNEEやArcuss Japan Inc.のように、CRMやSFAを含む顧客・営業管理系システムの構築実績が豊富で、特定のCRM基盤のカスタマイズや業務要件に合わせた設計・実装を得意とするITコンサルティング企業もあります。 株式会社インサイトテクノロジーは、特定のベンダーに依存せず、マルチデータベース・マルチベンダーに対応したコンサルティングを提供し、中立的な立場で最適な組み合わせを設計・提案しています。\n\nCRMコンサルティング会社を選ぶ際には、これらの特徴を持つ企業を参考に、自社の課題や目標に合致するか、提案内容が企業のニーズとマッチしているかなどを考慮することが重要です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGtWa0rlEwtqtfxRFARFHxjn5YbTKce8fApmO2PwET3Rr1Mjw2XwjWOUZVE3I2ZE8lRk7ArofSThD4pwEFKdYmyXs1PCGj7zxvt80YvELimsFI3NYZnnlZRqT-bbk7_cJODWki46XhL",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF6xgWENJnncuLN-V6ISxTU9Ryi5vQcuMuO4cHjsnVFdrvD141eQXC0s3LvpiLyYNRLp5lAfdV4F8LdBpQVki8WTUogDBBG70t8wh4Momy14ETlHgrSx5xehnBajQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF7rpCqMI04Ie3zs2NVazb09Fb_xQkdBSpd6xryNXyteyJoqw0LROKAVVCFzpxInQ2SRm7xvVDJUETr1WtVvWbJyNd-ltmZRAfVaMPlEeZM5Rjj2hNtKsLMUJ0-7NOFfUqFmHqFIJDHTaOetg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGkhSuM9YrCyOMircT6UWXsrEyj-I4ULkVsZiCt0IVF2UF-tBpKOYSMNY_cRrZQ25dVTiNj6lcYOsC-XGU6necN1oEZDWJU5K57yVL02fVbQogPGrZh9gtjosQVnFTsb5lhtvkrNOz72YTU",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgAm5m7ZghAZ0oS_fR2f8vt38tcbZY5uyeE3dKsS5gHNhzyWXfsd6uZIy9_Fk9hXNdVL4_uHtjd5g6R1EGiHBE-_bpjl30eomEoTVtZjOcnlEer7wCzTsI6-JovH4InxJvR6dj776HeEDzhg=="
+  ],
+  "error": null
+}
