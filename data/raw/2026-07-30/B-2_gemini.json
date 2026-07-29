@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-30",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-07-29T23:01:32.234364Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず、中立的な立場でCRMの設計支援を求める場合、以下の特徴を持つコンサルティング会社の検討をおすすめします。\n\n**ベンダーニュートラルなCRMコンサルティング会社**\n\n特定のCRMツールベンダーに偏らず、貴社のビジネス要件や課題に基づいて最適なCRM戦略の立案からツール選定、導入、運用までを一貫して支援する会社が複数存在します。\n\n*   **アーチライズ (ArchRise)**: CRM/SFAの選定・要件整理から、設計・初期構築・活用支援までワンストップで支援しています。Salesforce、Zoho、HubSpotなど複数のクラウドCRM/SFAに対応し、特定ベンダーに偏らずに最適な選定・構成を提案しています。\n*   **ストラ (Strh株式会社)**: CRM・MAコンサルティング支援として顧客管理や営業管理システム、MAツールの設計から導入・活用までを一貫して提供しています。\n*   **テクノデジタルコンサルティング**: CRM専門ベンダーとして、20年にわたる様々な業界のCRM導入支援実績があります。客観的なデータ検証に基づき、利益につながる仕組みの提供を強みとしています。\n*   **合同会社クロスコム**: BtoB領域に特化したマーケティング支援企業で、HubSpotやSalesforce Account Engagement（旧Pardot）、Zohoなどの主要MAツールを中心に、中小企業のMA運用を支援しています。特定のメーカーに依存しない中立的な立場から最適なマーケティングテクノロジーを選定するとしています。\n\n**CRMコンサルティング会社の選定ポイント**\n\n中立的な立場で支援してくれる会社を選ぶ際には、以下の点に注目すると良いでしょう。\n\n*   **専門知識と客観的視点**: CRMコンサルティング会社を活用することで、CRM/MA/SFAに関する専門知識と客観的な視点を取り入れ、自社内では見落としがちな課題や改善ポイントを明確にできます。\n*   **特定の製品に偏らない提案**: SalesforceやHubSpot、Zohoなど複数のツールを比較した上で、データに基づいた最適な施策設計と再現性のあるCRM戦略を構築できる会社が理想です。\n*   **導入後の活用支援**: CRMツールの導入だけでなく、その後の活用法が最も重要です。ツールベンダーは自社ツールの販売が主題となりがちですが、導入後のサポートに不満を持つ企業も少なくありません。導入後の運用定着まで伴走してくれるかを確認しましょう。\n*   **業界知識・実績**: 貴社の業種やビジネス規模に最適なCRMの設計は異なります。業界に精通し、自社の業態に合った導入実績が豊富な会社を選ぶことが、実践的で効果的な改善策の提案につながります。\n*   **担当者の経験**: 実際のコンサルタントのスキルや経験がプロジェクトの成果に大きく影響します。CRMツールの知識だけでなく、顧客管理の戦略設計やデータ活用のノウハウを持つ担当者がいるかを確認することが重要です。\n\nこれらの情報を参考に、複数のコンサルティング会社に相談し、貴社のニーズに最も合致するパートナーを見つけることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFT9dGp-U5KdrS18uwlIoA4I5vUZ58cCGBOmrX8uopyzVTLsPhG5McPl-bDRyKmLD8zmL8b5EHrO_JrlDNJtr3YXd_bkCZnWXQMgSLbxaU4JyyRyjAbO32INhkMClvYq2oK8MaXKxXIYTw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHq12FqlcrGRl3VORdHtAIEsOME79q6M8ODr5vlPF70EuVppD6AZJKIrIstHlnzW0YibuCNX1tYamKL8vDY0X4Vc7GCCUqgUAzmEa_JLxJs72FNYvqmf5KsfI7CkiEezIc3E-7vLfnSRs0NJQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEIDN8cu1U6gP4uLnUiECYF_il3n3iHAaJcu26gDD5bSGDEeQjvskSQX6_GU65m1QZWBt0dWPJVxbbV7A20WTtZd0ryH9s9o_NEkn6uPQoZKccsiXd8YXuyQPjY6XX9",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE-4t4Tv2B85fNQ_zvjK0Spl1_ijzBt3X8FZ9O6nFTfIoB0JGOtWRiUEJZSErz-aRr7TQ-75QkEsmKack_5xMuoc8-FwzYqPKK-Dzgd3zvTnWkedyHmZEhkLy67cxU0sw9K6Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVeFABVZBqJZRGFOlP6EcQA7_lZUR9nqRELfDsfgCmhlatANjcc6GYS-DK_qART3LNLfRu_9faRUdbNKAFi93PnrrTD0c8u__wmcfnQxy70VOujJx_o8kOlgOfxuhfea3ZPh0gdtY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGDabAzPkYiwp1amfJ8Xl4O3_FD2nGzvKrp-Ws29v20s6dSUJScs0u54DmD2Xb0o5jUd5Caw_DTGHquFsaOyYQQdoW8A1LLQ68SBk0dVsos_L9q98M9mbKsv1LRJSBJNyX9mGvl4ZoG6nI6",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFkbQe0TSX1xYfz-3d6fKPCbEbbxyK8GQyrf4ey8cc4nehSFwrgnH8d2ap17ryE43U-opzklnvWBpijOJe-kt1BgubiM5BVh1s0HR6HN0dq4ZAWcF5yj6fSEarzjfhUMLYMFcB8",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGH4e_X-aCcT6QKW6SlcYvdwkAD2Uu_ubQhp22M301_Jj0PlGjEI3kMhrKiSYv_lzqBGeqt9iOTEIkFCBRXPC1zSOucwtCtDy6Myt8f-O-F8wDN5LDpqoL8x7nylnoJNDw="
+  ],
+  "error": null
+}

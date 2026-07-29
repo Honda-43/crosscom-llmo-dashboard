@@ -1,0 +1,24 @@
+{
+  "date": "2026-07-30",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-29T23:01:23.973627Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、\n人間と自律的なAIエージェントが協力して顧客成功を推進する顧客関係管理システム\nのことです。\n\n従来のCRMとの違いは明確です。\n従来型CRMは担当者が通話履歴を記録したりレコードを更新したりするのを待つのに対し、Agentic CRMはその情報をもとに指示されなくても自ら行動を起こします\n。具体的には\nリードの選別、サービスチケットのルーティング、ナーチャリングシーケンスの調整、パイプラインデータの更新\nなどを自律的に行います。\n\nまた、単なるルールベースの自動化とも異なります。\nAgentic CRMは、人間の承認を各ステップで必要とせずに、多段階のワークフローを計画・実行・適応させる自律的なAIエージェントが利用するCRMシステムであり、エージェントは事前に設定されたガードレール内で行動し、必要な場合は人間にエスカレーションします\n。\nこれはルールベースのCRM自動化（例：リードスコアが閾値を超えたら定型メールを送信）とは大きく異なり、エージェント型システムは文脈を解釈するため、単に条件を出力にマッチさせるだけではなく、顧客データを推論し、状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整します\n。\n\nマーケティング・サービス領域での例としては、\nURLやブリーフ、商品リスト、自由な着想からブランドガイドラインの範囲内でオンブランドのフォームやキャンペーン、フローを含むマーケティング戦略を作成するAIマーケティングエージェントや、Web チャット・SMS・メール・WhatsAppを横断して質問対応・注文追跡・返品処理・商品推奨を行うカスタマーサービスエージェントが、店舗情報やポリシーを学習した上で24時間体制で正確かつオンブランドな応答を提供する\nといった機能があります。\n\n代表的なプラットフォームとしては、\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどがすでに市場を再定義しつつあるagentic CRMの主要ソリューション\nとして挙げられます。\n\n## 導入・設計を支援する会社\n\n### 海外・グローバル系\n- **Salesforce（Agentforce）**：自社CRM内にエージェント機能を統合\n- **CRMIT**：\nSalesforceコンサルティングパートナーとして、agentic AIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供\n\n- **RSM US**：\nAIアドバイザーが組織内でAIエージェントが最も価値を発揮できる領域を特定し、agentic AI開発・展開のための包括的な戦略を策定する支援を行う\n\n- **Kanerika**：\n既存のERP・CRM・クラウドプラットフォームに直接エージェントを接続し、並行システムを管理・維持する必要がない設計\nを強みとする\n- **Inogic**（Microsoft Dynamics 365向け）：\n自律システムの構築はDIYプロジェクトではなく、テクノ機能コンサルティングへの深い理解と1,000件以上の導入実績が必要\nとしている\n\n### 日本国内\n- **Salesforce公式パートナー各社**（クロスコム、メンバーズ サースプラスカンパニーなど）：\nAgentforce導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバーし、Slack・Teams・Salesforce等との連携や社内ナレッジ統合、セキュリティ・ガバナンス整備まで対応\n\n- **一般的なCRMコンサルティング会社**：\n企業の「データ」「マーケティング」「システム」に関する専門知識を融合し、客観的かつ多角的な視点からCRM施策の立案・実行を担うパートナー\nとして、電通デジタルやグラビス・アーキテクツなどの会社がCRM導入・活用の全般的な支援を行っています\n\n## 選定のポイント\n\n導入を検討する際は、\n2026年時点でAIエージェント（HubSpotのBreeze AgentsやSalesforceのAgentforceなど）を含むCRM構築を行う場合、ユーザー権限と同様にエージェントの権限設計も構築フェーズでスコープに含める必要がある\n点に注意が必要です。また会社選定の際は\nClutchやG2、GoodFirmsなどの第三者レビューサイトを確認し、レビューの新しさや、移行・統合・納期遵守など具体的な成果物が語られているか、批判的なレビューへの対応状況を見る\nことが推奨されています。\n\nもし特定の業界（製造業・小売・金融など）や既存で使用中のCRM（Salesforce、HubSpot、Dynamics 365など）が決まっていれば、それに応じたより具体的な支援会社を絞り込むこともできますので、教えていただければさらに詳しくお調べします。",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.crmit.com/",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.aspicjapan.org/asu/article/89215",
+    "https://integrateiq.com/blogs/crm-consulting-services-companies/"
+  ],
+  "error": null
+}
