@@ -1,0 +1,21 @@
+{
+  "date": "2026-07-31",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-07-30T23:09:21.318258Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず中立的な立場でCRMの設計支援を求める場合、以下のような会社が選択肢として考えられます。これらの企業は、CRMの戦略策定からシステム選定、導入、運用までを一貫して支援し、貴社のビジネスに最適なソリューションを中立的な視点から提案することに強みを持っています。\n\n**中立的なCRM設計支援に強みを持つ企業**\n\n*   **ストラ株式会社**\n    CRM/SFA領域において、Salesforce、HubSpot、Zohoなど複数のクラウドCRM・SFAツールを比較検討し、特定のベンダーに偏らない最適な構成を提案します。要件定義から設計・構築、導入後の運用定着まで一貫してサポートしてくれるため、現場で実際に使われるCRM環境の構築を期待できます。\n\n*   **ECマーケティング株式会社**\n    ECサイトやマーケティングサイトに特化したWebコンサルティング会社で、中小・中堅規模から大手企業まで対応しています。CRMツールベンダーと紐づかないコンサルティングに注力しており、CPOやリピート率、LTVなどの主要KPIに基づいた改善策の提示、PDCAサイクルのサポートを提供しています。\n\n*   **株式会社ripla**\n    業務設計からシステム構築・運用まで一気通貫で支援するDX/開発支援会社です。CRM開発においては、既存のERPや販売管理、マーケティング基盤との全体最適設計を行い、顧客データの統合・分析・活用による業務革新まで支援します。「標準CRMパッケージでは不足する要件がある」「自社特有の業務プロセスを反映したCRMが必要」という中堅～大企業におすすめです。\n\n*   **株式会社GeNEE**\n    業務系システムの企画・設計・開発を手がけるITベンダーで、CRMやSFAを含む顧客・営業管理系システムの構築実績が豊富です。CRM単体の開発だけでなく、営業支援、案件管理、商談管理、MA連携など多機能領域の統合設計に対応できます。要件定義から運用設計まで一貫して支援し、現場が使い続けられるCRM基盤を構築します。\n\n*   **StockSun株式会社**\n    日本トップクラスのCRMに関する専門家が、最適なツールを提案し、不要な固定費がかからないよう配慮しながら支援します。LTV（顧客生涯価値）の最大化を重視したCRM戦略の策定から運用代行まで対応しており、企業の現状分析に基づいた経営戦略の立案が可能です。\n\n*   **船井総合研究所**\n    CRMシステム導入支援コンサルティングを提供しており、システムや業務の全体像を可視化、整理しながら進めることで、業務プロセスや顧客接点の改善を支援します。ビジネスの変革に合わせて機能を柔軟に変更できる拡張性の高いCRMプラットフォーム選定の重要性を強調しており、マーケティングツールやBIツールとの連携も考慮した比較検討をサポートします。\n\n*   **レイヤーズ・コンサルティング**\n    CX戦略・CRM構築のコンサルティングサービスを提供しており、顧客接点のデジタル化を通じたCX戦略・CRM実践のため、具体化から導入、改善効果の検証、モニタリングまでを支援します。\n\n*   **株式会社Hakuhodo DY ONE**\n    CRMコンサルティングサービスを提供しており、顧客との良好な関係を築き、顧客ロイヤルティを高めるための最適なCRM戦略を、策定から実行まで一貫して支援しています。\n\nこれらの企業は、CRMの導入や活用において、特定のツールに縛られずに貴社の事業課題や目標に合わせた最適な設計を支援してくれるでしょう。コンサルティング会社を選ぶ際には、CRMツール自体とコンサルティングの両方に強みがあるか、調査・分析だけでなく改善施策を具体的に提案できるか、業界での実績があるかなどを確認することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGkMsAQV4-mPu5867SsapQFFvv7wVoQpRb3GSO71P_C6uGOnRhTjwoCWnAQUv376dJGXyiqycqKgb7TYW1pWS4FF3yw1cVlPLC3j6cZ2EPwhbvv3QKifjJMHPPKiRbjOSSYUr3RRoQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8QxHbq-xcy0mg0E0xha4Kn7JevSbvWRfdCXNwB9BSdNOfCnElXKlaPS01PZQ4yjW-dmtnGRGKTaep1PHPnxcJHLaaYO4GexBiqjnjaIBPWUhp2jjXRr0rXUZx9d77doUhdFqVD0_IaIgZ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFN6op215DbTmKVo36gHA7IvO-ilIMRGB6MH037GHCyhj_eo6DJMXQXzphjMOXLqfM_6ixS8Xd_bzG_5ZUwVtPKucM5Mw8tNHCZo3-Svy1jk2uP1WAqxkFo2lbVDOWVeSIixiQMuvXpLbI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELanjCZYPurH2bwgCKs7jBPUR5GeFCAf9rN6fpAoHdM5ACgpdljmW96A7rZIqPUYLoA4HHatKFrNtpj821VZJ9Gb147v_TZ12fL32BRH7D8DgPrY9zBfcOq8tLVw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF35xj38bt5cGTlfhkoqtzCULGMDk1DxOTigxLhO-FfSUTB5iNZLxsI2ypWDZMBbjOTuQYG-EXeonXnrlXdBhCKhg4Q7wEYn40NtEltGEOp54fzfdT72aY24D81qYr7sh1aBnXo1OXlqa-Z56KYqXE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEMnzbysk52yHhzQMmatSffKQHiBDnmcD7-hL6xOBzKGHFfEfvPeL4miAcZtM6xLPTiFrXqAYUgPl6m84idpggidyMJLnkmbfOqpptHyLiy32Wy8Uv46EJvl6MmOdbx8QLgjO5M1ygoa4A=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFzTGAKDdYgg-GRy6SD8Q92GszXyVidXOMQ49xywl9omlo51FDnQBoVfjzclR17em-Baw4Tqxs9Em_cihACibg7jezUfULoHf6gkO9JkNgn0QWv5j1UTtX934EbKtSNGI3qH0kx6ng1UGmneXL4k8cM28Z_vSYdjQ0fpVHWdL9hJrIpI3l0"
+  ],
+  "error": null
+}

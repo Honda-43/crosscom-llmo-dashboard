@@ -1,0 +1,25 @@
+{
+  "date": "2026-07-31",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-07-30T23:08:29.262319Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出すための進め方について調べます。\n# Agentforceの導入費用相場と費用対効果を出すための進め方\n\n## 1. Agentforceの料金体系（3つのモデル）\n\nAgentforceは従来のSalesforce製品とは異なり、**消費量ベースの課金**が基本になっています。\nSalesforceは約18ヶ月で3つの異なる料金モデルを展開しており、当初は会話1件あたり2ドル、その後2025年5月にアクションあたり0.10ドルのFlex Credits、さらにデジタルレイバーとしてユーザーあたり月125ドルからのライセンスモデルが登場しました。\n\n\n**① 会話単位課金（Conversations）**\n\nAgentforceは座席単位や月額ではなく会話単位で課金され、2026年時点のリスト価格は会話1件あたり2ドルで、エンタープライズレベルではボリューム割引が交渉可能です。\nただし\n会話数課金は複雑さに関わらず一律2ドルで、事前購入のみ対応しています。\n\n\n**② Flex Credits（アクション単位課金）**\n\n標準アクション1件につき20クレジット（0.10ドル）、音声アクションは30クレジット（0.15ドル）で、クレジットは10万クレジットあたり500ドルで購入します。\n実際の会話コストは幅があり、\n1アクションあたり約0.10ドルで、一般的な顧客対応の会話は8〜15アクションを要するため、実質コストは会話あたり0.80〜1.50ドル程度になります。\n\n\n**③ 定額・ユーザーライセンス型**\n\n従量課金を気にせず使い放題にしたい場合は、Sales/Service/Field Serviceで月額125ドル（Industriesは150ドル）、Agentforce 1 Editionsは組織あたり年間250万Flex Credits込みで月額550ドルからのバンドルもあります。\n\n\nなお、\nFlex Creditsと会話数課金モデルは同一組織内で混在させることはできません。\n\n\n## 2. 見落とされがちな「隠れコスト」\n\nAgentforce単体の料金だけでは総費用を把握できません。\n\n- **Data Cloudが実質必須**：\nAgentforceはData Cloudがないと正しく機能せず、これはAgentforceのライセンス費用自体を上回ることが多い、見落とされがちなコストです。\n目安として\nData Cloud Plusが年間約6.5万ドル、Premiumが年間約17.5万ドルとなります。\n\n- **ベースとなるSalesforceエディション費用**、Einstein Requests消費なども別途発生します。\n- 米国の調査事例では\nData Cloud・実装・保守を含めた初年度の総所有コスト（TCO）は15万〜42.5万ドルの範囲になるとされています。\n\n\n## 3. 日本国内での導入支援費用の相場\n\n国内のSalesforce導入支援会社の料金体系を見ると、規模によって大きく変わります。\n\n- \nSalesforce導入支援・改修費用は、小規模で100万〜500万円、中規模で500万〜2,000万円が目安です。\n\n- Agentforce特化の支援サービスでは、\n依頼範囲によって幅がありますが、月額伴走型なら月額数十万円程度から、プロジェクト一括型なら数百万円規模からが目安で、これとは別にAgentforce本体のライセンス費用が発生します。\n\n- 大企業・基幹連携を伴う大規模案件では、\n導入支援費は1,000万円を超える場合が珍しくなく、プロジェクト期間も半年〜1年以上に及ぶケースが多い\n点にも注意が必要です。\n\n---\n\n## 4. 費用対効果（ROI）を出すための進め方\n\nAgentforce導入で成果を出すためのポイントは、技術検証よりも「価値の明確化」と「実現しやすさの評価」にあります。\n\n### ステップ1：現状分析とKPI設定\nまず\n現状業務のヒアリングと業務フロー分析を行い、導入目的・KPIを明確化した上で、リスク・課題の洗い出しとROIの試算を行います。\n\n\n### ステップ2：定量指標への落とし込み\n定性的な評価だけで終わらせないことが重要です。\n「議事録が楽になった」「検索が早くなった」といった現場の定性的な成果を、「売上xx%向上」や「何人月の工数削減」といった定量的な指標に変換することで、ROIが明確になり本番導入への道が開けます。\n\n\n### ステップ3：ユースケースの優先順位付け（適合性×難易度マトリクス）\n\nユースケースに対してSalesforce上での実装適合性と、実装に必要な工数・技術の難易度をマトリクスで評価し、効果が高くかつ実現しやすいAIエージェントから導入するアプローチ",
+  "cited_urls": [
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026",
+    "https://www.eesel.ai/blog/agentforce-pricing",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://note.com/ripla_business/n/n4992ae78c229",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://www.members-saasplus.com/agentforce",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

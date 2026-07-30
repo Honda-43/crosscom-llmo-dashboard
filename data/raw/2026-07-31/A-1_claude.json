@@ -1,0 +1,22 @@
+{
+  "date": "2026-07-31",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-07-30T23:06:56.276937Z",
+  "answer": "Agentforce(Salesforceの AI エージェントプラットフォーム)の導入支援を行っている会社についてお調べします。\n## Agentforce導入支援でおすすめの会社\n\n日本国内・海外それぞれで、Agentforce（Salesforceの自律型AIエージェントプラットフォーム）の導入支援を手掛ける企業をご紹介します。\n\n### 🇯🇵 日本国内の導入支援会社\n\n**1. 日立ソリューションズ**\n\n日立ソリューションズは、Salesforceのコンサルティングパートナーとして「導入・活用支援サービス for Agentforce」を提供しています。営業・サービス・マーケティング・コマースなど幅広い業務領域に対応し、長年の実績をもとに導入支援コンサルティングを手がけています\n。金融や医療など高セキュリティ業界への対応も強みです。\n\n**2. 富士ソフト**\n\n富士ソフトは、Agentforceの導入に向けたPoC（概念実証）支援を中心にサービスを組み立てています。ユースケースの整理や導入データの質のチェックから始め、要件定義、技術検証、効果測定、本番移行計画までを反復的に支援します\n。\nAgentforceの導入支援ソリューションを提供開始しており、価格は個別見積もりとなっています\n。\n\n**3. Uhuru（ウフル）**\n\nSalesforceのテクノロジーを活かした業務支援の現場に数多く携わってきた経験をもとに、Agentforceの導入・活用を実践的に支援。まずは「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供し、最短3カ月のスケジュールで導入を支援します\n。リリース後の継続支援も可能です。\n\n**4. 株式会社メンバーズ（サースプラスカンパニー）**\n現状業務ヒアリングから、\nユースケースのPoC（概念検証）、最適なAIエージェントの選定と導入計画立案、カスタムエージェントの設計・実装まで一貫して支援\nしています。\n\n**5. DCS（株式会社DTS系）**\n\nデータ分析・活用基盤の構築、マルチクラウド／ハイブリッドクラウド利活用、多様なシステムの横断的統合において豊富な実績を持ち、Salesforce単体導入に留まらず社内システムのデータ統合も含めた一気通貫の支援\nが特徴です。\n\n**6. enucolor（エヌカラー）**\n\n初期導入前コンサルティングからAgentforce構築（PoC支援）、活用及び改善サポートまで、Agentforce for Service/Marketing/Salesに対応したオーダーメイド支援\nを提供しています。\n\n---\n\n### 🌍 グローバルの導入支援会社（外資系企業向け）\n\n- **VRP Consulting**：\nAgentforce 360のコンサルティング・導入・統合サービスに特化したSalesforceの受賞歴あるパートナー\n\n- **Cognizant**：\nグローバルなSalesforceおよびAI専門家チームを抱え、サービス・収益自動化における実績豊富\n\n- **Deloitte / Infosys**：大手グローバルSIerとして大規模エンタープライズ向けの実装に強み\n\n---\n\n### 選び方のポイント\n\n導入支援会社を選ぶ際は以下の観点で比較するとよいでしょう：\n\n1. **Salesforce認定パートナーの階級**（Summit/Platinumなど上位ほど実績豊富）\n2. **業界特化の実績**（金融・医療など自社業界での導入経験）\n3. **PoCからの段階的支援の有無**（いきなり本番導入ではなくスモールスタート可能か）\n4. **リリース後の運用・定着支援体制**\n\nもし業界（製造業・金融・小売など）や導入予算感、優先したいユースケース（営業支援・カスタマーサービスなど）が決まっていれば、より絞り込んだご提案も可能です。",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.members-saasplus.com/agentforce",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://vrpconsulting.com/solutions/agentforce/",
+    "https://crm.folio3.com/blog/salesforce-agentforce-consulting-partners/"
+  ],
+  "error": null
+}
