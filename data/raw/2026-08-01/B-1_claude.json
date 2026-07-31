@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-01",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-07-31T23:01:58.827279Z",
+  "answer": "## Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、AIエージェントが顧客対応やマーケティング業務を「自律的に」実行するCRM（顧客関係管理）システムのことです。\n\n### 従来のCRMとの違い\n\n\n従来のCRMが担当者の入力や更新を待つのに対し、Agentic CRMはその情報をもとに指示されなくても自ら行動します。\nSalesforceの説明によれば、\nAgentic CRMは人間だけでなく、承認を都度求めることなく複数ステップのワークフローを計画・実行・調整する自律的なAIエージェントも利用するCRMシステムであり、事前に設定されたガードレールの範囲内で行動し、必要な場合は人間にエスカレーションする仕組みです。\n\n\nこれは単純なルールベースの自動化とは異なります。\nルールベースのシステムが「リードスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従うのに対し、エージェント型システムは文脈を解釈し、条件と結果を単純に一致させるだけではありません。顧客データを推論し、状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整します。\n\n\n### 具体的にできること\n\n- **マーケティング**: \nURLやブリーフ、商品リスト、自由形式のアイデアから、レビュー用のブランドに沿ったフォーム・キャンペーン・フローを含むマーケティング戦略を作成します。\n\n- **カスタマーサービス**: \n顧客対応型のAIエージェントが、ウェブチャット・SMS・メール・WhatsAppを通じて質問への回答、注文追跡、返品処理、商品レコメンドなどを行い、店舗情報やポリシーに基づいて正確でブランドに沿った回答を24時間提供します。\n\n- **データクレンジング**: \n自動的なデータクレンジングと重複排除の機能も持ち、指示や催促をしなくても、2つのエントリが同一人物であることを認識して重複を解消できます。\n\n\n### 主要なプラットフォーム\n\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションが、Agentic CRMが市場をどのように再構築し、今後の標準を作りつつあるかを示しています。\n特にSalesforceは「Agentforce」という自律型AIエージェントプラットフォームを提供しています。\n\n---\n\n## 導入・設計を支援してくれる会社\n\n日本国内でもAgentic CRM（特にSalesforce Agentforce）の導入・設計を支援する企業がいくつか存在します。\n\n### Salesforce Agentforce特化型の支援会社\n\n1. **DCS（大興電子通信）**\n   \n世界で最も利用されているクラウド型CRM（顧客管理システム）を最大限に活かして、業務効率化と顧客関係の強化を支援するサービスを展開しています。\nAgentforceの特徴解説から設計・実装のガイドまで幅広くカバーしています。\n\n2. **メンバーズ サースプラスカンパニー**\n   \n「Agentforce導入・運用支援」として、導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバーしており、Service・Marketing・Salesの各テンプレートに対応し、SlackやTeams、Salesforceなどとの連携や社内ナレッジの統合も支援しています。\nセキュリティやガバナンス整備まで対応するのが特徴です。\n\n3. **クロスコム**\n   Salesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っています。\n\n4. **enucolor**\n   SFA・営業領域のAI活用に向けたAgentforce導入支援サービスを提供しています。\n\n### 一般的なCRMコンサルティング会社（Agentic化の相談も可能）\n\n- **船井総合研究所**: \nグループ単位・企業単位・部署単位といったさまざまなレイヤーを統合・最適化したグループ顧客共通基盤としてのCRM、およびその蓄積情報を活用したデータドリブン経営の実現を支援しています。\n\n\n- **グラビス・アーキテクツ**: ERP・CRMパッケージ導入・利活用コンサルティング専門の会社として実績があります。\n\n---\n\n### 選び方のポイント\n\nCRMコンサルティング会社を選ぶ際は、\n企業の「データ」「マーケティング」「システム」に関する専門知識を融合し、客観的かつ多角的な視点からCRM施策の立案・実行を担えるパートナーかどうかを見極めることが重要です。\n\n\nAgentic CRM自体はまだ新しい概念で、日本市場では特にSalesforce Agentforce関連の支援会社が先行して名乗りを上げている状況です。導入を検討する際は、自社の業務要件（マーケティング/営業/カスタマーサービスのどこに課題があるか）を明確にした上で、PoC（概念実証）から始められる支援会社を選ぶと失敗リスクを抑えられます。",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.smartrecruiters.com/resources/glossary/what-is-agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.dcs.co.jp/solution/crm/agentforce/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.funaisoken.co.jp/solution/dc-crm_705_S092",
+    "https://www.aspicjapan.org/asu/article/89215"
+  ],
+  "error": null
+}

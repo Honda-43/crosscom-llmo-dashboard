@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-01",
+  "prompt_id": "A-2",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか",
+  "cep": "導入後の定着課題",
+  "timestamp": "2026-07-31T22:59:55.269035Z",
+  "answer": "「Agentforce」の導入後の定着や活用に課題を感じていらっしゃるのですね。AgentforceはSalesforceが提供する自律型AIエージェントのプラットフォームであるため、Salesforce製品の導入支援実績が豊富なコンサルティング会社が、Agentforceの定着支援や活用支援も手掛けているケースが多いようです。\n\nAgentforceの定着支援や活用支援を提供しているコンサルティング会社やサービスには、以下のようなものがあります。\n\n*   **メンバーズ**：Agentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援までを伴走しながら支援しています。特にSalesforceを熟知したプロフェッショナルが多数在籍していることを強みとしています。\n*   **株式会社enucolor**：Agentforce導入支援において、初期導入コンサルティング、導入構築、活用および改善サポート、AIトレーニングといった流れで支援を提供しています。\n*   **バーチャレクス・コンサルティング**：Agentforceの導入・活用を支援する新サービスを提供しており、「初期導入プラン」「伴走支援プラン」「構想策定支援プラン」の3つのプランで、企業のAIトランスフォーメーション（AX）およびデジタルトランスフォーメーション（DX）推進を支援しています。\n*   **日立ソリューションズ**：Agentforceを含むSalesforce製品の導入・活用支援サービスを提供しており、Salesforceのコンサルティングパートナーとして、顧客に合わせた導入支援コンサルティングを行っています。\n*   **三菱総研DCS**：Agentforce導入・活用支援サービスを提供しており、Agentforceを中核としたデータ統合型導入支援や、金融分野で培ったセキュリティと信頼性を強みとしています。\n*   **合同会社クロスコム**：Agentforceの導入・定着支援を行っており、カスタマーサクセスチームが伴走支援し、利用状況と出力品質を継続的にモニタリングしながら活用定着までサポートします。\n*   **株式会社セラクCCC**：Salesforceの定着・活用支援を提供しており、Agentforceの定着・活用、改善、運用、導入を人材常駐・リモートで支援しています。\n\nこれらの企業は、Agentforceの導入だけでなく、その後の現場での利用促進、業務への組み込み、効果の最大化、内製化支援、社員育成など、多岐にわたる支援を提供しています。\n\nまた、特定のシステムに限定せず、一般的なシステム導入における定着化支援や活用支援を行うコンサルティングサービスもあります。\n\n*   **SCSKサービスウェア**：システム定着化サービス「PrimeDesk®」を提供しており、マニュアル作成、教育、問い合わせ対応、利用者からの不満・要望の吸い上げと改善提案などを通じて、システム導入効果の早期最大化を支援しています。\n*   **マネーフォワード クラウド (株式会社マネーフォワード)**：システム導入支援コンサルティングとして、計画策定から要件定義、ベンダー選定、データ移行、運用定着までを支援する専門サービスを提供しています。\n*   **ソルラボ**：システム導入＆定着サポートを提供しており、現場の言葉で、現場のペースで、着実にシステムを浸透させ、継続的に使われ、改善されるシステムとなるよう支援しています。\n*   **株式会社トランスアクト**：ITサービスマネジメント導入支援として、ITILなどの国際ベストプラクティスをベースに、組織の現場に即したITサービスマネジメントの導入・定着を支援しています。\n*   **SEIFA**：ITツール導入サポートとして、ツールの選定から初期設定、社内定着のための運用支援まで一貫して伴走しています。\n*   **ビジネスブレイン太田昭和**：システム導入支援（受入テスト支援・移行支援）を提供しており、新業務の最終具体化や受入テストの実施、新システムへの移行データ作成など、システム構築後の定着化に向けた支援も行っています。\n*   **中央システム**：Salesforceの定着化支援サービスを提供しており、導入後も社内に定着し有効活用されるまで伴走支援することを掲げています。\n*   **辻・本郷 ITコンサルティング**：システムの初期導入支援の一環として、システム運用定着のための社内説明会サポートやマニュアル提供などを行っています。\n\nこれらの情報を参考に、貴社の状況やAgentforceの具体的な課題、求める支援内容に応じて、最適なコンサルティング会社にご相談されることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGowsiBwd_dXalJNn6vjySJsild08xxpI50eZDcfEEeKQ2jiQGMB5m28k-O8x0HNM5Pst8ve9p2NKmMSM1kmVOy2y73ZDDMHiJtW1cgAj9_hMj1LgUDLp85w8wj-8MlFLjrCV5YHI6HzozBCFG8CKhmOg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGX9---5KcSVzqsrMX-8UZ8bdJiyNPaPXdqtRAFp0CWkOf7tJS5DTygmz9rtHOBquPiMtkiLHCuwOxg6_drr1c4Cj-cdtNw7AZSbOPexzom9bQ_P8sLpGaXYLBADFTX",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGDZZQilmKDjzi9v1Ejwp8UjrogHwsmJ9-dQALzMJIXyUVEk-StjHpkPl4GGm1L4anAQqXr4lXcWpK8xSQmVNVc98OqZvkTYRbVSZL9VXITKMtbwOny5uMe7lRaJvub739snUKYHxQw",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHSBbz4JJpnuOF4qxlqDNbkWWdjSr8chAqvjmwVhnA7Zv6Vfkk-xNUMePRkbD_xUFi0lE93-BeTKP7sEp_NQLCgrknjfQQfWSu7pQQ4HwOWJSlK1x6neDVMg0MY24ymOX4vTZ3ggyUWefdv24Tgd7Pb_6OsohtNP0NU5ps6Muc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEqrl_uY9q8FVF_a1UfT4mZuanCD8xJcT4GunqUscSff0MXRI5cM6hoMzJjASwO5Qm8Yp0hRyAVYWxV30b0v-06ZvmnwTSe-mgasryWnLJza09oKJZ34iJm8DvmGIzSPgk-RkbHEN1Ur66iLdamL2k76-qyMzapic2Ziuikn14=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG4fAFwg_vQDEByQ-Z_JjG518Jpb374ZEd2MgDfXMgiqFx0dmCbB8nfZ0J7t_pCixjmwsot70pHTg_8CS-J4QdQqQn0PcHUgcSWJ-6i10BswaDMezthn9OuPsV6ypadTS8pfGm8AF58Pm0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEOf_HQP5bsp4tX9PjL1nXuIHRQcpzo1KXCF5W3UFNR21SrwakvWp5dETdmop5psWJp_oNl6i9NVMo1TDb_gPLWPToOLmBwuOOGWNLtgMBBDWxhtezsTjlrErALod-CuqkhbLPE3L7WekLevg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHh4vOOwiW5z53iBljbhWloBWd1YU0a4RoGra7YS-V91zl4dd7xK4T5rSYf_VUMvXtTA8eMQVzJC3KnLTESQ0jtddAK_xZmS-CTqZrADBOB2fQDG0ecK7848k0iXQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFCGhs3fFXv4djP3-C5FtAuusGzBr7D3-sDJJFh7TKVXfRkKks_6juHPiF1Dr0POv9gKGnCzrjT5GVFvMJBTy7pIrfcIwzcK6I828K1mzfB4dndnCZ3Ch2kr5LDN8texWgvFa0hZPJl_E7Tfg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFNWPaibRztDSw_dmXzVXbPn41kqBUefPzD_xQMlbIeLwuFUecOtSXnHCjVI3VDQbvrNp7XPF_SKFPcxUQRydfQwwPg3wNUCy4y9H3-IZJnPwbFJKewuPLy0AgBunnza8EqNpx0YoyDw3kgVouxJ1C3ivRRxEs3gJ4tA3sJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqBuf99voogEBR_mYCOEgjzlAnN3F3ru4rIP9AZ8vJQNtss74xM7cJFUJmxLJ3x-lZeJ2qTEfjoD3P_KAvz0u19a9_p5ABE9snC-Za1LGwsmf6bhnGHxjGmQkUFeahx_dq_DpPnIsXBq87cWqrbhNTy-h36w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHv1tiT3Vw1IrI9eioTrXd8P3ZTePsVKKtiSbVwxDmKSEePZHVrL2ybhHGRzQLRX2airyTwjrZFTMkO-8M8bD-47TnDukmtRH8bvaubWcE6_bTSGGSqA-5A_5NHqbIACM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEFBeIOxTfWKWI3EKkAr--ddLpqKdPUlr0Cq4SGT_CPnBT727PRUi79pBzoiZC2D6SZHGhm5Z9vvnRIilXlr5H_Q1bFyqLqAJLHtcahDeMHSzB7qsRN6Ft5",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEx80hxeLi297gFANm5yZTeKAe9StMeH4YKh4YFy_eejPw4lTvEhdWAyx3A89e_sou2qcj0IOxa5Vf75YrKm5HZcz4qzduztSW91bndwfAkinvEPrAcmI_-OQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFm3CYTSpstFaV65u6fy7zZakX2CdDv2gUemeci8_QNOdd5meC-V97SAQw3slHVku4eUxMXkQX5w7utQrNX45MXdLeGrAb77Y_SbQoCJBu64dw2f1lTok4J6OSUF8O1YqVWniahZAMaP4XN83HebnVz5g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJlsNGypLmcyQ2Vla6OCMQLNcnexSiuQSYYnO-KWHUeVcyPdOzHtnfoKl4wf0SrvPZzBDg_73ptLyIIZZ3aR3EqPzYOk6oa3g485JV--ZxqCr4eGWKZiVPheGfLeLny35Kxt52rCO1gfSw8Gj0a1rV7E8smlG_YjbkHjXZNqMCQKUHpcZ06JHf27930GJR",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFincu7EZfdXLrZMHd1uNb4Mbi9fsbss54qGi5PiBmMM3p-KtsuiUcQ1LmUIJMHgBaFEsWbwUakILLFUsW3gQeQjEx7c2WvbH8fZCnUlOPUIeGnRR2_qFbsYZFYp8pNe1wxziKqDBVc0do8lt8suBFdNOv9FVa96PJNDB8jamdzQA=="
+  ],
+  "error": null
+}
