@@ -1,0 +1,20 @@
+{
+  "date": "2026-08-02",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-01T22:57:18.867746Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず、中立的な立場でCRMの設計を支援してくれる会社をお探しとのこと、以下の企業が有力な選択肢となります。これらの企業は、複数のCRMツールを比較検討し、貴社の業務や組織体制に最適な提案を行うことを強みとしています。\n\n**中立的な立場でCRM設計を支援する企業**\n\n*   **ストラ株式会社**\n    ストラ株式会社は、特定のベンダーに依存せず、Salesforce、HubSpot、Zohoなど複数のCRMツールを比較検討した上で、貴社の業務や組織体制に適した構成を設計することを強みとしています。ツール選定から要件定義、設計・初期構築、導入後の運用定着までを一貫してサポートします。営業フローや業種特性に応じた項目設計、画面レイアウト、ワークフロー設定を通じて、現場で使われるCRM環境の構築に尽力しています。\n\n*   **ECマーケティング株式会社**\n    ECマーケティング株式会社は、ECサイトやマーケティングサイトに特化したWebコンサルティング会社です。中小・中堅規模のEC/通販企業から大手企業まで、社内の状況に合わせたサービスを提供しています。CRMツールベンダーに縛られないコンサルティングを提供しており、CRM施策において重要なKPIの算出方法の提示や、LTV改善の具体的な施策、PDCAを回す業務まで社内の一員となってサポートしてくれます。\n\n*   **株式会社ripla**\n    株式会社riplaは、業務設計からシステム構築・運用まで一気通貫で支援するDX/開発支援会社です。CRM開発においては、既存のERPや販売管理、マーケティング基盤との全体最適設計を行い、顧客データの統合・分析・活用による業務革新まで支援します。標準CRMパッケージでは不足する要件がある場合や、自社特有の業務プロセスを反映したCRMが必要な中堅～大企業に適しています。\n\n*   **株式会社GeNEE**\n    株式会社GeNEEは、業務系システムの企画・設計・開発を手がけるITベンダーで、CRMやSFAを含む顧客・営業管理系システムの構築実績が豊富です。CRM単体の開発だけでなく、営業支援、案件管理、商談管理、MA連携など、多機能領域の統合設計に対応できます。要件定義から運用設計まで一貫して支援し、現場が使い続けられるCRM基盤を構築します。\n\n*   **アーカス・ジャパン株式会社**\n    アーカス・ジャパン株式会社は、CRMの専門的な開発・設計に強いITコンサルティング企業です。Dynamics 365などの大手CRM基盤のカスタマイズや、業務特有の営業/顧客管理要件に合わせた設計・実装を得意としています。CRMをゼロから開発したいケースにも対応可能で、中堅・中小企業向けに「EMOROCO CRM Lite」も提供しています。\n\n*   **株式会社LIG**\n    株式会社LIGは、ノーコードツールを活用した低コストでカスタマイズしやすいシステムの開発や、Web制作事業で培った豊富なUI/UXデザインの知見を強みとしています。ベテランのPMが戦略などの上流工程から支援し、CRMパッケージとフルスクラッチを組み合わせた開発実績も持ち合わせています。\n\n**コンサルティング会社選定のポイント**\nCRMコンサルティング会社を選定する際には、以下の点に注目することをおすすめします。\n*   **ベンダー中立性:** 特定のツールに偏らず、貴社の課題や目標に最適なソリューションを提案してくれるか。\n*   **支援範囲:** 貴社が求める支援範囲（戦略立案、要件定義、ツール選定、導入支援、運用定着、既存システムとの連携など）をカバーしているか。\n*   **実績:** 中堅企業へのCRM導入支援の実績が豊富であるか。\n*   **費用:** 提供されるサービスの範囲や契約期間、企業の規模によって費用は大きく異なります。初期調査や戦略立案に数十万円から数百万円、システム導入やカスタマイズを含めるとさらに費用が増加する傾向があります。中小企業向けには月額契約で数十万円規模のプランも存在します。\n\nこれらの情報を参考に、貴社に最適なCRM設計支援会社を見つけてください。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFV5JS0_DsLdMHXMOWe8FQopClHBBHDS13NS-w9jp0_PVtmQtQyaQ138--XDT87u9hi9eJ1jx73D-QQ_SuRzwJM-ehG6iMrQ4CjNH5mddTWQzXPJo4bQRKaCQr8vAl26V0NORqragL4",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEP7Vi0uDtzfXxhpNeIxAuG8D4NM3wO51F075vwuQgsqif87TVB8MA15Zg_k-oq5DFVXfInoz1SA588Hj_EZqQCXGUPztHXGuui1rkdPk6TovYADioZsEdBLYRSr5O24Hw_8IJIC9ASktF5HQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0BdvrSDGqDWKfa80kuvyDS73ownVqUoXYlRJ15x-KWOVJDHZPK4wrRwbWj5Rh5mFrGQVEqXWTy3XSMwEGUfuG7BCUwdJqUr9m4ac-kRhzU2YzAwI30JFW_oBQ-uQ_xZUy-Jiv_la-KFwc",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFUfgU7qGzovLx15SbRPRSB-5qRi07oy-DKd967cFOev40M6AbJlkk7SjcLK4H_5R7D2f68lH3vDyJyR8-cyDpiWSUm5rg6-ZxTu1pxfdp7mKdkBQjn2A1mjovq",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHOuPwIBPUFsxXXszz-yiBFBTB9a_28RK51dGY6IauhOnT_EDK_j4RsTTaQBimDzGrAIc6shQ6-PgCVNnH0fqSDxNF3xVCgY1k1CHnDlEJ0uHcFu4YtCHdd0zWDmR_VfK3w1Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEiZMpcXLDCB9Y4TR7Chiu7yhZt25LV6ihDuCTiwLE0iTjGajGs3sBSgNbXXIUYq6lvqmT05F6crEkbOR1Uk0DvqLicPcty3YyRmZnp18dwzC1WRq2YOJsMtkEZeQwRetKZJXt5vQ=="
+  ],
+  "error": null
+}

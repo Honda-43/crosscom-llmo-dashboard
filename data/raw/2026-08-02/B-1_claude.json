@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-02",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-01T22:57:07.959220Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、**AIエージェントが自律的に判断・行動する能力を組み込んだ次世代のCRM（顧客関係管理システム）**のことです。\n\n## 従来のCRMとの違い\n\n\nAgentic CRMは、人間と自律的なAIエージェント、そしてそれらが稼働するプラットフォームが連携して顧客の成功を推進するCRMシステムです。\n従来型のCRMは\n担当者が通話履歴を記録したり、レコードを更新したりするのを待つのに対し、Agentic CRMは指示されなくてもその情報に基づいて行動します。\n\n\nSalesforceの定義によれば、\nAgentic CRMは、人間だけでなく、各ステップで人間の承認を必要とせずに多段階のワークフローを計画・実行・調整する自律的なAIエージェントも利用するCRMシステムであり、エージェントは事前に設定されたガードレールの範囲内で行動し、必要な場合には人間にエスカレーションできます。\n\n\nこれは単純なルールベースの自動化とは異なります。\nルールベースのシステムは「リードスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従うだけですが、エージェント型システムは文脈を解釈し、顧客データを推論して状況に応じた最適な行動を判断し、その後の結果に基づいてアプローチを調整します。\n\n\n## 具体的にできること\n\nKlaviyoの説明では、Agentic CRMの中核機能として以下が挙げられています。\n- **マーケティング領域**：\nURLやブリーフ、商品リスト、自由なアイデアから、ブランドに合ったフォームやキャンペーン、フローを含むマーケティング戦略を作成し、設定したブランドガイドラインとコンテンツガードレールの範囲内でレビュー用に提示する\n\n- **カスタマーサービス領域**：\nWebチャット・SMS・メール・WhatsAppを横断して質問への回答、注文追跡、返品処理、商品レコメンドを行い、ストアの方針に基づいて正確でブランドに沿った対応を24時間体制で提供する\n\n- **顧客プロファイルの統合**：\n閲覧行動・購買履歴・サポート履歴・チャネル選好を1つのプロファイルに集約し、人間チームとAIエージェント双方に文脈を提供する\n\n\nCreatioの解説では、\nCreatio、Salesforce、Microsoft、HubSpot、Zohoといった主要ソリューションが、Agentic CRMが市場を再構築し将来の標準を築きつつある様子を示しています。\n\n\n---\n\n# 導入・設計を支援してくれる会社\n\n## 海外・グローバル系\n\n- **CRMIT**：\nSalesforceの信頼されたコンサルティングパートナーとして、Agentic AIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供し、企業がデータをリアルタイムの意思決定に変換して測定可能な事業成果を出すことを支援しています。\n\n- **RSM US**：\nAIアドバイザーが、AIエージェントが最も価値をもたらせる領域を特定し、Agentic AIの開発・展開に関する包括的な戦略策定を支援します。\n\n- **Kanerika**：\n戦略・アーキテクチャ・開発・統合・運用までを一つの契約モデルで一貫して担い、第三者への引き継ぎなしに対応するほか、Microsoft認定Solutions PartnerとしてAzure AIやCopilot Studio上でガバナンスを組み込んだAgentic AIソリューションを構築しています。\n\n- **Inogic**：Microsoft Dynamics 365向けに、\nAzure AIコンサルティングを提供し、自律システムの構築には技術・業務双方に精通したコンサルティングと1,000件以上の実績が必要だとして、Dynamics 365ユーザー向けにAzure OpenAIの活用を支援しています。\n\n\n## 日本国内\n\n日本では「Agentic CRM」単体よりも、Salesforceの「Agentforce」導入支援や、CRM/SFA/MA全般のコンサルティングという形で提供されている会社が多いです。\n\n- **メンバーズ サースプラスカンパニー**：\n「Agentforce導入・運用支援」として、導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバーし、Service・Marketing・Salesの各テンプレートに対応、Slack・Teams・Salesforceなどとの連携や社内ナレッジの統合、セキュリティ・ガバナンス整備まで対応しています。\n\n- **クロスコム**：\nSalesforce公式コンサルティングパートナーとしてソリューション営業に特化したAgentforce導入・定着支援を行っており、1ユースケース×3ヶ月のスモールスタートプランにも対応しています。\n\n- **enucolor**：\nSFA・営業領域のAI活用に向けたAgentforce導入支援サービスを提供しています",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.crmit.com/",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://cross-com.jp/agentforce-support-company/"
+  ],
+  "error": null
+}

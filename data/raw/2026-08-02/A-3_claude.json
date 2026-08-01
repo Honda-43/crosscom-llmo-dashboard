@@ -1,0 +1,26 @@
+{
+  "date": "2026-08-02",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-01T22:56:27.297233Z",
+  "answer": "Agentforceの導入費用と費用対効果を高める進め方について、最新情報を調べてご説明します。\n# Agentforceの導入費用相場\n\n## 1. 料金体系が複雑化している点に注意\n\nAgentforceは当初「1会話$2」というシンプルな料金でしたが、\nSalesforceはこの約18ヶ月で3つの異なる料金モデルを展開しています。最初は会話ごとに2ドル、次に2025年5月にアクションごとに0.10ドルのFlex Credits、そして現在は月額125ドル/ユーザーからのユーザーライセンス（\"デジタル労働力\"というコンセプト）です。\n\n\n現在、日本の公式サイトでも\nFlex Creditや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスから選択できる形になっており、AIをどのように、どの場面で導入するかに合わせて設計されたオプションが用意されています\n。\n\n### 主要な料金モデルの目安\n\n| モデル | 単価目安 |\n|---|---|\n| Conversations（会話課金） | \n会話内のアクション数に関わらず1会話あたり2ドル\n |\n| Flex Credits | \n標準アクション1回あたり20クレジット（約0.10ドル）、音声アクションは30クレジット（約0.15ドル）。クレジットは10万クレジット＝500ドルで購入\n |\n| ユーザーライセンス | \n2025年後半に登場した月額125ドル以上のユーザーライセンス（Agentic Enterprise License Agreement）\n |\n\n日本国内の目安としては\nAgentforceは「1会話あたり240円」というシンプルな料金体系を採用しており、本当に使った分だけ支払うことが可能\nとされています（為替や契約条件により変動）。\n\n## 2. 見落としがちな「隠れコスト」\n\n実際の総コストを試算する際は、以下の点に注意が必要です。\n\n- **Data Cloudが実質必須**：\nAgentforceの真のYear1コストはData Cloud必須サブスクリプション（年間10.8万ドル以上）、実装、を含むため大きく変動します。Agentforceは統合された顧客データのためにData Cloud上で稼働し、これはオプションではありません\n\n- **Salesforce本体のライセンス**：\nService Cloud（サービスクラウド）/Agentforce Service、Marketing Cloud（マーケティングクラウド）/Agentforce Marketing、Salesforce Platform（セールスフォースプラットフォーム）/Agentforce 360 Platformといった基盤製品が前提となります\n\n- **構築・チューニング費用**：\nAgentforceの利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要があります\n\n\n海外の試算では、中堅企業（500ユーザー規模）で\nAgentforce自体は年間1.5万〜5万ドル程度ですが、Data Cloud・実装・保守を含めた総所有コスト（TCO）は初年度で15万〜42.5万ドルに達するケース\nも報告されています。\n\n## 3. 費用対効果を出すための進め方\n\n複数の導入支援会社が共通して推奨しているのは、**「小さく始めて、定量的に効果測定し、段階的に広げる」**アプローチです。\n\n### ステップ1：ビジネス価値の明確化とユースケース選定\n最大のハードルは技術検証ではありません。\n「導入・活用支援サービス for Agentforce」では、導入検討フェーズにおける最大のハードルは、技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定だとされています\n。具体的には\nユースケースに対し、Salesforce上での実装が適しているか（適合性）、および実装にどの程度の工数・技術が必要か（難易度）をマトリクスで評価し、効果が高く、かつ実現しやすいAIエージェントから導入することが推奨されています\n。\n\n### ステップ2：データ整備\n\nAgentforceが自律的な能力を最大限に発揮するためには、Salesforce環境内のデータが正確で整理されていることが不可欠で、AIは入力されたデータに基づいて判断を下すため、データの品質がAIの出力品質に直接影響します\n。\n\n### ステップ3：小規模PoC（概念実証）の実施\n\nAgentforce導入の投資対効果を明確にするため、段階的なアプローチが推奨されます。まず小規模な業務領域で試験導入を行い、具体的な効果測定を実施した上で、段階的に適用範囲を拡大する方法が効果的です\n。実際、支援会社の中には\n1ユースケース×3ヶ月のスモールスタートプラ",
+  "cited_urls": [
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.e-sales.jp/eigyo-labo/salesforce-price-24280",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2",
+    "https://www.fsi.co.jp/Salesforce/column/column19.html",
+    "https://cross-com.jp/agentforce-support-company/"
+  ],
+  "error": null
+}
