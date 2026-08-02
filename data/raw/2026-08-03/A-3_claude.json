@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-03",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-02T22:58:05.745406Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出す進め方について、最新情報を調査してお答えします。\n# Agentforceの導入費用相場と費用対効果を出す進め方\n\n## 1. 料金体系（3つのモデルが並存）\n\nAgentforceは\nこの約18か月で3つの異なる料金モデルを展開しており、最初は会話単位の課金、次に2025年5月にアクション単位のFlex Credits、そして現在は月額125ドル/ユーザーからの「デジタル労働力」というユーザーライセンスモデルが並行して提供されています\n。\n\n**①会話課金モデル**\n\n会話数に応じた課金は1会話あたり定額2ドルで、Agentforceが2024年にローンチした際のモデルです\n。日本円では\n「1会話あたり240円」というシンプルな料金体系\nと紹介されています。\n\n**②Flex Credits（従量課金）**\n\nFlex Creditsは1アクションあたり0.10ドル（10万クレジットで500ドル）で課金される、現在Salesforceがデフォルトとして推奨している新しい使用量モデルです\n。\n複雑なワークフロー（多段階の推論、外部API呼び出し、データ検索を伴う）は1会話あたり20アクションを超えることもあり、実際の会話あたりコストは単純な問い合わせなら0.50ドル、複雑なやり取りなら2ドル以上になる場合があります\n。なお\n両モデルを同一組織内で併用することはできません\n。\n\n**③ユーザーライセンスモデル**\n\nAgentforceユーザーライセンスは月額5ドル/ユーザーで従業員アクセスを追加できますがFlex Creditsも消費します。定額アドオンなら月額125ドル/ユーザー（Sales・Service・Field Service）または業種別は150ドルで使い放題になり、Agentforce 1 Editionsは月額550ドル/ユーザーから、組織あたり年間250万Flex Creditsが含まれます\n。\n\n## 2. 実際の総コスト（TCO）の目安\n\n料金表の数字だけで判断すると失敗します。見落としがちな要素として：\n\n- **Data Cloud（Data 360）が事実上必須**：\nAgentforceは正常に機能するためにData Cloudを必要とし、これは買い手が見落としがちなコストで、Agentforceのライセンス費用自体を上回ることが多いです\n。\nData Cloud Plusは年間約6.5万ドル、Data Cloud Premiumは年間約17.5万ドルとなります\n。\n- **ベース基盤の費用も別枠**：\nAgentforceは自社のCRM上で動くため、土台となるSalesforce製品（Enterprise、Unlimited、Agentforce 1 Editionなど）のライセンス費用は別立てで発生します\n。\n- **中堅企業（500ユーザー規模）の年間目安**：\n中堅企業（500ユーザー）の場合Data Cloudコスト抜きで年間1.5万～5万ドル程度、Data Cloud・導入・保守を含めた総保有コストは初年度で15万～42.5万ドルに達します\n。\n- **日本企業の場合**：\nAgentforce単体のコストに加えSalesforce本体ライセンス費用（Enterprise Editionなら1ユーザーあたり月額数万円規模）との合算が総保有コスト（TCO）となり、「Agentforceだけ契約すれば動く」わけではない点に注意が必要です\n。また\nData Cloudの契約を見積もりに入れ忘れる会社が多い\nという指摘もあります。\n- **日本語対応の追加工数**：\n日本語の自然な会話精度は改善途上のため、日本語チューニングに英語圏より2〜4週間余分にかかると見積もっておくのが現実的です\n。\n\n## 3. 費用対効果を出すための進め方\n\n### ステップ1：ビジネス価値の明確化とユースケース選定\n\n導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定です\n。\nユースケースに対しSalesforce上での実装が適しているか（適合性）、実装にどの程度の工数・技術が必要か（難易度）をマトリクスで評価することで、「効果が高く、かつ実現しやすい」AIエージェントから導入することが可能になります\n。\n\n### ステップ2：スコープを絞ったスモールスタート\n\n「リードの資格確認」や「配送状況の回答」など、副作用が少なくデータが構造化されている領域からスモールスタートし、AIの挙動の癖を把握することが推奨されます",
+  "cited_urls": [
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://www.eesel.ai/blog/agentforce-pricing",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://aurant-technologies.com/blog/agentforce-implementation-strategy-failure-business-design-2700/"
+  ],
+  "error": null
+}

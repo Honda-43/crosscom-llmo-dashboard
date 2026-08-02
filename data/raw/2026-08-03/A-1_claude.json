@@ -1,0 +1,19 @@
+{
+  "date": "2026-08-03",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-02T22:56:46.211321Z",
+  "answer": "Agentforce(Salesforceの AI エージェントプラットフォーム)の導入支援を行っている会社について調べてみます。\nSalesforceの公式FDE（Forward Deployed Engineering）Partner Networkの国内パートナー企業について詳しく調べます。\n十分な情報が集まりました。Agentforceの導入支援会社について、公式な認定パートナーと専門支援会社の両面からまとめてご紹介します。\n\n## Agentforce導入支援でおすすめの会社\n\n### 🏆 Salesforce公式「FDE Partner Network」認定パートナー（最も信頼性が高い）\n\n2026年6月、Salesforceは\nセールスフォース・ジャパンは6月8日、国内パートナー9社と「Forward Deployed Engineering（FDE） Partner Network」を本格展開すると発表しました\n。このネットワークの特徴は、\n参加条件が企業規模や取引年数ではなく、Agentforceの実装経験と技術力が重視される点\nです。\n\n**国内初期パートナー9社**（\nアクセンチュア、NTTデータ、グローバルウェイ、テラスカイ、デロイト トーマツ、電通総研および電通デジタル、PwCコンサルティング、富士通、フレクト\n）\n\nこのネットワークの強みは、\nパートナーはSalesforceのエンジニアリング知見や今後のプロダクトロードマップへのアクセスが可能となり、高度なAI実装スキル習得やエコシステムへの参加が認められる\n点です。実際、\nグローバルでは、FDE Partner NetworkのパートナーがAgentforceによる成功実装の3分の1を担っています\n。\n\n**選ばれた理由**：\nセールスフォースは、日本企業のAIエージェント導入が多くの場合で試験にとどまり、業務での本格利用に至っていないと指摘。原因は、AIモデルの性能ではなく、複雑な既存の業務システムとのデータ統合や、ガバナンス体制の整備、業務プロセスへの組み込みなどの企業水準として実装ノウハウの不足にある\nとしており、これを解決するための厳選パートナー制度です。\n\n---\n\n### 💡 その他の専門支援会社（規模・用途別）\n\n**大手SIer系**\n- **日立ソリューションズ**：\nSalesforceのコンサルティングパートナーとして「導入・活用支援サービス for Agentforce」を提供\n\n\n**伴走型・中堅コンサル系**\n- **バーチャレクス・コンサルティング**：Agentforce導入・活用支援サービスを提供する認定パートナー\n- **メンバーズ サースプラスカンパニー**：\n「Agentforce導入・運用支援」として、導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニング\nまで一貫支援\n- **DCS（大興電子通信）**：\n業務内容や課題をヒアリングし、お客様に最適なAgentforceの設計・導入から、運用開始後の活用支援や現場での定着化まで伴走型でトータルサポート\n\n\n**特化型・スモールスタート向け**\n- **クロスコム**：\nソリューション営業に特化したAgentforce導入・定着支援\nを、1ユースケース×3ヶ月からのスモールスタートで提供\n- **enucolor**：\n初期導入前コンサルティング、Agentforce構築（PoC支援）、活用及び改善サポート\nまで対応\n\n---\n\n### 選び方のポイント\n\n1. **大規模・複雑な業務システム統合が必要** → FDE Partner Network認定企業（アクセンチュア、NTTデータ、富士通など）\n2. **特定業務領域（営業・カスタマーサポート等）に特化したスモールスタート** → クロスコムやenucolorなど特化系\n3. **伴走型で内製化まで見据えたい** → メンバーズやDCSなど\n\n貴社の規模・予算・目的（PoC検証か本番運用か等）によって最適な会社は異なりますので、まずは複数社に無料相談・比較見積もりを取ることをおすすめします。",
+  "cited_urls": [
+    "https://news.yahoo.co.jp/articles/53ae7db8bd913825e3d5f5e7201fd3e9c39aa74e",
+    "https://bizzine.jp/news/detail/13168",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}

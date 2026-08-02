@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-03",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-02T22:58:44.590517Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、AIエージェントが自律的にマーケティングやカスタマーサービスなどの業務を遂行する次世代の顧客関係管理システムです。\n\n## 従来のCRMとの違い\n\n\n従来のCRMが担当者による通話記録や情報更新を待つのに対し、Agentic CRMは指示されなくてもその情報をもとに自ら行動します。\nSalesforceの定義によれば、\nAgentic CRMは人間と自律型AIエージェントが利用するCRMシステムで、AIエージェントは各ステップで人間の承認を必要とせず、複数ステップにわたるワークフローを計画・実行・適応させ、あらかじめ設定されたガードレール内で行動しつつ、必要な場合は人間にエスカレーションします。\n\n\nこれはルールベースの自動化とは根本的に異なります。\nルールベースのシステムは「リードスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従うだけですが、エージェント型システムは文脈を解釈し、条件と結果を単純に一致させるのではなく、顧客データを推論して状況に応じた最適な行動を特定し、その後の結果に基づいてアプローチを調整します。\n\n\n## 主な機能例\n\nKlaviyoの説明では、\nマーケティング向けAIエージェントはURLやブリーフ、商品リストなどからマーケティング戦略・キャンペーン・フローを設計してレビュー用に提示し、カスタマーサービス向けAIエージェントはWebチャット・SMS・メール・WhatsAppなどを通じて質問対応、注文追跡、返品処理、商品推薦を行い、ストアの方針に基づいて24時間対応します。\n\n\nまた、Creatioの解説によれば、\nAgentic CRMではAIエージェントがソフトウェアに不可欠な要素として組み込まれ、CRMのオブジェクト・ワークフロー・関係性をネイティブに包括的に理解している必要があり、単に情報を保存したり定型ステップを自動化したりするだけの従来型CRMとは一線を画します。\n代表例として、\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションがAgentic CRMによって市場を再形成し、将来の標準を打ち立てつつあります。\n\n\n---\n\n# 導入・設計を支援してくれる会社\n\n## 海外・大手ベンダー系\n\n- **Salesforce（Agentforce）**：\nMCP（モデルコンテキストプロトコル）サーバーを使用してAIエージェントを外部データやツールと連携させ、AgentExchangeのマーケットプレイスを通じてパートナーエコシステムを活用できます。\n実際の導入は、\nパートナーが既存の技術エコシステムへの統合や、独自のリード管理ワークフローに合わせたAgentforceのカスタマイズなど、企業固有のビジネスプロセスに合わせた機能カスタマイズを提供します。\n\n\n- **CRMIT**：\nSalesforceの信頼できるコンサルティングパートナーとして、エージェンティックAIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供しています。\n\n\n- **Kanerika**：\nエージェントをERP・CRM・クラウドプラットフォームに直接接続し、戦略・アーキテクチャ・開発・統合・継続運用までを一つの契約モデルの中で、第三者実装者への引き継ぎなしに対応するエージェンティックAIコンサルティングを提供しています。\n\n\n- **Inogic**（Dynamics 365領域）：\n自律型システムの構築はDIYプロジェクトではなく、テクノファンクショナルコンサルティングへの深い理解と1,000件以上の導入実績が必要だとして、Azure OpenAIをDynamics 365ユーザーの日常業務に活かす支援を行っています。\n\n\n## 日本国内\n\n日本では特に「Salesforce Agentforce」の導入支援に特化した会社が増えています。\n\n- **国内のSalesforceコンサルティングパートナー**：\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼり\n、\nコンサルティングパートナーは要件整理から設計、現場トレーニング、導入後の改善までを一貫して任せられる中心的な区分です。\n\n\n- **株式会社メンバーズ サースプラスカンパニー**：\n「Agentforce導入・運用支援」として、導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバーし、Service・Marketing・Salesの各テンプレートに対応、SlackやTeams、Salesforceなどとの連携や社内ナレッジの統合も支援し、セキュリティやガバナンスの整備まで含めて対応するのが特徴です。\n\n\n- **クロスコム**：\nSalesforceとの組み合わせでAI活用を後押しするAgentforce導入支援サービスを提供する企業の一つです。",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.salesforce.com/jp/agentforce/",
+    "https://www.salesforce.com/jp/partners/",
+    "https://www.crmit.com/",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://cross-com.jp/agentforce-support-company/"
+  ],
+  "error": null
+}
