@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-05",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-04T23:04:48.419724Z",
+  "answer": "Agentforceの導入費用や進め方について、最新情報を調べてお答えします。\n# Agentforce導入費用の相場と費用対効果を出す進め方\n\n## 1. Agentforceの料金体系（3つのモデルが併存）\n\nSalesforceは短期間で複数の料金モデルを展開しており、\nSalesforceは約18か月の間に3つの異なる料金モデルを展開しており、最初は1会話あたり2ドル、その後2025年5月にアクションあたり0.10ドルのFlexクレジット、そして現在は「デジタル労働力」と位置付けた月額125ドルからのユーザー単位ライセンスがある\n状態です。\n\n日本の公式情報では、\nAgentforceは、Salesforceが展開するAIエージェント機能の総称で、従来のCRM機能を拡張して「自律型AIによる作業自動化・対話対応」を実現する製品で、基本製品の上に追加アドオンとして導入する形が一般的\nです。料金は\n1件当たりの対話は240円、「Flexクレジット」エディションでは60,000円/100,000クレジット\nという体系になっています。\n\nFlexクレジットの内訳としては、\nAgentforce アクションは20 Flexクレジット、Agentforce Voiceアクションは30 Flexクレジット\nを消費します。\n\n## 2. 実際にかかる総コスト（TCO）の目安\n\n**前提として、Agentforce単体では利用できません。**\n\nAgentforceの利用にはSalesforce Enterprise Edition（月額165ドル/ユーザー〜）またはUnlimited Edition（同330ドル〜）が必須で、これがAgentforce購入前に発生する重要なコスト\nとなります。\n\nさらに多くの実装で見落とされがちなのが**Data Cloud**の費用です。\nAgentforceは正しく機能するためにData Cloudを必要とし、これはバイヤーが見落としがちなコストで、しばしばAgentforceのライセンス費用自体を上回る\nことがあります。参考値として\nData Cloud Plusは年間約6.5万ドル、Data Cloud Premiumは年間約17.5万ドル\nという水準感が示されています。\n\n**規模別の目安（海外事例ベース）：**\n- 小規模（10名程度）：\n10人チームで初年度は約14万ドル。内訳はSalesforce Enterprise Edition（19,800ドル）、Agentforceアドオン（15,000ドル）、導入費（35,000ドル）、トレーニング（57,500ドル）で、2年目以降の年間経常費用は約5.5万ドルに減少\n\n- 中堅企業（500ユーザー）：\nData Cloud費用を除いて年間1.5万〜5万ドル程度だが、Data Cloud・導入・保守を含めた初年度の総コストは15万〜42.5万ドルに及ぶ\n\n- 導入支援サービス単体：\nSalesforceパートナーによる導入サービスは1エージェントあたり2,000〜6,000ドル、期間は2〜5週間が相場で、ほとんどの組織にとって必須の費用\n\n\n日本市場特有の注意点として、\n2026年4月現在、サービス・マーケティング・セールスの3領域のコアエージェントは日本語で利用可能\nですが、\n日本語の自然な会話精度はまだ改善途上で、導入初期は日本語チューニングに英語圏より2〜4週間余分にかかると見積もっておくのが現実的\nです。\n\n## 3. 費用対効果（ROI）を出すための進め方\n\n### ステップ1：ユースケースを絞り込む\n複数の導入支援事例に共通するのが「絞り込みの重要性」です。\n「全方位できるAgent」を目指すと1Agent＝1ユースケースに絞らないと精度・保守性が破綻\nします。選定基準として、\n顧客対応・営業支援・社内問合せから「定型・大量・属人化」の3条件を満たす1領域に絞る\nことが推奨されています。期間の目安は\nユースケース選定に1〜2週間\n程度です。\n\n### ステップ2：業務フローの可視化とKPI設定\n次に、\n業務フロー可視化（2〜4週）として現状のやり取り・判断・例外を網羅した業務フロー図を作成し、AIに任せる範囲・人間が残す範囲を明確化\nします。国内の支援会社も同様のプロセスを提示しており、\n現状業務ヒアリングと業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果（ROI）の試算\nを初期フェーズで行うのが標準的です。",
+  "cited_urls": [
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://www.eesel.ai/blog/salesforce-agentforce-setup-cost",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://www.eesel.ai/blog/is-salesforce-agentforce-worth-the-cost",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://aurant-technologies.com/blog/agentforce-implementation-strategy-failure-business-design-2700/",
+    "https://www.members-saasplus.com/agentforce"
+  ],
+  "error": null
+}

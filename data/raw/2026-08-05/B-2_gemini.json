@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-05",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-04T23:05:38.285850Z",
+  "answer": "中堅企業様で、特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社をお探しとのこと、承知いたしました。以下に、独立系のCRMコンサルティング会社や、ベンダーフリーの視点からCRM導入・設計を支援するサービスを提供している企業、およびCRMに関するセカンドオピニオンを提供している企業をご紹介します。\n\n**1. 独立系・ベンダーフリーのCRMコンサルティング会社**\n\n特定のCRMツールに偏らず、貴社の課題や目標に基づいて最適なCRM戦略の立案から設計、導入、運用までを支援する企業です。\n\n*   **株式会社トミラ（Tomira.Inc）**\n    HubSpot、Salesforce、Zohoなど特定のツールに指定はなく、選定段階から客観的な視点で提案が可能です。コンサルティング支援からデータ統合、導入・運用支援まで幅広く対応しています。LINE公式アカウントやInstagramのDMを活用したCRM/MA支援も提供しています。\n\n*   **アドバンリンク株式会社**\n    CRMの戦略検討やプランニングを支援しており、「分析データ」×「マーケティング」×「システム」の観点から客観的かつ多角的な視点でCRM戦略の実現をサポートします。\n\n*   **X-mov Japan株式会社**\n    Salesforceの導入・活用において、代理店ではないため特定の製品やサービスに偏らず、顧客にとって最適なソリューションを提案すると明記されています。豊富な導入実績と伴走型支援が特徴です。\n\n**2. CRMセカンドオピニオン・改善支援サービス**\n\n既存のCRM活用に課題がある場合や、導入を検討しているCRMについて客観的な意見が欲しい場合に有効なサービスです。\n\n*   **トリノリンクス**\n    CRM分析で顧客の購買行動や継続利用状況を可視化し、CRM施策の成果を高めるための分析手法を提供しています。CRMセカンドオピニオンとして、顧客構造や継続動向を分析し、CRM KPIの状況を客観的に診断して具体的な改善ポイントを明らかにします。\n\n*   **株式会社PMFコンサルティング**\n    デジタルマーケティング戦略、広告、SEO、SNS、UIUX、CRMなどのデジタルマーケティング施策において、伸びしろがないか分析し、アドバイスを提供します。改善後のシミュレーション作成も可能です。\n\n*   **株式会社メンバーズ（コンシェルジュBXサービス）**\n    Salesforce利活用促進・セカンドオピニオンサービスを提供しており、高い専門スキルを持つデジタル人材がチームの一員として、改善の良き相談役となり伴走します。\n\n*   **マネジブル**\n    CRM/MAセカンドオピニオンとして、ツール導入効果の向上をサポートしています。CRM領域におけるKPIの可視化、オブジェクト間のデータ連動・分析、MA領域におけるホットリードの定義と検知、シナリオ設計によるナーチャリングなどを支援します。\n\n**会社選びのポイント**\n\nCRMコンサルティング会社を選ぶ際には、以下の点に注目することをおすすめします。\n\n*   **独立性・中立性:** 特定のベンダーに偏らず、貴社のビジネスに最適な提案をしてくれるかを重視しましょう。\n*   **実績と専門性:** 貴社と同業種や類似規模の企業での支援実績があるか、CRMに関する深い知見や経験を持つコンサルタントが担当するかを確認してください。\n*   **支援範囲:** 戦略立案から設計、ツール選定、導入、運用、定着化まで、どの範囲を支援してもらえるかを確認しましょう。\n*   **担当体制:** 営業担当者と実際の支援担当者が同一人物であるか、または密に連携が取れる体制であるかを確認すると、認識の齟齬が少なくスムーズなプロジェクト進行が期待できます。\n*   **費用相場:** コンサルティング費用はプロジェクトの規模や期間によって大きく異なりますが、中小企業の場合は月額10万円〜100万円程度が目安とされています。\n\nまずは複数の会社に相談し、自社の状況や要望を伝え、最適なパートナーを見つけることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFkygWyL6rlKOUvGkrDtzEjRQL6eeyDoke3oYMXH1PA1RjyJzoRyPb_ITlSq-AbdgfcOujqjpD9DIisWM8ADeDZEtdoYZymtF6epKrPXPC1kB4bv9sw3_aljeQuNZU2mMU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEcuMjqhu3kFzAS8TcQ4rEcNFhXhFGaQHQGQcISWdQ7ld4favMjeT9xc8WagZRDNBa-4R7u1Dj0b9bxP4ly4P0OJgTtxXP1xDmZt04SgE3cYaHmNCQri1idYu14",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBePMBB5Z5dTLnpRVD2ZH9sUUhQq8ttN2K4qyxiBxcA5O3siJYHSn9cXRt-E7fTN4BS1LrkeydpTThyUe-0xw0toT_lrVzyrouaz1bOwBaDmlUhOl5dEI8BgDu2I23c3I6NU3t_YdgNIsCNHrRKF8YyatZErAoYpk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFeMK5dTEpvkQFxhzJJChmaqHB5dgCxEb7D-0fFZEFYu6BQ8rV7M4zhP_j8Cg7SWyq3gnLLHaFnRvqiyysGOcni-ZmG_CVAgFAo-WPLkmbCp9X6FVTCikMMx21vzTBimrjZoN7FsD9M3f9zK756D3Y=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0LoCFRFHIiPXIHE-iWvRIscWQLrgWPGFCwC0kI8XQSXQJnhVK4gTcM6vpkSzqHvlegqNNcxAX82Kkw2wTuTfTbLiUgt4p94mLOjJZY9Nir42gl10nAP4RSG4g7n0BRuyqOYniQLvseBBih69ey8_mzMRX2AMqP2QaBr8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGGEcUbqY1lf9LnQ3j8rQikJeKRbX24CngLAGJ72G0Op8OiGhff592rWQ80WwO6YpULA2fqSyDo1DrHaGy6-Z33vyweZzp9RUHwghu-hQY_Gt_hr-2LsMJRnPbVKs-C5tNkgoq1oqs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFIq4L454NRoFnTL-m0apGv5OvL0dp7qHTLpevRnlqKYAnAsbAXcLtpkZCBJapLa3b0T97wdQ1tDtrypOX2VnufFKOpZTEtuaIFOZRpYYv7bQc7FyrwFKtu3Pv_t5DU8fUUAFi2MQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHrSCe5r9l-g7biC-7OiupXPn6TaYkPboPyCgak4RsZxyYOJ1ImeA5wigzyRVnYr9aOOlPetMb4Bm4_Va661SzqZo1OJrBbpDsm86I_lBEpSzU9lLc_BWmR2Im-G6TLfl-o"
+  ],
+  "error": null
+}

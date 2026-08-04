@@ -1,0 +1,30 @@
+{
+  "date": "2026-08-05",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-04T23:05:00.624592Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、AIエージェントを活用してマーケティング、営業、カスタマーサービスなどの顧客関係管理タスクを自律的に実行する顧客関係管理システムです。従来のCRMがデータの保存と人間によるアクションを待つ受動的なシステムであるのに対し、Agentic CRMは設定された戦略やガイドラインに基づき、キャンペーンの計画、顧客対応、パフォーマンスの最適化などを能動的に行います。\n\nAgentic CRMの主な特徴は以下の通りです。\n*   **自律的な実行**：AIエージェントが、人間の指示を待つことなく、顧客データや行動に基づいてタスクを計画し、実行します。\n*   **インテリジェントな自動化**：顧客データと高度な自動化を組み合わせることで、よりパーソナライズされ、一貫性のある顧客体験を提供します。\n*   **AIエージェント**：マーケティング活動（コンテンツ作成、キャンペーン提案など）やカスタマーサービス（問い合わせ対応、注文追跡、返品処理など）をAIエージェントが担当します。\n*   **学習と適応**：システムがデータから学習し、結果に基づいて適応し、リアルタイムで行動します。\n\n**導入や設計を支援してくれる会社**\n\nAgentic CRMやAI搭載CRMの導入・設計を支援する企業は複数存在します。以下に代表的な企業とサービスを挙げます。\n\n*   **Salesforce（セールスフォース・ジャパン）**：AIエージェントを搭載した「世界No.1 AI CRM」を提供しており、営業、サービス、マーケティング業務の効率的な自動化を支援します。導入から定着までをサポートするプロフェッショナルサービスも提供しています。\n*   **HubSpot（ハブスポット）**：AI搭載ツールを統合した「Agentic Customer Platform」を提供し、顧客体験全体を支援します。株式会社100 (100inc) のようなパートナー企業が、HubSpotとAIエージェント、DXを統合した顧客フロント業務の設計・実装を支援しています。\n*   **Hiway（ハイウェイ）**：「Hiway CRM (Agentic CRM)」は、入力・更新・分析を自動化し、営業担当者のタスク実行を支援することで、「管理のためのCRM」から「成果を生むためのCRM」への移行を目指しています。\n*   **アーカス・ジャパン株式会社**：CRM導入・定着化支援、顧客データ一元管理、営業DXを支援する企業で、ノーコード型AIネイティブCRM「EMOROCO CRM Lite」を提供しています。\n*   **株式会社StartLink**：HubSpotのゴールドパートナーとして、HubSpot導入、AI活用、CRM整備、業務効率化までをまとめて支援しています。AI CRM導入の具体的なステップについても情報を提供しています。\n*   **一般社団法人日本AI導入支援協会**：企業向けAI導入支援コンサルティングを提供しており、AIツール選定、プロンプト設計、社内ルール整備から実務定着まで対応し、AI導入戦略やロードマップ設計も行っています。\n*   **合同会社クロスコム**：Agentic CRMを活用したパイプライン管理のKPI設計や自律モニタリングに関する情報を提供しています。\n*   **EYストラテジー・アンド・コンサルティング株式会社**：Agentic AIが製薬CRMの役割をどのように変革するかといった知見を提供しており、組織変革を含むコンサルティングが期待されます。\n*   **AgilePoint株式会社**：「ビジネス対応Agentic AI」を提供し、ビジネス部門がドラッグ＆ドロップ操作でAgenticワークフローを設計できるツールを提供しています。\n\nこれらの企業は、Agentic CRMの導入目的の明確化、業務フローの棚卸し、AIエージェントの役割定義、運用ルールの策定、成果指標の設定など、多岐にわたる支援を提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF4Fudcx3e85uG6fSVr2111vgY7AU6CzwdzrtNUpXOWKXH4Iu2yrer_Pz8IqFkxudI-A77USdAOiRRz9fQCCDDM4m1ccJ974MyBGOIPwuzjZbmyOdgWU7TePPwT-ezs4av5NvdJzEv3lsCRl4Ij2qUling=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFOflSzuOsfZ_fGzaBQcmdIslacIjQVAcRcyuztJKJDjkTXGfSVF5r1BoZxYiz8ARm0GfZL8sqa1JE7K6lJ1baUyp8fYAZFfqZxmHgciEWhzMhbShxShVOxmOj6JFZylzbLBwnm",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFxeiuiYttHQbF-sQf92jl6UoOM49V2LqzN4J6beMopa69LFyIJViRCz-IbU16iQPipIPxtvDn6uIxpB7dDqtC48Jagosw-yYzDdwVfMJB_jzjuJHMeSQrM9A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE18svjdCohsrw1OScYLBV-r3HA8xQfkFTcwgOsmomfpstrZS2VReS9WVcxyXxIp7Aj3elflz7T1tdN-Xj0UFFXC_LMhCZv6lflYjRJNb8pSJ99BIvw8PhjBKq4Djc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEPn-HVVikxTgqOT5LCFHlleDR1jzovDmcyhddVzzqaoaj-7JQZVH942NTWrR11QBFPfHydQgL5HsPbxQLJriIaE2u0IpHHTzAMXblWvVG7QLVdifmHN6ihjWPpolSU0fyobVDxY0TeL681P43Jvi9p7sb_1b-LOcL8OaXH9cr9LtJA7s1xXYkPc3eqXhVwinmfnau6DB-Q5Ah8NxGEj8mfo3NMaY5--HpVzXqWz7UIdqToK9OvTAcBK-9MEPjmUB4zyayZuLkeKUWjszidQjAph_8RM0DSdjWCoZePNKo-bKP9oQtgyP6gLBCR6QRnywkY",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGFc7q_ktULPG-xgus0ZhpbUJlSakMQDB9HIEXvGGzLfPkxRkOcrL3CtGVi-gypkzSl37sAk3ekcsjFM83TIUbMFlTjPCsfHA7CvzUUAWbI8-AHqgPZpldveZfB04zzWymhvaDY8P4loxuwWRs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpkWGAaoYdC-DQG7_4w6p4t77bGiJ-6Z__d4J61-nbM0-dM_X4SM2aq1RSpVi0EOP5j8RI_xPUm7GA7zxmAnccFEjv3K0-qZD0Z2eDcS4FgfujvcsWdN9VLL_Og1qblEChsUuQ7ZwDdY0fgQBqZ4_fBOaN-4gXRJPTjJP-LycnhD6uLAUmHvUQAbOD5CBSfge8eJa1FW8IzNBSiGu5OhNm_OWbWpPf-TMBabuckQTOBY8UA8AyMvFoMYTZg8J6uTKCL0OlyCSingb2S-1Tk_3IrL9DWct2KptVdm0BezDZ5HMyqYH_xO2MZ6T515qu",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH9yYfdr1fML7MuHsj7gZWJIaMsGMVirix55ueRCGPe8EjF1QvGpd-sULghzVm2fYtX8NhDfIiNHlNn4VQzhnhceJcpk98b909jsnSqRJ0SJ84xO3tGZs9nPKx12UKLv8X_N_Hnj-I=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFY94DxZ-7XrSRAkC0YUb2Hrj25_BJAigTkmqF3uM_-8pebCA9DByjtJXudo_VyeSoeRxGsGmCblDJvOFnRH5xNZtktTSDt22cI-WbJKhRfmJasakPHXh5Hhw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGorA1_7axkowG_jyxQXyxFYtBlv-2qELQUBdLXTpb463iGxt_VSi3RIMC9IcR2JcRZGjZdh3X0dExz5tl-52IcWx01Ho7FzN44gAGfrPjnGXNHGvkFY7cbRx5_HeOSP8ragRugaA4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEj8AIa9U6yjTYavG-LURDVo1fdjLlLPaj_aiwybk70OL0BAOpbc-Uj8HlZfPejVjY9SNiJG3KqurscxzujhDqSFWTAi1qxdoROHhu9VXWUug8hxMLsQF3yCwWGEohxEpfJuI-Mamqi73sMJwGnDbh2HPu6WZzPHBBWyFB-eOYmy2Jatb9Jh207_2QQBshIpMBS",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEoG9YbvSQrnUDy9yCQHTdWBULlIQKBNBpcSIqgNga1lZwDxhQWlC7YIjnrlgLbW4cXm8PdqQEjhn0NWaAjQm3EVbmjZTeMvRK4wV7EBHSO_ZOpizwbP-WTzjNiwHA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHYvhqYiDSEWZw1xiNmgvbq4krcZxFpTrnXulfB_AIc2Ex_ucG26rCeZWNgb6UWSCifiUiFRBippwruAKyFaBP2UlV-2-OGAvkpOEO5epSNIRghpBTaoNEGsEcqSHuSYMwSbEeAHA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3fbhC2q2OSn8-2s_hlPFZ8f7hUbwXgxYS1_Yy4CaIvlTxjnOPu5CwXl3qmMqk3SgQqq3zEtqYbZLvONlbetfJmm2Js0rlfrONl2ALnFwUwC2xgXaS6-PyKIDo1utztX2Of4hlQqrhT5J-RvxWP7LQrlbqJIVEo3nN33bDC9g8tz2JwZ-fRA7GzrfFY3gk2VoF330=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFz0EWcLRWhuwPhWN5sN44cS1cQCBYMcY9G3vtIdPqVnS0g1RjKXR90IuesAH1PAAOxLYFqFD_F5-DTNFkAPKMc4PXsMw_tUCYOhQQ8n1fXs716lkUwBRgcntHSsgMn0aTE3G4NWIZJVDPofY-M3yHZ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF8p6dsAmtZ9BhQyJPK9XOykHBR6g7mOxPUJAGM_MMTbkiHMx0x-i_-7AKCFgHSQSaWOvQbdj98P876w2zRjk-wniYgWB_ruGy0XpH1k5jBdlWLP8lcGzU8S1Z_uesTWM5MYJZsGjRUiBPWmatV2w=="
+  ],
+  "error": null
+}
