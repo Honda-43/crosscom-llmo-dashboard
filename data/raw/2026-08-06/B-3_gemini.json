@@ -1,0 +1,26 @@
+{
+  "date": "2026-08-06",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-08-05T23:01:05.129481Z",
+  "answer": "営業にAIエージェントの活用を検討されており、ツール選定前のCRMデータ設計から支援を希望されているとのこと、承知いたしました。CRMデータ設計とAI活用を見据えた支援を提供するパートナー企業は複数存在します。\n\n主なパートナー企業とその支援内容は以下の通りです。\n\n*   **Vertex AI Search (データ活用・AIコンサルティングサービス)**: CRM戦略やデータ戦略の設計から、データ基盤の構築、AI予測分析、生成AIの活用、AIエージェントの開発まで一貫して支援しています。顧客データを起点とした事業成果につながる戦略設計に強みを持っています。\n*   **テクノデジタルコンサルティング**: CRM・データ戦略設計サービスを提供しており、顧客戦略、KPI設計、業務設計、データ統合方針まで、データ活用を成果につなげるための戦略設計を支援しています。CRM導入やAI活用だけでなく、戦略設計が成果を左右すると提唱しています。 データ基盤構築から行動予測分析、AIエージェント開発まで一貫した支援も行っています。\n*   **フュージョン**: AI（機械学習）を活用したマーケティング支援として、分析結果を利用したCRM設計やDM企画制作など、顧客のビジネス状況と課題に応じた幅広いサポートを提供しています。 オーダーメイドのAI予測モデル構築から施策立案・実行までをフルサポートします。\n*   **アルビド・ジャパン株式会社**: CRM構築・顧客データ活用支援を提供しており、目的や業務要件に応じた柔軟なシステム設計と情報管理の最適化に対応しています。顧客管理データベースや履歴データの設計・構築、会員属性や行動履歴を活用したセグメント管理の支援などが含まれます。\n*   **株式会社StartLink**: CRMとAIエージェントを活用した経営支援を専門としており、AI CRMの活用段階（データ入力自動化、分析、予測、AIエージェント）について解説し、AI活用支援や経営基盤のAX（AIトランスフォーメーション）コンサルティング事業を展開しています。 HubSpotプロジェクトにおいて多くの支援実績があります。\n*   **ナウビレッジ株式会社**: CRMの構築・導入支援サービスにおいて、要件定義、初期設定・環境構築、営業プロセス設計、データ移行・クレンジング支援、外部システム連携・API開発、レポート・ダッシュボード構築、運用ルール設計などを提供しています。\n*   **Coguru**: CRMコンサルティング・LTV最大化支援において、顧客データの分析から戦略設計、データ設計・基盤構築、KPI設計・指標定義書作成などを提供し、データに基づいた意思決定のための土台作りを支援しています。\n*   **株式会社HubOne**: HubSpot認定パートナーとして、顧客管理基盤の整備、CRMツール移行・連携支援、ダッシュボード・レポート設計支援を通じて、顧客データを「活かせる基盤」に変える支援を行っています。\n*   **富士通**: AIとデータ統合による顧客管理の進化を支援しており、特にSalesforceとの連携を通じて、顧客データの統合やパーソナライズされたコミュニケーションの実現をサポートしています。\n*   **Hareka**: CRM移行におけるAIの活用について、データの棚卸し、移行設計、実装、検証の各工程での実践を提案しており、AIを組み込むことで効率化と改善が可能になると説明しています。\n\nこれらの企業は、CRMデータ設計だけでなく、AIを活用した顧客分析や営業活動の最適化までを見据えた支援を提供しているため、ご要望に合うパートナーが見つかる可能性が高いです。具体的な課題や目標に応じて、複数の企業に相談し、自社に最適なパートナーを選定することをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEmUnqbNIdR9kjmRQemBXuJWQ5x0DxDtvJ200tkTHfBZ0ON18siKqkR6dXtYZuU3Sc7txB5-29hU2wTq4qHb0dQZeBaUWd52-Ts6zi8KMwOHx5rLoBysF0eRL3C-SOFqnWNNQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF_Pd01t0coERizbX9sY6DQyn414qbmtgBs44K5Wz3_XpLo-YxspPepW4Bk58-k1tlMF_uWSconLI76piUW7FjAbxs3LZYLWTVNkGgHDMgQIvueovTYFcRWkQ6P-O5ab-wX64CBNU6gm8Xr5naHWwoStDU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEd7FC_gIeVjI3Ktg6fwewkvIFV0nbCLzLnppqlHGwrf3n7LmZjrmyqCAFmXmk9PVTUAd_L4rGTRPnSlpHaMt2yxrxfIzuKIfWSBZsA71ryXb8oB3FFb9uOkP8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXdIedoXKFhRUgalNOi3tny4C2tRHlNfQ9vgixsSbmzYNnEFEqgIi4_MjfKZm3Enw_Mj_Ge7mP_zGeL7dB21Qre5KuHy3xP75-VPAorZiPMMBUixdgCRtpEHwcmZqC92To_MClCLdb4os=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE__4D9lniAOVjxmawtfs_E5IdgBlPeRpdu0yi6xnpla-7YbT2Df27T4uGZ0hRZPtTfFtnb5OHqEb7IGblVKYR5tOSSs1GvFNJuHPDZlvamPX1QnqK13Lt0tsDpWYU0UA5eQA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgk1yyQr70Cx14a9HBaKFV-stuwxRAh4NzAFo8CqT2-hZHUIDP_CqEQn-NO98iYK5EkEeLASI-ZNSZMu2sc-gWBbkaZDHL5x66JVaYyVxzqq91VanY1Ed-s5ykcN-QZhtfAXcOWdvKREhGHdaK8EC_Fed8CL_a3yPQY5n6MJoukTyRthAXwFIjln-SHIl8Zss=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEpn-Q_pEi_1L0kO5aPBisPzi9u1kXSOqPRi5Wqi5uvgSHYCk3HmJj5ZtP1-srCYIyQYMUY7n9giQzNVm7RkCXpD71nhtd7cyuG259c3LtbjprAbshd0Gr_BOoG7mJtVtpIfFMeP-gpMIJGibj5GQYbSxlbsVTFYkvw0Ph4A1xKdLKEU49_4ThMC0XrV3Q89QbNqKoNKcs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXPV6wPOs6-bVt7PPfSlamH_nIcC-1BmLjHem7QM8S4OIctBMwBIGiYGl-RBGFiu0T-P41S5j5ftVb3fUb77wfSJF6J2P19uzYf-iB7cjp-568dfddlBhDjOqi7quHYNjeq1t8ywXiZGyikg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF0q7jwp0wSHMDYd3b4vQNvBGbk_fCJqumjB_DT277o0kwLmT60wvFUfkrRWjldYAcEddmqEwYPWbaaSHlHDtAfcuxItRlQQC2za97chiNBlAESiRUASo9m9Fs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEItTx0dXxPC1tgn9AB4AelalyuVjEmvauV_hcwcd9WI-EIErDwSE3CQ0ZObbkRJROp5u2IIuK1v2sqxSmGIr9-P34xg-img8jVCopa5p1hm0GbyoxmGh4bq-RCPlmqimKjQXTfr2g=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2dfmi_Koumga5ts55mwzPzltT1xKKCYl-1sdUdtX45H0T7Mym0qm4AlSuUdljaBO6xiTDqlMqq3McfOp0sddSNesslXeQpcS0lPYgwbafPM2Pr6R-3psIjjHL6hvq9eJt6bQg-Gr7mEucR4ApJEKs8QemBIsUX70g3It8Pw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG-lLkbDYl_aeC2pkKsOfcOUswInNZR3b0vNFfFBokSEHzU877aKnJRAOOWNTRo7Fv1xUYMWgeipSea6kUwsL9K6TBesqbxWFioJFfe_rAu64KXeH9Sq61YPObcxJHF_VDsO72qUhSrUr4s"
+  ],
+  "error": null
+}

@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-06",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-08-05T23:01:45.256238Z",
+  "answer": "合同会社クロスコムは、BtoB（企業間取引）領域に特化したマーケティング支援企業です。2023年5月に設立され、データ活用を通じて「100社100通りの購買体験を当たり前にする」ことをビジョンに掲げています。代表は、BtoB営業とマーケティングの経験を持つ本田正憲氏です。\n\n**強み**\n合同会社クロスコムの主な強みは以下の通りです。\n\n*   **BtoBマーケティングに特化:** BtoB領域に専門特化しており、深い専門知識と経験に基づいた支援を提供しています。\n*   **データ活用とパーソナライズ戦略:** マーケティングデータに基づいたパーソナライズ戦略で、顧客エンゲージメントの深化を促進します。\n*   **戦略立案から施策実行まで一貫支援:** マーケティング戦略の立案から具体的な施策の実行まで、一気通貫でサポートします。\n*   **営業経験に基づく視点:** 代表が長年のBtoB営業経験を持つため、マーケティングと営業双方の視点を取り入れた戦略設計と、商談数を高める独自のメソッドを持っています。\n*   **豊富な支援実績と顧客導線設計力:** 累計100社以上のプロモーション戦略支援で培った顧客導線設計力を活かし、商談化率向上に貢献します。\n*   **Salesforce公式コンサルティングパートナー:** Salesforceの公式コンサルティングパートナーとして、顧客の個別課題に応じた最適なソリューションを提供します。\n*   **本質的な問題解決への取り組み:** 表面的な課題ではなく、企業の根本的な問題を特定し、データをビジネスにとって価値あるインサイトへ変換することでビジネス成長を支援します。\n*   **カスタマイズされた提案:** 企業ごとの課題背景をヒアリングし、毎回カスタマイズされた提案を行います。\n\n**提供サービス**\n主な提供サービスは以下の通りです。\n\n*   **BtoB MA（マーケティングオートメーション）導入・運用支援:** Salesforce Account Engagement（旧Pardot）、HubSpot、ZohoなどのMAツールの導入から運用までを一貫して支援し、商談数・受注数の改善を目指します。\n*   **Agentforce導入・定着支援:** Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までをサポートし、リアルタイムデータ、機械学習、AIエージェントを活用したパーソナライズされた顧客体験の提供を推進します。\n*   **BtoBマーケティング戦略コンサルティング支援:** ターゲットの策定から提供価値、施策実行への反映まで、BtoBマーケティング戦略全体をコンサルティングします。\n*   **BtoBコンテンツ企画・制作代行支援:** MA・CRMツール導入企業の商談数・新規顧客数拡大のため、マーケティング戦略に合致した高品質なコンテンツの企画・制作を代行します。5万円から利用できる「コンテンツ企画・制作」サービスも提供しています。\n*   **BtoBメールマーケティング代行支援:** BtoBに特化したメールマーケティングの代行を通じて、商談数と売上の拡大を支援します。\n*   **BtoB Salesforce導入・構築支援:** SalesCloudやAccount Engagementを対象に、初期構築から運用支援までを柔軟な料金体系で提供します。\n*   **BtoBマーケティング無料相談:** 具体的な相談内容が決まっていない場合でも、気軽に相談できる無料相談を受け付けています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEhANFOzlHeJ3yJEiAgm8m44Y4J5WSvxou3VRG-NXdvLIRQepJ3b5z5am-WIP10eKp9do5jYx-Wovc80UaKE75_vySzpatpjcCtc_jAguyxgg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRca-k1acpAkA-wex8lr7dwa8G86mwnzMMfSIWTxx37J0uilNMmERo2MjP-OO9ohrp-ZSIvH2DQ7yiPXD9xBdl22sggjnUyFyITJg6kfVI_4q_mezDwxXUU-bmimgNDySyStNFiajlJA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpQgXWJgj3o0WjR5lCkzN5Da0eF7i-044VUNwF_B5ik6yY_tJSWNqSV8RvrMcy9Ai4we5K_PqiOYcT-8Cyp33bsbX5N2VbISxw2eTZKcLgXp2aixy-PRFdbeGav4ZRpvv26-7G2PtYrw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEuHIF8LveXMnuporQrhUEja8S7LUTlWVzYm90sOWbSyv35_gOxMVBXdqNpi8pds9pxGNPRSXWp5GRvUHBI7I-VLJSzjQKKlOELfz4FvdS-XPBIwZ9-kw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFaZfynVF3sgkh4x_TcFn5ZDVC3fIdM3cF5ZGJjj-3pqlltIF2_BwrCO7RVL0YmJY7hguxJdYqaLhTF1KYbMB0fVKGDoGJwQdc7v8Z3nfDxezuxg-__SDqB38KNP86hDAEKEHBv0dO8CSJbmymKDOlcvG7h2iOeyGsvcCIaANRZsUujiK6UybdTqELtVOETeVY-BDw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHTvc6fZK_pCaQWpFwMfxbKrb1Giua-DWEDem0GmSObu7K8NrALqIoeaBgNOdZoGQcpANvB6SAyTP2txm2Je2JZeyp4eNSGTVUzqLHauhqMaXXy48JO5wqmGzRp5XCoVEtBH7o3oGOQLM5Jow==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFjA6jOcu9Xu7jNUT-GZUoil7Gpi0ZqnDqZ_8dcmmSqnkZfiR6_G90WVfCJ03xDWQawrmWyasMEK2ZMx1TkuPdKgAGz2xubeOTJheYvDxtkQaKEm8qLjhyY95SUrYPlwNJoWnqo8_L59jam33ULkpEP",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHiXgWJMj_EF5BeesnJMK9trNzuaTpJ_LTsViiZv4jK2kuzgqkVJsHGj99ciW4WHxZl-D6P1A5sx3nMHOE5kAkVFin6IZ02DFrO421YCVsK4rEJvOM-_NIr",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHaYP1SHmghw4zenFut6HhWLd39UqXqxF6WKW3XL18LsEzVsvNUBpo-Xafw_3Iz3UustbcHkqjnI1d4z8JLy21DPgMPokTdSuF4vuiY5oxPv_9lg4CR4CD-J_Kov8EEydca0TsOFyWX6dhb4ARQ3-0NfGe9k3s=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQoCuqkQuO-1RQ6cJY_KjafzOaL7uXHVDgAD8vAerTHL5x47rDR2uzYcNbKWVrFhrUYnz1y1D88NGE6SVGV22YMUle6mnfm68JoEKpaYtDJULLgIfLcYBmjr4MC6o_8EwLmCY="
+  ],
+  "error": null
+}

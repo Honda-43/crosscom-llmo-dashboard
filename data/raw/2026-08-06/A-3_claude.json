@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-06",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-05T22:59:35.958668Z",
+  "answer": "# Agentforceの導入費用相場と費用対効果を出す進め方\n\n## 1. 料金体系の全体像\n\nAgentforceの料金は単一ではなく、複数のモデルから選択する仕組みになっています。\n$2 per conversation、あるいは$0.10 per action、または月額$125/ユーザーからの無制限利用プランがあり、無償で始められるSalesforce Foundationsティアや、月額$550/ユーザーからのAgentforce 1 Editions（クレジット込み）もあります\n。\n\n日本語で整理すると、\n費用はベースライセンス＋アドオンライセンスの2重構造で、使った分だけかかる設計になっています。Flex Credit（1アクション20クレジット＝約12円）・Data Service Credit・Data Storageの3種類が主なアドオン費用\nとなります。\n\n### 主な料金オプション（2026年時点）\n\n| モデル | 単価目安 |\n|---|---|\n| 会話課金 | \n$2 per conversation\n |\n| Flex Credits（従量課金） | \n$500 per 100,000 credits\n（\n標準アクション=20クレジット≈$0.10、音声アクション=30クレジット≈$0.15\n） |\n| ユーザーライセンス | \n月額$125/ユーザーから\n（無制限アドオン） |\n| Agentforce 1 Editions | \n月額$550/ユーザーから、年間250万Flex Credits付き\n |\n| 無償枠 | \nEnterprise Edition以上なら誰でも使えるSalesforce Foundationsという無償ティアがあり、20万Flex Credits、25万Data Cloudクレジット、Agent Builder、Prompt Builderが無償で含まれます\n（日本語版では\nSalesforce Foundationsに10万Flex Creditsが無償付与され、PoCはコストゼロから始められる\nとの情報もあります） |\n\n**重要な注意点**：\n$2/会話は顧客対応エージェント向けの固定モデルにのみ適用され、Flex Creditsと会話課金は同一組織で同時利用できません\n。また\n全ての支払いモデルで利用できるのはFlex Creditsのみ\nという制約もあります。\n\n## 2. 見落とされがちな「隠れコスト」\n\n実務上、ライセンス費用以上に大きいのが基盤・構築コストです。\n\n- **Data Cloud（必須級）**：\nData CloudはAgentforceの会話料金には含まれておらず、統一された顧客データに基づいてエージェントを動かしたい場合（本番運用では推奨）は別途契約が必要で、2026年時点のリスト価格は1,000万統合プロファイルで年間$108,000\nです。\n既にSalesforceを大規模展開しData Cloudを導入済みの企業には追加コストではありませんが、未導入なら最大の追加コスト項目になります\n。\n\n- **総所有コスト（TCO）**：ある調査では\nData Cloud、導入構築、保守を含めた初年度の総所有コストは15万〜42.5万ドルの範囲\nとされ、別の分析でも\n中堅企業の実質初年度コストは15万〜60万ドルに達し、これはAgentforceが必須のData Cloudサブスクリプション（年間10.8万ドル以上）、導入サービス、ナレッジベース整備を前提とするため\nと指摘されています。\n\n- **国内特有の追加コスト**：日本での導入では\nAgentforceの利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要があります\n。また\n日本語の自然な会話精度はまだ改善途上のため、日本語チューニングに英語圏より2〜4週間余分にかかると見積もっておくのが現実的\nとされています。\n\n- **中堅企業（500ユーザー規模）の月額目安**：\nライセンスのみで月額1,250〜4,200ドル、Data Cloudコスト（月5,400〜14,600ドル）を加えると実質月額は6,650〜18,800ドル\nという試算もあります。\n\n## 3. 費用対効果を出すための進め方\n\n### ステップ1：小さく始める（PoC）\n\n本格導入に着手する前に、概念実証（PoC）の実施、既存Salesforce環境のデータ整理、業務フローの分析といった準備が重要\nです。\nPoCは新技術を小規模で検証するプロセスで、特定の業務プロセスに適用し、効率化",
+  "cited_urls": [
+    "https://www.eesel.ai/blog/agentforce-pricing",
+    "https://note.com/honda_crosscom/n/n7c0a9df77cf1",
+    "https://coworker.ai/blog/salesforce-agentforce-pricing",
+    "https://enterprisedreamin.org/articles/agentforce-pricing-explained-2026/",
+    "https://magicfuse.co/blog/agentforce-cost",
+    "https://ekfrazo.com/resources/blogs/salesforce-agentforce-pricing-2026/",
+    "https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://service.is-c.jpn.panasonic.com/column/salesforce-agentforce-2"
+  ],
+  "error": null
+}
