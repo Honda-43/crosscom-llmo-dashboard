@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-08",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-07T22:35:45.728171Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出すための進め方について調査します。\n調査結果をまとめてお伝えします。\n\n## Agentforceの導入費用の相場\n\n### 料金モデルが複雑（3種類が並存）\n\nSalesforceは短期間で複数の課金モデルを展開しており、\nSalesforceは約18ヶ月で3つの異なる料金モデルを展開しており、最初は会話あたり2ドル、次に2025年5月にアクションあたり0.10ドルのFlex Credits、そして現在は月額125ドル/ユーザーからのユーザー単位ライセンスが「デジタルレイバー」として提供されています\n。日本語の公式サイトでも\nFlex Creditや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスから選択できる\n形になっています。\n\n**主な料金体系（目安）**\n\n| モデル | 単価 | 特徴 |\n|---|---|---|\n| Flex Credits | 20クレジット/アクション＝約0.10ドル（約12〜15円） | \n2025年5月導入。100,000クレジットで500ドル。レコード更新やケース要約などの1アクションが20クレジットを消費\n |\n| Conversations | 1会話あたり2ドル（約240円） | \n「1会話あたり240円」というシンプルな料金体系で、使った分だけ支払う従量制\n |\n| ユーザー単位ライセンス | 125ドル〜/月 | \n2025年後半から開始のAgentic Enterprise License Agreement（AELA）。CFOが予算化しやすい契約形態\n |\n\n### 見落とされがちな追加コスト\n\nAgentforceの運用には**Data Cloud**が別途必要になるケースが多く、海外の分析では\nAgentforceが正常に機能するにはData Cloudが必要で、これはバイヤーが見落としがちなコストであり、Agentforceのライセンス費用自体を上回ることが多い。Data Cloud PlusやPremiumは年間6.5万〜17.5万ドル程度になる\nと指摘されています。導入・保守費用も含めると\n実際の投資額はライセンス費の3〜5倍\nになるとの分析もあります。\n\n### 日本の中堅企業目安（Sales/Service Cloud対象）\n\n日本のコンサルティング企業が公開しているシミュレーターでは、\nAgentforceの費用はベースライセンス＋アドオンライセンスの2重構造で、使った分だけかかる設計\nとなっており、\nFlex Credit（1アクション20クレジット＝約12円）・Data Service Credit・Data Storageの3種類が主なアドオン費用\nです。ただし\nSalesforce Foundations（Enterprise Edition以上）には10万Flex Creditsが無償付与されており、PoC（概念実証）はコストゼロから始められる\nという利点があります。\n\n---\n\n## 費用対効果（ROI）を出すための進め方\n\n### 1. スモールスタート＋段階的拡大が鉄則\n\n日本のSalesforce導入支援企業も共通して推奨しているのが段階的アプローチです。\nAgentforce導入の投資対効果を明確にするため、段階的なアプローチが推奨され、まず小規模な業務領域で試験導入を行い、具体的な効果測定を実施した上で、段階的に適用範囲を拡大する方法が効果的。ROI算出においては、人件費削減、対応時間短縮、顧客満足度向上、営業機会損失の防止などの多面的な価値を定量化することが重要\nです。\n\n別のSI企業も同様に、\nPoC（概念実証）を通じて効果を可視化しながら、Agentforceの活用範囲を段階的に広げる導入アプローチをまずはスモールスタートで短期間に導入し、実業務における効果やROIを検証した結果を踏まえて次の活用領域へと段階的に拡大していくことで、導入リスクを最小限に抑え、無理なくAIの価値を最大化する\nと述べています。無償クレジットを使えばPoC自体のコストをゼロに抑えられる点も活用すべきポイントです。\n\n### 2. 効果測定はA/Bテストで定量化する\n\nより実務的な進め方として、AI対応と人間対応を比較する手法が有効です。\n「AI対応群」と「人間対応群（または非対応群）」のA/Bテストを実施し、CSAT（顧客満足度）や対応完了までの時間（AHT）を比較\nし、\n1会話あたりのコスト（AIクレジット消費）に対し、削減された人件費（人間の対応時間×時給）や創出された売上をダッシュボードでリアルタイムに表示\nする方法がROIの可視化に効果的です。\n\n### 3. 日本語対応の課題を踏まえたユースケース選定\n\n\n現時点でのAgentforceには、日本語対応の完全性や一部機能の制限といった課題があり、特に複雑な日本語の文脈理解や業界固有の専門用語への対応については、継続的な改善が期待される状況\nです。そのため\n段階的な導入アプローチを採用し、まず英語対応が充実している機能から開始し、日本語対応の",
+  "cited_urls": [
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://note.com/honda_crosscom/n/n7c0a9df77cf1",
+    "https://www.fsi.co.jp/Salesforce/column/column19.html",
+    "https://www.dcs.co.jp/solution/crm/agentforce/",
+    "https://aurant-technologies.com/blog/salesforce-implementation-design-2714/"
+  ],
+  "error": null
+}

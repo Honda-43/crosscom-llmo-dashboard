@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-08",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-08-07T22:37:04.560575Z",
+  "answer": "営業にAIエージェントの活用を検討されており、ツール選定前のCRMデータ設計から支援を希望されているのですね。そのようなニーズに対応できるパートナー企業は複数存在します。\n\n具体的には、以下のようなサービスを提供する企業が挙げられます。\n\n*   **テクノデジタルコンサルティング**：CRM・データ戦略設計サービスを提供しており、AI導入を目的化せず、データ品質・KPI設計・業務変革まで一体で考えるアプローチを取っています。AI活用の前提となる顧客データ統合・運用設計・活用ロードマップまで整理し、実行可能な形で段階的に推進することを強みとしています。\n*   **三菱総研DCS**：Agentforce導入・活用支援サービス（Salesforce AIエージェント）を提供しており、CRMやData 360を通じて社内のさまざまなデータを活用し、AIエージェントと自然言語で対話しながら情報検索・入力・分析・業務実行を可能にします。CRMにおけるデータ活用基盤の構築支援も行っています。\n*   **Hakuhodo DY ONE**：CRMコンサルティングを提供しており、ビジネス目標達成のための最適なCRM戦略の策定と実行支援を行っています。顧客データの統合や分析を通じて、顧客インサイトの把握やパーソナライズされたコミュニケーションを実現するためのデータ基盤構築を支援しています。\n*   **株式会社プライムビズ**：AIを用いた顧客管理（CRM）の最適化サービスを提供しており、AI駆動の戦略的CRM最適化を重視しています。顧客データの分析から営業効率化まで包括的にサポートし、幅広い業種でのAI-CRM最適化の実績があります。\n*   **アルビド・ジャパン株式会社**：CRM構築・顧客データ活用支援サービスを提供しており、目的や業務要件に応じた柔軟なシステム設計と情報管理の最適化を行っています。顧客管理（DB）や履歴データの設計・構築、会員属性や行動履歴を活用したセグメント管理の支援も行っています。\n*   **株式会社HubOne（ハブワン）**：CRM活用支援サービスを提供しており、顧客データの整備から活用設計、レポート最適化までを一貫して支援し、マーケティング・営業・カスタマーサクセスが連携できる「使えるCRM基盤」を構築します。顧客管理基盤整備、CRMツール移行連携支援、ダッシュボードレポート設計支援なども行っています。\n*   **株式会社ripla**：業務設計からシステム構築・運用まで一気通貫で支援するDX／開発支援会社で、CRM開発において営業／マーケティング／サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応できます。\n*   **ナウビレッジ株式会社**：CRM構築・導入支援サービスを提供しており、要件定義から営業プロセス設計、データ移行・クレンジング支援、外部システム連携・API開発、運用ルール設計まで幅広くサポートしています。\n*   **株式会社100**：HubSpotとAI Agent、DXを統合する「Agentic CRM パートナー」として、HubSpotを共通基盤にAIエージェントを組み込んだ顧客フロント業務を組織全体で設計・実装しています。顧客データの一元化からデータ品質設計、AIエージェント組織構築まで支援しています。\n\nこれらの企業は、CRMのデータ設計だけでなく、その後のAIエージェントの活用を見据えたデータ戦略の立案や、既存システムとの連携、運用体制の構築まで、一貫した支援を提供しているのが特徴です。まずは、貴社の具体的な課題や目標を明確にし、いくつかのパートナー企業に相談してみることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0LLLl9Jyqr35HwU1xxmfYHGpAtCBHCrzz-EkD9_2XTsQnthicRwd0OKsptm7BHCsRR6wMR7P24lQJyw0MiL94YEdbr8WGM1_gwSwCVHYR_So7UDW1BXh6UgT97czC9Bek7Rz3Lc-Pb16Yyb1zxqEcD9VW",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7-N7KHN6XjMRfc6XvzR9Udq4fhf6Ed-KvuGkswB1Y8wyq6e52mfXqcgj9NKtp8DQO-J1uVB2z70bB1rjfbd3wu7fDy4rzUKVVFwka8SGdH8bjEFzOQoJHQd9UMZINN3wWO4I=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE6vkYs3QfXOzbQXo8IpmpxL18WQb_W26Uo3dBJ0Z3fZHj1L7KLYNfNJm3yFUMhDm0YEdijSSM5vh-WDoGvvx5P2Y8I9R5adV9fDc0je57-_bxlByaOqx96qKsTFfEm9IlJ__oBSwbA1Zw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQElRNTCS2oHFKJYpN2n4SCqxH0fz8cqQusU92_wYNoY0XPpUxidDB5MjR6JKbOfwCyY5Q7bnYaH1i1MHFcryCWjdFDGGLd_BvQpSrDotbP1q0izPHK__eRbKWtcXqwcFO3IisnfJ8NLipJRhHxddIQkZtXlewkKuPYlw6xLLhh72vIqW5NVlg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGPJod2nTeOnPXZsOLaIXlmO9pZEsCfcrnUe-zXnkqqiMk8JE45ueauYBpsLKjVgclMxcFBebB_g0FrEY2VIFI6Dg8BIkJ9JY_9BgyXsUH7eW7g_akCU2Z0Lb0kN1E=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXeGWULvurPa2xRXAWBd8MZfqeWQhk8rZpzFsZXgAJK9MgeHOp6_jEl-8x0lZR6GjkOxetRnO8hafgkfNsE4xsPxUiHZABdscIsU0hoJnmx0kltOv7FP0kehOLGlVkN8eQ47M=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwZLXJusLEjDBST7t-Nffs2g9Ike9AlUIoSLPfPdfA2cZKSlFLcOP1zlnV6Ym5mMHdu2eRM4v2aGnaSfypqhPPdnux7lNHn065RkdFH17FTimhvuB1NI7xMvkRSj24H5-SnSxykWUv",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHTe10uGoLicX4dRCJvzR2Jz-IEjjwPEZa-cMpC1Dj3S1ex93G8mmZ8_VzJMc8n4aEw93kydCFpW9lZZUjdPkOPQC7gUK9MxAYUxsNd6B_iiv-9bYoZsOFW1pK07nATTC24-jysatxRf0F2",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFBUYF50S2YswEWpzNco-s9syd3a_ENcNIYfehu7It6AQwHzkeMNcrCCvWTB509lBzVm5VuqZ_NAgu_W4JeM9HEuuZhwANCNCaPBt59TKn68kFVBF45CvLHVNAbUW1EFxytKPHlGQf6oO20hBA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGY-QRYBx0-wQYDBsEtcrEflWkALfWtOPW9z3fGEp47gwF_CuaNP8LZ9md0vA3J3AMaboUdCKermmZa94TbBuwadC1RGMpNnlF-6vUwWFEoCOjTvJJp0ZkZ3YvIReHYmPkcQV-N5o1FERbupOWwq4jsEbRl7E_j_12aPZKBMql5YGSHV-nV6WkVikiQ2gNx38yN8aRWrCbvzMmrO7rYEw=="
+  ],
+  "error": null
+}

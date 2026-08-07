@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-08",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-07T22:36:27.252722Z",
+  "answer": "## Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、AIエージェントが自律的に業務を遂行する次世代型のCRM（顧客関係管理システム）です。\n\n**従来のCRMとの違い**\n\n従来のCRMは\n担当者が電話内容を記録したり、レコードを更新するのを待つのに対し、エージェンティックCRMは指示を待たずにその情報に基づいて自ら行動します\n。また、\n計画・実行・調整を多段階で行う自律型AIエージェントを、各ステップで人間の承認を必要とせずに活用するCRMシステムであり、事前に設定されたガードレール内で行動し、必要な場合は人間にエスカレーションします\n。\n\nこれは単純なルールベースの自動化とは異なります。\nルールベースのシステムはリードのスコアが閾値を超えたら定型メールを送るといった固定的なロジックに従いますが、エージェント型システムは条件と出力を単純に一致させるのではなく、コンテキストを解釈します。顧客データを推論し、状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整します\n。\n\n**具体的な機能例**\n\n例えば\nAIマーケティングエージェントはURLやブリーフ、商品リストなどから、ブランドガイドラインの範囲内でオンブランドなフォーム・キャンペーン・フローを含むマーケティング戦略を作成し、AI顧客サービスエージェントはWebチャット・SMS・メール・WhatsAppを通じて質問への回答、注文追跡、返品処理、商品レコメンドを行い、店舗情報やポリシーに基づいて正確でオンブランドな応答を24時間提供します\n。\n\n**背景**\n\n従来のCRMは\n15年間ほとんど進化しておらず、手動で反応的、かつ人間によるデータ入力に完全に依存している\nという課題があり、\nAgentic CRMはその次の進化形として、単にデータを保存するだけでなく、それに基づいて行動する専門AIエージェントによって動く自律型システム\nとされています。\n\n**主要ベンダー**\n\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoといった主要ソリューションが、Agentic CRMがどのように市場を再構築し、今後の標準を確立しているかを示しています\n。SalesforceはAgentforceというAIエージェント基盤を展開し、日本国内では三井住友フィナンシャルグループ（SMBC）やMUFGなどの金融機関がこれを活用した事例が紹介されています。\n\n## 日本で導入・設計を支援してくれる会社\n\n日本にもAgentic CRMの導入・設計を専門に支援する企業が出てきています。\n\n1. **100inc（HubSpotパートナー）**\nHubSpotを基盤に\nHubSpot × AI Agent × DXを統合する「Agentic CRMパートナー」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシーとしてHubSpot Eliteの実装力で顧客フロント業務を再設計しています\n。具体的には\nHubSpotを共通基盤に、AIエージェントを組み込んだ顧客フロント業務（マーケティング・営業・CS）を組織全体で設計・実装する日本のAIネイティブ・エージェンシーで、HubSpot導入・活用支援、AIエージェント組織構築、全社DX×AI推進のPMO伴走支援などを提供しています\n。\n\n2. **Salesforce（Agentforce）**\nSalesforce自体が日本でAgentforceの導入支援を行っており、\nアプリケーション、データ、メタデータ、AIエージェントを単一のプラットフォームとコードベースに統合し、顧客と従業員の成功を促進する取り組みを支援しています\n。SMBCグループやMUFGなど大手金融機関での導入実績も紹介されています。\n\n3. **Hiway（Hiway CRM）**\n国産の\n入力・更新・分析を自動化し、営業担当者のタスク実行まで支援するAgentic CRMを提供しており、「管理のためのCRM」ではなく「成果を生むためのCRM」を目指しています\n。\n\n4. **一般的なCRM/SFAコンサルティング会社**\n日本発のコンサルティングファームの中には、\nマーケティング、営業、カスタマーサービスにおける顧客接点業務の改革やシステムソリューション導入・定着化、チェンジマネジメントまでを一貫して提供し、自動学習AIを活用したCRM業務高度化支援サービスを提供している会社もあります\n。\n\n---\n\n**まとめると**、Agentic CRMは「データを蓄積するだけの箱」から「自律的に考え、動くパートナー」へとCRMを進化させる概念です。日本国内では、HubSpotやSalesforceといった大手プラットフォームのパートナー企業（100incなど）や、AgentforceのようなベンダーそのものがAgentic CRMの導入・設計支援を行っています。導入を検討する場合は、自社の業務プロセスやガードレール設計（AIにどこまで権限を持たせるか）を明確にした上で、パートナー選定を行うのが良いでしょう。",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.fullpath.com/blog/what-is-an-agentic-crm-understanding-the-future-of-dealership-customer-management/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://ecosystem.hubspot.com/ja/marketplace/solutions/sales-coaching-and-training/japan",
+    "https://www.salesforce.com/jp/?bc=OTH",
+    "https://product.hiway.app/crm/",
+    "https://www.biz.ne.jp/matome/2002682/"
+  ],
+  "error": null
+}
