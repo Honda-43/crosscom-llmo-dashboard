@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-07",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-07T01:31:51.347225Z",
+  "answer": "Agentforceの導入費用について、最新の情報を調査します。\nAgentforceの導入費用と費用対効果を出すための進め方について、最新情報をまとめます。\n\n## 1. Agentforceの料金体系（3つのモデル）\n\n**Salesforce公式の料金オプション**として、\nFlex Creditや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスから選択できます\n。具体的には以下の3モデルが提供されています。\n\n| モデル | 料金 | 特徴 |\n|---|---|---|\n| **Conversations（会話課金）** | \n$2 per conversation\n | 顧客対応向けのシンプルな課金 |\n| **Flex Credits（従量課金）** | \nFlex Credits at $500 per 100,000 credits\n | \n標準アクションは1回20クレジット（約$0.10）、ボイスアクションは30クレジット。100,000クレジットあたり$500で購入\n |\n| **ユーザー単位ライセンス** | \nper-user licensing starting at $125 per user per month\n | 社内利用（従業員向け）に適した固定費モデル |\n\n**モデル選択の考え方**：\n1回の会話に含まれるアクションが20を超える場合はConversationsモデルが有利、20未満ならFlex Creditsの方が割安になる傾向\nがあります。なお、\nFlex CreditsとConversationsは同一Salesforceオルグ内で同時利用はできません\n。\n\n日本語圏の情報では、\nAgentforceは「1会話あたり240円」というシンプルな料金体系\nと紹介されることもあります（レートは時期により変動）。\n\n## 2. 総コスト（TCO）で見た費用相場\n\nライセンス費用だけでなく、**前提条件となる製品や実装コスト**を含めた総額で捉える必要があります。\n\n- **前提条件**：\nAgentforceは基本的にService Cloud上に構築されるため、その価格は既存ライセンスに追加されるものであり、単独のプラットフォームコストではありません\n\n- **Data Cloud**：多くのケースで\nData Cloudの必須契約（年間$108,000以上）や導入サービス、ナレッジベース整備が、実際に使える状態になる前に必要\nになります\n- **中規模企業（500ユーザー）の目安**：\nライセンス費用のみでは年間$15,000〜$50,000程度ですが、Data Cloud・導入・保守を含めた初年度の総所有コスト（TCO）は$150,000〜$425,000\nという調査もあります\n- **導入期間**：\n多くの企業でAgentforceを本番稼働させるまでに5〜11ヶ月かかる\nとされ、\nSalesforce自身の顧客のうちパイロットを超えて本格スケールできているのは10%未満\nという指摘もあります。\n\n※これらは海外調査会社・コンサル会社発の推計値であり、日本国内での実際の見積もりは規模・業種・既存Salesforce環境によって大きく変動します。**正確な費用は必ずSalesforce営業担当者または導入パートナーへの見積もり依頼が必要**です（\n詳しい価格情報については、営業担当者にお問い合わせください\n）。\n\n## 3. 費用対効果を出すための進め方\n\n### ステップ1：既存データが整った業務から始める\n\n既存のナレッジベースをそのまま活用できる。FAQや過去のケース対応履歴がすでにSalesforceにあれば、新たにデータを整備する手間が最小限で済みます\n。カスタマーサービス領域は特にデータが整いやすく、着手しやすい領域です。\n\n### ステップ2：測定可能なKPIを最初に設定する\n\n効果を数値で測定しやすい。自己解決率、応答時間、CSATスコアなど、明確なKPIで成果を追えます\n。導入前にこれらの指標のベースライン（現状値）を必ず記録しておくことが重要です。\n\n### ステップ3：小さく始めて横展開する\n\n社外向けと社内向けの両方に展開できる。顧客向けに効果が出たら、同じ仕組みを社内ITヘルプデスクにも横展開可能です\n。最初から全社展開を狙うのではなく、パイロット→効果検証→拡大という段階的アプローチがリスクを抑えます。\n\n### ステップ4：ROIを可視化する仕組みを作る\n費用対効果を経営層に示すには、以下のような可視化が有効です。\n- \n広告施策のデータと、Agentforceが対応した顧客のコンバージョンデータを結合し、どの経路から来たユーザーがAIによって効率的にコンバージョンしたかを特定",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://coworker.ai/blog/salesforce-agentforce-pricing",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://ekfrazo.com/resources/blogs/salesforce-agentforce-pricing-2026/",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://myaskai.com/blog/salesforce-agentforce-complete-guide-2026",
+    "https://hatenabase.jp/blog/salesforce-agentforce-getting-started/",
+    "https://aurant-technologies.com/blog/salesforce-implementation-design-2714/"
+  ],
+  "error": null
+}

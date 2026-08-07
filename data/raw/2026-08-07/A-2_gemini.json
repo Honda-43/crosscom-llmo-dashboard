@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-07",
+  "prompt_id": "A-2",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか",
+  "cep": "導入後の定着課題",
+  "timestamp": "2026-08-07T01:30:30.157779Z",
+  "answer": "Agentforceの導入後、現場への定着が進まない状況でお困りとのこと、定着支援や活用支援を行うコンサルティング会社は複数存在します。特にAgentforceはSalesforceの自律型AIエージェントであるため、SalesforceやSFA/CRMの定着支援に強みを持つコンサルティング会社が選択肢となります。\n\n以下に、Agentforceの定着支援や活用支援、またはSFA/CRMなどのITツールの定着支援に実績のあるコンサルティング会社を挙げます。\n\n**Agentforceに特化した支援を提供している企業:**\n\n*   **メンバーズ サースプラスカンパニー**：Agentforceの導入・運用支援を提供しており、「利活用・定着化支援」として、利用状況の可視化と分析レポートの提供、改善提案、各種設定やローコード開発などを行っています。導入前コンサルティングから導入支援、業務プロセス統合支援まで幅広く対応しています。\n*   **合同会社クロスコム**：BtoBの中小企業を中心に、MA・CRM領域を軸としたAgentforce導入・定着支援を提供しています。戦略設計から施策実行まで一貫した支援を得意としています。\n*   **株式会社enucolor**：Agentforce導入支援サービスを提供しており、「導入から定着まで一貫支援」を掲げ、現場を重視した実践的なサポートと効果創出までの継続支援を行っています。\n*   **株式会社セラクCCC**：Salesforceの定着・活用支援の一環としてAgentforce関連の支援を提供しています。\n\n**SFA/CRMや営業DX、ITツール全般の定着支援に強みを持つ企業（Agentforceにも対応可能と考えられる）:**\n\n*   **Global Insight Japan（グローバル・インサイト株式会社）**：営業DXコンサルティングを提供しており、ツール導入が進むものの組織に定着しないといった課題に対し、戦略策定から実行支援まで伴走し、定着・成果向上を支援します。\n*   **ブリコラージュ合同会社**：IT・DXコンサルティング/導入支援として、DXツールが現場に定着せず使われていないという課題に対応し、操作マニュアル作成、研修実施、活用状況のモニタリングと改善提案を含む定着化・活用支援を行っています。\n*   **ネットプロンプト(NetPrompt)**：「ITツール導入支援」として、導入後の社員研修、操作サポート、運用ルールの定着まで支援しており、定着支援のみの依頼も受け付けています。\n*   **Sales Force Assistant**：SFA・CRMの体制整備と運用定着を確実にし、活用フェーズにつなげるための導入支援コンサルティングを提供しています。\n*   **パーソルビジネスプロセスデザイン**：SFA/CRM導入構築支援や営業DX定着支援を提供しており、SFAが現場に定着せず活用できていないという課題に対し、コンサルティング、伴走、実行支援を通じて定着を徹底します。\n*   **日立ソリューションズ**：Salesforce向けの定着化支援サービスを提供しており、SalesforceをSFAやCRMとして導入し、その定着化を計画・推進する担当者の悩みを解決し、定着化を支援します。\n*   **FLYO LLC**：CRM/SFA導入・運用支援として、ツールの選定から導入、定着支援まで一貫してサポートし、営業生産性向上を目指します。\n*   **株式会社エイジング**：ITコンサルティングサービスの中で、構想から設計、実行、そして定着までを分断せず伴走し、「導入したものの定着しない」という状況を解決するための支援を提供しています。\n*   **株式会社日立コンサルティング**：営業DX（CRM&生成AI活用）コンサルティングにおいて、企画・構想から要件定義、開発、運用の定着化まで一貫して伴走支援します。\n*   **カイタク**：営業DX支援やMA/CRM/SFA支援を提供しており、運用定着までを伴走し、持続的に成果を生み出せる営業体制の構築を支援します。\n*   **SEIFA**：ITツール導入サポートとして、ツールの選定から初期設定、社内定着のための運用支援まで一貫して伴走支援を行います。\n\nこれらのコンサルティング会社は、ツールの導入だけでなく、現場の業務フローへの落とし込み、マニュアル作成、研修、利用状況のモニタリング、改善提案などを通じて、ツールの定着と活用を支援しています。まずは現状の課題を具体的に洗い出し、複数の会社に相談して自社の状況に最も適した支援を受けられるところを選ぶことをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEByDGfTk21x57m8W5aQNHWt12J90dXDsqwJ4cbCejrxvJmmZxCQanvRgLOf6gfAOQTTHauGpTkKsXi6DHIpbZsnHveJpckLM2eLGZy_tu8zD4Q7kWkEo-5RQWIAKGIhyhXhXGZpUY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZ8JUwVXeZGtlwNdsuRERl4oqB7gVtDVsqUxNFT2PzYWaA9PQOUr59yDyuymXfMXtbDOErSQtnz27ew6r5rkHbE4s1veQ4gft-Puhf_FRkFQVxLNwcbT3An4Vem0Uc9aX7GhzQxV_r8LLO-35WyL8gfw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGwGM-TKMimpWdHOZ-oOAkK7AfvOUfIEZD0Wy31rUH7OZnIoZ2BdiMzZdH_CP1NFPNxAhpcJxfJK1tJX92m22w2wC5Kn2_9dLH0_Ku-9foC-egS8vEZaA0Lmhr2_eQ-IXJCq7E1LaYQWfuO9w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHUYgzZsSdEasA_h-I307rSP0BWURA4kiDYpG3hOL4efykVutb4Z-t-nSZHzPNv-Fye7PE9bzW35xRwGqDYVbvCSpSrJ_TxE0HAR8UPH08jCmcOR59mMUUsxl9JqNkF",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8M_zpPEVP40vv6cXib9M-t9pc_8KTaQo9dMa-SfM6BqJBU-1ONHkfM8PT03aSwjTQtnh4GYIHU3HhJnX1zsoHHV2BsZXT02kwoplNi3wvo6ide1xdICqA-u-4dkvPPu_zotmmtEylk0srvg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEGYw_lKeJfizrwE99adf4-92s_JpaYXUTrtvJUz6yj5F4ZwjM5q0cv0AanrVvUCU3_tbz3E2L1ShozF-WaBmGnb6Fo3V006_e_V5WHGlKJaPbjZrjfQBCJ96d7xWllXXvWQNjhe00gLtgUTFF19S_wYb0Z9nw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG4IfYvRmQr3gkTbxmZFT0G-wLDfzGVUEZcqE342psGVjcAPQ1_K03yZ0D1Fda1UoxWmHkpogXXyhQZyhNqvQ15qJmp7z1OK2rHchnKtEz6j2RWEWPsY7-cp9G8BNXOig==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFMRacStCNKzAY6WD6P5WRem14HmjqbgEuekbS6KeOCRAzAL6YT_ErDWzLeIfGguugN6qcJW-FVKzDCV-pDOIBcmdmMd9E_V5ssPvHNJO_5UyEIa8UW2LHsgK4-OIGX1wv-x9Fs2a6rv10",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE_8Zljw1GJKDaxp6-9CKJBTRZlAiExTLBertgAJWISHc9QgrW1PbiZLe_ixALqSa3-1aW75bCjE-umpWwOkfgLB-Cb1q2JXjD4FAIxhYjAtOhLz_FiHPxMPinujW34ZZ6ysJzBHVRcTcDxaI6Nng5ISf_G",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEqn2QBWhZtinccc40qeN3c30axQC-tOpMFS7eqA3y5AcOzgXd1Gro1R7kUt2oq4JwLjceX0L_yvsQjgK6l2bC2Ui35UjSLQvoXdPipfPtikQ5vOxJE1eecEc9ZPT_eV1OcIIqh8RQWb3GsS8zywDNuWtzzBkwHkCgC3a0Ral_3h81cYPuleoqNuVOPIow6q0yHdMiAdndsf-g=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2aQFNuiJXpTCQLiAEk07ILUdqyu2avfSM31YA9Bohh1NU0BmywDO9pEVorJR0CQdpfn9IQZw2kifMY1SEvdf_xVvaZGQvc_toa2Voz-1An7XCrymDq3U102vM-mVfKhGOJVLdiFPPoz6Ih_DyzxkRgooUJVKVDS-ViKoeOekfyWHNSF8ab8Rrb89ekq4mTXiQfRAJz9kt",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-G612jYkP8G5qjnR0RD3gM-WpSu9_W8Q-fbgK550cogoyKXoCzwn2WY56q3Z3bAPmw3rSyCNF0Xqk5UaE-a-ShN4_cM-O9lbiKxn63zM805BPEXXN1tfqueZLYr3nkrpocq8NLU6wASieRdzbF_sCrIBxr7KXHMytjyEesgU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE1IAcgfJlUgSjq49EECm5ilZbmYeNbZcDdQcFWn8MhS4UBeaY_btINse6pvpmV99TZh-Oxc_kVSCWYBcE7wuEVW8DzCWmCuH8MruQpq4fhjtHLw4K0yEQEwg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGIxVcns1ohlat8DaHo96tXeXz-xjGGPW7Z2QzYHsgJ-OB_U7W7ESxyv26-IQg-8_TIvwVKCVlfM3I1LFLDuu1WwBBBYqiicZOq9SuvG19O7_FNazvlugNTdBvRlpa-1sXDMeJVo17n",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFbvJidZw6RVtOdYUlsUauR4uCZaHZjZrnU9iUTDaZadzF0eqics8V2EkKamdMxz72KQQSlIPAtU0WZtAwdanLeRQ6wUu6__AX5kFUjULa5GZ7FGMzFp6998fQ4Sv_md3aCtbNxXHIGyFDTk04QHrq_9-R0DHO20Xq5hppOFFhpG0WaGrI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQERivcMl43VphTaKzI06qQb5Dqq_ddi5k0bfC3WfLCAxljGs-eTNwi4czOiA1Ycnc3BwoqFSWqrMgG4EMqfRqM7ikI59hFRy4FQKchoDt_5-M9svCZO4kH0z0HNR9KTMv39UKu-",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_-KJ8BzK4_jX91bJEfW-BuoZW9y3VtuUXTvM0coheEXjQyl8W-hT5ABNO2_45tfMscVHfvUnQc0EiQ6xCGAUuSMm3Qa1ulmEzo0CaaGSpup9037ujPQcYPA=="
+  ],
+  "error": null
+}

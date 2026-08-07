@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-07",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-07T01:30:15.387602Z",
+  "answer": "Agentforceの導入支援を行っている会社について、最新の情報を調べてお伝えします。\n# Agentforce導入支援会社について\n\nAgentforceは、Salesforceが提供する自律型AIエージェントプラットフォームです。\nSalesforceのコンサルティングパートナーは、コンプライアンスやガバナンスを維持しながらビジネス成果を生み出すAIエージェントのコンサルティングやアドバイザリー、導入や実装、稼働をサポートする体制を構築しており、国内で累積4,300のAgentforce、Data 360関連資格が取得されています\n。\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼります\n。\n\n以下、特徴別におすすめの会社をご紹介します。\n\n## 1. メンバーズ サースプラスカンパニー\n\n導入による効率化業務の可視化、ユースケースの整理やPoCの実施支援、リスクや課題の洗い出し、投資対効果(ROI)の試算などを支援しています\n。\nメンバーズはSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\n。内製化を見据えた伴走型支援が特徴です。\n\n## 2. Uhuru（ウフル）\n\nSalesforceのテクノロジーを活かした業務支援の経験をもとに、Agentforceの導入・活用を現実的かつ実践的に支援。まずは「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供し、Data 360の設定から構築、動作確認、リリース準備までを最短3カ月のスケジュールで支援します\n。データ活用・IoTに強みを持つのが特徴です。\n\n## 3. 日立ソリューションズ\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援し、PoCで終わらせず着実に成果を出すためのステップを重視しています\n。大手SIerとしての実績と信頼性が強みです。\n\n## 4. クロスコム\n\n「Agentforce導入・定着支援」として、実務で活用できるまでの定着支援に重点を置いたサービスを提供し、目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込みます\n。\n1ユースケース×3ヶ月のスモールスタートプランから対応しており、どのユースケースから始めればいいか分からない場合の相談にも対応しています\n。\n\n## 5. DCS（大興電子通信）\n\nデータ分析・活用基盤の構築、クラウド利活用、多様なシステムの横断的な統合において豊富な実績を有し、Salesforce単体導入に留まらず、社内の基幹・周辺システムに分散するデータの統合も含めたAgentforceの導入を一気通貫で支援します\n。\n\n## 6. サークレイス\nAgentforceリリース直後から\n導入・構築を全面サポートするサービスを提供しており、労働生産性の向上やイノベーション促進など多岐にわたる企業価値向上を支援しています\n。\n\n## 7. enucolor\n\n営業DX支援に強みを持ち、要件定義から実装まで、プロジェクト成功に導く戦略的な導入支援を提供しています\n。SFA・営業領域に特化したAI活用支援が特徴です。\n\n## 8. フロッグウェル\n住宅業界向けなど業界特化型の導入実績があり、\nEinstein for Serviceを活用したマッチングシステムの導入支援など、AIエージェントによる業務自動化の実績があります\n。\n\n---\n\n## 選び方のポイント\n\n会社選定の際は以下の観点で比較するとよいでしょう：\n\n- **業界・業務特化度**：営業（Sales）、カスタマーサービス、マーケティングなど、自社が優先したい領域に強みを持つ会社か\n- **支援範囲**：PoCのみか、本導入・定着化・内製化まで一貫サポートしているか\n- **規模とスケジュール感**：スモールスタート（3ヶ月程度）が可能か、大規模プロジェクトに対応できるか\n- **Salesforce認定資格の保有状況**：コンサルティングパートナーとしての実績・認定者数\n\nまずは無料相談やPoC(概念検証)から始められる会社も多いので、自社の課題や優先ユースケースを明確にした上で、複数社に相談・比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/news/press-releases/2025/11/20/agentforce-world-tour-tokyo/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.members-saasplus.com/agentforce",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://enucolor.com/service/sfa-AI",
+    "https://frogwell.co.jp/blogs/agentforce/"
+  ],
+  "error": null
+}

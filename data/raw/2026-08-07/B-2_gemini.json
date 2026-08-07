@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-07",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-07T01:32:47.505250Z",
+  "answer": "中堅企業が特定のベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探す場合、以下のポイントを考慮し、独立系のシステムインテグレーターや中立的なコンサルティングファームを検討するのが有効です。\n\n**中立的なCRM設計支援会社の特長と選び方**\n\n特定のベンダーに縛られない中立的な企業は、顧客の課題や目標に最適なCRMソリューションを、様々な製品や技術の中から選択して提案できる強みがあります。ベンダーは自社製品を推奨する傾向があるため、中立的な第三者の視点からのアドバイスは、導入の成功に不可欠です。\n\nCRMコンサルティング会社を選ぶ際の重要なポイントは以下の通りです。\n\n*   **中立的な視点**: ベンダーに依存せず、貴社の課題解決に最適なCRMツールを選定し、提案できるかどうかを確認することが重要ですCITE。\n*   **業務理解と設計力**: CRMの導入は単なるシステム導入に留まらず、貴社の業務プロセス全体を理解し、顧客データの活用を見据えた業務設計や連携設計ができる会社を選ぶべきですCITE。\n*   **豊富な実績**: 特に中堅企業のCRM導入実績や、企画構想段階から運用支援まで一貫してサポートできる実績があるかを確認すると良いでしょうCITE。\n*   **継続的な運用支援**: 導入後の定着化や、KPI設定、ダッシュボード構築、データクレンジング、運用トレーニングなど、継続的なサポート体制が整っているかも重要な選定基準ですCITE。\n\n**CRM設計支援を強みとする企業例**\n\n以下の企業は、中立的な立場でのCRM設計支援や、独立系としての強みを持つとされています。\n\n*   **シースリーインデックス株式会社**: 独立系システムインテグレーターとして、ベンダーやメーカーに縛られず、様々な製品や技術から最適な組み合わせを提案します。パッケージ商品の導入支援はもちろん、フルスクラッチ開発にも対応していますCITE。\n*   **株式会社GeNEE**: 業務系システムの企画・設計・開発を手がけ、CRMやSFAを含む顧客・営業管理系システムの構築実績が豊富です。CRM単体の開発だけでなく、多機能領域の統合設計に対応し、要件定義から運用設計まで一貫して支援しますCITE。\n*   **株式会社ripla**: 業務設計からシステム構築・運用まで一気通貫で支援するDX/開発支援会社です。営業・マーケティング・サポートの業務プロセス設計と連動した顧客データ活用基盤設計に対応し、既存のERPや販売管理、マーケティング基盤との全体最適設計を通じて業務革新を支援しますCITE。\n*   **株式会社HubOne（ハブワン）**: 顧客情報の整備から活用設計、レポート最適化までを一貫して支援し、「使えるCRM基盤」の構築を目指しています。Salesforceやkintoneなどからの移行支援、MA・SFA・BIツールとの連携設計も行いますCITE。\n*   **株式会社100（ハンドレッド）**: HubSpotのパートナーですが、「使われるCRM」をコンセプトに、要件整理からプロパティー設計、入力ルール設計、KPI設定、ダッシュボード構築までを一貫支援します。HubSpotに限定されず、AI活用支援やSalesforce・Marketoからの移行支援、Salesforceなど外部ツールとのシステム連携・データ統合も手掛けていますCITE。\n*   **デロイトトーマツコンサルティング、日本IBM**: 大手コンサルティングファームも中堅企業のマーケティング・CRM支援を提供しており、中立的なテクノロジー選定を強みとしている場合がありますCITE。\n\nこれらの企業は、CRMの導入検討段階から、現在の業務課題の現状把握と分析、CRM施策の計画、ツールの選定、導入支援、そして導入後の運用サポートまで、広範囲にわたる支援を提供することが期待できますCITE。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGrSLUWCUUnRNXWXLZKSFe-gNg7BEYsR7ThdfRIms6B0vWNYNYB2eAlYPT41IaIbDo8N3xNZCjW1qY8jwucq6UVp7QC8iX7vZA3HY-HnLBwZwckiH7TXgc2-kT8",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF9w2nj6tcjO_VsPvKns4DpC87dfXwEYbz3y7vzdbKguY8rPao3jpaSC8sTkZk0u5eDOCNCVaqyfQ452l6zUpxEPzDawP3CmxnRo-eQDX4z9gHm2-GFPwcg-DeZV5rl2Yp42bnvpxvZEOsrFEB6pg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE7OVBlmS1oUdg6BUmZy3JCIsEw1log_ACzNvsO0s-t73MCWji-m571AlAkdWcdVqjwkR3qjJ_GKG1FNb9U2wIlGEWE8u8zD51dq8mz0c9aQ7O0W9EGVybrAs085IntVwMA20sp",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0f6kwCku86YGkho9Bf78I4x2YhzF5guEdcgvJbGgmq2ReDGDIqNuKbaKrCZplpoCkFPjBGzm6oqFFJxgGzqAoGzEasursMwcKntE5Bg6ZGFoWM0c05gtruurxFL9D9kZKhJtJXJYUt6A=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSDIS_nDhGVpWikY00H0Q-BxEPWs3jWsJ1YL90LiR4dfEGr9c6PhOmbrCk3m02WOxQvpnqI-zLGjnJoFWR-AIKXYexyTQ1ZqWiPIYczlAhDrVE9Em6sGTZgONh_MKzuQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHE1396We6jIeCvesZfMA_dqW-yRdxx439lMCsxblDGayd8aTh_i9MEgeIZtfnIZsxdrbMwbldTpdIJRb0pXtZR7S2EXbQZmvJT-_gIrY2B8ztXTODgMTEKw38X3Syj53vwJW75e-SGLiVTC2mRHRH7og==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFh3bgWebRBjc_1qL24oqV3dHk9aYiIa4ors0ZpmfHdPnI_ZWSVBeNlumCxwA3ytNrfVOlHK5ITusJQO-7VjbMdD2LbSEuljZLWX835ThZ-pGywlvlnyTCUuKiNBoGMLQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFR-jdyjoLX-O5SNwE12h87NtvLn5a6vriJMVzVOG5FOnaF-IdJ1QPRHDvmHN6LE_ksDa-bFLeNQjfMT7MC_NcjA-mcSPbCE6h0g66Ro0nXmMKDWSRALTIe2xV5zkz0T_GVc5Mym-Cm9yO2nWo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHXUQf3QqSPGrdUosj5dhG-e8gWusMCIJ66jjKPR_ek41gKfdLW4JF0kUKSaJk0To682H_KxFmU49rquSFdfJ5Zk5YA5lA8DaD9DYYP_GyF8iKiFO440dckPGlpUKKA-x3qW_mWDc8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFf1LKkym1T9xdN52wJEG3ywhayNKrh8uhijdrYJPpVx3VVJsmNqe5fOG1SkOT58td8xOgXTccVpNM4rVMH_4GV5hbxDTZcvwGJDAa7Lec1ekHR9nvXgnbgfQZeq_Q6UvgIMX7CuQoyd6gy3YibtkXf9XCBeQiijDPhW4Zer6aVctprZg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGGCez3mCWm4ii6VE_9B4I9vGpkJoZkcLXcUqcMEo3haomMoOavXowMQsBbL026rP3HN-OHb2n1MwNyYSuOZiraKv5LaN3teWBk9ACax5DcM1XGrOVu2YGm-aRaIx-wGxTQFs4kKEc="
+  ],
+  "error": null
+}
