@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-09",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-08T22:30:15.896724Z",
+  "answer": "中堅企業で特定のベンダーに依存せず、中立的な立場でCRMの設計支援をしてくれる会社をお探しとのこと、承知いたしました。以下に、いくつかの特徴を持つコンサルティング会社をご紹介します。\n\n**ベンダーフリー・中立的な立場で支援する会社**\n\n*   **株式会社シーサイド**: DXとAIを軸に、経営・事業設計から顧客体験（CX）領域まで幅広く取り組んでおり、大手企業から中小・ベンチャー企業まで多様な業種・業態への対応実績があります。SFA/CRMソリューションでは、特定のベンダーに依存せず、SalesforceやHubSpot、Zohoなど複数ツールを比較した上で、業務や組織体制に適した提案をしてくれます。\n*   **ArchRise（アーチライズ）**: 特定ベンダーに偏らず、Salesforce、Zoho、HubSpotなど複数のツールから貴社に最適な選定・構成を提案し、ツール選定から導入後の運用定着まで一貫して伴走支援をしてくれます。営業フローや業種特性に応じたカスタマイズ提案も強みです。\n*   **フュージョン株式会社**: 1991年創業で30年以上マーケティング支援に取り組んでおり、顧客獲得からロイヤルティ育成までのCRMプロセス全体を対象に、全体設計から具体的な施策実行までを支援します。顧客データを活用したアナリティクス、CXの具体化、テクノロジー活用、施策運用までをワンストップで対応できる点が特徴です。\n*   **フォーティエンスコンサルティング株式会社（NTTデータグループ）**: これまで様々な業界を支援してきたナレッジを体系化し、CRMグランドデザイン/導入支援ソリューションを提供しています。経営の方向性や現状業務、利用ツールを把握した上で課題整理を行い、改革テーマに基づいた施策の検討、全体計画の策定を支援します。業務コンサルの視点から、新業務プロセスの定着まで伴走してくれます。\n\n**CRM設計・戦略策定に強みを持つ会社**\n\n*   **レイヤーズ・コンサルティング**: 顧客接点のデジタル化を通じたCX戦略・CRM実践のため、具体化から導入、改善効果の検証、モニタリングまで顧客プロセスに適応し、持続的な成長を支援しています。顧客行動の全体像を捉え、顧客接点ごとの施策と必要となるデジタルテクノロジーを設計し、効率的かつ有効なCRM構築を重視しています。\n*   **株式会社ripla**: 業務設計からシステム構築・運用まで一気通貫で支援するDX／開発支援会社です。CRM開発では、単なる顧客情報管理に留まらず、営業／マーケティング／サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応できます。既存のERP／販売管理／マーケティング基盤との全体最適設計も行い、顧客データの統合・分析・活用による業務革新まで支援可能です。\n*   **船井総合研究所**: CRM（顧客関係管理）システム導入支援として、KGI/KPIの設計からシステム選定、運用の定着化まで、成果を出すための実践的なプロセスを整理します。特定のツールに偏ることなく、貴社の事業規模や特性に最適な構成を提案してくれます。\n\n**その他**\n\n*   **ECマーケティング株式会社**: ECサイトやマーケティングサイトに特化したWebコンサルティング会社で、中小・中堅規模のEC/通販企業から大手企業まで社内の状況に合わせたサービスを提供しています。CRMツールベンダーと紐づかないコンサルティング会社は少ない中で、選択肢の一つとして挙げられます。\n*   **株式会社Hakuhodo DY ONE**: 顧客との良好な関係を築き、顧客ロイヤルティを高めるための最適なCRM戦略を、策定から実行まで一貫して支援しています。統合的な顧客理解とパーソナライズされたコミュニケーションで、ビジネスの持続的な成長に貢献します。\n\nCRMコンサルティング会社を選ぶ際には、提供されるサービスの範囲や契約期間、企業の規模によって費用が大きく異なるため、初期調査や戦略立案にかかる費用、システム導入やカスタマイズを含む場合の費用を確認することが重要です。中小企業向けには月額契約で数十万円規模のプランが用意されているケースもあります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqHlBEsYdwMH0o0ntbJyuLYNdAEva9xjHM1qYB1W4wJIfTpSA1o3twH0DMEYplw6_uywAkgZtB6SkYsI-Svfj09RI54PM1nrTwzLHygKv6JukPGFYP_cbnXEiiDxXKHFXGMcs6da8E",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHC5CaZC8UUadz65r9_8-GfD1goLXfuTqlPHVvqG19teTFx5m433lnhEHfsvQV9gpw8h5hYBFROdXmRN3n14n05pL3FFUy9u1J-lDOBBTj5cqz8h65b9V1hIh1Ua5FcJKYHxCKJglpGqDNO",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEaWfVNY8JgkJjS-YNItgr_TVKlp_xVx79ftQ3SMACRBQq-TmQWTQe53OkBBa41nXrbz1fLaqELmTdpqxaWAuHVbkJ1m5VuLTZrvYuBA_vwhk594OSABzITvgBTj3Z7vd_N89x8jjObSjDO7IA0Lh9ISrc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0TmlFdYcthb1h9CoGe5GncI82UNYrrDl_fZNzALHhToNLmZ1FQoomr7CCmKb8fdBFse2Wlpx4Ir-YY_OU2TF7AITqzUjnqF-hSU95IjtNEy1rL9DwKfnNLG9URWjfulQRGnqnt5vrMtilLi5xXHNXHdGwR-723VRUi3fqVw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGJCbjCEms9y0YKmwwe941Ygh59VTkhejtRIgd5J4txUFWAjbhybQ-17fIo6_KlJ1AdaoGiePQ82ygshTf9mAoAgbzQ3jBZ09vzgc8vaCcFX2d80J-Dg0zo9_wXVokZYU1w8ZmyK9aIPNR1",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFKKZ_mctr8z8D5iGDb6ltDPSV67kt1sQkJt4ZLL4FFIXg8SYfOWTw9VDVYyPecqTqHMx8v08Q7uD7hdeDOaFvuHXh9hyCjNldHDsS3BNenzUn9nBJ7mks12dNd9JMMGqIOJacF-qN3LDKz",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHB2Cdm8hFrbyJfxz9Y2mJMLnCwc2zN4vbSTTkvHg-FBNlAuEUgVZAqWdTnXEtQI31dMpruO4CSAxU3WUD-Wg_fhaP1CQR1VcMq9WqXhyMCfy2onNsD-8CXLw-nehqEAOJ30FEBs6E9fxhi7z07dLmx",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGDFXlHzeby9ixGsJQdm7mxrmCp7SgK12LxOlGJ9Cw93XN2U-DgFXMRFeA85mYZnEsPYK85g2resC8M9_EvqftRKH4inbmAQr2CknJX4kzLwsDxneA_rQAppLTP2SwQSe0sdlgo6ACqu5cwQQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEZxR6kOjrCWY0Z6V1Z3We0xKjyrruBKo91nv6D3xVSkqccr6LOpTPxqXf8JY3NrqhI9Ek3Fuht0GPULdtJzuBWTTTzHACp6Seh6E_btqQ8kGDoUahyFmpqiB0O9R4fw5TGb7qIn5bax75eCCrSsQbjZCzM5eHKYcZ6u9TiyzDAySsdXnUU_g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGk2mmgEImAn1uiEdUW6Dq48iyY1EoKHaT7LQsJk_QFnLckC8vzYbk7D_yqcG5C6KaiA9bVZrBnjAkYMpBXjCv_a6lGdr2O0V4wmzcsK9o_idIpX-BIo0_ngAyom9vUxmrsbn4xXw=="
+  ],
+  "error": null
+}

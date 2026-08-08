@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-09",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-08T22:30:09.532899Z",
+  "answer": "Agentic CRMについて調べてご説明します。\n# Agentic CRMとは\n\n**Agentic CRM（エージェンティックCRM）** とは、自律型AIエージェント（Agentic AI）を組み込んだ顧客関係管理システムのことです。従来のCRMとは根本的に性質が異なります。\n\n## 従来のCRMとの違い\n\n\nAgentic CRMとは、人間と自律型AIエージェント、そしてそれらが動作するプラットフォームが協働して顧客の成功を推進する顧客関係管理システムです。従来のCRMが担当者による通話記録や情報更新を待つのに対し、Agentic CRMは指示を受けなくてもその情報に基づいて自ら行動します。\n\n\nまた、単純なルールベースの自動化とも異なります。\nこれはこれまで利用可能だったルールベースのCRM自動化とは大きく異なります。ルールベースのシステムは、例えば「リードスコアが閾値を超えたら定型メールを送信する」といった固定ロジックに従うだけです。一方エージェント型システムは文脈を解釈するため、単に条件と結果を照合するだけではありません。顧客データを推論し、状況に最適な行動を特定し、その後の結果に応じてアプローチを調整します。\n\n\n## 主な特徴・できること\n\n- **マーケティング領域**：\nURLやブリーフ、商品リスト、自由形式のアイデアを、レビュー用のブランドに沿ったフォーム・キャンペーン・フローを含むマーケティング戦略に変換\nすることができます。\n- **カスタマーサービス領域**：\n顧客対応型AIエージェントが質問への回答、注文追跡、返品処理、商品推奨をWebチャット、SMS、メール、WhatsAppを横断して行い、店舗情報やポリシーを学習した上で、24時間体制で正確でブランドに沿った対応を提供\nします。\n- **データ統合・クレンジング**：\n自動化されたデータクレンジングと重複排除の機能を備えており、「伝える」「思い出させる」必要なく、2つのエントリが実は同一人物であることを認識して重複を解消\nできます。\n\n## なぜ今注目されているか\n\n\nCRMという、営業活動全体が依存する中核システムは、この15年でほとんど進化していませんでした。依然として手動で、受動的で、人間によるデータ入力に完全に依存しています。\n \nAgentic CRMは、人間が指示を出すのを待つ代わりに、それぞれが特定の役割を持つ専門AIエージェントを配置し、観察・判断・代行を行います。「エージェンティック」という言葉は「エージェント」に由来し、観察した状況に基づいて自律的に行動できるシステムを指します。\n\n\n代表的なプラットフォームとしては、\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどがエージェンティック型CRMがどのように市場を再構築し、今後の標準を確立しつつあるかを示しています\n。\n\n---\n\n# 導入・設計を支援してくれる会社\n\n日本国内では、主に**大手CRMベンダー（特にSalesforce）のAgentforce**を軸にした導入支援が広がっています。\n\n## 1. Salesforce系（Agentforce）の導入支援パートナー\n\nSalesforceでは自律型AIエージェント「Agentforce」を提供しており、日本語音声対応なども強化されています。\nSalesforceでは、Agentforceのパートナーとして、株式会社アグレックス、株式会社ギブリー、株式会社グローバルウェイ、株式会社テラスカイ、株式会社フレクトと協力しています。\n\n\nまた大手SIerも参入しています。\n日立ソリューションズは、Salesforceのコンサルティングパートナーとして、お客さまに合わせた導入支援コンサルを行っており、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援\nしています。\n\nパートナー選定には公式の仕組みも用意されています。\nSalesforce導入支援パートナー選定には「専門性の確認」が重要で、製品・業界別パートナー専門性マップ（Navigator Map）を活用できます。Navigatorプログラムでは認定資格・プロジェクト件数・顧客満足度に基づき、定量的にパートナーの専門性を認定・開示しています。\n\n\n## 2. 一般的なCRM導入コンサルティング会社\n\nAgentic CRM特化ではなくとも、CRM全般の導入・設計を支援する会社も多数あります。\n- \nCRM（顧客関係管理）システム導入支援は、企業の顧客データ活用を最大化し、LTV向上と営業効率化を両立させるための総合的な経営コンサルティング\nを提供する船井総合研究所のような企業。\n- \n導入から運用、改善までを効率的に進めるための外部の専門知見を提供するCRMコンサルティング会社\nも複数存在します（アスピックの比較記事などで紹介されています）。\n\n## 選び方のポイント\n\n- **プラットフォーム専門性**：Salesforce/Agentforce、HubSpot、Zohoなど、自社が検討するCRM基盤の認定パートナーかどうか\n- **設計フェーズからの伴走**：単なるツール導入だけでなく、KGI",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.smartrecruiters.com/resources/glossary/what-is-agentic-crm/",
+    "https://www.fullpath.com/blog/what-is-an-agentic-crm-understanding-the-future-of-dealership-customer-management/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.salesforce.com/jp/news/press-releases/2026/08/07/agentforcevoice-japan-ga/",
+    "https://www.hitachi-solutions.co.jp/salesforce/",
+    "https://successjp.salesforce.com/article/NAI-000843",
+    "https://www.funaisoken.co.jp/solution/dc-crm_705_S092",
+    "https://www.aspicjapan.org/asu/article/89215"
+  ],
+  "error": null
+}

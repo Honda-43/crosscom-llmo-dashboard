@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-09",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-08T22:29:26.422656Z",
+  "answer": "# Agentforce導入費用の相場と費用対効果を出す進め方\n\n## 1. Agentforceの料金体系（3つのモデルが並存）\n\nSalesforceは短期間で価格モデルを複数回変更しており、現在は3つの課金方式が並存しています。\n\n**①会話課金（Conversations）**\n\nAgentforceは一般提供時、会話数あたり$2という単純で予測しやすいモデルで、会話内の一連のエージェント活動がすべて1回の課金に含まれる設計でした\n。ただし\nこの$2/会話モデルは、予測不可能でコストが高いとして中堅企業から反発を招きました\n。\n\n**②Flex Credits（従量課金）**\n\nFlex Creditsでは標準アクション1回あたり20クレジット（約$0.10）、音声アクションは30クレジット（約$0.15）で、クレジットは10万単位＝$500で購入します\n。\nFlex Creditsは顧客向け・従業員向けエージェント、Agentforce Voiceまで全ユースケースをカバーし、購入形態には前払い・従量課金・PreCommitの3種類があります\n。なお\nFlexCreditsとConversationsは同一組織内で同時利用はできません\n。\n\n**③ユーザー単位ライセンス（新モデル）**\n\n2025年後半には$125/ユーザー/月からのユーザー単位ライセンス（Agentic Enterprise License Agreement）も登場し、\"デジタル労働力\"を含む座席として提供されています\n。\n\n## 2. 実質的なトータルコスト（見落とされがちな費用）\n\n**Data Cloudが実質必須**\n\nAgentforceを適切に機能させるにはData Cloudが必要で、これは多くの購入者が見落としがちな、Agentforceライセンス自体を上回ることも多いコストです\n。日本でも\n初期構築コストはプロンプト設計・テスト・日本語調整・パートナー委託費用の積み上げによる参考値であり、プロジェクト規模や要件により大きく異なります\n点、また\nAgentforce単体のコストに加え、Salesforce本体ライセンス費用との合算が総保有コスト（TCO）になる点、Data Cloudの契約を見積もりに入れ忘れる会社が多い点\nが指摘されています。\n\n**海外の実勢感（参考値）**\n米国での試算例では\n中堅企業（500ユーザー規模）でData Cloud以外の年間費用は1.5万〜5万ドル、Data Cloudや導入・保守費用を含めた初年度総コストは15万〜42.5万ドルに達する\nとされ、\n実際の初年度コストは15万〜60万ドルに及ぶこともあり、その差はData Cloudの必須契約（年10.8万ドル以上）などが原因\nという報告もあります。日本語対応については\n日本語チューニングに英語圏より2〜4週間余分にかかると見積もっておくのが現実的\nという指摘もあります。\n\n**PoCはコストを抑えて開始可能**\n\nSalesforce Foundations（Enterprise Edition以上）には10万Flex Creditsが無償付与されており、PoCはコストゼロから始められます\n。\n\n## 3. 費用対効果を出すための進め方\n\n**ステップ1：スモールスタートで小規模検証**\n\nAgentforce導入の投資対効果を明確にするためには段階的なアプローチが推奨され、まず小規模な業務領域で試験導入を行い、具体的な効果測定を実施した上で段階的に適用範囲を拡大する方法が効果的です\n。\n\n**ステップ2：ユースケースを「効果×難易度」で選定**\n\n導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定です\n。具体的には\nユースケースに対しSalesforce上での実装が適しているか（適合性）、実装にどの程度の工数・技術が必要か（難易度）をマトリクスで評価し、効果が高くかつ実現しやすいAIエージェントから導入する\nアプローチが有効です。\n\n**ステップ3：定量指標でROIを可視化**\n\n「議事録が楽になった」「検索が早くなった」といった現場の定性的な成果を、「売上xx%向上」や「何人月の工数削減」といった定量的な指標に変換することが、ROIを明確化し本番導入への道を開く鍵\nとなります。具体的には\n人件費削減、対応時間短縮、顧客満足度向上、",
+  "cited_urls": [
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://www.zenml.io/blog/agentforce-pricing",
+    "https://ekfrazo.com/resources/blogs/salesforce-agentforce-pricing-2026/",
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://note.com/honda_crosscom/n/n7c0a9df77cf1",
+    "https://www.fsi.co.jp/Salesforce/column/column19.html",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}
