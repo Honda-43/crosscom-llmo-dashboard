@@ -1,0 +1,28 @@
+{
+  "date": "2026-08-10",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-09T22:31:53.116585Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、AIエージェントを活用し、マーケティングやサービス業務を自律的に管理する顧客関係管理システムです。従来のCRMがデータの保存とユーザーによるアクションを待つ受動的なシステムであるのに対し、Agentic CRMは、設定された戦略やガイドラインに基づき、キャンペーンの計画、顧客対応、パフォーマンスの最適化などを能動的に実行します。\n\nAgentic CRMの主な特徴は以下の通りです。\n\n*   **自律的な意思決定**: AIエージェントが、設定された範囲内でデータやコンテキストに基づいて行動し、人間の介入なしに意思決定を行います。必要に応じて人間にエスカレーションすることも可能です。\n*   **AIエージェントの活用**: 大規模言語モデル（LLM）上で動作するAIエージェントが、自然言語を理解、処理、生成し、カスタマイズ可能でスケーラブルな自律的なソフトウェアとして機能します。\n*   **文脈の解釈と行動の調整**: 従来のルールベースの自動化とは異なり、状況の文脈を解釈し、顧客データに基づいて適切な行動を特定し、その後の結果に基づいてアプローチを調整します。\n*   **業務の自動化**: リードの評価、サービスチケットのルーティング、ナーチャリングシーケンスの調整、パイプラインデータの更新などを継続的に自律的に行います。\n\nAgentic CRMを導入することで、マーケティング資産の迅速な生成による市場投入までの時間短縮、24時間365日の顧客サポート、生産性向上、意思決定の迅速化、スケーラブルな成長、プロアクティブな顧客エンゲージメント、動的な適応性、販売サイクルの短縮、マーケティング加速などのメリットが期待できます。\n\n**Agentic CRMの導入や設計を支援する会社**\n\nAgentic CRMの導入や設計を支援する企業は複数存在します。以下に代表的な企業とサービスを挙げます。\n\n*   **株式会社100**: HubSpot、AIエージェント、DXを統合する「Agentic CRMパートナー」として、AIエージェントを組み込んだ顧客フロント業務（マーケティング、営業、CS）の組織全体での設計・実装を支援しています。HubSpotの導入・活用支援、AIエージェント組織の構築、全社DXとAI推進のPMO伴走支援を提供しています。\n*   **株式会社セールスフォース・ジャパン**: 「Agentic CRM」を提供しており、AIエージェントと人間が協働して営業、サービス、マーケティング業務を効率的に自動化すると謳っています。特に「Agentforce 360」という包括的な製品ポートフォリオを通じて、人とAIエージェントをアプリケーションやデータと連携させ、生産性向上とオペレーション効率化を支援しています。\n*   **Hiway, Inc.**: 「Hiway CRM（Agentic CRM）」を提供しており、入力・更新・分析を自動化し、営業担当者のタスク実行までを支援するAIネイティブCRMとしています。\n*   **Arcuss Japan Inc.**: AIネイティブなノーコードCRM「EMOROCO CRM Lite」を提供し、中小企業向けの顧客管理、営業管理、問い合わせ管理の一元化を支援しています。CRM導入・定着支援、顧客データの一元管理、セールスDXをサポートしています。\n*   **TISI株式会社**: 「Agentic AI Platform」サービスを提供しており、生成AIやAIエージェントの活用に関して、チャットからAIエージェントへの「3段階進化ロードマップ」に伴走支援するコンサルティングを行っています。\n*   **EYストラテジー・アンド・コンサルティング株式会社**: Agentic AIが製薬CRMの役割を変革するという視点から、データ駆動型運用やアカウント志向への転換、人間とAIの協働を前提とした組織変革に関するコンサルティングを提供していると考えられます。\n*   **合同会社クロスコム**: Salesforceの「Agentforce導入・定着支援」や、BtoBマーケティング戦略コンサルティング支援を行っています。\n\nこれらの企業以外にも、CRMコンサルティングを専門とする多くの企業が日本に存在し、CRM戦略、ビジネスモデル、イノベーション、運用、プロセス、システム、ソリューション、人材など、CRMのあらゆる側面で組織をサポートしています。 Salesforce、Microsoft Dynamics 365、HubSpot、Zoho CRMなどの主要なCRMプラットフォームの導入・最適化支援を行う企業も多く、これらの企業がAgentic CRMへの対応を進めていると考えられます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHWc7XI7Vo3WkXD9iXsSSYjHhNXEUgutRYs8nWVOMVKqLWT0U4G4EMfnG4DaDximzqp60lH9uptc9peeYWQ3dxemJTwxvgb4fpTZBbvSC6Qp0k35Vd3sPNz5NN5_4Uk3T1cBlmQ0P8ygUPsrEC27SPe-Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHw3yd9ABWxGfbZ4QGXKKQZOH5v4gl-VnuA-JQnQw51IjF9NdTs2OcUU2cXC8pasuKRIclJ3dcpZPcxlVzumYCNPOZHVsLvWifx5L1eivFWksnUQGlGinyYtaMf5cvrDSHohz04_-YHCRWg8Gl0zTvTHQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHiqsrCAOwO7rk59RfFDaoXyyf1lOliW-3vit1WLiQOyRTJA7rb_ws3YwVyOOxT06aeSBtU74KzBhX2zwlOVLq0Ewz4TEyN56q8nSGZPK8c6xOWb0Qqct48s5SlfcTONRfkQJf4uVOP4WdNK7Y-ufYIF08_1FmFdHZQpEa2p_s2d7c=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZCCgGwRgFcw_1pdx2tGuRz9y0p8IrGUYlfxHUoG6YafOy_Qwlbte9gvptixzc08f3OnrPpfPiuGy23nO2ai6nW8BUM29A0vfVekVJoWZeg4VPZKJEiHZ6ijCzYjp2Ow7joXFhsLE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE444E2aoWP9MMKVf1mZSe9ijMY9Hpk1QfV1nc6gjWY9zymOBgeoiVBvaMPf5YmMC3otxVSldI5JSxk4Fff4JbBxQG8MKL1gpENvKXZd5bXFiES5DYQbggowryrPlhubUn-dKwQmCx7A0dIbS--PnlKTp4QgurNBgpm7QGojMPlGhmN4wi35CL-GPQweea784LU1KcMJVvvsqVQXMZLM59WtBLx78Ia56fDL2b99cEyIxMHhkh1v49wyBl130xuAgpCAg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQETXQI9HUOWfak5R_aNuM5i99bJHEOXnMw85wepT-zkrURSmqjZRIUfDI0-qflkClXnvAWHp4DCNlNWuRoORWK0UzHkPzvoSsJfIUKbUF2fuaqeJbOK9MtXkqeVIAqlTCfd-pwtuz4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE12Hey-T7tlxVKXNWh6mPJ_KQfW9M26Au3-P63UQJzIlnf4LzzfINEbOwomv-XX4Eo-iOjSInZcPGdUjUznSR3eDDnREOUY6gdW_5qk_H4MSI6gyW8GN6r",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHaOV4nUzgB9Ei7a8sRPwfwXu0cZPIljQyGtJzzjIh4e2drfrfeI_335Z5T87AnYXYAyLAJ2MaD5grsMzC0u6wZ24WSxAK5o-FdHW5hxJZZd3iihl5yIv1X",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFsZiNhALpddLM8ebyR7HnwfYSYt_Sl9LNIokp2l0bVzDJR0GMkXAja5pFpAzbLMOq5QK6NWTDgKVd0ridcp5B-zEZYpYxAMtck5MywVoJm1IxHVwY0KjG2CEQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6vU_GsVtUdBmVX8hknI-LLcTLIgaJ_hWCik2j_Gc_hDiuXsA6dwBPqBqBUX9kXyVloYM6pM254t7TYGp8UXLECzgFEOswI1NHy5oyYjWPd7dXzXhbrq-tv3ayDc2xm547F1tUqAciYuaUUPfSxY3-j26VrZ3J",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEqVvweU2ev_QIE5u8kSeYlpvUl1luD8uy6oEbGId-5QpIjGCGumN-eym46riXSNY9lkDEh1eHBw8DzV3yqTAFq1vRX3NLzwVuaq1-kUvypUrm4BI407AYTvBnp0GtdTR-tI7NnLDiQPbt7UdmaYbZ19TrPuwirgw_qMPdD66em5h3jvPjpn0ltIr6EtiHD6Sa7Cw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGDoHLLASUrhNfJGzRALzZsPadTmyweMJ6-GlPDvv7HFqu5V51PN8u-WW9OTgp3lfSegv1GUdll41hVmKuFuFhRtI6kdblDtDrxuHwsNMVbVq2WWaf1cGrdT2Qlx8oYqE6JjV1I",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_eSJKuctBJoKSksQ0PiCnAgTxX4IbxmfjA7azUg8Hd6tqVXgykQCgJyyriP6gAGql_hy9cUiNPqApfbMADaNmf4ohxsGhnsbyJxIK4Y5FM2DNfk7LuxnX8UfFpU64CrdS0Cyu9DY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFWCGPKKcQ1hbw7yWdz9vHQgbaNvanQZbptypsVEdcbCjEUn5t43xlJUqYIj-FIP5jb4FIPdi7vBL_JU3LP2dmzzHdEr9RMx_i6g4t6dF6OLHIW3dyFk71xoGppBb1F1pIaQzNNyemrcGsWp5jxqOCZRmM="
+  ],
+  "error": null
+}

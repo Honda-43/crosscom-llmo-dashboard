@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-10",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-09T22:31:41.562560Z",
+  "answer": "Agentforceの導入費用と費用対効果について、最新情報を調査してお伝えします。\nさらに導入の進め方・費用対効果の出し方について検索します。\n# Agentforceの導入費用相場\n\n## 1. ライセンス費用（3つの課金モデル）\n\nAgentforceには現在複数の価格モデルが並存しており、これが「相場が分かりにくい」最大の理由です。\n\n**① 会話単位（Conversation）課金**\n\nAgentforceは、会話数に応じたシンプルで予測可能な料金モデルを採用しており、会話内のアクション数にかかわらず1会話あたり2ドルの課金となります。\nただし\nこの2ドル/会話という価格は、固定モデルの下での顧客対応エージェントにのみ適用されます。\n\n\n**② Flex Credits（従量課金）**\n\n2025年5月にリリースされたFlex Creditsでは、10万クレジットあたり500ドルで、標準アクション1件が20クレジット（0.10ドル）、ボイスアクション1件が30クレジット（0.15ドル）となります。\n実際の会話は複数アクションで構成されるため、\n1アクションあたり約0.10ドルで、通常のカスタマーサポート会話は8〜15アクションを要するため、実質的な会話あたりコストは0.80〜1.50ドルとなり、規模が大きくなるほど会話単位課金より割安になります。\n\n\n**③ ユーザー単位ライセンス**\n\nAgentforceアドオンは、Enterprise版またはUnlimited版で1ユーザーあたり月額125ドルから、Agentforce 1 Editionsでは1ユーザーあたり月額550ドルで年間100万Flex Creditsが含まれます。\n\n\n日本市場では機能別のユーザーライセンスも用意されており、例えば\nAgentforce for Salesは1ユーザーあたり月額15,000円（税別）\nという価格が示されています。\n\n## 2. 隠れがちな追加コスト：Data Cloud\n\nAgentforceを本格運用するには基盤としてData Cloud（現Data 360）が必須で、これが総費用を大きく押し上げます。\nAgentforceは統合された顧客データのためにData Cloud上で動作し、これはオプションではありません。\n海外の目安では\nData Cloud Plusが年間約65,000ドル、Data Cloud Premiumが年間約175,000ドルとされ、Agentforceのライセンス予算を承認した後にData Cloudライセンスが別途65,000〜175,000ドル必要になることが発覚するケースが多い\nと指摘されています。\n\n## 3. 総額イメージ（Year1 TCO）\n\n海外の実例モデルでは\nAgentforceは1会話2ドルから始まりますが、中堅企業の実際の初年度コストは15万〜60万ドルに達し、その差はData Cloudの必須サブスクリプション（年10.8万ドル以上）や導入・保守費用によって生じます。\n別のガイドでも\n中規模企業（500ユーザー）ではData Cloudコストを除いて年間1.5万〜5万ドル、Data Cloud・導入・保守を含めた初年度総所有コストは15万〜42.5万ドルの範囲になる\nとされています。\n\n## 4. 導入支援（コンサル/SI）費用（日本）\n\nライセンス費用とは別に、要件定義・構築・運用支援を外部委託する場合の目安として、\n依頼する範囲によって幅がありますが、月額伴走型なら月額数十万円程度から、プロジェクト一括型なら数百万円規模からが一つの目安\nとされています。\n\n---\n\n# 費用対効果を出すための進め方\n\n## ステップ1：課題が深刻な業務からスモールスタート\n\nまず最も課題が深刻な業務領域から小規模導入を開始し、効果検証を行いながら段階的に展開することが推奨されます。\n実際にHR Tech企業では\n営業・サポート・人事の3部門同時にPoCを開始し、最短1ヶ月で本番導入に成功、カスタマーサポートではFAQの自動化率97%を達成した\nという事例もあります。\n\n## ステップ2：ROI事前試算ツールの活用\n本格投資前に、\nSalesforce公式サイトでのROI試算ツールを活用し、投資対効果の事前評価を行う\nことが有効です。\n\n## ステップ3：料金モデルの見極め（PoC後に本決め）\n導入初期は使用量が予測しづらいため、\nまず会話単位の価格で開始し、実際の使用量を計測した上で、Flex Creditsに切り替えるべきかを評価する\nアプローチが推奨されます。ボリュームが多い場合は、",
+  "cited_urls": [
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://ekfrazo.com/resources/blogs/salesforce-agentforce-pricing-2026/",
+    "https://myaskai.com/blog/salesforce-agentforce-complete-guide-2026",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.ccc.seraku.co.jp/service/columns/salesforce/01/155/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://low-code-media.com/post-5922/"
+  ],
+  "error": null
+}
