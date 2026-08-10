@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-11",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-10T22:38:41.676325Z",
+  "answer": "「Agentic CRM(エージェンティックCRM)」について調べてご説明します。\n# Agentic CRMとは\n\n**Agentic CRM(エージェンティックCRM)** とは、AIエージェントが自律的に顧客対応・マーケティング・営業などのタスクを実行するCRMシステムのことです。\n\n## 従来のCRMとの違い\n\n\n従来型のCRMが営業担当者からの通話ログや記録更新を待つのに対し、エージェンティックCRMは指示を受けなくても情報に基づいて自ら行動します。\nまた、\nエージェンティックCRMとは、人間だけでなく、承認を都度得ることなく多段階のワークフローを計画・実行・調整する自律的なAIエージェントも利用するCRMシステムであり、事前に設定されたガードレール内でエージェントが行動し、必要な場合は人間にエスカレーションする仕組みです。\n\n\nルールベースの自動化との違いも重要なポイントです。\nルールベースの自動化は「リードスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従うのに対し、エージェント型システムはコンテキストを解釈し、条件と出力を単純にマッチングするのではなく、顧客データを推論し、状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整します。\n\n\n## 具体的な機能例\n\n例えば、マーケティングの領域では\nAIマーケティングエージェントがURL・ブリーフ・商品リスト・自由形式のアイデアを、設定したブランドガイドラインとコンテンツガードレール内で、レビュー用のオンブランドなフォーム・キャンペーン・フローを含むマーケティング戦略に変換します。\n\n\nカスタマーサービスの領域では、\n顧客対応AIエージェントがWebチャット・SMS・メール・WhatsAppを通じて質問への回答、注文追跡、返品処理、商品推奨を行い、自社の店舗情報やポリシーに基づいて訓練されているため、正確でブランドに沿った回答を24時間提供します。\n\n\n## 「本物の」エージェンティックCRMの4つの特徴\n\nSalesforceによれば\n真にエージェンティックなCRMを定義する4つの特徴があり、その一つが「自律的な意思決定」で、エージェントがデータとコンテキストに基づいて設定されたガードレール内で行動することです。\n\n\n## 主要ベンダー\n\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoといった主要ソリューションが、エージェンティックCRMが市場をどのように再形成し、今後の標準を打ち立てているかを示しています。\n\n\n---\n\n# 導入・設計を支援してくれる会社\n\nはい、いくつかのタイプの支援会社があります。\n\n### 1. 大手コンサルティング・SIパートナー\n- **CRMIT**:\nSalesforceの信頼できるコンサルティングパートナーとして、エージェンティックAIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供しています。\n\n- **RSM US**:\nAIアドバイザーが、AIエージェントが組織に最も価値をもたらせる領域を理解する支援を行い、エージェンティックAIの開発・展開のための包括的な戦略を策定します。\n\n\n### 2. 特定プラットフォーム特化型パートナー\n- **Kanerika**:\nエージェントをERP、CRM、クラウドプラットフォームに直接接続し、並行して管理・維持する別システムは不要で、アクセス制御・監査証跡・説明可能性が最初のエージェント稼働前にアーキテクチャに組み込まれています。\n\n- **Inogic**(Microsoft Dynamics 365向け):\n自律システムの構築はDIYプロジェクトではなく、テクノファンクショナルコンサルティングへの深い理解と1,000件以上の導入実績が必要だとしています。\n\n\n### 3. 一般的なCRM導入企業(AIエージェント対応を含む)\n- **Solutions Metrix**:\n2001年から企業のCRM導入を支援している信頼できるCRM導入パートナーで、各組織の固有ニーズに合わせたソリューションの調整を専門としています。\n\n\n### 選定時のポイント\n\n導入企業を探す際は、\n自社サイトの推薦文だけに頼らず、Clutch・G2・GoodFirmsなどのレビューサイトを直接確認し、レビューの新しさや、具体的な成果物（データ移行、統合、納期の遵守状況など）について言及しているかを見ることが重要です。\nまた、\n2026年時点でAI導入がCRM導入プロジェクトのスコープに影響する点として、HubSpotのBreeze AgentsやSalesforceのAgentforceなどのAIエージェントを構築に含める場合、ユーザーロールと同様に導入フェーズで権限設計をスコープに含める必要があります。\n\n\n---\n\n**日本国内での導入をお考えの場合**は、Salesforce・Microsoft Dynamics・HubSpotなどの日本国内認定パートナー(SIer)に相談するのが一般的です。具体的な業界(製造業・小売・金融など)や使用中のCRMプラットフォーム",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.crmit.com/",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://solutionsmetrix.com/",
+    "https://integrateiq.com/blogs/crm-consulting-services-companies/"
+  ],
+  "error": null
+}

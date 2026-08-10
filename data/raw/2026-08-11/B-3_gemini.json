@@ -1,0 +1,18 @@
+{
+  "date": "2026-08-11",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-08-10T22:39:26.663857Z",
+  "answer": "営業にAIエージェントを活用するにあたり、ツール選定の前にCRMのデータ設計から支援してくれるパートナーは存在します。AIエージェントの効果を最大限に引き出すためには、正確で質の高いデータの整備と、既存のCRMシステムとの連携環境の構築が不可欠とされています。データの粒度や更新頻度を統一することで、AIの学習精度と分析結果の信頼性が向上します。\n\nこのような支援を提供するパートナーとしては、以下のような企業やコンサルティングファームが考えられます。\n\n*   **総合的なAI/DXコンサルティング企業**: 営業業務の理解に加え、既存データやCRMとの連携、実装力を持つ企業が適しています。コンサルティングから開発まで一気通貫で支援するサービスを提供している場合があります。\n*   **CRMベンダーのパートナー企業**: Salesforceなどの主要CRMの導入・活用支援を行っている企業の中には、AIエージェントの導入を見据えたデータ設計や統合支援を提供しているところもあります。例えば、三菱総研ＤＣＳはSalesforceのAIエージェントプラットフォーム「Agentforce」の導入・活用支援サービスを提供しており、データ統合を含めた支援を行っています。 また、HubSpot認定パートナーであるグロースパイロットのような企業も、BtoBマーケティングと営業プロセスの全体設計を専門としており、データ設計も支援範囲に含まれる可能性があります。\n*   **AI開発・導入支援に特化した企業**: AIエージェントの開発や構築を専門とする企業の中には、導入前のデータ戦略やCRMとの連携を重視し、包括的な支援を行うところもあります。株式会社riplaなどがその一例として挙げられています。\n\nAIエージェントは、顧客データ、商談履歴、商品情報、社内規定などを参照しながら営業プロセスの一部を自動化し、タスクを連続して実行できるシステムです。 そのため、単にAIモデルの知識だけでなく、業務設計、データ連携、権限管理、運用改善まで含めた視点を持つパートナーを選ぶことが重要です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF4ogqbbpkGpOeuhLvrIw18N1KTFtM3vfTcxumL4nxPsKp7RPy-KHgZeH7V3QryYTRqQOx-iApYOLWv9HSeuf49ZdTFpPiuOLHd0tWV1V8YI04VhWjYdXR5oJY87mHCi1rAcPvVuTjZAK_Wvalu9aQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEWJdZP0Hrug8e7RdznzSJo2sCLZaSihQ3zVk6aWIFczO9pZKWIWcin_aWP1JSLohxxJYQgXGFgyba5kTozuOHa-b-zJeyequI0CKn1TT2jsCWY3fia24keqNXuKTC0dRasOwwsWdYl5QTsmSCJMSqwVgIP3KcqtUfv8pa3lzz3mGFctcsCaY_jsHanpcGG6cykPpymc55acdp7pX74NmLc8NCdeTu1nisKO6NFKbnc4wIDDhJzWX8ifqxqix5F85wqV9t4kP8OqLFOWBU68eJStFI5fQsAz2xnHt8yFm3jF5DqcF_H60QUnFYlgfMmv86F1MwoofauLWOJYdNmoS3U1Els41UVw-MsGptCPkj9x8j0Vo9aZsiYlXsmkmAE6VSy",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFOaebFGxKpvr2ujgHHzejeWkPZ21jK8y6rbBYCmQKKaISe076pPWOemHAZCkjqm02b-ZAlpfB_HKSajbg18fT9QKRy_ssSdMYk1DEpwiBXAF_nY7Y6TgZIkzD5QOjfS6bH_4HrWmz6OKg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGWG1d9Dq7zelyCPWEaQDyOXyRFhAv-rWpNb7d68k5ZLZHOML5pEGNDDz2hqtbNTCc_kDxScmgkj0Ap9D1qaxLt6LK1HJiRsAAyopv8wniH3FXpv_t4NcREFEE="
+  ],
+  "error": null
+}

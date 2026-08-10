@@ -1,0 +1,16 @@
+{
+  "date": "2026-08-11",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-10T22:36:31.290819Z",
+  "answer": "Agentforceの導入支援を検討されている方へ、おすすめの会社として以下の2社が挙げられます。\n\n*   **株式会社日立ソリューションズ**\n    日立ソリューションズは、Agentforceの「導入・活用支援サービス」を提供しています。Agentforceは、Salesforceが提供する自律型AIエージェントプラットフォームであり、営業、サービス、マーケティング、コマースといった多様な業務領域での効率化と顧客満足度向上を支援します。日立ソリューションズは、様々な業種・業態の顧客におけるDX推進を支援するためのサービスを用意しています。\n\n*   **富士ソフト株式会社**\n    富士ソフトは、Salesforceの導入支援の一環として、「Agentforce導入を成功に導く、確かなPoC支援」を提供しています。Agentforceは単なるチャットボットではなく、複雑な業務プロセスを理解し、状況に応じて自律的に判断・行動できるAIエージェントであり、Salesforceエコシステムとの完全な統合が可能です。\n\nこれらの会社は、Agentforceの導入において、それぞれの専門知識とサービスを提供しています。Agentforceは、事前に定義された役割やデータに基づき、業務に最適化されたAIエージェントを構築でき、Salesforceの既存ツールと連携して迅速なエージェント構成を可能にします。また、カスタマーサービスにおける24時間365日の自動応答や、営業支援でのリード対応から商談予約までを自律的に行うなど、幅広いユースケースに対応します.",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFA4rca5Q642-X6X6YTnq6PJMSUn9tsYLQIDHd7HeKCIt_NRw9NenfZJ16vk3Cy4NZHNkUx9D1TCKsWwRsY-C68Hr1iVJIqVdF4nEDGzBvDZmFn3GTZq25I1_NZhHnPqTHkzeFciDk2v3QIp0nxUlZ4AVqts-UO-yybBFIjn1o=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGNK1W7Ij--DMhJveDlbv7GZcG6N6IE7PrFS7C4dBREkY6KRGJvvARVKN4ozeNvbY7IuinpKKSrS5SSiCTiNx7f_4HzwSiyWkdI0be0Yjx8FzpIIji51RphloOK0VcOuG8CGA2Bbd-ISF-MDg45BuVM"
+  ],
+  "error": null
+}

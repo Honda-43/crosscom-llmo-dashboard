@@ -1,0 +1,20 @@
+{
+  "date": "2026-08-11",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-10T22:38:54.281899Z",
+  "answer": "中堅企業様で特定ベンダーに依存せず、中立的な立場でCRMの設計を支援する会社をお探しとのこと、承知いたしました。以下に、そのようなニーズに応えられるCRMコンサルティング会社を複数ご紹介します。\n\n### 特定ベンダーに依存しないCRM設計支援会社\n\n1.  **アスピック (ASPIC)**\n    CRMコンサルティング会社の紹介記事で、SFA/CRMソリューションにおいて特定ベンダーに依存せず、Salesforce、HubSpot、Zohoなど複数のツールを比較検討した上で、業務や組織体制に適した構成を設計することを強みとしています。ツール選定から要件定義、設計、初期構築、導入後の運用定着まで一貫してサポートします。プライム上場企業から中小・ベンチャー企業まで幅広い実績があります。\n\n2.  **ストラ株式会社**\n    アスピックの紹介記事内で、上記と同様にSFA/CRMソリューションにおいて特定ベンダーに依存せず、Salesforce、HubSpot、Zohoなど複数のツールを比較した上で、業務や組織体制に適した構成を設計すると記載されています。\n\n3.  **ベイカレント・コンサルティング**\n    カスタマーエクスペリエンス（CX）領域において「中立的な立場」であることを強調しており、企業にとって都合の良い解釈ではなく、顧客を真に理解するための支援を提供すると述べています。CXはCRM戦略と密接に関連しており、中立的な視点での設計支援が期待できます。\n\n4.  **ECマーケティング株式会社**\n    ECサイトやマーケティングサイトに特化したWebコンサルティング会社で、中小・中堅規模のEC/通販企業から大手企業まで対応しています。CRMツールのベンダーに紐づかないコンサルティング会社の選択肢が限られていることに言及しており、中立的な立場での支援を意識していると考えられます。\n\n5.  **リックス工業**\n    Zoho CRMの運用サポートを提供していますが、Zoho CRM以外のシステムの紹介など、フラットな立場からのアドバイスも提供できるとしています。これにより、特定のツールに限定されない広い視野での提案が期待できます。\n\n6.  **MCネクスト**\n    SFA・CRMの活用支援サービスを提供しており、客観的な立場からのツール選定や、企業文化、営業戦略、マネジメントの現状を踏まえた導入・活用プランの策定を行います。これは、ベンダーニュートラルなアプローチを示唆しています。\n\n7.  **フュージョン株式会社**\n    CRMコンサルティングやCRM戦略設計における伴走支援を提供しており、戦略策定からデータ分析、システム構築・運用支援まで幅広く対応しています。顧客セグメンテーションやパーソナライズされた施策設計を通じて、売上向上に直結するCRM活動を支援します。\n\n8.  **株式会社ripla**\n    CRM開発に加え、既存のERP/販売管理/マーケティング基盤との全体最適設計を行うDX/開発支援会社です。顧客データの統合・分析・活用による業務革新を支援し、標準CRMパッケージでは不足する要件や自社特有の業務プロセスを反映したCRMが必要な中堅〜大企業に適しています。\n\n9.  **株式会社GeNEE**\n    業務系システムの企画・設計・開発を手掛けるITベンダーで、CRMやSFAを含む顧客・営業管理系システムの構築実績が豊富です。CRM単体の開発だけでなく、営業支援・案件管理・商談管理・MA連携など、多機能領域の統合設計に対応できます。\n\n10. **アーカス・ジャパン株式会社**\n    CRMの専門的な開発・設計に強いITコンサルティング企業です。Dynamics 365などの大手CRM基盤のカスタマイズや、業務特有の営業/顧客管理要件に合わせた設計・実装を得意とし、CRMをゼロから開発するケースにも対応可能です。\n\nこれらの企業は、特定のベンダーに縛られず、貴社の業務内容や目的に合わせて最適なCRM戦略とシステム設計を支援してくれる可能性が高いと考えられます。まずは複数の会社に相談し、貴社の状況に最も合ったパートナーを見つけることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF783s5jDDR5aCcTXnOzdGFlnwzCEWchO8jJGR_bigRLlmdWNsgjrYdqluwrxYLEDmA_qai4G3yW1Iwo_dGkl9k-yF9l6BxeSJeNr1clBmxaxXgyi7g67wnEPoH09Gb_pgtgfXy4_2I",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7dxXGTRVBoU8ZplnsbE9BiUx7NYSaDJ-IL2EE3UKKuoKpecgf9nm9BVovan95No4Sa9t8H0Wr0uR-SN6ezj91Yx7Sx35KMMEGzd1Eg9nYiei2nNPnQ8yDDljAQhEZs0SiSU_eA6MFU2UWmzeHYfbgKnFs3P6yCeXjPL7Xijj7tcgCPyo-",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG3wVDc3JjspfcU-GU8r8UqqyYgKe5XJPsfXdJ0PwMwCG4dCyIlmtvTuUJz9SMsUG882tD7c_C5krpjA1BjjDZsKAOUYnvGPpqqltM_8OfyvOsARCmEVggNGSL3Gz6XRbNFaTWlx5YnXWCMTg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXElNCEfZJG0PCZloAl1lnaDQo8Ux6D7nX2KEswJE8-6T5Ms_oRedTTnXt0we8hRWvXCagZwOtU_f4PyI6jsE2SAlWRQ4ht6J9GoUMeuZOOANpQ1gTJpp9nITeX2VgjiM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEpQ2gW_xFFpqvoxCtXjJP3H5eWRn8qx-peYh32hsddKvasfy-c6qiioqyj7z7I66_S_NIyhdmQWag5vXzDBxeBv8p9PIjpERGNdaokoaf6lIfarOvDqItnkKzdirOBsu9NXGmuw_pCMwbhYVKMvDb3b-0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHCjLSgdupsupv1uO6T-zqOq21U_7u516mAki6QaBPa3Gy38Dho-vQPJT9b-eusuADt21ZSEmfYwqalRheklbETaKNvrRqmkdHn9OdMXGI3Sj2jXXZigto6PmmgqJQUyYwnMOF3oBOTBROM"
+  ],
+  "error": null
+}
