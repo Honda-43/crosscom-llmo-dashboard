@@ -1,0 +1,17 @@
+{
+  "date": "2026-08-12",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-11T22:42:27.620301Z",
+  "answer": "中堅企業様で、特定ベンダーに依存せず中立的な立場でCRMの設計を支援する会社をお探しとのこと、承知いたしました。そのようなニーズに対応できる企業はいくつかありますが、特に「ベンダーフリー」や「中立性」を明示している、またはその方針でサービスを提供している企業に着目してご紹介します。\n\n**合同会社クロスコム**は、オープンソースCRMを基盤とした「Agentic CRM設計支援」を提供しており、AIが読み書きすることを前提としたCRMシステムを貴社専用に設計・構築するサービスを展開しています。既存のパッケージ製品ではなく、企業ごとに独立した環境にCRMシステムを構築するため、特定ベンダーに依存しない中立的な立場での支援が期待できます。\n\nその他、CRMコンサルティングや導入支援を行う企業の中には、特定のベンダーに限定せず、顧客の課題や要件に基づいて最適なツール選定から設計、導入、運用までを一貫して支援する独立系のコンサルティングファームやITコンサルティング会社も存在します。\n\nCRMコンサルティング会社は、企業の「データ」「マーケティング」「システム」に関する専門知識を融合し、客観的かつ多角的な視点からCRM施策の立案・実行を担うパートナーとなります。顧客データを単なる蓄積情報として扱うのではなく、分析や施策設計を通じて活用し、企業にとっての持続的な資産へと転換することを目的としています。\n\nCRM導入を成功させるためには、単にシステムを導入するだけでなく、営業活動の効率化や顧客対応品質の向上、売上分析などが可能になるよう、業務プロセス全体を考慮した設計が重要です。自社の営業プロセスや業務フローを理解し、それに合った機能設計を行うことが求められます。\n\n会社を選定する際には、以下の点に注目すると良いでしょう。\n\n*   **ベンダー中立性:** 特定のCRM製品に縛られず、貴社のビジネス要件に最適なソリューションを提案してくれるか。\n*   **業務理解度:** 貴社の業界やビジネスモデル、既存の業務プロセスを深く理解し、それに合わせたCRM設計ができるか。\n*   **実績と専門性:** 中堅企業への支援実績が豊富か、CRMに関する深い知識と経験を持つコンサルタントが在籍しているか。\n*   **支援範囲:** 設計だけでなく、導入後の運用定着支援やデータ活用まで見据えたサポートを提供しているか。\n\nまずは、複数の企業に相談し、貴社のニーズに最も合致するパートナーを見つけることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVIQ8tPj3y7o9w3Tv-uttErioarMFi2zaKczAoeBsjQa_9coTK3sRmx9oxJ-u_PJgjK_po9-vwKllh1sVDS5U_oGvxmjHNN_OWcodbP-IzOQtnQNvQ5-Fm-0igUdhw82nfZsEcR-Lhqdrnmg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEbameSjxeBw7NStXuRJTvFC8hj34x8bD4yCSvtqCW6lkNmwx0R6Wt324GJw60eDjEkieKtYUi7gvQeq3HiJImgRGCwOs73j1rauzoM9h1IjsGxNAcQjOCm5psa4czkneFZtNpmJ4q3",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF1oiK9Wa3ZwNJ3szX5zj3hGqqC4HrWycfafk0WBT0Mkr7PpYQfWgBhEdnIfb0CU8JaGJTQGbGjgSHxc9mJT-QwvrBWREu5RP7YdIGyXsoPad4GCSWtP8m6XVMldEsSegQjxEAsA8I6Ao7P"
+  ],
+  "error": null
+}

@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-12",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-08-11T22:43:37.673943Z",
+  "answer": "合同会社クロスコムは、BtoB（企業間取引）領域に特化したマーケティング支援を行う会社です。データ活用を通じて「100社100通りの購買体験を当たり前にする」ことをビジョンに掲げ、企業のマーケティング・営業活動を支援しています。\n\n**強み**\n合同会社クロスコムの強みは以下の点が挙げられます。\n\n*   **戦略立案から施策実行までの一気通貫した支援**：マーケティング戦略の策定から実際の施策の実行までを一貫してサポートします。\n*   **BtoBセールス出身の代表による知見**：BtoB営業経験が長い代表者が率いており、マーケティングと営業双方の視点を取り入れた戦略設計が可能です。商談獲得の独自メソッドを持ち、商談獲得の最大化を支援します。\n*   **顧客導線設計力**：累計100社以上のプロモーション戦略支援で培った顧客導線設計力を持ち、見込み顧客のニーズや検討度合いに応じたパーソナライズされた購買体験を提供することで、商談化率の向上に貢献しています。\n*   **本質的な問題解決とビジネス起点でのデータ活用**：表面的な課題だけでなく、企業の根本的な問題を特定し、データをビジネスにとって価値あるインサイトへ変換し、ビジネス成長へ活用することを重視しています。\n*   **幅広いMAツールへの対応力**：Salesforce Account Engagement（旧Pardot）、HubSpot、Zohoなど主要なMAツールに対応し、単なるツール運用代行に留まらず、マーケティング戦略全体の中でMA施策をどう位置付け、何をすべきかという目的から逆算した戦略提案と実践を得意としています。\n\n**提供サービス**\n合同会社クロスコムが提供する主なサービスは以下の通りです。\n\n*   **MA（マーケティングオートメーション）導入・運用支援**：各種MAツールの導入から運用までを一貫して支援し、リード獲得から育成、営業連携までを自動化するMAツールを最大限に活用するためのサポートを行います。具体的には、ターゲットセグメントの設計、マーケティングシナリオの構築、コンテンツの企画・制作、メール制作・配信、効果測定とレポート作成までをサポートします。\n*   **BtoBマーケティング戦略コンサルティング支援**：ターゲットから提供価値までを策定し、施策実行への反映までを支援します。リード数増加後の商談化の課題など、BtoBマーケティングにおける課題に対し、本質的な原因を捉え、戦略設計と施策提案で支援します。\n*   **メールマーケティング代行支援**：BtoBに特化したメールマーケティングの代行支援を行い、商談数と売上の拡大を支援します。\n*   **Agentforce導入・定着支援**：Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までを支援します。エージェント設計、トピック構成、アクション配線といった構築作業に加え、導入に伴う業務設計も支援します。自社で構築を進める企業向けには、設計アドバイザリーも提供しています。\n*   **Agentic CRM設計支援**：特定の製品に限定せず、CRMとAIをどのように組み合わせるかを設計段階から支援します。マーケティング、営業、カスタマーサクセスに分散したデータと業務を、AIエージェントが自律的に動く前提で再設計することを重視しています。\n*   **BtoB Salesforce導入・構築支援**：SalesCloudやAccount Engagementを対象に、パッケージ型とタイムチャージ型を組み合わせた柔軟な料金体系で、初期構築から運用支援までを提供します。\n*   **BtoBコンテンツ企画・制作代行支援**：MA・CRMツール導入企業の商談数・新規顧客数拡大のため、マーケティング戦略にフィットした高品質なコンテンツの企画から制作までを支援しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyYeTfBgXqvuT9Xf_1suabBYGwpC9_YBXAFzwQHL9Vob1cS0Cp0L8q-nZmak7tm0Y_xV2O81zuKHzbh5VQQeC_T0oIBhxOvJf9z4YGZ9XnMDUaQdaa1lsxYA8fwygF7lQJzvw236Ymgw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGmG4pzRLvO21FrXZtjye9jF3DpvItuXUfepHWIgozJrvQs_cfTqs5pAy8mZWj4hS9ZTQ07mrnGySiU9Fubbr6NhVoK1Dd_oysuWtdZ3SWFcPAznolrod2yyfdPK3NFETEkUTM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEN9ZqnMsd0kz3FgLjGYimcz72FomObf7pifSktOQd3zAd_31BST3ALyb__7HC6ebVDd8AtlK7HUPR4a93rKx7BXBP2JEPOVon9ltkooPdpv4gDAIb3QA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHTXBLjTwib1Anb_fxMzoB_O2vBhRsPLrFI3iDOOJXpQpmwj5r_0kpjQ290eucqpu6PxWibv5Ps37E1IL1-61BHYmCZJyTR-9aHwiOL7_chrfldUAOI6vM6HbL16q0qXV6Ad15lS7eiug==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFeOPzFkB9OAyd73a4ubjgICU6nYOgaCi3l-NJngq1WM1B2K9CLiLICWjg_CuSHIMexk36PjGH0ctkPYjDWYxrcgp1DySyk3CWKPBa5Xb560yOWekOd6eqcp7sjIxzKksOxHb4NtWxD2jYObg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFeVHRxSImiEvz9H8WMdlcA0QpgQnnvXoMtyU39s2ypeiVSBsBpWzG1PD515bJ6SR5OTgJSa1Bc9qmGa_FmFric7UZpp0P1RGLzqkkqThqEGvNeFcTx2-i6Q-IweN-4wTXj_erc-WNd7k4YCa3nYSxE",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFOS_y-_MHjH9Ze_Qhw9HqoWWYdPCJzTzf_wACGFbEZXpHiOFqGSptVpec16vOg28quNMprBi9H2SwDqCT4zEoLzp0TnWCNa7V2OXEJRhHKI6Hxj1-suZe6",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFUCIuWO-9Vh3ZC_bV2UtmfyVhJs69TTsfC1DNH5ifP-dE3EbPPAwyYZtbK2jOkZl0r82_Ear6GGPszzUaFBRUO_KYAow9R391w_I89L67VLqw7G6MMhKw3Yt4HoNvKSCF5i9gD4fm4gciaFuS5YYfO",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHg-jyRoSSpiwRT3eg5mXXRQ_vUUKxElCr9CNuAIlb73Dc7y-dnJcGeEQ-Bfq40KfRNsdoCac5ANtSMw6yfxQ0aiqr1y9e1ENZy_dhzZHLX4g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEHdrTkYVymQZXAHAyBjmcCoEqqFi1J1_t1ebqiXfoOJatlkp-0rc_NbRM64_BDDRyG5T_h4CQGDtnotSlxshFkaGI9FhWJFu91L8_q5Am1AN4fg99aPrbi3nIck8m_Wt_wVARQB4DQke9zZofqOB8K_MFDI6E="
+  ],
+  "error": null
+}

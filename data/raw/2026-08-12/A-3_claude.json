@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-12",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-11T22:41:41.829555Z",
+  "answer": "Agentforceの導入費用と費用対効果について、最新情報を調査します。\n# Agentforceの導入費用相場\n\n## 料金モデル（2026年時点）\n\nAgentforceには複数の課金モデルがあり、状況に応じて選択します。\nSalesforce Agentforceは現在、1会話あたり2ドル、10万クレジットあたり500ドルのFlex Credits、月額125ドルからのユーザーライセンスという3つの料金モデルを提供しています。\n\n\n**① 会話課金モデル**\n\n2024年のローンチ時は会話課金モデルで、シンプルで分かりやすいものの中小組織にはコストが高くつき、1回の顧客対応で複数のバックエンド処理が発生する場合にコストが予測しにくいという課題がありました。\n日本語ソースでも\nAgentforceは「1会話あたり240円」というシンプルな料金体系を採用しています\nと紹介されています。\n\n**② Flex Credits（従量課金）**\n\n2025年5月には消費型のFlex Creditsが導入され、10万クレジットあたり500ドルの価格設定で、レコード更新や要約作成などの個々のアクションが複雑度に応じてクレジットを消費する仕組みとなり、課金単位が会話レベルからアクションレベルに移行しました。\n\n\n**③ ユーザー単位ライセンス**\n\nより最近では、月額125ドルからの「デジタル人材」課金として位置づけられた per-user ライセンスが第3の選択肢として追加され、従量課金の代わりにフラットフィーで利用できるようになりました。\nまた\nAgentforceアドオン（125～150ドル/ユーザー/月）やAgentforce 1エディション（550ドル以上/ユーザー/月）は、従量課金や事前コミットではなく通常のSalesforce契約を通じて購入します。\n\n\n**具体的な費用感（企業規模別イメージ）**\n\n中堅企業（500ユーザー規模）の場合、Data Cloud費用を除いて年間1.5万～5万ドル程度が見込まれ、Data Cloud・導入・保守を含めた初年度のTCOは15万～42.5万ドルの範囲になります。\n\n\n**日本市場向けの補足**\n\nAgentforceは、Salesforceが展開するAIエージェント機能の総称で、従来のCRM機能を拡張して自律型AIによる作業自動化・対話対応を実現する製品で、基本製品の上にアドオンとして導入する形が一般的です。\n今後の動きとして、\n2026年後半にはAgentforceの利用量のベースラインにコミットする「事前コミットメント」モデルも公開予定です。\nまた、\nまずは自社のSalesforceエディションとData Cloudの契約状況を確認して、1つだけエージェントを設定してみることが最初の一歩で、Salesforce認定パートナーに「PoCをやりたい」と伝えるだけで動き出せます。\n2026年からは\n中小企業向けSalesforceスイート（Free・Starter・Pro全プラン）にAgentforceの基本機能が統合され、追加費用なしで試せる道が開いています。\n\n\n**注意点**：\nAgentforceの利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要があります。\n\n\n---\n\n# 費用対効果を出すための進め方\n\n## なぜ多くの企業が苦労するのか\nまず現実を押さえておく必要があります。\nAgentforceは1会話2ドルから始まり、Service Cloudが必要で、本番稼働まで5～11ヶ月かかることが多く、顧客の10%未満しかパイロットからスケールできていません。\nPoCの失敗要因についても、\nAgentforce PoCで止まった企業の失敗共通点は権限設計・データ統合・委任設計の欠如にあります。\n\n\n## 推奨される進め方（5ステップ）\n\n**Step1：ビジネス価値の定量化を最初に行う**\n技術検証よりも先に価値の明確化が重要です。\n導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定です。\nその際、\n「議事録が楽になった」「検索が早くなった」という定性的な成果ではなく、「売上xx%向上」や「何人月の工数削減」といった定量的な指標を明確にすることでROIが明確になり、本番導入への道が開かれます。\n\n\n**Step2：ユースケースを「適合性×難易度」でマトリクス評価**\n\nユースケースに対しSalesforce上での実装が適しているか（適合性）、実装にどの程度の工数・技術が必要か（難易度）をマトリクスで評価することで、効果が高く実現しやすいAIエージェントから導入することが可能になります。\n\n\n**Step3：最初はカスタマ",
+  "cited_urls": [
+    "https://coworker.ai/blog/salesforce-agentforce-pricing",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://magicfuse.co/blog/agentforce-cost",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://myaskai.com/blog/salesforce-agentforce-complete-guide-2026",
+    "https://www.ailead.app/blog/salesforce-agentforce-guide",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

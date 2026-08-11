@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-12",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-11T22:42:17.855305Z",
+  "answer": "# Agentic CRMとは\n\n**Agentic CRM**とは、AIエージェントが自律的にマーケティングや顧客対応などのタスクを遂行するCRM(顧客関係管理)システムのことです。従来のCRMとの最大の違いは「待つ」か「動く」かにあります。\n\n\nAgentic CRMとは、AIエージェントを使ってマーケティングやサービス業務を自律的に管理するCRMシステムです。従来のCRMがデータを保存してユーザーの行動を待つのに対し、Agentic CRMはキャンペーンの計画、顧客への対応、パフォーマンスの最適化などを、設定した戦略とガードレールの範囲内で自ら実行します。\n\n\nSalesforceも同様に定義しており、\nAgentic CRMとは、人間と自律型AIエージェント、そしてそれらが動作するプラットフォームが協働して顧客の成功を推進するCRMシステムです\nとしています。従来型のルールベースの自動化とは異なる点として、\nAgentic CRMは、人間だけでなく、各ステップで人間の承認を必要とせずに多段階のワークフローを計画・実行・適応させる自律型AIエージェントによって使用されるCRMシステムであり、事前に設定されたガードレール内でエージェントが行動し、必要な場合には人間にエスカレーションする仕組みを持ちます\nという特徴があります。\n\nまた、\nルールベースのシステムは「リード評価が閾値を超えたら定型メールを送る」といった固定ロジックに従うのに対し、エージェント型システムは文脈を解釈し、単に条件と出力を一致させるだけでなく、顧客データを推論して状況に応じた最適な行動を判断し、結果に基づいて対応を調整します\n。\n\n## 具体的な機能例\n\n\nマーケティング向けAIエージェントは、URLやブリーフ、商品リスト、あるいは自由な発想をもとに、ブランドに合ったフォームやキャンペーン、フローを含むマーケティング戦略に変換し、レビュー用に提示します。カスタマーサービス向けのAIエージェントは、Webチャット・SMS・メール・WhatsAppなどを通じて質問への回答、注文追跡、返品処理、商品レコメンドなどを行い、店舗情報やポリシーに基づいて正確でブランドに合った対応を24時間体制で提供します。\n\n\n代表的なプラットフォームとしては、\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどがすでに市場を再構築し、今後の標準を形作っています\n。\n\n---\n\n# 導入・設計を支援する会社\n\nAgentic CRMの導入や設計を支援する専門会社・コンサルティングファームはいくつか存在します。\n\n### 1. **CRMIT**(Salesforce専門)\n\nCRMITはSalesforceの信頼されたコンサルティングパートナーで、エージェンティックAIソリューション、意思決定インテリジェンスのコンサルティング、CRM導入サービスを提供しています。企業がデータをリアルタイムの意思決定に変換し、測定可能な事業成果を生み出す支援を行っています。\n\n\n### 2. **Kanerika**(汎用エージェンティックAI導入)\n\nエージェントはERP、CRM、クラウドプラットフォームに直接接続され、並行して管理・維持すべき別システムは不要です。アクセス制御、監査ログ、説明可能性は最初のエージェントが稼働する前からアーキテクチャに組み込まれています。\n また\n同社のコンサルティングは戦略・アーキテクチャ・開発・統合・運用までを単一の契約モデルで一貫対応し、Microsoft認定のData and AI Solutions PartnerとしてAzure AI、Copilot Studio、Power Platform上でエージェンティックAIソリューションを構築しています。\n\n\n### 3. **RSM US**(大手会計・コンサルティング系)\n\nRSMのAIアドバイザーは、AIエージェントが組織にとって最も価値をもたらす領域を特定し、エージェンティックAIの開発と展開のための包括的な戦略を策定する支援を行います。\n\n\n### 4. **Inogic**(Microsoft Dynamics 365専門)\n\n自律型システムの構築はDIYでは実現できず、テクノ・ファンクショナルコンサルティングへの深い理解と1,000件以上の導入実績が必要です。InogicはAzure OpenAIの力をDynamics 365ユーザーの日常業務に取り入れることに注力し、この変革の最前線に立っています。\n\n\n### 5. **Solutions Metrix**(Creatio等の複数プラットフォーム対応)\n\n2001年からCRM導入支援を行っている信頼されるパートナーで、CRM導入企業の中でも大手として、各組織固有のニーズに合わせたソリューションを提供しています。\n\n\n### 探し方のポイント\nCRM導入コンサル会社を選ぶ際は、\n自社サイトの推薦文だけでなく、Clutch、G2、GoodFirmsなどの第三者レビューサイトを直接確認し、レビューの新しさや、移行・統合・納期遵守といった具",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.crmit.com/",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://solutionsmetrix.com/",
+    "https://integrateiq.com/blogs/crm-consulting-services-companies/"
+  ],
+  "error": null
+}
