@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-13",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-12T22:39:48.455720Z",
+  "answer": "Agentforceの導入支援をしてくれるおすすめの会社として、以下の企業が挙げられます。\n\n**Agentforce導入支援会社のおすすめ**\n\n*   **日立ソリューションズ**: Agentforceの機能である推論・意思決定・アクション実行を可能にし、業務効率化と顧客満足度向上を支援するとしています。\n*   **富士ソフト株式会社**: Agentforce導入支援を提供しています。\n*   **バーチャレクス・コンサルティング株式会社**: Agentforce導入支援を行っています。\n*   **フロッグウェル株式会社**: Agentforce導入支援を提供しています。\n*   **株式会社メンバーズ サースプラスカンパニー (メンバーズ)**: Agentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走する支援を提供しています。Salesforceコンサルティングパートナーに認定されており、多数の認定資格保有者が在籍しているのが特長です。\n*   **株式会社enucolor**: 営業DX支援や営業企画コンサルティングなど、幅広い企画支援を展開しており、Agentforce導入支援も行っています。\n*   **toBeマーケティング株式会社**: Agentforceの導入から活用まで一貫したサポートを提供しており、最適な提案のために環境アセスメントも行っています。\n*   **合同会社クロスコム**: Salesforceの公式コンサルティングパートナーであり、「100社100通りの購買体験を当たり前にする」をビジョンに、Agentforceの導入・定着支援を展開しています。\n*   **株式会社ウフル**: Agentforceの基盤であるData 360の設定から、Agentforceの構築、システム設定、動作確認、リリース準備、簡易レクチャーまでを最短3ヶ月で導入支援する「Agentforceクイック導入支援サービス」を提供しています。\n*   **三菱総研ＤＣＳ**: Salesforce単体導入だけでなく、社内の基幹・周辺システムに分散するデータの統合も含めたAgentforceの一気通貫での導入を支援しています。金融分野での実績に基づくセキュリティと信頼性も強みとしています。\n*   **K2 Partnering Solutions**: Salesforceに特化したAIコンサルタントとして、Agentforceの潜在能力を引き出し、リードの定性やアップセルの機会特定、ヘルスケア予約スケジューリングの合理化などを支援しています。\n\n**導入支援会社を選ぶ際のポイント**\nAgentforceの導入支援会社を選ぶ際には、以下の点に注目することが推奨されています。\n\n*   **営業・業務プロセスへの理解度**\n*   **Agentforce・Data Cloudの実装力**\n*   **定着・運用までの伴走範囲**\n*   **自社の業界・規模での支援実績**\n*   **スモールスタートの可否**\n*   **料金体系の透明性**\n*   **担当者の専門性と体制**\n*   「資格保有」だけでなく、実装力を重視すること\n*   再販中心で定着支援が範囲外の会社に注意すること\n*   PoCで終わり本番運用に踏み込まないケースを避けること\n\nこれらの情報を参考に、貴社のニーズに合った最適な導入支援会社をご検討ください。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF1pDCB_H4D4061sXu_KRrUeWLwXgLWX1zq021IWpmsVwr0NWni8LTaDT_dMWhKCf1hRgTflofSpb43v0XGiFvW-8rJt_E121-be5OnUoF_P0t9Th7EzqmcKg11cmgT2V35LZo4RFdqD4KFMQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGRW5ClsnHLidwHGH8BzcGsoLWeHI8ZiMT5FlFeBjpdZxIfi5UI1Bo2es4d4Onq9HZct3ipLawB-4zLewm35Q61Pn6u5HzwRa1RMYZhfpoLuxtp11y-PCpRFKbajLXKG01kaNsz2y_PyGQME3o3VBkfaaWiQ5rhgNTfZjukffY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGKtw5AXEN7YUIWOgIxuv3FR05HoaK2efGMf3edM6A9189GLoilykxI4aEN9rWyWiOiRe_wTiRqLSGZCzAhZARlXEAp7mJG-3ywxJ5eg40YcHZRyTK_V9dB6_-hnA2zc6DIASQmfFOCkpa6uIWiAT1aXA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFefFgJKDcF3_HPiEybbR1lRxfGpfKoZCAz8V5pdvAG9lvYNoYa_jBnIu5NcMnJSzwHx2rlRj-qqA_v8jwvwglpM3UUeRGzkTXutKCDxiERAWIGJdJrMHkLU5q5OZDWMnBN0l3mJuM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE15XKOV4chXpFS0sPxXmMk_gAwxFGt2ZPG6rZY-PzMdjgUq-MdPJLRu1rcEIPLSYV9475vKxKoy1myC2qfy29RQkv6Ikr96G_tdsoX2deh2sLTfL6CBXx6EpssMovN",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGF1XE3OVvJkrZ1oWNUJsKRDBQ9rH56cVvWeVAssGL01RG0ZjoYlHJ-xuqzxVwHfv6GPxAAPWxL7fFxmIpR77VCw_K5UFX8Eo0_4oqVUiKOe5DM_ZxaV72PxxaDPEqshKdMFsLzWA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFc72lk_l0KGwzPjyttWEOSA2OAYjkRnpNA-zDR92mq_EX5DegaoLLxSCP9MdfqMjYmGBRSxVwTBUYK5sCCbxyKl-vjVE38gaOmzVG3aDbx4SeDX5BlGWm4B7-NOEq-RDyfhvwn78_jcwp9FQw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHzHvtY62McJ92sCBw0gZ7HR1hdDEhrqJmSrVdZoOJHDPyuU77BNfcNBU3O0IUvxoJsA_6quU9rnxRppMoiMeWqQJwIzq5EHPuwoZ2IeXWpyVzUv4vtMQhw4MRjhSyiFt5gFFuO8YmEfAO8",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXXgK0bUYgSadp4YkChBFEPMv17LrtmxcQy5MSBidNxij45ZHs3TcEaB9aD0qAsGUt3tDyiBz8F4xq5JelylO1EA96UQRUpXujNUnUZjb0vla-yHz-wf2-S-Hga5v-W6sx2fWL6K0Dxws=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJIAh2K67ifhIM2keIvbX2km__qYiL4KXig8OOvlj0et-dQzKnyJYo52wWgjw2_1CLU4VQ7F_km7pKZffJMdcwfozqhYYAJ9Mm-oQWM96UH2YR5Zd0Y5vbuyldUrqx2cY1j1xrgibjPFmNJOetm5UOY_NbyrXi8c7j7gX1GlsiacGko7BC1KnjXU69kqKatIwCuhsFXe0nOjoflnht39nCf6J7giYdPLR8B_jXMPQT"
+  ],
+  "error": null
+}

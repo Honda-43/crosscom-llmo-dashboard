@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-13",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-12T22:41:04.787322Z",
+  "answer": "Agentforceの導入費用は、Salesforceの既存エディションや利用規模、利用するAgentforceの機能によって大きく異なります。また、費用対効果を出すためには、スモールスタートで導入し、具体的な成果指標を設定することが重要です。\n\n### Agentforceの導入費用の相場\n\nAgentforceの導入費用は、主に以下の要素によって構成されます。\n\n1.  **Agentforce本体の料金（従量課金）**:\n    *   Agentforceは「Flex Credits」という従量課金モデルを採用しており、AIエージェントが実行するアクションに応じてクレジットが消費されます。\n    *   Flex Creditsの基本購入価格は10万クレジットあたり500ドル（約6万円）で、1クレジットあたり約0.06円が目安です（為替によって変動）。\n    *   Agentforce 1（Service/Sales）の場合、1会話あたり2ドルからで、月間1,000セッション程度の中規模利用であれば月額20万円程度が目安となります。\n    *   月100アクション程度の利用であれば無料枠内となる場合もあります。\n\n2.  **前提となるSalesforceエディションの費用**:\n    *   Agentforceを利用するには、Salesforceの特定のエディションが必要です。\n    *   Salesforceのライセンス料は「製品 × エディション × ユーザー数」で計算されます。\n    *   主なエディションの月額料金（1ユーザーあたり）は以下の通りです。\n        *   Starter Suite: 3,000円/月\n        *   Pro Suite: 12,000円/月\n        *   Enterprise: 21,000円/月\n        *   Unlimited以上: 42,000円～/月\n        *   Agentforce 1: 66,000円/月\n    *   Starter SuiteやPro SuiteではAgentforce（AI）機能が使えず、Enterprise・Unlimitedでも別途有料アドオンが必要となるケースがあるため、AI機能の利用を考えている場合は注意が必要です。\n\n3.  **Data Cloudの費用**:\n    *   Agentforceは顧客データ統合基盤であるData Cloudを前提とするため、その費用も考慮する必要があります。Data Cloudは1クレジットあたり10ドルから提供されます。\n\n4.  **導入支援費用**:\n    *   Agentforceの導入には、設定、データ整備、既存システムとの連携などに専門的な知識が必要となるため、導入支援サービスを利用するケースが多く、この費用も総コストに含まれます。\n\nこれらの要素を合わせると、Agentforceの導入にかかる総コストは大きく変動しますが、月間の利用規模や必要な機能によって数十万円から数百万円以上になる可能性があります。\n\n### 費用対効果を出すための進め方\n\nAgentforceの導入で費用対効果を最大化するためには、以下のステップで進めることが推奨されます。\n\n1.  **スモールスタートでの導入**:\n    *   いきなり全社に導入するのではなく、まず一つの業務で効果を検証する「スモールスタート」が推奨されています。これにより、リスクを抑えながら効果を測定し、段階的に適用範囲を拡大できます。\n    *   1ユースケース×3ヶ月のスモールスタートプランを提供する支援サービスもあります。\n\n2.  **費用対効果が出やすい業務の特定**:\n    *   件数が多く、かつ内容が定型的な業務から始めるのが効果的です。\n    *   具体的には、問い合わせ対応の一次受け、見込み客への初期フォロー、社内での定型的な質問対応などが挙げられます。これらの業務は、自動化による工数削減効果を実感しやすいためです。\n    *   Agentforce for SalesではAIとの会話や処理の発生頻度、Agentforce for Serviceでは問い合わせ件数を基準に費用を試算し、創出される商談数や営業工数削減効果まで含めて評価することで、投資対効果の観点から導入判断がしやすくなります。\n\n3.  **ROI（投資対効果）指標の事前定義**:\n    *   導入前に、どのような指標で費用対効果を測定するかを明確に定義することが重要です。例えば、工数削減、顧客満足度向上、リード獲得数増加などを具体的な数値目標として設定します。\n\n4.  **隠れたコストの考慮**:\n    *   ライセンス費用だけでなく、導入設計、データ整備、運用改善にかかるコストも事前に考慮し、予算に組み込む必要があります。特に、Data Cloudの整備コストとデータ品質は重要な要素です。\n\n5.  **運用体制の確立と外部支援の活用**:\n    *   専任のIT担当者がいなくても導入は可能ですが、設定や運用を担う担当者が必要です。兼任の担当者や外部の導入支援サービスを積極的に活用することで、スムーズな導入と定着が期待できます。\n\nこれらの進め方を参考に、自社の状況に合わせた最適なAgentforce導入計画を立てることで、費用対効果を最大化できるでしょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHLBWbd-FBy42sE0FIoxUsApUrVGLqx7dkMnrN1q-g-ru-KWCAlEpJdnbwMbAVCnVRVBc9lQH_IoBqItEVowX39sTwWem2ilJzvVUvXmit6N3rWhtwV7wwsheLFjSEMIgpx-g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE91hkT5zTHu9YWVJWUJvGi8iC1a7eerz9RNmWkgXoYrMfevKWatlgoSmZR1PW-PconymFmabs5DcMlXOqMfahEXNjXQ0oAOXZsjsFbcUNOY7UImJNo-6dU8S85QkBfFRvoe3vtlTZWDqmsPA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGd054cpUpUInrZ_SK8tqBi9KOtBcF2UVLvi_nMUjtNJ9eHlaGknRr6tHbOvOn2L_rpJkkRpRpzmpPSP_8ahdPtkqmDWszCKprsGdr-DXvnUQ_VqEuSLSjqidtTEY51ejd54f8BRkMp7CqAFVVCp8jtbYHM1myF39CKlrz0x6tZUrXP4gHMuqhFrgs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQER_AxysGUOqwn1xnCA10E57DzomMPdQ8BhSRbokruWwj7iKOlDEgceCCSQaqz6dW3MgUBaJy4JyG2wX8tQvL_i5R7KAAJQjRHE9sapXxVphj7JtTS3s9afVlkCtJvEX7A6kcVWVGU2mDftd1kpXy46JuhmyrYQNNb-HoYPJJF9bAr1FrU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEciq8nHSlFxK_pjItTrzrNXxXPgZ8fkm7I7_XtuphJ7GGH_f8QVZWK7NVPbRGHIaUYCGS5ER0VmHzeZBQCO1mlECzkBAStCvtBCWJNmdxJVy1N037N3P6QKhEA_tYRdkUiDATWAvThw2XqBK2eXge5xU0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxjMSvCpgUm61-Ks-rhllMb8ngE2fbPB1qI7XocuCbmWb8QhJZZag5cV5cwfFxcZo8Apa_B5HPh9x1nSdgwnjUbiG2erFqW49ZhsQS9EIhjnxh4HSLJeD_KIgrUjiqFvr0PHVaBQAP5w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEIZPJmCn1ZdsttgPgxgoPC1y1mknfb2JHH_pZphT7PiEjuq1PVTIDkA5PyIRNf7MINzjhfrDyr7L1iX8aEsIGt3dY4arIyk0O2FD-V-16jO0mrXEwJyRNi0JxRCLQAB-c8X0uAHJogAsBcz-74tcsV44IWbUY5nA442Jk1OCY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEw9PLUTkf0ciK24LCF2jae9eWm73AFKBEE16L3Q8MwqqDf9oolvgnlL311HfXaYLuR3xBHOgI9Ziq9LU60GOGFzYZpN3DXm9pAqrKRs42ZnFA8EIsWo10LUnrfFJ408IHCjxxr9j06itU="
+  ],
+  "error": null
+}

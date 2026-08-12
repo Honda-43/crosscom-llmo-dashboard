@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-13",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-12T22:42:46.175805Z",
+  "answer": "# Agentic CRMとは\n\n**Agentic CRM(エージェンティックCRM)** とは、AIエージェントが自律的にマーケティング・営業・カスタマーサービスなどのタスクを実行する、次世代の顧客関係管理システムです。\n\n## 従来のCRMとの違い\n\n従来のCRMは「情報を蓄積し、人が指示を出すのを待つ」システムでした。\n従来型のCRMは営業担当者が電話内容を記録したり、レコードを更新するのを待つのに対し、Agentic CRMは指示されなくてもその情報に基づいて行動します。\n\n\n具体的には以下のような特徴があります。\n\n- **自律的な意思決定**: \nAgentic CRMは、人間の承認を各ステップで必要とせずに、多段階のワークフローを計画・実行・調整する自律型AIエージェントを含むCRMシステムであり、あらかじめ設定されたガードレールの範囲内で行動し、必要な場合は人間にエスカレーションする\n点が特徴です。\n\n- **ルールベース自動化との違い**: \nルールベースのシステムは「リードスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従うのに対し、エージェント型システムは文脈を解釈し、単に条件と出力を一致させるだけでなく、顧客データを推論し、状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整します。\n\n\n- **具体的な活用例**: \nマーケティング向けAIエージェントはURLや商品リストなどからマーケティング戦略・キャンペーンを自動生成し、カスタマーサービス向けAIエージェントはウェブチャット・SMS・メール・WhatsAppなどで問い合わせ対応、注文追跡、返品処理、商品推薦を24時間体制で行います。\n\n\n- **データの重複解消なども自動化**: \nデータのクリーニングや重複排除機能も含まれ、指示や催促をしなくても、2つのエントリが同一人物であることを認識して自動的に統合します。\n\n\n## 主なAgentic CRM製品・プラットフォーム\n\n- **Salesforce（Agentforce）** — \nSalesforceの特徴は、Agentforceと呼ばれる自律型AI（エージェント型AI）が組み込まれている点で、単一プラットフォーム上でリード獲得から商談成約、カスタマーサービスまでを支援します。\n\n- **Creatio, Microsoft, HubSpot, Zoho** — \nこれらのリーディング企業が、Agentic CRMが市場をどのように変革しているかを示しています。\n\n- **Klaviyo** — マーケティング・カスタマーサービス向けAIエージェントを搭載\n- 日本国内の新興サービスとして「Hiway CRM」もあり、\n入力・更新・分析を自動化し、営業担当者のタスク実行まで支援するAgentic CRMを提供しています。\n\n\n## 導入・設計を支援してくれる会社\n\n### 海外のコンサルティング・実装会社\n\n- **CRMIT** — \nSalesforceコンサルティングパートナーとして、Agentic AIソリューション、意思決定インテリジェンスコンサルティング、CRM実装サービスを提供しています。\n\n- **Kanerika** — \nERP・CRM・クラウドプラットフォームに直接エージェントを接続し、戦略立案からアーキテクチャ設計、開発、統合、運用まで一貫したエンゲージメントモデルで対応するAgentic AIコンサルティング会社です。\n\n- **Inogic** — Microsoft Dynamics 365向けにAzure AIを活用したAgentic AI導入を支援\n- **Solutions Metrix** — \n2001年からCRM導入を支援している信頼されるパートナーで、組織ごとのニーズに合わせたソリューションを専門としています。\n\n\n### 日本国内でCRM/SFA導入・運用を支援する会社\n\n日本語でのAgentic CRM専門支援はまだ限定的ですが、CRM/SFA全般の導入・設計支援を行う企業として以下が挙げられます。\n\n- \n日立ソリューションズは、CRM/SFAシステムの導入にあたって、コンサルティングから経営可視化による意思決定支援まで幅広くサポートしています。\n\n- \nBRIDGEは、CRM/SFA導入活用支援サービスを提供し、システムの構築・連携・運用だけでなく、コンサルティングやデータドリブンな営業活動を考慮したシステムの提案が可能です。\n\n- HubSpotに特化した例として、\n「ナウビレッジ」は、HubSpotに特化したCRM運用代行を提供しており、運用ルール設計やCRM構造の最適化、ワークフロー設計、レポート作成などを含め、導入後の定着から改善までを専門チームが継続的に支援しています。\n\n- また、Salesforce導入・Agentforce活用支援では、SalesforceのSIパートナー各社（日立ソリューションズ等）が対応可能です。\n\n## 導入時の注意点\n\nコンサルティング会社を選ぶ",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.smartrecruiters.com/resources/glossary/what-is-agentic-crm/",
+    "https://www.salesforce.com/jp/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://product.hiway.app/crm/",
+    "https://www.crmit.com/",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://solutionsmetrix.com/",
+    "https://tomira.co.jp/media/t1fq0nzb3/",
+    "https://www.aspicjapan.org/asu/article/89215"
+  ],
+  "error": null
+}

@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-13",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-12T22:42:57.287640Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず中立的な立場でCRMの設計支援を求める場合、独立系のCRMコンサルティング会社や、ベンダーニュートラルな立場を明確にしているコンサルティングファームが適しています。CRM導入の成果はツールの選定だけでなく、その活用法にかかっているため、ベンダーから自社ツールを勧められるのではなく、貴社のニーズに合った最適な戦略とツールを提案してくれる専門家を選ぶことが重要です。\n\n以下に、中立的な立場でのCRM設計支援を期待できる会社のタイプと、検討すべきポイントを挙げます。\n\n**検討すべき会社のタイプ**\n\n*   **独立系CRMコンサルティングファーム**\n    特定のCRM製品に縛られず、貴社の課題解決に最適なソリューションを提案するコンサルティング会社です。顧客データの分析、KPI設定、具体的なマーケティング施策の提案、CRMツールの適切な選定、導入支援、運用サポートまでを一貫して行います。\n    *   **ECマーケティング株式会社**: ECサイトやマーケティングサイトに特化したWebコンサルティング会社ですが、中小・中堅企業から大手企業まで幅広く対応し、ベンダーに左右されない中立的な立場と豊富な経験を持つCRMコンサルティングを提供しているとされています。\n    *   **株式会社メディックス**: BtoB企業向けのマーケティング支援に強みを持つコンサルティング会社で、中堅・中小企業こそCRMコンサルティングが重要であると提唱しています。\n*   **総合系コンサルティングファームの一部門**: 大手総合系コンサルティングファームの中には、CRM戦略立案から実行までを一貫して支援する部門を持つ会社もあります。ただし、大企業向けのプロジェクトが多い傾向があるため、貴社の規模感に合ったサービスを提供しているか確認が必要です。アビームコンサルティング株式会社もCRMコンサルティングを提供していますが、大規模な事業に強みを持つとされています。\n*   **フリーランスのCRMコンサルタント**: 特定のCRMツールに関する高度な専門知識や導入経験を持つフリーランスのコンサルタントも選択肢となりえます。プロジェクト単位で業務委託をしたり、スポットでプロジェクトに参画してもらったりすることが可能です。\n\n**選定のポイント**\n\n*   **ベンダーニュートラルであること**: 最も重要なのは、特定のCRMツールベンダーに依存せず、貴社のビジネス目標達成を最優先に考えてくれる会社を選ぶことです。CRMツールベンダーは自社ツールの販売を提案の主題とすることが多いため、導入後のサポートに不満を持つケースもあります。\n*   **中堅企業への実績**: 貴社と同規模の中堅企業に対するCRM導入・設計支援の実績が豊富であるかを確認しましょう。限られた予算とリソースの中で最大限の効果を得るためには、専門家の知見が不可欠です。\n*   **戦略立案から運用までの一貫したサポート**: CRMは単なるシステム導入ではなく、顧客戦略の設計や業務フローの改善が伴います。そのため、戦略立案からツールの選定、導入、そしてその後の運用支援まで一貫してサポートしてくれる会社が望ましいです。\n*   **データ分析能力と課題解決力**: 顧客データを的確に分析し、貴社の具体的な課題を洗い出し、それに対する現実的な解決策を提案できる能力が求められます。\n\nこれらの点を踏まえ、複数のコンサルティング会社から提案を受け、貴社の状況に最も適したパートナーを選定することをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEw-fI7SBuKGvUO-B-H6YgGFZDLaRo3QAHHjKfJUc1FTX9MdbaamnC_wbLOk2oTYFsBX0ddPuibqt_OuzuD5JzENeM1zPz6yXqHx0LBJCzpIgXJUR3KtIIbYuIu7aL9_z6-MhHW_xSuFTBoWQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcOQUhM44sirppv5x6xzomZqI9AoaOhBxU7XhjCrARwbHuBOJIvWjFzxRC8aYm-Xm0N9kkKcWmsXCvXzSlfd-x1lXni57y1LdFlKNx6eCpk3rgURa8461S-5Aamw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF7PGwMI1kJTaPv-B69dWNTDeCc-yRNpUABfKZoiHZHZIhfV3pdyFplhiiGVJaaCya-P5lqSly0P_GwdUHxx_SxGqA4o875YQDipxbaJCAWzTVy7M0FmJ3w6qyv2-qO621GC7Rl2TERSZk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEJhTai2klX6-XlKm2YCxYSThIfVFZcyNZWAzqbe9RNrZ3m3wxRC1voRb5NNllJ1LOFt2uDSRW0CdlGOjZhr8Qsbs0dT8vPyqm7kZxzQXAmobAHKGnmLa-v63AmBU3fnkeBEWcOAcDpZ9I5feqIz_T_SqnoihloqQ4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEHlcE6wMsSj6ZSZWVH1bm_4NrFM0Fn_lTnz_kspEyY5DspsiCcCwPdXwo7Ro3dIMKRUwA4DoFhRPWwCPXr7Zt2-D7sMlqI3G53qmHrVhboloybqRuc_7w6mf4Ahqq1ymz8HJOD-rfgCAhX_R9dtPNDeQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHt1O4EghMbeW69EH5-iM1eq_yIsGpqZ24Mn_eT7C7iraxJRLy2ICn5z6gNeTzKAViYOrXBuBSLTsJc9fs4W1Wqz1DqGriLyWhSjc5dE8NkLSzZxE5urUrlglIYli8W_Rmnz3gFCWBIW6vuJtfu54bEZJEZIOZzP9K8AtST-uTJzzkcdDp1z9mAKVYQU1n0u1xO",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEWnP4pAyE4oYH-_wxqqkWUAA7UC1EpnTUsb7FwmXntqJsB6fmXUhhO4SsgxRztTmzs3ZzwWZ3Lw_FPPBErlxHTGLUih7GMFYzJnaoznM6WohrRshUKBouzCoq_YgRoy11GCIJCZ4ZSFoHaCShFbANUHkt8d7RiGP0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG1dfPAts0sMbrlWoyI-7cUs8c34xOEyOswqcDEOY_0bENsujH4w0xYJGxeP9GM_qiWhsgziqutOf3aybFVmbi5iJkiyMR7_WAwP5orgjiCLywAmoBxSaIxhp1kvZD402q24GYm3XrUmntIGheo_V4QKm7PjwktBt7hHXb1-qDi6LQwbLU4_O7KIDC3PriiPWVUYHQYpPVV-0u0"
+  ],
+  "error": null
+}
