@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-14",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-13T22:41:56.482746Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を高める進め方について、最新情報を調べてお伝えします。\n# Agentforce導入費用の相場と費用対効果を出す進め方\n\n## 1. Agentforceの料金体系（2026年時点）\n\nAgentforceは従来のSalesforceライセンスと異なり、複数の課金モデルが併存しています。\n2026年時点で、Salesforce Agentforceの料金モデルは、会話1件あたり2ドル、10万クレジットあたり500ドルのFlex Credit、月額125ドルからのユーザー単位ライセンスの3種類があります。\n\n\n### 主な課金モデル\n\n- **会話課金（Conversations）**：\n会話は1件あたり2ドルの定額課金で、これは2024年のAgentforce開始当初からのモデルです。\n \n1会話とは、エンドユーザーとAgentforceエージェント間の最初のメッセージから解決またはエスカレーションまでの一連のやり取りを指し、ユーザーセッションが終了するか、24時間の無操作状態が続くと会話が終了します。1セッション内の複数のやり取りは1会話としてカウントされます。\n\n\n- **Flex Credit（従量課金）**：\nFlex Creditはアクション1件あたり0.10ドル（10万クレジットあたり500ドル）で課金され、Salesforceが現在デフォルトとして推奨する新しい従量課金モデルです。\n \n2025年5月に発表されたFlex Creditsは、会話全体ではなくアクション単位での従量課金制へ移行するもので、標準的なエージェントアクションは20クレジット（約0.10ドル）、音声アクションは30クレジット（約0.15ドル）です。\n\n\n- **ユーザー単位ライセンス（定額）**：\n従量無制限で使えるアドオンは、Sales・Service・Field Fieldで月額125ドル、Industries向けは月額150ドルで、Agentforce 1 Editionsは年間250万Flex Creditを含み月額550ドルからバンドルされています。\n\n\n- **無料枠**：\nAgentforceの料金は組織あたり250のFlex Creditが無料で含まれる形でスタートします。\nただし本番運用ではすぐに消費してしまうことが多いです。\n\n### 隠れたコスト：Data Cloud（Data 360）が必須級\n\nこれが日本企業にとって最も見落としやすいポイントです。\nAgentforceは1会話あたり約2ドル、または10万Flex Creditあたり500ドルという価格が目立ちますが、実際の予算を左右するのはData Cloud（Data 360）で、これは年間約6万ドルからスタートします。\n\n\n\nAgentforceの会話料金にはData Cloudが含まれておらず、本番レベルの導入には統合された顧客データに基づくエージェントが推奨されるため、CRMデータ・エンゲージメント履歴・外部シグナル・分析結果を統合した360度の顧客プロファイルを利用する場合、Data Cloudの料金（1,000万統合プロファイルで年間10万8,000ドル）が別途必要になります。\nただし\nすでに大規模にSalesforceに投資している組織の多くはすでにData Cloudを保有しているため、その場合は追加コストにはなりません。\n\n\n### トータルコスト感（海外の試算例）\n\n- \n中堅企業（ユーザー500人規模）の場合、Data Cloudコストを除いて年間1.5万～5万ドルが目安ですが、Data Cloud・導入・保守を含めた初年度の総保有コスト（TCO）は15万～42.5万ドルの幅になります。\n\n- \nAgentforceは会話1件2ドルから始まりますが、中堅企業の実質的な初年度コストは15万～60万ドルに及び、これはData Cloudの必須サブスクリプション（年間10万8,000ドル以上）や導入サービス、ナレッジベース構築が必要になるためです。\n\n\n## 2. 日本国内での導入支援費用\n\nSalesforce公式サイトでは詳細価格は非公開で、\nFlex Creditや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスから選択でき、詳しい価格情報は営業担当者への問い合わせが必要とされています。\n\n\n日本の導入支援会社では、スモールスタート型のプランを提供するところが増えています。例えばあるパートナー企業では\n1ユースケース×3ヶ月のスモールスタートプランから対応\nしているケースもあります。大規模な基幹連携を伴う場合、\n大規模な基幹システム連携モデルでは導入支援費が1,000万円を超える場合も珍しくなく、プロジェクト期間も半年〜1年以上に及ぶケースが多い\nとされています。\n\n---\n\n## 3. 費用対効果（ROI）を出すための進め方\n\n### ステップ1：ビジネス価値の明確化を最優先する\n技術検証より前にやるべきことがあります。\n導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基",
+  "cited_urls": [
+    "https://coworker.ai/blog/salesforce-agentforce-pricing",
+    "https://www.eesel.ai/blog/agentforce-pricing",
+    "https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026",
+    "https://enterprisedreamin.org/articles/agentforce-pricing-explained-2026/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

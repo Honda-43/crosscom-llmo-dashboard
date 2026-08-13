@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-14",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-13T22:40:13.967546Z",
+  "answer": "Agentforceの導入支援において、現在おすすめできる会社は以下の通りです。これらの企業は、Agentforceの導入から活用、定着まで一貫したサポートを提供しています。\n\n**Agentforce導入支援のおすすめ会社**\n\n*   **日立ソリューションズ**\n    日立ソリューションズは、「導入・活用支援サービス for Agentforce」を提供しており、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援します。ユースケースの導入効果試算や今後の進め方についても支援し、ビジネス価値の可視化をサポートします。\n\n*   **富士ソフト株式会社**\n\n*   **バーチャレクス・コンサルティング株式会社**\n\n*   **フロッグウェル株式会社**\n\n*   **株式会社メンバーズ サースプラスカンパニー**\n\n*   **株式会社enucolor**\n    enucolorは、SFA・営業領域のAI活用に特化したAgentforce導入支援サービスを提供しています。SalesforceとAIを組み合わせた業務活用を後押しするサービスで、業務整理からPoC開発、活用推進まで一貫してサポートします。\n\n*   **toBeマーケティング株式会社**\n    toBeマーケティングは、「Agentforce導入・活用支援サービス」として、環境のアセスメントから最適な提案、導入後の運用までを一貫して支援します。Data 360（旧Data Cloud）の活用支援や、営業現場の課題解決にも対応しています。\n\n*   **合同会社クロスコム**\n\n*   **三菱総研ＤＣＳ**\n    三菱総研ＤＣＳは、Agentforceを中核としたデータ統合型導入支援を提供しています。Salesforce単体導入だけでなく、社内の基幹・周辺システムに分散するデータの統合も含めたAgentforceの導入を一気通貫で支援することが可能です。金融分野での実績に基づくセキュリティと信頼性も強みとしています。\n\n*   **株式会社SUGo**\n    SUGoは、Salesforceのプロフェッショナルとして、Agentforceの構築支援を提供しています。現状診断から設計、実践的カリキュラム、手厚いサポートによる定着支援までを4ステップで確実に実行し、既存のSalesforce資産の「知能化」やData Cloudによる高精度なコンテキスト理解、Einstein Trust Layerによるガバナンス確立を支援します。\n\n*   **K2 Partnering Solutions**\n    K2 Partnering Solutionsは、Agentforceパートナーネットワークのメンバーとして、AIに関する専門知識とSalesforceの経験を活かし、ビジネスニーズに合わせたAgentforceのカスタマイズサービスを提供しています。迅速なROI、生産性向上、ビジネス拡大を支援し、サードパーティとの統合やSalesforceインテグレーション、エージェントフォースのトレーニングも行っています。\n\n*   **アクセンチュア**\n    アクセンチュアはSalesforceのパートナーであり、Salesforce Partner Innovation Awardsを複数回受賞しており、Agentforce導入においても信頼性の高い支援が期待できます。\n\nこれらの企業は、Agentforceの導入において、企業の特定のニーズや既存のSalesforce環境に合わせて、最適なソリューションを提供しています。SalesforceはAgentforceの実装を加速するため、「Forward Deployed Engineering（FDE）Partner Network」を日本でも本格展開しており、パートナーはSalesforceのエンジニアリングの知見やプロダクトロードマップへの優先アクセスを通じて、高度な技術スキルを習得し、顧客企業の本番稼働を支援しています。 また、SalesforceのマーケットプレイスであるAgentExchangeでは、AIエージェント、アプリ、専門家を見つけることができます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGDTLPF-x-KkdQyO8xG3TwvTlETkNhQ6DMJPFnhiQc5T26IWawHRqyE__-SqUpi32CGgtgrP9Y2zpilZbH4TUdUBCtNk22S9WLo6zh0VIfeqOvZFmVDQPMYqZ3ZkjaRRXXw381vATexIhQ5S0u6ynCtnTXqWdT-n_NnmKAX",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFWI0W3J0fsr1_JBKam_SeN3qBgynwf3CwiAaZg4THkj3vfFs01UfvLbuSJwkxuMxEQQMzRMIXgXNG3cQohPNp97XLFdCn8YS4KG3Q08MEiQd4AR46S4g3Lpecy2a3kc5y9Ke77Tc3v311N",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFeeQrJ_qCBVhVwcHgK6EZgDgvLMZBMGOPqiH7olyiMXG8SClXmQadNPTJ442R7gXH-Vu50Goddj-jeuRYrtx5FwYD6W9CMzLfhVTfzQ4To3DKp6XcFJ83LpZDTgcA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGT0x1D2Qp9SwjSqDUvHo45cG1I1xm0UtXjGldFJN008Wv3MWS11jcCzerKMSOy0Jnv0o6no6tevcaoDMvlC3rBs3o6pMiXzPgKWhSDFaRMFYyev9lqFefF3Z-SdIGIE_a37-_J",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHLdJ7fIz5yKIc6FtKu7vmk1OLNkjNwDHKU6w1kFKF_3rTJSkxlOrwX4O2A1OgyzPM6p7hSgIK11N7mXQ6wFL1PWDMT7ImjVoM7hIXODHHqiHXNqZfAqyxkXfu84KgKjqPV6bNLyIsguA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-WjNZgUBjT5K4FJMgP0MKysrIJ_4jDrMDVyEmwkkbd1pCjaQpMuKCm00snLuLo8Q7inZvRGPOsanAVvbO6AQiJDfzsi3gM8pwYd1zMzvoSgF-hsOG9YxSUKVSJ7uieQj9VqKeh4c=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF4j7Uj5ZznqmUOfCAlhHavAH5-zY4zLkRj1BGrMLVhZxuyhwrPB29ku-1cSpXOwPuE9Us_UT7eiMG78Rg8zrcaOUq2jSosTTFgEYRrWh2dQacemJdJUteR5-U9O_iQFDHfWu85Szmp62AzhH2AXu9wNBkuNQDT_B5RBE7AGL4yJilh2tnVIJ5OgjVWeAaOvyQ6Ncmyb5QARct5EQ6NpvSbnMgKgxou29UAE7DOkHs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQETipkm5_EUPF1DArOnV4btOYptYeXPvWfKqxOJ_pit9pPfhsTpmaj4RYtZ1dUxKjJ1eArJ_JIA71tviXByYy9MnGhfEGcl07CJ1C8xyx7N98DEM5-DbdFIoyNtF5PcNX6-NngSnNi9NHEZPs_V_pLOlUJMu46yjjs2Barss07OLw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDxzy6W-Qbt5CJJyfc9f5L5OuchbYAYFYer3lZE66pCIBBrGOVAlRJh0H8jCwmKSPsbnuub9yLUk4E93xIjbIarDWVIMvwY6A8mscgN4Wg51xF4wp42E-j-fLRffiaVNZ3NgMSta0RkB9gIIidacbrEm2LkJNhBKfHZGjPa0YIm_umgP3aaAvHlbi_UnCPn5WSgICKwlNQf4Vo4R44IErwTzuDlDo2Aw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFPXPjap2aZzVb1WBTsjGgI_6njHiFvcIhbtOpyzURHakKN8lf5am_N5pDkDpMrYUGd-bZYmfop8oh_NQB9sCxMWlrhvqDIwD6kJX5DrOY_hkOsf6B6pYVlPsbxzusERK72"
+  ],
+  "error": null
+}
