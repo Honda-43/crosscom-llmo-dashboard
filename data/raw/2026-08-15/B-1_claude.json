@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-15",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-14T22:24:04.230439Z",
+  "answer": "Agentic CRMについて調べてみます。\n# Agentic CRMとは\n\n**Agentic CRM(エージェンティックCRM)**とは、AIエージェントが自律的にマーケティングやカスタマーサービスなどの業務を実行するCRM(顧客関係管理)システムのことです。\n\n## 従来型CRMとの違い\n\n\nAgentic CRMとは、人間と自律型AIエージェント、そしてそれらが動作するプラットフォームが一体となって顧客の成功を推進する顧客関係管理システムです。\n 従来のCRMは受動的なデータベースでしたが、Agentic CRMは異なります。\n\n\n従来のCRMが営業担当者による通話記録や更新入力を待つのに対し、Agentic CRMはその情報をもとに指示されなくても自ら行動します。\n\n\n具体的には、\nAgentic CRMは、人間だけでなく、各ステップでの承認を必要とせずに多段階のワークフローを計画・実行・調整する自律型AIエージェントが利用するCRMシステムであり、エージェントは事前に設定されたガードレール内で行動し、必要な場合には人間へエスカレーションできます。\n\n\nまた、従来のルールベース自動化とも一線を画します。\nルールベースの自動化とは大きく異なり、ルールベースのシステムは「リードスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従うだけですが、エージェント型システムは文脈を解釈するため、単に条件と出力を照合するだけではありません。データに基づいて推論し、状況に応じた適切な行動を特定し、その後の結果に応じてアプローチを調整します。\n\n\n## 主な機能例\n\nKlaviyoの解説によれば、Agentic CRMには以下のような機能があります。\n\n- **マーケティング向けAIエージェント**:\nURLやブリーフ、商品リスト、自由形式のアイデアから、ブランドに合ったフォーム・キャンペーン・フローを含むマーケティング戦略をレビュー用に自動生成し、設定したブランドガイドラインやコンテンツガードレール内で動作します。\n\n- **カスタマーサービス向けAIエージェント**:\n質問への回答、注文追跡、返品処理、商品レコメンドをWebチャット・SMS・メール・WhatsAppなど複数チャネルで行い、自社のストアフロントやポリシーを学習した上で、正確でブランドに沿った対応を24時間365日提供します。\n\n\n## 導入・設計を支援する会社\n\nAgentic CRMの導入を支援する会社には、大きく分けて「プラットフォーム提供元(ベンダー)」と「導入コンサルティング会社」があります。\n\n### 主要プラットフォーム\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションが、Agentic CRMが市場をどのように変革しつつあるかを示しています。\n\n\n- **Salesforce(Agentforce)**\n- **Microsoft Dynamics 365**:\nDynamics 365は、Agentic CRM・CCaaS・ERPを活用し、チームがより賢く販売し、より速く顧客対応し、より収益性高く業務を行えるよう支援します。\n\n- **Creatio、HubSpot、Zoho** など\n\n### 導入コンサルティング・SIパートナー\n実際の導入・設計を支援する専門会社も存在します。\n\n1. **CRMIT** — \nSalesforceの信頼されたコンサルティングパートナーとして、AgenticAIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供しています。\n\n\n2. **Inogic** — Microsoft Dynamics 365向けに、\n自律型システムの構築はDIYプロジェクトではなく、テクノ・ファンクショナルコンサルティングへの深い理解と1,000件以上の導入実績が必要であり、Azure OpenAIの力をDynamics 365ユーザーの日常業務に取り入れることに注力しています。\n\n\n3. **Solutions Metrix** — \n2001年からCRM導入をサポートしている信頼されるCRM導入パートナーで、各組織固有のニーズに合わせたソリューションを専門としています。\n\n\n4. **AavishkarIT** — \n構造化されたディスカバリー、ローコード開発、データ移行、レポーティング、ガバナンスなどを通じてCRMシステムの設計・改善・サポートを支援するCRMコンサルティング・導入・移行・自動化・マネージドサポートパートナーです。\n\n\n### 選定時の注意点\nコンサルティング会社を選ぶ際は、以下の点を確認することが推奨されています。\n\n\n2026年にはAI変更がCRM導入プロジェクトのスコープにどう影響するかという点で、HubSpotのBreeze AgentsやSalesforceのAgentforceなどのAIエージェントを組み込む場合、ユーザー権限と同様に導入フェーズでスコープと権限設定を行う必要があり、権限が未設定のAIエージェントは統合不良と同じくらいCRMデータを破損させる可能性があり、しかもその変化は通常の活動に見えるため発見が難しいことが多いため、コンサルティングパートナーには実際にAIエージェントの権限設定",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.microsoft.com/en-us/dynamics-365/",
+    "https://www.crmit.com/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://solutionsmetrix.com/",
+    "https://www.aavishkarit.com/knowledge/agentic-crm",
+    "https://integrateiq.com/blogs/crm-consulting-services-companies/"
+  ],
+  "error": null
+}

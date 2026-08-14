@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-15",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-14T22:22:06.092228Z",
+  "answer": "Agentforceの導入支援を行っている企業について調べてみます。\n# Agentforce導入支援のおすすめ会社\n\n検索結果をもとに、Agentforceの導入支援を行っている主な企業をまとめました。\n\n## 大手SIer系\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルでご支援します\n。PoCで終わらせず着実に成果を出すためのアプローチを重視しているのが特徴です。\n\n**日鉄ソリューションズ（NSSOL）**\n\nNSSOLはSalesforce社のパートナーであり、Agentforceについてもソリューション化に向けた企画開発や検証を進めています\n。国内No.1パートナーを目指して技術力・知見を積み上げている点が強みです。\n\n## Salesforceコンサルティングパートナー系\n\n**メンバーズ（サースプラスカンパニー）**\n\n導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバーしています。Service・Marketing・Salesの各テンプレートに対応し、SlackやTeams、Salesforceなどとの連携や社内ナレッジの統合も支援します\n。\nメンバーズはSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\n。\n\n**クロスコム**\n\n「Agentforce導入・定着支援」として、実務で活用できるまでの定着支援に重点を置いたサービスを提供しています。目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込みます。導入後はカスタマーサクセスチームが継続的にモニタリングし、1ユースケース×3ヶ月のスモールスタートから対応します\n。\n\n**ウフル（Uhuru）**\n\nSalesforceのテクノロジーを活かした業務支援の経験をもとに、Agentforceの導入・活用を現実的かつ実践的に支援。まずは「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供し、最短3カ月のスケジュールで導入を支援します\n。\nデータ活用とIoTに強みを持ち、マーケティングとカスタマーサービスの両領域に対応、スモールスタートで効果検証したい企業や内製化を見据えた伴走支援を求める企業に選ばれています\n。\n\n**フロッグウェル**\n住宅業界向けのマッチングシステムなど、業界特化型のAgentforce導入実績があります。\nEinstein for Serviceを活用したマッチングシステムの導入支援や、Einstein Conversation Insightsの活用と会話サマリーの自動化による業務効率化\nなどの事例があります。\n\n**enucolor**\n\n現状業務の理解及び業務課題の整理を行い、AIエージェントで解決すべき課題を概念検証。実際に活用のサポートも行い、プロンプトの修正やSalesforceの設定修正などを行い、精度を高めていきます\n。SFA・営業領域に強みを持つ会社です。\n\n## 選び方のポイント\n\n\n国内のSalesforceコンサルティングパートナーは約300社にのぼり、世間で「導入支援会社」と呼ばれる会社の多くはこの区分に含まれます\n。選定時には以下を確認するとよいでしょう：\n\n1. **対象領域**（Service/Marketing/Sales）が自社ニーズと合っているか\n2. **支援範囲**（PoCのみか、実装から定着化・内製化まで一貫対応か）\n3. **導入実績**（同業界・同規模企業での事例があるか）\n4. **料金体系**（スモールスタート可能か、月額/プロジェクト単位か）\n\nまずは複数社に相談し、自社の課題（カスタマーサポート自動化なのか、営業支援なのか等）に最も合った実績・体制を持つパートナーを比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://note.com/nssol_note/n/n1839fa740632",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}
