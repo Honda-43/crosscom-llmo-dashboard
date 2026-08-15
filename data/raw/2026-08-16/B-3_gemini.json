@@ -1,0 +1,18 @@
+{
+  "date": "2026-08-16",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-08-15T22:23:33.187587Z",
+  "answer": "営業にAIエージェントの活用を検討されており、ツール選定の前にCRMのデータ設計から支援を希望されているのですね。CRMデータ設計とAIエージェント導入支援の両方に強みを持つパートナーは複数存在します。\n\n具体的には、以下のような企業が支援を提供しています。\n\n*   **Vertex AI Search (Google Cloud):** 「データ活用・AIコンサルティングサービス」を提供しており、CRM・データ戦略設計からデータ基盤構築、AI予測分析、生成AI活用、AIエージェント開発まで一気通貫で支援することが可能です。このサービスは、まさにユーザー様の「ツール選定前のCRMデータ設計」というニーズに合致しています。\n*   **INTLOOP Strategy株式会社:** AI&DATAプラクティスにおいて、「AIエージェントプラットフォーム戦略」や「データプラットフォーム戦略」を含む戦略策定支援を提供しています。また、ビジネス課題・ユースケース特定とソリューション策定、データパイプライン構築支援といった実証・実装支援も行っており、データ設計からAI活用までを一貫してサポートできます。\n*   **富士通:** 「AIとデータ統合で進化する顧客管理」を提供しており、さまざまな業界の知見や最先端テクノロジーとSalesforceを組み合わせることで、顧客エンゲージメント変革を支援しています。ソリューション設計の前に「プロセス改善ワークショップ」を実施し、非効率な点を特定するなど、データに基づいたアプローチを重視しています。\n\nこれらのパートナーは、AIを効果的にCRMに活用するためには、データの正確性とプライバシー対策が重要であるという共通認識を持っています。データの品質はAIエージェントのパフォーマンスに直結するため、初期段階での適切なデータ設計は非常に重要です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH2NbrbHLsNj70Nx5i_XJRh0wOW5RQUg4UpfL367OYct2jwR3sNJTq1_qVgkaCEe4bl9zOScQv7zHWXy56KsKMS71eyg-GThpyFujK4RK9qMnrcIFZ4Q5U7LpNaC2MKNsn9z98=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEGFSvxpkR3MnBXFsb58AdecAULvwO07LLeeBGcOPhtHnPaGz2ias-UvnO0r06DajnUWuaqobfwM_P_sUv4JOB9-RcS6ZTdA1HLuVBOz6dW2EboQyIA--rDsPuN3GArSDBkfmLQtFvvYrPRdXS26hwK7d5DrNj9AGY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGtKvzfKYHSQ_Ov4vYaNZi79X0iE6bnUA4mCjOxxbTN-1DUIHuhk6gj0bgu6KG_MSePO1a5BdYkehqfAHp0e6Pwj9RodFgcaVARqkyIP9bxyjwFvVdYTxgeOrBFurLKzvEVniaovCQ1s_JHTJsJWN1A-jEJasc3xlMRPqBLZKA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEfYz9WK_MFHy75UOWdWr9AScql4JsB5rt8eNS2NPCgqN34q5qtBcQ85uuls3dsoe4D8in0kwGGxQdgSyAMC0tRR0Vg_SAZSRF-dVpSxvfECvUhGS7Lf7cHF5Gb0PLcVpGtncVUDHmMCQ=="
+  ],
+  "error": null
+}
