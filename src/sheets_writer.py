@@ -13,9 +13,11 @@ from typing import Any, Dict, List, Optional
 from settings import (
     SHEET_ID,
     TAB_AHREFS,
+    TAB_CHANGES,
     TAB_GA4,
     TAB_GSC,
     TAB_LLM,
+    TAB_SOV,
     TAB_SUMMARY,
     google_credentials,
 )
@@ -33,6 +35,11 @@ HEADERS_SUMMARY = [
     "date", "mention_rate_all", "mention_rate_pillar_a", "mention_rate_pillar_b",
     "negative_flag_count", "ai_sessions", "branded_clicks",
 ]
+# --- Phase 1 headers (approved — do not modify) ---------------------------
+HEADERS_SOV = ["date", "pillar", "entity", "mention_count", "observed_total"]
+HEADERS_CHANGES = [
+    "date", "prompt_id", "model", "change_type", "before", "after", "detail",
+]
 
 # Idempotency key columns per tab (§7: date × prompt_id × model for tab1).
 KEYS_LLM = ["date", "prompt_id", "model"]
@@ -40,18 +47,35 @@ KEYS_GA4 = ["date", "source", "landing_page"]
 KEYS_GSC = ["date", "query"]
 KEYS_AHREFS = ["date"]
 KEYS_SUMMARY = ["date"]
+KEYS_SOV = ["date", "pillar", "entity"]
+# ``detail`` is part of the key so several competitor_added rows for the same
+# day/prompt/model (one per company) coexist while a re-run still overwrites.
+KEYS_CHANGES = ["date", "prompt_id", "model", "change_type", "detail"]
 
 
 # --------------------------------------------------------------------------
 # Low-level Sheets helpers
 # --------------------------------------------------------------------------
+_SPREADSHEET = None
+
+
 def _open_spreadsheet():
+    """Open (once per process) the output spreadsheet.
+
+    The handle is cached so the analysis phases added in Phase 1 reuse the same
+    authorised gspread client instead of re-authenticating per write (§8).
+    """
+    global _SPREADSHEET
+    if _SPREADSHEET is not None:
+        return _SPREADSHEET
+
     import gspread
 
     if not SHEET_ID:
         raise RuntimeError("SHEET_ID is not set.")
     gc = gspread.authorize(google_credentials())
-    return gc.open_by_key(SHEET_ID)
+    _SPREADSHEET = gc.open_by_key(SHEET_ID)
+    return _SPREADSHEET
 
 
 def _ensure_worksheet(ss, title: str, headers: List[str]):
@@ -119,6 +143,37 @@ def _upsert(ss, title: str, headers: List[str], key_cols: List[str],
     if appends:
         ws.append_rows(appends, value_input_option="USER_ENTERED")
     print(f"[ok] {title}: {len(updates)} updated, {len(appends)} appended")
+
+
+def _read_tab(title: str) -> List[Dict[str, str]]:
+    """Read a whole tab as header-keyed dicts (one API read, §8).
+
+    A missing tab or a header-only tab yields ``[]`` so first-run callers do not
+    need to special-case an empty spreadsheet.
+    """
+    import gspread
+
+    ss = _open_spreadsheet()
+    try:
+        ws = ss.worksheet(title)
+    except gspread.exceptions.WorksheetNotFound:
+        print(f"[warn] tab not found (treated as empty): {title}")
+        return []
+
+    values = ws.get_all_values()
+    if len(values) < 2:
+        return []
+    header = values[0]
+    rows: List[Dict[str, str]] = []
+    for row in values[1:]:
+        padded = list(row) + [""] * (len(header) - len(row))
+        rows.append(dict(zip(header, padded)))
+    return rows
+
+
+def read_llm_observations() -> List[Dict[str, str]]:
+    """All rows of the llm_observations tab (used by analyze_diff)."""
+    return _read_tab(TAB_LLM)
 
 
 # --------------------------------------------------------------------------
@@ -222,6 +277,22 @@ def write_gsc(rows: List[Dict[str, Any]]) -> None:
         return
     ss = _open_spreadsheet()
     _upsert(ss, TAB_GSC, HEADERS_GSC, KEYS_GSC, rows)
+
+
+def write_sov_daily(rows: List[Dict[str, Any]]) -> None:
+    """Upsert the sov_daily rows (Phase 1 §2), keyed by date × pillar × entity."""
+    if not rows:
+        return
+    ss = _open_spreadsheet()
+    _upsert(ss, TAB_SOV, HEADERS_SOV, KEYS_SOV, rows)
+
+
+def write_changes(rows: List[Dict[str, Any]]) -> None:
+    """Upsert the detected changes (Phase 1 §3). No changes = nothing written."""
+    if not rows:
+        return
+    ss = _open_spreadsheet()
+    _upsert(ss, TAB_CHANGES, HEADERS_CHANGES, KEYS_CHANGES, rows)
 
 
 def write_ahrefs(result: Optional[Dict[str, Any]]) -> None:

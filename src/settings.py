@@ -20,6 +20,8 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 CONFIG_DIR = ROOT_DIR / "config"
 DATA_RAW_DIR = ROOT_DIR / "data" / "raw"
 PROMPTS_FILE = CONFIG_DIR / "prompts.yaml"
+# Entity alias table (Phase 1 §2-1) — appended to during operation, no code change.
+ENTITY_ALIASES_FILE = CONFIG_DIR / "entity_aliases.yaml"
 
 
 # --------------------------------------------------------------------------
@@ -117,6 +119,12 @@ BRANDED_QUERY_FRAGMENTS = ["クロスコム", "crosscom", "cross-com", "cross co
 # Brand surface forms treated as a self-mention (§4)
 BRAND_ALIASES = ["クロスコム", "合同会社クロスコム", "cross-com", "Crosscom"]
 
+# Canonical name of our own company in the SoV aggregation (Phase 1 §2).
+SELF_ENTITY = "クロスコム"
+
+# Slack Incoming Webhook (Phase 1 §4). Unset = alerts are skipped, never fatal.
+SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL", "").strip()
+
 # Google service-account scopes needed across Sheets / GA4 / GSC.
 GOOGLE_SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -156,3 +164,11 @@ TAB_GA4 = "ga4_ai_traffic"
 TAB_GSC = "gsc_branded"
 TAB_AHREFS = "ahrefs_aio"
 TAB_SUMMARY = "daily_summary"
+# Phase 1 tabs (approved — do not change the schema)
+TAB_SOV = "sov_daily"
+TAB_CHANGES = "changes"
+
+
+def spreadsheet_url() -> str:
+    """Public URL of the output spreadsheet (used in Slack messages)."""
+    return f"https://docs.google.com/spreadsheets/d/{SHEET_ID}/edit" if SHEET_ID else ""

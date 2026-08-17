@@ -21,18 +21,22 @@ Brand Radar(Ahrefs)は Lite プランで利用不可のため、**LLM API 定点
                          │   │      └─▶ data/raw/YYYY-MM-DD/*.json ──┐   │
                          │   ├─ extract.py (Anthropic Haiku) ◀───────┘   │
                          │   │      └─▶ 構造化(§4スキーマ)             │
+                         │   ├─ analyze_sov.py  ── 競合SoV集計(Phase1) │
+                         │   ├─ analyze_diff.py ── 前回観測との差分     │
                          │   ├─ collect_ga4.py ── AI経由流入(前日)     │
                          │   ├─ collect_gsc.py ── 指名検索(3日前)      │
-                         │   └─ sheets_writer.py ─▶ Google Sheets       │
+                         │   ├─ sheets_writer.py ─▶ Google Sheets       │
+                         │   └─ notify_slack.py ─▶ Slack Webhook       │
                          │                                              │
  weekly.yml 月08:00 JST ─▶│  run_weekly.py                               │
  (cron: 0 23 * * 0 UTC) │   └─ collect_ahrefs.py ─▶ tab4 (best-effort) │
                          └───────────────────────────┬──────────────────┘
                                                      │
                               ┌──────────────────────▼───────────────────┐
-                              │           Google Sheets(5タブ)          │
+                              │           Google Sheets(7タブ)          │
                               │  llm_observations / ga4_ai_traffic /     │
                               │  gsc_branded / ahrefs_aio / daily_summary│
+                              │  sov_daily / changes        (Phase 1)    │
                               └──────────────────────┬───────────────────┘
                                                      │
                      ┌───────────────────────────────▼──────────────────────────┐
@@ -50,6 +54,8 @@ Brand Radar(Ahrefs)は Lite プランで利用不可のため、**LLM API 定点
 | KGI | 指名検索 | GSC | `gsc_branded`, `daily_summary.branded_clicks` |
 | KPI | 推薦のされ方(言及率・順位) | LLM定点観測 | `llm_observations`, `daily_summary.mention_rate_*` |
 | KPI | 語られ方の質(KBF/ネガ) | LLM定点観測 | `llm_observations`, `daily_summary.negative_flag_count` |
+| KPI | 競合とのShare of Voice | LLM定点観測 | `sov_daily` |
+| KPI | 前回観測からの変化 | LLM定点観測 | `changes` |
 
 ---
 
@@ -61,10 +67,15 @@ crosscom-llmo-dashboard/
 │   ├── daily.yml          # 毎朝07:00 JST(cron: '0 22 * * *' UTC)
 │   └── weekly.yml         # 毎週月曜08:00 JST(cron: '0 23 * * 0' UTC)
 ├── config/
-│   └── prompts.yaml       # 観測プロンプト定義(承認済み・変更禁止)
+│   ├── prompts.yaml       # 観測プロンプト定義(承認済み・変更禁止)
+│   └── entity_aliases.yaml # 企業名エイリアス(Phase 1・運用中に追記する)
 ├── src/
 │   ├── collect_llm.py     # 4モデルへの定点観測クエリ実行
 │   ├── extract.py         # 回答テキストからの構造化抽出
+│   ├── normalize.py       # 企業名の正規化(Phase 1 §2-1)
+│   ├── analyze_sov.py     # 競合Share of Voice集計(Phase 1)
+│   ├── analyze_diff.py    # 前回観測との差分検出(Phase 1)
+│   ├── notify_slack.py    # Slackアラート(Phase 1)
 │   ├── collect_ga4.py     # GA4:AI経由流入・CV
 │   ├── collect_gsc.py     # GSC:指名検索
 │   ├── collect_ahrefs.py  # 週次:AI Overviews引用KW(失敗時スキップ可)
@@ -72,6 +83,7 @@ crosscom-llmo-dashboard/
 │   ├── settings.py        # 環境変数・定数・モデル有効/無効
 │   ├── run_daily.py       # 日次オーケストレータ
 │   └── run_weekly.py      # 週次オーケストレータ
+├── tests/                 # pytest(正規化・差分検出・Slack整形)
 ├── data/raw/              # LLM回答全文の保存先(git管理、日付ディレクトリ)
 ├── requirements.txt
 └── README.md
@@ -108,6 +120,7 @@ crosscom-llmo-dashboard/
 | `GA4_PROPERTY_ID` | ○ | GA4 プロパティID(数値) |
 | `GSC_SITE_URL` | ○ | 例 `sc-domain:cross-com.jp` または `https://cross-com.jp/` |
 | `AHREFS_API_KEY` | – | 週次 Ahrefs(ベストエフォート) |
+| `SLACK_WEBHOOK_URL` | – | Slackアラート(未設定なら警告ログのみでスキップ) |
 
 ### サービスアカウントの権限付与
 
@@ -127,6 +140,7 @@ pip install -r requirements.txt
 export GCP_SERVICE_ACCOUNT_JSON="$(cat service_account.json)"   # or GOOGLE_APPLICATION_CREDENTIALS=path
 export GEMINI_API_KEY=... ANTHROPIC_API_KEY=...                 # OPENAI_API_KEY は任意(chatgpt無効のため)
 export SHEETS_SPREADSHEET_ID=... GA4_PROPERTY_ID=... GSC_SITE_URL=sc-domain:cross-com.jp
+export SLACK_WEBHOOK_URL=...                                    # 任意(未設定ならアラートはスキップ)
 cd src && python run_daily.py            # 日次
 cd src && python run_weekly.py           # 週次(Ahrefs)
 ```
@@ -142,6 +156,8 @@ cd src && python run_weekly.py           # 週次(Ahrefs)
 | `gsc_branded` | 1日×query | date, query, clicks, impressions |
 | `ahrefs_aio`(週次) | 1週 | date, aio_keyword_count, keywords_json |
 | `daily_summary` | 1日 | date, mention_rate_all, mention_rate_pillar_a, mention_rate_pillar_b, negative_flag_count, ai_sessions, branded_clicks |
+| `sov_daily`(Phase 1) | 1日×pillar×企業 | date, pillar, entity, mention_count, observed_total |
+| `changes`(Phase 1) | 変化1件 | date, prompt_id, model, change_type, before, after, detail |
 
 - **mention_rate** は当日の**有効観測数**(E-1を除く6プロンプト × 有効モデル数。初期は gemini / claude の2モデルで12観測)に対する `mention=true` 比率。有効モデル数に連動し、固定値はハードコードしない(モデルを増減すれば分母も自動追随)。
 - **冪等性**:同一 `date × prompt_id × model` の行が既に存在する場合は上書き(同日再実行安全)。各タブとも主キーで upsert する。
@@ -149,6 +165,105 @@ cd src && python run_weekly.py           # 週次(Ahrefs)
 
 > 補足:`daily_summary.ai_sessions` は GA4(前日分)、`branded_clicks` は GSC(3日前分)の当日収集値を集計。
 > LLM観測日(当日)を主キーとしたスナップショット行のため、各源の対象日付にはデータ確定遅延分のズレがある。
+
+---
+
+## Phase 1:SoV集計・差分検出・Slackアラート
+
+日次パイプラインのフェーズ構成(既存踏襲で**1フェーズ失敗しても後続は実行**):
+
+```
+collect_llm → extract → analyze_sov → analyze_diff
+→ collect_ga4 → collect_gsc → build_summary → Sheets書き込み → notify_slack
+```
+
+`analyze_diff` は**当日行を書き込む前**に走る。前回観測日を `llm_observations` から読むため、
+先に当日行を書くと「当日 vs 当日」になってしまうからである。
+
+### 1. `analyze_sov.py` — 競合Share of Voice(`sov_daily`)
+
+- 各観測(prompt_id×model)の `competitors_mentioned` を展開し、`mention=TRUE` の観測では
+  自社を「クロスコム」として1カウント加える。
+- pillar `A` / `B` / `all` の3系列を出力(**E-1 は全系列から除外**。必ず自社に言及するため)。
+- 1観測内の表記ゆれ(`DCS` と `三菱総研ＤＣＳ`)は正規化後に**1カウントに集約**する。
+- `observed_total` に当日の該当pillar観測数を持たせ、シェア(= `mention_count / observed_total`)は
+  Looker Studio / アプリ側で計算する。
+- 自社行は言及ゼロの日も `mention_count = 0` で必ず出力する(自社SoVの時系列が途切れないため)。
+
+### 2. 企業名の正規化 — `normalize.py` / `config/entity_aliases.yaml`
+
+`normalize_entity()` は以下の順で処理する:
+
+1. **NFKC正規化**(`三菱総研ＤＣＳ` → `三菱総研DCS`、`㈱` → `(株)`)
+2. **中黒の除去・空白の統一**
+3. **法人格の除去**(前後から。`株式会社` / `合同会社` / `(株)` / `Inc.` / `Co.,Ltd.` / `LLC` 等)
+4. 非ASCII同士に挟まれた**空白の除去**(`メンバーズ サースプラスカンパニー` = `メンバーズサースプラスカンパニー`。
+   Latin社名の語間スペースは可読性のため保持)
+5. **`config/entity_aliases.yaml` によるエイリアス統合**(大文字小文字を無視)
+
+```
+「株式会社メンバーズ サースプラスカンパニー」→「メンバーズ」
+「三菱総研ＤＣＳ」「ＤＣＳ」            →「三菱総研DCS」
+「船井総研」                            →「船井総合研究所」
+```
+
+- **未知の企業名は正規化のみ適用してそのまま記録**する(取りこぼしを作らない)。
+- 表記ゆれを見つけたら `entity_aliases.yaml` に追記するだけでよい(**コード変更不要**)。
+  YAML側の値も同じ正規化を通してから照合するため、法人格や中黒の付いた形を個別に列挙する必要はない。
+- 法人格を除いた結果が空になる語(モデルが「株式会社」とだけ答えた場合など)は、
+  消さずにそのまま残す。
+
+### 3. `analyze_diff.py` — 前回観測との差分(`changes`)
+
+`llm_observations` から**当日より前で最も新しい日**を取得し、prompt_id×model 単位で比較する。
+**前回データがない初回実行は「差分なし」で正常終了**する。
+
+| change_type | 条件 |
+|-------------|------|
+| `mention_gained` / `mention_lost` | mention の FALSE↔TRUE |
+| `rank_up` / `rank_down` | rank変化(数値が小さい=上昇)。推薦リスト外は `圏外` として比較 |
+| `competitor_added` / `competitor_removed` | **正規化後**の競合集合の差分(`detail` に企業名) |
+| `crosscom_url_added` / `crosscom_url_removed` | `cited_crosscom_urls` の差分(`detail` にURL) |
+| `negative_flag_on` / `negative_flag_off` | `negative_or_outdated` の変化 |
+
+- 競合は正規化してから集合比較するため、**表記ゆれだけの変化はノイズとして出ない**。
+- 抽出エラー行はどちらの日でも比較対象から除外する。
+- 冪等キーは `date × prompt_id × model × change_type × detail`
+  (同日に複数社が追加されても行が潰れず、再実行では上書きになる)。
+
+### 4. `notify_slack.py` — Slackアラート
+
+- **Slack Incoming Webhook**(無料)を使用。Secret名 `SLACK_WEBHOOK_URL`。
+- **未設定でもパイプラインは落ちない**(警告ログとメッセージ本文を標準出力に出して正常終了)。
+- 通知条件(当日分)と表示順:
+
+  1. ⚠️ **ネガティブ/誤情報検知** — `negative_or_outdated=TRUE` または `negative_flag_on`(**必ず先頭**)
+  2. 📈 **言及獲得** / 📉 **言及消失** — `mention_gained` / `mention_lost`
+  3. ❌ **パイプライン一部失敗** — 失敗フェーズ名とエラー要約
+
+- 該当が1件もない日は**通知を送らない**(ゼロ通知が正常)。
+- 日本語・1日1投稿(セクション分け)。文末に `SHEETS_SPREADSHEET_ID` から生成した
+  スプレッドシートURLを付ける。
+- Python到達前にワークフローが落ちた場合(checkout / pip install の失敗など)は、
+  `daily.yml` 最終stepの `if: failure()` が Webhook へ直接POSTする。
+
+**テスト送信**(疑似アラートを1通送る):
+
+```bash
+cd src && SLACK_WEBHOOK_URL=... python notify_slack.py --test
+```
+
+### 5. テスト
+
+```bash
+pip install -r requirements.txt
+python -m pytest tests -q        # リポジトリルートで実行
+```
+
+- `tests/test_normalize.py` — 全角/法人格/エイリアス統合、未知企業の素通し、冪等性
+- `tests/test_analyze_sov.py` — pillar別集計、E-1除外、1観測内の重複集約、`observed_total`
+- `tests/test_analyze_diff.py` — 前回データなし、mention flip、rank変化、競合追加削除、URL/ネガ変化
+- `tests/test_notify_slack.py` — セクション順序、ゼロ通知、Webhook未設定時の無害動作
 
 ---
 
@@ -182,6 +297,27 @@ cd src && python run_weekly.py           # 週次(Ahrefs)
 - GA4:AI経由 source 別 sessions / key_events、ランディングページ別
 - GSC:指名検索 query 別 clicks / impressions の推移
 
+**ページ4:競合SoVと変化(sov_daily / changes)**
+- 100%積み上げ棒:`date` × `entity`(値 `mention_count`、`pillar = all` でフィルタ)
+- 計算フィールド `share = mention_count / observed_total` を作り、自社(`entity = クロスコム`)の推移を時系列表示
+- 表:`changes` を `date` 降順(`change_type` / `prompt_id` / `model` / `detail`)= 日々の動きの一覧
+- `pillar` はコントロール(A / B / all)にして切り替える。`all` と A/B を同時に出すと二重計上になる
+
+### 3. スプレッドシート凡例タブへの追記
+
+Phase 1 で追加した2タブぶんの凡例。凡例タブへそのまま貼り付ける(タブ区切り):
+
+```
+sov_daily	date	観測日
+sov_daily	pillar	集計対象Pillar(A/B/all。E-1除外)
+sov_daily	entity	正規化済み企業名(自社含む)
+sov_daily	mention_count	当日の言及回数
+sov_daily	observed_total	当日の観測数(シェアの分母)
+changes	change_type	前回観測からの変化種別(言及獲得/消失・順位変動・競合出入り・引用URL出入り・ネガティブ変化)
+changes	before/after	変化前後の値
+changes	detail	補足(企業名・URL等)
+```
+
 ---
 
 ## 概算コスト
@@ -209,3 +345,13 @@ LLM API は **日次 14クエリ(観測:gemini/claude × 7)+ 14回(抽出)= 28 A
 3. 同日2回実行しても `date × prompt_id × model` 主キーで上書きされ重複しない。
 4. 本READMEにアーキテクチャ・Secrets一覧・Looker Studio接続手順を記載。
 5. 概算コスト(月2,000円以内想定)を明記。
+
+### Phase 1 追加分
+
+6. `normalize_entity` のユニットテスト(全角/法人格/エイリアス統合)が通る。
+7. 前回データなしの `analyze_diff` が「差分なし」で正常終了する。
+8. 差分検出(mention flip / rank変化 / 競合追加削除)を合成データで検証済み。
+9. `workflow_dispatch` 実行で `sov_daily` にデータが入り、2回実行しても
+   `date × pillar × entity` 主キーで重複しない。
+10. `python notify_slack.py --test` で疑似アラートを1通送信できる。
+11. 本READMEに Phase 1 の内容と凡例追記を反映。

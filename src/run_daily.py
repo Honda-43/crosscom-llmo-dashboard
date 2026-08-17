@@ -1,9 +1,8 @@
-"""run_daily.py — daily pipeline orchestrator (§8).
+"""run_daily.py — daily pipeline orchestrator (§8 + Phase 1 §1).
 
-Order (§8):
-  1. collect_llm -> extract -> sheets(tabs 1 & 5)
-  2. collect_ga4 -> tab 2
-  3. collect_gsc -> tab 3
+Order:
+  collect_llm -> extract -> analyze_sov -> analyze_diff
+  -> collect_ga4 -> collect_gsc -> build_summary -> Sheets writes -> notify_slack
 
 Every phase is isolated: a failure in one phase is recorded and reported in the
 GitHub job summary, but the remaining phases still run. Raw-file commit/push is
@@ -27,10 +26,13 @@ except Exception:  # tzdata missing (e.g. bare Windows) — JST has no DST, so a
     # fixed +09:00 offset is exactly Asia/Tokyo.
     JST = dt.timezone(dt.timedelta(hours=9), name="JST")
 
+import analyze_diff
+import analyze_sov
 import collect_ga4
 import collect_gsc
 import collect_llm
 import extract
+import notify_slack
 import sheets_writer
 
 
@@ -64,7 +66,7 @@ def main() -> None:
     failures: List[str] = []
     summary_lines: List[str] = [f"## LLMO daily pipeline — {date}", ""]
 
-    # Phase 1: LLM observation -> extraction
+    # LLM observation -> extraction
     records = _run("collect_llm", lambda: collect_llm.collect(date), failures) or []
     extractions = _run(
         "extract",
@@ -72,7 +74,13 @@ def main() -> None:
         failures,
     ) or []
 
-    # Phase 2 & 3: GA4 / GSC (independent of LLM)
+    # Analysis phases (Phase 1 §2 / §3). analyze_diff compares today's
+    # extractions against the previous observation day still stored in Sheets,
+    # so it must run *before* today's rows are written.
+    sov_rows = _run("analyze_sov", lambda: analyze_sov.analyze(extractions, date), failures) or []
+    changes = _run("analyze_diff", lambda: analyze_diff.analyze(extractions, date), failures) or []
+
+    # GA4 / GSC (independent of the LLM observation)
     ga4_rows = _run("collect_ga4", lambda: collect_ga4.collect(), failures) or []
     gsc_rows = _run("collect_gsc", lambda: collect_gsc.collect(), failures) or []
 
@@ -83,12 +91,21 @@ def main() -> None:
         failures,
     )
 
-    # Write to Sheets (tabs 1, 2, 3, 5)
+    # Write to Sheets (tabs 1, 2, 3, 5 + sov_daily / changes)
     _run("write_llm_observations", lambda: sheets_writer.write_llm_observations(extractions), failures)
+    _run("write_sov_daily", lambda: sheets_writer.write_sov_daily(sov_rows), failures)
+    _run("write_changes", lambda: sheets_writer.write_changes(changes), failures)
     _run("write_ga4", lambda: sheets_writer.write_ga4(ga4_rows), failures)
     _run("write_gsc", lambda: sheets_writer.write_gsc(gsc_rows), failures)
     if summary is not None:
         _run("write_daily_summary", lambda: sheets_writer.write_daily_summary(summary), failures)
+
+    # Slack alert last, so it can report failures from every preceding phase.
+    notified = _run(
+        "notify_slack",
+        lambda: notify_slack.notify(date, extractions, changes, list(failures)),
+        failures,
+    )
 
     # Counts for the job summary
     ok_obs = sum(1 for r in extractions if not r.get("error"))
@@ -97,6 +114,9 @@ def main() -> None:
         f"- LLM observations: {ok_obs} ok / {err_obs} error (total {len(extractions)})",
         f"- GA4 AI-referral rows: {len(ga4_rows)}",
         f"- GSC branded-query rows: {len(gsc_rows)}",
+        f"- SoV rows: {len(sov_rows)}",
+        f"- Detected changes: {len(changes)}",
+        f"- Slack alert: {'sent' if notified else 'none'}",
     ]
     if summary:
         summary_lines += [

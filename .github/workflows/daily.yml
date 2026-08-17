@@ -25,6 +25,7 @@ jobs:
       SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
       GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
       GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,7 +39,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run daily pipeline (LLM -> extract -> Sheets, GA4, GSC)
+      - name: Run daily pipeline (LLM -> extract -> SoV/diff -> Sheets, GA4, GSC, Slack)
         id: pipeline
         working-directory: src
         run: python run_daily.py
@@ -59,3 +60,15 @@ jobs:
       - name: Report failure
         if: failure()
         run: echo "::warning::One or more daily pipeline phases failed — see the job summary."
+
+      # Catches failures that never reach notify_slack.py (checkout, pip install,
+      # a crash before the Python alert phase). Silently skipped when the secret
+      # is not configured.
+      - name: Notify Slack on workflow failure
+        if: failure() && env.SLACK_WEBHOOK_URL != ''
+        run: |
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          TEXT="*LLMO日次アラート*\n*❌ ワークフロー失敗*\n• daily.yml が異常終了しました(Python到達前の失敗の可能性あり)\n<$RUN_URL|実行ログを開く>"
+          printf '{"text":"%s"}' "$TEXT" > payload.json
+          curl -sS -X POST -H 'Content-type: application/json' \
+            --data @payload.json "$SLACK_WEBHOOK_URL" > /dev/null
