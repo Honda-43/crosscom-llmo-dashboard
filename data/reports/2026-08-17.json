@@ -34,24 +34,35 @@
   "kgi": {
     "ai_key_events": {
       "delta": 0.0,
+      "noise_zone": true,
       "prev_week": 0.0,
       "this_week": 0.0
     },
     "ai_sessions": {
       "delta": -2.0,
+      "noise_zone": true,
       "prev_week": 4.0,
       "this_week": 2.0
     },
     "branded_clicks": {
       "delta": -6.0,
+      "noise_zone": true,
       "prev_week": 10.0,
       "this_week": 4.0
     },
     "branded_impressions": {
       "delta": -12.0,
+      "noise_zone": true,
       "prev_week": 19.0,
       "this_week": 7.0
-    }
+    },
+    "noise_floor": 10.0,
+    "noise_zone_metrics": [
+      "ai_key_events",
+      "ai_sessions",
+      "branded_clicks",
+      "branded_impressions"
+    ]
   },
   "mention_rate": {
     "all": {
@@ -227,21 +238,32 @@
       "status": "fired"
     },
     {
-      "detail": "E-1の引用に旧事業パスは含まれない",
+      "coverage": {
+        "e1_observations": 14,
+        "models_with_urls": [
+          "claude"
+        ],
+        "models_without_urls": [
+          "gemini"
+        ],
+        "observations_with_crosscom_urls": 7
+      },
+      "detail": "E-1の引用に旧事業パスは含まれない(URL評価できた観測 7/14件)",
       "evidence": [],
       "fired": false,
       "rule_id": "R-P8",
       "status": "not_fired"
     },
     {
-      "detail": "1系列で直近3観測日連続の言及消失",
+      "detail": "1系列で言及消失(最長11観測日連続。閾値は3)",
       "evidence": [
         {
-          "absent_since": "2026-08-15",
-          "consecutive_absent_observations": 3,
+          "absent_observations": 11,
+          "absent_since": "2026-08-07",
           "last_mentioned": "2026-08-06",
           "model": "claude",
-          "prompt_id": "B-1"
+          "prompt_id": "B-1",
+          "threshold_observations": 3
         }
       ],
       "fired": true,
