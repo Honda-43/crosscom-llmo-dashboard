@@ -100,10 +100,20 @@ crosscom-llmo-dashboard/
 │   ├── settings.py        # 環境変数・定数・モデル有効/無効
 │   ├── run_daily.py       # 日次オーケストレータ
 │   └── run_weekly.py      # 週次オーケストレータ
+├── app/                   # ローカル分析アプリ(Phase 4・Streamlit・読み取り専用)
+│   ├── main.py            # エントリポイント(5ページのナビゲーション)
+│   ├── data_source.py     # Sheets/ローカルの読み取りとキャッシュ
+│   ├── common.py          # 共通ヘルパー(パース・チャート配色)
+│   ├── sample_data.py     # 認証なしでUIを確認するためのサンプル
+│   └── views/             # P1〜P5 の各ページ
+├── credentials/           # サービスアカウントJSON(.gitignore・手動配置)
 ├── tests/                 # pytest(正規化・SoV・差分・Slack・backfill・週次ルール)
 ├── data/raw/              # LLM回答全文の保存先(git管理、日付ディレクトリ)
 ├── data/reports/          # 週次 stats.json(git管理・監査用)
-├── requirements.txt
+├── requirements.txt          # 実行系(GitHub Actions)
+├── requirements-dashboard.txt # ローカル分析アプリ(Phase 4)
+├── setup_dashboard.bat       # アプリ初回セットアップ(Windows)
+├── run_dashboard.bat         # アプリ起動(git pull → streamlit)
 └── README.md
 ```
 
@@ -472,6 +482,62 @@ python notify_slack.py --test-weekly --date 2026-08-17               # 週次投
 
 ---
 
+## Phase 4:ローカル分析アプリ(Streamlit)
+
+日常のグラフ確認は Looker Studio、**回答全文・差分・所見まで一画面で追う深掘り分析**はこのアプリ。
+**完全ローカル・読み取り専用**で、実行系(daily / weekly)には一切影響しない。
+
+### セットアップ(2ステップ)
+
+```
+1. setup_dashboard.bat   ← venv作成 + 依存インストール(初回のみ)
+2. run_dashboard.bat     ← git pull → アプリ起動(ブラウザが自動で開く)
+```
+
+**サービスアカウントJSONの配置**(Sheets系ページに必要):
+
+| 置くもの | 場所 |
+|---|---|
+| サービスアカウントJSON | `credentials/service_account.json` |
+| スプレッドシートID | `credentials/spreadsheet_id.txt`(1行)または環境変数 `SHEETS_SPREADSHEET_ID` |
+
+`credentials/` は **.gitignore 済み**でコミットされない。日次パイプラインと同じ
+サービスアカウントを使えばよい(読み取りのみ)。
+
+### 画面構成
+
+| ページ | 内容 | 認証 |
+|---|---|---|
+| **P1 概況** | mention_rate 3系列のスコアカード(7日平均+前週比)、SoV首位、negative_flag、KGI週計(ノイズ域は警告表示)。下段に全期間推移+7日移動平均 | 要 |
+| **P2 SoV分析** | pillar/期間フィルタ、上位N社のシェア推移(クロスコムは赤で固定)、出現回数ランキング(前期間比) | 要 |
+| **P3 プロンプト詳細** | prompt_id×model の mention/rank 推移(rank軸は反転)、kbf_tags頻度、競合集計、引用URL一覧 | 要 |
+| **P4 回答ビューア・差分** | `data/raw` の回答全文、2日付のdiff(追加/削除ハイライト)、同日のchanges併記 | **不要** |
+| **P5 週次所見** | weekly_reports の一覧とMarkdown本文、stats.json の主要数値(折りたたみ) | 要(stats.jsonはローカルで表示可) |
+
+### 設計上の約束
+
+- **読み取り専用**。`src/sheets_writer` を経由せず独自の読み取りクライアントを持つため、
+  アプリから書き込み経路に到達できない。
+- **APIクォータを圧迫しない**。タブごと1回読み + `st.cache_data`(TTL 10分)。
+  サイドバーの「キャッシュを更新」で明示的に再取得できる。
+- **認証がなくても落ちない**。Sheets系ページは何が足りないかを名指しで案内し、
+  P4 は `data/raw` だけで通常どおり動作する。
+- **依存は分離**。`requirements-dashboard.txt` にのみ streamlit / plotly / pandas を置き、
+  実行系の `requirements.txt` には混ぜない。
+
+### UIだけ先に確認したいとき(サンプルモード)
+
+認証を用意する前に画面を確認できる。**全ページに警告バナーが出る**:
+
+```bash
+set LLMO_DASHBOARD_SAMPLE=1
+.venv\Scripts\python -m streamlit run app\main.py
+```
+
+合成データを表示するだけで、Google Sheets には一切接続しない。
+
+---
+
 ## Looker Studio 接続手順
 
 ### 1. データソースを追加
@@ -573,3 +639,10 @@ LLM API は **日次 14クエリ(観測:gemini/claude × 7)+ 14回(抽出)= 28 A
 15. 所見文の数値は stats.json のみを根拠とする(プロンプトで明示禁止 + フォールバックは構造的に一致)。
 16. LLM呼び出し失敗をシミュレートしてもフォールバック配信される(`test_run_weekly.py` で検証)。
 17. 本READMEに Phase 2 の構成図・週次運用フロー・コストを記載。
+
+### Phase 4 追加分
+
+18. `setup_dashboard.bat` → `run_dashboard.bat` の2ステップでブラウザにアプリが開く。
+19. 5ページすべてが表示される(P4は実データ、P1〜P3/P5はサンプルモードで動作確認済み)。
+20. 認証JSON欠如時の劣化動作が仕様どおり(案内表示 + P4は通常動作)。
+21. 本READMEにセットアップ手順とサービスアカウントJSONの配置場所を記載。

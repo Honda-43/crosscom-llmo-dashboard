@@ -1,0 +1,7 @@
+# ローカル分析アプリ(Phase 4)専用の依存関係。
+# 実行系(GitHub Actions)は requirements.txt だけを使う。混ぜないこと。
+-r requirements.txt
+
+streamlit>=1.40.0
+plotly>=5.24.0
+pandas>=2.2.0

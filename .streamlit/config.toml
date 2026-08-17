@@ -1,0 +1,11 @@
+# ローカル分析アプリの表示設定(Phase 4)。認証情報は含まない。
+[server]
+headless = false
+port = 8501
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "light"
+primaryColor = "#4c78a8"
