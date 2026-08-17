@@ -147,12 +147,34 @@ def load_tabs() -> Dict[str, List[Dict[str, str]]]:
     return tabs
 
 
+def _describe(exc: BaseException) -> str:
+    """Readable message for an exception, following the __cause__ chain.
+
+    gspread raises a bare ``PermissionError`` from the underlying ``APIError``,
+    so ``str(exc)`` is empty and the UI would show "failed:" with nothing after
+    it. The actionable text ("Google Sheets API has not been used in project
+    ... or it is disabled") only lives on the cause.
+    """
+    parts, seen, current = [], set(), exc
+    while current is not None and id(current) not in seen:
+        seen.add(id(current))
+        text = str(current).strip()
+        parts.append(f"{type(current).__name__}: {text}" if text else type(current).__name__)
+        current = current.__cause__ or current.__context__
+    return " / ".join(parts)
+
+
 def tab(name: str) -> List[Dict[str, str]]:
     """One tab's rows, or [] when unavailable."""
     try:
         return load_tabs().get(name, [])
     except Exception as exc:  # noqa: BLE001 - surfaced in the UI, never raised
-        st.error(f"Sheets の読み取りに失敗しました: {exc}")
+        st.error(f"Sheets の読み取りに失敗しました — {_describe(exc)}")
+        st.caption(
+            "よくある原因: ①Google Sheets API が未有効 "
+            "②スプレッドシートがサービスアカウントに共有されていない "
+            "③spreadsheet_id が誤り"
+        )
         return []
 
 
