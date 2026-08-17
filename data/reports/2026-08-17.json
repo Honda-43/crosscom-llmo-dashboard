@@ -1,0 +1,538 @@
+{
+  "changes": {
+    "competitor_added": 23,
+    "competitor_removed": 32,
+    "crosscom_url_removed": 1,
+    "mention_lost": 1,
+    "rank_down": 4,
+    "rank_up": 1
+  },
+  "data_quality": {
+    "observation_days_prev_week": 7,
+    "observation_days_this_week": 7,
+    "observations_in_lookback": 392,
+    "weeks_with_observations": 4
+  },
+  "date": "2026-08-17",
+  "fired_rules": [
+    "R-P7",
+    "R-P2",
+    "R-P15"
+  ],
+  "generated_for_week": {
+    "lookback_days": 28,
+    "prev_week": [
+      "2026-08-04",
+      "2026-08-10"
+    ],
+    "this_week": [
+      "2026-08-11",
+      "2026-08-17"
+    ]
+  },
+  "insufficient_rules": [],
+  "kgi": {
+    "ai_key_events": {
+      "delta": 0.0,
+      "prev_week": 0.0,
+      "this_week": 0.0
+    },
+    "ai_sessions": {
+      "delta": -2.0,
+      "prev_week": 4.0,
+      "this_week": 2.0
+    },
+    "branded_clicks": {
+      "delta": -6.0,
+      "prev_week": 10.0,
+      "this_week": 4.0
+    },
+    "branded_impressions": {
+      "delta": -12.0,
+      "prev_week": 19.0,
+      "this_week": 7.0
+    }
+  },
+  "mention_rate": {
+    "all": {
+      "delta": 0.0477,
+      "prev_week": 0.3809,
+      "this_week": 0.4286
+    },
+    "days_observed": {
+      "prev_week": 7,
+      "this_week": 7
+    },
+    "pillar_a": {
+      "delta": 0.0,
+      "prev_week": 0.5714,
+      "this_week": 0.5714
+    },
+    "pillar_b": {
+      "delta": 0.0952,
+      "prev_week": 0.1905,
+      "this_week": 0.2857
+    }
+  },
+  "prompt_model_matrix": [
+    {
+      "mentioned_days": 5,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "A-1"
+    },
+    {
+      "mentioned_days": 5,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "A-1"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "A-2"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "A-2"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "A-3"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "A-3"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "B-1"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "B-1"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "B-2"
+    },
+    {
+      "mentioned_days": 5,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "B-2"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "B-3"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "B-3"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "E-1"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "E-1"
+    }
+  ],
+  "rank_trend": [
+    {
+      "delta": 0.5,
+      "median_prev_week": 5.5,
+      "median_this_week": 6,
+      "model": "claude",
+      "prompt_id": "A-1"
+    },
+    {
+      "delta": 2.5,
+      "median_prev_week": 5.5,
+      "median_this_week": 8.0,
+      "model": "gemini",
+      "prompt_id": "A-1"
+    },
+    {
+      "delta": 0,
+      "median_prev_week": 1,
+      "median_this_week": 1,
+      "model": "claude",
+      "prompt_id": "A-2"
+    },
+    {
+      "delta": 0,
+      "median_prev_week": 4,
+      "median_this_week": 4,
+      "model": "gemini",
+      "prompt_id": "A-2"
+    },
+    {
+      "delta": null,
+      "median_prev_week": 5.0,
+      "median_this_week": null,
+      "model": "claude",
+      "prompt_id": "B-1"
+    },
+    {
+      "delta": -4.5,
+      "median_prev_week": 5.5,
+      "median_this_week": 1,
+      "model": "gemini",
+      "prompt_id": "B-1"
+    },
+    {
+      "delta": null,
+      "median_prev_week": null,
+      "median_this_week": 1,
+      "model": "gemini",
+      "prompt_id": "B-2"
+    }
+  ],
+  "rules": [
+    {
+      "detail": "ネガティブ/古い情報を1件検知",
+      "evidence": [
+        {
+          "date": "2026-08-12",
+          "model": "claude",
+          "negative_detail": "旧事業の『MA/メール配信事業』の記述が含まれている。回答では『BtoB領域に特化して、中小企業のMAやメールマーケティング、マーケティング戦略コンサルティングを支援』『BtoB MA導入・運用支援、BtoBマーケティング戦略コンサルティング支援、BtoBコンテンツ企画・制作代行支援、BtoBメールマーケティング代行支援』と記載されており、現在の事業内容と乖離する可能性がある。",
+          "prompt_id": "E-1"
+        }
+      ],
+      "fired": true,
+      "rule_id": "R-P7",
+      "status": "fired"
+    },
+    {
+      "detail": "E-1の引用に旧事業パスは含まれない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P8",
+      "status": "not_fired"
+    },
+    {
+      "detail": "1系列で直近3観測日連続の言及消失",
+      "evidence": [
+        {
+          "absent_since": "2026-08-15",
+          "consecutive_absent_observations": 3,
+          "last_mentioned": "2026-08-06",
+          "model": "claude",
+          "prompt_id": "B-1"
+        }
+      ],
+      "fired": true,
+      "rule_id": "R-P2",
+      "status": "fired"
+    },
+    {
+      "detail": "前週比+0.1以上のpillarはない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P4",
+      "status": "not_fired"
+    },
+    {
+      "detail": "rank中央値が4週連続で6.0以上のprompt_idはない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P5",
+      "status": "not_fired"
+    },
+    {
+      "detail": "自社不在プロンプトで3件の競合が定着",
+      "evidence": [
+        {
+          "consecutive_weeks": 4,
+          "entity": "グロースパイロット",
+          "models": [
+            "claude",
+            "gemini"
+          ],
+          "prompt_id": "B-3"
+        },
+        {
+          "consecutive_weeks": 4,
+          "entity": "テクノデジタルコンサルティング",
+          "models": [
+            "claude",
+            "gemini"
+          ],
+          "prompt_id": "B-3"
+        },
+        {
+          "consecutive_weeks": 4,
+          "entity": "日立コンサルティング",
+          "models": [
+            "claude",
+            "gemini"
+          ],
+          "prompt_id": "B-3"
+        }
+      ],
+      "fired": true,
+      "rule_id": "R-P15",
+      "status": "fired"
+    },
+    {
+      "detail": "SoV上位5に半減・新規入りはない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-DROP",
+      "status": "not_fired"
+    }
+  ],
+  "sov": {
+    "A": {
+      "entities": [
+        {
+          "delta": -1.0,
+          "entity": "メンバーズ",
+          "mention_count": 26.0,
+          "prev_week_count": 27.0,
+          "share": 0.619
+        },
+        {
+          "delta": 0.0,
+          "entity": "クロスコム",
+          "mention_count": 24.0,
+          "prev_week_count": 24.0,
+          "share": 0.5714
+        },
+        {
+          "delta": 2.0,
+          "entity": "三菱総研DCS",
+          "mention_count": 21.0,
+          "prev_week_count": 19.0,
+          "share": 0.5
+        },
+        {
+          "delta": -5.0,
+          "entity": "enucolor",
+          "mention_count": 19.0,
+          "prev_week_count": 24.0,
+          "share": 0.4524
+        },
+        {
+          "delta": 2.0,
+          "entity": "バーチャレクスコンサルティング",
+          "mention_count": 18.0,
+          "prev_week_count": 16.0,
+          "share": 0.4286
+        },
+        {
+          "delta": 7.0,
+          "entity": "フロッグウェル",
+          "mention_count": 18.0,
+          "prev_week_count": 11.0,
+          "share": 0.4286
+        },
+        {
+          "delta": -4.0,
+          "entity": "日立ソリューションズ",
+          "mention_count": 18.0,
+          "prev_week_count": 22.0,
+          "share": 0.4286
+        },
+        {
+          "delta": 0.0,
+          "entity": "ウフル",
+          "mention_count": 14.0,
+          "prev_week_count": 14.0,
+          "share": 0.3333
+        },
+        {
+          "delta": 5.0,
+          "entity": "富士ソフト",
+          "mention_count": 12.0,
+          "prev_week_count": 7.0,
+          "share": 0.2857
+        },
+        {
+          "delta": 3.0,
+          "entity": "toBeマーケティング",
+          "mention_count": 10.0,
+          "prev_week_count": 7.0,
+          "share": 0.2381
+        }
+      ],
+      "observed_total": 42.0,
+      "prev_week_competitor_count": 50
+    },
+    "B": {
+      "entities": [
+        {
+          "delta": 0.0,
+          "entity": "Salesforce",
+          "mention_count": 16.0,
+          "prev_week_count": 16.0,
+          "share": 0.381
+        },
+        {
+          "delta": -4.0,
+          "entity": "HubSpot",
+          "mention_count": 13.0,
+          "prev_week_count": 17.0,
+          "share": 0.3095
+        },
+        {
+          "delta": 4.0,
+          "entity": "クロスコム",
+          "mention_count": 12.0,
+          "prev_week_count": 8.0,
+          "share": 0.2857
+        },
+        {
+          "delta": -2.0,
+          "entity": "Zoho",
+          "mention_count": 11.0,
+          "prev_week_count": 13.0,
+          "share": 0.2619
+        },
+        {
+          "delta": 0.0,
+          "entity": "テクノデジタルコンサルティング",
+          "mention_count": 9.0,
+          "prev_week_count": 9.0,
+          "share": 0.2143
+        },
+        {
+          "delta": 1.0,
+          "entity": "Creatio",
+          "mention_count": 8.0,
+          "prev_week_count": 7.0,
+          "share": 0.1905
+        },
+        {
+          "delta": 2.0,
+          "entity": "ハンドレッド",
+          "mention_count": 8.0,
+          "prev_week_count": 6.0,
+          "share": 0.1905
+        },
+        {
+          "delta": 0.0,
+          "entity": "Microsoft",
+          "mention_count": 7.0,
+          "prev_week_count": 7.0,
+          "share": 0.1667
+        },
+        {
+          "delta": 5.0,
+          "entity": "CRMIT",
+          "mention_count": 6.0,
+          "prev_week_count": 1.0,
+          "share": 0.1429
+        },
+        {
+          "delta": 2.0,
+          "entity": "ECマーケティング",
+          "mention_count": 6.0,
+          "prev_week_count": 4.0,
+          "share": 0.1429
+        }
+      ],
+      "observed_total": 42.0,
+      "prev_week_competitor_count": 108
+    },
+    "all": {
+      "entities": [
+        {
+          "delta": 4.0,
+          "entity": "クロスコム",
+          "mention_count": 36.0,
+          "prev_week_count": 32.0,
+          "share": 0.4286
+        },
+        {
+          "delta": -6.0,
+          "entity": "メンバーズ",
+          "mention_count": 26.0,
+          "prev_week_count": 32.0,
+          "share": 0.3095
+        },
+        {
+          "delta": 2.0,
+          "entity": "三菱総研DCS",
+          "mention_count": 25.0,
+          "prev_week_count": 23.0,
+          "share": 0.2976
+        },
+        {
+          "delta": -9.0,
+          "entity": "enucolor",
+          "mention_count": 19.0,
+          "prev_week_count": 28.0,
+          "share": 0.2262
+        },
+        {
+          "delta": -5.0,
+          "entity": "日立ソリューションズ",
+          "mention_count": 19.0,
+          "prev_week_count": 24.0,
+          "share": 0.2262
+        },
+        {
+          "delta": -2.0,
+          "entity": "バーチャレクスコンサルティング",
+          "mention_count": 18.0,
+          "prev_week_count": 20.0,
+          "share": 0.2143
+        },
+        {
+          "delta": 5.0,
+          "entity": "フロッグウェル",
+          "mention_count": 18.0,
+          "prev_week_count": 13.0,
+          "share": 0.2143
+        },
+        {
+          "delta": -1.0,
+          "entity": "Salesforce",
+          "mention_count": 16.0,
+          "prev_week_count": 17.0,
+          "share": 0.1905
+        },
+        {
+          "delta": -1.0,
+          "entity": "ウフル",
+          "mention_count": 14.0,
+          "prev_week_count": 15.0,
+          "share": 0.1667
+        },
+        {
+          "delta": -4.0,
+          "entity": "HubSpot",
+          "mention_count": 13.0,
+          "prev_week_count": 17.0,
+          "share": 0.1548
+        }
+      ],
+      "observed_total": 84.0,
+      "prev_week_competitor_count": 139
+    }
+  }
+}
