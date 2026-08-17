@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-18",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-17T22:25:24.888873Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出すための進め方について調べてお答えします。\n# Agentforce導入費用の相場と費用対効果を出す進め方\n\n## 1. 費用の全体像（複数のコスト要素で構成）\n\nAgentforceの費用は「ライセンス（利用料）」だけでなく、複数の要素が積み重なる点に注意が必要です。\n\n### ① Agentforce本体の利用料金モデル\n2025年5月の料金改定以降、\nAgentforceの料金は、アクション単位のFlex Credits、会話単位の旧来モデル、社内利用向けのユーザーライセンスという3つの考え方に整理されました\n。\n\n- **会話単位課金**：\nAgentforceは「1会話あたり240円」というシンプルな料金体系を採用しています\n（1会話＝最大24時間の対話ウィンドウ）\n- **Flex Credits（従量課金）**：\n標準アクションは20クレジット（$0.10）、音声アクションは30クレジット（$0.15）を消費します\n。\n会話あたり約20アクションが損益分岐点で、それ未満であればFlex Creditsの方が割安になります\n\n- **ユーザーライセンス**：\nper-user options run $125 to $550 per user per month\n（社内利用の場合、ライセンス保有者は無制限利用が可能なケースあり）\n- 3つのモデルは\nFlex CreditsとConversationsの2択で、選択を誤ると契約途中での変更コストが高くなります\n\n\n### ② 前提として必要な基盤コスト（見落とされがち）\n- **Data Cloud**：多くの海外解説では\nAgentforceはData Cloud上で統合顧客データを扱う仕組みであり、これは必須です\nとされています（Data Cloud自体に別途年間コストが発生）\n- **Salesforceライセンス費用**：日本の解説でも\nAgentforceの利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要があります\nと指摘されています\n\n### ③ 導入支援・構築費用（日本のパートナー相場）\n国内のAgentforce導入支援会社の相場については、\n依頼する範囲によって幅がありますが、月額伴走型なら月額数十万円程度から、プロジェクト一括型なら数百万円規模からが一つの目安です。これとは別に、Agentforce本体のライセンス費用が発生します\nとされています。\n\nなぜ幅が出るかについては、\n設計だけを頼むのか、定着まで並走してもらうのかで、関わる工数がまったく違うから\nという理由が挙げられています。\n\n### ④ 中小企業向けの無償枠\n朗報として、\n2026年から中小企業向けSalesforceスイート（Free・Starter・Pro全プラン）にAgentforceの基本機能が統合されます。追加費用なしで試せる道が開いた\nという動きもあります。\n\n---\n\n## 2. 費用対効果（ROI）を出すための進め方\n\n### ステップ1：小規模スタート＋段階的展開\n専門会社の推奨アプローチとして、\nまず最も課題が深刻な業務領域から小規模導入を開始し、効果検証を行いながら段階的に展開することを推奨します\nという進め方が挙げられています。\n\n実際に、\n自社のSalesforceエディションとData Cloudの契約状況を確認して、1つだけエージェントを設定してみる。それが最初の一歩です\nという声もあります。\n\n### ステップ2：社内利用から始める選択肢\n国内大手企業の事例では、社外顧客対応より先に社内問い合わせ対応から着手するケースがあります。理由として\nお客様に「Agentforce、いいですよ」と勧める立場にある以上、自分たちが使い倒していなければ説得力がない\nという背景が語られています。\n\n### ステップ3：PoC（概念実証）で複数部門を同時検証\n成功事例として、\n営業・サポート・人事の3部門同時にPoCを開始し、最短1ヶ月で本番導入に成功しました\nというケースがあり、\nカスタマーサポートではFAQの自動化率を97%達成\nという成果も報告されています。\n\n### ステップ4：ROIを定量的に可視化する仕組みを作る\n効果測定の具体的な方法として、以下のようなアプローチが紹介されています。\n- \n広告施策のデータと、Agentforceが対応した顧客のコンバージョンデータを結合し、どの経路から来たユーザーがAIで効率的にコンバージョンしたかを特定する\n\n- \n「AI対応群」と「人間対応群」のA/Bテストを実施し、CSAT（顧客満足度）や対応完了までの時間を比較する\n\n- \n1会話あたりのコスト（AIクレジット消費）に対し、削減された人件費や創出された売上をダッシュボードでリアルタイムに表示する\n\n\n### ステップ5：Salesforce公式のROI試算ツールを活用\n公式サイトでも、\nAIエージェントが自社の従業員や顧客と協力して",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-pricing/",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://aquiva.com/blog/agentforce-pricing-gets-a-long-overdue-fix-flex-credits-are-now-live",
+    "https://ekfrazo.com/resources/blogs/salesforce-agentforce-pricing-2026/",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://low-code-media.com/post-5922/",
+    "https://aurant-technologies.com/blog/salesforce-implementation-design-2714/",
+    "https://www.salesforce.com/jp/agentforce/customer-stories/"
+  ],
+  "error": null
+}

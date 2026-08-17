@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-18",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-17T22:23:29.968039Z",
+  "answer": "Agentforce導入支援会社について、最新情報を検索して調べます。\n# Agentforce導入支援でおすすめの会社\n\nSalesforceの自律型AIエージェント「Agentforce」導入を支援する会社は、Salesforce公式パートナーを中心に複数存在します。特徴別にいくつかご紹介します。\n\n## 大手SIer系\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援し、PoC（実証実験）で終わらせず着実に成果を出すためのアプローチを重視しています。\n\n\n**日鉄ソリューションズ（NSSOL）**\n\nNSSOLはSalesforce社のパートナーであり、様々なユースケースに応じたエージェントの開発を通じて、Agentforce国内No.1パートナーを目指しています。\n\n\n## 伴走型・内製化支援に強み\n\n**メンバーズ（サースプラスカンパニー）**\n\n導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバーし、Service・Marketing・Salesの各テンプレートに対応、SlackやTeams、Salesforceなどとの連携や社内ナレッジの統合も支援します。\nまた\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています。\n\n\n## スピード重視・スモールスタート型\n\n**ウフル**\n\nデータ活用とIoTに強みを持つパートナーで、最短3ヶ月でAgentforceを導入するクイック支援サービスを展開しており、マーケティングとカスタマーサービスの両領域に対応できます。\n\n\n**クロスコム**\n\n実務で活用できるまでの定着支援に重点を置き、目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込み、1ユースケース×3ヶ月のスモールスタートから対応します。\n\n\n## 業種特化型\n\n**フロッグウェル**：\n住宅業界向けのマッチングシステム導入支援や、会話サマリー自動化による業務効率向上支援などの実績があります。\n\n\n**enucolor**：\n現状業務の理解と業務課題の整理からPoC実施、実際の活用サポートまで5つのステップで導入・活用を支援します。\n\n\n## 選び方のポイント\n\n\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼり、導入から定着まで一貫して任せられるのは主にコンサルティングパートナーの区分です。\n\n\n**選定のコツ：**\n1. **対応領域**（Service/Marketing/Sales）が自社ニーズと合っているか\n2. **スモールスタートの可否**（PoCから始められるか）\n3. **内製化支援の有無**（伴走型か、丸投げ型か）\n4. **業界特化の実績**があるか\n\n具体的な予算感や導入したい業務領域（カスタマーサポート／営業／マーケティングなど）があれば、より絞り込んだご提案も可能です。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://note.com/nssol_note/n/n1839fa740632",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}

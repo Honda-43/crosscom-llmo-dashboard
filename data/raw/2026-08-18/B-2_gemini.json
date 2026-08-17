@@ -1,0 +1,19 @@
+{
+  "date": "2026-08-18",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-17T22:26:12.435472Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社をお探しとのこと、承知いたしました。CRM導入において、ツール選定よりも先行して自社の課題や目的に合った戦略・設計を行うことは非常に重要です。\n\n以下に、中立的な立場でのCRM設計支援が期待できる企業をいくつかご紹介します。\n\n*   **テクノデジタルコンサルティング**\n    この会社は、大手から中堅企業まで100社以上の支援実績を持ち、20年以上にわたり様々な業界でCRM・顧客データ活用を支援しています。顧客分析、CRM戦略、KPI設計、データ活用までを一貫して手掛け、机上の空論ではなく実際の顧客行動データに基づいた、継続的な効果検証を前提とした実効性のあるCRM・データ戦略を設計することを強みとしています。大規模CRMプロジェクトでは、戦略・業務・データを横断して整理する「ブレイン」として参画するとされています。CRM導入前の構想整理や顧客データ活用方針、KPI設計、ロードマップ策定など、戦略設計に強みがあるため、特定のツールに偏らない中立的な支援が期待できます。\n\n*   **船井総合研究所**\n    船井総合研究所は、業種ごとに優秀なコンサルタントが在籍しており、戦略立案のフレームワークが豊富です。比較的地域の中堅企業から大手企業を中心に支援しているとされています。幅広い業種の中堅企業を対象に、戦略的なCRM設計支援を行う上で、ベンダーに依存しない中立的な視点を提供できる可能性があります。\n\n*   **株式会社ripla**\n    株式会社riplaは、業務設計からシステム構築・運用まで一気通貫でDX／開発支援を行っています。CRM開発においては、単なる顧客情報管理に留まらず、営業、マーケティング、サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応可能です。既存のERPや販売管理、マーケティング基盤との全体最適設計も重視しており、顧客データの統合・分析・活用による業務革新まで支援するとされています。標準CRMパッケージでは不足する要件や、自社特有の業務プロセスを反映したCRMが必要な中堅～大企業に適しているとされており、特定のツールに縛られない設計支援が期待できます。\n\n**中立的なCRMコンサルティング会社を選ぶ上での留意点:**\nCRMコンサルティング会社の中には、特定のCRMツールベンダーと強力なパートナーシップを結んでいるところも多く、完全に中立的な視点を持つコンサルタントは「かなり少ないのが実情」と指摘されています。そのため、選定時には以下の点を重視して確認することをおすすめします。\n\n*   **提案の透明性:** 特定のツールを強く推奨するのではなく、複数の選択肢とそのメリット・デメリットを客観的に説明してくれるか。\n*   **戦略立案への注力:** ツール導入ありきではなく、貴社のビジネス課題や目標に基づいたCRM戦略の立案に時間を割いてくれるか。\n*   **実績と経験:** 貴社と同規模、同業種での支援実績があり、かつベンダーニュートラルなプロジェクト経験が豊富か。\n\nCRM導入支援は、初期調査や戦略立案に数十万円から数百万円程度、システム導入やカスタマイズを含めるとさらに費用が増加する傾向にあります。中堅企業向けには月額契約で数十万円規模のプランも存在します。\nツールベンダーのセールストークに流されず、導入支援会社の中立的な立場からのアドバイスを受けることが、CRM導入成功の鍵となります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0WPl-Tgte-B338FYaUmUxJNRRpr0olLrvMBWSEr6FiTPPFEzNXW81mdnxIesH6gF2C8YIfa4eL5x4N1-R77IGF79qRp3WQhVRBAJiMzJCrh5jghgFgeRHgzP0kPAmDdrV1hXElW6Iv07IiNw471YDh-IR",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFecjoLpWhz7ou62cBbpSh3rj6jwYKpaiWO5h3IcwsS01LTuOLQHi01fA8DuqWc0LRFD74GsYM0qKqmhWQ5bdtLdxSh4wCQSGC56CIL19xRck2rq1aPhKyUjO4F8WUpTkjjR3t6bkQCX46h7g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxr-PZIqjbO0YN9sWe6xPsOYZlDY9DfQ3sovOCOIhze2a04-YXmO6z7gx4q91gzv_O5pd66ReG0g_RlmEPL7mD2ibVoeKVPIlPShtmzUR164KLTZ4a9Zo85KAI-4VD8KXHUgcH2ymifXJm",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHCV5-LRsEhNyTMZLFJTcLHXHdQlJw4srpcm3dXcpaxFwVyfXaBchENTuI09vVQrJ4Fv2fPBDYW6eLQygZccITjBEx_SwOc9QzbEWBFUqLtUTBEWzwvJnWkvxPdQk9L6lKHUsb7rA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-1mcqNjG6rJu2qB4K2P-EIg9cLimHNA8Qic1gvtQH8Ru0ItDGSK17NNkpmV3PpA8EZ62MMq73f7qI7ryJn7XqL1uF30KWnwpql_BnpE8lYaAvFLccfPzfw4Po_OaG4jarKbXHwJoTf99kghAE8n0="
+  ],
+  "error": null
+}
