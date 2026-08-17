@@ -44,6 +44,20 @@ def test_system_prompt_forbids_inventing_numbers():
     assert "禁止" in system
 
 
+def test_system_prompt_forbids_treating_noise_as_actionable():
+    """レビュー指摘1: ノイズ域の増減を要対応と書かせない。"""
+    system = generate_insight.build_system_prompt(playbook="x")
+    assert "noise_zone" in system
+    assert "要対応" in system
+    assert "推奨アクションの根拠にしてはならない" in system
+
+
+def test_system_prompt_warns_about_partial_coverage():
+    system = generate_insight.build_system_prompt(playbook="x")
+    assert "coverage" in system
+    assert "問題なし" in system
+
+
 def test_system_prompt_fixes_the_five_sections():
     system = generate_insight.build_system_prompt(playbook="x")
     for section in ("今週のサマリ", "数値ハイライト", "発火パターンと推奨アクション",
@@ -88,6 +102,27 @@ def test_fallback_report_uses_only_stats_numbers():
 
 def test_fallback_report_flags_itself_as_degraded():
     assert "自動生成に失敗" in generate_insight.fallback_report(STATS)
+
+
+def test_fallback_report_marks_noise_zone_metrics():
+    noisy = dict(STATS, kgi={
+        "ai_sessions": {"this_week": 2, "prev_week": 4, "delta": -2, "noise_zone": True},
+        "branded_clicks": {"this_week": 4, "prev_week": 10, "delta": -6, "noise_zone": True},
+        "noise_floor": 10,
+        "noise_zone_metrics": ["ai_sessions", "branded_clicks"],
+    })
+    report = generate_insight.fallback_report(noisy)
+    assert "母数が小さく判断できない水準" in report
+    assert "判断材料にしない" in report
+
+
+def test_fallback_report_leaves_healthy_metrics_unmarked():
+    healthy = dict(STATS, kgi={
+        "ai_sessions": {"this_week": 40, "prev_week": 24, "delta": 16, "noise_zone": False},
+        "branded_clicks": {"this_week": 30, "prev_week": 25, "delta": 5, "noise_zone": False},
+        "noise_floor": 10, "noise_zone_metrics": [],
+    })
+    assert "母数が小さく" not in generate_insight.fallback_report(healthy)
 
 
 def test_fallback_report_survives_an_empty_stats():

@@ -282,39 +282,72 @@ def _change_counts(change_rows: List[Dict[str, Any]], date: str, days: int) -> D
 
 
 def _kgi(ga4_rows: List[Dict[str, Any]], gsc_rows: List[Dict[str, Any]],
-         date: str, days: int) -> Dict[str, Any]:
+         date: str, days: int, noise_floor: float = 10.0) -> Dict[str, Any]:
+    """KGI weekly totals vs the previous week, with a noise guard.
+
+    At these volumes a week-over-week move is often meaningless: 4 sessions
+    down to 2 is "-50%" and also nothing at all. A metric whose *current* week
+    sits below ``noise_floor`` is flagged ``noise_zone`` so the report is told
+    not to dress the swing up as a result.
+
+    The test is on this week alone, not on both weeks: at 4 clicks the level is
+    unactionable regardless of what last week was. A genuine collapse (20 -> 2)
+    is therefore flagged too — but the prose still prints both raw numbers, so
+    the fall stays visible while losing only the "requires action" framing.
+    """
     this_window, prev_window = week_window(date, 0, days), week_window(date, 1, days)
-    return {
-        "ai_sessions": _comparison(
+
+    def series(this_value: float, prev_value: float) -> Dict[str, Any]:
+        entry = _comparison(this_value, prev_value)
+        entry["noise_zone"] = this_value < noise_floor
+        return entry
+
+    kgi = {
+        "ai_sessions": series(
             _sum(_rows_in(ga4_rows, this_window), "sessions"),
             _sum(_rows_in(ga4_rows, prev_window), "sessions"),
         ),
-        "ai_key_events": _comparison(
+        "ai_key_events": series(
             _sum(_rows_in(ga4_rows, this_window), "key_events"),
             _sum(_rows_in(ga4_rows, prev_window), "key_events"),
         ),
-        "branded_clicks": _comparison(
+        "branded_clicks": series(
             _sum(_rows_in(gsc_rows, this_window), "clicks"),
             _sum(_rows_in(gsc_rows, prev_window), "clicks"),
         ),
-        "branded_impressions": _comparison(
+        "branded_impressions": series(
             _sum(_rows_in(gsc_rows, this_window), "impressions"),
             _sum(_rows_in(gsc_rows, prev_window), "impressions"),
         ),
     }
+    kgi["noise_floor"] = noise_floor
+    kgi["noise_zone_metrics"] = sorted(
+        k for k, v in kgi.items() if isinstance(v, dict) and v.get("noise_zone")
+    )
+    return kgi
 
 
 # --------------------------------------------------------------------------
 # §2-2 Rules
 # --------------------------------------------------------------------------
-def _verdict(rule_id: str, state: str, detail: str, evidence: Optional[List[Any]] = None) -> Dict[str, Any]:
-    return {
+def _verdict(rule_id: str, state: str, detail: str, evidence: Optional[List[Any]] = None,
+             coverage: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """One rule's result.
+
+    ``coverage`` records how much of the data the rule could actually see. A
+    ``not_fired`` produced from partial data is a weaker statement than one
+    produced from complete data, and the report must be able to tell them apart.
+    """
+    verdict = {
         "rule_id": rule_id,
         "status": state,
         "fired": state == FIRED,
         "detail": detail,
         "evidence": evidence or [],
     }
+    if coverage:
+        verdict["coverage"] = coverage
+    return verdict
 
 
 def rule_p2(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
@@ -331,18 +364,30 @@ def rule_p2(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
         if len(rows) < need + 1:
             continue
         comparable += 1
-        recent, earlier = rows[-need:], rows[:-need]
-        if any(o["mention"] for o in recent):
+
+        # The *actual* absence streak, walking back from the newest observation.
+        # Reporting the last `need` observations instead would understate a long
+        # absence and contradict last_mentioned in the write-up.
+        streak: List[Dict[str, Any]] = []
+        for obs in reversed(rows):
+            if obs["mention"]:
+                break
+            streak.append(obs)
+        streak.reverse()
+
+        if len(streak) < need:
             continue
-        if not any(o["mention"] for o in earlier):
+        mentioned = [o for o in rows if o["mention"]]
+        if not mentioned:
             continue  # never mentioned here — that is P-15 territory, not a loss
-        last_seen = max(o["date"] for o in earlier if o["mention"])
+
         evidence.append({
             "prompt_id": prompt_id,
             "model": model,
-            "absent_since": recent[0]["date"],
-            "last_mentioned": last_seen,
-            "consecutive_absent_observations": need,
+            "absent_since": streak[0]["date"],
+            "absent_observations": len(streak),
+            "last_mentioned": mentioned[-1]["date"],
+            "threshold_observations": need,
         })
 
     if not comparable:
@@ -350,8 +395,12 @@ def rule_p2(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
                         f"言及実績と直近{need}観測日を比較できる系列がない")
     if not evidence:
         return _verdict("R-P2", NOT_FIRED, f"直近{need}観測日連続で言及を失った系列はない")
-    return _verdict("R-P2", FIRED,
-                    f"{len(evidence)}系列で直近{need}観測日連続の言及消失", evidence)
+    longest = max(e["absent_observations"] for e in evidence)
+    return _verdict(
+        "R-P2", FIRED,
+        f"{len(evidence)}系列で言及消失(最長{longest}観測日連続。閾値は{need})",
+        evidence,
+    )
 
 
 def rule_p4(mention_rate: Dict[str, Any], cfg: Dict[str, Any]) -> Dict[str, Any]:
@@ -453,8 +502,28 @@ def rule_p8(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
     if not legacy_paths:
         return _verdict("R-P8", INSUFFICIENT, "config/legacy_paths.yaml が空")
 
+    # Not every model reports resolvable citation URLs — Gemini returns grounding
+    # redirects, which never contain our domain, so those observations carry no
+    # URL evidence at all. Without this, a model-shaped blind spot would be
+    # reported as a clean "not_fired".
+    with_urls = [o for o in entity_rows if o["crosscom_urls"]]
+    coverage = {
+        "e1_observations": len(entity_rows),
+        "observations_with_crosscom_urls": len(with_urls),
+        "models_with_urls": sorted({o["model"] for o in with_urls}),
+        "models_without_urls": sorted(
+            {o["model"] for o in entity_rows if not o["crosscom_urls"]}
+        ),
+    }
+    if not with_urls:
+        return _verdict(
+            "R-P8", INSUFFICIENT,
+            "E-1の観測はあるが、自社URLの引用が1件も記録されていない(引用URLを解決できないモデルのみ)",
+            coverage=coverage,
+        )
+
     evidence = []
-    for obs in sorted(entity_rows, key=lambda o: (o["date"], o["model"])):
+    for obs in sorted(with_urls, key=lambda o: (o["date"], o["model"])):
         hits = [
             url for url in obs["crosscom_urls"]
             if any(path.lower() in url.lower() for path in legacy_paths)
@@ -465,8 +534,14 @@ def rule_p8(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
             })
 
     if len(evidence) < minimum:
-        return _verdict("R-P8", NOT_FIRED, "E-1の引用に旧事業パスは含まれない")
-    return _verdict("R-P8", FIRED, f"E-1の引用に旧事業パスが{len(evidence)}件", evidence)
+        return _verdict(
+            "R-P8", NOT_FIRED,
+            f"E-1の引用に旧事業パスは含まれない"
+            f"(URL評価できた観測 {len(with_urls)}/{len(entity_rows)}件)",
+            coverage=coverage,
+        )
+    return _verdict("R-P8", FIRED, f"E-1の引用に旧事業パスが{len(evidence)}件",
+                    evidence, coverage=coverage)
 
 
 def rule_p15(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
@@ -594,7 +669,10 @@ def build_stats(date: str, tabs: Dict[str, List[Dict[str, Any]]],
         "rank_trend": _rank_trend(observations, date, days),
         "sov": sov,
         "changes": _change_counts(scoped.get(TAB_CHANGES, []), date, days),
-        "kgi": _kgi(scoped.get(TAB_GA4, []), scoped.get(TAB_GSC, []), date, days),
+        "kgi": _kgi(
+            scoped.get(TAB_GA4, []), scoped.get(TAB_GSC, []), date, days,
+            noise_floor=float((thresholds.get("kgi") or {}).get("noise_floor", 10)),
+        ),
         "data_quality": {
             "observations_in_lookback": len(observations),
             "observation_days_this_week": len(

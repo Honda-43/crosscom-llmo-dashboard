@@ -71,6 +71,37 @@ def test_p2_fires_after_three_absent_observations():
     assert v["evidence"][0]["last_mentioned"] == days_before(8)
 
 
+def test_p2_reports_the_true_absence_streak_not_the_threshold_window():
+    """レビュー指摘: last_mentioned と absent_since が両立しない問題。
+
+    8/6 を最後に 8/7 以降ずっと不在なら、absent_since は 8/7 でなければならない。
+    直近3観測日の開始日(8/15)を返すと「最終言及8/6なのに8/15から消失」という
+    矛盾した文章が生成される。
+    """
+    rows = [obs(days_before(n), prompt_id="B-1", mention="TRUE") for n in (13, 12, 11)]
+    rows += [obs(days_before(n), prompt_id="B-1", mention="FALSE") for n in range(10, -1, -1)]
+    v = verdict(build(llm=rows), "R-P2")
+    evidence = v["evidence"][0]
+
+    assert evidence["last_mentioned"] == days_before(11)
+    assert evidence["absent_since"] == days_before(10)   # 翌観測日から連続不在
+    assert evidence["absent_observations"] == 11         # 実際の連続日数
+    assert evidence["threshold_observations"] == 3       # 閾値は別フィールド
+    assert "11観測日連続" in v["detail"]
+
+
+def test_p2_absence_streak_restarts_after_a_recovery():
+    """途中で1日でも言及があれば、そこから数え直す。"""
+    rows = [obs(days_before(n), mention="TRUE") for n in (13, 12)]
+    rows += [obs(days_before(n), mention="FALSE") for n in (11, 10, 9)]
+    rows += [obs(days_before(8), mention="TRUE")]
+    rows += [obs(days_before(n), mention="FALSE") for n in (2, 1, 0)]
+    evidence = verdict(build(llm=rows), "R-P2")["evidence"][0]
+    assert evidence["last_mentioned"] == days_before(8)
+    assert evidence["absent_since"] == days_before(2)
+    assert evidence["absent_observations"] == 3
+
+
 def test_p2_does_not_fire_when_still_mentioned():
     rows = [obs(days_before(n), mention="TRUE") for n in (3, 2, 1, 0)]
     assert verdict(build(llm=rows), "R-P2")["status"] == NOT_FIRED
@@ -185,6 +216,39 @@ def test_p8_insufficient_when_legacy_paths_are_empty():
     assert verdict(stats, "R-P8")["status"] == INSUFFICIENT
 
 
+def test_p8_only_considers_the_evaluation_window():
+    """判定は直近7日のみ。8日前の旧事業URLでは発火しない。"""
+    rows = [entity_obs(days_before(8), "https://cross-com.jp/btob-crm/x"),
+            entity_obs(days_before(1), "https://cross-com.jp/about/")]
+    assert verdict(build(llm=rows), "R-P8")["status"] == NOT_FIRED
+
+
+def test_p8_insufficient_when_no_model_reports_resolvable_urls():
+    """引用URLを解決できないモデルだけの週は「問題なし」ではなく判定不能。
+
+    Geminiはgrounding-redirect URLを返すため自社ドメインが現れない。
+    これをnot_firedにすると、モデル起因の死角が「異常なし」に化ける。
+    """
+    rows = [entity_obs(days_before(1), "")]
+    v = verdict(build(llm=rows), "R-P8")
+    assert v["status"] == INSUFFICIENT
+    assert v["coverage"]["observations_with_crosscom_urls"] == 0
+
+
+def test_p8_reports_partial_url_coverage():
+    """一部のモデルしかURLを持たない場合、not_firedでも範囲を明示する。"""
+    rows = [
+        obs(days_before(1), prompt_id="E-1", pillar="entity", model="claude",
+            urls="https://cross-com.jp/about/"),
+        obs(days_before(1), prompt_id="E-1", pillar="entity", model="gemini", urls=""),
+    ]
+    v = verdict(build(llm=rows), "R-P8")
+    assert v["status"] == NOT_FIRED
+    assert v["coverage"]["models_with_urls"] == ["claude"]
+    assert v["coverage"]["models_without_urls"] == ["gemini"]
+    assert "1/2件" in v["detail"]
+
+
 # ===========================================================================
 # R-P15 — competitor entrenched where we are absent
 # ===========================================================================
@@ -220,6 +284,68 @@ def test_p15_insufficient_without_four_weeks():
     rows = [obs(days_before(0), model=m, mention="FALSE", competitors="船井総研")
             for m in ("claude", "gemini")]
     assert verdict(build(llm=rows), "R-P15")["status"] == INSUFFICIENT
+
+
+# ===========================================================================
+# KGI ノイズガード
+# ===========================================================================
+def ga4(date, sessions):
+    return {"date": date, "source": "chatgpt.com", "landing_page": "/",
+            "sessions": str(sessions), "key_events": "0"}
+
+
+def gsc(date, clicks, impressions=100):
+    return {"date": date, "query": "クロスコム", "clicks": str(clicks),
+            "impressions": str(impressions)}
+
+
+def test_kgi_flags_the_noise_zone_at_low_volume():
+    """4→2セッションは「50%減」ではなく判断不能。"""
+    rows = [ga4(days_before(1), 2), ga4(days_before(8), 4)]
+    kgi = build(ga4=rows)["kgi"]
+    assert kgi["ai_sessions"]["this_week"] == 2
+    assert kgi["ai_sessions"]["noise_zone"] is True
+    assert "ai_sessions" in kgi["noise_zone_metrics"]
+
+
+def test_kgi_does_not_flag_meaningful_volume():
+    rows = [ga4(days_before(n), 10) for n in range(0, 14)]
+    kgi = build(ga4=rows)["kgi"]
+    assert kgi["ai_sessions"]["noise_zone"] is False
+    assert "ai_sessions" not in kgi["noise_zone_metrics"]
+
+
+def test_kgi_judges_on_this_week_alone():
+    """前週が大きくても、今週が閾値未満ならノイズ域。
+
+    4クリックという水準は前週が10でも20でも打ち手を決められない。
+    実数は所見に必ず併記されるので、減少自体は読み手に見える。
+    """
+    rows = [ga4(days_before(1), 2), ga4(days_before(8), 20)]
+    kgi = build(ga4=rows)["kgi"]
+    assert kgi["ai_sessions"]["noise_zone"] is True
+    assert kgi["ai_sessions"]["prev_week"] == 20   # 変化自体は残る
+    assert kgi["ai_sessions"]["delta"] == -18
+
+
+def test_kgi_flags_a_drop_from_a_barely_meaningful_base():
+    """今回のレビュー実データ: 指名クリック 前週10 → 今週4。"""
+    rows = [gsc(days_before(1), 4), gsc(days_before(8), 10)]
+    assert build(gsc=rows)["kgi"]["branded_clicks"]["noise_zone"] is True
+
+
+def test_kgi_noise_floor_comes_from_config():
+    rows = [gsc(days_before(1), 4), gsc(days_before(8), 6)]
+    thresholds = {"window": {"days": 7, "lookback_days": 28},
+                  "kgi": {"noise_floor": 3}, "rules": {}}
+    stats = rules_engine.build_stats(TODAY, tabs(gsc=rows), thresholds=thresholds,
+                                     legacy_paths=[])
+    assert stats["kgi"]["noise_floor"] == 3
+    assert stats["kgi"]["branded_clicks"]["noise_zone"] is False
+
+
+def test_kgi_reports_the_floor_it_used():
+    assert build()["kgi"]["noise_floor"] == 10
 
 
 # ===========================================================================

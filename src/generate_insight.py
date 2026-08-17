@@ -37,6 +37,12 @@ _SYSTEM_TEMPLATE = """あなたはLLMO(LLM最適化)の週次レポートを書�
   stats.jsonのrulesにあるstatusをそのまま前提として扱う。
 - 根拠が薄いときは断定せず「データ上は判断できない」と書く。創作で埋めない。
 - プレイブックにない独自のフレームワークを持ち出さない。
+- **kgi の指標に `noise_zone: true` が付いている場合、その増減を「悪化」「改善」「要対応」と
+  表現してはならない。** 母数が小さく週次の増減に意味がないという意味なので、
+  実数を併記したうえで「母数が小さく判断できない水準」と明示する。
+  ノイズ域の指標を推奨アクションの根拠にしてはならない。
+- ルールに `coverage` がある場合、それは判定できたデータの範囲である。
+  一部しか評価できていない `not_fired` を「問題なし」と言い切らない。
 
 # 出力フォーマット(この5セクション構成に固定。見出しは変更しない)
 ## 1. 今週のサマリ
@@ -138,10 +144,13 @@ def _fmt_delta(value: Any) -> str:
 
 
 def _series_line(label: str, series: Dict[str, Any]) -> str:
-    return (
+    line = (
         f"- {label}: {_fmt(series.get('this_week'))} "
         f"{_fmt_delta(series.get('delta'))}"
     )
+    if series.get("noise_zone"):
+        line += " ※母数が小さく判断できない水準"
+    return line
 
 
 def fallback_report(stats: Dict[str, Any]) -> str:
@@ -207,6 +216,12 @@ def fallback_report(stats: Dict[str, Any]) -> str:
         f"- 観測日数: 今週 {quality.get('observation_days_this_week', 0)}日 / "
         f"前週 {quality.get('observation_days_prev_week', 0)}日"
     )
+    noisy = stats.get("kgi", {}).get("noise_zone_metrics") or []
+    if noisy:
+        lines.append(
+            f"- ノイズ域(週計 {_fmt(stats['kgi'].get('noise_floor'))} 未満)の指標: "
+            f"{', '.join(noisy)} — 増減は判断材料にしない"
+        )
     return "\n".join(lines).strip()
 
 
