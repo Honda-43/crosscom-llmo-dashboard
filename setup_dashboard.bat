@@ -1,62 +1,80 @@
 @echo off
-chcp 65001 > nul
 setlocal
 cd /d "%~dp0"
 
+REM ---------------------------------------------------------------
+REM  LLMO Analysis Dashboard - first time setup
+REM
+REM  ASCII only, CRLF line endings. Do not add non-ASCII characters:
+REM  cmd.exe reads this file in the console code page (CP932 on a
+REM  Japanese Windows), so UTF-8 text here breaks parsing.
+REM ---------------------------------------------------------------
+
 echo ============================================================
-echo  LLMO 分析ダッシュボード 初回セットアップ
+echo   LLMO Analysis Dashboard - Setup
 echo ============================================================
 echo.
 
 where python >nul 2>nul
 if errorlevel 1 (
-    echo [エラー] python が見つかりません。Python 3.10 以上をインストールしてください。
+    echo [ERROR] "python" was not found on PATH.
+    echo         Install Python 3.10 or later and enable "Add to PATH".
+    echo.
     pause
     exit /b 1
 )
 
-if not exist ".venv" (
-    echo [1/3] 仮想環境を作成しています...
+if exist ".venv\Scripts\python.exe" (
+    echo [1/3] Using the existing virtual environment ^(.venv^).
+) else (
+    echo [1/3] Creating the virtual environment ^(.venv^)...
     python -m venv .venv
     if errorlevel 1 (
-        echo [エラー] 仮想環境の作成に失敗しました。
+        echo [ERROR] Failed to create the virtual environment.
+        echo.
         pause
         exit /b 1
     )
-) else (
-    echo [1/3] 既存の仮想環境を使用します。
 )
 
-echo [2/3] pip を更新しています...
-call ".venv\Scripts\python.exe" -m pip install --upgrade pip --quiet
-
-echo [3/3] 依存関係をインストールしています(数分かかります)...
-call ".venv\Scripts\python.exe" -m pip install -r requirements-dashboard.txt
+echo [2/3] Upgrading pip...
+".venv\Scripts\python.exe" -m pip install --upgrade pip --quiet
 if errorlevel 1 (
-    echo [エラー] インストールに失敗しました。
+    echo [ERROR] Failed to upgrade pip.
+    echo.
     pause
     exit /b 1
 )
 
-if not exist "credentials" mkdir credentials
+echo [3/3] Installing dependencies ^(this can take a few minutes^)...
+".venv\Scripts\python.exe" -m pip install -r requirements-dashboard.txt
+if errorlevel 1 (
+    echo [ERROR] Failed to install dependencies.
+    echo.
+    pause
+    exit /b 1
+)
+
+if not exist "credentials" mkdir "credentials"
 
 echo.
 echo ============================================================
-echo  セットアップ完了
+echo   Setup complete
 echo ============================================================
 echo.
-echo  次の手順:
+echo   Next steps:
 echo.
-echo   1. サービスアカウントJSONを次の場所に配置してください
-echo        credentials\service_account.json
+echo     1. Put the service account JSON here:
+echo          credentials\service_account.json
 echo.
-echo   2. スプレッドシートIDを次のいずれかで設定してください
-echo        credentials\spreadsheet_id.txt  にIDを1行で保存
-echo        または環境変数 SHEETS_SPREADSHEET_ID
+echo     2. Set the spreadsheet id, either:
+echo          credentials\spreadsheet_id.txt   ^(one line^)
+echo        or the SHEETS_SPREADSHEET_ID environment variable.
 echo.
-echo   3. run_dashboard.bat を実行してください
+echo     3. Run run_dashboard.bat
 echo.
-echo  ※ credentials フォルダは .gitignore 済みでコミットされません
-echo  ※ 認証なしでも「P4 回答ビューア・差分」は利用できます
+echo   Notes:
+echo     - The credentials folder is in .gitignore and is never committed.
+echo     - Page "P4" works without credentials ^(reads data\raw only^).
 echo.
 pause

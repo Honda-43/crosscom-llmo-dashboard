@@ -529,12 +529,26 @@ python notify_slack.py --test-weekly --date 2026-08-17               # 週次投
 
 認証を用意する前に画面を確認できる。**全ページに警告バナーが出る**:
 
-```bash
+```
 set LLMO_DASHBOARD_SAMPLE=1
-.venv\Scripts\python -m streamlit run app\main.py
+.venv\Scripts\python.exe -m streamlit run app\main.py
 ```
 
+起動後 http://localhost:8501 を開く(この起動方法ではブラウザは自動で開かない)。
 合成データを表示するだけで、Google Sheets には一切接続しない。
+
+### バッチファイルを編集するときの注意
+
+`setup_dashboard.bat` / `run_dashboard.bat` は **ASCII のみ・CRLF 改行**で保存すること。
+
+- cmd.exe はバッチをコンソールのコードページ(日本語Windowsでは CP932)で読むため、
+  **UTF-8 の日本語を書くと文字化けし、解析が壊れる**。メッセージは英語で書く。
+- **改行が LF だけだと cmd が誤解析する**(`'n' は、内部コマンド…` が大量に出る)。
+  `.gitattributes` で `*.bat text eol=crlf` を固定しているので、
+  チェックアウト時は自動的に CRLF になる。エディタ側の設定にも注意。
+- `.streamlit/config.toml` で `headless = true` にしているのは、
+  Streamlit の初回起動時メール入力プロンプトを抑止するため
+  (プロンプトが出ると入力待ちで起動が止まる)。ブラウザは `run_dashboard.bat` が開く。
 
 ---
 

@@ -1,6 +1,9 @@
-# ローカル分析アプリの表示設定(Phase 4)。認証情報は含まない。
+# Local dashboard display settings (Phase 4). No credentials here.
 [server]
-headless = false
+# headless=true also suppresses the first-run email prompt, which would
+# otherwise wait for input and stall run_dashboard.bat. The launcher
+# opens the browser itself.
+headless = true
 port = 8501
 
 [browser]
