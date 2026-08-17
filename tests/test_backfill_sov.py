@@ -24,8 +24,19 @@ def test_rebuilds_every_date():
 
     # The three spellings collapse onto one entity and "100" is gone for good.
     entities = {r["entity"] for r in rows}
-    assert "ゼロワングロース" in entities
+    assert "ハンドレッド" in entities
     assert "100" not in entities
+
+
+def test_hyaku_inc_and_zeroone_growth_are_counted_separately():
+    """別会社なので同じ日に2行として集計される。"""
+    observations = [
+        obs_row("2026-08-17", prompt_id="A-1", competitors="株式会社100, 01GROWTH"),
+        obs_row("2026-08-17", prompt_id="A-2", competitors="100inc"),
+    ]
+    rows = {r["entity"]: r for r in backfill_sov.build_rows(observations) if r["pillar"] == "all"}
+    assert rows["ハンドレッド"]["mention_count"] == 2
+    assert rows["ゼロワングロース"]["mention_count"] == 1
 
 
 def test_generic_phrases_do_not_come_back():

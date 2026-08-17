@@ -270,6 +270,10 @@ def resolve_entity(name: Any) -> Optional[str]:
 
     Returns the canonical name, or ``None`` if the value must be excluded.
     This is the single gate every aggregation goes through (§2-1 + stop list).
+
+    Alias resolution runs first, so an explicit entry in entity_aliases.yaml
+    always beats the "no letters" junk guard: "100" is a leftover fragment by
+    default, but becomes ハンドレッド once the YAML says so.
     """
     entity = normalize_entity(name)
     return None if is_excluded(entity) else entity

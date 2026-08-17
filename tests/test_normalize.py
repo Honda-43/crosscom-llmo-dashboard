@@ -25,7 +25,7 @@ from normalize import is_excluded, normalize_entity, resolve_entity
         ("Crosscom", "クロスコム"),
         ("船井総研", "船井総合研究所"),
         ("01GROWTH", "ゼロワングロース"),
-        ("100inc", "ゼロワングロース"),
+        ("100inc", "ハンドレッド"),
         # --- the composite case from §6-1 ---
         ("株式会社メンバーズ サースプラスカンパニー", "メンバーズ"),
         ("メンバーズ・サースプラスカンパニー", "メンバーズ"),
@@ -62,8 +62,8 @@ def test_a_bare_legal_form_is_not_erased_but_is_not_counted():
 @pytest.mark.parametrize(
     "raw, expected",
     [
-        ("株式会社100（100inc）", "ゼロワングロース"),
-        ("株式会社100 (100 Inc.)", "ゼロワングロース"),
+        ("株式会社100（100inc）", "ハンドレッド"),
+        ("株式会社100 (100 Inc.)", "ハンドレッド"),
         ("三菱総研DCS(DCS)", "三菱総研DCS"),
         ("EYストラテジー・アンド・コンサルティング株式会社（EYSC）", "EYストラテジーアンドコンサルティング"),
     ],
@@ -86,11 +86,24 @@ def test_normalize_entity_is_idempotent():
 
 # --- 「株式会社100」問題:法人格を取ると数字だけが残るケース ----------------
 @pytest.mark.parametrize(
-    "raw", ["株式会社100", "100inc", "100Inc", "100 Inc", "100 Inc.", "株式会社１００"],
+    "raw", ["株式会社100", "100inc", "100Inc", "100 Inc", "100 Inc.", "株式会社１００", "100"],
 )
 def test_hyaku_inc_resolves_to_one_entity(raw):
     """観測データ上の「株式会社100（100inc）」は全て同一企業に解決される。"""
-    assert resolve_entity(raw) == "ゼロワングロース"
+    assert resolve_entity(raw) == "ハンドレッド"
+
+
+def test_hyaku_inc_and_zeroone_growth_are_separate_companies():
+    """株式会社100(100inc)とゼロワングロース(01GROWTH)は別会社。"""
+    assert resolve_entity("01GROWTH") == "ゼロワングロース"
+    assert resolve_entity("ゼロワングロース") == "ゼロワングロース"
+    assert resolve_entity("100inc") != resolve_entity("01GROWTH")
+
+
+def test_an_explicit_alias_beats_the_no_letter_guard():
+    """YAMLに載っている値は、数字だけでもゴミ扱いしない。"""
+    assert resolve_entity("100") == "ハンドレッド"
+    assert resolve_entity("2018") is None
 
 
 def test_stripping_a_legal_form_never_leaves_a_bare_number():
@@ -100,7 +113,8 @@ def test_stripping_a_legal_form_never_leaves_a_bare_number():
 
 
 def test_bare_numeric_fragments_are_excluded_from_aggregation():
-    for junk in ["100", "2018", "―", "()", ""]:
+    """エイリアスに載っていない数字・記号だけの断片は集計に入れない。"""
+    for junk in ["2018", "―", "()", "", "   ", "999"]:
         assert resolve_entity(junk) is None, junk
 
 
