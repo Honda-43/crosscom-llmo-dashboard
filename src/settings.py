@@ -27,13 +27,53 @@ ENTITY_STOPLIST_FILE = CONFIG_DIR / "entity_stoplist.yaml"
 
 
 # --------------------------------------------------------------------------
+# YAML loading
+# --------------------------------------------------------------------------
+class DuplicateKeyError(ValueError):
+    """A config file defines the same key twice."""
+
+
+class _StrictLoader(yaml.SafeLoader):
+    """SafeLoader that rejects duplicate mapping keys.
+
+    Plain YAML silently keeps the *last* value, so a second
+    ``ゼロワングロース:`` line further down the alias file would quietly
+    override the first one and undo an edit with no error anywhere. These files
+    are hand-maintained during operation, which is exactly the situation where
+    that failure mode goes unnoticed — so it is made fatal instead.
+    """
+
+
+def _no_duplicate_keys(loader: _StrictLoader, node: yaml.MappingNode, deep: bool = False):
+    seen = set()
+    for key_node, _ in node.value:
+        key = loader.construct_object(key_node, deep=deep)
+        if key in seen:
+            raise DuplicateKeyError(
+                f"duplicate key {key!r} at line {key_node.start_mark.line + 1} "
+                f"of {key_node.start_mark.name}"
+            )
+        seen.add(key)
+    return yaml.SafeLoader.construct_mapping(loader, node, deep=deep)
+
+
+_StrictLoader.add_constructor(
+    yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, _no_duplicate_keys
+)
+
+
+def load_yaml(path: Any) -> Any:
+    """Load a config YAML, failing loudly on duplicate keys."""
+    with open(path, "r", encoding="utf-8") as fh:
+        return yaml.load(fh, Loader=_StrictLoader)
+
+
+# --------------------------------------------------------------------------
 # Prompts (§2 — approved, do not modify the YAML content)
 # --------------------------------------------------------------------------
 def load_prompts() -> List[Dict[str, Any]]:
     """Load the approved observation prompts from config/prompts.yaml."""
-    with open(PROMPTS_FILE, "r", encoding="utf-8") as fh:
-        data = yaml.safe_load(fh)
-    return data["prompts"]
+    return load_yaml(PROMPTS_FILE)["prompts"]
 
 
 # --------------------------------------------------------------------------

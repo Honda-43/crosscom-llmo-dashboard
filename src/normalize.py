@@ -33,9 +33,7 @@ import re
 import unicodedata
 from typing import Any, Dict, List, Optional
 
-import yaml
-
-from settings import ENTITY_ALIASES_FILE, ENTITY_STOPLIST_FILE
+from settings import ENTITY_ALIASES_FILE, ENTITY_STOPLIST_FILE, load_yaml
 
 # --- Legal entity forms ----------------------------------------------------
 # Japanese forms are removed from the head *and* the tail (§2-1: 前後から除去).
@@ -159,8 +157,7 @@ def _load_aliases() -> Dict[str, str]:
     form of the canonical name (``合同会社クロスコム``) also resolves.
     """
     try:
-        with open(ENTITY_ALIASES_FILE, "r", encoding="utf-8") as fh:
-            data = yaml.safe_load(fh) or {}
+        data = load_yaml(ENTITY_ALIASES_FILE) or {}
     except FileNotFoundError:
         print(f"[warn] entity alias file not found: {ENTITY_ALIASES_FILE}")
         return {}
@@ -215,8 +212,7 @@ _STOPLIST: Optional[Dict[str, List[str]]] = None
 def _load_stoplist() -> Dict[str, List[str]]:
     """``{"exact": [...keys...], "contains": [...keys...]}`` from the YAML."""
     try:
-        with open(ENTITY_STOPLIST_FILE, "r", encoding="utf-8") as fh:
-            data = yaml.safe_load(fh) or {}
+        data = load_yaml(ENTITY_STOPLIST_FILE) or {}
     except FileNotFoundError:
         print(f"[warn] entity stop list not found: {ENTITY_STOPLIST_FILE}")
         return {"exact": [], "contains": []}

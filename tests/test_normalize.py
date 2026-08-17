@@ -94,10 +94,24 @@ def test_hyaku_inc_resolves_to_one_entity(raw):
 
 
 def test_hyaku_inc_and_zeroone_growth_are_separate_companies():
-    """株式会社100(100inc)とゼロワングロース(01GROWTH)は別会社。"""
-    assert resolve_entity("01GROWTH") == "ゼロワングロース"
-    assert resolve_entity("ゼロワングロース") == "ゼロワングロース"
+    """株式会社100(100inc)とゼロワングロース(01GROWTH)は別会社。
+
+    一度この2社を統合してしまい sov_daily を作り直す羽目になったので、
+    分離はテストで固定しておく。
+    """
+    assert normalize_entity("株式会社100 (100 Inc.)") == "ハンドレッド"
+    assert normalize_entity("株式会社100（100inc）") == "ハンドレッド"
+    assert normalize_entity("01GROWTH") == "ゼロワングロース"
+    assert normalize_entity("ゼロワングロース") == "ゼロワングロース"
     assert resolve_entity("100inc") != resolve_entity("01GROWTH")
+
+
+def test_alias_file_has_no_duplicate_keys():
+    """出荷されているYAMLそのものが重複キーを持たないこと。"""
+    from settings import ENTITY_ALIASES_FILE, ENTITY_STOPLIST_FILE, load_yaml
+
+    for path in (ENTITY_ALIASES_FILE, ENTITY_STOPLIST_FILE):
+        load_yaml(path)  # raises DuplicateKeyError if a key is defined twice
 
 
 def test_an_explicit_alias_beats_the_no_letter_guard():
