@@ -22,6 +22,8 @@ DATA_RAW_DIR = ROOT_DIR / "data" / "raw"
 PROMPTS_FILE = CONFIG_DIR / "prompts.yaml"
 # Entity alias table (Phase 1 §2-1) — appended to during operation, no code change.
 ENTITY_ALIASES_FILE = CONFIG_DIR / "entity_aliases.yaml"
+# Generic phrases that are not company names and must not be counted.
+ENTITY_STOPLIST_FILE = CONFIG_DIR / "entity_stoplist.yaml"
 
 
 # --------------------------------------------------------------------------

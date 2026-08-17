@@ -8,28 +8,34 @@ Pipeline (in order):
 
 1. NFKC normalisation — full-width alphanumerics become half-width
    (``三菱総研ＤＣＳ`` -> ``三菱総研DCS``), ``㈱`` becomes ``(株)``.
-2. Middle dots (``・``) are dropped and runs of whitespace collapse to one
-   half-width space.
+2. Parenthesised annotations are dropped (``株式会社100（100inc）`` ->
+   ``株式会社100``), middle dots (``・``) are removed and runs of whitespace
+   collapse to one half-width space.
 3. Legal-entity forms are stripped from the head and the tail
    (``株式会社`` / ``合同会社`` / ``(株)`` / ``Inc.`` / ``Co.,Ltd.`` …).
 4. Spaces *between* non-ASCII characters are removed so
    ``メンバーズ サースプラスカンパニー`` == ``メンバーズサースプラスカンパニー``.
    Spaces inside Latin names are kept (``Deloitte Tohmatsu`` stays readable).
-5. ``config/entity_aliases.yaml`` is applied — the lookup is case-insensitive
-   and both sides of the table go through steps 1-4, so the YAML only has to
-   list genuinely different names, not every spelling of them.
+5. ``config/entity_aliases.yaml`` is applied — the lookup ignores case *and*
+   whitespace, and both sides of the table go through steps 1-4, so the YAML
+   only has to list genuinely different names, not every spelling of them.
 
 Unknown companies are returned normalised but otherwise untouched (§2-1).
+
+``resolve_entity()`` wraps all of that and additionally drops values that are
+not company names at all — leftover fragments with no letters, and the generic
+phrases listed in ``config/entity_stoplist.yaml``. Aggregations should call
+``resolve_entity()``; ``normalize_entity()`` alone is the pure name mapping.
 """
 from __future__ import annotations
 
 import re
 import unicodedata
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 import yaml
 
-from settings import ENTITY_ALIASES_FILE
+from settings import ENTITY_ALIASES_FILE, ENTITY_STOPLIST_FILE
 
 # --- Legal entity forms ----------------------------------------------------
 # Japanese forms are removed from the head *and* the tail (§2-1: 前後から除去).
@@ -67,34 +73,51 @@ _EN_LEGAL_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Parenthesised segments are annotations, never part of the name itself:
+# "株式会社100（100inc）" -> "株式会社100", "…ファーム（2018年創業）" -> "…ファーム".
+# NFKC has already folded full-width brackets to ASCII by the time this runs.
+# It also disposes of the "(株)" style legal forms as a side effect.
+_PARENTHETICAL_RE = re.compile(r"\([^()]*\)")
 _MIDDLE_DOT_RE = re.compile(r"[・･·]")
 _WS_RE = re.compile(r"\s+")
-# A space flanked by non-ASCII (CJK/kana) characters carries no information.
-_CJK_SPACE_RE = re.compile(r"(?<=[^\x00-\x7F])\s+(?=[^\x00-\x7F])")
+# A space is only meaningful between two Latin words ("Deloitte Tohmatsu").
+# Touching a CJK/kana character on either side it is a spelling variant, so
+# "EY ストラテジーアンドコンサルティング" == "EYストラテジーアンドコンサルティング".
+_JP_SPACE_RE = re.compile(r"(?<=[^\x00-\x7F])\s+|\s+(?=[^\x00-\x7F])")
 _EDGE_CHARS = " \t,.、，。・/|-–—"
+# "Letter" in the Unicode sense: excludes digits, underscore and punctuation.
+_LETTER_RE = re.compile(r"[^\W\d_]", re.UNICODE)
+
+
+def _has_letter(text: str) -> bool:
+    return bool(_LETTER_RE.search(text))
 
 
 def _strip_legal_forms(text: str) -> str:
     """Remove legal-entity forms from both ends, repeatedly until stable.
 
-    Never returns an empty string: a name that consists *only* of a legal form
-    (e.g. a model that answered literally "株式会社") is kept as-is rather than
-    silently vanishing from the aggregation.
+    A removal is only accepted when something name-like survives it. Without
+    that guard "株式会社100" collapses to the bare number "100", which then
+    matches no alias and pollutes the aggregation as its own entity — the exact
+    failure that put a "100" row in sov_daily. The same guard keeps a model that
+    answered literally "株式会社" from vanishing entirely.
     """
+    def accept(candidate: str, current: str) -> str:
+        trimmed = candidate.strip(_EDGE_CHARS)
+        return trimmed if trimmed and _has_letter(trimmed) else current
+
     current = text
     while True:
         previous = current
         current = current.strip(_EDGE_CHARS)
 
         for form in _JP_LEGAL_FORMS:
-            if current.startswith(form) and len(current) > len(form):
-                current = current[len(form):]
-            if current.endswith(form) and len(current) > len(form):
-                current = current[: -len(form)]
+            if current.startswith(form):
+                current = accept(current[len(form):], current)
+            if current.endswith(form):
+                current = accept(current[: -len(form)], current)
 
-        stripped = _EN_LEGAL_RE.sub("", current)
-        if stripped.strip(_EDGE_CHARS):
-            current = stripped
+        current = accept(_EN_LEGAL_RE.sub("", current), current)
 
         if current == previous:
             return current
@@ -105,18 +128,25 @@ def _normalize_core(name: Any) -> str:
     if name is None:
         return ""
     text = unicodedata.normalize("NFKC", str(name))
+    stripped_parens = _PARENTHETICAL_RE.sub("", text)
+    if stripped_parens.strip(_EDGE_CHARS):
+        text = stripped_parens
     text = _MIDDLE_DOT_RE.sub("", text)
     text = _WS_RE.sub(" ", text).strip()
     if not text:
         return ""
     text = _strip_legal_forms(text)
-    text = _CJK_SPACE_RE.sub("", text)
+    text = _JP_SPACE_RE.sub("", text)
     return text.strip(_EDGE_CHARS).strip()
 
 
 def _alias_key(text: str) -> str:
-    """Case-insensitive lookup key for the alias table."""
-    return text.casefold()
+    """Lookup key for the alias / stop lists.
+
+    Case- and whitespace-insensitive, so "100 Inc" and "100inc" resolve to the
+    same entry without the YAML having to list both spacings.
+    """
+    return _WS_RE.sub("", text).casefold()
 
 
 _ALIASES: Optional[Dict[str, str]] = None
@@ -174,3 +204,72 @@ def normalize_entity(name: Any) -> str:
     if not core:
         return ""
     return _aliases().get(_alias_key(core), core)
+
+
+# --------------------------------------------------------------------------
+# Stop list — generic phrases that are not company names
+# --------------------------------------------------------------------------
+_STOPLIST: Optional[Dict[str, List[str]]] = None
+
+
+def _load_stoplist() -> Dict[str, List[str]]:
+    """``{"exact": [...keys...], "contains": [...keys...]}`` from the YAML."""
+    try:
+        with open(ENTITY_STOPLIST_FILE, "r", encoding="utf-8") as fh:
+            data = yaml.safe_load(fh) or {}
+    except FileNotFoundError:
+        print(f"[warn] entity stop list not found: {ENTITY_STOPLIST_FILE}")
+        return {"exact": [], "contains": []}
+
+    def keys(section: str) -> List[str]:
+        return [
+            key
+            for key in (_alias_key(_normalize_core(v)) for v in (data.get(section) or []))
+            if key
+        ]
+
+    return {"exact": keys("exact"), "contains": keys("contains")}
+
+
+def reload_stoplist() -> Dict[str, List[str]]:
+    """Re-read the stop list YAML (used by tests)."""
+    global _STOPLIST
+    _STOPLIST = _load_stoplist()
+    return _STOPLIST
+
+
+def _stoplist() -> Dict[str, List[str]]:
+    global _STOPLIST
+    if _STOPLIST is None:
+        _STOPLIST = _load_stoplist()
+    return _STOPLIST
+
+
+def is_excluded(entity: str) -> bool:
+    """True when a *normalised* name must not enter the aggregation.
+
+    Three ways to be excluded:
+
+    - empty,
+    - no letter at all ("100", "2018") — a leftover fragment, never a company,
+    - listed in ``config/entity_stoplist.yaml`` (exact match, or containing one
+      of the descriptive markers).
+    """
+    if not entity or not _has_letter(entity):
+        return True
+
+    key = _alias_key(entity)
+    stoplist = _stoplist()
+    if key in stoplist["exact"]:
+        return True
+    return any(marker in key for marker in stoplist["contains"])
+
+
+def resolve_entity(name: Any) -> Optional[str]:
+    """Normalise ``name`` and drop it when it is not a countable company.
+
+    Returns the canonical name, or ``None`` if the value must be excluded.
+    This is the single gate every aggregation goes through (§2-1 + stop list).
+    """
+    entity = normalize_entity(name)
+    return None if is_excluded(entity) else entity

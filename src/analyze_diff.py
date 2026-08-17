@@ -13,7 +13,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Set
 
-from normalize import normalize_entity
+from normalize import resolve_entity
 
 # change_type vocabulary (§3) — do not rename, the sheet is keyed on these.
 MENTION_GAINED = "mention_gained"
@@ -33,7 +33,7 @@ _OUT_OF_LIST = "圏外"
 # --------------------------------------------------------------------------
 # Parsing helpers — the sheet stores everything as text
 # --------------------------------------------------------------------------
-def _parse_bool(value: Any) -> Optional[bool]:
+def parse_bool(value: Any) -> Optional[bool]:
     if isinstance(value, bool):
         return value
     text = str(value or "").strip().upper()
@@ -44,7 +44,7 @@ def _parse_bool(value: Any) -> Optional[bool]:
     return None
 
 
-def _parse_rank(value: Any) -> Optional[int]:
+def parse_rank(value: Any) -> Optional[int]:
     if isinstance(value, bool):
         return None
     if isinstance(value, int):
@@ -56,7 +56,7 @@ def _parse_rank(value: Any) -> Optional[int]:
         return None
 
 
-def _split_list(value: Any) -> List[str]:
+def split_list(value: Any) -> List[str]:
     if isinstance(value, (list, tuple)):
         items = [str(v) for v in value]
     else:
@@ -65,12 +65,15 @@ def _split_list(value: Any) -> List[str]:
 
 
 def _entity_set(values: Any) -> Set[str]:
-    return {e for e in (normalize_entity(v) for v in _split_list(values)) if e}
+    """Normalised competitor set. Generic phrases are dropped here too, so a
+    stop-listed phrase appearing on only one of the two days is not reported as
+    a competitor_added/removed change."""
+    return {e for e in (resolve_entity(v) for v in split_list(values)) if e}
 
 
 def _url_set(values: Any) -> Set[str]:
     # Trailing slashes are not a meaningful difference between two citations.
-    return {u.rstrip("/") for u in _split_list(values)}
+    return {u.rstrip("/") for u in split_list(values)}
 
 
 def _observation(raw: Dict[str, Any]) -> Optional[Dict[str, Any]]:
@@ -81,15 +84,15 @@ def _observation(raw: Dict[str, Any]) -> Optional[Dict[str, Any]]:
     """
     if raw.get("error"):
         return None
-    mention = _parse_bool(raw.get("mention"))
+    mention = parse_bool(raw.get("mention"))
     if mention is None:
         return None
     return {
         "mention": mention,
-        "rank": _parse_rank(raw.get("rank")),
+        "rank": parse_rank(raw.get("rank")),
         "competitors": _entity_set(raw.get("competitors_mentioned")),
         "urls": _url_set(raw.get("cited_crosscom_urls")),
-        "negative": bool(_parse_bool(raw.get("negative_or_outdated"))),
+        "negative": bool(parse_bool(raw.get("negative_or_outdated"))),
         "negative_detail": str(raw.get("negative_detail") or "").strip(),
     }
 

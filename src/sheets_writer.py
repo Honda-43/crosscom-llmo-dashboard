@@ -176,6 +176,28 @@ def read_llm_observations() -> List[Dict[str, str]]:
     return _read_tab(TAB_LLM)
 
 
+def read_sov_daily() -> List[Dict[str, str]]:
+    """All rows of the sov_daily tab (used by the backfill)."""
+    return _read_tab(TAB_SOV)
+
+
+def rewrite_sov_daily(rows: List[Dict[str, Any]]) -> None:
+    """**Replace** the whole sov_daily tab with ``rows``.
+
+    sov_daily is derived data — every row is recomputable from
+    llm_observations — so a full rewrite is the only way to retire rows that a
+    normalisation change made obsolete. An upsert cannot delete. Used by
+    backfill_sov.py; the daily pipeline keeps using the idempotent
+    ``write_sov_daily``.
+    """
+    ss = _open_spreadsheet()
+    ws = _ensure_worksheet(ss, TAB_SOV, HEADERS_SOV)
+    values = [HEADERS_SOV] + [[_to_cell(r.get(h, "")) for h in HEADERS_SOV] for r in rows]
+    ws.clear()
+    ws.update(values=values, range_name="A1", value_input_option="USER_ENTERED")
+    print(f"[ok] {TAB_SOV}: rewritten with {len(rows)} rows")
+
+
 # --------------------------------------------------------------------------
 # Row builders
 # --------------------------------------------------------------------------

@@ -1,0 +1,51 @@
+name: backfill-sov
+
+# sov_daily を llm_observations から全期間再生成する手動ワークフロー。
+# 正規化ルール(エイリアス/ストップリスト)を変更したあとに実行する。
+on:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: '再生成する最古の日付 (YYYY-MM-DD、空なら全期間)'
+        required: false
+        default: ''
+      until:
+        description: '再生成する最新の日付 (YYYY-MM-DD、空なら全期間)'
+        required: false
+        default: ''
+      dry_run:
+        description: '書き込まず結果だけ表示する'
+        type: boolean
+        required: false
+        default: true
+
+concurrency:
+  group: llmo-daily      # 日次パイプラインと同時に書き込まない
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    env:
+      GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+      SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Rebuild sov_daily
+        working-directory: src
+        run: |
+          python backfill_sov.py \
+            ${{ inputs.since && format('--since {0}', inputs.since) || '' }} \
+            ${{ inputs.until && format('--until {0}', inputs.until) || '' }} \
+            ${{ inputs.dry_run && '--dry-run' || '' }}

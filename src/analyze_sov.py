@@ -16,7 +16,7 @@ from __future__ import annotations
 from collections import Counter
 from typing import Any, Dict, List, Sequence
 
-from normalize import normalize_entity
+from normalize import resolve_entity
 from settings import SELF_ENTITY
 
 # Pillars aggregated, in output order. "all" = A + B combined.
@@ -41,10 +41,11 @@ def _entities_in(record: Dict[str, Any]) -> set:
 
     A set, not a list: two different spellings of the same company inside one
     answer must count once, otherwise normalisation would *inflate* the winner.
+    Generic phrases and leftover fragments are dropped by ``resolve_entity``.
     """
     entities = set()
     for raw in record.get("competitors_mentioned") or []:
-        entity = normalize_entity(raw)
+        entity = resolve_entity(raw)
         if entity:
             entities.add(entity)
     if record.get("mention") is True:

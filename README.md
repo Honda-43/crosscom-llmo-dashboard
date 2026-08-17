@@ -28,6 +28,8 @@ Brand Radar(Ahrefs)は Lite プランで利用不可のため、**LLM API 定点
                          │   ├─ sheets_writer.py ─▶ Google Sheets       │
                          │   └─ notify_slack.py ─▶ Slack Webhook       │
                          │                                              │
+ backfill_sov.yml 手動 ──▶│  backfill_sov.py ─▶ sov_daily 全期間再生成   │
+                         │                                              │
  weekly.yml 月08:00 JST ─▶│  run_weekly.py                               │
  (cron: 0 23 * * 0 UTC) │   └─ collect_ahrefs.py ─▶ tab4 (best-effort) │
                          └───────────────────────────┬──────────────────┘
@@ -65,10 +67,12 @@ Brand Radar(Ahrefs)は Lite プランで利用不可のため、**LLM API 定点
 crosscom-llmo-dashboard/
 ├── .github/workflows/
 │   ├── daily.yml          # 毎朝07:00 JST(cron: '0 22 * * *' UTC)
-│   └── weekly.yml         # 毎週月曜08:00 JST(cron: '0 23 * * 0' UTC)
+│   ├── weekly.yml         # 毎週月曜08:00 JST(cron: '0 23 * * 0' UTC)
+│   └── backfill_sov.yml   # sov_daily 全期間再生成(手動実行)
 ├── config/
 │   ├── prompts.yaml       # 観測プロンプト定義(承認済み・変更禁止)
-│   └── entity_aliases.yaml # 企業名エイリアス(Phase 1・運用中に追記する)
+│   ├── entity_aliases.yaml  # 企業名エイリアス(運用中に追記する)
+│   └── entity_stoplist.yaml # 企業名でない一般名詞の除外リスト
 ├── src/
 │   ├── collect_llm.py     # 4モデルへの定点観測クエリ実行
 │   ├── extract.py         # 回答テキストからの構造化抽出
@@ -76,6 +80,7 @@ crosscom-llmo-dashboard/
 │   ├── analyze_sov.py     # 競合Share of Voice集計(Phase 1)
 │   ├── analyze_diff.py    # 前回観測との差分検出(Phase 1)
 │   ├── notify_slack.py    # Slackアラート(Phase 1)
+│   ├── backfill_sov.py    # sov_daily の全期間再生成(Phase 1)
 │   ├── collect_ga4.py     # GA4:AI経由流入・CV
 │   ├── collect_gsc.py     # GSC:指名検索
 │   ├── collect_ahrefs.py  # 週次:AI Overviews引用KW(失敗時スキップ可)
@@ -83,7 +88,7 @@ crosscom-llmo-dashboard/
 │   ├── settings.py        # 環境変数・定数・モデル有効/無効
 │   ├── run_daily.py       # 日次オーケストレータ
 │   └── run_weekly.py      # 週次オーケストレータ
-├── tests/                 # pytest(正規化・差分検出・Slack整形)
+├── tests/                 # pytest(正規化・SoV・差分検出・Slack・backfill)
 ├── data/raw/              # LLM回答全文の保存先(git管理、日付ディレクトリ)
 ├── requirements.txt
 └── README.md
@@ -195,23 +200,46 @@ collect_llm → extract → analyze_sov → analyze_diff
 `normalize_entity()` は以下の順で処理する:
 
 1. **NFKC正規化**(`三菱総研ＤＣＳ` → `三菱総研DCS`、`㈱` → `(株)`)
-2. **中黒の除去・空白の統一**
+2. **括弧内の注記を除去**(`株式会社100（100inc）` → `株式会社100`)、**中黒の除去・空白の統一**
 3. **法人格の除去**(前後から。`株式会社` / `合同会社` / `(株)` / `Inc.` / `Co.,Ltd.` / `LLC` 等)
-4. 非ASCII同士に挟まれた**空白の除去**(`メンバーズ サースプラスカンパニー` = `メンバーズサースプラスカンパニー`。
-   Latin社名の語間スペースは可読性のため保持)
-5. **`config/entity_aliases.yaml` によるエイリアス統合**(大文字小文字を無視)
+4. **Latin↔CJK境界を含む空白の除去**(`EY ストラテジー…` = `EYストラテジー…`、
+   `メンバーズ サースプラスカンパニー` = `メンバーズサースプラスカンパニー`。
+   Latin語同士のスペースは可読性のため保持:`Deloitte Tohmatsu`)
+5. **`config/entity_aliases.yaml` によるエイリアス統合**(大文字小文字**と空白**を無視)
 
 ```
 「株式会社メンバーズ サースプラスカンパニー」→「メンバーズ」
 「三菱総研ＤＣＳ」「ＤＣＳ」            →「三菱総研DCS」
 「船井総研」                            →「船井総合研究所」
+「株式会社100（100inc）」「100 Inc.」   →「ゼロワングロース」
+「Uhuru」「株式会社ウフル」             →「ウフル」
 ```
 
 - **未知の企業名は正規化のみ適用してそのまま記録**する(取りこぼしを作らない)。
 - 表記ゆれを見つけたら `entity_aliases.yaml` に追記するだけでよい(**コード変更不要**)。
-  YAML側の値も同じ正規化を通してから照合するため、法人格や中黒の付いた形を個別に列挙する必要はない。
-- 法人格を除いた結果が空になる語(モデルが「株式会社」とだけ答えた場合など)は、
-  消さずにそのまま残す。
+  YAML側の値も同じ正規化を通してから照合するため、法人格・中黒・空白の付いた形を
+  個別に列挙する必要はない。
+- **法人格を除いて数字だけになる場合は除去しない**。`株式会社100` を `100` に潰すと
+  エイリアスに一致しなくなり、`sov_daily` に意味のない `100` 行が生まれるため
+  (実際に発生した不具合)。
+
+### 2-1. 一般名詞の除外 — `config/entity_stoplist.yaml`
+
+LLMが競合として挙げたもののうち、企業名でない表現(`ブティック型DXコンサルティングファーム`
+`大手SIer` `その他` など)を集計から落とす。**正規化の後**に適用する。
+
+| セクション | 照合 | 使いどころ |
+|---|---|---|
+| `exact` | 完全一致 | 既定。誤爆がないので迷ったらこちら |
+| `contains` | 部分一致 | 「その語を含む実在社名はない」と言い切れる語のみ |
+
+- 大文字小文字と空白を無視して照合する(`大手 SIer` も `大手SIer` も除外)。
+- コード側の追加ガードとして、**文字を1つも含まない値**(`100`、`2018`)も除外する。
+- 集計に入る/入らないの判定は `resolve_entity()` に集約されており、`analyze_sov` と
+  `analyze_diff` の両方が同じゲートを通る(差分側でも一般名詞の出入りがノイズにならない)。
+- **除外は静かに効くため**、`backfill_sov.py` は除外された値とその件数を必ず出力する。
+  そこに実在の競合が出てきたら、それは `entity_stoplist.yaml` ではなく
+  `entity_aliases.yaml` に入れるべき値である。
 
 ### 3. `analyze_diff.py` — 前回観測との差分(`changes`)
 
@@ -253,17 +281,41 @@ collect_llm → extract → analyze_sov → analyze_diff
 cd src && SLACK_WEBHOOK_URL=... python notify_slack.py --test
 ```
 
-### 5. テスト
+### 5. `backfill_sov.py` — sov_daily の全期間再生成
+
+`sov_daily` は `llm_observations` から**完全に導出できる**(観測データを持たない)。
+そのため正規化ルールを変えたら、タブを捨てて全日再生成するのが正しい直し方である。
+エイリアスやストップリストを更新したら必ず実行する。
+
+```bash
+cd src
+python backfill_sov.py --dry-run          # 書き込まず結果と除外内訳だけ表示
+python backfill_sov.py                    # sov_daily を全期間置き換え
+python backfill_sov.py --since 2026-08-01 # 範囲外の日はそのまま保持
+```
+
+GitHub Actions からも実行できる:**Actions → backfill-sov → Run workflow**
+(`dry_run` は既定でON。中身を確認してからOFFで本実行する)。
+
+- 通常の日次パイプラインは冪等upsert(`write_sov_daily`)のままで、こちらは
+  **タブ置き換え**(`rewrite_sov_daily`)を使う。正規化変更で消えるべき行
+  (古い `100` 行など)はupsertでは削除できないため。
+- `changes` タブは再生成しない。過去の行には旧表記の競合名が残るが、変化イベントの
+  記録としては当時の値のままが正しい。
+
+### 6. テスト
 
 ```bash
 pip install -r requirements.txt
 python -m pytest tests -q        # リポジトリルートで実行
 ```
 
-- `tests/test_normalize.py` — 全角/法人格/エイリアス統合、未知企業の素通し、冪等性
+- `tests/test_normalize.py` — 全角/法人格/括弧注記/エイリアス統合、ストップリスト、
+  未知企業の素通し、冪等性、`Marco` のような誤爆防止
 - `tests/test_analyze_sov.py` — pillar別集計、E-1除外、1観測内の重複集約、`observed_total`
 - `tests/test_analyze_diff.py` — 前回データなし、mention flip、rank変化、競合追加削除、URL/ネガ変化
 - `tests/test_notify_slack.py` — セクション順序、ゼロ通知、Webhook未設定時の無害動作
+- `tests/test_backfill_sov.py` — 全期間再生成、表記ゆれの統合、除外内訳、日付範囲
 
 ---
 
@@ -355,3 +407,5 @@ LLM API は **日次 14クエリ(観測:gemini/claude × 7)+ 14回(抽出)= 28 A
    `date × pillar × entity` 主キーで重複しない。
 10. `python notify_slack.py --test` で疑似アラートを1通送信できる。
 11. 本READMEに Phase 1 の内容と凡例追記を反映。
+12. 正規化の取りこぼし(`100` 行・EY空白ゆれ・一般名詞の混入)を修正し、
+    `backfill_sov.py` で `sov_daily` を全期間再生成できる。
