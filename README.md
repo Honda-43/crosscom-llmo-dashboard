@@ -30,15 +30,21 @@ Brand Radar(Ahrefs)は Lite プランで利用不可のため、**LLM API 定点
                          │                                              │
  backfill_sov.yml 手動 ──▶│  backfill_sov.py ─▶ sov_daily 全期間再生成   │
                          │                                              │
- weekly.yml 月08:00 JST ─▶│  run_weekly.py                               │
- (cron: 0 23 * * 0 UTC) │   └─ collect_ahrefs.py ─▶ tab4 (best-effort) │
+ weekly.yml 月08:30 JST ─▶│  run_weekly.py                               │
+ (cron: 30 23 * * 0 UTC)│   ├─ collect_ahrefs.py ─▶ tab4 (best-effort) │
+                         │   ├─ rules_engine.py ── 機械判定(第1段階)   │
+                         │   │      └─▶ stats.json(統計+発火ルール)    │
+                         │   ├─ generate_insight.py (Claude Sonnet)     │
+                         │   │      └─▶ 所見文(第2段階・失敗時は数値のみ)│
+                         │   └─ notify_slack.py ─▶ 週次所見をSlackへ   │
                          └───────────────────────────┬──────────────────┘
                                                      │
                               ┌──────────────────────▼───────────────────┐
-                              │           Google Sheets(7タブ)          │
+                              │           Google Sheets(8タブ)          │
                               │  llm_observations / ga4_ai_traffic /     │
                               │  gsc_branded / ahrefs_aio / daily_summary│
                               │  sov_daily / changes        (Phase 1)    │
+                              │  weekly_reports             (Phase 2)    │
                               └──────────────────────┬───────────────────┘
                                                      │
                      ┌───────────────────────────────▼──────────────────────────┐
@@ -58,6 +64,7 @@ Brand Radar(Ahrefs)は Lite プランで利用不可のため、**LLM API 定点
 | KPI | 語られ方の質(KBF/ネガ) | LLM定点観測 | `llm_observations`, `daily_summary.negative_flag_count` |
 | KPI | 競合とのShare of Voice | LLM定点観測 | `sov_daily` |
 | KPI | 前回観測からの変化 | LLM定点観測 | `changes` |
+| 運用 | 週次の状態判定と推奨アクション | 上記すべて | `weekly_reports` |
 
 ---
 
@@ -67,12 +74,15 @@ Brand Radar(Ahrefs)は Lite プランで利用不可のため、**LLM API 定点
 crosscom-llmo-dashboard/
 ├── .github/workflows/
 │   ├── daily.yml          # 毎朝07:00 JST(cron: '0 22 * * *' UTC)
-│   ├── weekly.yml         # 毎週月曜08:00 JST(cron: '0 23 * * 0' UTC)
+│   ├── weekly.yml         # 毎週月曜08:30 JST(cron: '30 23 * * 0' UTC)
 │   └── backfill_sov.yml   # sov_daily 全期間再生成(手動実行)
 ├── config/
 │   ├── prompts.yaml       # 観測プロンプト定義(承認済み・変更禁止)
 │   ├── entity_aliases.yaml  # 企業名エイリアス(運用中に追記する)
-│   └── entity_stoplist.yaml # 企業名でない一般名詞の除外リスト
+│   ├── entity_stoplist.yaml # 企業名でない一般名詞の除外リスト
+│   ├── playbook.md          # 運用プレイブック(Phase 2・所見生成の根拠)
+│   ├── rules_thresholds.yaml # ルール閾値(Phase 2・コード変更なしで調整)
+│   └── legacy_paths.yaml    # 旧事業URLパス(Phase 2 R-P8)
 ├── src/
 │   ├── collect_llm.py     # 4モデルへの定点観測クエリ実行
 │   ├── extract.py         # 回答テキストからの構造化抽出
@@ -81,6 +91,8 @@ crosscom-llmo-dashboard/
 │   ├── analyze_diff.py    # 前回観測との差分検出(Phase 1)
 │   ├── notify_slack.py    # Slackアラート(Phase 1)
 │   ├── backfill_sov.py    # sov_daily の全期間再生成(Phase 1)
+│   ├── rules_engine.py    # 週次の機械判定(Phase 2 第1段階)
+│   ├── generate_insight.py # 週次所見の文章化(Phase 2 第2段階)
 │   ├── collect_ga4.py     # GA4:AI経由流入・CV
 │   ├── collect_gsc.py     # GSC:指名検索
 │   ├── collect_ahrefs.py  # 週次:AI Overviews引用KW(失敗時スキップ可)
@@ -88,8 +100,9 @@ crosscom-llmo-dashboard/
 │   ├── settings.py        # 環境変数・定数・モデル有効/無効
 │   ├── run_daily.py       # 日次オーケストレータ
 │   └── run_weekly.py      # 週次オーケストレータ
-├── tests/                 # pytest(正規化・SoV・差分検出・Slack・backfill)
+├── tests/                 # pytest(正規化・SoV・差分・Slack・backfill・週次ルール)
 ├── data/raw/              # LLM回答全文の保存先(git管理、日付ディレクトリ)
+├── data/reports/          # 週次 stats.json(git管理・監査用)
 ├── requirements.txt
 └── README.md
 ```
@@ -117,7 +130,7 @@ crosscom-llmo-dashboard/
 | Secret | 必須 | 用途 |
 |--------|------|------|
 | `GEMINI_API_KEY` | ○ | Gemini 定点観測 |
-| `ANTHROPIC_API_KEY` | ○ | Claude 定点観測 + `extract.py` 構造化抽出 |
+| `ANTHROPIC_API_KEY` | ○ | Claude 定点観測 + `extract.py` 構造化抽出 + 週次所見生成 |
 | `OPENAI_API_KEY` | – | ChatGPT(有効化時のみ) |
 | `PERPLEXITY_API_KEY` | – | Perplexity(有効化時のみ) |
 | `GCP_SERVICE_ACCOUNT_JSON` | ○ | サービスアカウントJSON(Sheets / GA4 / GSC 共通) |
@@ -125,7 +138,7 @@ crosscom-llmo-dashboard/
 | `GA4_PROPERTY_ID` | ○ | GA4 プロパティID(数値) |
 | `GSC_SITE_URL` | ○ | 例 `sc-domain:cross-com.jp` または `https://cross-com.jp/` |
 | `AHREFS_API_KEY` | – | 週次 Ahrefs(ベストエフォート) |
-| `SLACK_WEBHOOK_URL` | – | Slackアラート(未設定なら警告ログのみでスキップ) |
+| `SLACK_WEBHOOK_URL` | – | Slackアラート・週次所見(未設定なら警告ログのみでスキップ) |
 
 ### サービスアカウントの権限付与
 
@@ -147,7 +160,8 @@ export GEMINI_API_KEY=... ANTHROPIC_API_KEY=...                 # OPENAI_API_KEY
 export SHEETS_SPREADSHEET_ID=... GA4_PROPERTY_ID=... GSC_SITE_URL=sc-domain:cross-com.jp
 export SLACK_WEBHOOK_URL=...                                    # 任意(未設定ならアラートはスキップ)
 cd src && python run_daily.py            # 日次
-cd src && python run_weekly.py           # 週次(Ahrefs)
+cd src && python run_weekly.py           # 週次(Ahrefs + 週次所見)
+cd src && python run_weekly.py --skip-ahrefs --no-slack   # 所見だけ手元で確認
 ```
 
 ---
@@ -163,6 +177,7 @@ cd src && python run_weekly.py           # 週次(Ahrefs)
 | `daily_summary` | 1日 | date, mention_rate_all, mention_rate_pillar_a, mention_rate_pillar_b, negative_flag_count, ai_sessions, branded_clicks |
 | `sov_daily`(Phase 1) | 1日×pillar×企業 | date, pillar, entity, mention_count, observed_total |
 | `changes`(Phase 1) | 変化1件 | date, prompt_id, model, change_type, before, after, detail |
+| `weekly_reports`(Phase 2) | 1週 | date, stats_json, report_md |
 
 - **mention_rate** は当日の**有効観測数**(E-1を除く6プロンプト × 有効モデル数。初期は gemini / claude の2モデルで12観測)に対する `mention=true` 比率。有効モデル数に連動し、固定値はハードコードしない(モデルを増減すれば分母も自動追随)。
 - **冪等性**:同一 `date × prompt_id × model` の行が既に存在する場合は上書き(同日再実行安全)。各タブとも主キーで upsert する。
@@ -322,6 +337,116 @@ python -m pytest tests -q        # リポジトリルートで実行
 - `tests/test_analyze_diff.py` — 前回データなし、mention flip、rank変化、競合追加削除、URL/ネガ変化
 - `tests/test_notify_slack.py` — セクション順序、ゼロ通知、Webhook未設定時の無害動作
 - `tests/test_backfill_sov.py` — 全期間再生成、表記ゆれの統合、除外内訳、日付範囲
+- `tests/test_settings_yaml.py` — 設定YAMLの重複キー検出
+- `tests/test_rules_engine.py` — 全7ルールの 発火/非発火/データ不足(Phase 2)
+- `tests/test_generate_insight.py` — プロンプト構成、数値禁止事項、フォールバック、Slack整形
+- `tests/test_run_weekly.py` — 週次オーケストレーションの配線とLLM障害時の縮退
+
+---
+
+## Phase 2:AI所見エンジン(週次自動レポート)
+
+蓄積データから「今週の状態判定と推奨アクション」を毎週自動生成し、Slackに配信する。
+**週次レビューを「読んで承認するだけ」にすることが目的。**
+
+### 設計の核 — 判定と文章化を分離する
+
+```
+第1段階(コード・決定的)      第2段階(Claude API)
+rules_engine.py       ──▶   generate_insight.py
+統計値とルール発火を機械判定    stats.jsonだけを材料に日本語化
+= テスト可能               = 判定はしない・数値も作らない
+```
+
+**LLMに生データの解釈や判定をさせない。** モデルが見るのは stats.json と
+プレイブックだけで、回答全文もスプレッドシートも渡らない。
+「発火したかどうか」は必ず第1段階で決まっている。
+
+### 1. `rules_engine.py` — 第1段階:機械判定
+
+直近28日分の全タブを**タブごと1回**だけ読み、以下を算出する。
+
+**週次統計(§2-1)**
+
+| 項目 | 内容 |
+|---|---|
+| mention_rate 3系列 | 直近7日平均 vs 前週7日平均(差分付き)。`daily_summary` から算出しダッシュボードと一致させる |
+| 言及マトリクス | prompt_id×model の 言及日数/観測日数(直近7日) |
+| rank推移 | prompt_id×model の中央値、今週 vs 前週 |
+| SoV上位10 | all/A/B別、前週比の増減付き |
+| changes集計 | change_type別件数(直近7日) |
+| KGI | AI経由セッション・指名クリック/インプレッションの週計 vs 前週 |
+
+**発火ルール(§2-2)**
+
+| rule_id | 発火条件 |
+|---------|---------|
+| `R-P2` | 過去に言及実績があり、直近3観測日連続で mention=FALSE |
+| `R-P4` | pillar別 mention_rate 7日平均が前週比 +0.10 以上 |
+| `R-P5` | prompt_id の rank中央値が 6以上(=順位が悪い)の週が4週連続 |
+| `R-P7` | 直近7日に negative_or_outdated=TRUE が1件以上(detail同梱) |
+| `R-P8` | E-1 の引用URLに旧事業パスが含まれる(`config/legacy_paths.yaml`) |
+| `R-P15` | 自社不在の prompt_id で、同一競合が直近7日に両モデル出現かつ4週連続 |
+| `R-DROP` | SoV上位5の競合が前週比で半減、または新規エンティティが上位5入り |
+
+- 各ルールは **`fired` / `not_fired` / `insufficient_data`** の3状態を返す。
+  **データ不足は発火扱いにしない**。判断できないことをレポートに明記するための状態である。
+- 閾値はすべて `config/rules_thresholds.yaml`(コード変更なしで調整可能)。
+- 競合判定では自社(クロスコム)を除外し、企業名は Phase 1 の `resolve_entity()` を通す。
+
+> **`R-P5` の向きについて**:`rank` は小さいほど良い。指示書の「6以下」は
+> 併記された「(=6位以上悪い)」に従い **中央値 ≥ 6 で発火**として実装している。
+
+### 2. `generate_insight.py` — 第2段階:所見文生成
+
+- 入力は **stats.json のみ**。モデルは Sonnet クラス(`INSIGHT_MODEL` で上書き可)、**週1回だけ**呼ぶ。
+- `config/playbook.md` をシステム指示に同梱し、発火した P-パターンの
+  「原因仮説と改善策」をそこから書かせる。
+- **stats.json にない数値・事実を書くことを明示的に禁止**している(推測値・概算も不可)。
+- 出力は5セクション固定(サマリ / 数値ハイライト / 発火パターンと推奨アクション /
+  ウォッチ項目 / 判定不能・データ不足)、2,000字以内。
+  推奨アクションは**承認/却下できる粒度で最大3件**。
+
+**LLMが落ちてもレポートはゼロにならない。** `fallback_report()` が同じ5セクションを
+stats.json の数値だけで組み立て、配信を継続する(冒頭に自動生成失敗の断り書きが入る)。
+
+### 3. `config/playbook.md` — 所見の根拠
+
+`generate_insight.py` が「原因仮説」と「改善策」を書く際の**唯一の根拠**。
+P-2 / P-4 / P-5 / P-7 / P-8 / P-15 / P-DROP それぞれについて
+**状態 → 原因仮説 → 改善アクション** を定義している。
+
+> ⚠️ **現在のファイルは草案である。** 実装時点でリポジトリ内に運用プレイブックの
+> 現物がなかったため、指示書のルール定義と既存の観測プロンプト・KBFから再構成した。
+> 判定ロジックは指示書どおりなので動作に影響はないが、**所見文の質は
+> このファイルの正確さに直結する。実際の運用方針と照らして必ずレビューすること。**
+> 修正はMarkdownを編集するだけでよい(コード変更不要)。
+
+### 4. 配信と保存
+
+- **Slack**:毎週月曜 08:30 JST に既存Webhookへ1投稿。冒頭は `LLMO週次所見 YYYY-MM-DD`。
+  Markdown は Slack mrkdwn に変換して送る(見出し・太字)。
+- **Sheets**:`weekly_reports` タブに `date / stats_json / report_md` を冪等upsert。
+  stats_json がセル上限(50,000字)に近い場合は要約に切り替え、全文は下記ファイルを参照する。
+- **Git**:`data/reports/YYYY-MM-DD.json` として commit(監査用)。
+
+### 5. 実行
+
+```bash
+# 定期実行:毎週月曜 08:30 JST(cron: '30 23 * * 0' UTC)
+# 手動実行:Actions → weekly → Run workflow(date / skip_ahrefs を指定可)
+
+cd src
+python run_weekly.py --date 2026-08-17              # 通常
+python run_weekly.py --skip-ahrefs --no-slack       # 所見だけ手元で確認(投稿しない)
+python rules_engine.py --date 2026-08-17 --out /tmp/stats.json
+python generate_insight.py --stats /tmp/stats.json --fallback-only   # LLMを使わず整形だけ確認
+python notify_slack.py --test-weekly --date 2026-08-17               # 週次投稿のテスト送信
+```
+
+**終了コードの約束**:Ahrefs の失敗は best-effort なので緑のまま。
+それ以外の失敗(所見のフォールバック使用を含む)は**赤にする** —
+数値だけのレポートが届いたことに気付けるようにするため。
 
 ---
 
@@ -387,9 +512,12 @@ LLM API は **日次 14クエリ(観測:gemini/claude × 7)+ 14回(抽出)= 28 A
 | 観測 Gemini(2.5 flash + grounding)× 7/日 | ~$0.005/回 | ~$1 |
 | 観測 Claude(sonnet + web search)× 7/日 | ~$0.02/回 | ~$4 |
 | 抽出 Anthropic Haiku × 14/日 | ~$0.002/回 | ~$0.9 |
+| 週次所見 Claude Sonnet × 4-5回/月 | ~$0.03/回 | ~$0.15 |
 | **合計** | | **≈ $6 ≒ 月900〜1,000円** |
 
 - **想定:LLM API 合計 月2,000円以内**に収まる(chatgpt を有効化しても +$3–4/月で 2,000円以内)。
+- **Phase 2 の週次所見は月4〜5回のSonnet呼び出しのみ**で、入力は stats.json(数KB)に限定される。
+  raw回答を渡さない設計のため **月100円未満**(想定 ~$0.15)。想定コストへの影響はほぼない。
 - Web検索ツールの利用料はモデル・プラン依存。上振れする場合は `EXTRACT_MODEL` を最安モデルに固定、観測モデルを絞る(`ENABLE_*`)ことで調整可能。
 - GA4 / GSC / Sheets API、GitHub Actions(パブリック/一定枠内)は無料枠で運用。
 - Ahrefs は既存 Lite プラン範囲(追加課金なし、AI Overview エンドポイントが 402/403 の場合はスキップ)。
@@ -415,3 +543,11 @@ LLM API は **日次 14クエリ(観測:gemini/claude × 7)+ 14回(抽出)= 28 A
 11. 本READMEに Phase 1 の内容と凡例追記を反映。
 12. 正規化の取りこぼし(`100` 行・EY空白ゆれ・一般名詞の混入)を修正し、
     `backfill_sov.py` で `sov_daily` を全期間再生成できる。
+
+### Phase 2 追加分
+
+13. 全7ルールのユニットテスト(発火/非発火/insufficient_data)が通る。
+14. `workflow_dispatch` 実行でSlackに週次所見が届き、`weekly_reports` タブに保存される。
+15. 所見文の数値は stats.json のみを根拠とする(プロンプトで明示禁止 + フォールバックは構造的に一致)。
+16. LLM呼び出し失敗をシミュレートしてもフォールバック配信される(`test_run_weekly.py` で検証)。
+17. 本READMEに Phase 2 の構成図・週次運用フロー・コストを記載。

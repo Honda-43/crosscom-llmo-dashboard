@@ -1,0 +1,42 @@
+# ルール判定の閾値(Phase 2 §7:コード変更なしで調整可能にする)
+#
+# rules_engine.py は必ずこのファイルから閾値を読む。ハードコードしない。
+# 閾値を変えたら該当ルールのユニットテストも合わせて見直すこと。
+
+# 集計ウィンドウ
+window:
+  days: 7          # 「直近7日」の定義
+  lookback_days: 28 # Sheetsから読む範囲(=4週。R-P5/R-P15の4週連続判定に必要)
+
+rules:
+  # 過去に言及実績があるのに、直近N観測日連続で言及が消えた
+  R-P2:
+    consecutive_absent_observations: 3
+
+  # pillar別 mention_rate 7日平均が前週比で大きく改善した(横展開の好機)
+  R-P4:
+    mention_rate_delta: 0.10
+
+  # 推薦リストに入ってはいるが順位が万年下位
+  # 注:rank は小さいほど良い。threshold 以上(=順位が悪い)が continuous_weeks 週続いたら発火
+  R-P5:
+    rank_threshold: 6
+    consecutive_weeks: 4
+
+  # ネガティブ/古い情報の検知(1件でも発火。最優先)
+  R-P7:
+    min_negative_count: 1
+
+  # E-1の引用に旧事業パスが混ざっている(config/legacy_paths.yaml)
+  R-P8:
+    min_legacy_url_count: 1
+
+  # 自社が不在のプロンプトで、同じ競合が定着している
+  R-P15:
+    consecutive_weeks: 4
+    require_both_models: true
+
+  # 競合の出現構造が動いた(半減 or 新規上位入り)
+  R-DROP:
+    top_n: 5
+    halved_ratio: 0.5

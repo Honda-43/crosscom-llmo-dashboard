@@ -24,6 +24,11 @@ PROMPTS_FILE = CONFIG_DIR / "prompts.yaml"
 ENTITY_ALIASES_FILE = CONFIG_DIR / "entity_aliases.yaml"
 # Generic phrases that are not company names and must not be counted.
 ENTITY_STOPLIST_FILE = CONFIG_DIR / "entity_stoplist.yaml"
+# Phase 2 — weekly insight engine
+RULES_THRESHOLDS_FILE = CONFIG_DIR / "rules_thresholds.yaml"
+LEGACY_PATHS_FILE = CONFIG_DIR / "legacy_paths.yaml"
+PLAYBOOK_FILE = CONFIG_DIR / "playbook.md"
+DATA_REPORTS_DIR = ROOT_DIR / "data" / "reports"
 
 
 # --------------------------------------------------------------------------
@@ -128,6 +133,12 @@ def enabled_models() -> List[str]:
 # --------------------------------------------------------------------------
 EXTRACT_MODEL = os.getenv("EXTRACT_MODEL", "claude-haiku-4-5-20251001")
 
+# --------------------------------------------------------------------------
+# Weekly insight model (Phase 2 §3) — Sonnet class, one call per week.
+# --------------------------------------------------------------------------
+INSIGHT_MODEL = os.getenv("INSIGHT_MODEL", "claude-sonnet-5")
+INSIGHT_MAX_CHARS = int(os.getenv("INSIGHT_MAX_CHARS", "2000"))
+
 # Retry policy (§3): exponential backoff, max 3 attempts.
 MAX_RETRIES = int(os.getenv("MAX_RETRIES", "3"))
 BACKOFF_BASE_SECONDS = float(os.getenv("BACKOFF_BASE_SECONDS", "2"))
@@ -209,6 +220,8 @@ TAB_SUMMARY = "daily_summary"
 # Phase 1 tabs (approved — do not change the schema)
 TAB_SOV = "sov_daily"
 TAB_CHANGES = "changes"
+# Phase 2
+TAB_WEEKLY = "weekly_reports"
 
 
 def spreadsheet_url() -> str:

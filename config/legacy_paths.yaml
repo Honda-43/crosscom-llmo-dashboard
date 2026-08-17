@@ -1,0 +1,14 @@
+# 旧事業(MA/メール配信・BtoBマーケ)時代のURLパス定義(Phase 2 R-P8)
+#
+# E-1(エンティティ質問)の回答でこれらのURLが引用されている場合、
+# LLMが現在の事業(Agentforce導入支援・Agentic CRM設計)ではなく
+# 旧事業の情報を根拠にしている疑いがある。
+#
+# 判定は「引用URLにこの文字列が含まれるか」の部分一致。
+# 新しい旧事業パスを見つけたら追記するだけでよい(コード変更不要)。
+paths:
+  - /marketing-automation-btob/
+  - /btob-marketing-strategy/
+  - /btob-crm/
+  - /mail-magazine/
+  - /ma-tool/

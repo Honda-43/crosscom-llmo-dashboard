@@ -18,6 +18,7 @@ Manual smoke test::
 from __future__ import annotations
 
 import argparse
+import re
 from typing import Any, Dict, List, Optional, Sequence
 
 import analyze_diff
@@ -136,6 +137,59 @@ def notify(
     return True
 
 
+# --------------------------------------------------------------------------
+# Weekly report (Phase 2 §4)
+# --------------------------------------------------------------------------
+# Slack mrkdwn is not Markdown: headings do not exist and bold is single-star.
+_HEADING_RE = re.compile(r"^#{1,6}\s*(.+?)\s*$", re.MULTILINE)
+_BOLD_RE = re.compile(r"\*\*(.+?)\*\*", re.DOTALL)
+# Slack rejects a message body over 40,000 characters.
+_SLACK_TEXT_LIMIT = 38_000
+
+
+def to_slack_mrkdwn(markdown: str) -> str:
+    """Convert the report Markdown to Slack mrkdwn."""
+    text = _BOLD_RE.sub(r"*\1*", markdown)
+    text = _HEADING_RE.sub(r"*\1*", text)
+    return text.strip()
+
+
+def build_weekly_message(date: str, report_md: str) -> str:
+    """The weekly post: fixed header, converted body, spreadsheet link."""
+    body = to_slack_mrkdwn(report_md)
+    header = f"*LLMO週次所見 {date}*"
+    # The report may carry its own title line; do not print it twice.
+    if body.startswith("*LLMO週次所見"):
+        body = body.split("\n", 1)[1].lstrip() if "\n" in body else ""
+
+    lines = [header, "", body]
+    url = spreadsheet_url()
+    if url:
+        lines += ["", f"<{url}|スプレッドシートを開く>"]
+    text = "\n".join(lines).strip()
+    if len(text) > _SLACK_TEXT_LIMIT:
+        text = text[:_SLACK_TEXT_LIMIT] + "\n…(以下略。全文はスプレッドシートのweekly_reportsタブ)"
+    return text
+
+
+def notify_weekly(date: str, report_md: str, webhook: Optional[str] = None) -> bool:
+    """Post the weekly report. Returns True when a message was posted."""
+    if not report_md or not report_md.strip():
+        print(f"[warn] notify_slack weekly {date}: empty report — nothing sent")
+        return False
+
+    text = build_weekly_message(date, report_md)
+    webhook = webhook if webhook is not None else SLACK_WEBHOOK_URL
+    if not webhook:
+        print("[warn] SLACK_WEBHOOK_URL is not set — weekly report not sent:")
+        print(text)
+        return False
+
+    _post(text, webhook)
+    print(f"[ok] notify_slack weekly {date}: report sent ({len(text)} chars)")
+    return True
+
+
 def _test_message(date: str) -> str:
     """A synthetic alert exercising every section (--test)."""
     return build_message(
@@ -157,11 +211,29 @@ def _test_message(date: str) -> str:
 def main() -> None:
     ap = argparse.ArgumentParser(description="Slack alert for the LLMO pipeline")
     ap.add_argument("--test", action="store_true", help="send one synthetic alert")
+    ap.add_argument("--test-weekly", action="store_true",
+                    help="send one synthetic weekly report")
     ap.add_argument("--date", default="TEST", help="date label used in the message")
     args = ap.parse_args()
 
-    if not args.test:
-        ap.error("nothing to do — pass --test, or call notify() from run_daily.py")
+    if not (args.test or args.test_weekly):
+        ap.error("nothing to do — pass --test / --test-weekly, or call notify() from run_daily.py")
+
+    if args.test_weekly:
+        report = (
+            "# LLMO週次所見 " + args.date + "\n\n"
+            "## 1. 今週のサマリ\n\n【テスト送信】週次レポートの配信テストです。\n\n"
+            "## 2. 数値ハイライト\n\n- mention_rate (all): 0.42 (前週比 +0.08)\n\n"
+            "## 3. 発火パターンと推奨アクション\n\n- **R-P7**: 【テスト送信】ダミー\n"
+        )
+        text = build_weekly_message(args.date, report)
+        if not SLACK_WEBHOOK_URL:
+            print("[warn] SLACK_WEBHOOK_URL is not set — message not sent. Preview:")
+            print(text)
+            return
+        _post(text, SLACK_WEBHOOK_URL)
+        print("[ok] test weekly report sent")
+        return
 
     text = _test_message(args.date)
     if not SLACK_WEBHOOK_URL:

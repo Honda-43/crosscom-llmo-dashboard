@@ -19,6 +19,7 @@ from settings import (
     TAB_LLM,
     TAB_SOV,
     TAB_SUMMARY,
+    TAB_WEEKLY,
     google_credentials,
 )
 
@@ -48,6 +49,13 @@ KEYS_GSC = ["date", "query"]
 KEYS_AHREFS = ["date"]
 KEYS_SUMMARY = ["date"]
 KEYS_SOV = ["date", "pillar", "entity"]
+# --- Phase 2 (approved — do not modify) -----------------------------------
+HEADERS_WEEKLY = ["date", "stats_json", "report_md"]
+KEYS_WEEKLY = ["date"]
+# A single Google Sheets cell holds at most 50,000 characters. The full
+# stats.json is committed to data/reports/ regardless, so the cell carries a
+# pointer instead of silently losing the tail.
+CELL_CHAR_LIMIT = 49_000
 # ``detail`` is part of the key so several competitor_added rows for the same
 # day/prompt/model (one per company) coexist while a re-run still overwrites.
 KEYS_CHANGES = ["date", "prompt_id", "model", "change_type", "detail"]
@@ -179,6 +187,22 @@ def read_llm_observations() -> List[Dict[str, str]]:
 def read_sov_daily() -> List[Dict[str, str]]:
     """All rows of the sov_daily tab (used by the backfill)."""
     return _read_tab(TAB_SOV)
+
+
+def read_for_rules() -> Dict[str, List[Dict[str, str]]]:
+    """Every tab the weekly rules engine needs, one read per tab (§2).
+
+    Returned as ``{tab_name: rows}`` so rules_engine stays a pure function of
+    its input and can be unit-tested without touching Sheets.
+    """
+    return {
+        TAB_SUMMARY: _read_tab(TAB_SUMMARY),
+        TAB_LLM: _read_tab(TAB_LLM),
+        TAB_SOV: _read_tab(TAB_SOV),
+        TAB_CHANGES: _read_tab(TAB_CHANGES),
+        TAB_GA4: _read_tab(TAB_GA4),
+        TAB_GSC: _read_tab(TAB_GSC),
+    }
 
 
 def rewrite_sov_daily(rows: List[Dict[str, Any]]) -> None:
@@ -315,6 +339,24 @@ def write_changes(rows: List[Dict[str, Any]]) -> None:
         return
     ss = _open_spreadsheet()
     _upsert(ss, TAB_CHANGES, HEADERS_CHANGES, KEYS_CHANGES, rows)
+
+
+def write_weekly_report(date: str, stats: Dict[str, Any], report_md: str) -> None:
+    """Upsert the weekly report row (Phase 2 §4), keyed by date."""
+    stats_json = json.dumps(stats, ensure_ascii=False, sort_keys=True)
+    if len(stats_json) > CELL_CHAR_LIMIT:
+        stats_json = json.dumps(
+            {
+                "truncated": True,
+                "reason": f"stats.json is {len(stats_json)} chars, over the cell limit",
+                "full_copy": f"data/reports/{date}.json",
+                "rules": stats.get("rules", []),
+            },
+            ensure_ascii=False,
+        )
+    ss = _open_spreadsheet()
+    row = {"date": date, "stats_json": stats_json, "report_md": report_md}
+    _upsert(ss, TAB_WEEKLY, HEADERS_WEEKLY, KEYS_WEEKLY, [row])
 
 
 def write_ahrefs(result: Optional[Dict[str, Any]]) -> None:
