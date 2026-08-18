@@ -77,8 +77,19 @@ def main() -> None:
     # Analysis phases (Phase 1 §2 / §3). analyze_diff compares today's
     # extractions against the previous observation day still stored in Sheets,
     # so it must run *before* today's rows are written.
+    #
+    # The stored observations are read once here and shared with analyze_diff and
+    # the Slack summary (which needs yesterday's rate and the negative streak),
+    # instead of each of them reading the tab again (§8 API budget).
+    observations = _run(
+        "read_llm_observations", lambda: sheets_writer.read_llm_observations(), failures
+    ) or []
     sov_rows = _run("analyze_sov", lambda: analyze_sov.analyze(extractions, date), failures) or []
-    changes = _run("analyze_diff", lambda: analyze_diff.analyze(extractions, date), failures) or []
+    changes = _run(
+        "analyze_diff",
+        lambda: analyze_diff.analyze(extractions, date, previous_rows=observations),
+        failures,
+    ) or []
 
     # GA4 / GSC (independent of the LLM observation)
     ga4_rows = _run("collect_ga4", lambda: collect_ga4.collect(), failures) or []
@@ -103,7 +114,10 @@ def main() -> None:
     # Slack alert last, so it can report failures from every preceding phase.
     notified = _run(
         "notify_slack",
-        lambda: notify_slack.notify(date, extractions, changes, list(failures)),
+        lambda: notify_slack.notify(
+            date, extractions, changes, list(failures),
+            sov_rows=sov_rows, observations=observations,
+        ),
         failures,
     )
 

@@ -149,6 +149,7 @@ crosscom-llmo-dashboard/
 | `GSC_SITE_URL` | ○ | 例 `sc-domain:cross-com.jp` または `https://cross-com.jp/` |
 | `AHREFS_API_KEY` | – | 週次 Ahrefs(ベストエフォート) |
 | `SLACK_WEBHOOK_URL` | – | Slackアラート・週次所見(未設定なら警告ログのみでスキップ) |
+| `LOOKER_STUDIO_URL` | – | 日次アラート末尾のリンク(Secretではなく Variables でよい。未設定なら省略) |
 
 ### サービスアカウントの権限付与
 
@@ -292,24 +293,47 @@ LLMが競合として挙げたもののうち、企業名でない表現(`ブテ
 
 ### 4. `notify_slack.py` — Slackアラート
 
-- **Slack Incoming Webhook**(無料)を使用。Secret名 `SLACK_WEBHOOK_URL`。
+**「状態を示す通知 + 詳細はリンク先」**。日次は毎日1通、3階層で固定する。
+
+```
+📊 *LLMO日次* | 2026-08-18
+言及率 *50%* ↑(+17%)  |  SoV首位 *クロスコム*  |  ネガ検知 *1件*
+
+⚠️ E-1 × claude — 旧事業(MA/メール配信)の記述（継続5日目）
+📈 言及獲得: B-1(gemini)
+📉 言及消失: A-3(claude)
+❌ パイプライン一部失敗: collect_ga4
+
+<スプレッドシート>  |  <Looker Studio>
+```
+
+| 階層 | 内容 |
+|---|---|
+| 1行目 | `📊 LLMO日次 \| 日付` |
+| 2行目 | 言及率(当日・前日比の矢印 ↑→↓) / SoV首位 / ネガ検知件数 |
+| 3行目以降 | 変化イベントのみ1行ずつ。無ければ「変化なし」1行 |
+| 末尾 | スプレッドシート / Looker Studio(`LOOKER_STUDIO_URL` 未設定なら省略) |
+
+- **`negative_detail` の本文は載せない。** 毎日ほぼ同じ長文になり通知が読まれなくなるため、
+  種別(20字以内)と**継続日数**だけを示す。本文はスプレッドシートで読む。
+- 継続日数は `llm_observations` から同一 prompt_id の連続検知日数を数える
+  (モデル単位ではなく prompt_id 単位。片方のモデルで出ていればその日は検知あり)。
+- **変化がない日も送る。** 状態を毎日出さないと、無音の日と壊れた日を区別できない。
+  ここで見たいのは発火そのものではなく**発火が止まった日**である。
+- 言及率は `build_summary` と同じ定義(E-1とエラー行を除外)。
 - **未設定でもパイプラインは落ちない**(警告ログとメッセージ本文を標準出力に出して正常終了)。
-- 通知条件(当日分)と表示順:
-
-  1. ⚠️ **ネガティブ/誤情報検知** — `negative_or_outdated=TRUE` または `negative_flag_on`(**必ず先頭**)
-  2. 📈 **言及獲得** / 📉 **言及消失** — `mention_gained` / `mention_lost`
-  3. ❌ **パイプライン一部失敗** — 失敗フェーズ名とエラー要約
-
-- 該当が1件もない日は**通知を送らない**(ゼロ通知が正常)。
-- 日本語・1日1投稿(セクション分け)。文末に `SHEETS_SPREADSHEET_ID` から生成した
-  スプレッドシートURLを付ける。
 - Python到達前にワークフローが落ちた場合(checkout / pip install の失敗など)は、
   `daily.yml` 最終stepの `if: failure()` が Webhook へ直接POSTする。
+- **週次所見(`notify_weekly`)は役割が違うため現行の長文フォーマットを維持**している。
+  日次は毎日「状態」を読むもの、週次は週1回「深さ」を読むもの。
 
-**テスト送信**(疑似アラートを1通送る):
+**テスト送信**:
 
 ```bash
-cd src && SLACK_WEBHOOK_URL=... python notify_slack.py --test
+cd src
+SLACK_WEBHOOK_URL=... python notify_slack.py --test         # 変化イベントあり
+SLACK_WEBHOOK_URL=... python notify_slack.py --test-quiet   # 変化ゼロの日
+SLACK_WEBHOOK_URL=... python notify_slack.py --test-weekly  # 週次(現行フォーマット)
 ```
 
 ### 5. `backfill_sov.py` — sov_daily の全期間再生成

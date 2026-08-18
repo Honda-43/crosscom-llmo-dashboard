@@ -26,6 +26,7 @@ jobs:
       GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
       GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      LOOKER_STUDIO_URL: ${{ vars.LOOKER_STUDIO_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -1,79 +1,227 @@
-"""notify_slack.py — daily Slack alert (Phase 1 §4).
+"""notify_slack.py — daily Slack alert (Phase 1 §4) and weekly report (Phase 2 §4).
 
-One post per day via a Slack Incoming Webhook (``SLACK_WEBHOOK_URL``), split
-into sections in a fixed priority order:
+The daily post shows **state, not detail** — detail lives behind the links at
+the bottom. Three tiers:
 
-1. ⚠️ ネガティブ/誤情報検知 — always first
-2. 📈 言及獲得 / 📉 言及消失
-3. ❌ パイプライン一部失敗
+1. ``📊 LLMO日次 | 日付``
+2. one status line: 言及率（前日比の矢印付き） / SoV首位 / ネガ検知件数
+3. change events, one line each — nothing else. A negative detection shows the
+   *kind* of problem and how many days it has run, never the ``negative_detail``
+   body: that text is long, repeats almost verbatim every day, and drowns the
+   line that matters.
 
-A day with none of the above sends nothing: zero notifications is the healthy
-state (§4). A missing webhook logs a warning and returns normally so the
-pipeline never fails just because Slack is not configured.
+A day with no change events still posts, with 「変化なし」 on the third tier.
+The status line is the point: a silent day is indistinguishable from a broken
+pipeline, and the thing worth watching is the day a detection *stops*.
+
+The weekly report keeps its own long format (``notify_weekly``) — it is read
+once a week for depth, while this is read daily for state.
+
+A missing webhook logs a warning and returns normally so the pipeline never
+fails just because Slack is not configured.
 
 Manual smoke test::
 
     SLACK_WEBHOOK_URL=... python notify_slack.py --test
+    SLACK_WEBHOOK_URL=... python notify_slack.py --test-weekly
 """
 from __future__ import annotations
 
 import argparse
 import re
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, Iterable, List, Optional, Sequence
 
 import analyze_diff
-from settings import SLACK_WEBHOOK_URL, spreadsheet_url
+from settings import LOOKER_STUDIO_URL, SLACK_WEBHOOK_URL, spreadsheet_url
 
-_MAX_ITEMS_PER_SECTION = 15
+_MAX_ITEMS_PER_LINE = 12
+ENTITY_PROMPT_ID = "E-1"
 
 
 def _label(prompt_id: Any, model: Any) -> str:
-    return f"{prompt_id or '?'} / {model or '?'}"
+    return f"{prompt_id or '?'}({model or '?'})"
 
 
-def _section(title: str, items: Sequence[str]) -> List[str]:
-    """A bold heading plus bulleted items, truncated so one incident cannot
-    blow past Slack's message limit."""
-    if not items:
-        return []
-    lines = [f"*{title}({len(items)}件)*"]
-    lines += [f"• {item}" for item in items[:_MAX_ITEMS_PER_SECTION]]
-    if len(items) > _MAX_ITEMS_PER_SECTION:
-        lines.append(f"… ほか {len(items) - _MAX_ITEMS_PER_SECTION} 件")
-    return lines + [""]
+# --------------------------------------------------------------------------
+# 2行目 — サマリ
+# --------------------------------------------------------------------------
+def _rate_of(rows: Iterable[Dict[str, Any]]) -> Optional[float]:
+    """E-1とエラー行を除いた言及率。build_summary と同じ定義に揃えている。"""
+    valid = [
+        r for r in rows
+        if not r.get("error")
+        and str(r.get("prompt_id") or "") != ENTITY_PROMPT_ID
+        and analyze_diff.parse_bool(r.get("mention")) is not None
+    ]
+    if not valid:
+        return None
+    hits = sum(1 for r in valid if analyze_diff.parse_bool(r.get("mention")))
+    return hits / len(valid)
 
 
-def _negative_items(
+def _arrow(delta: Optional[float]) -> str:
+    if delta is None:
+        return ""
+    if delta > 0.005:
+        return f" ↑(+{delta:.0%})"
+    if delta < -0.005:
+        return f" ↓({delta:.0%})"
+    return " →(±0)"
+
+
+def _top_entity(sov_rows: Sequence[Dict[str, Any]], date: str) -> Optional[str]:
+    """当日・pillar=all で出現数が最大のエンティティ(自社を含む)。"""
+    same_day = [
+        r for r in sov_rows
+        if str(r.get("date") or "") == date and str(r.get("pillar") or "") == "all"
+    ]
+    if not same_day:
+        return None
+    best = max(same_day, key=lambda r: float(r.get("mention_count") or 0))
+    if float(best.get("mention_count") or 0) <= 0:
+        return None
+    return str(best.get("entity") or "") or None
+
+
+def _negative_count(extractions: Sequence[Dict[str, Any]]) -> int:
+    return sum(
+        1 for r in extractions
+        if not r.get("error") and r.get("negative_or_outdated") is True
+    )
+
+
+def build_summary_line(
+    date: str,
+    extractions: Sequence[Dict[str, Any]] = (),
+    sov_rows: Sequence[Dict[str, Any]] = (),
+    observations: Sequence[Dict[str, Any]] = (),
+) -> str:
+    """2行目。1画面に収まる長さで当日の状態だけを示す。"""
+    today_rate = _rate_of(extractions)
+
+    delta = None
+    previous = analyze_diff.previous_date(observations, date) if observations else None
+    if previous and today_rate is not None:
+        prev_rate = _rate_of(
+            [r for r in observations if str(r.get("date") or "") == previous]
+        )
+        if prev_rate is not None:
+            delta = today_rate - prev_rate
+
+    rate_text = "—" if today_rate is None else f"{today_rate:.0%}"
+    return (f"言及率 *{rate_text}*{_arrow(delta)}  |  "
+            f"SoV首位 *{_top_entity(sov_rows, date) or '—'}*  |  "
+            f"ネガ検知 *{_negative_count(extractions)}件*")
+
+
+# --------------------------------------------------------------------------
+# 3行目以降 — 変化イベント
+# --------------------------------------------------------------------------
+# negative_detail の本文は載せない。毎日ほぼ同じ長文になり通知が読まれなくなる。
+# 代わりに種別だけを短く示し、詳細はスプレッドシートで確認してもらう。
+_KIND_RULES = [
+    (("旧事業", "旧MA", "MA/", "メールマーケティング", "メール配信",
+      "マーケティングオートメーション"), "旧事業(MA/メール配信)の記述"),
+    (("誤情報", "誤り", "事実と異なる", "正しくない", "不正確"), "誤情報の記述"),
+    (("古い", "outdated", "過去の情報"), "古い情報の記述"),
+]
+_KIND_FALLBACK = "ネガティブな記述"
+KIND_MAX_CHARS = 20
+
+
+def negative_kind(detail: Any) -> str:
+    """negative_detail を種別に畳む(20字以内)。本文そのものは返さない。"""
+    text = str(detail or "")
+    for keywords, label in _KIND_RULES:
+        if any(k in text for k in keywords):
+            return label[:KIND_MAX_CHARS]
+    return _KIND_FALLBACK
+
+
+def negative_streak(observations: Sequence[Dict[str, Any]], prompt_id: str,
+                    date: str) -> int:
+    """同一 prompt_id が何観測日連続で negative かを数える(当日を1日目)。
+
+    モデル単位ではなく prompt_id 単位。片方のモデルで出ていればその日は
+    「検知あり」として扱う。0 は当日に検知がないことを意味する。
+    """
+    by_date: Dict[str, bool] = {}
+    for row in observations:
+        if str(row.get("prompt_id") or "") != prompt_id:
+            continue
+        day = str(row.get("date") or "").strip()
+        if not day or day > date:
+            continue
+        flag = bool(analyze_diff.parse_bool(row.get("negative_or_outdated")))
+        by_date[day] = by_date.get(day, False) or flag
+
+    streak = 0
+    for day in sorted(by_date, reverse=True):
+        if not by_date[day]:
+            break
+        streak += 1
+    return streak
+
+
+def _negative_lines(
+    date: str,
     extractions: Sequence[Dict[str, Any]],
     changes: Sequence[Dict[str, Any]],
+    observations: Sequence[Dict[str, Any]],
 ) -> List[str]:
-    """Observations flagged negative/outdated today, plus negative_flag_on
-    changes — de-duplicated per prompt_id × model."""
-    details: Dict[tuple, str] = {}
+    detected: Dict[tuple, str] = {}
     for record in extractions:
         if record.get("error") or record.get("negative_or_outdated") is not True:
             continue
-        key = (record.get("prompt_id"), record.get("model"))
-        details[key] = str(record.get("negative_detail") or "").strip()
+        detected[(record.get("prompt_id"), record.get("model"))] = \
+            str(record.get("negative_detail") or "")
     for change in changes:
-        if change.get("change_type") != analyze_diff.NEGATIVE_ON:
-            continue
-        key = (change.get("prompt_id"), change.get("model"))
-        details.setdefault(key, str(change.get("detail") or "").strip())
+        if change.get("change_type") == analyze_diff.NEGATIVE_ON:
+            detected.setdefault(
+                (change.get("prompt_id"), change.get("model")),
+                str(change.get("detail") or ""),
+            )
+    if not detected:
+        return []
 
-    items = []
-    for (prompt_id, model), detail in sorted(details.items(), key=lambda kv: str(kv[0])):
-        suffix = f" — {detail}" if detail else ""
-        items.append(f"{_label(prompt_id, model)}{suffix}")
-    return items
+    # 当日分はまだシートに無いので履歴に足してから連続日数を数える。
+    history = list(observations) + [
+        {"prompt_id": r.get("prompt_id"), "date": date,
+         "negative_or_outdated": r.get("negative_or_outdated")}
+        for r in extractions if not r.get("error")
+    ]
+
+    lines = []
+    for (prompt_id, model), detail in sorted(detected.items(),
+                                             key=lambda kv: (str(kv[0][0]), str(kv[0][1]))):
+        streak = negative_streak(history, str(prompt_id or ""), date)
+        suffix = f"（継続{streak}日目）" if streak > 1 else "（本日から）"
+        lines.append(f"⚠️ {prompt_id} × {model} — {negative_kind(detail)}{suffix}")
+    return lines
 
 
-def _changed_items(changes: Sequence[Dict[str, Any]], change_type: str) -> List[str]:
+def _enumerate(changes: Sequence[Dict[str, Any]], change_type: str) -> List[str]:
     return [
         _label(c.get("prompt_id"), c.get("model"))
-        for c in changes
-        if c.get("change_type") == change_type
+        for c in changes if c.get("change_type") == change_type
     ]
+
+
+def _join(items: Sequence[str]) -> str:
+    if len(items) <= _MAX_ITEMS_PER_LINE:
+        return ", ".join(items)
+    return (", ".join(items[:_MAX_ITEMS_PER_LINE])
+            + f" ほか{len(items) - _MAX_ITEMS_PER_LINE}件")
+
+
+def _links() -> str:
+    parts = []
+    sheet = spreadsheet_url()
+    if sheet:
+        parts.append(f"<{sheet}|スプレッドシート>")
+    if LOOKER_STUDIO_URL:
+        parts.append(f"<{LOOKER_STUDIO_URL}|Looker Studio>")
+    return "  |  ".join(parts)
 
 
 def build_message(
@@ -81,25 +229,33 @@ def build_message(
     extractions: Sequence[Dict[str, Any]] = (),
     changes: Sequence[Dict[str, Any]] = (),
     failures: Sequence[str] = (),
-) -> Optional[str]:
-    """Compose the daily message, or ``None`` when there is nothing to report."""
-    negatives = _negative_items(extractions, changes)
-    gained = _changed_items(changes, analyze_diff.MENTION_GAINED)
-    lost = _changed_items(changes, analyze_diff.MENTION_LOST)
-    failed = list(failures)
+    sov_rows: Sequence[Dict[str, Any]] = (),
+    observations: Sequence[Dict[str, Any]] = (),
+) -> str:
+    """日次メッセージ。変化がない日も状態を示すため必ず本文を返す。"""
+    lines = [
+        f"📊 *LLMO日次* | {date}",
+        build_summary_line(date, extractions, sov_rows, observations),
+        "",
+    ]
 
-    if not (negatives or gained or lost or failed):
-        return None
+    events: List[str] = _negative_lines(date, extractions, changes, observations)
+    gained = _enumerate(changes, analyze_diff.MENTION_GAINED)
+    if gained:
+        events.append(f"📈 言及獲得: {_join(gained)}")
+    lost = _enumerate(changes, analyze_diff.MENTION_LOST)
+    if lost:
+        events.append(f"📉 言及消失: {_join(lost)}")
+    if failures:
+        # 変化イベントではないが、落ちたことは当日中に知る必要がある。
+        events.append(f"❌ パイプライン一部失敗: "
+                      f"{_join([str(f).split(':', 1)[0] for f in failures])}")
 
-    lines: List[str] = [f"*LLMO日次アラート — {date}*", ""]
-    lines += _section("⚠️ ネガティブ/誤情報検知", negatives)
-    lines += _section("📈 言及獲得", gained)
-    lines += _section("📉 言及消失", lost)
-    lines += _section("❌ パイプライン一部失敗", failed)
+    lines += events if events else ["変化なし"]
 
-    url = spreadsheet_url()
-    if url:
-        lines.append(f"<{url}|スプレッドシートを開く>")
+    links = _links()
+    if links:
+        lines += ["", links]
     return "\n".join(lines).strip()
 
 
@@ -118,13 +274,12 @@ def notify(
     extractions: Sequence[Dict[str, Any]] = (),
     changes: Sequence[Dict[str, Any]] = (),
     failures: Sequence[str] = (),
+    sov_rows: Sequence[Dict[str, Any]] = (),
+    observations: Sequence[Dict[str, Any]] = (),
     webhook: Optional[str] = None,
 ) -> bool:
     """Send the daily alert. Returns True when a message was actually posted."""
-    text = build_message(date, extractions, changes, failures)
-    if text is None:
-        print(f"[ok] notify_slack {date}: no alert conditions — nothing sent")
-        return False
+    text = build_message(date, extractions, changes, failures, sov_rows, observations)
 
     webhook = webhook if webhook is not None else SLACK_WEBHOOK_URL
     if not webhook:
@@ -138,7 +293,7 @@ def notify(
 
 
 # --------------------------------------------------------------------------
-# Weekly report (Phase 2 §4)
+# Weekly report (Phase 2 §4) — 役割が違うため現行フォーマットを維持する
 # --------------------------------------------------------------------------
 # Slack mrkdwn is not Markdown: headings do not exist and bold is single-star.
 _HEADING_RE = re.compile(r"^#{1,6}\s*(.+?)\s*$", re.MULTILINE)
@@ -190,34 +345,82 @@ def notify_weekly(date: str, report_md: str, webhook: Optional[str] = None) -> b
     return True
 
 
+# --------------------------------------------------------------------------
+# --test
+# --------------------------------------------------------------------------
 def _test_message(date: str) -> str:
-    """A synthetic alert exercising every section (--test)."""
+    """新フォーマットのサンプル。サマリ行・ネガ継続・獲得/消失・失敗を1通で示す。"""
+    observations = [
+        # 過去4日分。E-1 が連続で negative になっている履歴を作る。
+        {"date": f"2026-08-{day:02d}", "prompt_id": "E-1", "model": "claude",
+         "mention": "TRUE", "negative_or_outdated": "TRUE"}
+        for day in (14, 15, 16, 17)
+    ] + [
+        {"date": "2026-08-17", "prompt_id": pid, "model": "claude",
+         "mention": "TRUE" if pid in ("A-1", "A-2") else "FALSE",
+         "negative_or_outdated": "FALSE"}
+        for pid in ("A-1", "A-2", "A-3", "B-1", "B-2", "B-3")
+    ]
+    extractions = [
+        {"prompt_id": "E-1", "model": "claude", "mention": True, "error": None,
+         "negative_or_outdated": True,
+         "negative_detail": "【テスト送信】旧MA/メール配信事業を現在の主要事業として記述している"},
+        {"prompt_id": "A-1", "model": "claude", "mention": True,
+         "negative_or_outdated": False, "error": None},
+        {"prompt_id": "A-2", "model": "claude", "mention": True,
+         "negative_or_outdated": False, "error": None},
+        {"prompt_id": "A-3", "model": "claude", "mention": False,
+         "negative_or_outdated": False, "error": None},
+        {"prompt_id": "B-1", "model": "gemini", "mention": True,
+         "negative_or_outdated": False, "error": None},
+        {"prompt_id": "B-2", "model": "gemini", "mention": False,
+         "negative_or_outdated": False, "error": None},
+        {"prompt_id": "B-3", "model": "gemini", "mention": False,
+         "negative_or_outdated": False, "error": None},
+    ]
+    sov_rows = [
+        {"date": date, "pillar": "all", "entity": "クロスコム", "mention_count": "5"},
+        {"date": date, "pillar": "all", "entity": "メンバーズ", "mention_count": "3"},
+    ]
+    changes = [
+        {"prompt_id": "B-1", "model": "gemini",
+         "change_type": analyze_diff.MENTION_GAINED},
+        {"prompt_id": "A-3", "model": "claude",
+         "change_type": analyze_diff.MENTION_LOST},
+    ]
     return build_message(
-        date,
-        extractions=[{
-            "prompt_id": "A-1",
-            "model": "claude",
-            "negative_or_outdated": True,
-            "negative_detail": "【テスト送信】旧MA/メール配信事業の記述あり",
-        }],
-        changes=[
-            {"prompt_id": "B-2", "model": "gemini", "change_type": analyze_diff.MENTION_GAINED},
-            {"prompt_id": "A-3", "model": "claude", "change_type": analyze_diff.MENTION_LOST},
-        ],
+        date, extractions=extractions, changes=changes,
         failures=["collect_ga4: 【テスト送信】ダミーエラー"],
-    ) or ""
+        sov_rows=sov_rows, observations=observations,
+    )
+
+
+def _test_quiet_message(date: str) -> str:
+    """変化がゼロの日のサンプル(サマリ行 + 「変化なし」)。"""
+    extractions = [
+        {"prompt_id": pid, "model": "claude", "mention": pid in ("A-1", "A-2"),
+         "negative_or_outdated": False, "error": None}
+        for pid in ("A-1", "A-2", "A-3", "B-1", "B-2", "B-3")
+    ]
+    sov_rows = [{"date": date, "pillar": "all", "entity": "クロスコム",
+                 "mention_count": "2"}]
+    return build_message(date, extractions=extractions, sov_rows=sov_rows)
 
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Slack alert for the LLMO pipeline")
-    ap.add_argument("--test", action="store_true", help="send one synthetic alert")
+    ap.add_argument("--test", action="store_true",
+                    help="send one synthetic daily alert (new format)")
+    ap.add_argument("--test-quiet", action="store_true",
+                    help="send the 'no changes' variant of the daily alert")
     ap.add_argument("--test-weekly", action="store_true",
                     help="send one synthetic weekly report")
-    ap.add_argument("--date", default="TEST", help="date label used in the message")
+    ap.add_argument("--date", default="2026-08-18", help="date label used in the message")
     args = ap.parse_args()
 
-    if not (args.test or args.test_weekly):
-        ap.error("nothing to do — pass --test / --test-weekly, or call notify() from run_daily.py")
+    if not (args.test or args.test_quiet or args.test_weekly):
+        ap.error("nothing to do — pass --test / --test-quiet / --test-weekly, "
+                 "or call notify() from run_daily.py")
 
     if args.test_weekly:
         report = (
@@ -227,21 +430,17 @@ def main() -> None:
             "## 3. 発火パターンと推奨アクション\n\n- **R-P7**: 【テスト送信】ダミー\n"
         )
         text = build_weekly_message(args.date, report)
-        if not SLACK_WEBHOOK_URL:
-            print("[warn] SLACK_WEBHOOK_URL is not set — message not sent. Preview:")
-            print(text)
-            return
-        _post(text, SLACK_WEBHOOK_URL)
-        print("[ok] test weekly report sent")
-        return
+        label = "test weekly report"
+    else:
+        text = _test_quiet_message(args.date) if args.test_quiet else _test_message(args.date)
+        label = "test daily alert"
 
-    text = _test_message(args.date)
     if not SLACK_WEBHOOK_URL:
         print("[warn] SLACK_WEBHOOK_URL is not set — message not sent. Preview:")
         print(text)
         return
     _post(text, SLACK_WEBHOOK_URL)
-    print("[ok] test alert sent")
+    print(f"[ok] {label} sent")
 
 
 if __name__ == "__main__":

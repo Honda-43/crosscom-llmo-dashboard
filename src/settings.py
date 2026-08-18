@@ -178,6 +178,10 @@ SELF_ENTITY = "クロスコム"
 # Slack Incoming Webhook (Phase 1 §4). Unset = alerts are skipped, never fatal.
 SLACK_WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL", "").strip()
 
+# Looker Studio dashboard. Shown as a link at the end of the daily alert;
+# omitted entirely when unset.
+LOOKER_STUDIO_URL = os.getenv("LOOKER_STUDIO_URL", "").strip()
+
 # Google service-account scopes needed across Sheets / GA4 / GSC.
 GOOGLE_SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets",
