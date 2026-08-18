@@ -19,10 +19,29 @@ from settings import SELF_ENTITY
 
 # Our own colour, held constant everywhere so クロスコム is instantly findable.
 SELF_COLOR = "#e45756"
+# Everything that is not us, when the chart's job is "where do we stand" rather
+# than "who is who". Grey keeps the one accent readable.
+OTHER_COLOR = "#b8bcc4"
 PALETTE = [
     "#4c78a8", "#54a24b", "#f58518", "#72b7b2", "#b279a2",
     "#9d755d", "#eeca3b", "#bab0ac", "#ff9da6", "#79706e",
 ]
+
+# Sequential ramp for magnitude (single hue, light -> dark). Never a rainbow:
+# the quantity is ordered, so the colour must be ordered too.
+SEQUENTIAL = [
+    [0.00, "#ffffff"], [0.17, "#e3edf7"], [0.34, "#c3d9ec"],
+    [0.50, "#9dc0dd"], [0.67, "#6f9fca"], [0.84, "#4c78a8"], [1.00, "#345b82"],
+]
+
+# Status colour for "something was detected". Deliberately a different red from
+# SELF_COLOR: one means identity (us), the other means state (negative found).
+STATUS_ALERT = "#b42318"
+EMPTY_CELL = "#f0f1f3"
+
+# Ink. Text never wears the series colour.
+INK = "#1f2328"
+INK_MUTED = "#6b7280"
 
 PILLAR_LABELS = {"all": "全体 (A+B)", "A": "Pillar A", "B": "Pillar B"}
 
@@ -141,3 +160,33 @@ def competitor_list(value: Any) -> List[str]:
 
 def empty_state(message: str) -> None:
     st.info(message)
+
+
+# --------------------------------------------------------------------------
+# 平滑化と粒度
+# --------------------------------------------------------------------------
+# 日次の生データは1日1観測×2モデルしかなく、1件の増減で大きく振れる。
+# 既定を平滑化側に置き、生データは背景に退かせる。
+MA_WINDOW = 7
+RAW_ONLY_BELOW_DAYS = 14  # これ未満の期間では移動平均が意味を持たない
+
+DAILY, WEEKLY = "日次", "週次"
+
+
+def moving_average(series: pd.Series, window: int = MA_WINDOW) -> pd.Series:
+    """欠測日を0で埋めずに移動平均をとる（穴は穴のまま残す）。"""
+    return series.rolling(window, min_periods=max(2, window // 2)).mean()
+
+
+def span_days(start, end) -> int:
+    return (end - start).days + 1 if start and end else 0
+
+
+def use_raw_only(start, end) -> bool:
+    """期間が短いときは移動平均をやめて生データを見せる（§1）。"""
+    return span_days(start, end) < RAW_ONLY_BELOW_DAYS
+
+
+def to_week(dates: pd.Series) -> pd.Series:
+    """週の始まり（月曜）に丸める。"""
+    return dates - pd.to_timedelta(dates.dt.dayofweek, unit="D")

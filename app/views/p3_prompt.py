@@ -6,6 +6,7 @@ import collections
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
+from plotly.subplots import make_subplots
 
 import common
 import data_source
@@ -46,35 +47,75 @@ st.caption(
     f"({mention_days / len(scoped):.0%})"
 )
 
-# --- mention / rank の日次推移 ---------------------------------------------
-st.subheader("mention / rank の推移")
-figure = go.Figure()
-for index, model_name in enumerate(sorted(scoped["model"].unique())):
-    rows = scoped[scoped["model"] == model_name].sort_values("date")
+# --- rank の推移 + mention の帯 ---------------------------------------------
+# rankと言及は尺度が違うので同じ軸に重ねない。上段=rank(欠測は線を繋がない)、
+# 下段=言及の有無を帯で表す。
+st.subheader("rank の推移と言及の有無")
+
+models_in_view = sorted(scoped["model"].unique())
+all_days = pd.Index(sorted(scoped["date"].unique()), name="date")
+
+figure = make_subplots(
+    rows=2, cols=1, shared_xaxes=True, row_heights=[0.74, 0.26], vertical_spacing=0.06,
+)
+
+for index, model_name in enumerate(models_in_view):
+    rows = scoped[scoped["model"] == model_name].set_index("date").sort_index()
     color = common.PALETTE[index % len(common.PALETTE)]
+
+    # 観測のない日・言及のない日は None にして線を途切れさせる(§4)
+    rank_series = rows["rank_num"].reindex(all_days)
+    mentioned = rows["mention_bool"].reindex(all_days)
+    hover_state = [
+        "観測なし" if pd.isna(m) else ("言及あり・リスト外" if m and pd.isna(r)
+                                     else ("言及あり" if m else "言及なし"))
+        for m, r in zip(mentioned, rank_series)
+    ]
     figure.add_trace(go.Scatter(
-        x=rows["date"], y=rows["mention_bool"].astype(int), name=f"{model_name}: 言及",
-        mode="lines+markers", line=dict(color=color, width=2, shape="hv"),
-        yaxis="y", hovertemplate="言及: %{y}<br>%{x|%Y-%m-%d}<extra></extra>",
-    ))
-    ranked = rows[rows["rank_num"].notna()]
-    if not ranked.empty:
-        figure.add_trace(go.Scatter(
-            x=ranked["date"], y=ranked["rank_num"], name=f"{model_name}: rank",
-            mode="markers+lines", yaxis="y2", line=dict(color=color, width=1, dash="dot"),
-            marker=dict(size=9, symbol="diamond"),
-            hovertemplate="rank: %{y}<br>%{x|%Y-%m-%d}<extra></extra>",
-        ))
+        x=all_days, y=rank_series, name=model_name, mode="lines+markers",
+        line=dict(color=color, width=2), marker=dict(size=8),
+        connectgaps=False,  # 欠測日は繋がない
+        customdata=hover_state,
+        hovertemplate=("<b>%{fullData.name}</b><br>%{x|%Y-%m-%d}<br>"
+                       "rank %{y:.0f}位（%{customdata}）<extra></extra>"),
+    ), row=1, col=1)
+
+# --- 言及の帯(ストリップ) ---
+strip_z, strip_hover = [], []
+for model_name in models_in_view:
+    rows = scoped[scoped["model"] == model_name].set_index("date").sort_index()
+    mentioned = rows["mention_bool"].reindex(all_days)
+    strip_z.append([None if pd.isna(v) else (1 if v else 0) for v in mentioned])
+    strip_hover.append([
+        f"{model_name}<br>{pd.Timestamp(d):%Y-%m-%d}<br>"
+        + ("観測なし" if pd.isna(v) else ("言及あり" if v else "言及なし"))
+        for d, v in zip(all_days, mentioned)
+    ])
+
+figure.add_trace(go.Heatmap(
+    z=strip_z, x=all_days, y=models_in_view, zmin=0, zmax=1,
+    colorscale=[[0.0, common.EMPTY_CELL], [1.0, common.PALETTE[0]]],
+    xgap=1, ygap=3, showscale=False,
+    customdata=strip_hover, hovertemplate="%{customdata}<extra></extra>",
+), row=2, col=1)
 
 figure.update_layout(
-    height=400, hovermode="x unified", margin=dict(l=10, r=10, t=30, b=10),
-    yaxis=dict(title="言及(1=あり)", tickvals=[0, 1], range=[-0.1, 1.1]),
-    # rank は小さいほど良いので軸を反転する
-    yaxis2=dict(title="rank(上が上位)", overlaying="y", side="right",
-                autorange="reversed", dtick=1),
-    legend=dict(orientation="h", yanchor="bottom", y=1.02, x=0),
+    height=470, hovermode="x unified", margin=dict(l=10, r=10, t=30, b=10),
+    legend=dict(orientation="h", yanchor="bottom", y=1.04, x=0),
+    plot_bgcolor="rgba(0,0,0,0)",
 )
+# rank は小さいほど良いので軸を反転する
+figure.update_yaxes(title="rank(上が上位)", autorange="reversed", dtick=1, row=1, col=1)
+figure.update_yaxes(title=None, row=2, col=1)
+figure.update_xaxes(title=None, row=2, col=1)
 st.plotly_chart(figure, width="stretch")
+st.caption(
+    "上段: rank の推移。**言及がない日・観測がない日は線を繋いでいない**"
+    "(途切れ = そこで推薦リストから消えている)。"
+    f"下段: 言及の有無(<span style='color:{common.PALETTE[0]}'>■</span> 言及あり / "
+    "薄いグレー = 言及なし / 空白 = 観測なし)。",
+    unsafe_allow_html=True,
+)
 
 # --- KBF / 引用URL / 競合 ---------------------------------------------------
 left, right = st.columns(2)
@@ -88,10 +129,17 @@ with left:
     if tags:
         frame = pd.DataFrame(sorted(tags.items(), key=lambda kv: kv[1]),
                              columns=["KBF", "出現"])
-        bar = go.Figure(go.Bar(x=frame["出現"], y=frame["KBF"], orientation="h",
-                               marker_color="#4c78a8"))
+        observations_in_view = len(scoped)
+        bar = go.Figure(go.Bar(
+            x=frame["出現"], y=frame["KBF"], orientation="h",
+            marker_color=common.PALETTE[0],
+            customdata=[[observations_in_view] for _ in range(len(frame))],
+            hovertemplate=("%{y}<br>%{x:.0f} 回 / %{customdata[0]} 観測"
+                           "<extra></extra>"),
+        ))
         bar.update_layout(height=max(220, 40 * len(frame)),
-                          margin=dict(l=10, r=10, t=10, b=10), xaxis_title="出現回数")
+                          margin=dict(l=10, r=10, t=10, b=10), xaxis_title="出現回数",
+                          plot_bgcolor="rgba(0,0,0,0)")
         st.plotly_chart(bar, width="stretch")
     else:
         st.info("期間内に kbf_tags の記録がありません。")
