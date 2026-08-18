@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-19",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-18T22:24:09.246140Z",
+  "answer": "# Agentforce導入費用の相場と費用対効果を高める進め方\n\n## 1. Agentforceの費用構造（3つの料金モデル）\n\n2025年5月の料金改定以降、Agentforceの費用は大きく3つの考え方に整理されています。\n\n**① Flex Credits（アクション従量課金）**\n\nSalesforce Agentforceは Flex Credits を使用し、標準的なアクションは20クレジット（0.10ドル）、音声アクションは30クレジット（0.15ドル）を消費します。クレジットは10万クレジットあたり500ドルで購入\nします。日本円換算では\n1件当たりの対話は240円、「Flexクレジット」エディションでは60,000円/100,000クレジット\nが目安です。\n\n**② 会話単位（Conversations）課金**\n\n会話単位モデルは1会話あたり2ドルを課金します（チャネルによって最大24時間続く会話ウィンドウ）。長時間のやり取りが発生する顧客対応型ボットに向いています\n。なお\n1つの組織ではFlex CreditsかConversationsのどちらか一方しか選択できません\n。目安として、\n1会話あたり約20アクションが損益分岐点で、それ未満であればFlex Creditsの方が割安\nになります。\n\n**③ ユーザー単位ライセンス**\n\nSales/Service Cloud上で月額125ドル/ユーザーとし、ライセンス保有社員は社内向けエージェント利用が無制限\nになるプランや、\nEinstein 1エディションでは月額500〜550ドル/ユーザー（幅広いAI機能を含む）\nというプランもあります。\n\n**無料枠もあり**：\nEnterprise Editionユーザーは、Salesforce Foundationsを通じて20万Flex Creditsを無料で利用\nできます。\n\n## 2. 見落としがちな付随コスト\n\nAgentforce自体の課金以外に、以下が必要になる点に注意が必要です。\n\n- **基盤ライセンス**：\nAgentforceは標準のCRMの上で動くため、本体ライセンスに加えて、クレジットまたはアドオンの費用が必要\nです。\n- **Data Cloud**：多くの海外情報源で\nAgentforceの実運用にはData Cloudが必要とされ、これがバイヤーが見落としがちなコストで、Agentforceライセンス費用そのものを上回ることも多い\nと指摘されています（日本のSalesforce公式提供形態やエディションにより要否は異なるため、契約時に必ず確認が必要です）。\n- **導入支援・コンサルティング費用（国内相場）**：\n依頼範囲によって幅がありますが、月額伴走型なら月額数十万円程度から、プロジェクト一括型なら数百万円規模からが一つの目安で、これとは別にAgentforce本体のライセンス費用が発生\nします。\n\n## 3. 費用対効果（ROI）を出すための進め方\n\n### ステップ1：対象業務を1つに絞ってスモールスタート\n\n費用対効果は企業規模よりも対象業務の選び方で決まり、定型業務を1つに絞ってスモールスタートすれば中堅・中小企業でも十分に投資を回収できる一方、最初から範囲を広げすぎると効果は薄まる\nため、まず1業務に集中することが近道です。実際に支援会社でも\n1ユースケース×3ヶ月のスモールスタートプラン\nのような形で提供されています。\n\n### ステップ2：PoCで効果を可視化してから段階拡大\n\nPoC（概念実証）を通じて効果を可視化しながらAgentforceの活用範囲を段階的に広げるアプローチが有効で、まずスモールスタートで短期間に導入し、実業務における効果やROIを検証した結果を踏まえて次の活用領域へ段階的に拡大することで、導入リスクを最小限に抑えられます\n。中小企業の事例でも\nいきなり全社に広げず、一つの業務で効果を確かめてから広げれば、リスクを抑えて導入でき、小さく始めれば費用も影響範囲も限定できる\nとされています。\n\n### ステップ3：データ基盤（土台）を整備する\n\nAgentforceは導入すれば自動で成果が出るものではなく、AIが正しく機能するには土台となるSalesforce内のデータが整備されている必要\nがあります。目的や業務プロセスが曖昧なまま進めると、\n何のために使うのかが定義されていないと入力項目や運用ルールが現場の業務と噛み合わず、定着しない\n失敗パターンに陥りやすいため、目的定義とデータクレンジ",
+  "cited_urls": [
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://aquiva.com/blog/agentforce-pricing-gets-a-long-overdue-fix-flex-credits-are-now-live",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://ekfrazo.com/resources/blogs/salesforce-agentforce-pricing-2026/",
+    "https://cross-com.jp/agentforce-pricing/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cross-com.jp/agentforce-small-business/",
+    "https://www.dcs.co.jp/solution/crm/agentforce/",
+    "https://cone-c-slide.com/liblog/salesforce-implementation/"
+  ],
+  "error": null
+}

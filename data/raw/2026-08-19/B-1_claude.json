@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-19",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-18T22:24:48.766705Z",
+  "answer": "# Agentic CRMとは\n\n**Agentic CRM（エージェンティックCRM）**とは、AIエージェントが顧客対応やマーケティング業務を自律的に実行する次世代型のCRM（顧客関係管理システム）です。\n\n## 従来のCRMとの違い\n\n\nAgentic CRMとは、AIエージェントを使ってマーケティングやサービス業務を自律的に管理するCRM（顧客関係管理）システムです。従来のCRMがデータを保存し、ユーザーからの指示を待つのに対し、Agentic CRMはキャンペーンの立案、顧客への応答、パフォーマンスの最適化などを、設定した戦略やガードレールの範囲内で能動的に代行します。\n\n\nSalesforceも同様に、\nAgentic CRMとは、人間と自律的なAIエージェントが協力して顧客の成功を推進するCRMシステムであると定義しています。\n従来型との決定的な違いについて、\n従来のCRMが営業担当者が通話を記録したり、レコードを更新したりするのを待つのに対し、Agentic CRMは指示されなくてもその情報に基づいて行動する\n点が挙げられます。\n\nさらに単純な自動化ルールとの違いとして、\nルールベースのCRM自動化とは大きく異なります。ルールベースのシステムは、例えばリードのスコアが閾値を超えたら定型メールを送るといった固定ロジックに従いますが、エージェント型システムは文脈を解釈するため、単に条件と出力を一致させるだけではありません。顧客データを推論し、状況に応じた適切なアクションを特定し、その結果に基づいてアプローチを調整します。\n\n\n## 主な機能・特徴\n\n- **自律的な意思決定**：\n人間だけでなく、各ステップで人間の承認を必要とせずに、多段階のワークフローを計画・実行・調整する自律型AIエージェントが利用されるCRMシステムであり、あらかじめ設定されたガードレール内で行動し、必要な場合は人間にエスカレーションします。\n\n- **マーケティング領域**：\nURLやブリーフ、商品リスト、自由形式のアイデアから、レビュー用のブランドに沿ったフォーム・キャンペーン・フローを含むマーケティング戦略に変換するAIマーケティングエージェント\nなどが挙げられます。\n- **カスタマーサービス領域**：\n顧客対応型のAIエージェントが質問への回答、注文追跡、返品処理、商品レコメンドをウェブチャット・SMS・メール・WhatsAppを横断して行い、自社の店舗情報やポリシーを学習した上で、正確でブランドに沿った回答を24時間提供します。\n\n\n## 日本市場での動き\n\nSalesforceは日本でも「世界No.1のエージェンティックCRM」というビジョンを掲げ、AIエージェント機能「Agentforce」を展開しています。\nAgentforce Coworkerは、Salesforceプラットフォームの中心に組み込まれたAIチームメイトで、CRM、Slack、270以上のエンタープライズデータソースを横断し、従業員が日本語を含む自然言語で質問するだけで、根拠に基づいた回答を即座に提供します。\n\n\nMUFGやSMBCグループなど国内大手企業でも導入事例があり、\nMUFGがFinancial Services Cloud（FSC）を活用して構築した新CRMシステム「EPOC」とAIエージェント「Agentforce」の導入によって、AIが法人営業担当者の\"伴走者\"となり、情報収集から面談支援、提案、アフターフォローまでをサポートする未来\nを描いています。\n\n## 導入・設計を支援してくれる会社\n\nAgentic CRM（特にSalesforce Agentforce）の導入・設計を支援する国内企業として、以下が見つかりました。\n\n1. **toBeマーケティング株式会社**\n\nSalesforceの最新AI技術（Agentforceなど）をベースに、日本の営業現場が直面する課題を解決するための早期効果実感型AI導入パッケージを提供し、Agentforceの導入から活用まで一貫したサポートを提供しています。\n\n\n2. **DCS株式会社**\n\nAgentforce導入に向けた初期検討フェーズとして活用ワークショップを提供し、現行業務の可視化からTo-Beの整理、業務課題やAI活用ユースケースの抽出を実施。業務内容や課題をヒアリングし、最適なAgentforceの設計・導入から運用開始後の活用支援や現場での定着化まで伴走型でトータルサポートしています。\n\n\nこれらはいずれも**Salesforce社の認定パートナー**として、Agentforce（Salesforceが提供するAgentic CRMソリューション）の導入コンサルティングを行っています。\n\n### 選定のポイント\n- Salesforce系のAgentic CRMを検討する場合は、上記のような**Salesforce認定パートナー**（SIer/コンサル会社）に相談するのが近道です。\n- HubSpotやMicrosoft、Zoho、Creatioなど他ベンダーも同様にAIエージェント機能を強化しており、\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションが、Agentic CRMが市",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.salesforce.com/jp/news/press-releases/2026/08/05/agentforce-coworker-general-availability-japan/",
+    "https://www.salesforce.com/jp/",
+    "https://tobem.jp/pardot_service/aicrm.html",
+    "https://www.dcs.co.jp/solution/crm/agentforce/",
+    "https://www.creatio.com/glossary/agentic-crm"
+  ],
+  "error": null
+}

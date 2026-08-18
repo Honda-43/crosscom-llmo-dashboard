@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-19",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-18T22:24:56.601695Z",
+  "answer": "中堅企業が特定のベンダーに依存せず、中立的な立場でCRMの設計を支援してくれる会社を探している場合、以下のタイプの会社が候補となります。\n\n**1. 独立系CRMコンサルティング会社**\n特定のCRMツールに縛られず、貴社のビジネス要件に合わせて最適なツール選定から設計、導入、運用までを一貫してサポートします。\n\n*   **株式会社ArchRise（アーチライズ）**: CRM・SFA領域において、ツール選定や要件整理から設計・初期構築、導入後の運用定着までを一貫してサポートしています。Salesforce、Zoho、HubSpotなど複数のクラウドCRM・SFAを比較し、特定ベンダーに偏らない構成を提案することを強みとしています。\n*   **株式会社ripla（リプラ）**: 業務設計からシステム構築・運用まで一気通貫で支援するDX/開発支援会社です。CRM開発では、単なる顧客情報管理にとどまらず、営業・マーケティング・サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応できます。特に、標準CRMパッケージでは不足する要件や自社特有の業務プロセスを反映したCRMを必要とする中堅〜大企業におすすめされています。\n*   **合同会社クロスコム**: 「Agentic CRM設計支援」サービスを提供しており、AIネイティブなCRMを貴社専用に設計します。データの意味付けを重視し、貴社専用の独立環境で処理を行う点を特徴としています。\n*   **インフォテック・サービス**: 独立系ベンダーとして特定のメーカーに依存せず、顧客に最適なソリューションを提供できることを強みとしています。\n\n**2. データ活用・DX推進を強みとするコンサルティング会社**\nCRMは顧客データ活用の中核であるため、データ戦略全体を俯瞰し、中立的な立場でCRMを位置づけて設計できる会社も有効です。\n\n*   **SORAMICHI**: データ活用・CRM/CX・Web開発・デジタル広告まで幅広いソリューションを取り扱っており、特定ベンダーに依存しない最適な構成を中立的な立場で提案します。戦略策定からデータ基盤のシステム構築・実装・運用・改善まで一貫して支援します。\n\n**3. その他CRM導入支援を行う会社**\n中堅・中小企業向けのCRM導入支援を専門とし、複数ツールの比較や中立的なアドバイスを提供する会社もあります。\n\n*   **ECマーケティング株式会社**: 中小・中堅規模のEC/通販企業から大手企業まで、社内の状況に合わせたサービスを提供しており、業種ごとに優秀なコンサルタントが在籍しています。\n*   **株式会社船井総合研究所**: 地方の中堅～大手企業の実績が豊富で、業種ごとにコンサルタントが在籍しているため、自社に合った戦略立案が可能です。\n*   **株式会社システムピース**: 業務システム開発を中心に中小企業をサポートしており、新規開発から改修、運用保守まで対応しています。\n*   **シースリーインデックス株式会社**: 独立系ならではの柔軟な提案が可能で、ベンダーやメーカーに縛られず、さまざまな製品や技術から適した組み合わせを選定して提案します。\n\n**会社選定のポイント**\nCRMコンサルティング会社を選ぶ際には、以下の点を考慮すると良いでしょう。\n\n*   **専門知識と客観的視点**: CRM/MA/SFAに関する専門知識を持ち、特定の製品に偏らず、複数ツールを比較して最適な選定をサポートしてくれるか。\n*   **支援範囲**: ツール選定だけでなく、要件整理、設計、初期構築、導入後の運用定着、改善提案まで一貫してサポートしてくれるか。\n*   **業務理解・設計力**: 貴社の業務プロセスを深く理解し、それに合わせた項目設計や画面レイアウト、ワークフロー設定ができるか。\n*   **中堅企業への実績**: 貴社と同規模、または類似業種でのCRM導入・設計支援の実績があるか。\n*   **ベンダーロックイン回避への取り組み**: ベンダーロックインを避けるためのCRMの見分け方や、すでにロックインされている場合の対処法についてもアドバイスが得られるか。\n*   **費用対効果**: 初期費用や月額費用だけでなく、運用コストを含めたトータルコストを考慮し、費用対効果に見合った提案をしてくれるか。\n\n貴社の具体的な課題や予算、求める支援内容に応じて、これらの会社に問い合わせてみることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGG2Wn2l8Brwlt4IVIbqKWI3SR69qwKDDNo1-Hz4SgTt_vYumeVOkGhe0UTN1fAioRZqdM9Wtxyhmz-heNMOz68YqTTzYvDwn8zMBZaD7E8ZWV2mvJmw2tHF2D8H3IYaVELFJ2iWYQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHaoADA4MfUw1SGUUSg5eRV0Fe2b12Db4f4lX5vt3g0GF2_QitsqDwMOIwSFfWQR7xh-Mg6i7rHxhKngHYE5lUlxsb0G0kUjcDMAfWvM52_7loH1KOJg-Nn5Fn5pWUPeDQwEK0MIlaaUPY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEGX-WJ2Gt6TqimCQb-kx5EqypLuy9gXm-IGIqPB_a3lbK8H7RuaN5iiv_VRiXgjvp6BHxhwmFLax-dp2Y1McFd6G7wEXV3Ko9mW1p48pIv4rXELURFDaF9Ci4N4TQ1KEiouhnw5jH3ieF7",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF6bJv5bE_DbBglAjqUaePOu4I99qiPd58TolXISr34K_u3DO1K_4muVlg2GHdR5OCGjjo2MZVCokXqUQtak6qLqbM8Dv8POK485WQlHy105NdQZsgTfFsx3A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGyoBUI-etl4hoFfvGVRXGSr_5y_OIpRFzTJXAY6rMb9bgTby05KGc_fVaty86l5f6TOq4L6DZitv6tcGqcgjkTSaV7NrAdTHWfSGg91W_4okXi8GJ0AGu1Nxz2PCKFLcXo7miyP-j7IpZ2909Yi09b2gn2k2AHcz-9-Dfk_C6x3hE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF2SiazlTSKH2C0h83UFUNwUT1nfVQeo1Im1yFt6T2IwxHzfonGP63l0QxR7k7yXThjgozVKWd5UDGPZDbrWvkFQMZGxMJvDLqo6GT-cwaxA70CxcvksrrvfHi8jqAPVnrJLBYCop7W24cM",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEEIh3P2K6nhFdK-S6WKniKWjWTipeQFYq7V4uop0qVCEpvSQpsTtjM7MBMBZm6p93eMsNqAOwau1P13IrSjGBzBvlz8YL3p1-TX6leVXV0N6DdvcxQt4sZUK28-5PE_f1uXBjy00Jw2cbApBMCTbIiq5g=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQExi1mUzLCuUMJ19d8w7O2T6UdSfNr-jn2dxkuNIpYUmKViifIPEnyWUpdAURYI56MNh-Ae_CgfeE4CCL9IXxrlJiFyb2ZvUw3gFABEd7zdbYYD0GCKNwbTwbB-52oknuLWtPWH_E1R0wjyFrE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGn34W61_CzCVWShdvAga_9VUOlK2wqT73BQ1KbsdAG_rpkXzKP6WzFyCRlSDYFi3R3BgDDTl25UWCFnMDU8F9B_yXyMC192nuhO-6NzYqncxrQyD_qPGZJGf50DH7pyymAOaly74U4L64kXJAGVw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFjJynH2bSVKmxlZkpLcDApOrH9mOPtVLCabuCxOP2tPNqCgpMwHIF75s8p8QyWPiXUAQH1_ERcfpfs7vLZUhMtr50AOqnwDcrhu12QJL96mx4d2bn11GChr-6qPaHyuiI8esMUg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF5CbgWwnlTgwMjn9uBE_qfpY7dTSghaaLC4-8KcRbupxouIbc4yVzjajHrEeAujWfqbm0bL_oVA7PB3KqcZ5WRGz-e2SbHwrF1ve8gdlPrkhKaz8AHxo1nfujgNQWBfwvonwU7P-cNLR3eHyHs"
+  ],
+  "error": null
+}
