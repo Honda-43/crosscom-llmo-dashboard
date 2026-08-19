@@ -1,0 +1,18 @@
+{
+  "date": "2026-08-20",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-08-19T22:26:35.031736Z",
+  "answer": "営業にAIエージェントを活用するにあたり、ツール選定の前にCRMのデータ設計から支援してくれるパートナーとして、以下の企業やサービスが挙げられます。\n\n*   **三菱総研ＤＣＳ**: Salesforceが提供するAIエージェント「Agentforce」の導入・活用支援サービスを提供しています。データ分析・活用基盤の構築や、社内の基幹システムとSalesforceを含む各種ツールを統合したデータ基盤の構築において豊富な実績があり、データ統合型での導入支援を強みとしています。\n*   **データ活用・AIコンサルティングサービス（サービス提供企業）**: CRM・データ戦略設計からデータ基盤構築、AI予測分析、生成AI活用、AIエージェント開発まで一貫して支援するサービスを提供しています。\n*   **株式会社グロースパイロット**: HubSpotを活用したAIエージェント連携の設計・実装・運用支援を行っており、AIエージェントの精度向上のために、連携前のCRMデータクレンジングの重要性を指摘しています。\n*   **ファネルAi**: AI CRMの導入支援において、自社の営業導線、Google Workspace、SFA、MAとの接続まで含めた支援を行っており、要件定義やパイロット運用についても相談可能です。\n\nこれらのパートナーは、AIエージェントの導入を成功させる上で不可欠なCRMデータの設計や整備、既存システムとの連携など、データ基盤の観点から支援を提供できると考えられます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEC_j2bjec7Xg_XRs6admfA0OcE-kF6tjvAIcLgI-ZKiU7a5fP8m9x4LlA3WohSyJpztk8JtTg5NF-MoCfYYXr4P8b4FSAFZlfKCe23PjaAkccLl76ED-gjlwqd7C_4PBCCvKi6Iuy1xU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGnU1uFOxE0ZDppx4WsYeng3YJ15ZUriEIZiY0jEElvMc-AFmbgl-i50dqcVJvCVeJMj19GU1AIcU8L5GVdCFsYE2w8FtrGuXYVSfSfTkCoG-bhyUOJMf0fLEPorkCpv2Oaah8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_-dergd6E6BiCvTIVoymLyvovM_txvwhVBNB3F7PhGmIgoDrSuJ9RqCPON4ctHaBORhyQQdH4TRGhWu14uI5pF3yWr04VN1TeZ2NxIi2b2ozDbHlw3zGKXuI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHwp2oRrDq_z08qpQFuRL6dytf9zhN9IHPiEUKvk5lztbvLtAZTriVjx2fHKOIeOkGGoiegslbLC6XXVPny2Nyl8Y3btrPB_QmTSHltS2ccqbUYe86V40MT6Lvp6oE="
+  ],
+  "error": null
+}

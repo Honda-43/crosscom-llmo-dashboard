@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-20",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-19T22:25:49.720135Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRMとは、AIエージェントが自律的にマーケティングや営業、カスタマーサービスなどの業務を実行するタイプの顧客関係管理（CRM）システムです。\n従来のCRMがデータを蓄積してユーザーの操作を待つのに対し、Agentic CRMはユーザーが設定した戦略やガードレールの範囲内で、キャンペーンの立案、顧客への対応、パフォーマンスの最適化などを自律的に実行します。\n\n\nSalesforceの定義では、\nAgentic CRMは人間と自律型AIエージェントが利用するCRMシステムであり、AIエージェントは各ステップで人間の承認を必要とせずに複数ステップにわたるワークフローを計画・実行・調整できます。エージェントは事前に設定されたガードレール内で行動し、必要な場合には人間にエスカレーションします。\n\n\n## 従来のCRM（ルールベース）との違い\n\n\n従来のルールベースのCRM自動化は、「リードスコアが一定の閾値を超えたら定型メールを送る」といった固定的なロジックに従うだけですが、Agenticシステムは文脈を解釈し、単に条件と出力をマッチングするのではなく、顧客データを推論して状況に応じた適切なアクションを特定し、その後の結果に基づいてアプローチを調整します。\n\n\n## 主な機能\n\nKlaviyoの解説によれば、Agentic CRMの中核機能には以下があります：\n\n- **マーケティング向けAIエージェント**：\nURLやブリーフ、商品リスト、自由形式のアイデアから、ブランドガイドラインとコンテンツガードレールの範囲内で、オンブランドなフォーム・キャンペーン・フローを含むマーケティング戦略を作成し、レビュー用に提示します。\n\n- **カスタマーサービス向けAIエージェント**：\nWebチャット、SMS、メール、WhatsAppなど複数チャネルで質問対応、注文追跡、返品処理、商品推薦を行い、店舗情報やポリシーに基づいて正確でオンブランドな回答を24時間提供します。\n\n- **統合された顧客プロファイル**：\nすべてのやり取りが一つのプロファイルに集約され、閲覧行動・購入履歴・サポート履歴・チャネルの好みなどの情報が、人間チームとAIエージェント双方に共有されます。\n\n\n## 主要ベンダー\n\nCreatioのガイドによると、\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションが、Agentic CRMが市場をどのように再構築しているかを示しています。\n 日本市場では、Salesforceが「Agentforce」というAIエージェントを組み込んでおり、\nSMBCグループやMUFGなどの金融機関が、Agentforceを活用した新しいCRMシステムの構築を進めています。\n\n\n---\n\n# 導入・設計を支援してくれる会社\n\n## 海外（グローバル）のAgentic AI/CRM特化企業\n\n- **CRMIT**：\nSalesforceの認定コンサルティングパートナーで、Agentic AIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供し、企業がデータをリアルタイムの意思決定に変換する支援をしています。\n\n- **congruentX**：\nシステム・オブ・レコードを「行動のプラットフォーム」に変革するCRMコンサルティングを提供し、AIエージェントプラットフォーム技術で非営業活動を自動化、ガバナンス負担を増やさずにデジタル労働力を展開します。\n\n- **Inogic**（Microsoft Dynamics 365領域）：\n自律型システムの構築はDIYプロジェクトではなく、深いテクノ・ファンクショナルコンサルティングの理解と1,000件以上の導入実績が必要であり、Dynamics 365ユーザーの日常業務にAzure OpenAIの力を届けることに注力しています。\n\n- **AavishkarIT**：\n構造化されたディスカバリー、ローコード導入、データ移行、レポーティング、ガバナンスなどを通じてCRMシステムの設計・改善・サポートを支援するCRMコンサルティング・導入・移行・自動化・運用サポートパートナーで、Creatio・TWOZOのスペシャリストとして28カ国以上でグローバル展開しています。\n\n\n## 日本国内のCRMコンサルティング会社\n\n日本では「Agentic CRM」という名称に特化した会社はまだ少ないものの、CRM導入・設計支援を行うコンサルティング会社は多数存在します：\n\n- **船井総合研究所**：\nKGI/KPIの設計支援、CRMツールの機能比較・選定アドバイス、社内担当者向けの教育・トレーニングなど、幅広い相談に対応する経験豊富なコンサルタントが在籍しています。\n\n- **グラビス・アーキテクツ**：ERP・CRMパッケージの導入・利活用コンサルティングを専門とし、東京・札幌・大阪・福岡に拠点を持つ会社です。\n- Salesforce自",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.salesforce.com/jp/",
+    "https://www.crmit.com/",
+    "https://congruentx.com/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://www.aavishkarit.com/knowledge/agentic-crm",
+    "https://www.funaisoken.co.jp/solution/dc-crm_705_S092"
+  ],
+  "error": null
+}
