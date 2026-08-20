@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-21",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-20T22:28:32.773775Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、人の指示を待たずに顧客データを読み取り、次に取るべき行動を自ら判断して実行する顧客関係管理システムのことです。 AIエージェントが、設定されたルールの中で自律的に複数のタスクを実行し、必要に応じて人の承認を求めたり、人間にエスカレーションしたりします。\n\n従来のCRMが主に顧客情報の記録・管理を行う「記録する箱」であったのに対し、Agentic CRMはAIエージェントが顧客情報、商談、活動履歴、ナレッジ、見積条件などを横断的に読み解き、営業担当者に代わって一次処理や下書き作成を行うことを前提に設計されています。これにより、顧客ごとの個別対応を人手を増やさずに実現し、マーケティング、営業、カスタマーサービスといった収益プロセスを連携させることができます。\n\nAgentic CRMの主な特徴は以下の通りです。\n\n*   **自律的な行動**: 人の指示を待たずにデータを読み取り、次に取るべき行動を自ら判断・実行します。\n*   **AIエージェントによる処理**: 目的を与えられると、AIエージェントが複数の情報源を参照し、手順を分解して作業を進めます。\n*   **業務の自動化**: 入力、更新、分析といった作業を自動化し、営業担当者の負担を軽減します。\n*   **個別化された対応**: 顧客ごとの対応を、人手を増やすことなく実現します。\n*   **学習と精度向上**: 活用するほどデータから学習し、AIの提案や実行精度が向上します。\n\n### Agentic CRMの導入や設計を支援する会社\n\nAgentic CRMの導入や設計を支援する会社として、以下のような企業があります。\n\n*   **合同会社クロスコム**: AIがデータを読み書きすることを前提としたAgentic CRMの設計支援を提供しています。 業務課題のヒアリングから業務設計までを一貫して支援し、顧客専用の思考プロセスや判断基準を明確化するところから運用の定着までをサポートします。\n*   **株式会社ハイウェイ**: AIネイティブCRM「Hiway CRM」を提供しており、入力・更新・分析の自動化を通じて営業担当者のタスク実行を支援するAgentic CRMです。 また、「Agentic CX Platform™」として、複数の顧客チャネルに分散したデータを統合し、Agentの意図理解・判断精度を向上させるプラットフォームも提供しており、導入設計や成果シミュレーションに関する相談も可能です。\n*   **株式会社100**: HubSpotとAIエージェント、DXを統合する「Agentic CRM パートナー」として、顧客フロント業務（マーケティング、営業、CS）の再設計を支援しています。 HubSpotの導入・活用支援に加え、AIエージェントを組み込んだ組織構築や、全社的なDXとAI推進のPMO伴走支援も行っています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGKt22lGEehHxICiBEP4yRGf4y_OyKOFbwS0KGVNNtNrTwI4ONR9Cv7g9tI_V2cNUL0N4QxFEuSzJPwIXC4ndjikY0i1bKUoyaps9ezGoIoZns381gAtTSQvdJ52w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtinMq_ALnrmWawv5zO99rca0_NnmbGdITG3FfQ5TfX3y2mrM9WhYgx4L7bAdG2QhIhg7w5uG5ZFSnpj1A8kB49fync1E5slwjPX2tdH0UxRTCFT6012TGxSYQE-NpCAEkWnss7Rt0COat5O_w0AYKcVk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeWpxLNtCb1ngNmFqorW6b7QcNXku1Qs6QGOtSBSnt6cgyNeiUydL_oRsniP1Z-mksXWLXUHNkHc61DQcgq2gCgaFhb7JKaEYb6bjGT_Jk8K_RvcXD-BpqggLFV-zTiHKU5_gnFEM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQoUPRDED7LDhDfZDanswu8UF1cvmMklKPQ1u8W_LDq0H-Oa3IVQCo9Me7a2Qyo2Lx5XrZCNdimbpPiDjehXBPtUpr6DIRcpdiTs6Lp48Dzm3I163M2sS8Zssz9s5FITvM07HTBf_k8LPhqg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFvdLsP_K0gGDTPELpA6-ubfqsSVwVUEFkrtz7PkT12Z_xI1yUrN8jRxlCeUkMfregRJZOrGa-Qdq2V63rl1_LBvaCdd82VYmpFlXPM6xS3twsd6V3svgy6QQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZebKTdgSq0fHkxu45a4gqFZYwBbFYEjPDElYCUlI32zZpTZtipqQEwzSLaM5IiH-rLa_4ICEx6mdPIIV9pY4GKMY9oYaNcIQtEQccleg_1oOTlNCOd_edejRuUwwf-QPPtAOPo5NjSY9_PA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF_02djZBb0qUcefatis2A39kb-ifjtlnf2rW6H2Wqc4W_TvVr86viEkO6zbhJm8zL2NtVxGIiiFhpKtVs0QKmEYS9aZvlx6CvrA4kuJ3mpBgsfKbqkbJT93A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHE1LbOYmhey2p8H7xI4yUKuzvKVNs57rmZidWMuCCb8Wy6SNP1CTyrQCTWfXPRygPvCSf5oGEYQlPsKdQoerkaYsVf-QPyWAaja2R9YF6EGRplf46uEzr6ldhdeCpUfYi-7jMdeHV4CYeI1YBzxCOlOHW9AZGmYKPr9qQjMd9QB26F1i-QGt_blAVtmFu0C2rnElI-ecQaJJLsyb5xMnG23-88"
+  ],
+  "error": null
+}

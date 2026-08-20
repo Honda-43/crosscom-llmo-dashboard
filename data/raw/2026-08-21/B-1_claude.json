@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-21",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-20T22:29:07.652712Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、**AIエージェントが自律的に業務を遂行するCRM(顧客関係管理)システム**のことです。従来のCRMとの違いは以下の通りです。\n\n\nAgentic CRMとは、人間と自律型AIエージェント、そしてそれらが動作するプラットフォームが協働して顧客成功を推進するCRMシステムです。\n従来型のCRMとの決定的な違いは「待つ」か「動く」かにあります。\n\n- **従来型CRM**: \n担当者が通話を記録したり情報を更新したりするのを待つ受動的なシステム\n\n- **Agentic CRM**: \nその情報を基に、指示を受けずに自ら行動を起こすシステム\n\n\n### ルールベース自動化との違い\n\n\n従来のルールベースのCRM自動化とは大きく異なります。ルールベースのシステムは「リードスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従います。一方、エージェント型システムは文脈を解釈するため、単に条件を出力に一致させているわけではありません。顧客データを推論し、状況に応じた最適な行動を特定し、その後の結果に基づいてアプローチを調整します。\n\n\n### 主な機能例\n\n- **マーケティング**: \nURLやブリーフ、商品リストなどから、ブランドガイドラインの範囲内でオンブランドなフォーム・キャンペーン・フローを含むマーケティング戦略を自動生成\n\n- **カスタマーサービス**: \nWeb チャット、SMS、メール、WhatsAppを通じて、質問への回答、注文追跡、返品処理、商品レコメンドを行い、店舗情報やポリシーに基づいて24時間正確でブランドに沿った対応を提供\n\n- **人間との協働**: \nエージェントは事前に設定されたガードレールの範囲内で行動し、必要な場合は人間にエスカレーションします\n\n\n### 主要ベンダーの動向\n\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションが、Agentic CRMが市場をどのように再構築し、今後の標準を確立しつつあるかを示しています。\nSalesforceのAgentforceや、MicrosoftのDynamics 365におけるエージェント機能などが代表例です。\n\n---\n\n# 導入・設計を支援する企業\n\n## 海外の主要プレイヤー\n- **CRMIT**: \nSalesforceのコンサルティングパートナーとして、エージェンティックAIソリューション、意思決定インテリジェンスのコンサルティング、CRM導入サービスを提供\n\n- **Solutions Metrix**: \n2001年からCRM導入を支援してきた信頼されるパートナーで、あらゆる組織の固有ニーズに合わせたソリューションを専門としています\n\n- **Inogic**: Dynamics 365向けにAzure AIを活用したエージェント型サービスの構築を支援\n- **congruentX**: \nCRMコンサルティングサービスを通じて、システム・オブ・レコードをAIエージェントによる「アクションのプラットフォーム」へ変革\nする取り組みを展開\n\n## 日本企業\n日本国内でも専門的な支援サービスが登場しています。\n\n- **合同会社クロスコム**: \nSalesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行うBtoB特化のコンサルティング会社\nです。\nSales Cloud(CRM)、Account Engagement(MA)の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装\nしている点が特徴です。\n\n- **セールスフォース・ジャパン**: \n中堅・中小企業とスタートアップ向けの「Salesforceスイート」の全プラン（Free、Starter、Pro）にAgentforceを統合\nしており、日本国内でも中小企業向けの提供が拡大しています。\n\n---\n\n## 導入検討のポイント\n\nAgentic CRM導入時には、AIエージェントの権限設計が特に重要です。\nCRMレコードへの書き込み権限が過剰なAIエージェントは、統合の不具合と同様にデータを破損させる可能性があり、変化が通常の活動のように見えるため発見が難しいことが多いです。コンサルティングパートナーには、AIを「使った」かどうかだけでなく、AIエージェントの権限設定や監査ログの構成を実際に行った経験があるかを直接確認すべきです。\n\n\n自社に合った支援会社を選ぶ際は、単なるツール導入実績だけでなく、業務フロー理解・ガバナンス設計・定着支援(運用が根付くまでの伴走)の実績を確認することをおすすめします。",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.crmit.com/",
+    "https://solutionsmetrix.com/",
+    "https://congruentx.com/",
+    "https://cross-com.jp/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://webtan.impress.co.jp/n/2026/04/10/52470",
+    "https://integrateiq.com/blogs/crm-consulting-services-companies/"
+  ],
+  "error": null
+}

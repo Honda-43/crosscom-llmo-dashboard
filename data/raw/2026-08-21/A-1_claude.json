@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-21",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-20T22:26:58.861093Z",
+  "answer": "Agentforce(Salesforce社のAIエージェント製品)の導入支援を行っている企業について調べてみます。\n# Agentforce導入支援でおすすめの会社\n\nAgentforce（Salesforceの自律型AIエージェントプラットフォーム）の導入支援を行っている会社はいくつかあります。特徴別にご紹介します。\n\n## 大手SIer系\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援しており、導入検討フェーズでは技術検証よりも「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定を重視しています\n。\n\n**日鉄ソリューションズ（NSSOL）**\n\nSalesforce社のパートナーであり、AIエージェント\"Agentforce\"についてもソリューション化に向けた企画開発や検証を進めており、Agentforce国内No.1パートナーを目指しています\n。\n\n## AI・データ活用に強みのある会社\n\n**ウフル（Uhuru）**\n\nSalesforceのテクノロジーを活かした業務支援の経験をもとに、Agentforceの導入・活用を実践的に支援しており、「Agentforce for Service」を対象にカスタマーサービス領域に特化した支援を提供しています\n。\n最短3ヶ月でAgentforceを導入するクイック支援サービスを展開し、マーケティングとカスタマーサービスの両領域に対応しています\n。\n\n## 内製化支援・伴走型サポートに強い会社\n\n**メンバーズ（サースプラスカンパニー）**\n\n導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバーし、Service・Marketing・Salesの各テンプレートに対応、セキュリティやガバナンスの整備まで含めて対応するのが特徴です\n。\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\n。\n\n## 特定領域（営業・BtoB）に特化した会社\n\n**クロスコム**\n\n実務で活用できるまでの定着支援に重点を置き、目標から逆算した業務設計を行い、導入後はカスタマーサクセスチームが継続的にモニタリング、1ユースケース×3ヶ月のスモールスタートから対応しています\n。\n\n**enucolor**\n\nSFA・営業領域のAI活用に向けたAgentforce導入支援サービスを提供し、現状業務の理解及び課題整理からPoC、実装、活用後の改善サポートまで5つのステップで支援します\n。\n\n---\n\n## 選び方のポイント\n\n\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼり、その多くが「導入支援会社」と呼ばれる区分に含まれます\n。会社選びの際は以下を意識すると良いでしょう。\n\n1. **対象領域の一致**：Service（カスタマーサポート）、Sales（営業）、Marketing のどの領域に強みがあるか\n2. **支援範囲**：PoC止まりか、本番導入・定着化・内製化まで伴走してくれるか\n3. **実績**：自社と近い業界・規模での導入事例があるか\n4. **契約形態**：スモールスタート（例：1ユースケース×数ヶ月）が可能か、大規模一括導入型か\n\n自社の課題（例：問い合わせ対応の自動化なのか、営業活動の効率化なのか）を明確にした上で、複数社に相談・比較することをおすすめします。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://note.com/nssol_note/n/n1839fa740632",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}
