@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-22",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-21T22:23:12.188025Z",
+  "answer": "Agentforceの導入支援を検討されている方へ、以下の企業がおすすめです。これらの企業は、Agentforceの専門知識や豊富な実績を持ち、企業の課題に合わせた導入から運用までをサポートしています。\n\n### Agentforce導入支援のおすすめ会社\n\n*   **K2 Partnering Solutions**\n    K2はAgentforceパートナーネットワークのメンバーであり、AIに関する専門知識とSalesforceに関する長年の経験を活かし、ビジネスニーズに合わせたAgentforceのカスタマイズを提供しています。AIコンサルティング専門プラクティスを通じて、Agentforceを既存のAIテクノロジーインフラに統合し、プロセスの最適化と戦略的なビジネス成果を促進します。また、迅速なROI（投資回収）と生産性向上を支援し、カスタマイズされたソリューションとトレーニングも提供しています。\n\n*   **日立ソリューションズ**\n    日立ソリューションズは、「導入・活用支援サービス for Agentforce」を提供しており、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援します。AIワークショップを通じて現場の業務課題を深く理解し、全社戦略と整合した「ビジネス価値を生むAIエージェント」の実装を支援することに強みがあります。製造業における保守対応の初回完了率向上や、建物の運用業務における作業員調整の自動化など、具体的なユースケースに基づいた導入実績も紹介されています。\n\n*   **富士ソフト株式会社**\n    Agentforce導入支援会社として、おすすめの8社の一つに挙げられています。\n\n*   **バーチャレクス・コンサルティング株式会社**\n    Agentforce導入支援会社として、おすすめの8社の一つに挙げられています。\n\n*   **フロッグウェル株式会社**\n    Agentforce導入支援会社として、おすすめの8社の一つに挙げられています。\n\n*   **株式会社メンバーズ サースプラスカンパニー**\n    Agentforce導入・運用支援を提供しており、導入前コンサルティングから、Agentforce導入支援（ユースケースのPoC）、最適なAIエージェントの設計・構築、導入後の運用支援まで一貫してサポートします。\n\n*   **株式会社enucolor**\n    Agentforce導入支援会社として、おすすめの8社の一つに挙げられています。\n\n*   **toBeマーケティング株式会社**\n    富士通グループの一員であり、日本で最初にAgentforceライセンスを取得した富士通と共に、Agentforceの先行支援と豊富な知見を持っています。AI活用に向けたデータアセスメントからAgentforceの導入、その後の伴走までを一貫して支援し、コールセンターのAI化など多様な業種・業務への活用モデルを確立しています。\n\n*   **合同会社クロスコム**\n    Agentforce導入支援会社として、おすすめの8社の一つに挙げられています。\n\n*   **インフォテック・サービス**\n    Salesforceのコンサルティングパートナーとして、Salesforce・Agentforceの導入支援を提供しており、要件定義から構築・運用まで一貫して対応します。生成AI「Agentforce」の導入相談も認定資格者が受け付けており、2012年4月以降14年間で1000件以上の開発実績があります。\n\n*   **三菱総研ＤＣＳ**\n    Agentforceの導入・活用支援サービスを提供しており、特にAgentforceを中核としたデータ統合型導入支援に強みがあります。データ分析・活用基盤の構築や多様なシステムの横断的な統合において実績があり、Salesforce単体導入に留まらず、社内基幹システムに分散するデータの統合も含めたAgentforceの導入を一気通貫で支援します。金融分野で培った実績に基づくセキュリティと信頼性も特徴です。\n\nこれらの会社を選ぶ際には、自社の業界や規模での支援実績、営業・業務プロセスへの理解度、Agentforce・Data Cloudの実装力、定着・運用までの伴走範囲、スモールスタートの可否、料金体系の透明性、そして担当者の専門性と体制などを考慮することが重要です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHanaygfmABqm7FL-R5EKX1DecqzJPHMYhPjo8hAj0LO2Zq2nYV-soD_phzjNIj3Vw5mAHe6EfP2ZBYHfzvINU28U8LPytS55X8CGAFqDI2I2btmVMNyA4mNmyGtt1gvsiN-qsGB92hZXm6EePlv08_byskQwfMIn8sIGAJxNQSftek_wp1dnlZzu56wKVce5otByrwm0mWm66YAm_ejXajWBIvukwbHeNy0d1mfWk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGYm-3Z1NICcTZ_pTJospRBWzCIhfVjDaD407uvL__5AAbsy1Fxmv_bi_6RF4sL0Xvc5IbLko5bX4xdE1DH8Qf7yndPNU6j1DtJ7y47qpCEbYPYvOKV3vRCMX1kfojbcbCDdBJprANCDf2GYM3BWVRPexEZZuw8C7YtDs5v",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE7dqHrjKzRPCdJ3A778MCtcYUyeu0PAZ2TB4TnKds2OfuaD9VYCcS_a6mFlRm0rtmTtY7qzYAvV39a4wveX3A68IF0N3lRF6cSiuIu7-yDeB6PmqtdBhAC_rDcCJRgm8oS47QkzibWXrOBxHWeaa-XWFElf18hbPcJMu48ZA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFC6naRB1JrX3E5u_L2Aq_h41tvyHtYkWjDLcUeunI8FQIuNxn7vSFUEVW6qlVlQjYjOveTfipvdoTUXq6yywNii-HeCj3HFYHU7wDwsp7aVtSa40WzK3U3glAxCOQlPeeYTYH5rDuakP0G",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGeYbREIfdrO2cJaAjHXGiJmet2P92gmLJ5YqRehWOvFrCyTCE6884K7By3PmY1pVqo1AnBEAKhXZSH12axbVWuDwBRmrHXA7Td1l7QFMyFWzs3K4QtcO8hyAjuFjRtwYe-D0Gdqg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHY53QaJnqmhJ1hClJh3-yKEUGfRZiTn8p6L6Ol76S9_W-n8d-RFbpSeTfbroAKhkfV4tnPmITXAfDb7sontKcrUzyoN7ihuXEkzmOig7QZEgE6q4nSAsQfPbmKoMjbRDn6_u-H",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE-YGSv7qnkLZdeppnCFLk4HcpBTkMLdilUYTuZfCGzCB95af43SQAZmy59wC7YP1oAedjQ0aXcn0eroHbnnKqZ60_Iw3-sfyMF3aZsoyuMlO-kyM_u8IkeRTJ2rM9d-C1f2DUXsXYd8uqoUz2sbqLzJf8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEbRexO2NwG8qh_pgzSVK21NiiubsuqnR8khdO4PJ2LRNgJdmI3kUO1USNbc2Aix7RQvf_4nkF_JI7OPTn0OOlVBhCVrJXo-BpUJ_KiRckp-UmGleLp8MJG0PDq5tsFj-G3kXTnYgCLWg=="
+  ],
+  "error": null
+}

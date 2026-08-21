@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-22",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-21T22:25:05.164330Z",
+  "answer": "Agentforceの導入費用と費用対効果を出すための進め方について調べます。\n# Agentforce導入費用の相場と費用対効果を出す進め方\n\n## 1. Agentforceの費用構造（相場）\n\nAgentforceの費用は大きく「①ベースとなるSalesforceライセンス」＋「②Agentforce自体の利用料（従量課金または月額）」＋「③Data Cloud等の周辺インフラ費用」＋「④構築・導入支援費用」の4層構造になっています。\n\n### ① 前提となるSalesforceライセンス\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援する\n形が一般的で、まず既存のSales Cloud／Service Cloud（Enterprise Edition以上）が土台になります。\n\n### ② Agentforce本体の料金モデル\n2025年5月以降、料金体系は複数用意されており、自社の使い方に応じて選ぶ形になっています。\n\n- **会話単位課金**：\nコンサンプションモデル（従量課金制）を採用しており、1会話あたり240円\n\n- **Flexクレジット制**：\n「Flexクレジット」エディションでは60,000円/100,000クレジット利用できる\n仕組みで、\nFlex Credit（1アクション20クレジット＝約12円）\nが目安です。標準的なアクション1回あたり米ドルベースでは\n標準アクションは20クレジット、$500/100,000クレジットの定価で$0.10\nとなります。\n- **会話とFlexクレジットの使い分けの損益分岐点**は\n1会話あたり約20アクションが損益分岐点で、それ以下であればFlexクレジットの方が安くなる\nとされています。\n- **ユーザー単位ライセンス**：\n代替として1会話あたり$2の課金モデルもあり、ユーザー単位オプションは1ユーザー月額$125〜$550の範囲\nです。\n- 無料枠もあり、\nSalesforce Foundations（Enterprise Edition以上）には10万Flex Creditsが無償付与されており、PoCはコストゼロから始められる\nため、小さく試すこと自体には初期費用がかからないケースもあります。\n\n### ③ 見落とされがちなData Cloud費用\n海外の分析ですが、規模感を掴む参考になります。\nAgentforceが正常に機能するにはData Cloudが必要であり、これは購入者が見落としがちなコストで、しばしばAgentforceのライセンス費用自体を上回る\nとの指摘があり、\n初期投資の総額（Data Cloud・導入・保守を含む）は初年度で15万〜42.5万ドルに及ぶ\nという試算例もあります。日本国内でも\nAgentforceの利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要がある\nと指摘されています。\n\n### ④ 構築・導入支援（コンサル・SIer）費用\n国内のコンサル会社への依頼費用は、\n依頼内容によって幅があり、費用相場は数十万〜数百万円と幅広い\nのが実態です。要件やユースケース数、既存Salesforce環境の複雑さによって大きく変動するため、複数社から見積を取ることが推奨されています。\n\n---\n\n## 2. 費用対効果（ROI）を出すための進め方\n\n複数の導入支援会社・SIerが共通して推奨するアプローチは、**「小さく始めて、効果を可視化しながら段階的に拡大する」**という流れです。\n\n### ステップ1：ビジネス価値の明確化とユースケース選定\n技術検証よりも先に取り組むべきは目的設定です。\n導入検討フェーズにおける最大のハードルは、技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定\nとされています。具体的には、\nユースケースに対しSalesforce上での実装が適しているか（適合性）、および実装にどの程度の工数・技術が必要か（難易度）をマトリクスで評価し、効果が高くかつ実現しやすいAIエージェントから導入する\nという方法が有効です。\n\n最初に着手する業務としては、\n「リードの資格確認（Qualifying）」や「配送状況の回答」など、副作用が少なくデータが構造化されている領域からスモールスタートし、Atlas推論エンジンの癖を把握することが推奨\nされています。\n\n### ステップ2：データとフローの事前整備\nAIエージェントの精度はデータ品質に直結します。\nAgentforceがその自律的な能力を最",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://note.com/honda_crosscom/n/n7c0a9df77cf1",
+    "https://aquiva.com/blog/agentforce-pricing-gets-a-long-overdue-fix-flex-credits-are-now-live",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://freeconsul.co.jp/cs/salesforce-consultant-company/",
+    "https://aurant-technologies.com/blog/agentforce-implementation-strategy-failure-business-design-2700/",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2"
+  ],
+  "error": null
+}

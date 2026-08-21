@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-22",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-21T22:25:12.738548Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、AIエージェントが顧客データや商談履歴などを自律的に読み取り、人の指示を待たずに次に取るべき行動を判断・実行する顧客関係管理システムです。従来のCRMがデータを記録・管理する「箱」であったのに対し、Agentic CRMはAIエージェントが自らタスクを計画、実行、適応させることで、顧客対応の自動化、パーソナライズされたフォローアップ、パイプラインの自動更新などを行います。これにより、営業、サービス、マーケティング業務の効率化と顧客体験の向上を目指します。\n\nAgentic CRMの特徴は以下の通りです。\n*   **自律的な実行**: AIエージェントが顧客データから文脈を理解し、次に必要な行動を判断して実行します。例えば、パーソナライズされたメールの送信、会議メモに基づいたパイプラインステージの更新、サポートチケットのルーティングなどです。\n*   **人間との協調**: AIエージェントは設定されたガードレール（制約）内で行動し、必要に応じて人間にエスカレーションします。\n*   **学習と適応**: 継続的な実行サイクルを通じて、エージェントは結果を評価し、その後の行動を調整しながら学習します。\n*   **データの一元化と活用**: 顧客接点の情報をAIが整理し、CRM/SFAデータとして整備することで、データ入力の自動化や分析の具体アクションへの変換を支援します。\n\n### Agentic CRMの導入や設計を支援する会社\n\nAgentic CRMの導入や設計を支援する会社はいくつか存在します。\n\n*   **合同会社クロスコム**: 「Agentic CRM設計支援」を提供しており、業務課題のヒアリングから業務設計を行い、企業ごとの思考プロセスや判断基準を明確にするところから、運用定着までを一貫して支援しています。Salesforce公式コンサルティングパートナーとして、Salesforceを基盤としたAgentforceの導入・定着支援も行っています。\n*   **株式会社ハイウェイ**: AIネイティブなCRM「Hiway」を開発・提供しており、入力・更新・分析を自動化し、営業担当者のタスク実行まで支援するAgentic CRMを提唱しています。エンタープライズ企業向けに、メール・電話・フォームで届く問い合わせや見積依頼をAIが一次処理し、人がレビューした上で、活動・案件・見積データをSalesforce/CRMへ還流するAIオペレーション基盤を提供しています。\n*   **セールスフォース・ジャパン**: 世界No.1のAI CRMとしてAgentic CRMを推進しており、「Agentforce」というAIエージェント搭載のSFA、CRM製品を提供しています。人、AIエージェント、プラットフォームが連携してカスタマーサクセスを加速させると謳っており、導入に関する専門的なサービスやパートナー企業による支援も期待できます。\n*   **EY (EYストラテジー・アンド・コンサルティング株式会社)**: Agentic AIがCRMの役割を変革することについて言及しており、データドリブン運用とアカウント志向を軸にした業務設計と変革支援といったコンサルティングサービスを提供している可能性があります。\n\nこれらの企業は、Agentic CRMの概念的な理解から、具体的なシステム設計、導入、そして運用定着に至るまで、様々な形で支援を提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGOEh5tlEJklwgKdE8lItXJDC7usa94OvHkSM-kT64MTGdyK0g0oOpK8kOfsILcXSjSuq7zhqHS875vWDbhNZQqceiG7vjgE58Rhduj9e-t7bPJJguw49ORW60ZvEIM5cGs0jm3TOD31lP8Q33gQDIUVyI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEEuiacxWt7_acl7p-vT5bm8GGbnDLpIf3nq_cP5D7MJKl5gdmlotUZmTn-HL9YNgnK-RoUD7P2pJ9bnuJ-7YdsUea5aKvgXzOkzE8zwgL2F9-cdp5eA0Si8c5j2w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2dOOs-EmYfnnNkLH40fpr3jJvhZVrLPvTn6K5vsnnrvD0xLm87KQjtoUa5fHMScKq7glSVILSnMeTRcBdwxTXMBaF6zRMgBy6-DSvNoRSdDzn2lrgktG4ZSbwt8MNW5gXA0QkdkjlAOTSvF4mkMM6iZM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGvcdoyhYtnOKyBeBCpYT9iGpBSgUhp7mmjKe5KzN-AVcUHDlEPrJ8_8LzqbMH0e2e8YDHEckySOt0_j62-QfglAhjgf7PamCaoK9DuTG-6fZA6H5X6603st33NpVqG6_S21art",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE8GS9QGbthMhFqQubK8oxDqntpwsdugPvegB2C3IIcOyOmMIM0iGe9jJ_-nuvPlb-IFUmpsB0QY7hFwxk5_cfH8xcDX-DX2v1zRtJOxjq2-3fpjth5swEwM7mshFjhL_o0e6sNo6TTlrqBy1MJeyJGIoVCjmuuGo4nM3MsqyPO_7uBq5CMRqIAAD9HU23ifb4fgEpvFn1_",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGnSGxFAFKbZRS4AtzQkS1qHD-7XBwT7vA4fanYiZzgbH3sDq3updnVhJTJ49sTIudTBBfa-lWuWJRnsZnfLKvvqWYWiJPsVXz8BxvBp_rAbA3zRkI1CNQE4GzbMirzDjrOwyNWUxo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE15-SphwjokCJzn7Hg7K2AfMOr7m0kVo0shp5BlNW5462pXXk5Rj7tdbRqoyGJUjVCT7It7Gd7c5Tn3rFxs3yCEBjg4hGvsYgu2VyTNDqt19BkelWhvcz0abKk0nonqX-ORPR2ZLg8OTzGKA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH7ch519Vf18kIDRNZ3Kaiuvu7OtdOMTKG2NZaXtFuyw16FNtYKwzQZ-0w1ThgChsgJzy7g3o3gGbEKSPZ0rKDCKE9Y6iwzChI2vOBD2PPjJqGg_e6HxsnqqQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGko4QAqGc9GOzFr5jkI62c7K3vvxGrHBS1BcUD89vEikclutRk_1P6NHVj23-TEXCE9PUOicQS9nRRxoLPVafvEWWUreYqph39q1OXuTv42uRY4qXLM6zWkr8B3qs-bqWiQhSvMbYIimF8zg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFfXfWwqBi4CUFyEGoGLcJiDS_3GXm07aW466sSpxk0O_TMzHlgXuA-2ZHaUbxCHbg5WJq_L-obqYfU09kFdMe9-2XgwZCxT-HcEDkPLu_kcnTb2G6Am2AsyA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHWzd3oh5JAqPdgrEmLG7vOZhgvQFpEHH2lKShDsvgDiJKkG9HSCBcp53-7sXTCEGmdwNK7Ho9zARo2xPfDI4N5KToIP81bjLfLVjGqi9SD5TPn0lfQY6r9LhsHZZOiWm2CQ56M80cPpP6tLzvMGgQpodS4t74XE5hQsXsU2rhzFOS-tRugHJgtXQo0Wa-Al2HkzrE="
+  ],
+  "error": null
+}
