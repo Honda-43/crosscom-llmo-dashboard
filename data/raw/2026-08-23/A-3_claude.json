@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-23",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-22T22:22:04.877952Z",
+  "answer": "Agentforceの導入費用と、費用対効果を高めるための進め方について、最新情報を整理してお伝えします。\n\n## 1. Agentforceの費用構造\n\n### ライセンス本体の料金モデル\nAgentforceには複数の課金モデルがあり、自社に選ぶ必要があります。\nFlex Creditや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスから選択できます。\n\n\n**日本円での具体的な料金目安：**\n- \n1件当たりの対話は240円となっており、「Flexクレジット」エディションでは60,000円/100,000クレジット利用できます。\n\n- Enterprise Edition以上には無料クレジット枠が付帯しており、\nAgentforceは標準のCRMの上で動くため、本体ライセンスに加えて、クレジットまたはアドオンの費用が必要になりますが、無料枠の範囲であれば追加の支払いなしで試すことができます。Enterprise Edition以上には10万クレジットが無料で付いてきます。\n\n\n**Flex Creditsと会話課金の使い分け：**\n海外の分析では、\nFlex Creditsモデルでは標準的なアクションが20クレジット（0.10ドル）、音声アクションは30クレジット（0.15ドル）消費します。\n また\n損益分岐点は1会話あたり約20アクションで、それ以下であればFlex Creditsの方が割安になります。\n\n\n### 見落としがちな追加コスト：Data Cloud\nAgentforceを本格活用する場合、基盤となるData Cloudのコストも重要です。海外事例では\nAgentforceはData Cloudが機能するために必要であり、これは多くの買い手が見落としがちなコストで、Agentforceのライセンス費用自体を上回ることも多い\nと指摘されています。\n\n### 導入支援（コンサルティング）費用\nSalesforce本体のライセンス費用とは別に、要件定義・設計・構築・定着支援を行うパートナー企業への費用が発生します。\n依頼する範囲によって幅がありますが、月額伴走型なら月額数十万円程度から、プロジェクト一括型なら数百万円規模からが一つの目安です。これとは別に、Agentforce本体のライセンス費用が発生します。\n\n\n費用に幅が出る理由は明確で、\n設計だけを頼むのか、定着まで並走してもらうのかで、関わる工数がまったく違うから\nです。\n\n## 2. 費用対効果を出すための進め方\n\n### ① 業務範囲を絞ってスモールスタートする\n費用対効果は企業規模ではなく対象業務の選び方で決まります。\n費用対効果は、企業規模よりも対象業務の選び方で決まります。定型業務を1つに絞ってスモールスタートすれば、中堅・中小企業でも十分に投資を回収できます。\n\n\n逆に最初から手を広げすぎるのは危険です。\n最初から範囲を広げすぎると効果は薄まります。整っていない業務まで一度に任せると、消費だけが増えて成果が見えにくくなるからです。まずは1業務に集中することが、規模を問わず近道になります。\n\n\n実際の支援会社でも、\n目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込み、導入後はカスタマーサクセスチームが継続的にモニタリングし、1ユースケース×3ヶ月のスモールスタートから対応する\nという進め方が一般的になっています。\n\n### ② データ整備を土台として先に固める\nAIエージェントの精度はデータ品質に依存します。\nAgentforceなどのAI機能は、土台となるSalesforce内のデータが整備されていることが前提です。そのため、AI活用を見据える場合は、AI機能への対応実績に加えて、データ整備・定着運用まで支援できるかを確認しましょう。\n\n\n同様に、\nAgentforceは導入すれば自動で成果が出るものではなく、AIが正しく機能するには、土台となるSalesforce内のデータが整備されていることが前提になります。\nデータが未整備のままAIを導入すると、コストだけがかさんで成果が出にくくなるため、最初のフェーズでデータクレンジング・統合を行うことが重要です。\n\n### ③ 従量課金の特性を活かして段階的に拡大する\n\nAgentforceは従量課金制で、Salesforceユーザーは無料で利用開始でき、その後は利用量に応じて課金されます。ボリュームディスカウントも適用されるため、スモールスタートで導入し、コストを最適化しながら柔軟にAIを活用し、段階的に利用規模を拡大できます。\n\n\nまずは無料クレジット枠でPoC（概念実",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://cross-com.jp/agentforce-pricing/",
+    "https://aquiva.com/blog/agentforce-pricing-gets-a-long-overdue-fix-flex-credits-are-now-live",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cone-c-slide.com/liblog/salesforce-implementation/",
+    "https://service.is-c.jpn.panasonic.com/column/salesforce-agentforce-2"
+  ],
+  "error": null
+}

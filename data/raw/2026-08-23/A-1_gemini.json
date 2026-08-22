@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-23",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-22T22:20:18.580150Z",
+  "answer": "Agentforceの導入支援を検討している方へ、以下におすすめの会社をご紹介します。これらの会社は、Salesforceの専門知識とAgentforceの実装経験を活かし、導入から運用、定着までをサポートしています。\n\n**おすすめのAgentforce導入支援会社**\n\n*   **日立ソリューションズ**\n    Salesforceのコンサルティングパートナーとして「導入・活用支援サービス for Agentforce」を提供しています。営業、サービス、マーケティング、コマースなど幅広い業務領域に対応し、長年の実績に基づいた導入支援コンサルティングが強みです。AIワークショップを通じて現場の業務課題を深く理解し、ビジネス価値を生むAIエージェントの実装を支援します。\n\n*   **富士ソフト株式会社**\n    日本で最初にAgentforceライセンスを取得した富士通グループとして、Agentforceに関する豊富な知見とノウハウを蓄積しています。データアセスメントから導入PoC支援、PoC完了後のトライアル伴走支援まで一貫してサポートし、コールセンターのAI化など多様な業種・業務への活用モデルを確立しています。\n\n*   **バーチャレクス・コンサルティング株式会社**\n    Salesforce全体を広く一貫して対応する「総合系」の導入支援会社として紹介されており、大規模・全社横断での導入を検討している企業に適しています。\n\n*   **フロッグウェル株式会社**\n    営業・業務プロセスへの深い理解を持つ「特化系」の導入支援会社として挙げられており、営業現場での活用を重視する企業におすすめです。\n\n*   **株式会社メンバーズ サースプラスカンパニー**\n    スモールスタートと定着支援を得意とする「伴走系」の導入支援会社として紹介されており、まず小さく始めて定着させたい企業に適しています。\n\n*   **toBeマーケティング株式会社**\n    富士通グループの一員としてAgentforceの先行支援を行い、日本初のAgentforceライセンス取得による実践力が強みです。AI活用に向けたデータアセスメント、Agentforce導入PoC支援、PoC完了後のトライアル伴走支援を提供しています。\n\n*   **合同会社クロスコム**\n    Salesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っています。1ユースケース×3ヶ月のスモールスタートプランから対応可能です。\n\n*   **インフォテック・サービス**\n    Salesforceのコンサルティングパートナーであり、Agentforceの導入支援・提案を行っています。要件定義から構築・運用まで一貫して対応し、生成AI「Agentforce」の導入相談も認定資格者が受け付けています。2012年4月以降14年間で1000件以上の開発実績があり、認定資格を多数保有しています。\n\n*   **三菱総研DCS**\n    Agentforceを中核としたデータ統合型導入支援が特徴です。データ分析・活用基盤の構築や、マルチクラウド/ハイブリッドクラウド、多様なシステムの横断的な統合において豊富な実績を持ち、社内基幹システムとSalesforce提供ツールを統合したデータ基盤の構築も含めたAgentforce導入を支援します。金融分野での実績に基づく高いセキュリティと信頼性も強みです。\n\n*   **Perigeon Software**\n    AIを活用したソリューション実装を支援するSalesforce Agentforceコンサルティングパートナーです。Salesforceの実装、統合、データ移行に強みを持ち、ビジネスに焦点を当てたアプローチで、トレーニングと導入サポートも提供しています。\n\n*   **Ascendix Technologies**\n    Agentforceの実装サービスを包括的に提供しており、商業用・居住用不動産、資本市場、非営利団体など様々な分野での深い専門知識を持っています。Salesforceコンサルティング、実装、カスタマイズプロジェクトの豊富な実績があり、Agentforceパートナーネットワークの認定メンバーです。\n\n*   **Noltic**\n    予測、予知保全、パーソナライズされた販売推奨を含むAgentforceコンサルティングサービスを提供しており、データ駆動型のアプローチとグローバルな24時間年中無休のサポートインフラが強みです。\n\n*   **Cyntexa**\n    複雑で重要なAgentforceの実装を円滑に管理し、Salesforceマネージドサービスを通じて実装後のサポートも提供しています。AIとAgentforceの実装において強固な経験を持ち、実用的な運用成果とSalesforceの能力を整合させることに長けています。無料の1対1コンサルテーションを提供しています。\n\nこれらの会社は、それぞれ異なる得意分野やアプローチを持っています。貴社の具体的な課題や導入目的、予算、求めるサポート体制に合わせて、最適なパートナーを選定することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGc9nbPN-lYHT0jUrrig-HBE0wD3t0cud-cp7OJcS0m43_wDbaCgM5WfwK-hncV8eXpBWlG1pYOHMhECl75cP9acLkOrk6EUsPvagFJbO3KBHIH4RJzPw1R2j-7-CdR_VKd4ClEXIu-K2q8",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwCKG5ADuH4YxqzGXmWV9BfmiG0fZemelAO9PykTzgNIZV10Pp2ub8VnnY8rf3dLNSDR915WWvgG3PrGN74v_gYuSaqbI0PPDmXaoWem2MBnDF2puRdOu7EBsOlp0VVvGXNDQ9mpcMNsC6prWqmNXttpWJGspRvpw2feeO",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFk3weDQRa6gKdqJb6xS1lEpIyqe9YEK0pxDbymAwj1TuytX4igT1bUd5JYIF0wyokXa5lb_tJI2Eff-kC238DzGB_IcQQlNC8xKoKPY7M_J1TKmdcM5ip118nvF4wVvNfrTbbP",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFzXP6H4XB24FM8jTK9vDKZRi1OBC6R3nWuXTDRGVpXO48pol4qlneM7aTxTK4uLnPRPeNZWtJtWbXiPeVPeut4DK1Z2aHkj0GyjW7BhCLWr5xGhrr2SVMkuFoWXfBbNxnf0FbWgwWHmtnccToVTgxx_aM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEMW4DNuj_SCKZR1Z7837BZKsPxkqR6bNNlBxtvS35VqixnR6psepBnmGCO61cOkKCC-4F6iErJVsZKntxXvBkkMLyOOTRxiRoVw140zg0Yxof9fEzIOrAclwyEmgb6rippBYKEdPy98g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVPr5XXyAOozVSGrw_8eFvoeDN7TDs8kmQaxDYjL9d24Y-xGfxOaTJg0BT24Bq-_RoY9fzEg57JK7VCgMv6p-Gg2pe33C2enYw4_KxNQe6aFeVzo3QVqPABzS1RfnZp2QFzboDjmr6s6XJDXAVnLrJW3XomEZoKKuEu7z9TwuxBnEt",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGrvHtnlxn5osyMB_yBOmgOtRZpzokSac3uMkbGmGb1kZy5dTELvf6Ghcd8iCQjgvWS3XynxpV_xoEAyKoJMSUqTkYz0OaALROmIMafYffvln-EoCNqIgYjYN2yF6aJMvm-nKhUDssXoj3duJNkB_FCGLwJ_JX0LwkgXnM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8VO_oV1RnMPQdG1ZX-oPpxQ_KVs3hvIzF6hldeJ9KePcLFd_q-3C1J-DBRg-fBzVFFKnjo3BDfglcXuGPtzcZItrcACdlU340vIBdPOobrw5ikAjCjtZQzBrQuIoAnDsto5iVSs7YD8-5Rcn7toDsSz_PPiNbj8qKltJtbAZcRCNi1krvZZHm5A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEYcAXdEDVAT1jCVrxGvsoRp2u39qCKOMwJbGFCI_TrUUvzfzI0OUW8NgZUIqJ-5H1UyH4ijuwd3Plu_4nKF-6eA_yaLsmdnF132vEUZSMgz5yjPp4xcZGc_QGEj_zwnciosgm2QdfTekxzT_lRrjM9BOORdnXdAM5mzEI="
+  ],
+  "error": null
+}

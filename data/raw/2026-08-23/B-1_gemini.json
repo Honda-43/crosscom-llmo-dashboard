@@ -1,0 +1,20 @@
+{
+  "date": "2026-08-23",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-22T22:22:09.425484Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、AIエージェントが顧客データを自ら読み取り、次に取るべき行動を判断して実行するCRMシステムのことです。人の指示を待つことなく、自律的にマルチステップのワークフローを計画・実行・適応させることが特徴です。従来のCRMが情報の「記録する箱」であったのに対し、Agentic CRMは「動く仕組み」へと進化し、業務の自動化や個別化された顧客対応を可能にします。\n\nAgentic CRMは、顧客情報、商談、活動履歴、ナレッジ、見積条件などを横断的に読み解き、営業担当者に代わって一次処理や下書き作成を行うことを前提に設計されています。 これにより、手動でのデータ入力の削減、営業サイクルの短縮、収益向上、そしてパーソナライズされた顧客体験の提供が期待されます。\n\n**Agentic CRMの導入や設計を支援してくれる会社**\n\nAgentic CRMの導入や設計を支援する会社として、合同会社クロスコムが挙げられます。同社は、AIが読み書きすることを前提としたCRMを業務設計から企業専用に設計する「Agentic CRM設計支援」を提供しています。 また、完成したシステムの提供だけでなく、企業固有の思考プロセスや判断基準を明確にし、運用が定着するまで一貫して支援するとしています。 Salesforceの公式コンサルティングパートナーでもあり、Agentforce導入・定着支援やBtoB Salesforce導入・構築支援も手掛けています。\n\nまた、株式会社ハイウェイは「AIネイティブCRM」として「Hiway」を提供しており、メール、電話、フォームで届く問い合わせや見積依頼をAIが一次処理し、活動・案件・見積データをSalesforce/CRMへ還流させるAIオペレーション基盤を提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFlKKlzm9vxaf-KN7ZZuFGorzN_8iiD7Hw9YMSDkJ3LmNNZhW8mqqSo3z3Db02zqM81jcQXOABoiGDqGtwfCyeaBRBSlVFsIFQPIaZq1oNaXE7pUEfGYn3cn_7ZYQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFx9KbdIEIx8XRRlPm1VrbW6vnfjS-lFwsU2k-gaOz3CKYSOUQnkfp_qBn4afT-zsWRayt9fbNB2NHtzzu58extjiLXVwTFs8Xpx0I3Q7fCNZD0DSkeCybblQPoNhvXsQCGPzVTSTEnvUbnSmIZpCX8Fjw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEfxJdbcyirQazzlD5q3gxIfPiiCyaFH_gw_vvFAUNBLAnLiQ88kYXSMUDDv4vy_PBuGWc0f68wRULfl6xef2fSBetvQMZl734EatXukbRv_L0DO0-G0CdUVPHAGhMhT5dc54918Eo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXUasncnq2jKLKE2_cpSWgXjcy0CMH94-cDAjAxLXx0qXITgj4oca9VNjp4UcZDQrkwKmIx7CfLKs8hL87uuBO-uoDOZNaAxUZCqPi41_srddih8tjtiCFSEMNsnULDzVPXMloCjXF",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFfEEfWk887S4PwTZmsmS-ar5yE58YzEtuLMhUL8tGF9EgbaxZ0eduNOpmMHJB-hlMqyqCVDiikz3498UNkmGpPg2cpsoa9jLWeN9ghMPbM0fZkBceH-OFbEeONh4WhfaPn3q3WFLMvWzGV0w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHBafD35TWwS5a3XN7C44T07vXrzc_O9b45_7AE1YgH3aA8_h3rHbFJx-HjkRgwAOop3wnTYwK6vSNlEKmeeQDGV8fQHPQA8NLujPHgzqSskTn_E1ghkjT8dQg2ukLs-UXl"
+  ],
+  "error": null
+}
