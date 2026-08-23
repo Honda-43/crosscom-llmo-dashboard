@@ -1,0 +1,28 @@
+{
+  "date": "2026-08-24",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-23T22:22:21.834798Z",
+  "answer": "中堅企業向けのCRM設計支援において、特定のベンダーに依存せず中立的な立場で支援を提供する会社は複数存在します。以下に、そのような特徴を持つ企業や、CRM設計支援会社を選ぶ際のポイントをご紹介します。\n\n**特定ベンダーに依存せず中立的な立場でCRM設計を支援する会社**\n\n*   **ストラ株式会社**: 特定のベンダーに依存せず、Salesforce、HubSpot、Zohoなど複数のツールを比較検討した上で、企業の業務や組織体制に最適な構成を設計することを明言しています。導入後の社員トレーニングや運用改善を通じた定着支援も行っています。\n*   **合同会社クロスコム**: オープンソースCRMを基盤とし、AIが活用するCRMシステムを企業専用に設計・構築する「Agentic CRM設計支援」を提供しています。既存のパッケージ製品ではなく、企業ごとに独立した環境でCRMシステムを構築するため、ベンダーに依存しない柔軟な設計が可能です。\n*   **シースリーインデックス株式会社**: 独立系のシステムインテグレーターであり、ベンダーやメーカーに縛られず、さまざまな製品や技術から最適な組み合わせを選定して提案する柔軟性を持っています。\n*   **株式会社ripla**: 業務設計からシステム構築・運用まで一気通貫で支援するDX/開発支援会社です。既存のERP、販売管理、マーケティング基盤との全体最適設計を行い、顧客データの統合・分析・活用による業務革新まで支援します。特定のパッケージに縛られず、業務プロセスに合わせたCRM開発を得意としています。\n*   **アルビド・ジャパン株式会社**: CRMの企画・設計からシステム構築、データ活用、施策運用までを一貫して支援します。顧客情報の一元管理や接点の整理を起点に、会員組織の設計やプラットフォームの構築、SNSやキャンペーンなど施策との連動設計も含め、状況に応じた最適な仕組みを提案します。\n*   **株式会社GeNEE**: 大手企業から中小企業まで、多くの顧客管理システム（CRM）の開発実績があり、中核となる基幹システムや導入済みパッケージソフトウェア、各種SaaS系デジタルサービスとのCSV/API連携も得意としています。高難度の複合的な開発案件もサポートが可能です。\n\n**CRM設計支援における中立的アプローチの重要性**\n\n中堅企業がCRMを導入・設計する上で、特定のツールありきではなく、自社の課題や目的に合致した最適なシステムを構築するためには、以下の点に注目している支援会社を選ぶことが重要です。\n\n*   **戦略策定からの支援**: CRMは単なるツールではなく、顧客との関係性を通じて売上向上やLTV（顧客生涯価値）最大化を目指す経営戦略です。ツール導入ありきではなく、まずビジネス目標の明確化、KPI設定、ペルソナ設定、カスタマージャーニー作成といった戦略策定から支援してくれる会社を選ぶと良いでしょう。フュージョン株式会社のように、CRM戦略設計から実行支援までを一貫してサポートする会社もあります。\n*   **業務設計・データ活用への強み**: 顧客情報管理だけでなく、営業、マーケティング、サポートなどの業務プロセス設計と連動した顧客データの活用基盤設計まで対応できる企業は、CRMの導入効果を最大化する上で重要です。\n*   **継続的な運用支援**: CRMは導入して終わりではなく、導入後の運用や内製化支援、継続的な改善が不可欠です。長期的な視点で伴走してくれるパートナーを選ぶことが成功の鍵となります。\n\n**会社選びのポイント**\n\nCRMコンサルティング会社を選ぶ際は、以下の点を考慮すると良いでしょう。\n\n*   **豊富な実績と経験**: 特に中堅企業への支援実績が豊富な会社は、貴社の状況に合わせた提案が期待できます。\n*   **業務理解と設計力**: 貴社の事業内容や業務プロセスを深く理解し、それに合わせた最適なCRMを設計できる能力があるかを確認しましょう。\n*   **データ活用能力**: 顧客データの収集、分析、そしてそれを戦略や施策に落とし込む能力があるかは重要です。\n*   **導入後のサポート体制**: システムの運用保守、社員教育、効果検証と改善提案など、長期的な視点でのサポートが充実しているかを確認しましょう。\n\nこれらの情報を参考に、貴社に最適なCRM設計支援会社を見つけてください。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHYmxH2epB2PhsH2T7AfPHf7RLNNV0L7_SYjfsIR3WTexh6FyxZyxATBbE5EfsXD6wVMqMogdTcCzBLlhHX9J68OKDo8G_5TcVoUvs5wkmCdD-9FAJci7loGB-h8jJeW8lLI2LsAbIm",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxm75rnf54-u0XopVciHNt2z3uPodEmVctueEOSg02lTiQSXuKE7R6F15AgeG2iULvbb_qfGLSbZm4Xn71EcseDNpIOIwk2lxmpzSvljm3zNKTeSCVpHatu8hv5L2IMAXoMvYp3cQ7xFha2w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFAGXI9yaGV7yV67a9r1877DsK749FEfau4ds409IwtPfh7jip5S3zWQ1_-xdKOSvNpHrGghaPfCK76BC_qjW51JJvFQLBkqMo-XZEpH5x-MdACyy9ComqJFI8FuJYLPwtuNn-uNqdrNm6NbQCM",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE2DGPI4N_7nlRmRwWXtkkKZYlXMYMuX11g1G9I9Zjj0HBIQYu89_VuOmqiWwIhXIR2psREoks3BHCd-O2t78zSavUU1sZ7gAU0Wki-lGgXKyHTTd5NnGSVT7DSCak_VIjvRTJivlXTbUGP",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtz_BsT52XwnlgJ0y_bp3QeTKB6n-lS0d1b6kIbM1FPVVyPntV95z-y4FIuUTWtsy7H1-XHSs03pDkxDQkHYUZpO57MqUY5S46ky0yr4pzZ9aYQfHgDZBgl06W9i7WvgnvE68=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHGPiPREPc1ckqTpGF8BnWJZ3Ihr80abva8pmMLV1qs3N9LUaiI1-xQjr89fKZAmnqf2hWQizRtvHNm8wif8IW2p4SjruqRpZA17bMDUO611Y3RDaaWWzjQ9DY60mHE5jE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELB7y3-A7qnm8XiOJd9LRxKXJ1Sg8ckEykkR35c2sUA-4JbFRZL2cV-W2T5oUpFPCv9wi7F76hnZ1HFAp24TSAb0FZjcNZljgYLoZTd3pMGrLJ-dz8RsKjLNaytQsJcAGQQg1GkNjK37buGw_3ETiqtAeLtKQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEELQ-yvL7FVbhvAP3A_vxgguXIT-egwP-WbjTexusBLEamJDgH8NCUJmiwFfM0zFaw7v0NSWoNOmLPCKIsFpISQ1-LbtGaH4dUFG2Zh_X8jVQWbznf4HUEEKByoyFdQ-fGLZTHreg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0vNMwAjA_JNto39pFXfBBGAHh74FTMTdW_HlJl1nxncAmbIPA--UKMA-o73nze4jkgK74ktc-8bOg4zaDNKeJFBnWT2juj1zHDwH5Q4iAL04LV-EX-9JHoHwrTyLh9kyYwR4CXvcllT1qaZR-5w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEt36-smQONPHBvp3VHn_VeEYoAP7H8Q4nDJtSqVZvnngiJ4pWOegVjbIHnfS_7Nvz9FEySXbGC0v_FC0JnHoRdMar-7cSxG50GFgOOXuZW8PstSB4MjVyoXt7zVZkPPdErH7ISWKwI8Pau42Et5NO6nLVmNlMKtds=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFG0csPCQcwSt34HD7VsPOxDNkVbuF_rf_xgii66aAdNuNXiCWuyxDciuVXtS8Riyuz78EwnrluhU6zrPjZeUBVf9tIjzxVExXs41btjQxPGXfxCXa5lnZTmuFvguuldOuaA45f",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGNjJUPQCbPqGc8Mpgj6ckYXvTFaPXVUSen-2xMB4YzbpIg3BcWeQJ_YQiGCD9fy8chb68XQta46iaiC8nuF-Kv-WiT_RSj4jHmtwJXgRX9MWzoslDlFvgTMya4A71WLqNpToBKlG0y9YmkFPRSV3ZndmV6xASG",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEjgtbRDDqDklXR6bmf3PjS6bqFEvssnH8xLSQSJm19WX_y8jTLTN_SRzV9ADzwDrw5_LAcFY6fBztV-7KcCBAUVoCdqpeh_FR96SuQkzmJY_GXbUsFQGk1lhr2ThBK3GHJQ--KNvxu",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGh6WnY3zqD36xZp8kSbzYZ3NkZ4eNWikOstUbI_aF7bDXbmST3pxQ5bQu6KbESjw5zJ8t5ZN_H6ITOMB7JlOVuRXWzJbBdh0JH_4M0xfg58o5qvjHR663iKgBFLy3TvA=="
+  ],
+  "error": null
+}

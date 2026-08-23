@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-24",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-23T22:21:39.079976Z",
+  "answer": "Agentforceの導入費用と費用対効果を出すための進め方について、最新情報を調べてお伝えします。\n# Agentforceの導入費用の相場と費用対効果を出すための進め方\n\n## 1. Agentforceの料金体系（3つのモデル）\n\nAgentforceの価格設定は\n「1会話あたり2ドル」「Flex Creditで10万クレジットあたり500ドル」「月額125ドルからのユーザー単位ライセンス」という3つの料金モデル\nがあり、どのモデルが適用されるかは\n導入方法や場所によって決まります\n。\n\n**主な料金体系の内訳:**\n- **会話課金**：\n2024年のAgentforceローンチ時から採用されている、1会話あたり定額2ドルのモデル\n\n- **Flex Credits（従量課金）**：\n1アクションあたり0.10ドル（10万クレジットで500ドル）で課金される、現在Salesforceが標準として推している利用モデル\n。\n標準的なエージェントアクションは20クレジット（約0.10ドル）、音声アクションは30クレジット（約0.15ドル）\nとなります\n- **ユーザーライセンス**：\nSales、Service、Field Fieldなどの無制限利用の定額アドオンは月額125ドル、業界向け（Industries）は150ドル\n\n- **Agentforce 1 Editions**：\nすべてを含む月額550ドル/ユーザーのバンドルプランで、組織あたり年間250万クレジットが付帯\n\n- 小規模検証用に\n組織あたり250クレジットの無料枠\nもあります\n\n⚠️ 注意点として、\n従量課金モデルはEinstein RequestsやData 360クレジットも裏で消費するため、未使用のFlex Creditsは繰り越されず、実際の請求額を予測しにくい\nという声もあります。\n\n## 2. 見落としがちな追加コスト\n\n**① Data Cloud（Data 360）が実質必須**\n\nData CloudはAgentforceの会話料金には含まれておらず、統合された顧客データに基づいてエージェントを機能させたい場合（本番運用ではほぼ必須）は別途Data Cloudが必要\nです。\nData Cloudの価格は2026年時点で、1,000万件の統合プロファイルに対して年間108,000ドル（Salesforce公式価格）\nとされ、これが最大の追加コストになりやすい項目です。\n\n**② ベースとなるSalesforceライセンス**\n日本の情報源によると、\nAgentforce単体のコストに加え、Salesforce本体ライセンス費用（Enterprise Editionの場合、1ユーザーあたり月額数万円規模）との合算が総保有コスト（TCO）になる\n点に注意が必要です。参考までに、\nSalesforce公式の2026年版料金では、Agentforce 1 Salesは1ユーザーあたり月額66,000円（税別）\nという水準感です。\n\n## 3. 導入支援（コンサル・構築）費用の相場\n\n日本国内のAgentforce導入支援会社への委託費用については、\n依頼する範囲によって幅があり、月額伴走型なら月額数十万円程度から、プロジェクト一括型なら数百万円規模からが一つの目安\nとされています。これとは別にAgentforce本体のライセンス費用が発生します。\n\n大規模な基幹連携を伴う場合、\nユーザ数が100名を超える大規模組織では、AI活用を前提とした構築で基幹システム（ERP）・会計・在庫管理・人事システムとのリアルタイム連携が求められるケースが多く\n、その場合は\n導入支援費が1,000万円を超える場合が珍しくなく、プロジェクト期間も半年〜1年以上に及ぶ\nとされています。\n\n**海外事例での年間総コスト感（参考）:**\n- 中堅企業（500ユーザー規模）で\nData Cloud、導入、保守を含めた初年度総コストは15万〜42.5万ドル程度\nという試算例があります\n\n## 4. 費用対効果を出すための進め方\n\n日本の導入支援企業が推奨するステップは概ね共通しており、以下のような順序で進めることが推奨されています。\n\n**Phase 1：現状分析とユースケース選定**\nまず、\n業務プロセスを詳細に分析し、最も効果が期待できるユースケースを特定\nすることが出発点です。あわせて\n導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果（ROI）の試算\nを事前に行います。\n\n**Phase 2：小規模PoCでの検証**\nいきなり全社展開せず、\nユースケースのPoC（概念検証）を実施し、最適なAIエージェントの選定と導入計画を立案\nします。",
+  "cited_urls": [
+    "https://coworker.ai/blog/salesforce-agentforce-pricing",
+    "https://www.eesel.ai/blog/agentforce-pricing",
+    "https://enterprisedreamin.org/articles/agentforce-pricing-explained-2026/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://www.ripla.co.jp/blog/system/salesforce-platform-cost/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://frogwell.co.jp/blogs/agentforce-usecases/",
+    "https://www.members-saasplus.com/agentforce"
+  ],
+  "error": null
+}

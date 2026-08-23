@@ -1,0 +1,22 @@
+{
+  "date": "2026-08-24",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-23T22:22:10.832397Z",
+  "answer": "## Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、\n人間と自律型AIエージェント、そしてそれらが動作するプラットフォームが協働して顧客成功を実現する顧客関係管理システムのことです\n。\n\n### 従来のCRMとの違い\n\n従来型のCRMは\n担当者が通話履歴を記録したり情報を更新したりするのを待つのに対し、Agentic CRMは指示されなくてもその情報をもとに自ら動きます\n。また、\n人間やAIエージェントが多段階のワークフローを計画・実行・適応させ、各ステップで人間の承認を必要とせず、あらかじめ設定されたガードレール内で行動し、必要な場合には人間にエスカレーションする\nのが特徴です。\n\nこれは単なるルールベースの自動化とも異なります。\nルールベースの自動化は、リードスコアが閾値を超えたら定型メールを送るといった固定ロジックに従うだけですが、エージェント型システムは文脈を解釈し、顧客データを踏まえて状況に適した行動を判断し、結果に応じてアプローチを調整します\n。\n\n具体的な機能としては、\n- **マーケティング領域**：\nURLやブリーフ、商品リスト、簡単なアイデアからブランドガイドラインに沿ったマーケティング戦略・キャンペーンを生成\n\n- **カスタマーサービス領域**：\nWebチャット・SMS・メール・WhatsAppなどで質問対応、注文追跡、返品処理、商品推薦を行い、自社の方針に沿った正確な応答を24時間提供\n\n\nといったことが可能になります。\n\nなお、業界では\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ベンダーがAgentic CRMを既に市場に投入し始めています\n。\n\n---\n\n## 導入・設計を支援してくれる会社\n\n日本国内では、以下のような会社がAgentic CRM関連の導入・設計支援を行っています。\n\n### 1. 合同会社クロスコム\n\nSalesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行うBtoB特化のコンサルティング会社です\n。具体的には、\n貴社の目標から逆算して「どの業務で・誰が・何を判断できるようにするか」を定義し、マーケ・営業・サポートのユースケースに合わせてAgentforceを業務フローへ組み込む\n支援を行い、公開後もカスタマーサクセスチームが伴走する体制を持っています。\n\n### 2. Hiway（Hiway CRM）\n自社プロダクトとして\n商品マスタ・価格表・過去見積・CRM情報を根拠にした見積ドラフトをエージェントが用意し、人間レビューと承認、監査ログを挟んで運用する\nAgentic CRMを提供しており、\n大規模な代理店ネットワークや複雑な見積業務を抱えるエンタープライズ企業\n向けの導入支援も行っています。\n\n### 3. Salesforce Japan\nSalesforce自体も\n顧客との関係を理解したAIエージェントと人が協働する新たな企業体「Agentic Enterprise」に進化するための実践的な8つのステップ\nを提唱しており、Agentforceを軸にした導入支援・パートナーエコシステムを展開しています。\n\n---\n\n**補足**：Agentic CRMはまだ発展途上の概念で、ベンダーによって「どこまで自律的に動くか」の定義に幅があります。\nwalled型（ベンダー独自のプラットフォーム内でエージェントが動作する閉じたシステム）とopen型（MCPサーバーを公開し、既存のAIツールが顧客データに対して行動できるオープンなシステム）の2種類が存在し、この違いがコストやベンダーロックインの度合いを左右します\n。導入を検討する際は、自社の業務フロー・既存CRM環境・どこまでAIに自律権限を与えるかというガードレール設計が重要になるため、上記のような設計支援会社に相談するのも有効です。",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://cross-com.jp/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://product.hiway.app/blog/agentic-crm/",
+    "https://www.salesforce.com/jp/blog/agentic-ai/",
+    "https://www.dragapp.com/blog/agentic-crm/"
+  ],
+  "error": null
+}
