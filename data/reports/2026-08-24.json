@@ -1,0 +1,642 @@
+{
+  "changes": {
+    "competitor_added": 220,
+    "competitor_removed": 210,
+    "crosscom_url_added": 22,
+    "crosscom_url_removed": 19,
+    "mention_gained": 6,
+    "mention_lost": 5,
+    "negative_flag_on": 3,
+    "rank_down": 15,
+    "rank_up": 19
+  },
+  "data_quality": {
+    "observation_days_prev_week": 7,
+    "observation_days_this_week": 7,
+    "observations_in_lookback": 392,
+    "weeks_with_observations": 4
+  },
+  "date": "2026-08-24",
+  "fired_rules": [
+    "R-P7",
+    "R-P8",
+    "R-P2"
+  ],
+  "generated_for_week": {
+    "lookback_days": 28,
+    "prev_week": [
+      "2026-08-11",
+      "2026-08-17"
+    ],
+    "this_week": [
+      "2026-08-18",
+      "2026-08-24"
+    ]
+  },
+  "insufficient_rules": [],
+  "kgi": {
+    "ai_key_events": {
+      "delta": 0.0,
+      "noise_zone": true,
+      "prev_week": 0.0,
+      "this_week": 0.0
+    },
+    "ai_sessions": {
+      "delta": 2.0,
+      "noise_zone": true,
+      "prev_week": 2.0,
+      "this_week": 4.0
+    },
+    "branded_clicks": {
+      "delta": -3.0,
+      "noise_zone": true,
+      "prev_week": 4.0,
+      "this_week": 1.0
+    },
+    "branded_impressions": {
+      "delta": -4.0,
+      "noise_zone": true,
+      "prev_week": 11.0,
+      "this_week": 7.0
+    },
+    "noise_floor": 10.0,
+    "noise_zone_metrics": [
+      "ai_key_events",
+      "ai_sessions",
+      "branded_clicks",
+      "branded_impressions"
+    ]
+  },
+  "mention_rate": {
+    "all": {
+      "delta": 0.0714,
+      "prev_week": 0.4286,
+      "this_week": 0.5
+    },
+    "days_observed": {
+      "prev_week": 7,
+      "this_week": 7
+    },
+    "pillar_a": {
+      "delta": 0.0715,
+      "prev_week": 0.5714,
+      "this_week": 0.6429
+    },
+    "pillar_b": {
+      "delta": 0.0714,
+      "prev_week": 0.2857,
+      "this_week": 0.3571
+    }
+  },
+  "prompt_model_matrix": [
+    {
+      "mentioned_days": 6,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "A-1"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "A-1"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "A-2"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "A-2"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "A-3"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "A-3"
+    },
+    {
+      "mentioned_days": 4,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "B-1"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "B-1"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "B-2"
+    },
+    {
+      "mentioned_days": 3,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "B-2"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "B-3"
+    },
+    {
+      "mentioned_days": 1,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "B-3"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "E-1"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "E-1"
+    }
+  ],
+  "rank_trend": [
+    {
+      "delta": -1.5,
+      "median_prev_week": 6,
+      "median_this_week": 4.5,
+      "model": "claude",
+      "prompt_id": "A-1"
+    },
+    {
+      "delta": 0.0,
+      "median_prev_week": 8.0,
+      "median_this_week": 8,
+      "model": "gemini",
+      "prompt_id": "A-1"
+    },
+    {
+      "delta": 0,
+      "median_prev_week": 1,
+      "median_this_week": 1,
+      "model": "claude",
+      "prompt_id": "A-2"
+    },
+    {
+      "delta": -1,
+      "median_prev_week": 4,
+      "median_this_week": 3,
+      "model": "gemini",
+      "prompt_id": "A-2"
+    },
+    {
+      "delta": null,
+      "median_prev_week": null,
+      "median_this_week": 1.0,
+      "model": "claude",
+      "prompt_id": "B-1"
+    },
+    {
+      "delta": 0,
+      "median_prev_week": 1,
+      "median_this_week": 1,
+      "model": "gemini",
+      "prompt_id": "B-1"
+    },
+    {
+      "delta": 1,
+      "median_prev_week": 1,
+      "median_this_week": 2,
+      "model": "gemini",
+      "prompt_id": "B-2"
+    },
+    {
+      "delta": null,
+      "median_prev_week": null,
+      "median_this_week": 1,
+      "model": "gemini",
+      "prompt_id": "B-3"
+    }
+  ],
+  "rules": [
+    {
+      "detail": "ネガティブ/古い情報を15件検知",
+      "evidence": [
+        {
+          "date": "2026-08-18",
+          "model": "gemini",
+          "negative_detail": "現在の主要事業ではないMAツール導入・運用支援、BtoBメールマーケティング代行支援が現在形で『提供サービス』として記述されている。具体的には『各種MAツールの導入・運用支援: MAツールの導入から運用まで一貫した支援を提供しています。』『BtoBメールマーケティング代行支援: BtoBに特化したメールマーケティングの代行を通じて、商談数と売上の拡大を支援します。』と現在形で記載されている。また、強みの項目で『BtoBマーケティングに特化しており』と記述されているが、現在の主要事業はAgentforce導入・定着支援とAgentic CRM設計支援であり、この表現は主要事業の説明として不正確である。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-18",
+          "model": "claude",
+          "negative_detail": "回答がクロスコムの現在の主要事業として『BtoB MA導入・運用支援』『BtoB マーケティング戦略コンサルティング支援』『BtoB コンテンツ企画・制作代行支援』『BtoB メールマーケティング代行支援』を記述している。しかしクロスコムの現在の主要事業は『Agentforce導入・定着支援』と『Agentic CRM設計支援』であり、MA/メール配信の代行・運用支援は既に提供していない。回答全体が旧事業を現在形で述べており、『現在はBtoB領域に特化して、中小企業のMAやメールマーケティング、マーケティング戦略コンサルティングを支援しています』『主要事業は以下の通りです』と現在形で記述されている。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-19",
+          "model": "gemini",
+          "negative_detail": "提供終了済みの旧事業を現在のサービスとして記述。「MA導入・運用支援」「メールマーケティング代行支援」は現在提供していないサービスであり、現在形で「提供サービス」の一部として列挙されている。クロスコムの現在の主要事業は「Agentforce導入・定着支援」と「Agentic CRM設計支援」のみ。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-19",
+          "model": "claude",
+          "negative_detail": "現在の主要事業がAgentforce導入・定着支援とAgentic CRM設計支援であるにもかかわらず、回答ではMA、メールマーケティング、マーケティング戦略コンサルティングを『現在はBtoB領域に特化して、中小企業のMAやメールマーケティング、マーケティング戦略コンサルティングを支援しています』『主要事業として、BtoB MA導入・運用支援、BtoB マーケティング戦略コンサルティング支援、BtoB コンテンツ企画・制作代行支援、BtoB メールマーケティング代行支援を展開しています』と現在形で記述している。これらは既に提供していない旧事業である。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-20",
+          "model": "gemini",
+          "negative_detail": "現在の主要事業ではないMA/メールマーケティング関連サービスが、現在形で提供サービスとして記述されている。具体的には「BtoB MA導入・運用支援: MAツール（マーケティングオートメーション）の導入から運用までを支援します」「戦略立案から施策実行までの一貫支援: MA導入・運用支援やマーケティング戦略コンサルティング、メールマーケティング代行支援などにおいて」などの記述がある。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-20",
+          "model": "claude",
+          "negative_detail": "現在の主要事業として旧事業（MA/マーケティングオートメーション/メールマーケティング/メール配信支援）を記述している。具体的には「主要事業として、BtoB MA導入・運用支援、BtoB マーケティング戦略コンサルティング支援、BtoB コンテンツ企画・制作代行支援、BtoB メールマーケティング代行支援を展開しています」「中小企業のMAやメールマーケティング、マーケティング戦略コンサルティングを支援しています」と現在形で述べられており、クロスコムの現在の主要事業である「Agentforce導入・定着支援」と「Agentic CRM設計支援」が言及されていない。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-21",
+          "model": "gemini",
+          "negative_detail": "現在形で旧事業を提供サービスとして記述している。具体的には：『BtoB MA導入・運用支援』『BtoB マーケティング戦略コンサルティング支援』『BtoB メールマーケティング代行支援』など、クロスコムが既に提供終了した旧事業（MA/メールマーケティング/メール配信支援/BtoBマーケティング代行・戦略コンサル）を「提供しています」と現在形で列挙している。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-21",
+          "model": "claude",
+          "negative_detail": "現在形で旧事業（MA導入・運用支援、マーケティング戦略コンサルティング支援、コンテンツ企画・制作代行支援、メールマーケティング代行支援）を「主要事業として以下が挙げられます」と記述している。これらは既に提供終了した事業であり、現在の主要事業はAgentforce導入・定着支援とAgentic CRM設計支援である。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-22",
+          "model": "gemini",
+          "negative_detail": "現在の主要事業ではないMA（マーケティングオートメーション）・BtoBマーケティング代行を現在形で記述している。具体的には、『戦略立案から施策実行までの一貫した支援：マーケティング戦略の策定からMA（マーケティングオートメーション）導入・運用、コンテンツ企画・制作、SalesforceなどのCRMツールの導入・構築・定着支援まで、一気通貫でサポートを提供しています。』および『BtoB MA導入・運用支援：Salesforce Account Engagement（旧Pardot）、HubSpot、Zohoなどの主要MAツールに対応し、単なるツール運用代行に留まらず、商談数・受注数改善のための戦略提案と実践を得意としています。』という記述が該当。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-22",
+          "model": "claude",
+          "negative_detail": "現在の主要事業として『中小企業のMAやメールマーケティング、マーケティング戦略コンサルティングを支援している会社です』『主要事業は以下の通りです：BtoB MA導入・運用支援、BtoB マーケティング戦略コンサルティング支援、BtoB メールマーケティング代行支援』と記述されている。これらは既に提供を終了している旧事業であり、現在の主要事業はAgentforce導入・定着支援とAgentic CRM設計支援である。旧事業が『過去に提供していた』『以前は』『提供終了』等の過去形・完了形で明記されておらず、現在形で主要事業として列挙されているため該当。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-23",
+          "model": "gemini",
+          "negative_detail": "提供サービスの説明において、旧事業（MA/マーケティングオートメーション/メール配信支援）が現在の提供サービスとして記述されている。具体的には「BtoB MA導入・運用支援」「BtoB マーケティング戦略コンサルティング支援」「BtoB コンテンツ企画・制作代行支援」「BtoB メールマーケティング代行支援」が「提供する主要サービス」として現在形で列挙されており、これらは現在の主要事業（Agentforce導入・定着支援とAgentic CRM設計支援）ではなく、既に提供終了している旧事業である。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-23",
+          "model": "claude",
+          "negative_detail": "現在の主要事業として旧事業（MA/メールマーケティング/マーケティング戦略コンサル）が記述されている。具体的には、「中小企業のMAやメールマーケティング、マーケティング戦略コンサルティングを支援しています」「MA/CRMの導入・運用代行支援とマーケティング戦略支援を行っています」「主要事業は以下の通りです（BtoB MA導入・運用支援、BtoB マーケティング戦略コンサルティング支援、BtoB コンテンツ企画・制作代行支援、BtoB メールマーケティング代行支援）」と現在形で記述されている。クロスコムの現在の主要事業は「Agentforce導入・定着支援」と「Agentic CRM設計支援」であり、MA/メール配信の代行・運用支援は既に提供していない。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-24",
+          "model": "gemini",
+          "negative_detail": "「BtoBの中小企業を中心に、100社以上のマーケティング施策を支援してきた実績があります」という記述は旧事業（マーケティング施策支援）を現在の実績として記載しており、現在の主要事業である「Agentforce導入・定着支援」の実績として誤解を招く表現となっている。",
+          "prompt_id": "A-1"
+        },
+        {
+          "date": "2026-08-24",
+          "model": "gemini",
+          "negative_detail": "提供サービスの説明で旧事業であるBtoB MA導入・運用支援、BtoBマーケティング戦略コンサルティング支援、メールマーケティング代行支援が現在形で「提供する主なサービス」として記述されており、現在の主要事業（Agentforce導入・定着支援とAgentic CRM設計支援）と同列に扱われている。具体的には『BtoB MA導入・運用支援』『メールマーケティング代行支援』『BtoBマーケティング戦略コンサルティング支援』の記述が該当。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-08-24",
+          "model": "claude",
+          "negative_detail": "「主要事業として、BtoB MA導入・運用支援、BtoB マーケティング戦略コンサルティング支援、BtoB コンテンツ企画・制作代行支援、BtoB メールマーケティング代行支援を行っています」と現在形で記述されており、クロスコムが既に提供終了した旧事業（MA/メールマーケティング代行・戦略コンサル）を現在の主要事業として説明している。同様に「もともとBtoB中小企業向けのマーケティング支援（MA導入、メールマーケティング、戦略コンサル）を強みとしていた会社ですが、現在はSalesforce公式パートナーとして」という表現でも、これらの旧事業が列挙されている。",
+          "prompt_id": "E-1"
+        }
+      ],
+      "fired": true,
+      "rule_id": "R-P7",
+      "status": "fired"
+    },
+    {
+      "coverage": {
+        "e1_observations": 14,
+        "models_with_urls": [
+          "claude"
+        ],
+        "models_without_urls": [
+          "gemini"
+        ],
+        "observations_with_crosscom_urls": 7
+      },
+      "detail": "E-1の引用に旧事業パスが2件",
+      "evidence": [
+        {
+          "date": "2026-08-19",
+          "legacy_urls": [
+            "https://cross-com.jp/service/btob-marketing-strategy/"
+          ],
+          "model": "claude"
+        },
+        {
+          "date": "2026-08-23",
+          "legacy_urls": [
+            "https://cross-com.jp/service/btob-marketing-strategy/",
+            "https://cross-com.jp/btob-crm/"
+          ],
+          "model": "claude"
+        }
+      ],
+      "fired": true,
+      "rule_id": "R-P8",
+      "status": "fired"
+    },
+    {
+      "detail": "1系列で言及消失(最長6観測日連続。閾値は3)",
+      "evidence": [
+        {
+          "absent_observations": 6,
+          "absent_since": "2026-08-19",
+          "last_mentioned": "2026-08-18",
+          "model": "gemini",
+          "prompt_id": "B-3",
+          "threshold_observations": 3
+        }
+      ],
+      "fired": true,
+      "rule_id": "R-P2",
+      "status": "fired"
+    },
+    {
+      "detail": "前週比+0.1以上のpillarはない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P4",
+      "status": "not_fired"
+    },
+    {
+      "detail": "rank中央値が4週連続で6.0以上のprompt_idはない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P5",
+      "status": "not_fired"
+    },
+    {
+      "detail": "自社不在プロンプトで定着している競合はない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P15",
+      "status": "not_fired"
+    },
+    {
+      "detail": "SoV上位5に半減・新規入りはない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-DROP",
+      "status": "not_fired"
+    }
+  ],
+  "sov": {
+    "A": {
+      "entities": [
+        {
+          "delta": 2.0,
+          "entity": "メンバーズ",
+          "mention_count": 28.0,
+          "prev_week_count": 26.0,
+          "share": 0.6667
+        },
+        {
+          "delta": 3.0,
+          "entity": "クロスコム",
+          "mention_count": 27.0,
+          "prev_week_count": 24.0,
+          "share": 0.6429
+        },
+        {
+          "delta": 3.0,
+          "entity": "enucolor",
+          "mention_count": 22.0,
+          "prev_week_count": 19.0,
+          "share": 0.5238
+        },
+        {
+          "delta": 4.0,
+          "entity": "日立ソリューションズ",
+          "mention_count": 22.0,
+          "prev_week_count": 18.0,
+          "share": 0.5238
+        },
+        {
+          "delta": 1.0,
+          "entity": "バーチャレクスコンサルティング",
+          "mention_count": 19.0,
+          "prev_week_count": 18.0,
+          "share": 0.4524
+        },
+        {
+          "delta": -2.0,
+          "entity": "フロッグウェル",
+          "mention_count": 16.0,
+          "prev_week_count": 18.0,
+          "share": 0.381
+        },
+        {
+          "delta": -5.0,
+          "entity": "三菱総研DCS",
+          "mention_count": 16.0,
+          "prev_week_count": 21.0,
+          "share": 0.381
+        },
+        {
+          "delta": -2.0,
+          "entity": "ウフル",
+          "mention_count": 12.0,
+          "prev_week_count": 14.0,
+          "share": 0.2857
+        },
+        {
+          "delta": 2.0,
+          "entity": "K2 Partnering Solutions",
+          "mention_count": 11.0,
+          "prev_week_count": 9.0,
+          "share": 0.2619
+        },
+        {
+          "delta": -1.0,
+          "entity": "富士ソフト",
+          "mention_count": 11.0,
+          "prev_week_count": 12.0,
+          "share": 0.2619
+        }
+      ],
+      "observed_total": 42.0,
+      "prev_week_competitor_count": 48
+    },
+    "B": {
+      "entities": [
+        {
+          "delta": 3.0,
+          "entity": "クロスコム",
+          "mention_count": 15.0,
+          "prev_week_count": 12.0,
+          "share": 0.3571
+        },
+        {
+          "delta": -4.0,
+          "entity": "HubSpot",
+          "mention_count": 9.0,
+          "prev_week_count": 13.0,
+          "share": 0.2143
+        },
+        {
+          "delta": -8.0,
+          "entity": "Salesforce",
+          "mention_count": 8.0,
+          "prev_week_count": 16.0,
+          "share": 0.1905
+        },
+        {
+          "delta": -3.0,
+          "entity": "Zoho",
+          "mention_count": 8.0,
+          "prev_week_count": 11.0,
+          "share": 0.1905
+        },
+        {
+          "delta": 2.0,
+          "entity": "ripla",
+          "mention_count": 8.0,
+          "prev_week_count": 6.0,
+          "share": 0.1905
+        },
+        {
+          "delta": -1.0,
+          "entity": "テクノデジタルコンサルティング",
+          "mention_count": 8.0,
+          "prev_week_count": 9.0,
+          "share": 0.1905
+        },
+        {
+          "delta": 2.0,
+          "entity": "日立コンサルティング",
+          "mention_count": 7.0,
+          "prev_week_count": 5.0,
+          "share": 0.1667
+        },
+        {
+          "delta": 3.0,
+          "entity": "船井総合研究所",
+          "mention_count": 6.0,
+          "prev_week_count": 3.0,
+          "share": 0.1429
+        },
+        {
+          "delta": -1.0,
+          "entity": "CRMIT",
+          "mention_count": 5.0,
+          "prev_week_count": 6.0,
+          "share": 0.119
+        },
+        {
+          "delta": -3.0,
+          "entity": "Creatio",
+          "mention_count": 5.0,
+          "prev_week_count": 8.0,
+          "share": 0.119
+        }
+      ],
+      "observed_total": 42.0,
+      "prev_week_competitor_count": 85
+    },
+    "all": {
+      "entities": [
+        {
+          "delta": 6.0,
+          "entity": "クロスコム",
+          "mention_count": 42.0,
+          "prev_week_count": 36.0,
+          "share": 0.5
+        },
+        {
+          "delta": 4.0,
+          "entity": "メンバーズ",
+          "mention_count": 30.0,
+          "prev_week_count": 26.0,
+          "share": 0.3571
+        },
+        {
+          "delta": 4.0,
+          "entity": "enucolor",
+          "mention_count": 23.0,
+          "prev_week_count": 19.0,
+          "share": 0.2738
+        },
+        {
+          "delta": 3.0,
+          "entity": "日立ソリューションズ",
+          "mention_count": 22.0,
+          "prev_week_count": 19.0,
+          "share": 0.2619
+        },
+        {
+          "delta": -5.0,
+          "entity": "三菱総研DCS",
+          "mention_count": 20.0,
+          "prev_week_count": 25.0,
+          "share": 0.2381
+        },
+        {
+          "delta": 1.0,
+          "entity": "バーチャレクスコンサルティング",
+          "mention_count": 19.0,
+          "prev_week_count": 18.0,
+          "share": 0.2262
+        },
+        {
+          "delta": -2.0,
+          "entity": "フロッグウェル",
+          "mention_count": 16.0,
+          "prev_week_count": 18.0,
+          "share": 0.1905
+        },
+        {
+          "delta": -2.0,
+          "entity": "ウフル",
+          "mention_count": 12.0,
+          "prev_week_count": 14.0,
+          "share": 0.1429
+        },
+        {
+          "delta": 2.0,
+          "entity": "K2 Partnering Solutions",
+          "mention_count": 11.0,
+          "prev_week_count": 9.0,
+          "share": 0.131
+        },
+        {
+          "delta": -1.0,
+          "entity": "富士ソフト",
+          "mention_count": 11.0,
+          "prev_week_count": 12.0,
+          "share": 0.131
+        }
+      ],
+      "observed_total": 84.0,
+      "prev_week_competitor_count": 128
+    }
+  }
+}
