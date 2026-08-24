@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-25",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-24T22:26:55.153318Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出すための進め方について、最新情報を調査してお答えします。\nAgentforceの導入費用相場と費用対効果を出すための進め方について、調査結果をまとめます。\n\n## 1. Agentforceの費用構造\n\nAgentforceの費用は大きく「①ライセンス/プラットフォーム利用料」「②実行課金（Flex Credits）」「③導入・構築コンサルティング費用」の3層で構成されます。\n\n### ①②：Salesforce社への支払い（ライセンス＋従量課金）\n\nまず前提として、\nAgentforceなどのAI機能は、土台となるSalesforce内のデータが整備されていることが前提\nであり、\nSalesforceの基本製品の上に追加アドオンとして導入する形で利用するケースが一般的\nです。\n\n料金体系は2025年5月の改定で整理され、\nアクション単位のFlex Credits、会話単位の旧来モデル、社内利用向けのユーザーライセンスという3つの考え方に整理されました\n。\n\n**Flex Credits（従量課金）の相場**\n- \nFlex Creditsの価格は、10万クレジットあたり6万円。1つのAgentforceアクションは20クレジット（12円）を消費\nします。\n- \nEnterprise Edition以上を利用する顧客は、Salesforce Foundationsにより10万クレジットを無料で利用できる\nため、スモールスタートであれば初期費用0円で試すことも可能です。\n- \nSalesforceのCIO AI Trends調査によると、90%のCIOが「AIコスト管理がAI導入の障壁になっている」と回答しており\n、この課題に対応するためこの従量課金モデルが導入された経緯があります。\n\n**ユーザーライセンス（全社導入型）**\n全従業員向けにAgentforceを展開する場合、\n全従業員向けに全社でAgentforceエージェントを導入する場合600円/ユーザー/月（Flexクレジットが別途必要）\nという価格帯が公開されています。\n\n**Agentforce for Service（カスタマーサポート特化）**\nサービス領域では、\nService Cloudを基盤にし（Enterprise Edition、Unlimited Edition、Performance Edition、Einstein 1 Editionの場合）、追加の製品を追加するだけでAgentforce for Serviceソリューションの使用を開始できます\nという形で、既存Service Cloud契約へのアドオンとなります。\n\nなお、2026年後半には新しい料金モデルも予定されており、\n2026年後半にはAgentforceの利用量のベースラインにコミットするモデルの「事前コミットメント」モデルも公開予定\nです。\n\n### ③：導入・構築の外部委託費用（コンサルティング）\n\nSalesforce本体の料金とは別に、要件定義・エージェント設計・データ整備・テストなどを担う導入支援会社への費用が発生します。相場感としては、\n1ユースケース×3ヶ月のスモールスタートプランから対応\nする支援会社もあり、まずは1業務・数ヶ月単位の小規模な契約から始めるケースが一般的です。また、PoC（概念実証）から段階的に進める支援形態もあり、\nユースケースの整理や導入データの質のチェックから始め、要件定義、技術検証、効果測定、本番移行計画までを反復的に支援\nする進め方も見られます。\n\n---\n\n## 2. 費用対効果を出すための進め方\n\n調査結果から、成功パターンに共通する進め方は以下の通りです。\n\n### ステップ1：業務フローの可視化とAI適用領域の特定\n導入前に\n現在の営業や顧客対応の業務フローを詳細に分析することが欠かせません。どの業務に時間がかかっているのか、どこにボトルネックがあるのか、そしてどの部分をAgentforceのようなAIで自動化・効率化できるのかを明確に定義することで、AI導入の目的と目標がより明確になり、導入後の効果測定も容易になります\n。\n\n### ステップ2：1ユースケースに絞ったスモールスタート\n\nいきなり全社に広げず、一つの業務で効果を確かめてから広げられれば、リスクを抑えて導入できます。Agentforceは、対象を絞ってスモールスタートする進め方ができます。大きな初期投資をまとめて行う必要がないため、体力の限られた中小企業でも一歩を踏み出しやすくなります\n。実際の進め方として、\nまず問い合わせ対応の一次受けだけをエージェントに任せ、効果を見てから次の業務へ広げる\nといった段階的な計画が有効です。\n\n### ステップ3：消費量を実測してコストを可視化\nFlex Creditsは使用量に応じた課金のため、\nエージェントは動かした分だけ費用が発生し、その量を見込んでおく必要があります\n。\n中小企業の場合、対象業務を絞っていれば消費も限定されるため、まず小さく使って実際の消費量を把握するのが現実的",
+  "cited_urls": [
+    "https://cone-c-slide.com/liblog/salesforce-implementation/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://cross-com.jp/agentforce-pricing/",
+    "https://cloud.watch.impress.co.jp/docs/news/2015263.html",
+    "https://note.com/furucrm/n/n95fa1dcb2ce5",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://www.salesforce.com/jp/service/ai/agentforce-for-service-pricing/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2",
+    "https://cross-com.jp/agentforce-small-business/"
+  ],
+  "error": null
+}

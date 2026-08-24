@@ -1,0 +1,20 @@
+{
+  "date": "2026-08-25",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-24T22:25:33.300017Z",
+  "answer": "Agentforce(Salesforce社のAI エージェント製品)の導入支援を行っている企業について調べてみます。\n# Agentforce導入支援のおすすめ会社\n\n日本国内でAgentforceの導入支援を行っている企業について、複数の観点からご紹介します。\n\n## 1. Salesforce公式「FDE Partner Network」の初期パートナー9社\n\nSalesforceが2026年に日本で本格展開した公式プログラムで、\nAgentforce実装における高度な技術スキルの習得と差別化、顧客企業の本番稼働を成功に導けるエコシステムへの参加資格\nを持つパートナーが認定されています。このプログラムのパートナーは\n単なる設定・導入にとどまらず、ガバナンスを保ちながら、業務プロセスとAIエージェントを本質的に融合させるAIエージェントによる業務の変革\nを支援する点が特徴です。具体的な9社名は公式発表ページで確認できます。\n\nまた、Agentforce Voice（音声AI）に関しては、\nAGREX、Givery、Globalway、TerraSky、Flectといったパートナーが初期展開に参加\nしています。\n\n## 2. Salesforceコンサルティングパートナー（国内約300社）\n\n日本には\n2026年時点で国内のSalesforceコンサルティングパートナーが約300社存在\nしており、Agentforce導入を検討する際はまずこの区分から相談先を探すのがよいとされています。\n\nその中で特徴的な会社をいくつか挙げると：\n\n**クロスコム**\n\n「Agentforce導入・定着支援」として、実務で活用できるまでの定着支援に重点を置いたサービスを提供\nしており、\n目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込み、導入後はカスタマーサクセスチームが継続的にモニタリングし、1ユースケース×3ヶ月のスモールスタートから対応\nします。\n\n**メンバーズ**\n\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有\nしています。\nSalesforceが提供する自律型AIエージェントAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nする体制を整えています。実績として、\nアライアンスパートナーの株式会社フレイ・スリーと共同で「1ROLL AIエージェント」のAgentforce活用について概念実証（PoC）を実施\nした事例があります。\n\n**enucolor（エヌカラー）**\n\n営業DXのプロフェッショナルが実現するSalesforce AI導入と業務最適化を掲げ、要件定義から実装まで戦略的な導入支援\nを行っています。\n\n## 3. グローバル大手（海外展開も視野に入れる場合）\n\n海外拠点も含めた導入を検討する場合、Deloitte DigitalやインフォシスなどのグローバルコンサルティングファームもAgentforceの実装パートナーとして活動しています。\n\n---\n\n## 選び方のポイント\n\n- **業種・業務への理解度**：営業・マーケティング・カスタマーサポートなど、どの領域で使いたいかによって得意なパートナーが異なります\n- **定着支援の有無**：導入だけでなく、運用開始後のモニタリングや改善提案まで伴走してくれるか\n- **公式認定**：Salesforce公式のコンサルティングパートナーやFDE Partner Networkなどの認定資格の有無\n- **スモールスタートの可否**：いきなり大規模導入ではなく、PoCや1ユースケースからの段階的な導入に対応できるか\n\nまずは自社の業務課題（営業効率化、問い合わせ対応の自動化など）を明確にした上で、複数社に相談して比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/news/press-releases/2026/06/08/japan-forward-deployed-engineer-partner-network/",
+    "https://jp.ibtimes.com/salesforce-launches-japan-agentforce-voice-kotoba-technology-103514",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.members.co.jp/company/news/2025/0306",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}
