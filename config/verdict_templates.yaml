@@ -1,0 +1,178 @@
+# 判定欄のテンプレート(Phase 5 §2)
+#
+# 各面の下部に出す「判定:」文をここで定義する。LLMは使わない。
+# rules_engine の発火結果と閾値判定の組み合わせで分岐し、文面はすべてここ由来。
+#
+# 書き方
+#   faces:
+#     R1:
+#       - id: 一意な識別子
+#         when:  条件（すべて満たしたら採用。上から順に評価し最初に一致したもの勝ち）
+#           指標名: {">=": 1}      # 使える演算子: > >= < <= == != in exists
+#         text: "判定文。{変数} は下記コンテキストの実値で埋める"
+#
+# 文面の原則(§8)
+#   - 比喩を使わない
+#   - 英語表記を使わない(製品名・システム名・rule_idを除く)
+#   - 数値は必ず実値。テンプレートにない事実を書かない
+#
+# 使える変数はコード側(src/verdicts.py の build_context)が渡す実値のみ。
+# 未定義の変数を書くとテストで落ちる。
+
+faces:
+  # ---------------------------------------------------------------- R1 全体サマリ
+  R1:
+    - id: r1_negative_running
+      when:
+        negative_streak_days: {">=": 1}
+        days_since_last_action: {">=": 0}
+      text: >-
+        ネガティブ検知が{negative_streak_days}日続いている。
+        直近の施策「{last_action_name}」から{days_since_last_action}日が経過している。
+        判断期限は{next_deadline}。それまでに検知が止まらなければ次の施策に移る。
+    - id: r1_negative_clear
+      when:
+        negative_streak_days: {"==": 0}
+        mention_rate_delta_7d: {">=": 0}
+      text: >-
+        ネガティブ検知は直近7日で0件。言及率は7日平均{mention_rate_all_7d}で
+        前週比{mention_rate_delta_7d_text}。現状の施策を継続する。
+    - id: r1_default
+      when: {}
+      text: >-
+        ネガティブ検知は直近7日で{negative_count_7d}件、言及率は7日平均
+        {mention_rate_all_7d}(前週比{mention_rate_delta_7d_text})。
+        個別の判断は各面を参照する。
+
+  # ---------------------------------------------------------------- R2 言及率トレンド
+  R2:
+    - id: r2_improving
+      when:
+        mention_rate_delta_7d: {">=": 0.05}
+      text: >-
+        言及率は7日平均{mention_rate_all_7d}、前週比{mention_rate_delta_7d_text}で改善している。
+        直近の施策「{last_action_name}」({last_action_done_date}実施)以降の変化として扱い、
+        同じ型の施策を他のPillarにも広げる。
+    - id: r2_declining
+      when:
+        mention_rate_delta_7d: {"<=": -0.05}
+      text: >-
+        言及率は7日平均{mention_rate_all_7d}、前週比{mention_rate_delta_7d_text}で低下している。
+        R4の獲得マップで言及が消えたprompt_idを特定し、該当プロンプトの
+        一次情報ページを更新する。
+    - id: r2_flat
+      when: {}
+      text: >-
+        言及率は7日平均{mention_rate_all_7d}、前週比{mention_rate_delta_7d_text}で
+        大きな変化はない。判断材料が増えるまで現状の施策を継続する。
+
+  # ---------------------------------------------------------------- R3 ネガ検知
+  R3:
+    - id: r3_within_window
+      when:
+        negative_streak_days: {">=": 1}
+        days_since_last_action: {"<": 28}
+      text: >-
+        「{last_action_name}」から{days_since_last_action}日、AIの参照面はまだ入れ替わっていない(想定内)。
+        {next_deadline}を判断期限とし、それまでに検知が止まらなければ
+        「{next_action_name}」を発動する。
+    - id: r3_over_window
+      when:
+        negative_streak_days: {">=": 1}
+        days_since_last_action: {">=": 28}
+      text: >-
+        「{last_action_name}」から{days_since_last_action}日が経過したが、検知は
+        {negative_streak_days}日続いている。判断期限{next_deadline}を過ぎており、
+        「{next_action_name}」に移る。
+    - id: r3_stopped
+      when:
+        negative_streak_days: {"==": 0}
+      text: >-
+        検知停止。「{last_action_name}」の効果が実施から{days_since_last_action}日で
+        反映されたと判定する。再発しないか2週間は観測を続ける。
+
+  # ---------------------------------------------------------------- R4 獲得マップ
+  R4:
+    - id: r4_has_zero_cells
+      when:
+        zero_cells: {">=": 1}
+      text: >-
+        直近7日で一度も言及されなかった組み合わせが{zero_cells}件ある({zero_cells_label})。
+        Pillar別の一次情報が不足している可能性が高い。該当プロンプトを
+        R6の情報源分析と突き合わせ、掲載依頼先を決める。
+    - id: r4_all_covered
+      when: {}
+      text: >-
+        直近7日はすべての組み合わせで1日以上の言及がある。
+        言及日数が少ない組み合わせから順に一次情報を厚くする。
+
+  # ---------------------------------------------------------------- R5 競合ポジション
+  R5:
+    - id: r5_leader
+      when:
+        self_share_rank: {"==": 1}
+      text: >-
+        直近28日のシェアは{self_share}で首位。順位中央値は{self_rank_median}位。
+        現状の一次情報を維持し、順位中央値を{self_rank_median}位より上げることを次の目標にする。
+    - id: r5_challenger
+      when:
+        self_share_rank: {"<=": 3}
+      text: >-
+        直近28日のシェアは{self_share}で{self_share_rank}位、順位中央値は{self_rank_median}位。
+        上位の{top_competitor}との差は{share_gap_to_top}。
+        同社が引用されている情報源をR6で確認し、掲載依頼先を決める。
+    - id: r5_behind
+      when: {}
+      text: >-
+        直近28日のシェアは{self_share}で{self_share_rank}位、順位中央値は{self_rank_median}位。
+        まず言及されること自体を優先し、R4で言及日数が0の組み合わせから着手する。
+
+  # ---------------------------------------------------------------- R6 情報源分析
+  R6:
+    - id: r6_has_gap
+      when:
+        absent_domains: {">=": 1}
+      text: >-
+        自社が言及されていない回答でのみ引用される情報源が{absent_domains}件ある。
+        上位は{top_absent_domain}({top_absent_count}回)。
+        掲載依頼先の候補として優先度をつけ、action_logに追加する。
+    - id: r6_no_gap
+      when: {}
+      text: >-
+        自社不在の回答でのみ引用される情報源は検出されていない。
+        引用元の構成に偏りがないか、自社ドメインの引用回数({self_domain_count}回)の推移を継続して見る。
+
+  # ---------------------------------------------------------------- R7 KGI
+  R7:
+    - id: r7_noise
+      when:
+        kgi_noise: {"==": true}
+      text: >-
+        AI経由セッションは週計{ai_sessions_wk}、指名検索クリックは週計{branded_clicks_wk}。
+        いずれも判断に足る母数(週{noise_floor})に達しておらず、増減は判断材料にしない。
+        先行指標である言及率とネガティブ検知で評価する。
+    - id: r7_measurable
+      when: {}
+      text: >-
+        AI経由セッションは週計{ai_sessions_wk}、指名検索クリックは週計{branded_clicks_wk}。
+        母数が判断に足る水準にあるため、言及率の変化がこの2指標に波及しているかを確認する。
+
+  # ---------------------------------------------------------------- R8 アクションボード
+  R8:
+    - id: r8_overdue
+      when:
+        overdue_actions: {">=": 1}
+      text: >-
+        判断期限を過ぎた施策が{overdue_actions}件ある({overdue_action_names})。
+        効果が出ていない場合は次の施策に切り替えるか、対象を変える判断が必要になる。
+    - id: r8_pending
+      when:
+        proposed_actions: {">=": 1}
+      text: >-
+        承認待ちの施策が{proposed_actions}件ある({proposed_action_names})。
+        承認するものを決め、シートの状態列を「承認」に変更する。
+    - id: r8_running
+      when: {}
+      text: >-
+        効果測定中の施策が{running_actions}件、完了が{done_actions}件。
+        直近の判断期限は{next_deadline}。

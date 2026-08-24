@@ -32,7 +32,9 @@ from settings import (  # noqa: E402  - needs the sys.path line above
     DATA_REPORTS_DIR,
     GOOGLE_SCOPES,
     SELF_ENTITY,
+    TAB_ACTION_LOG,
     TAB_CHANGES,
+    TAB_CITATION_GAP,
     TAB_GA4,
     TAB_GSC,
     TAB_LLM,
@@ -47,7 +49,8 @@ SPREADSHEET_ID_FILE = CREDENTIALS_DIR / "spreadsheet_id.txt"
 
 CACHE_TTL_SECONDS = 600  # §1: 10 minutes
 
-ALL_TABS = [TAB_SUMMARY, TAB_LLM, TAB_SOV, TAB_CHANGES, TAB_GA4, TAB_GSC, TAB_WEEKLY]
+ALL_TABS = [TAB_SUMMARY, TAB_LLM, TAB_SOV, TAB_CHANGES, TAB_GA4, TAB_GSC,
+            TAB_WEEKLY, TAB_ACTION_LOG, TAB_CITATION_GAP]
 
 # Sample mode renders the UI without credentials so the layout can be reviewed
 # (and the chart code exercised) before the service account is wired up.

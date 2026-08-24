@@ -28,6 +28,7 @@ except Exception:  # tzdata missing (e.g. bare Windows) — JST has no DST, so a
 
 import analyze_diff
 import analyze_sov
+import board_daily
 import collect_ga4
 import collect_gsc
 import collect_llm
@@ -110,6 +111,24 @@ def main() -> None:
     _run("write_gsc", lambda: sheets_writer.write_gsc(gsc_rows), failures)
     if summary is not None:
         _run("write_daily_summary", lambda: sheets_writer.write_daily_summary(summary), failures)
+
+    # Looker Studio 用のフラットタブ(Phase 5 §6)。すべて読み込み済みの
+    # データから組み立てるので Sheets の追加読み取りは発生しない。
+    _run(
+        "write_board_daily",
+        lambda: sheets_writer.write_board_daily(board_daily.build_row(
+            date,
+            summary_rows=[summary] if summary else [],
+            observations=list(observations) + [
+                {"date": date, "prompt_id": r.get("prompt_id"),
+                 "negative_or_outdated": r.get("negative_or_outdated")}
+                for r in extractions if not r.get("error")
+            ],
+            sov_rows=sov_rows, changes=changes,
+            ga4_rows=ga4_rows, gsc_rows=gsc_rows,
+        )),
+        failures,
+    )
 
     # Slack alert last, so it can report failures from every preceding phase.
     notified = _run(

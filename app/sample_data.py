@@ -16,7 +16,8 @@ import random
 from typing import Any, Dict, List
 
 from settings import (
-    TAB_CHANGES, TAB_GA4, TAB_GSC, TAB_LLM, TAB_SOV, TAB_SUMMARY, TAB_WEEKLY,
+    TAB_ACTION_LOG, TAB_CHANGES, TAB_CITATION_GAP, TAB_GA4, TAB_GSC, TAB_LLM,
+    TAB_SOV, TAB_SUMMARY, TAB_WEEKLY,
 )
 
 _END = dt.date(2026, 8, 17)
@@ -137,7 +138,11 @@ def sample_tabs() -> Dict[str, List[Dict[str, str]]]:
             ),
         })
 
+    from action_log import SEED_ROWS
+
     return {
         TAB_SUMMARY: summary, TAB_LLM: llm, TAB_SOV: sov,
         TAB_CHANGES: changes, TAB_GA4: ga4, TAB_GSC: gsc, TAB_WEEKLY: weekly,
+        TAB_ACTION_LOG: [dict(r) for r in SEED_ROWS],
+        TAB_CITATION_GAP: [],
     }

@@ -1,8 +1,7 @@
-"""main.py — entry point for the local LLMO analysis dashboard (Phase 4).
+"""main.py — 8面レポート構成のエントリポイント(Phase 5 §1).
 
-Read-only: the app never writes to Sheets, never calls an LLM API, and never
-touches the daily/weekly pipeline. Launch with ``run_dashboard.bat`` (or
-``streamlit run app/main.py``).
+読み取り専用。Sheetsへの書き込み経路には到達できない。
+起動は run_dashboard.bat(または ``streamlit run app/main.py``)。
 """
 from __future__ import annotations
 
@@ -18,20 +17,29 @@ import streamlit as st  # noqa: E402
 import data_source  # noqa: E402
 
 st.set_page_config(
-    page_title="LLMO 分析ダッシュボード", page_icon="📊", layout="wide",
+    page_title="LLMO レポート", page_icon="📊", layout="wide",
     initial_sidebar_state="expanded",
 )
 
-PAGES = [
-    st.Page("views/p1_overview.py", title="P1 概況", icon="📈", default=True),
-    st.Page("views/p2_sov.py", title="P2 SoV分析", icon="🥧"),
-    st.Page("views/p3_prompt.py", title="P3 プロンプト詳細", icon="🔍"),
-    st.Page("views/p4_answers.py", title="P4 回答ビューア・差分", icon="📝"),
-    st.Page("views/p5_weekly.py", title="P5 週次所見", icon="🗒️"),
+# 8面が意思決定の順序。詳細2面はそこからの深掘り先で、独立して見るものではない。
+REPORT_PAGES = [
+    st.Page("faces/r1_summary.py", title="R1 全体サマリ", icon="📋", default=True),
+    st.Page("faces/r2_trend.py", title="R2 言及率トレンド", icon="📈"),
+    st.Page("faces/r3_negative.py", title="R3 ネガ検知", icon="⚠️"),
+    st.Page("faces/r4_coverage.py", title="R4 獲得マップ", icon="🗺️"),
+    st.Page("faces/r5_position.py", title="R5 競合ポジション", icon="🎯"),
+    st.Page("faces/r6_sources.py", title="R6 情報源分析", icon="🔗"),
+    st.Page("faces/r7_kgi.py", title="R7 KGI", icon="💹"),
+    st.Page("faces/r8_actions.py", title="R8 アクションボード", icon="✅"),
+]
+DETAIL_PAGES = [
+    st.Page("views/p3_prompt.py", title="詳細:プロンプト", icon="🔍"),
+    st.Page("views/p4_answers.py", title="詳細:回答・差分", icon="📝"),
+    st.Page("views/p5_weekly.py", title="詳細:週次所見", icon="🗒️"),
 ]
 
 with st.sidebar:
-    st.markdown("### LLMO 分析ダッシュボード")
+    st.markdown("### LLMO レポート")
     st.caption("cross-com.jp / ローカル専用・読み取り専用")
 
     status = data_source.credentials_status()
@@ -47,10 +55,7 @@ with st.sidebar:
             st.caption("スプレッドシートIDが未設定")
 
     span = data_source.raw_data_span()
-    if span:
-        st.caption(f"data/raw: {span[0]} 〜 {span[1]}")
-    else:
-        st.caption("data/raw: なし")
+    st.caption(f"data/raw: {span[0]} 〜 {span[1]}" if span else "data/raw: なし")
 
     st.divider()
     if st.button("キャッシュを更新", width="stretch",
@@ -62,4 +67,4 @@ with st.sidebar:
         "`git pull`(run_dashboard.bat は起動時に自動実行)。"
     )
 
-st.navigation(PAGES).run()
+st.navigation({"レポート": REPORT_PAGES, "詳細": DETAIL_PAGES}).run()

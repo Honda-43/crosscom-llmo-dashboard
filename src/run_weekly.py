@@ -26,6 +26,8 @@ try:
 except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exact.
     JST = dt.timezone(dt.timedelta(hours=9), name="JST")
 
+import action_log
+import citation_gap
 import collect_ahrefs
 import generate_insight
 import notify_slack
@@ -100,6 +102,28 @@ def main() -> None:
         source = result.get("source", "fallback")
         if result.get("error"):
             failures.append(f"generate_insight(fallback used): {result['error']}")
+
+        # 3-2. 引用元の3分類(Phase 5 §3-2)。data/raw を読むだけで
+        # Sheets の追加読み取りはしない。
+        gap = _run("citation_gap", lambda: citation_gap.analyze(date), failures)
+        if gap:
+            _run(
+                "write_citation_gap",
+                lambda: sheets_writer.write_citation_gap(gap["rows_for_sheet"]),
+                failures,
+            )
+
+        # 3-3. 所見の推奨アクションを action_log に「提案中」で追記(§5)。
+        # 同一内容+同一rule_idが未完了で存在すれば追記しない。
+        proposals = _run(
+            "propose_actions",
+            lambda: action_log.sync_from_report(report_md, date),
+            failures,
+        ) or []
+        if proposals:
+            _run("write_action_log",
+                 lambda: sheets_writer.write_action_log(proposals), failures)
+            lines.append(f"- 新規アクション提案: {len(proposals)}件")
 
         # 4. Persist and deliver
         _run(

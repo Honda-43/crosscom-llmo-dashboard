@@ -28,6 +28,8 @@ ENTITY_STOPLIST_FILE = CONFIG_DIR / "entity_stoplist.yaml"
 RULES_THRESHOLDS_FILE = CONFIG_DIR / "rules_thresholds.yaml"
 LEGACY_PATHS_FILE = CONFIG_DIR / "legacy_paths.yaml"
 PLAYBOOK_FILE = CONFIG_DIR / "playbook.md"
+# Phase 5 — 判定欄のテンプレート(LLMを使わず決定的に文面を作る)
+VERDICT_TEMPLATES_FILE = CONFIG_DIR / "verdict_templates.yaml"
 DATA_REPORTS_DIR = ROOT_DIR / "data" / "reports"
 
 
@@ -226,6 +228,10 @@ TAB_SOV = "sov_daily"
 TAB_CHANGES = "changes"
 # Phase 2
 TAB_WEEKLY = "weekly_reports"
+# Phase 5
+TAB_ACTION_LOG = "action_log"
+TAB_CITATION_GAP = "citation_gap"
+TAB_BOARD = "board_daily"
 
 
 def spreadsheet_url() -> str:

@@ -18,6 +18,9 @@ from settings import (
     TAB_GSC,
     TAB_LLM,
     TAB_SOV,
+    TAB_ACTION_LOG,
+    TAB_BOARD,
+    TAB_CITATION_GAP,
     TAB_SUMMARY,
     TAB_WEEKLY,
     google_credentials,
@@ -56,6 +59,26 @@ KEYS_WEEKLY = ["date"]
 # stats.json is committed to data/reports/ regardless, so the cell carries a
 # pointer instead of silently losing the tail.
 CELL_CHAR_LIMIT = 49_000
+
+# --- Phase 5 headers ------------------------------------------------------
+# 施策記録。状態はアプリからではなく本田さんがシート上で直接編集する。
+HEADERS_ACTION_LOG = [
+    "action_id", "優先度", "内容", "対象", "根拠rule_id", "状態",
+    "提案日", "実施日", "判断期限",
+]
+KEYS_ACTION_LOG = ["action_id"]
+
+# 引用元ドメインの3分類(自社 / 共通 / 自社不在)。週次で書き出す。
+HEADERS_CITATION_GAP = ["date", "domain", "category", "cited_count", "prompts"]
+KEYS_CITATION_GAP = ["date", "domain"]
+
+# Looker Studio 用のフラットタブ。1日1行。
+HEADERS_BOARD = [
+    "date", "mention_rate_all_7d", "mention_rate_a_7d", "mention_rate_b_7d",
+    "sov_rank", "sov_share", "negative_streak_days", "branded_clicks_wk",
+    "ai_sessions_wk", "noise_flag", "material_events",
+]
+KEYS_BOARD = ["date"]
 # ``detail`` is part of the key so several competitor_added rows for the same
 # day/prompt/model (one per company) coexist while a re-run still overwrites.
 KEYS_CHANGES = ["date", "prompt_id", "model", "change_type", "detail"]
@@ -187,6 +210,36 @@ def read_llm_observations() -> List[Dict[str, str]]:
 def read_sov_daily() -> List[Dict[str, str]]:
     """All rows of the sov_daily tab (used by the backfill)."""
     return _read_tab(TAB_SOV)
+
+
+def read_action_log() -> List[Dict[str, str]]:
+    """施策記録。無ければ空(タブ未作成でもエラーにしない)。"""
+    return _read_tab(TAB_ACTION_LOG)
+
+
+def read_citation_gap() -> List[Dict[str, str]]:
+    return _read_tab(TAB_CITATION_GAP)
+
+
+def write_action_log(rows: List[Dict[str, Any]]) -> None:
+    """action_id をキーに upsert。状態列は人が編集するため上書きに注意。"""
+    if not rows:
+        return
+    _upsert(_open_spreadsheet(), TAB_ACTION_LOG, HEADERS_ACTION_LOG,
+            KEYS_ACTION_LOG, rows)
+
+
+def write_citation_gap(rows: List[Dict[str, Any]]) -> None:
+    if not rows:
+        return
+    _upsert(_open_spreadsheet(), TAB_CITATION_GAP, HEADERS_CITATION_GAP,
+            KEYS_CITATION_GAP, rows)
+
+
+def write_board_daily(row: Dict[str, Any]) -> None:
+    if not row:
+        return
+    _upsert(_open_spreadsheet(), TAB_BOARD, HEADERS_BOARD, KEYS_BOARD, [row])
 
 
 def read_for_rules() -> Dict[str, List[Dict[str, str]]]:

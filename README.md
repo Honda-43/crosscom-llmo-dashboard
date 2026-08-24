@@ -82,7 +82,8 @@ crosscom-llmo-dashboard/
 │   ├── entity_stoplist.yaml # 企業名でない一般名詞の除外リスト
 │   ├── playbook.md          # 運用プレイブック(Phase 2・所見生成の根拠)
 │   ├── rules_thresholds.yaml # ルール閾値(Phase 2・コード変更なしで調整)
-│   └── legacy_paths.yaml    # 旧事業URLパス(Phase 2 R-P8)
+│   ├── legacy_paths.yaml    # 旧事業URLパス(Phase 2 R-P8)
+│   └── verdict_templates.yaml # 判定欄の文面(Phase 5・LLMを使わない)
 ├── src/
 │   ├── collect_llm.py     # 4モデルへの定点観測クエリ実行
 │   ├── extract.py         # 回答テキストからの構造化抽出
@@ -94,6 +95,10 @@ crosscom-llmo-dashboard/
 │   ├── reextract_negative.py # 判定基準変更に伴うネガ行の再抽出(2026-08-24)
 │   ├── rules_engine.py    # 週次の機械判定(Phase 2 第1段階)
 │   ├── generate_insight.py # 週次所見の文章化(Phase 2 第2段階)
+│   ├── verdicts.py        # 判定欄の決定的生成(Phase 5)
+│   ├── action_log.py      # 施策記録・提案の重複防止(Phase 5)
+│   ├── citation_gap.py    # 引用元ドメインの3分類(Phase 5)
+│   ├── board_daily.py     # Looker用フラットタブ(Phase 5)
 │   ├── collect_ga4.py     # GA4:AI経由流入・CV
 │   ├── collect_gsc.py     # GSC:指名検索
 │   ├── collect_ahrefs.py  # 週次:AI Overviews引用KW(失敗時スキップ可)
@@ -105,8 +110,10 @@ crosscom-llmo-dashboard/
 │   ├── main.py            # エントリポイント(5ページのナビゲーション)
 │   ├── data_source.py     # Sheets/ローカルの読み取りとキャッシュ
 │   ├── common.py          # 共通ヘルパー(パース・チャート配色)
+│   ├── board.py           # 8面共通の部品(カード・判定欄・注釈)
 │   ├── sample_data.py     # 認証なしでUIを確認するためのサンプル
-│   └── views/             # P1〜P5 の各ページ
+│   ├── faces/             # R1〜R8 の8面
+│   └── views/             # 詳細3面(プロンプト・回答差分・週次所見)
 ├── credentials/           # サービスアカウントJSON(.gitignore・手動配置)
 ├── tests/                 # pytest(正規化・SoV・差分・Slack・backfill・週次ルール)
 ├── data/raw/              # LLM回答全文の保存先(git管理、日付ディレクトリ)
@@ -190,6 +197,9 @@ cd src && python run_weekly.py --skip-ahrefs --no-slack   # 所見だけ手元�
 | `sov_daily`(Phase 1) | 1日×pillar×企業 | date, pillar, entity, mention_count, observed_total |
 | `changes`(Phase 1) | 変化1件 | date, prompt_id, model, change_type, before, after, detail |
 | `weekly_reports`(Phase 2) | 1週 | date, stats_json, report_md |
+| `action_log`(Phase 5) | 施策1件 | action_id, 優先度, 内容, 対象, 根拠rule_id, 状態, 提案日, 実施日, 判断期限 |
+| `citation_gap`(Phase 5) | 1週×ドメイン | date, domain, category, cited_count, prompts |
+| `board_daily`(Phase 5) | 1日 | date, mention_rate_all_7d, …, noise_flag, material_events |
 
 - **mention_rate** は当日の**有効観測数**(E-1を除く6プロンプト × 有効モデル数。初期は gemini / claude の2モデルで12観測)に対する `mention=true` 比率。有効モデル数に連動し、固定値はハードコードしない(モデルを増減すれば分母も自動追随)。
 - **冪等性**:同一 `date × prompt_id × model` の行が既に存在する場合は上書き(同日再実行安全)。各タブとも主キーで upsert する。
@@ -696,6 +706,78 @@ set LLMO_DASHBOARD_SAMPLE=1
 
 ---
 
+## Phase 5:8面レポート構成
+
+数値の羅列ではなく「状態 → 原因 → アクション承認」の順で意思決定が終わる画面にする。
+
+| 面 | 名称 | 中身 |
+|----|------|------|
+| R1 | 全体サマリ | 指標カード4枚 + 実施中の施策 |
+| R2 | 言及率トレンド | 移動平均3系列 + 施策実施日の縦線 |
+| R3 | ネガ検知 | モデル別の日次カレンダー + 施策基準線 |
+| R4 | 獲得マップ | prompt×model の言及日数ヒートグリッド |
+| R5 | 競合ポジション | 散布図(シェア×順位) + シェアランキング |
+| R6 | 情報源分析 | E-1引用の推移 + 掲載依頼先の候補 |
+| R7 | KGI | 週計カード + 波及順序 |
+| R8 | アクションボード | action_log の一覧と状態 |
+
+旧P3(プロンプト詳細)・旧P4(回答ビューア)・旧P5(週次所見)は
+サイドバー下部の「詳細」に残し、R4・R6からの深掘り先とする。
+
+### 判定欄(全面共通・最重要)
+
+各面の下部に「判定:」で始まる1〜3文を出す。**LLMは使わない。**
+条件分岐と文面は `config/verdict_templates.yaml` にあり、コードは条件評価と
+実値の差し込みだけを行う。
+
+```yaml
+R3:
+  - id: r3_within_window
+    when:
+      negative_streak_days: {">=": 1}
+      days_since_last_action: {"<": 28}
+    text: "「{last_action_name}」から{days_since_last_action}日、…"
+```
+
+- 判定欄は毎週同じ基準で読まれる。同じ状態なら同じ文が出ることが前提で、
+  言い回しが週ごとに揺れると「変わったのは状態か文章か」が判別できなくなる。
+- 各面に最低2分岐(正常系/要対応系)。判断期限・次の施策は `action_log` から取る。
+- テンプレートにない変数を書くと例外で落ちる(静かに空欄にしない)。
+- 文面の原則:比喩を使わない / 英語表記を使わない(製品名・システム名を除く) /
+  数値は実値のみ。テストで固定している。
+
+### action_log(施策記録)
+
+**状態列は本田さんがシート上で直接編集する。アプリからは書かない。**
+週次所見の「アクション:」行だけが「提案中」で自動追記される(§5)。
+同一内容 + 同一rule_id が未完了状態で存在すれば追記しない。
+
+| 状態 | 意味 |
+|---|---|
+| 提案中 / 承認待ち | 週次所見が出した候補 / 検討対象として残したもの |
+| 承認 | やると決めたが未着手 |
+| 実施済み・効果測定中 | **R2・R3に縦線注釈が出る** |
+| 完了 / 却下 / 保留 | 終わった / やらない / 時期を待つ |
+
+初期データ A-001〜A-007 は `cd src && python action_log.py --seed` で投入する
+(`--dry-run` で確認可能)。
+
+### citation_gap(引用元の3分類)
+
+引用ドメインを「自社 / 共通 / 自社不在」に分ける。**自社不在**は、AIがその質問に
+答えるとき見ているのに自社が載っていない場所で、掲載依頼先の候補になる。
+
+データ源は `data/raw` の `cited_urls`。`llm_observations` は承認済みスキーマに
+`all_cited_urls` を持たないため生データから再構成する(ローカル読みなのでAPIを消費しない)。
+Geminiの引用は解決できない形式のため件数だけ報告して集計から除く。
+
+### board_daily(Looker Studio 用)
+
+1日1行のフラットタブ。移動平均・週計・連続日数まで確定させてあるので、
+Looker側で計算しなくても読める。Looker Studio 自体の再構築は本Phaseの対象外。
+
+---
+
 ## Looker Studio 接続手順
 
 ### 1. データソースを追加
@@ -797,6 +879,15 @@ LLM API は **日次 14クエリ(観測:gemini/claude × 7)+ 14回(抽出)= 28 A
 15. 所見文の数値は stats.json のみを根拠とする(プロンプトで明示禁止 + フォールバックは構造的に一致)。
 16. LLM呼び出し失敗をシミュレートしてもフォールバック配信される(`test_run_weekly.py` で検証)。
 17. 本READMEに Phase 2 の構成図・週次運用フロー・コストを記載。
+
+### Phase 5 追加分
+
+22. run_dashboard.bat 起動で R1〜R8 が実データで表示される。
+23. 各面に判定欄が出る。文面は verdict_templates.yaml 由来で、
+    YAMLを差し替えれば文が変わることをテストで固定(`test_verdicts.py`)。
+24. R2・R3 に A-001〜A-005 の縦線注釈が出る。
+25. citation_gap・action_log・board_daily タブにデータが入っている。
+26. 判定テンプレート分岐・不在引用元の3分類・action_log重複防止のテストが通る。
 
 ### Phase 4 追加分
 

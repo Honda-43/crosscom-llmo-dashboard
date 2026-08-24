@@ -8,6 +8,8 @@ import json
 
 import pytest
 
+import action_log
+import citation_gap
 import collect_ahrefs
 import generate_insight
 import notify_slack
@@ -45,6 +47,13 @@ def wired(monkeypatch, tmp_path):
         notify_slack, "notify_weekly",
         lambda date, report, **kw: calls["posted"].append((date, report)) or True,
     )
+    # Phase 5 で追加したフェーズも外部に出ないよう塞ぐ
+    monkeypatch.setattr(citation_gap, "analyze",
+                        lambda date, **kw: {"rows_for_sheet": [], "rows": []})
+    monkeypatch.setattr(sheets_writer, "write_citation_gap", lambda rows: None)
+    monkeypatch.setattr(action_log, "sync_from_report",
+                        lambda report, date, existing=None: [])
+    monkeypatch.setattr(sheets_writer, "write_action_log", lambda rows: None)
     return calls, tmp_path
 
 
