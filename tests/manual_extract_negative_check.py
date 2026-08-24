@@ -10,12 +10,15 @@ Anthropic API を呼ぶため pytest には含めない。
     .\.venv\Scripts\python.exe tests\manual_extract_negative_check.py
     Remove-Item Env:\ANTHROPIC_API_KEY
 
-想定コスト: Haiku クラス × 8件（1円未満）。
+想定コスト: Haiku クラス × 10件（1円未満）。
 
 判定基準:
-  TRUE群  5件 … 旧事業を「現在の主要事業」として記述しているE-1回答（取りこぼし防止）
+  TRUE群  5件 … 終了事業を「現在の主要事業」として記述しているE-1回答（取りこぼし防止）
   FALSE群 2件 … クロスコムを現行事業で正しく記述している回答（過剰検知の防止）
-  除外条件 1件 … 旧事業を「過去に提供していた」と明示した文面（合成）
+  除外条件 1件 … 終了事業を「過去に提供していた」と明示した文面（合成）
+  区分判定 2件 … 「MAの導入・構築＝現行(false)」「MAの運用を代行＝終了(true)」（合成）
+                 2026-08-24 の基準精緻化で追加。MA・メールは語そのものでは判定できず、
+                 導入・構築か代行・運用かで分かれることを固定する。
 """
 from __future__ import annotations
 
@@ -52,6 +55,27 @@ CONTROL_ANSWER = """合同会社クロスコムは、Salesforce公式コンサ�
 Agentforceの導入・定着支援と、Agentic CRMの設計支援を提供しています。
 なお、同社が過去に提供していたBtoBメールマーケティング代行支援やMA導入・運用支援は、
 現在は新規の受付を終了しています。"""
+
+# --- 区分判定（2026-08-24 追加）: 「導入・構築」と「代行・運用」の分かれ目 -----
+# MA・メールという語だけでは判定できない。現行事業を現在形で語る回答を
+# ネガ判定しないこと（過剰検知の防止）が、この2件の目的。
+TIER_CASES = [
+    (
+        "MAの導入・構築を支援（＝現行事業）",
+        """合同会社クロスコムは、Salesforce公式コンサルティングパートナーとして
+Agentforceの導入・定着支援とAgentic CRMの設計支援を中心に提供しています。
+あわせて、BtoB企業向けにMA（マーケティングオートメーション）の導入・構築や、
+Salesforceの導入・構築支援も行っています。""",
+        False,
+    ),
+    (
+        "MAの運用を代行（＝終了事業）",
+        """合同会社クロスコムは、BtoB企業のMA運用代行を主力とする会社です。
+メール配信の運用代行やマーケティング戦略コンサルティングを提供し、
+クライアントの施策実行を代行しています。""",
+        True,
+    ),
+]
 
 
 def load(date: str, prompt_id: str, model: str) -> dict:
@@ -103,13 +127,24 @@ def main() -> None:
     if run_one("control（過去形で明示）", control, False) is not False:
         failures.append("除外条件 control")
 
+    print("\n=== 区分判定（導入・構築＝現行 / 代行・運用＝終了） ===")
+    for label, answer, expected in TIER_CASES:
+        record = {
+            "date": "control", "prompt_id": "E-1", "pillar": "entity", "model": "claude",
+            "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+            "answer": answer, "cited_urls": [], "error": None,
+        }
+        if run_one(f"{label}（期待: {'TRUE' if expected else 'FALSE'}）",
+                   record, expected) is not expected:
+            failures.append(f"区分判定 {label}")
+
     print("\n" + "=" * 62)
     if failures:
-        print("要見直し:", len(failures), "件")
+        print("要見直し:", len(failures), "件 / 全10件中")
         for f in failures:
             print("  -", f)
     else:
-        print("合格: TRUE群 5/5・FALSE群 2/2・除外条件 OK")
+        print("合格: 全10件（TRUE群 5/5・FALSE群 2/2・除外条件 OK・区分判定 2/2）")
     raise SystemExit(1 if failures else 0)
 
 

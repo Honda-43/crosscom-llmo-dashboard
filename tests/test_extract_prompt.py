@@ -21,10 +21,11 @@ def prompt() -> str:
 
 
 # --- 新しい判定基準 ---------------------------------------------------------
-def test_prompt_flags_legacy_business_as_current():
-    """旧事業を現在の主要事業として書いていればTRUE、という基準が入っていること。"""
+def test_prompt_flags_ended_business_as_current():
+    """終了事業を現在の事業として書いていればTRUE、という基準が入っていること。"""
     text = prompt()
-    assert "現在の主要事業" in text
+    assert "【終了事業】" in text
+    assert "クロスコムの現在の事業として現在形で記述している" in text
     for term in ("MA", "メールマーケティング", "メール配信"):
         assert term in text, term
 
@@ -34,6 +35,39 @@ def test_prompt_names_the_current_business():
     text = prompt()
     assert "Agentforce導入・定着支援" in text
     assert "Agentic CRM設計支援" in text
+
+
+def test_prompt_declares_the_three_business_tiers():
+    """事業3区分（2026-08-24 確定）が前提として書かれていること。
+
+    これが無いと、現行事業を現在形で語る回答まで過剰検知される。
+    """
+    text = prompt()
+    for tier in ("【注力事業】", "【現行・非注力事業】", "【終了事業】"):
+        assert tier in text, tier
+    for current in ("BtoB Salesforce導入・構築支援", "BtoB MA導入・構築支援",
+                    "メールマーケティング支援"):
+        assert current in text, current
+
+
+def test_prompt_separates_build_from_outsourcing():
+    """「導入・構築＝現行」と「代行・運用＝終了」の分かれ目を明示していること。
+
+    R-P8で判明した過剰検知の原因はここ。MA・メールは語そのものでは
+    判定できず、導入・構築か代行・運用かで分かれる。
+    """
+    text = prompt()
+    assert "導入・構築（＝現行）" in text
+    assert "代行・運用（＝終了）" in text
+    assert "「MAの導入・構築を支援している」→ false" in text
+    assert "「MAの運用を代行している」→ true" in text
+
+
+def test_prompt_does_not_flag_current_non_focus_business():
+    """現行・非注力事業だけを挙げた回答をtrueにしない、という除外が入っていること。"""
+    text = prompt()
+    assert "非注力事業だけを挙げている回答も true にはしない" in text
+    assert "「提供していないサービス」にあたらない" in text
 
 
 def test_prompt_excludes_explicit_past_tense():

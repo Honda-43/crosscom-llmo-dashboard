@@ -91,6 +91,7 @@ crosscom-llmo-dashboard/
 │   ├── analyze_diff.py    # 前回観測との差分検出(Phase 1)
 │   ├── notify_slack.py    # Slackアラート(Phase 1)
 │   ├── backfill_sov.py    # sov_daily の全期間再生成(Phase 1)
+│   ├── reextract_negative.py # 判定基準変更に伴うネガ行の再抽出(2026-08-24)
 │   ├── rules_engine.py    # 週次の機械判定(Phase 2 第1段階)
 │   ├── generate_insight.py # 週次所見の文章化(Phase 2 第2段階)
 │   ├── collect_ga4.py     # GA4:AI経由流入・CV
@@ -109,7 +110,7 @@ crosscom-llmo-dashboard/
 ├── credentials/           # サービスアカウントJSON(.gitignore・手動配置)
 ├── tests/                 # pytest(正規化・SoV・差分・Slack・backfill・週次ルール)
 ├── data/raw/              # LLM回答全文の保存先(git管理、日付ディレクトリ)
-├── data/reports/          # 週次 stats.json(git管理・監査用)
+├── data/reports/          # 週次 stats.json / 再抽出レポート(git管理・監査用)
 ├── requirements.txt          # 実行系(GitHub Actions)
 ├── requirements-dashboard.txt # ローカル分析アプリ(Phase 4)
 ├── setup_dashboard.bat       # アプリ初回セットアップ(Windows)
@@ -196,6 +197,73 @@ cd src && python run_weekly.py --skip-ahrefs --no-slack   # 所見だけ手元�
 
 > 補足:`daily_summary.ai_sessions` は GA4(前日分)、`branded_clicks` は GSC(3日前分)の当日収集値を集計。
 > LLM観測日(当日)を主キーとしたスナップショット行のため、各源の対象日付にはデータ確定遅延分のズレがある。
+
+---
+
+## 判定基準の変更履歴
+
+指標の時系列を読むときは、**基準そのものが変わった日**を必ず確認する。
+基準変更をまたいだ数値の増減は、実態の変化ではなく定義の変化であることがある。
+
+### 2026-08-24 — `negative_or_outdated` を事業3区分ベースに精緻化
+
+**変更前の問題**
+`extract.py` の判定ルールが、MA・マーケティングオートメーション・メールマーケティング・
+メール配信支援を**無条件に「旧事業」**として列挙していた。さらに
+「現在の主要事業は Agentforce導入・定着支援と Agentic CRM設計支援**であり**」と
+排他的に書かれていたため、それ以外の現行事業を現在形で語る回答まで TRUE になった。
+**実際には提供している事業を「古い情報」と検知していた**(過剰検知)。
+
+**確定した事業3区分**(2026-08-24・本田さん)
+
+| 区分 | 事業 | ページの時制 | LLMO/SEO投資 | 現在形で語られたら |
+|---|---|---|---|---|
+| **注力事業** | Agentforce導入・定着支援 / Agentic CRM設計支援 | 現在形 | する | 正常 |
+| **現行・非注力事業** | BtoB Salesforce導入・構築支援 / BtoB MA導入・構築支援 / メールマーケティング支援(受動対応) | 現在形を維持 | しない | **正常** |
+| **終了事業** | BtoB マーケティング戦略コンサルティング支援 / MA・メール配信の「代行・運用」 | 過去形 | しない | **ネガ** |
+
+分かれ目は語ではなく**形態**。「導入・構築」なら現行、「代行・運用」なら終了。
+`MAの導入・構築を支援している` は正常、`MAの運用を代行している` はネガ。
+
+**変更したもの**
+
+- `src/extract.py` — `_build_prompt()` の `negative_or_outdated` 判定ルール、
+  および `_SCHEMA_BLOCK` の `negative_detail` コメント。
+  **JSONスキーマ・`mention_type` enum・`kbf_tags` 選択肢は変更していない**(§4承認済みのため)。
+- `tests/test_extract_prompt.py` — 3区分と「導入・構築/代行・運用」の分かれ目を固定する
+  テストを追加(APIを呼ばない)。
+- `tests/manual_extract_negative_check.py` — 実APIでの確認ケースを8件→**10件**に拡張
+  (`MAの導入・構築を支援=false` / `MAの運用を代行=true` を追加)。
+
+**過去データの扱い**
+今回の変更は「TRUE になる範囲を狭める」方向のみで、FALSE が新たに TRUE になることはない。
+そのため**既に TRUE の行だけ**を `src/reextract_negative.py` で再抽出する。
+書き戻すのは `negative_or_outdated` と `negative_detail` の2列だけで、
+`mention` / `rank` / `kbf_tags` は再抽出結果で上書きしない
+(抽出は決定的でないため、基準変更による差分とモデルの揺らぎが混ざるのを避ける)。
+実行結果は `data/reports/reextract_negative_<実行日>.json` に残る。
+
+```powershell
+# 対象の確認だけ(APIも書き込みも無し)
+.\.venv\Scripts\python.exe src\reextract_negative.py --dry-run
+
+# 再抽出して書き戻す
+$env:ANTHROPIC_API_KEY = "..."
+$env:SHEETS_SPREADSHEET_ID = (Get-Content credentials\spreadsheet_id.txt)
+$env:GOOGLE_APPLICATION_CREDENTIALS = "credentials\service_account.json"
+.\.venv\Scripts\python.exe src\reextract_negative.py
+```
+
+**読み方の注意**
+
+- `daily_summary.negative_flag_count` と P-7 のネガ検知は、**8/24 の前後で定義が違う**。
+  8/24 より前の値は、再抽出した行については新基準、それ以外は旧基準のままである。
+- `config/legacy_paths.yaml`(P-8)には**同じ3区分の混同が残っている**。
+  `/marketing-automation-btob/` `/ma-tool/` `/mail-magazine/` は現行・非注力事業の
+  ページであり、引用されること自体は汚染ではない。純粋な終了事業パスは
+  `/btob-marketing-strategy/` のみ。**未処置**(本田さんの判断待ち)。
+- `/btob-crm/` は 2026-08-24 時点で **404(実在しない)**。AIが存在しないURLを引用していた
+  ハルシネーションだが、検知は継続するため定義からは削除していない。
 
 ---
 
