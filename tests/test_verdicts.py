@@ -143,3 +143,61 @@ def test_actions_without_a_done_date_are_skipped():
     rows = [{"action_id": "A-998", "内容": "x", "状態": verdicts.STATUS_MEASURING,
              "実施日": "—", "判断期限": "—"}]
     assert verdicts.implemented_actions(rows) == []
+
+
+# --- 面ごとの施策スコープ ----------------------------------------------------
+# 全施策から最新を取ると、ネガ検知の面にKGI向けの施策(A-005)が出てしまう。
+# 面ごとに関係する施策だけを見る、という規則をここで固定する。
+def seed_rows():
+    from action_log import SEED_ROWS
+
+    return [dict(r) for r in SEED_ROWS]
+
+
+def test_r3_scope_is_limited_to_negative_rules():
+    scoped = verdicts.actions_for_face("R3", seed_rows())
+    assert [r["action_id"] for r in scoped] == ["A-001", "A-002", "A-003", "A-004", "A-006"]
+    assert "A-005" not in [r["action_id"] for r in scoped]  # KGI向けは対象外
+
+
+def test_r7_scope_is_limited_to_kgi_actions():
+    scoped = verdicts.actions_for_face("R7", seed_rows())
+    assert [r["action_id"] for r in scoped] == ["A-005"]
+
+
+def test_other_faces_see_every_action():
+    for face in ("R1", "R2", "R4", "R5", "R6", "R8"):
+        assert len(verdicts.actions_for_face(face, seed_rows())) == 7, face
+
+
+def test_r3_verdict_uses_the_latest_negative_action():
+    """指示どおりの出力になること(A-003/A-004が直近・期限9/7・次はA-006)。"""
+    scoped = verdicts.actions_for_face("R3", seed_rows())
+    ctx = verdicts.build_context("2026-08-24", scoped, negative_streak_days=7)
+
+    assert ctx["last_action_done_date"] == "2026-08-24"      # A-003/A-004 の実施日
+    assert ctx["days_since_last_action"] == 0
+    assert ctx["next_deadline"] == "2026-09-07"              # A-007(8/31)ではない
+    assert ctx["next_action_name"].startswith("外部プロフィール第2弾")
+
+    text = verdicts.render("R3", ctx)
+    assert "/about/ Organization構造化データ実装" in text
+    assert "2026-09-07" in text
+    assert "外部プロフィール第2弾" in text
+    # 修正前に混入していたKGI向けの施策と、A-007の期限が出ないこと
+    assert "問い合わせフォームに認知経路を追加" not in text
+    assert "2026-08-31" not in text
+
+
+def test_r7_verdict_uses_the_kgi_action():
+    scoped = verdicts.actions_for_face("R7", seed_rows())
+    ctx = verdicts.build_context("2026-08-24", scoped, kgi_noise=True)
+    assert ctx["last_action_name"] == "問い合わせフォームに認知経路を追加"
+
+
+def test_same_day_actions_resolve_deterministically():
+    """同日に複数実施した日は action_id 順で決まる(実行ごとに揺れない)。"""
+    rows = seed_rows()
+    first = verdicts.implemented_actions(rows)
+    second = verdicts.implemented_actions(list(reversed(rows)))
+    assert [a["action_id"] for a in first] == [a["action_id"] for a in second]

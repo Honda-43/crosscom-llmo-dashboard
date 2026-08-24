@@ -79,5 +79,6 @@ label = "、".join(zero_cells[:5])
 if len(zero_cells) > 5:
     label += f" ほか{len(zero_cells) - 5}件"
 board.verdict_panel("R4", board.build_context(
+    "R4",
     zero_cells=len(zero_cells), zero_cells_label=label,
 ))

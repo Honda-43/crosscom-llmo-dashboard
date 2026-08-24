@@ -113,4 +113,4 @@ with st.expander("状態の意味"):
         "- **却下 / 保留**: やらない / 時期を待つ"
     )
 
-board.verdict_panel("R8", board.build_context())
+board.verdict_panel("R8", board.build_context("R8"))

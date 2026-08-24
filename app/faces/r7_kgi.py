@@ -106,4 +106,4 @@ figure.update_layout(
 st.plotly_chart(figure, width="stretch")
 st.caption(f"インプレッション週計 {impressions_now:.0f}。母数の目安は週{floor:.0f}。")
 
-board.verdict_panel("R7", board.build_context())
+board.verdict_panel("R7", board.build_context("R7"))

@@ -33,8 +33,9 @@ totals = window.groupby("entity")["mention_count"].sum().sort_values(ascending=F
 observed = window.groupby("date")["observed_total"].max().sum()
 recent_counts = recent.groupby("entity")["mention_count"].sum()
 
-# 縦軸。自社の順位中央値は llm_observations の rank から取れるが、
-# 競合の順位は観測していないため SoV順位を代理として置く。
+# 縦軸。推薦リスト内の実順位を抽出しているのは自社のみ(§4スキーマの rank)。
+# 競合の実順位は取得していないため、言及シェア順位を代理値として置く。
+# 抽出スキーマへの競合順位の追加は §4 凍結のため行わない(READMEに候補として記録)。
 self_rank_median = None
 if not obs.empty:
     ranked = obs[(obs["date"] > end - pd.Timedelta(days=board.LOOKBACK_DAYS))
@@ -109,8 +110,8 @@ else:
     )
     st.plotly_chart(figure, width="stretch")
     st.caption(
-        "縦軸は自社のみ推薦リスト内の順位中央値。競合の順位は観測していないため"
-        "SoV順位を代理として置いている(競合の実順位ではない)。"
+        "競合の縦軸は言及シェア順位による代理値。"
+        "推薦リスト内の実順位を抽出しているのは自社のみ。"
     )
 
 st.subheader("シェアランキング(28日)")
@@ -132,6 +133,7 @@ bars.update_layout(height=max(260, 32 * len(ranking) + 80),
 st.plotly_chart(bars, width="stretch")
 
 board.verdict_panel("R5", board.build_context(
+    "R5",
     self_share=position["share"], self_share_rank=position["rank"],
     self_rank_median=self_rank_median, top_competitor=str(position["top"]),
     share_gap_to_top=position["gap"],

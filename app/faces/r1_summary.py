@@ -81,4 +81,4 @@ if actions:
 else:
     st.info("action_log にデータがありません。R8を参照してください。")
 
-board.verdict_panel("R1", board.build_context())
+board.verdict_panel("R1", board.build_context("R1"))

@@ -159,7 +159,39 @@ def implemented_actions(action_rows: Sequence[Dict[str, Any]]) -> List[Dict[str,
             "name": str(row.get("内容", "")).strip(),
             "deadline": _date(row.get("判断期限")),
         })
-    return sorted(out, key=lambda a: a["date"])
+    # 同じ日に複数実施することがあるので action_id まで見て順序を確定させる。
+    # これがないと「直近の施策」がYAMLの行順で揺れる。
+    return sorted(out, key=lambda a: (a["date"], a["action_id"]))
+
+
+# 判定欄で「直近の施策」を選ぶとき、面ごとに関係する施策だけを見る。
+# 全施策から最新を取ると、ネガ検知の面にKGI向けの施策が出てしまう。
+FACE_ACTION_SCOPES: Dict[str, Dict[str, tuple]] = {
+    "R3": {"rule_ids": ("R-P7", "R-P8")},   # ネガ検知に効く施策のみ
+    "R7": {"targets": ("KGI",)},            # KGIに効く施策のみ
+}
+
+
+def filter_actions(action_rows: Sequence[Dict[str, Any]],
+                   rule_ids: Sequence[str] = (),
+                   targets: Sequence[str] = ()) -> List[Dict[str, Any]]:
+    """根拠rule_id / 対象で施策を絞る。条件を渡さなければ素通し。"""
+    if not rule_ids and not targets:
+        return list(action_rows)
+    out = []
+    for row in action_rows:
+        if rule_ids and str(row.get("根拠rule_id", "")).strip() not in rule_ids:
+            continue
+        if targets and str(row.get("対象", "")).strip() not in targets:
+            continue
+        out.append(row)
+    return out
+
+
+def actions_for_face(face: str,
+                     action_rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """その面の判定欄が参照すべき施策。定義のない面は全施策。"""
+    return filter_actions(action_rows, **FACE_ACTION_SCOPES.get(face, {}))
 
 
 def build_context(

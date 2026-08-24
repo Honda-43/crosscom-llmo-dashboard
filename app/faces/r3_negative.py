@@ -73,4 +73,4 @@ st.caption(
 if legend:
     st.caption(legend)
 
-board.verdict_panel("R3", board.build_context())
+board.verdict_panel("R3", board.build_context("R3"))

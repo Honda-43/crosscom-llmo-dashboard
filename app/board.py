@@ -154,8 +154,12 @@ def negative_streak(obs: pd.DataFrame, end: pd.Timestamp) -> int:
     return streak
 
 
-def build_context(**overrides: Any) -> Dict[str, Any]:
-    """全面共通のコンテキスト。各面が必要な値だけ上書きする。"""
+def build_context(face: Optional[str] = None, **overrides: Any) -> Dict[str, Any]:
+    """全面共通のコンテキスト。各面が必要な値だけ上書きする。
+
+    ``face`` を渡すと「直近の施策・次の施策・判断期限」をその面に関係する
+    施策だけから求める(R3はネガ検知に効く施策、R7はKGI向けのみ)。
+    """
     obs = observations()
     summary = summary_frame()
     sov = sov_frame()
@@ -186,7 +190,8 @@ def build_context(**overrides: Any) -> Dict[str, Any]:
         noise_floor=floor,
     )
     base.update(overrides)
-    return verdicts.build_context(end.strftime("%Y-%m-%d"), action_rows(), **base)
+    scoped = verdicts.actions_for_face(face, action_rows()) if face else action_rows()
+    return verdicts.build_context(end.strftime("%Y-%m-%d"), scoped, **base)
 
 
 def self_position(sov: pd.DataFrame, end: pd.Timestamp,

@@ -106,6 +106,7 @@ st.caption(
 
 self_rows = [r for r in rows if r["category"] == citation_gap.CATEGORY_SELF]
 board.verdict_panel("R6", board.build_context(
+    "R6",
     absent_domains=len(absent),
     top_absent_domain=absent[0]["domain"] if absent else "—",
     top_absent_count=absent[0]["cited_count"] if absent else 0,
