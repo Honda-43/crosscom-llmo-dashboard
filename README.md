@@ -252,7 +252,34 @@ $env:ANTHROPIC_API_KEY = "..."
 $env:SHEETS_SPREADSHEET_ID = (Get-Content credentials\spreadsheet_id.txt)
 $env:GOOGLE_APPLICATION_CREDENTIALS = "credentials\service_account.json"
 .\.venv\Scripts\python.exe src\reextract_negative.py
+
+# 書き戻しだけが失敗したときの再開(APIを再消費しない)
+.\.venv\Scripts\python.exe src\reextract_negative.py `
+  --from-report data\reports\reextract_negative_2026-08-24.json
 ```
+
+> ⚠️ **ローカルの `credentials/service_account.json` はシートに対して読み取り専用。**
+> 2026-08-24 の再抽出では書き戻しが `APIError: [403] The caller does not have permission`
+> で失敗した。読み取り(658行)は成功しているので、原因はスコープではなく
+> **スプレッドシートの共有権限**(`llmo-collector@crosscom-llmo.iam.gserviceaccount.com`
+> が閲覧者になっている)。ローカルから書き戻す場合は、このアドレスを**編集者**に変更する。
+> 再抽出の結果はレポートJSONに残るので、権限を直したあと `--from-report` で再開できる。
+
+### 2026-08-24 の実行結果
+
+| | 件数 |
+|---|---|
+| 再判定の対象(実行前 TRUE) | 17 |
+| 再抽出成功 | 17 |
+| **TRUE → FALSE(過剰検知だったもの)** | **1**(2026-08-24 A-1/gemini) |
+| TRUE のまま(実態としてネガ) | 16 |
+| 失敗 | 0 |
+
+発火日数は 9日 → 9日で変わらず、合計件数のみ 17 → 16。
+**8/18以降の毎日発火は過剰検知ではなく実態だった。**
+E-1(エンティティ質問)の回答が、終了事業である「BtoB マーケティング戦略コンサルティング支援」
+「MA導入・**運用**支援」「メールマーケティング**代行**支援」を現在の主要事業として
+現在形で列挙し続けていることが原因。**P-7 の最優先対応は継続する。**
 
 **読み方の注意**
 

@@ -111,12 +111,8 @@ def reextract_one(row: Dict[str, str]) -> Dict[str, Any]:
     }
 
 
-def patch_rows(rows: List[Dict[str, str]], results: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+def patch_rows(rows: List[Dict[str, str]], changed_keys: set) -> List[Dict[str, Any]]:
     """判定が変わった行だけを、2列だけ差し替えた upsert 用の行にする。"""
-    changed_keys = {
-        (r["row"]["date"], r["row"]["prompt_id"], r["row"]["model"])
-        for r in results if r["status"] == "ok" and r["changed"]
-    }
     patched: List[Dict[str, Any]] = []
     for row in rows:
         key = (row.get("date"), row.get("prompt_id"), row.get("model"))
@@ -127,6 +123,29 @@ def patch_rows(rows: List[Dict[str, str]], results: List[Dict[str, Any]]) -> Lis
         new_row["negative_detail"] = ""
         patched.append({h: new_row.get(h, "") for h in sheets_writer.HEADERS_LLM})
     return patched
+
+
+def changed_keys_from_results(results: List[Dict[str, Any]]) -> set:
+    return {
+        (r["row"]["date"], r["row"]["prompt_id"], r["row"]["model"])
+        for r in results if r["status"] == "ok" and r["changed"]
+    }
+
+
+def write_back(changed_keys: set, after: Counter) -> None:
+    """llm_observations の2列と daily_summary.negative_flag_count を書き戻す。"""
+    rows = sheets_writer.read_llm_observations()
+    ss = sheets_writer._open_spreadsheet()
+    patched = patch_rows(rows, changed_keys)
+    if patched:
+        sheets_writer._upsert(ss, TAB_LLM, sheets_writer.HEADERS_LLM,
+                              sheets_writer.KEYS_LLM, patched)
+    summary_patch = patch_summary(after)
+    if summary_patch:
+        sheets_writer._upsert(ss, TAB_SUMMARY, sheets_writer.HEADERS_SUMMARY,
+                              sheets_writer.KEYS_SUMMARY, summary_patch)
+    print(f"[ok] シート更新: llm_observations {len(patched)} 行 / "
+          f"daily_summary {len(summary_patch)} 行")
 
 
 def patch_summary(after_counts: Counter) -> List[Dict[str, Any]]:
@@ -176,7 +195,26 @@ def main() -> None:
     ap.add_argument("--no-write", action="store_true",
                     help="再抽出はするが、シートには書き戻さない")
     ap.add_argument("--limit", type=int, help="先頭N件だけ処理する（動作確認用）")
+    ap.add_argument("--from-report", metavar="PATH",
+                    help="保存済みレポートJSONの結果をシートへ書き戻す（再抽出しない）。"
+                         "書き込みだけが失敗したときの再開用。APIは呼ばない")
     args = ap.parse_args()
+
+    if args.from_report:
+        with open(args.from_report, "r", encoding="utf-8") as fh:
+            report = json.load(fh)
+        keys = {(c["date"], c["prompt_id"], c["model"]) for c in report["changed_rows"]}
+        after = Counter({d: int(n) for d, n in report["daily_after"].items()})
+        print(f"レポート: {args.from_report}")
+        print(f"  再抽出日     : {report['run_date']}")
+        print(f"  TRUE→FALSE   : {len(keys)} 件")
+        for k in sorted(keys):
+            print(f"    - {k[0]} {k[1]}/{k[2]}")
+        if not keys:
+            print("書き戻す変更はありません。")
+            return
+        write_back(keys, after)
+        return
 
     rows = sheets_writer.read_llm_observations()
     if not rows:
@@ -278,16 +316,14 @@ def main() -> None:
         print("判定が変わった行はありません。シートへの書き戻しは不要です。")
         return
 
-    ss = sheets_writer._open_spreadsheet()
-    patched = patch_rows(rows, results)
-    sheets_writer._upsert(ss, TAB_LLM, sheets_writer.HEADERS_LLM,
-                          sheets_writer.KEYS_LLM, patched)
-    summary_patch = patch_summary(after)
-    if summary_patch:
-        sheets_writer._upsert(ss, TAB_SUMMARY, sheets_writer.HEADERS_SUMMARY,
-                              sheets_writer.KEYS_SUMMARY, summary_patch)
-    print(f"[ok] シート更新: llm_observations {len(patched)} 行 / "
-          f"daily_summary {len(summary_patch)} 行")
+    try:
+        write_back(changed_keys_from_results(results), after)
+    except Exception as exc:  # noqa: BLE001
+        # 再抽出は成功してレポートに残っているので、APIを再消費せずに再開できる。
+        print(f"\n[error] シートへの書き戻しに失敗しました: {exc}")
+        print("再抽出の結果はレポートに保存済みです。権限を直したあと、次で書き戻せます:")
+        print(f"  python src/reextract_negative.py --from-report {out}")
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
