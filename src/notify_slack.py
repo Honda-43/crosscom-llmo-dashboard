@@ -302,11 +302,46 @@ _BOLD_RE = re.compile(r"\*\*(.+?)\*\*", re.DOTALL)
 _SLACK_TEXT_LIMIT = 38_000
 
 
+# 所見文はLLMが書くため、URLが日本語に直付けされ、スキームも落ちることがある。
+# 例: 「E-1でcross-com.jp/service/...」
+# これをSlackに素で渡すと「E-1でcross-com.jp」までをホスト名と解釈し、
+# 「で」が非ASCIIなのでIDN変換されて xn--e-1cross-com-6e4k.jp という壊れたリンクになる。
+# 明示リンク <url|label> に変換しておけば、直前の文字を巻き込まれない。
+_LINKABLE_TLDS = "jp|com|net|org|io|ai|dev|app|co"
+_BARE_URL_RE = re.compile(
+    r"(?<![A-Za-z0-9.\-_/@<|])"          # 直前がURLの一部でなければよい(日本語直後も可)
+    r"((?:https?://)?"                    # スキームは省略されることがある
+    r"(?:[A-Za-z0-9-]+\.)+"               # ドメインラベル
+    rf"(?:{_LINKABLE_TLDS})"              # TLDは限定する(Node.js等を誤検出しない)
+    # パスはASCIIのURL安全文字のみ。日本語や閉じ括弧で必ず止まるようにして、
+    # 「cross-com.jp/btob-crm/の2件が…」のように後続の本文を飲み込ませない。
+    r"(?:/[A-Za-z0-9\-._~/%+#?&=]*)?)"
+)
+_EXISTING_LINK_RE = re.compile(r"<[^<>]+>")
+
+
+def _linkify_bare_urls(segment: str) -> str:
+    def repl(match: "re.Match[str]") -> str:
+        label = match.group(1).rstrip(".、。")
+        url = label if label.startswith(("http://", "https://")) else f"https://{label}"
+        return f"<{url}|{label}>" + match.group(1)[len(label):]
+
+    return _BARE_URL_RE.sub(repl, segment)
+
+
 def to_slack_mrkdwn(markdown: str) -> str:
     """Convert the report Markdown to Slack mrkdwn."""
     text = _BOLD_RE.sub(r"*\1*", markdown)
     text = _HEADING_RE.sub(r"*\1*", text)
-    return text.strip()
+
+    # 既に <...> になっている箇所は触らず、その外側だけをリンク化する。
+    parts, cursor = [], 0
+    for link in _EXISTING_LINK_RE.finditer(text):
+        parts.append(_linkify_bare_urls(text[cursor:link.start()]))
+        parts.append(link.group(0))
+        cursor = link.end()
+    parts.append(_linkify_bare_urls(text[cursor:]))
+    return "".join(parts).strip()
 
 
 def build_weekly_message(date: str, report_md: str) -> str:

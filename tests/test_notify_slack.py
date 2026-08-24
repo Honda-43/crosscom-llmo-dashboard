@@ -252,6 +252,62 @@ def test_weekly_message_is_truncated_when_huge():
     assert "以下略" in text
 
 
+# --- 週次: 裸URLのリンク化(punycode化バグの再発防止) ------------------------
+def test_bare_url_glued_to_japanese_is_linked_correctly():
+    """所見文でURLが日本語に直付けされ、スキームも落ちることがある。
+
+    そのままSlackに渡すと「E-1でcross-com.jp」までをホスト名と解釈し、
+    「で」が非ASCIIなのでIDN変換され xn--e-1cross-com-6e4k.jp になる。
+    2026-08-24 の週次所見で実際に発生した。
+    """
+    source = "状態:E-1でcross-com.jp/service/btob-marketing-strategy/が引用されている。"
+    text = notify_slack.to_slack_mrkdwn(source)
+    assert "<https://cross-com.jp/service/btob-marketing-strategy/|" in text
+    assert "E-1で<https://" in text          # 「で」はリンクの外に残る
+    assert "xn--" not in text
+
+
+def test_bare_url_does_not_swallow_following_japanese():
+    text = notify_slack.to_slack_mrkdwn("cross-com.jp/btob-crm/の2件が引用されている。")
+    assert "<https://cross-com.jp/btob-crm/|cross-com.jp/btob-crm/>" in text
+    assert "の2件が引用されている。" in text.split(">", 1)[1]
+
+
+def test_existing_slack_links_are_left_alone():
+    source = "<https://sheet/x|スプレッドシート> を開く"
+    assert notify_slack.to_slack_mrkdwn(source) == source
+
+
+def test_non_urls_are_not_linkified():
+    """Node.js や ver 1.5 をリンクにしない(TLDを限定しているため)。"""
+    source = "Node.js と ver 1.5 と e.g. の話"
+    assert notify_slack.to_slack_mrkdwn(source) == source
+
+
+def test_url_in_parentheses_stops_at_the_bracket():
+    text = notify_slack.to_slack_mrkdwn("(cross-com.jp/btob-crm/)を確認。")
+    assert "<https://cross-com.jp/btob-crm/|cross-com.jp/btob-crm/>" in text
+    assert ")を確認。" in text
+
+
+def test_trailing_punctuation_is_not_part_of_the_url():
+    text = notify_slack.to_slack_mrkdwn("cross-com.jp/about/。")
+    assert "cross-com.jp/about/|" in text
+    assert text.endswith("。")
+
+
+def test_weekly_message_end_to_end_has_no_punycode_risk():
+    report = (
+        "## 3. 発火パターンと推奨アクション\n\n"
+        "**R-P8(旧事業URLの引用)**\n"
+        "状態:E-1でcross-com.jp/service/btob-marketing-strategy/、"
+        "cross-com.jp/btob-crm/の2件が引用されている。\n"
+    )
+    text = notify_slack.build_weekly_message("2026-08-24", report)
+    assert "xn--" not in text
+    assert text.count("<https://cross-com.jp/") == 2
+
+
 def test_notify_weekly_skips_an_empty_report():
     assert notify_slack.notify_weekly("2026-08-17", "", webhook="https://hooks/x") is False
 
