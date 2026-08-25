@@ -1,0 +1,20 @@
+{
+  "date": "2026-08-26",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-08-25T22:28:58.992639Z",
+  "answer": "営業にAIエージェントの活用を検討されており、ツール選定の前にCRMのデータ設計から支援を依頼できるパートナーをお探しとのこと、承知いたしました。CRMデータ設計とAIエージェント導入の両方に強みを持つコンサルティング会社や支援企業が複数存在します。\n\n以下に、CRMデータ設計とAIエージェント活用を見据えた支援を提供するパートナー企業の例を挙げます。\n\n*   **テクノデジタルコンサルティング**：\n    「CRM・データ戦略設計サービス」を提供しており、「CRM導入前の構想整理」や「顧客データ活用方針」の策定を支援しています。何のために、誰に、何を届けるかという顧客戦略・KPI設計から、必要なデータをどう集め、整備するかというデータ統合・基盤設計、さらにデータをどの業務・施策に組み込むかといった活用設計・業務変革までを一貫して支援するとしています。\n\n*   **INTLOOP Strategy株式会社**：\n    「AI&DATAコンサルティングサービス」において、「AIエージェントプラットフォーム戦略」や「データプラットフォーム戦略」の策定支援を行っています。戦略立案から実証実験、システム実装、現場への浸透・定着まで一貫して支援し、AIとデータを起点とした価値創造をサポートします。\n\n*   **パーソルビジネスプロセスデザイン株式会社**：\n    AIエージェント導入コンサルティングにおいて、「データを一箇所に集約し、AIが利用しやすい形に整備する地道な作業のノウハウが豊富」と明記しており、土台を固めてからAIを構築する着実なアプローチを強みとしています。\n\n*   **PwCコンサルティング**：\n    「生成AI活用による営業業務の効率化・高度化支援」を提供しており、営業へのAI活用においては「学習データのナレッジマネジメントがポイント」であると指摘しています。AIエージェントが各システムにデータを取りにいく仕組みを構築し、データの一元化を実現することで、顧客軸での組織再構築を支援するとしています。\n\n*   **株式会社Sapeet**：\n    「営業組織におけるAX支援サービス」を提供しており、AIを前提とした営業プロセスそのものの再設計や、企業のトップ営業の成功パターンや個社特有の暗黙知を組み込んだ「営業AIエージェント」の構築を支援します。\n\n*   **株式会社100**：\n    「Agentic CRM パートナー」として、HubSpotを共通基盤にAIエージェントを組み込んだ顧客フロント業務（マーケティング・営業・CS）の設計・実装を行うAIネイティブ・エージェンシーです。「データ品質設計」を含め、顧客データの一元化から全Hub統合運用、グループ横断のCRM統合まで対応しています。\n\nこれらの企業は、CRMデータの現状整理、課題分析、AIエージェント活用を見据えたデータ戦略設計、データ統合・基盤構築など、ツール選定前の重要なフェーズを支援できる専門知識と実績を持っています。まずは現状の課題や目標を明確にし、これらのパートナー企業に相談されることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0M5YCQ3VuPnljWItCP9ErEmJx8MWbQB8vH_L1qaTWtkf3Y0z8HW3n7RQtP1dCKy8HHYaS8rkHm9JTqvUnxgsFAsf-lvWyb4y83LlnwAVIr0a_S9UCXfExCuWjqOe3TraaiUbo0gJ0nqB2I1EPfRnK2rUj",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGT7kmZmOB2NOBqs7Cq4iLqEmw5BU-m4PxLul_6ahaRitI-C_pZpHBV9pnv7gzyyZ2fi674CF7IkYkOen2-PBpe1sFv7JrZYXU1VLpTD_aK5k-vo-d_CZhRa9BSXTi3mu_Xdf0ph1kSxMh-6aliaQNlGoan1Uhk71M=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEEkHsWZMybEhLBabZX4unXN34FnuVh1hQk0ZyVNvvBo2JlQtw9vG1OePChm2ElflAZ5rCrtbMyKaXRDSAJnD2CrGfwMudIlA58IwRAKnVQttassAY6N46r_UVzMQmqctxJAaXIgGQKGJgUN9jKhhSzY1rBolzXkIK8GOIKYVm4UBDXueWQxXOMCPTvGblv40AuI2y5xMpPKIs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHL4UGfIwiV3K1VMxrGqBJPLe54bJg5iIaFIFBsjAltpTsbsggbnKUgsp-fL6_pkyOTaQs-GiXJqMs68uMeObSoF0SxPiBjAIldHLtZi1ICJcqhznHH4FnTMmPNS2VyDSxb8aCxEzlW8q05B1mBY1q2eWLqX-wKpG8zGqiFjuTF5WUx8Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF3Z7Cc9Z18zY9S-PI_zuShVnJm442ViX4g50KxkCcMNL_QPh5UmkhMoyDPb6nF4EcqWgXK4M4iX7l46hc0qIB853-wC8QgN6hlQ2oZGy7nFqKPW10E9fK2qdrmFtKZ-1NXsXwkpw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGddSjKrPGxIsnnP-JhUxLMANmA9128ACOy1q9PuvaOXX1CazBQhtz8CRuUQh9SKaOdq4UOAdFzemJrhgokWz9KlnfTzA6KMYgkt0IhlgMbU2g97pHGv1KnjULqmTfBWHjC4_aTiR2Hi2lwWGrDf9c4a5bo-lwyyJ84eobHSnkUW8yNh8W1AwBGfYDgN5Nqxh3Yc4f4zj2oURlWtSQzlsqG7AwUewDTvDGytVdxVYUZi6gxaGeKdYWz7qBqNvbg-Z7Nb1zjQ7T1HyuZJ9kX0o8rKCJT2ViaXJl9Hvexdn3MNQxpP6YIZIxs"
+  ],
+  "error": null
+}

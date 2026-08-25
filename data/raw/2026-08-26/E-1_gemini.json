@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-26",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-08-25T22:29:38.880714Z",
+  "answer": "合同会社クロスコムは、BtoB領域に特化したコンサルティング会社です。特にSalesforce Agentforceの導入・定着支援やAgentic CRMの設計支援を主要事業としています。2023年5月に設立され、代表は本田正憲氏が務めています。同社は「100社100通りの購買体験を当たり前にする」をビジョンに掲げ、データ活用を通して企業のマーケティング活動を支援しています。\n\n**強み**\n合同会社クロスコムの強みは以下の点が挙げられます。\n\n*   **BtoB領域に特化した専門性**：BtoBマーケティングやセールス、Agentic CRMなど、法人間の取引に特化した深い知見と支援実績を持っています。\n*   **戦略立案から施策実行までの一気通貫支援**：表面的な課題ではなく企業の根本的な問題を特定し、マーケティング戦略の立案から施策の実行、運用、定着までを一貫してサポートすることで、ビジネス成長に貢献します。\n*   **AgentforceおよびAgentic CRM設計支援**：Salesforce Agentforceの導入から定着までの支援、および特定の製品にとらわれずCRMとAIを組み合わせたAgentic CRMの設計支援に強みを持っています。AIエージェントが自律的に動くことを前提としたデータと業務の再設計を重視しています。\n*   **実務に基づいたコンサルティング**：代表の本田氏が住宅業界での法人営業経験を持ち、ツール導入だけでなく、実際に業務が回る状態を設計することを支援の起点としています。\n*   **柔軟な支援体制**：BtoB Salesforceの導入・構築支援においては、パッケージ型とタイムチャージ型の2軸モデルで、事業規模や業務内容に応じた無駄なく柔軟な支援を提供しています。\n*   **データ活用による顧客エンゲージメントの深化**：マーケティングデータに基づいたパーソナライズ戦略で、すべての顧客接点をエンゲージメント深化の機会に変えていくことをミッションとしています。\n*   **中小企業への伴走支援**：限られた予算の中小企業向けに、ホワイトペーパーやメルマガなどのコンテンツ企画・制作を5万円（税抜）で提供するなど、手の届きやすい価格で継続的な支援を行っています。\n\n**提供サービス**\n合同会社クロスコムが提供する主なサービスは以下の通りです。\n\n*   **Agentforce導入・定着支援**：Salesforce Agentforceの導入からエージェント設計、トピック構成、アクション配線といった構築作業、さらには導入に伴う業務設計までを支援します。自社での構築を進める企業向けには、設計アドバイザリーも提供しています。\n*   **Agentic CRM設計支援**：特定の製品を前提とせず、CRMとAIをどのように組み合わせるかを設計段階から支援します。AIエージェントが自律的に動くことを前提に、マーケティング・営業・カスタマーサクセスに分散したデータと業務の再設計をサポートします。\n*   **BtoB Salesforce導入・構築支援**：SalesforceのMA・CRMツールに関する導入と構築を、パッケージ型とタイムチャージ型の2軸モデルで支援します。初期構築から運用支援まで、事業規模や業務内容に応じたプランを提案します。\n*   **BtoB MA導入・運用支援**：MAツールの導入支援だけでなく、実務で活用できるまでの定着サポートも行います。\n*   **BtoBマーケティング戦略コンサルティング支援**：「リード数は増えたのに商談につながらない」といった課題に対し、戦略設計から施策提案まで一貫して支援します。\n*   **BtoBコンテンツ企画・制作代行支援**：ホワイトペーパーやメルマガなどのマーケティングコンテンツの企画から制作までをサポートします。\n*   **HubSpot導入・構築支援、運用代行**：HubSpotをメインに活用し、成果改善のコンサルティングや運用代行、データ環境構築支援まで行っています。\n*   **無料相談（壁打ち）**：具体的な相談内容が決まっていない場合でも、気軽に相談できる場を提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG4asDBKsNhCUV-6oUjek5DeuoFZxeuwCrTB5PN__T5_SpfkfbJ2Mqbc_6I-8EW_XQOXR8L0JlCGNmVM4-OYJSY_fZMDsnqQ_YYjmeQ-JKe",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFWFvzd2m1cqCxD1Bj41Abs-Hh0nvhQ6k5np2Vyn-_EWOlDqsl4S3IOs-fh_wGzAI4eK83xW4JDyrKCNzO970ABcBgLWanLXrJRdOlUurcWW746dLkNNg2lFS2fakncGra8HaRAYeVJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFFi9WK-IZZ0qqME372o6pFbQKvODcBM36DL2OGhY9G0JINn4s8cJqx0Ze_bDxm2HBj_gRR1fFn5OcPjWqKLTMPTSNAQomWq9aLusgpmcXwka1ay6-S",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEz59OB9L1VFoCI_Hqkw0hSFLZG-jJlO5lD0LskZ9fq9PUzJi5yuwfCXr5NwzusSqqRx89NLsaOeSrafq1RjFdAwln_YObUiCDdHisnRHZXu0YMqa-Mn60=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFW7SLt0Kb46LIM2wUJvoRcFOmUjw_2CWMVbNgpxwpxuPn0Ts7htWIej_pjS1nyHizMFpxdeEGqyU0QLtUjjDbXldnZzNB9kf8zASk-AcSn1x4gcbROUI7FGEUNU4-SZ29xF3qqKky8",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQExoIk_bR6EmiN4VPSdieZu-PJTrtHiMI87oeqBpVuaEPkHggTQ45w0pdMKNOCEMdiAG0ZWGpgrjolxY6hEvG2FX_2k9l0iaoBureBtuhPlv197L9HbR_Y7_-ySv-2JS_ADqtP48ycKO6fPxQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFrxUr2NHAGYwvnCYq1vF7zd25v7777z31sFxPljmAOlpIHMI0OkHAmkj4ltByXMxW5TI6Qn9n_wA5j5r38YGw4sbkgBnj1URHcVQ6d0bjOg7LW3hjmZX194rRnL5F7Hd5x38YSV_c8eKgOUjb3NKMfwirmMA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHje6JN7qb1TaVOWsAPKx5l5QCHAMgnHCap_LWy7VFMAzsmTAV3oblKsyi7C8NagxxZVfn0qQ8lILJWm66TbIlXK1Ktl1wUYoQbspDOcsPlMIiY0C3tPnd6LyxryabA3tiB1tqM2nWD7fcUgLbZ3D0EkmaGiN8h-3xgvM8ZPAO9Lxi_d939bmT6GpCXFbDD_n_Xslut80p-7N5XTU61PvivVa0C-h6mgHc-ry75zXRKnTaGvwa7mqmi07m_11DFsVf95nG70ag47qaCtL-WdPE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8DXv6lwt2nsJf7dgbLbjGR6CVKJMJJ5QlUFkXCD8EDRD4Qn2mal3qNlGv7AuqrBBynxQxW3vhYD8_PZMn_KSPRln0o7Ust3_AVfp7WKxOJaB5eCFkVBBws5qNktXQB1OSGKJqt9flhakY_w_9QIY="
+  ],
+  "error": null
+}
