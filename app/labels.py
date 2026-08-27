@@ -83,6 +83,10 @@ _BOOLEAN_CHANGES = frozenset({
     "mention_gained", "mention_lost", "negative_flag_on", "negative_flag_off",
 })
 
+# 施策の「対象」列の値。プロンプトID(E-1・B-3 等)は識別コードなので
+# 対応表に載せず、そのまま通す。
+TARGET_LABELS: Dict[str, str] = {"KGI": "成果指標"}
+
 # ルール判定の値。値そのもの(rules_engine の fired 等)は変えず、表示だけ訳す。
 STATUS_LABELS: Dict[str, str] = {
     "fired": "発火",
@@ -114,6 +118,11 @@ def pillar(code: Any) -> str:
 
 def status(value: Any) -> str:
     return STATUS_LABELS.get(str(value).strip(), str(value))
+
+
+def target(value: Any) -> str:
+    """施策の対象。対応表に無い値(プロンプトID)はそのまま返す。"""
+    return TARGET_LABELS.get(str(value).strip(), str(value))
 
 
 def yes_no(value: Any) -> str:

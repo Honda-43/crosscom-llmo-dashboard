@@ -694,11 +694,13 @@ python notify_slack.py --test-weekly --date 2026-08-17               # 週次投
 | rank / model / prompt_id | 順位 / モデル / プロンプト |
 | TRUE / FALSE | あり / なし |
 | fired / not_fired / insufficient_data | 発火 / 非発火 / 判定不能 |
+| `action_log` の対象列の `KGI` | 成果指標(プロンプトIDは識別コードなのでそのまま) |
 
 `app/labels.py` の使い分け:
 
 - `ja_columns(frame)` — 表の見出しを表示直前に訳す(元のフレームは変えない)
-- `column(name)` / `pillar(code)` / `status(value)` / `yes_no(value)` — 値1つ分
+- `column(name)` / `pillar(code)` / `status(value)` / `target(value)` /
+  `yes_no(value)` — 値1つ分。対応表に無い値はそのまま返す
 - `change_rows(rows)` — `changes` タブの `change_type` と真偽値を訳す
 
 英字のまま残してよいのは次の5種だけ。許可語は `tests/display_text.py` の

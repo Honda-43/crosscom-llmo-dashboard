@@ -22,9 +22,12 @@ PRODUCT_NAMES = {
     "Agentforce", "Agentic", "CRM", "GA4", "GSC", "AUBA", "PR", "TIMES",
     "Google", "Sheets", "GitHub", "Actions", "Streamlit", "Ahrefs",
     "Organization", "MA",
-    # このシステム自身の名前と、製品名の一部としてしか出ない語
-    "LLMO",   # 画面タイトル「LLMO レポート」= このシステムの名前
-    "API",    # 「Google Sheets API」の一部としてのみ使う
+    # LLMO: このシステムの固有名。画面タイトル「LLMO レポート」がそれで、
+    #   訳すと別のシステムを指してしまうため固有名詞として残す。
+    "LLMO",
+    # API: 技術用語であり、かつ製品名の一部(「Google Sheets API」)。
+    #   単独で訳すと何を指すか分からなくなるため残す。
+    "API",
 }
 # ③ 定着済み略語
 ABBREVIATIONS = {"AI", "KBF", "CEP", "URL"}

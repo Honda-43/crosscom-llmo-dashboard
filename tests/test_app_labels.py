@@ -136,6 +136,15 @@ def test_change_rows_translate_the_type_and_the_boolean_sides():
     assert rows[0]["change_type"] == "mention_lost"  # 元の行は変えない
 
 
+def test_action_target_translates_kgi_but_leaves_prompt_ids():
+    import labels
+
+    assert labels.target("KGI") == "成果指標"
+    # プロンプトIDは識別コードなのでそのまま
+    for code in ("E-1", "B-3", "A-1"):
+        assert labels.target(code) == code
+
+
 def test_boolean_values_display_as_japanese():
     import labels
 
