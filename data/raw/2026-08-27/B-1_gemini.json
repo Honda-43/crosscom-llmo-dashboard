@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-27",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-27T02:59:34.382616Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、人間、自律型AIエージェント、およびそれらが稼働するプラットフォームが連携し、顧客成功を推進する顧客関係管理システムです。従来のルールベースのCRM自動化とは異なり、AIエージェントが顧客データを解釈し、文脈を考慮して最適な行動を自律的に判断・実行します。これにより、マーケティング、営業、カスタマーサービスなどの業務において、多段階のワークフローを人間の承認を必要とせずに計画、実行、適応させることが可能です。必要に応じて人間にエスカレーションすることもできます。\n\nAgentic CRMの主な特徴は以下の通りです。\n*   **自律的な意思決定**：AIエージェントが設定されたガードレール内でデータと文脈に基づいて行動し、各ステップでの人間の入力を待つ必要がありません。\n*   **文脈の解釈と適応**：固定されたロジックに従うのではなく、顧客データを推論し、状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整します。\n*   **積極的な業務遂行**：従来のCRMがデータを保存し、ユーザーが行動を起こすのを待つのに対し、Agentic CRMはキャンペーンの計画、顧客への対応、パフォーマンスの最適化などを自律的に行います。\n*   **業務プロセスの変革**：営業においては、AIエージェントが顧客の文脈を解釈し、記録を充実させ、シグナルに優先順位をつけ、次のアクションを促すことで、営業担当者の手作業を軽減します。\n*   **共同作業と学習**：AIエージェントは人間と協力して目標達成のための最善の方法を見つけ、継続的な顧客インタラクション全体で実行サイクルを継続的に実行し、結果を評価して次のアクションを調整します。\n\n### 導入や設計を支援してくれる会社\n\nAgentic CRMの導入や設計を支援する会社としては、以下のような企業があります。\n\n*   **合同会社クロスコム**\n    *   AIがデータを読み書きすることを前提としたAgentic CRMの業務設計から、貴社専用のシステム設計・構築を支援しています。\n    *   トップセールスの思考プロセスや判断基準を言語化し、データベースの構造として実装することで、データの意味を定義する設計に強みを持っています。\n    *   Salesforce Agentforceの導入・定着支援も行っており、BtoB領域に特化しています。\n    *   商談の議事録や顧客からのメールなどをSlackに投稿するだけで、AIが内容を読み取り、CRMの各項目へ下書きとして振り分け、担当者は承認するだけで済むような仕組みの設計も可能です。\n\n*   **株式会社100（ハンドレッド）**\n    *   HubSpotのAgentic Customer Platform（AIとCRMを搭載）の導入・運用支援、およびAIを活用した業務自動化支援を提供しています。\n    *   HubSpot Eliteパートナーとして、HubSpotを共通基盤にAIエージェントを組み込んだ顧客フロント業務（マーケティング・営業・CS）の組織全体での設計・実装を支援しています。\n    *   AIエージェントによる組織構築を支援し、営業・マーケティング業務の一部をAIが自律実行する組織への移行を設計・実装します。\n\n*   **アーカス・ジャパン株式会社**\n    *   CRMの導入・定着化支援、顧客データの一元管理、営業DXを支援する企業です。\n    *   ノーコード型AIネイティブCRM「EMOROCO CRM Lite」を提供しており、中小企業の顧客管理・営業管理・問い合わせ管理の一元化を可能にします。\n    *   明示的に「Agentic CRM」という用語を使用していませんが、「AIネイティブCRM」という表現や、AIによる自動化の強調は、Agentic CRMの概念と合致しています。\n\nAgentic CRMの導入は、単なるテクノロジーのアップグレードではなく、インテリジェントで顧客志向の業務運営への戦略的な転換を意味します。 導入を成功させるためには、時間とコストがかかること、AIが生成する成果の一貫した品質を確保すること、そしてAIと人間によるサービスのバランスを取ることが課題となります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHPx5fca5lt8EYM4G1qv-xDGW2D2I_vzqwSh7cTa2tBeBbCHLr5JYuo_3nXByKScid_JLh7X7p_wzaqC4g06WzjYfY2gOfXPJx_MT1EFI4FBz9vSTYtoTwWbAOdWb1wVuFgE0TwkPg0xWcUPMaNqcNrGIM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEvujeh7uaKGcNFG6YwoiPkoE8DPKLdSuYhrTfxK0ZLjg7Hj7w4rbw4LwL5_qURqGrL_5ZwEa18L1Rdawc1-aYBBkKI6QdXAwSjZlOsJGDTA0Q9b0CLCjY-O7T-v_HzRGPB7MxWTetj_TNcQONtzZdErLk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2O-lLB_05ne11Uchw-ud_2hqDb__FPeLp63ffBfRDFSW-rJVl14mzTJHMZAdDoOsWdIsSVqgNW3TMA2i_98wmq4tG8MWCm8MOs9ks-bwjcaLU7fZr-Fy2cNroOA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGIIEV-di_HVfEz-3lDbL_TJ48k5UERdmj-UaOkmFpwuEoDYg9zugUVYGTVosS2s3AqPmAQa3jYPSWr-rgcTiKoNq3YiZQJoBTIRaUs2goW7o1qF1wPDkvu7vsZVTGkFrvLaD3qnuG3fg5EFXY4oNU2xQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGNwCHzb7Kasweex1sa-aYPBNKc3rgooR0hgYfEwqfc7xoktqweA1CyPjwjjFj2symgVwIDRpyBIKx1QvKmdA61jdzJ9ViOL__CDzv-nRnXcyb5ce42DRbppsmivXHiQUepSSZqo0ePyjseIg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGiRbQKbB1G3duIFhFCukJmfYd9Y0kqo8cUbDa4-2TvInFSVFtKFGufNigvI3PV0M4Nlgzi05tRsa4LpXdUs73867M63zPyfWfCJsE0zJpcxrCRJYtRywVkbARjED47yY3dH2SmnGetrZEfjw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGukkZbMr0_DWqmpIqKfkBCHiLLeTHeSHmc5u8177k7vB5uMSmqseQAw4YsH6J1n80Wjhs5wmG0SvrKcKPwqliNu-x4fjNoWspAgn_uVVL269MwCquWFnHrDKbn36vCkYCYBeaDrRtiHpXyHIFiTp5Cyl1n2_w=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGSJOTWZn3kwegpvwNW34RmZ0aowSH0SnVv65r8XBFtH7W_SgDyh0S0aGhsH-W77e-Mju4EUgjyd8553WI6E6gMOUSEtv1kRM2WyU7NdzhI6wMbZ5-v8Q6zDmQDREjgBmuuul15hGgL8t6BodKquBwhMRKzzAn1J5IvlOQ6d-MOccOjHOEc_XPNNNr9OapAx7kyJ8umeX5MGLCfiCgZ4xj6vZIMCG9rtTZ6NHR8ZcICKhlzU0gNMFt9RthOj4ZTOu9Xsf4AxogdL3UvMAptoIKSj1KWF-7nltw_gh95QZmMx2Jv4BU8JA5S",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFbSuo9f3U8hdUPuIE439U4_IE3OB18EYuQNS1piKyUalkO2rLimJ12uP0gfmlUJ-wOivoTtlZnjHoEuSNYZL_YgeM0z7wYX0AHOYpe1nLw62yW5y9VzcdOH-b1",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGrGR5RSgMbxjceEpfwUuz1NEKcnkZ0Ds9voCR0RrJQr-rKJWAC8SEmxRUpZTbDvZRC9AgYQeVXfdAIMMXNePvrPls58G3R-cKwoIAYPXsWqsaN4l5Ery_HUOi2_ATOzDK3PLTCR4TrEpdg-XplqL3F",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF2OpHsiO3LbysKVNkbv_rAxVjFLArOYno7r8ulmkUwfTY0O4T7jkl0agmWREuXEwgrE0ciTam33NmRBv0PlvdgeXRuFZzl4h6B76PI3QGn5-hkjK00wp34auImdc-NoGpyTLVeTjL5fg=="
+  ],
+  "error": null
+}
