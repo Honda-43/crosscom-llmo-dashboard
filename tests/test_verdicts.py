@@ -109,21 +109,25 @@ def test_shipped_templates_have_no_missing_placeholders():
 
 
 def test_no_english_or_metaphor_in_shipped_templates():
-    """§8: 英語表記を使わない(rule_id と製品名を除く)。"""
-    import re
+    """§8: 英語表記を使わない。
 
-    # 製品名・システム名は除外対象。Pillar はこのシステムの観測区分名。
-    allowed = {"R", "P", "KGI", "SoV", "AI", "Looker", "Studio", "Agentforce",
-               "CRM", "Organization", "MA", "TRUE", "FALSE", "Pillar"}
+    判定欄は各面の下に出るので、許可語は app/ の表示文言とまったく同じ
+    ものを使う(tests/display_text.py)。片方だけ英語が残るのを防ぐ。
+    """
+    from display_text import ALLOWED_WORDS, english_words
+
     for face, rules in verdicts.load_templates()["faces"].items():
         for rule in rules:
-            body = re.sub(r"\{[^}]+\}", "", rule["text"])
-            body = re.sub(r"R-P\d+|R-DROP", "", body)          # rule_id
-            # スキーマのカラム名・タブ名はシステム名として扱う
-            body = re.sub(r"prompt_id|action_log|mention_rate|sov_daily"
-                          r"|llm_observations|rank", "", body)
-            for word in re.findall(r"[A-Za-z]{2,}", body):
-                assert word in allowed, f"{face}/{rule['id']}: {word}"
+            for word in english_words(rule["text"]):
+                assert word in ALLOWED_WORDS, f"{face}/{rule['id']}: {word}"
+
+
+def test_the_english_check_would_catch_a_regression():
+    """許可語リストを広げすぎて素通りしていないことの確認。"""
+    from display_text import ALLOWED_WORDS, english_words
+
+    assert [w for w in english_words("mention_rate が rank を上回る")
+            if w not in ALLOWED_WORDS]
 
 
 # --- 施策の縦線注釈(§4) ----------------------------------------------------

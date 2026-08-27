@@ -98,17 +98,18 @@ def missing_credentials_notice() -> None:
     lines = []
     if not status["service_account"]:
         lines.append(
-            f"- サービスアカウントJSONが見つかりません → `credentials/service_account.json` に配置してください"
+            "- サービスアカウントの鍵ファイルが見つかりません"
+            " → `credentials/service_account.json` に配置してください"
         )
     if not status["spreadsheet_id"]:
         lines.append(
-            "- スプレッドシートIDが未設定です → 環境変数 `SHEETS_SPREADSHEET_ID` を設定するか、"
-            "`credentials/spreadsheet_id.txt` にIDを1行で保存してください"
+            "- 接続先のスプレッドシートが未設定です → 環境変数 `SHEETS_SPREADSHEET_ID` を"
+            "設定するか、`credentials/spreadsheet_id.txt` に1行で保存してください"
         )
     st.markdown("\n".join(lines))
     st.caption(
-        "`credentials/` は .gitignore 済みでコミットされません。"
-        "認証なしでも「P4 回答ビューア・差分」は data/raw だけで動作します。"
+        "`credentials/` は `.gitignore` 済みでコミットされません。"
+        "認証なしでも「P4 回答ビューア・差分」は `data/raw` だけで動作します。"
     )
 
 
@@ -176,7 +177,7 @@ def tab(name: str) -> List[Dict[str, str]]:
         st.caption(
             "よくある原因: ①Google Sheets API が未有効 "
             "②スプレッドシートがサービスアカウントに共有されていない "
-            "③spreadsheet_id が誤り"
+            "③`spreadsheet_id` が誤り"
         )
         return []
 

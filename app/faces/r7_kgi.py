@@ -9,7 +9,7 @@ import board
 import common
 import data_source
 
-board.face_header("R7", "KGI", "先行指標から遅行指標への波及を順に見る")
+board.face_header("R7", "成果指標(KGI)", "先行指標から遅行指標への波及を順に見る")
 
 if not data_source.sheets_available():
     data_source.missing_credentials_notice()
@@ -18,7 +18,7 @@ if not data_source.sheets_available():
 summary = board.summary_frame()
 ga4, gsc = board.kgi_frames()
 if summary.empty:
-    common.empty_state("daily_summary にデータがありません。")
+    common.empty_state("`daily_summary` にデータがありません。")
     st.stop()
 
 end = board.latest_date(summary)
@@ -80,7 +80,6 @@ board.metric_card(cards[3], "AI経由の主要イベント(週計)", f"{events_n
 
 st.divider()
 st.subheader("週次の推移")
-weekly = pd.DataFrame({"date": summary["date"]})
 figure = go.Figure()
 for frame, column, label, color in [
     (gsc, "clicks", "指名検索クリック", common.PALETTE[0]),

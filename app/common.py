@@ -43,9 +43,6 @@ EMPTY_CELL = "#f0f1f3"
 INK = "#1f2328"
 INK_MUTED = "#6b7280"
 
-PILLAR_LABELS = {"all": "全体 (A+B)", "A": "Pillar A", "B": "Pillar B"}
-
-
 def page_header(title: str, subtitle: str = "") -> None:
     st.title(title)
     if subtitle:

@@ -14,6 +14,7 @@ import streamlit as st
 
 import common
 import data_source
+import labels
 from settings import TAB_CHANGES
 
 common.page_header("P4 回答ビューア・差分", "回答全文の閲覧と、2日付間の差分")
@@ -30,10 +31,10 @@ frame = pd.DataFrame(index)
 # --- 選択 ------------------------------------------------------------------
 c1, c2 = st.columns(2)
 with c1:
-    prompt_id = st.selectbox("prompt_id", sorted(frame["prompt_id"].unique()))
+    prompt_id = st.selectbox("プロンプト", sorted(frame["prompt_id"].unique()))
 scoped = frame[frame["prompt_id"] == prompt_id]
 with c2:
-    model = st.selectbox("model", sorted(scoped["model"].unique()))
+    model = st.selectbox("モデル", sorted(scoped["model"].unique()))
 scoped = scoped[scoped["model"] == model].sort_values("date")
 dates = list(scoped["date"])
 
@@ -139,10 +140,10 @@ with diff_tab:
         )
 
     # --- 同日の changes 行 --------------------------------------------------
-    st.markdown("#### 同日の changes(比較先の日付)")
+    st.markdown("#### 同日の変化(比較先の日付)")
     if not data_source.sheets_available():
         st.info(
-            "Google Sheets に未接続のため changes は表示できません。"
+            "Google Sheets に未接続のため変化の記録は表示できません。"
             "回答全文と差分は認証なしで利用できます。"
         )
     else:
@@ -155,9 +156,9 @@ with diff_tab:
         ]
         if matching:
             st.dataframe(
-                pd.DataFrame(matching)[
+                labels.ja_columns(pd.DataFrame(labels.change_rows(matching))[
                     ["change_type", "before", "after", "detail"]
-                ],
+                ]),
                 width="stretch", hide_index=True,
             )
         else:

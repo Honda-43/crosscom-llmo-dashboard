@@ -29,7 +29,7 @@ REPORT_PAGES = [
     st.Page("faces/r4_coverage.py", title="R4 獲得マップ", icon="🗺️"),
     st.Page("faces/r5_position.py", title="R5 競合ポジション", icon="🎯"),
     st.Page("faces/r6_sources.py", title="R6 情報源分析", icon="🔗"),
-    st.Page("faces/r7_kgi.py", title="R7 KGI", icon="💹"),
+    st.Page("faces/r7_kgi.py", title="R7 成果指標", icon="💹"),
     st.Page("faces/r8_actions.py", title="R8 アクションボード", icon="✅"),
 ]
 DETAIL_PAGES = [
@@ -52,10 +52,10 @@ with st.sidebar:
         if not status["service_account"]:
             st.caption("`credentials/service_account.json` が未配置")
         if not status["spreadsheet_id"]:
-            st.caption("スプレッドシートIDが未設定")
+            st.caption("接続先のスプレッドシートが未設定")
 
     span = data_source.raw_data_span()
-    st.caption(f"data/raw: {span[0]} 〜 {span[1]}" if span else "data/raw: なし")
+    st.caption(f"`data/raw`: {span[0]} 〜 {span[1]}" if span else "`data/raw`: なし")
 
     st.divider()
     if st.button("キャッシュを更新", width="stretch",
@@ -64,7 +64,7 @@ with st.sidebar:
         st.rerun()
     st.caption(
         "回答全文は `data/raw` を読みます。最新化するには "
-        "`git pull`(run_dashboard.bat は起動時に自動実行)。"
+        "`git pull`(`run_dashboard.bat` は起動時に自動実行)。"
     )
 
 st.navigation({"レポート": REPORT_PAGES, "詳細": DETAIL_PAGES}).run()

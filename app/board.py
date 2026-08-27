@@ -91,7 +91,7 @@ def verdict_panel(face: str, context: Dict[str, Any]) -> None:
         return
     if not text:
         st.info("判定: 条件に一致するテンプレートがありません。"
-                "config/verdict_templates.yaml を確認してください。")
+                "`config/verdict_templates.yaml` を確認してください。")
         return
     st.markdown(
         f"<div style='background:#f6f8fa;border-left:4px solid {common.PALETTE[0]};"

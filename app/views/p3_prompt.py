@@ -10,9 +10,11 @@ from plotly.subplots import make_subplots
 
 import common
 import data_source
+import labels
 from settings import TAB_LLM
 
-common.page_header("P3 プロンプト詳細", "プロンプト単位で mention / rank と語られ方を追う")
+common.page_header("P3 プロンプト詳細",
+                   "プロンプト単位で言及と順位、語られ方を追う")
 
 if not data_source.sheets_available():
     data_source.missing_credentials_notice()
@@ -20,17 +22,17 @@ if not data_source.sheets_available():
 
 observations = common.observations_frame(data_source.tab(TAB_LLM))
 if observations.empty:
-    common.empty_state("llm_observations にデータがありません。")
+    common.empty_state("`llm_observations` にデータがありません。")
     st.stop()
 
 # --- 選択 ------------------------------------------------------------------
 c1, c2, c3 = st.columns([1, 1, 2])
 with c1:
-    prompt_id = st.selectbox("prompt_id", sorted(observations["prompt_id"].unique()))
+    prompt_id = st.selectbox("プロンプト", sorted(observations["prompt_id"].unique()))
 scoped_prompt = observations[observations["prompt_id"] == prompt_id]
 with c2:
     models = sorted(scoped_prompt["model"].unique())
-    model = st.selectbox("model", ["(全モデル)"] + models)
+    model = st.selectbox("モデル", ["(全モデル)"] + models)
 with c3:
     start, end = common.date_range_picker(scoped_prompt, key="p3_range", default_days=28)
 
@@ -43,14 +45,14 @@ if scoped.empty:
 pillar = scoped["pillar"].iloc[0]
 mention_days = int(scoped["mention_bool"].sum())
 st.caption(
-    f"Pillar {pillar} / 観測 {len(scoped)}件 / 言及 {mention_days}件 "
+    f"{labels.pillar(pillar)} / 観測 {len(scoped)}件 / 言及 {mention_days}件 "
     f"({mention_days / len(scoped):.0%})"
 )
 
 # --- rank の推移 + mention の帯 ---------------------------------------------
-# rankと言及は尺度が違うので同じ軸に重ねない。上段=rank(欠測は線を繋がない)、
+# 順位と言及は尺度が違うので同じ軸に重ねない。上段=順位(欠測は線を繋がない)、
 # 下段=言及の有無を帯で表す。
-st.subheader("rank の推移と言及の有無")
+st.subheader("順位の推移と言及の有無")
 
 models_in_view = sorted(scoped["model"].unique())
 all_days = pd.Index(sorted(scoped["date"].unique()), name="date")
@@ -77,7 +79,7 @@ for index, model_name in enumerate(models_in_view):
         connectgaps=False,  # 欠測日は繋がない
         customdata=hover_state,
         hovertemplate=("<b>%{fullData.name}</b><br>%{x|%Y-%m-%d}<br>"
-                       "rank %{y:.0f}位（%{customdata}）<extra></extra>"),
+                       "%{y:.0f}位（%{customdata}）<extra></extra>"),
     ), row=1, col=1)
 
 # --- 言及の帯(ストリップ) ---
@@ -104,13 +106,13 @@ figure.update_layout(
     legend=dict(orientation="h", yanchor="bottom", y=1.04, x=0),
     plot_bgcolor="rgba(0,0,0,0)",
 )
-# rank は小さいほど良いので軸を反転する
-figure.update_yaxes(title="rank(上が上位)", autorange="reversed", dtick=1, row=1, col=1)
+# 順位は小さいほど良いので軸を反転する
+figure.update_yaxes(title="順位(上が上位)", autorange="reversed", dtick=1, row=1, col=1)
 figure.update_yaxes(title=None, row=2, col=1)
 figure.update_xaxes(title=None, row=2, col=1)
 st.plotly_chart(figure, width="stretch")
 st.caption(
-    "上段: rank の推移。**言及がない日・観測がない日は線を繋いでいない**"
+    "上段: 順位の推移。**言及がない日・観測がない日は線を繋いでいない**"
     "(途切れ = そこで推薦リストから消えている)。"
     f"下段: 言及の有無(<span style='color:{common.PALETTE[0]}'>■</span> 言及あり / "
     "薄いグレー = 言及なし / 空白 = 観測なし)。",
@@ -121,7 +123,7 @@ st.caption(
 left, right = st.columns(2)
 
 with left:
-    st.subheader("kbf_tags の出現頻度")
+    st.subheader("KBFの出現頻度")
     tags = collections.Counter()
     for value in scoped["kbf_tags"]:
         for tag in common.split_list(value):
@@ -142,10 +144,10 @@ with left:
                           plot_bgcolor="rgba(0,0,0,0)")
         st.plotly_chart(bar, width="stretch")
     else:
-        st.info("期間内に kbf_tags の記録がありません。")
+        st.info("期間内にKBFの記録がありません。")
 
 with right:
-    st.subheader("competitors_mentioned 集計")
+    st.subheader("競合の出現集計")
     competitors = collections.Counter()
     for value in scoped["competitors_mentioned"]:
         for entity in common.competitor_list(value):
@@ -157,7 +159,7 @@ with right:
     else:
         st.info("期間内に競合の記録がありません。")
 
-st.subheader("cited_crosscom_urls(期間内の出現一覧)")
+st.subheader("自社URLの引用(期間内の出現一覧)")
 urls = collections.Counter()
 last_seen = {}
 for _, row in scoped.iterrows():
@@ -174,5 +176,5 @@ if urls:
 else:
     st.info(
         "期間内に自社URLの引用記録がありません。"
-        "(Gemini は grounding リダイレクトを返すため常に空になります)"
+        "(Gemini は解決できない形式のリダイレクトURLを返すため常に空になります)"
     )

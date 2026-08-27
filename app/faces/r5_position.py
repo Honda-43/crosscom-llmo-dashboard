@@ -19,7 +19,7 @@ if not data_source.sheets_available():
 sov = board.sov_frame()
 obs = board.observations()
 if sov.empty:
-    common.empty_state("sov_daily にデータがありません。")
+    common.empty_state("`sov_daily` にデータがありません。")
     st.stop()
 
 end = board.latest_date(sov)

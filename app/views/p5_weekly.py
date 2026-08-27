@@ -8,6 +8,7 @@ import streamlit as st
 
 import common
 import data_source
+import labels
 from settings import TAB_WEEKLY
 
 common.page_header("P5 週次所見", "週次レポート本文と、その根拠になった統計値")
@@ -18,7 +19,7 @@ if not data_source.sheets_available():
     data_source.missing_credentials_notice()
     if reports:
         st.divider()
-        st.subheader("data/reports のみ表示(認証不要)")
+        st.subheader("`data/reports` のみ表示(認証不要)")
         date = st.selectbox("日付", sorted(reports, reverse=True), key="p5_local")
         st.json(reports[date], expanded=False)
     st.stop()
@@ -26,8 +27,8 @@ if not data_source.sheets_available():
 rows = data_source.tab(TAB_WEEKLY)
 if not rows:
     common.empty_state(
-        "weekly_reports にデータがありません。"
-        "Actions → weekly → Run workflow で週次所見を生成してください。"
+        "`weekly_reports` にデータがありません。"
+        "GitHub の Actions から週次のワークフローを実行してください。"
     )
     st.stop()
 
@@ -65,7 +66,7 @@ with right:
     if report_md.strip():
         st.markdown(report_md)
     else:
-        st.info("この週の report_md は空です。")
+        st.info("この週の本文は空です。")
 
 st.divider()
 
@@ -73,17 +74,20 @@ st.divider()
 local_stats = reports.get(selected)
 source_stats = local_stats or stats
 
-with st.expander("stats.json の主要数値", expanded=False):
+with st.expander("週次統計の主要数値", expanded=False):
     if not source_stats:
-        st.info("この週の stats.json が見つかりません。")
+        st.info("この週の統計データが見つかりません。")
     else:
-        origin = "data/reports(ローカル・全文)" if local_stats else "weekly_reports タブ"
+        origin = ("`data/reports`(ローカル・全文)" if local_stats
+                  else "`weekly_reports` タブ")
         st.caption(f"出典: {origin}")
 
         rate = source_stats.get("mention_rate", {})
         cols = st.columns(3)
         for col, (key, label) in zip(cols, [
-            ("all", "mention_rate 全体"), ("pillar_a", "Pillar A"), ("pillar_b", "Pillar B"),
+            ("all", "言及率 全体"),
+            ("pillar_a", labels.pillar("A")),
+            ("pillar_b", labels.pillar("B")),
         ]):
             series = rate.get(key, {})
             value = series.get("this_week")
@@ -92,14 +96,14 @@ with st.expander("stats.json の主要数値", expanded=False):
 
         kgi = source_stats.get("kgi", {})
         if kgi:
-            st.markdown("**KGI(週計)**")
+            st.markdown("**成果指標(KGI)週計**")
             kgi_rows = []
             for key in ("ai_sessions", "ai_key_events", "branded_clicks",
                         "branded_impressions"):
                 series = kgi.get(key)
                 if isinstance(series, dict):
                     kgi_rows.append({
-                        "指標": key, "今週": series.get("this_week"),
+                        "指標": labels.column(key), "今週": series.get("this_week"),
                         "前週": series.get("prev_week"), "差分": series.get("delta"),
                         "ノイズ域": "⚠️" if series.get("noise_zone") else "",
                     })
@@ -109,7 +113,9 @@ with st.expander("stats.json の主要数値", expanded=False):
             if kgi.get("noise_zone_metrics"):
                 st.caption(
                     f"⚠️ ノイズ域(週計 {kgi.get('noise_floor')} 未満): "
-                    f"{', '.join(kgi['noise_zone_metrics'])} — 増減は判断材料にしない"
+                    + ", ".join(labels.column(m)
+                                for m in kgi["noise_zone_metrics"])
+                    + " — 増減は判断材料にしない"
                 )
 
         rules = source_stats.get("rules") or []
@@ -117,7 +123,8 @@ with st.expander("stats.json の主要数値", expanded=False):
             st.markdown("**ルール判定**")
             st.dataframe(
                 pd.DataFrame([
-                    {"rule_id": r.get("rule_id"), "判定": r.get("status"),
+                    {"ルール番号": r.get("rule_id"),
+                     "判定": labels.status(r.get("status")),
                      "内容": r.get("detail", "")}
                     for r in rules
                 ]),
@@ -126,11 +133,12 @@ with st.expander("stats.json の主要数値", expanded=False):
 
         top = (source_stats.get("sov", {}).get("all", {}) or {}).get("entities") or []
         if top:
-            st.markdown("**SoV上位(全体)**")
+            st.markdown("**言及シェア上位(全体)**")
             st.dataframe(
-                pd.DataFrame(top)[["entity", "mention_count", "share", "delta"]],
+                labels.ja_columns(
+                    pd.DataFrame(top)[["entity", "mention_count", "share", "delta"]]),
                 width="stretch", hide_index=True,
             )
 
-        st.markdown("**全文(JSON)**")
+        st.markdown("**統計データ全文**")
         st.json(source_stats, expanded=False)

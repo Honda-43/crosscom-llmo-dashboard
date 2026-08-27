@@ -13,7 +13,7 @@
 #
 # 文面の原則(§8)
 #   - 比喩を使わない
-#   - 英語表記を使わない(製品名・システム名・rule_idを除く)
+#   - 英語表記を使わない(許可語は tests/display_text.py の ALLOWED_WORDS)
 #   - 数値は必ず実値。テンプレートにない事実を書かない
 #
 # 使える変数はコード側(src/verdicts.py の build_context)が渡す実値のみ。
@@ -52,13 +52,13 @@ faces:
       text: >-
         言及率は7日平均{mention_rate_all_7d}、前週比{mention_rate_delta_7d_text}で改善している。
         直近の施策「{last_action_name}」({last_action_done_date}実施)以降の変化として扱い、
-        同じ型の施策を他のPillarにも広げる。
+        同じ型の施策を他の区分にも広げる。
     - id: r2_declining
       when:
         mention_rate_delta_7d: {"<=": -0.05}
       text: >-
         言及率は7日平均{mention_rate_all_7d}、前週比{mention_rate_delta_7d_text}で低下している。
-        R4の獲得マップで言及が消えたprompt_idを特定し、該当プロンプトの
+        R4の獲得マップで言及が消えたプロンプトを特定し、該当プロンプトの
         一次情報ページを更新する。
     - id: r2_flat
       when: {}
@@ -98,7 +98,7 @@ faces:
         zero_cells: {">=": 1}
       text: >-
         直近7日で一度も言及されなかった組み合わせが{zero_cells}件ある({zero_cells_label})。
-        Pillar別の一次情報が不足している可能性が高い。該当プロンプトを
+        区分別の一次情報が不足している可能性が高い。該当プロンプトを
         R6の情報源分析と突き合わせ、掲載依頼先を決める。
     - id: r4_all_covered
       when: {}
@@ -135,7 +135,7 @@ faces:
       text: >-
         自社が言及されていない回答でのみ引用される情報源が{absent_domains}件ある。
         上位は{top_absent_domain}({top_absent_count}回)。
-        掲載依頼先の候補として優先度をつけ、action_logに追加する。
+        掲載依頼先の候補として優先度をつけ、R8の施策一覧に追加する。
     - id: r6_no_gap
       when: {}
       text: >-

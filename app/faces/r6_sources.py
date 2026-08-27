@@ -58,7 +58,7 @@ rows = result["rows"]
 
 if not rows:
     common.empty_state(
-        "分類できる引用がありません。llm_observations が未接続だと"
+        "分類できる引用がありません。`llm_observations` が未接続だと"
         "「自社が言及されたか」が判定できないため分類できません。"
     )
     st.stop()

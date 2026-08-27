@@ -43,6 +43,13 @@ _SYSTEM_TEMPLATE = """あなたはLLMO(LLM最適化)の週次レポートを書�
   ノイズ域の指標を推奨アクションの根拠にしてはならない。
 - ルールに `coverage` がある場合、それは判定できたデータの範囲である。
   一部しか評価できていない `not_fired` を「問題なし」と言い切らない。
+- **本文の用語は日本語で書く。** 所見はダッシュボードのP5に並べて読むので、
+  画面のラベルと呼び方を揃える。stats.jsonのキー名をそのまま本文に書かない。
+  mention_rate→言及率 / SoV→言及シェア / share→シェア / rank→順位 /
+  mention→言及 / model→モデル / KGI→成果指標(初出のみ「成果指標(KGI)」) /
+  pillar A→Agentforce系(A) / pillar B→Agentic CRM系(B)。
+  英字のまま書いてよいのは、製品名(Gemini・Claude・Salesforce等)、識別コードの値
+  (rule_id・prompt_id・action_id)、定着した略語(AI・KBF・CEP・URL)、URLだけ。
 - **URLを書くときは `https://` から始まる完全な形で書き、前後に半角スペースを入れる。**
   日本語に直付けすると（例:「E-1でcross-com.jp/...」）配信先でホスト名の一部と
   解釈され、リンクが壊れる。可能なら本文にURLを書かず、パスだけを引用する
@@ -53,7 +60,8 @@ _SYSTEM_TEMPLATE = """あなたはLLMO(LLM最適化)の週次レポートを書�
 3行以内。今週の状態を一言で。
 
 ## 2. 数値ハイライト
-mention_rate 3系列(all / pillar A / pillar B)、SoV首位、KGI週計(AI経由セッション・指名クリック)。
+言及率3系列(全体 / Agentforce系(A) / Agentic CRM系(B))、言及シェア首位、
+成果指標(KGI)週計(AI経由セッション・指名検索クリック)。
 すべて前週比を添える。数値はstats.jsonの値をそのまま使う。
 
 ## 3. 発火パターンと推奨アクション

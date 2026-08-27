@@ -679,6 +679,45 @@ python notify_slack.py --test-weekly --date 2026-08-17               # 週次投
 - **依存は分離**。`requirements-dashboard.txt` にのみ streamlit / plotly / pandas を置き、
   実行系の `requirements.txt` には混ぜない。
 
+### 表示文言は日本語(内部名は英字のまま)
+
+画面に出る文言はすべて日本語にする。ただし **シートのタブ名・カラム名、
+`action_id` / `rule_id` / `prompt_id` の値、yaml やコードの内部名は変更しない**。
+日本語化は表示の直前だけで行い、対応表は `app/labels.py` に集約している。
+
+| 内部名 | 画面表示 |
+| --- | --- |
+| SoV | 言及シェア |
+| KGI | 成果指標(各画面の初出だけ「成果指標(KGI)」と併記) |
+| Pillar A / Pillar B | Agentforce系(A) / Agentic CRM系(B) |
+| mention / mention_rate | 言及 / 言及率 |
+| rank / model / prompt_id | 順位 / モデル / プロンプト |
+| TRUE / FALSE | あり / なし |
+| fired / not_fired / insufficient_data | 発火 / 非発火 / 判定不能 |
+
+`app/labels.py` の使い分け:
+
+- `ja_columns(frame)` — 表の見出しを表示直前に訳す(元のフレームは変えない)
+- `column(name)` / `pillar(code)` / `status(value)` / `yes_no(value)` — 値1つ分
+- `change_rows(rows)` — `changes` タブの `change_type` と真偽値を訳す
+
+英字のまま残してよいのは次の5種だけ。許可語は `tests/display_text.py` の
+`ALLOWED_WORDS` にあり、判定欄テンプレートの検査もこの同じリストを使う。
+
+1. 製品・サービス名(Gemini / Claude / Salesforce / Agentforce / Looker Studio 等)
+2. 識別コードの**値**(R1〜R8 / A-001 / R-P7 / A-1〜E-1)。見出しやラベルは日本語
+3. 定着した略語(AI / KBF / CEP / URL)
+4. ドメイン・URL
+5. リポジトリ内部のファイル名・タブ名(バッククォートでコード表記した場合のみ)
+
+`tests/test_app_labels.py` が `app/` 配下の表示位置の文字列リテラルを走査し、
+許可語に無い英単語があれば落とす。走査するのは**表示位置**だけなので、
+カラム名やタブ名を引数に渡すコードは検出対象外(変更禁止のため)。
+
+週次所見の本文は生成物なので、語彙の指示は `src/generate_insight.py` の
+プロンプトに入れてある。**すでに保存済みのレポートは書き換えていない**
+(過去の記録なので、表示層の変更では触らない)。
+
 ### UIだけ先に確認したいとき(サンプルモード)
 
 認証を用意する前に画面を確認できる。**全ページに警告バナーが出る**:

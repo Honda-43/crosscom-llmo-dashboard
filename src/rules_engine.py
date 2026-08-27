@@ -421,11 +421,11 @@ def rule_p4(mention_rate: Dict[str, Any], cfg: Dict[str, Any]) -> Dict[str, Any]
             })
 
     if not comparable:
-        return _verdict("R-P4", INSUFFICIENT, "前週と比較できるmention_rateがない")
+        return _verdict("R-P4", INSUFFICIENT, "前週と比較できる言及率がない")
     if not evidence:
-        return _verdict("R-P4", NOT_FIRED, f"前週比+{threshold}以上のpillarはない")
+        return _verdict("R-P4", NOT_FIRED, f"前週比+{threshold}以上の区分はない")
     return _verdict("R-P4", FIRED,
-                    f"{len(evidence)}pillarでmention_rateが前週比+{threshold}以上", evidence)
+                    f"{len(evidence)}区分で言及率が前週比+{threshold}以上", evidence)
 
 
 def rule_p5(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
@@ -460,12 +460,12 @@ def rule_p5(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
 
     if not comparable:
         return _verdict("R-P5", INSUFFICIENT,
-                        f"{weeks_needed}週分のrank中央値が揃うprompt_idがない")
+                        f"{weeks_needed}週分の順位中央値が揃うプロンプトがない")
     if not evidence:
         return _verdict("R-P5", NOT_FIRED,
-                        f"rank中央値が{weeks_needed}週連続で{threshold}以上のprompt_idはない")
+                        f"順位中央値が{weeks_needed}週連続で{threshold}以上のプロンプトはない")
     return _verdict("R-P5", FIRED,
-                    f"{len(evidence)}件のprompt_idが{weeks_needed}週連続で下位定着", evidence)
+                    f"{len(evidence)}件のプロンプトが{weeks_needed}週連続で下位定着", evidence)
 
 
 def rule_p7(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
@@ -500,7 +500,7 @@ def rule_p8(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
     if not entity_rows:
         return _verdict("R-P8", INSUFFICIENT, "直近7日にE-1の観測がない")
     if not legacy_paths:
-        return _verdict("R-P8", INSUFFICIENT, "config/legacy_paths.yaml が空")
+        return _verdict("R-P8", INSUFFICIENT, "`config/legacy_paths.yaml` が空")
 
     # Not every model reports resolvable citation URLs — Gemini returns grounding
     # redirects, which never contain our domain, so those observations carry no
@@ -604,13 +604,13 @@ def rule_drop(sov: Dict[str, Any], cfg: Dict[str, Any]) -> Dict[str, Any]:
 
     pillar = sov.get("all")
     if not pillar or not pillar.get("entities"):
-        return _verdict("R-DROP", INSUFFICIENT, "直近7日のSoVデータがない")
+        return _verdict("R-DROP", INSUFFICIENT, "直近7日の言及シェアのデータがない")
 
     entities = [e for e in pillar["entities"] if e["entity"] != SELF_ENTITY]
     if not entities:
         return _verdict("R-DROP", INSUFFICIENT, "直近7日に競合エンティティの記録がない")
     if not pillar.get("prev_week_competitor_count"):
-        return _verdict("R-DROP", INSUFFICIENT, "前週のSoVデータがない")
+        return _verdict("R-DROP", INSUFFICIENT, "前週の言及シェアのデータがない")
 
     top = entities[:top_n]
     evidence = []
@@ -628,8 +628,9 @@ def rule_drop(sov: Dict[str, Any], cfg: Dict[str, Any]) -> Dict[str, Any]:
             })
 
     if not evidence:
-        return _verdict("R-DROP", NOT_FIRED, f"SoV上位{top_n}に半減・新規入りはない")
-    return _verdict("R-DROP", FIRED, f"SoV上位{top_n}に{len(evidence)}件の構造変化", evidence)
+        return _verdict("R-DROP", NOT_FIRED, f"言及シェア上位{top_n}に半減・新規入りはない")
+    return _verdict("R-DROP", FIRED,
+                    f"言及シェア上位{top_n}に{len(evidence)}件の構造変化", evidence)
 
 
 # --------------------------------------------------------------------------

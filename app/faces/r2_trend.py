@@ -7,6 +7,7 @@ import streamlit as st
 import board
 import common
 import data_source
+import labels
 import verdicts
 
 board.face_header("R2", "言及率トレンド", "7日移動平均と、施策を打った日の関係を見る")
@@ -17,13 +18,13 @@ if not data_source.sheets_available():
 
 summary = board.summary_frame()
 if summary.empty:
-    common.empty_state("daily_summary にデータがありません。")
+    common.empty_state("`daily_summary` にデータがありません。")
     st.stop()
 
 series = [
-    ("mention_rate_all", "全体 (A+B)", "#4c78a8"),
-    ("mention_rate_pillar_a", "Pillar A", "#54a24b"),
-    ("mention_rate_pillar_b", "Pillar B", "#f58518"),
+    ("mention_rate_all", labels.pillar("all"), "#4c78a8"),
+    ("mention_rate_pillar_a", labels.pillar("A"), "#54a24b"),
+    ("mention_rate_pillar_b", labels.pillar("B"), "#f58518"),
 ]
 figure = go.Figure()
 for column, label, color in series:

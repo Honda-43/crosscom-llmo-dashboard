@@ -13,6 +13,7 @@ import streamlit as st
 import board
 import common
 import data_source
+import labels
 import verdicts
 from settings import TAB_ACTION_LOG, spreadsheet_url
 
@@ -25,7 +26,7 @@ if not data_source.sheets_available():
 rows = board.action_rows()
 if not rows:
     common.empty_state(
-        "action_log にデータがありません。"
+        "`action_log` にデータがありません。"
         "`cd src && python action_log.py --seed` で初期データを投入してください。"
     )
     st.stop()
@@ -93,7 +94,7 @@ def highlight(row):
     return [""] * len(row)
 
 
-st.dataframe(display[columns].style.apply(highlight, axis=1),
+st.dataframe(labels.ja_columns(display[columns]).style.apply(highlight, axis=1),
              width="stretch", hide_index=True)
 
 url = spreadsheet_url()

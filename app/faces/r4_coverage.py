@@ -17,7 +17,7 @@ if not data_source.sheets_available():
 
 obs = board.observations()
 if obs.empty:
-    common.empty_state("llm_observations にデータがありません。")
+    common.empty_state("`llm_observations` にデータがありません。")
     st.stop()
 
 end = board.latest_date(obs)
@@ -64,13 +64,13 @@ if "E-1" in prompts:
                      line=dict(color=common.INK, width=2.5), fillcolor="rgba(0,0,0,0)")
 figure.update_layout(
     height=max(280, 46 * len(prompts) + 100), margin=dict(l=10, r=10, t=10, b=40),
-    xaxis=dict(title="model", tickfont=dict(color=common.INK)),
+    xaxis=dict(title="モデル", tickfont=dict(color=common.INK)),
     yaxis=dict(title=None, autorange="reversed", tickfont=dict(color=common.INK)),
     plot_bgcolor="rgba(0,0,0,0)",
 )
 st.plotly_chart(figure, width="stretch")
 st.caption(
-    "セルの数字と濃さは直近7日で mention=TRUE だった日数(0日=白 〜 7日=濃)。"
+    "セルの数字と濃さは、直近7日で言及ありだった日数(0日=白 〜 7日=濃)。"
     "**枠線のE-1**は必ず言及されるため他と意味が異なる。"
     "個別の推移は「詳細:プロンプト」で追える。"
 )

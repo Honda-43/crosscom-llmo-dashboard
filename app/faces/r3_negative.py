@@ -18,7 +18,7 @@ if not data_source.sheets_available():
 
 obs = board.observations()
 if obs.empty:
-    common.empty_state("llm_observations にデータがありません。")
+    common.empty_state("`llm_observations` にデータがありません。")
     st.stop()
 
 # 行 = prompt_id × model。一度でも検知されたものだけを並べる。
