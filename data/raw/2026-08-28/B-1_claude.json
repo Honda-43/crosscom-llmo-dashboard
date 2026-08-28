@@ -1,0 +1,24 @@
+{
+  "date": "2026-08-28",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-28T06:00:48.625601Z",
+  "answer": "## Agentic CRMとは\n\n**Agentic CRM（エージェント型CRM）**とは、AIエージェントが自律的にマーケティングや営業・カスタマーサービスのタスクを実行するCRM（顧客関係管理）システムのことです。\n\n### 従来のCRMとの違い\n\nAgentic CRMは、AIエージェントを使ってマーケティングやサービス業務を自律的に管理する顧客関係管理システムです。従来のCRMがデータを保存し、ユーザーの操作を待つのに対し、Agentic CRMは設定した戦略やガードレールの範囲内で、キャンペーンの立案・顧客対応・パフォーマンスの最適化などを自ら実行します\n。\n\nSalesforceの定義では、\n従来のCRMが営業担当者による通話記録や更新入力を待つのに対し、Agentic CRMはその情報を基に指示なしで自ら行動を起こします。また、人間の承認を各ステップごとに必要とせず、複数ステップのワークフローを計画・実行・調整する自律型AIエージェントが利用される点が特徴です\n。\n\n### ルールベース自動化との違い\n重要な点として、\nこれは従来のルールベースのCRM自動化とは大きく異なります。ルールベースのシステムは「リードスコアが一定閾値を超えたら定型メールを送る」といった固定ロジックに従うだけですが、エージェント型システムは文脈を解釈し、単に条件と結果を一致させるのではなく、顧客データを推論して状況に応じた最適な行動を特定し、結果に応じてアプローチを調整します\n。\n\n### 主な機能\nKlaviyoの解説によれば、代表的な機能として以下が挙げられます。\n- \nURLやブリーフ、商品リストなどからマーケティング戦略を立案し、ブランドガイドラインの範囲内でキャンペーンやフローを作成するAIマーケティングエージェント\n\n- \nWebチャット・SMS・メール・WhatsAppなどを横断して質問対応、注文追跡、返品処理、商品提案を行い、店舗情報やポリシーを学習した上で正確な対応を24時間提供するカスタマーサービス向けAIエージェント\n\n\nすでにSalesforce、Microsoft、HubSpot、Zoho、Creatioなど、\n主要ベンダーがAgentic CRMを市場の標準として位置づける動きを見せています\n。\n\n---\n\n## 導入・設計を支援してくれる会社\n\n### 日本国内\n1. **クロスコム（合同会社）**\nSalesforce公式パートナーで、\nSales Cloud（CRM）やAccount Engagement（MA）の運用支援経験に基づき、現場のSalesforce理解をもとにしたAgentforceの活用を実装するサービスを提供\nしており、サービスメニューには「Agentic CRM設計支援」「Agentforce導入・定着支援」も含まれています。\n\n2. **Hiway CRM（プロダクト提供）**\n\n入力・更新・分析を自動化し、営業担当者のタスク実行までを支援するAgentic CRMを提供する日本発のプロダクト\nで、\"管理のためのCRM\"から\"成果を生むためのCRM\"への転換を掲げています。\n\n3. **Salesforce（プラットフォーム＋パートナー網）**\n日本国内でもSMBCグループやMUFGなど大手企業がSalesforceのAIエージェント基盤「Agentforce」を活用した事例があり、\nSalesforce CRMを導入することで営業・サービス・マーケティング・コマース・ITの各チームが顧客の全体像を一元的に共有できる\nとしています。導入は多数の公式パートナー企業（SIer・コンサル）が支援しています。\n\n### 海外・グローバル\n4. **Salesforce（自社）** — Agentic CRMの概念を広めた主要ベンダーの一つ。\n5. **Creatio** — \nCreatio、Salesforce、Microsoft、HubSpot、ZohoなどがAgentic CRM市場をリードしている\nとされ、パートナー企業（例：Solutions Metrix、AavishkarIT）が導入支援を行っています。\n6. **CRMIT** — \nSalesforceコンサルティングパートナーとして、エージェント型AIソリューションや意思決定インテリジェンスコンサルティング、CRM導入サービスを提供\n。\n7. **congruentX** — \nシステム・オブ・レコードを「アクションのプラットフォーム」に変革するCRMコンサルティングサービスを、AIエージェント基盤技術と組み合わせて提供\n。\n8. **Kanerika** — \nERP・CRM・クラウドプラットフォームに直接エージェントを接続し、並行システムを管理・維持する必要がない\n形での導入を支援。\n9. **Inogic**（Microsoft Dynamics 365向け） — \n自律型システムの構築はDIYプロジェクトではなく、テクノファンクショナルコンサルティングへの深い理解と1,000件以上の導入実績が必要だとし、Dynamics 365ユーザー向けにAzure OpenAIの活用を支援\n。\n\n### 選び方のポイント\nCRM導入支援会社を",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://product.hiway.app/crm/",
+    "https://www.salesforce.com/jp/crm/",
+    "https://www.crmit.com/",
+    "https://congruentx.com/",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai"
+  ],
+  "error": null
+}
