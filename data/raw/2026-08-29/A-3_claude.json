@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-29",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-29T03:33:19.376916Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出すための進め方について、最新情報を調査します。\n# Agentforce導入費用の相場と費用対効果を出すための進め方\n\n## 1. Agentforceの費用構造\n\nAgentforceの費用は「①ライセンス・利用料」と「②導入構築費（コンサル/SIコスト）」の2つに分けて考える必要があります。\n\n### ① ライセンス・利用料（Salesforce社への支払い）\n\n料金モデルは大きく2種類、加えて新モデルが登場しています。\n\n**a. 会話課金モデル（Conversations）**\n\nAgentforceの料金は使った分だけ払う従量課金が基本で、会話課金は、AIエージェントとの1回のやりとりごとに約2ドル（為替レートにより変動）となり、月100件なら月額200ドル前後です。\n顧客向け問い合わせ対応など、対話回数で効果測定しやすい用途に向いています。\n\n**b. Flex Creditsモデル（従量課金）**\n\n2025年5月の改定を経て、アクション単位のFlex Credits、会話単位の旧来モデル、社内利用向けのユーザーライセンスという3つの考え方に整理されました。\nFlex Creditsは10万クレジットあたり500ドル（日本円で6万円ほど）が目安で、標準的なアクションは1回あたり20クレジットが消費されます。\nデータ分析やワークフロー実行など、対話以外の複雑な処理を含む用途に適しています。\n\n**c. ユーザーライセンスモデル（今後拡大予定）**\n\n2025年夏以降、Salesforceは従業員向けエージェントを無制限に利用できる、ユーザー1人あたり月額課金のライセンスを提供する予定です。\nまた\n2026年後半にはAgentforceの利用量のベースラインにコミットするモデルの「事前コミットメント」モデルも公開予定です。\n\n\n**前提となる基盤費用**\nAgentforce for Serviceの場合、\nまず、Service Cloudを基盤にします（Enterprise Edition、Unlimited Edition、Performance Edition、Einstein 1 Editionの場合）。\nつまりAgentforce単体ではなく、既存のSalesforceエディション費用も前提として必要です。\n\n**既存顧客向けの無料枠**\n\n既存のSalesforceのお客様は、Agentforceを無料で開始できます。Salesforce Foundationsでは、現在契約していないSalesforceのCloud製品の無料プランを利用できるようになり、これにはAgentforceも含まれます。\nまた中小企業向けには\n2026年から中小企業向けSalesforceスイート（Free・Starter・Pro全プラン）にAgentforceの基本機能が統合されます。\n\n\n### ② 導入構築費（見落とされがちな費用）\n\nライセンス費用以外に、実装コストも必須です。\nAgentforceの利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要があります。\n支援会社によっては\n1つの業務で3ヶ月ほど運用し、手応えを見て判断するというスモールスタートプランを提供しています。\n\n\n---\n\n## 2. 費用対効果（ROI）を出すための進め方\n\n### ステップ1：ビジネス価値の明確化を最優先する\n技術検証よりも先にやるべきことがあります。\n導入検討フェーズにおける最大のハードルは、技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定です。\n\n\n### ステップ2：定量指標を必ず設定する\n成果を測る物差しを最初に決めることが重要です。\n「議事録が楽になった」「検索が早くなった」という現場の定性的な成果を、「売上xx%向上」や「何人月の工数削減」といった定量的な指標を明確にすることでROI（投資対効果）が明確になり、本番導入への道が大きく開かれます。\n\n\n### ステップ3：ユースケースを「効果×難易度」で優先順位付けする\n\nユースケースに対し、Salesforce上での実装が適しているか（適合性）、および実装にどの程度の工数・技術が必要か（難易度）をマトリクスで評価することで、「効果が高く、かつ実現しやすい」AIエージェントから導入することが可能になります。\n\n\n### ステップ4：1ユースケース・スモールスタートで始める\nいきなり全社展開せず、範囲を絞ることがコスト管理の基本です。\n対象を絞って始めれば、ライセンスも利用量も限定でき、初期の費用を抑えられます。いきなり全社に広げず、一つの業務と少人数から始めるのが、費用を管理する基本になります。\n使う範囲を限定すると\n使う範囲が小さいうちは消費するクレジットも読みやすく、想定外の支出を避けられます。\n\n\n料金モデルの選び方としては、\nまずは会話課金で問い合わせ対応から始めて、効果が見えてきたらFlex Creditsに切り替えるというステップが現実的な進め方です。\n\n\n### ステップ5：Digital Walletで利用状況を可視化・追跡する\n導入後は使用量の監視体制も重要です。",
+  "cited_urls": [
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://cross-com.jp/agentforce-pricing/",
+    "https://cross-com.jp/agentforce-small-business/",
+    "https://www.eesel.ai/blog/understanding-salesforce-agentic-ai-pricing-a-clear-breakdown",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://www.salesforce.com/jp/service/ai/agentforce-for-service-pricing/",
+    "https://qiita.com/Keiji_otsubo/items/69368a53948f8e387d49",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

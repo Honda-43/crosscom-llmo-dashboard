@@ -1,0 +1,20 @@
+{
+  "date": "2026-08-29",
+  "prompt_id": "A-2",
+  "pillar": "A",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか",
+  "cep": "導入後の定着課題",
+  "timestamp": "2026-08-29T03:32:02.577012Z",
+  "answer": "Agentforceを導入したものの現場に定着しないとのこと、お困りかと思います。Agentforceの定着支援や活用支援を提供しているコンサルティング会社は複数存在します。\n\n以下に主な支援内容とコンサルティング会社を挙げさせていただきます。\n\n**Agentforce定着・活用支援の主な内容**\nこれらのコンサルティング会社は、Agentforceの導入から定着、さらには活用促進まで、以下のような幅広い支援を提供しています。\n\n*   **現状業務ヒアリングと業務フロー分析:** 現在の業務プロセスを詳細に把握し、Agentforce導入における課題や機会を特定します。\n*   **導入目的・KPIの明確化:** Agentforce導入の具体的な目的と、その達成度を測るための重要業績評価指標（KPI）を設定します。\n*   **リスク・課題の洗い出しと対応策の検討:** 導入・定着の阻害要因となるリスクや課題を特定し、それらに対する具体的な対応策を立案します。\n*   **投資対効果（ROI）の試算:** Agentforce導入によって期待される投資対効果を試算し、経営層への説明材料とします。\n*   **ユースケースの整理やPoC（概念検証）の実施支援:** Agentforceの具体的な活用シーン（ユースケース）を整理し、導入効果を検証するためのPoC実施を支援します。\n*   **最適なAIエージェントの選定と導入計画立案:** 貴社の業務に最適なAIエージェントの選定や導入計画の策定を支援します。\n*   **カスタムエージェントの設計・実装:** プロンプト、ナレッジ連携、API接続など、貴社のニーズに合わせたカスタムエージェントの設計・実装を支援します。\n*   **利用状況の可視化と分析レポート提供:** Agentforceの利用状況をモニタリングし、データに基づいた分析レポートを提供します。\n*   **改善提案:** 利用状況やビジネスニーズの変化に応じて、プロンプトの最適化や利活用拡張など、Agentforceの性能を最大限に引き出すための改善提案を行います。\n*   **業務プロセス統合支援:** Slack, Teams, Salesforce, Notionなどのツールと連携し、業務フローの自動化や社内ナレッジの統合を支援します。\n*   **内製化・トレーニング・社員育成:** Agentforceの運用を自社で完結できるよう、社員の育成や内製化を支援します。\n\n**Agentforceの定着支援や活用支援を提供しているコンサルティング会社**\n\n*   **株式会社メンバーズ:** Agentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成まで一貫して支援しています。特に「利活用・定着化支援」として、現状業務ヒアリング、導入目的・KPI明確化、リスク・課題洗い出し、投資対効果試算など多岐にわたるサポートを提供しています。\n*   **バーチャレクス・コンサルティング:** Agentforceの導入・活用を支援する新サービスを提供しており、「初期導入」「伴走支援」「構想策定」の3つのプランで企業のAIトランスフォーメーション（AX）およびデジタルトランスフォーメーション（DX）推進を支援しています。\n*   **合同会社クロスコム:** Salesforce認定コンサルタント資格者が在籍しており、Agentforceの導入・定着支援を提供しています。Sales Cloud(CRM)やAccount Engagement(MA)の運用支援経験に基づき、現場のSalesforce理解に根ざしたAgentforceの活用を実装します。活用定着サポートも提供しており、ロードマップ設定、初期設定サポート、プレイブック共有、効果測定、レビュー・振り返りなどを実施しています。\n*   **三菱総研DCS:** Agentforce導入・活用支援サービスを提供しており、Salesforce単体導入に留まらず、社内の基幹・周辺システムに分散するデータの統合も含めた導入を一気通貫で支援することが特長です。\n\nこれらのコンサルティング会社は、Agentforceの専門知識と豊富な導入・活用支援実績を持っています。貴社の具体的な状況や課題に合わせて、最適なパートナーを選定することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHMAY-PbjUI7FHUuOmMTbXpjk9Q9Zw8yqw33vdC9xst6FfqGOJ5XoBOwPJUXxy4kqNURbF9gg2v5FuzZzR6Kk_PN_K22Xocy7jFDU12vfdJcCsFf9S7Qrcq-hWJWvNcRWNgEPsX6t_7yUlFMz_1FiZy5A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFMX6Kf_JXV8JoXvHEPSY2VHXZNygAQOBE1gpTHlYUJw28XwM0CoMZICQT_nmUfvd9G0tXxGSlwcsjUk4ybCotutuYLAJYiQd_krynZgDmw4WRmEXknHainmwIu4dleaGlbxbRwnSg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHUGNvVBnF72-3wzviPIMESo832mm2C6qAsIReQIGq5JWy85fkwnRjeSIBlI-UZYMqPP7r3rJ6EZ7VADtOM0aZ3TApY3nAFFztemGVzpEn7uYZKEd3w6QHtF-vs9PFe6lKk4Su_cZtp",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFoaqlRbL7yxKY1Kp_Nat9fTPGS17JvmPksKENUnpBQXHPdbigEbmjXE_tVjKxOVCiq74XDU1J9JhSxBCxXk_TJOgupgzRnfzecnAYRTDzlpDaZ7Xta-RcQ3a5p6FUgfb4-p27R95V1kz4ZhA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGDmwNC3WwzyXkhD-xvIErDPKVxchs-DJCcsA79oPk7zRwWAdvZ9LqrQyjHQjPFlCxqTU-EPhTkzpzvtH-fbDEScA7G8-7twmuNNtakn2BImVkaC9RCffYaxzgdTw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFNtJLbz6VmDptB_K0_7muOHilJH9Ext9y6QqcRngI6py3uaJqWmsnuWFF_w3p1FhgDPmmSzXmHF9Ifn7Xc4dDZeUnVIsCezOpa8SFBp1qyTfhVj_gWuqIzLnJuQYvvo1lspQWNo4vEb7Q="
+  ],
+  "error": null
+}
