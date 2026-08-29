@@ -1,0 +1,25 @@
+{
+  "date": "2026-08-30",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-29T23:55:59.684598Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出す進め方について調べます。\n# Agentforceの導入費用相場と費用対効果を出すための進め方\n\n## 1. 費用構成を理解する\n\nAgentforceの費用は大きく「①ライセンス・利用料」「②基盤（Data Cloud）費用」「③導入支援・構築費用」の3層に分かれます。\n\n### ① ライセンス・利用料（従量課金 or ユーザー単位）\n\nAgentforceは\nセッションベースではなく消費モデルで動作します\n。主な料金体系は3種類あります。\n\n- **Flex Credits方式**：\n標準的なアクションは20クレジット（$500/10万クレジットの場合$0.10）、音声アクションは30クレジット（$0.15）\n。\n会話ごとの課金モデルの代替として、Conversationsモデルでは1会話$2（チャネルによって最大24時間続く会話ウィンドウ）が課金され、長い対話をする顧客対応ボットに向いています\n。\n- **どちらを選ぶか**：\n1会話あたりのアクション数がおよそ20回が損益分岐点で、それより少なければFlex Creditsの方が割安\nになります。\n- **ユーザー単位ライセンス**：\n1ユーザーあたり月額125〜550ドルの範囲でプランが用意されており\n、\nSales/Service Cloud上で1ユーザー月額125ドルなら、ライセンスを持つ従業員は社内エージェントを使い放題で利用できます\n。\n\n日本国内のSalesforceプラン価格では、\nAgentforce 1 Salesエディションは1ユーザーあたり月額66,000円（税別）と案内されています\n。\n\n### ② 基盤費用（見落とされがちな重要コスト）\n\nAgentforceを本格運用するには、多くの場合Data Cloudが前提となります。海外の分析では\nAgentforceが機能するにはData Cloudが必要で、これが購入時に見落とされがちなコストであり、Data Cloud Plusで年間約65,000ドル、Premiumで年間約175,000ドルにも上ることがある\nとされ、\nAgentforceのライセンス予算だけを承認した後にData Cloud分の追加費用が判明するケースが多い\nと指摘されています。\n\n海外の中堅企業（500ユーザー規模）の試算では、\nAgentforce自体は年間1.5万〜5万ドル程度でも、Data Cloud・導入・保守を含めた初年度総保有コストは15万〜42.5万ドルに達する\nとされています。\n\n### ③ 導入支援・構築費用（日本国内の相場）\n\n日本のパートナー各社の提示を見ると、\n依頼範囲によって幅があり、月額伴走型なら月額数十万円程度から、プロジェクト一括型なら数百万円規模からが目安で、これとは別にAgentforce本体のライセンス費用が発生します\n。\n\n大規模・基幹連携を伴う場合はさらに高額になり、\n大規模組織では基幹システムやBIツールとの連携まで求められ、フルスクラッチに近い開発が発生するのが一般的で、導入支援費は1,000万円を超える場合も珍しくなく、プロジェクト期間も半年〜1年以上に及ぶケースが多い\nという声もあります。\n\n---\n\n## 2. 費用対効果を出すための進め方\n\n複数の導入支援会社・事例に共通するのは「**PoCで終わらせず、小さく始めて定量的に検証しながら拡張する**」という進め方です。\n\n### ステップ1：ユースケース選定とROIシナリオ策定\n\n現状業務ヒアリングと業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果(ROI)の試算\nを最初に行います。金融業界の事例では\nフェーズ1（1〜2か月目）で戦略適合性の評価とROIシナリオの策定を行い、CFO・COOと連携してビジネスケースを構築し、対象業務の優先順位を決定する\nアプローチが取られています。\n\nユースケース評価には「効果×実現性」のマトリクスが有効で、\nユースケースに対しSalesforce上での実装が適しているか（適合性）、および実装にどの程度の工数・技術が必要か（難易度）をマトリクスで評価し、効果が高くかつ実現しやすいAIエージェントから導入する\n方法が推奨されています。\n\n### ステップ2：小さく始める（スモールスタート）\n\nいきなり全社に広げず、一つの業務で効果を確かめてから広げれば、リスクを抑えて導入できます。対象を絞ってスモールスタートする進め方が可能で、大きな初期投資をまとめて行う必要がありません\n。三菱UFJ銀行やアフラックなどの事例でも、\nまず特定の業務領域に限定して導入し、効果を確認した上で対象を拡大するフェーズドアプローチが採用されています\n。\n\n具体的なタイムラインの一例として、\nWeek1でPoC設計と最優先ユースケース",
+  "cited_urls": [
+    "https://ekfrazo.com/resources/blogs/salesforce-agentforce-pricing-2026/",
+    "https://aquiva.com/blog/agentforce-pricing-gets-a-long-overdue-fix-flex-credits-are-now-live",
+    "https://www.ripla.co.jp/blog/system/salesforce-platform-cost/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://www.members-saasplus.com/agentforce",
+    "https://www.issoh.co.jp/tech/details/11550/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://cross-com.jp/agentforce-small-business/",
+    "https://www.ailead.app/blog/salesforce-agentforce-guide"
+  ],
+  "error": null
+}

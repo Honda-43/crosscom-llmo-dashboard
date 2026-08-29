@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-30",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-08-29T23:54:39.533994Z",
+  "answer": "Agentforceの導入支援を行っている企業について調べてみます。\nSalesforce公式のFDE Partner Networkの詳細情報も確認します。\n十分な情報が集まりました。Agentforce導入支援を行っているおすすめの会社をまとめてご紹介します。\n\n## Agentforce導入支援のおすすめ会社\n\n### 🏆 Salesforce公式「FDE Partner Network」認定企業（最も信頼性が高い）\n\n2026年6月、Salesforceは高度な実装力を持つパートナーのみを厳選した公式ネットワークを日本で本格展開しました。\nFDE Partner Networkは、2026年4月に米国で発表されていたもので、日本では厳正な審査を経た9社の初期パートナーが参画する。参画企業は（五十音順・グループ会社含む）、アクセンチュア、NTTデータ、グローバルウェイ、テラスカイ、デロイト トーマツ、電通総研・電通デジタル、PwCコンサルティング、富士通、フレクトの9社である。\n\n\nこのネットワークの特徴として、\n参加条件は企業規模や取引年数ではなく、Agentforceの実装経験と技術力が重視される\n点が挙げられます。また、\nSalesforceのエンジニアリング知見とプロダクトロードマップへの深いアクセスを提供する\nため、単なる導入支援に留まらない伴走型の支援が期待できます。グローバル実績としても、\nFDE Partner NetworkのパートナーはすでにAgentforceの全成功実装事例の3分の1を牽引しており\n、信頼性の裏付けとなっています。\n\n**→ 大企業・エンタープライズ規模での本格導入を検討している場合におすすめ**\n\n---\n\n### 💼 その他の実績あるSalesforceパートナー企業\n\n**1. 富士ソフト**\n2017年からSalesforceを自社導入してきた実績があり、\n2025年度から自社もAgentforceを導入しており、営業シーンの効率化において導入成果も確認できております\n。体制面でも、\nSalesforce認定コンサルタント60名を含む約200名のSalesforce専任の技術者がAs-is To-beの整理（要件整理）から導入後のアフターサポートまでワンストップパートナーとして\n支援しています。\n\n**2. 日立ソリューションズ**\n\nSalesforceのコンサルティングパートナーとして「導入・活用支援サービス for Agentforce」を提供しています。営業・サービス・マーケティング・コマースなど幅広い業務領域に対応し、金融や医療など、高いセキュリティが求められる業界での支援にも対応します。\n\n\n**3. ウフル**\n\nSalesforce のテクノロジーを活かした業務支援の現場に数多く携わってきた経験をもとに、まずはSalesforceが提供する「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供しています。構築やシステム設定、動作確認、リリース準備、簡易レクチャーまでを含め、最短3カ月のスケジュールで導入を支援します。\n\n\n**4. メンバーズ**\n\nプロフェッショナル人材を中心とした組織改善チームが、お客さまのビジネスに寄り沿い、Salesforceの導入・運用を一貫してご支援するサービスです。戦略・方針策定や、レポート作成、人材育成などお客さまの課題やニーズに合わせて柔軟にご支援します。\n\n\n---\n\n## 選び方のポイント\n\n| 規模・ニーズ | おすすめタイプ |\n|---|---|\n| 大企業・エンタープライズ、本格的な本番運用 | FDE Partner Network認定企業（アクセンチュア、NTTデータ、PwC、富士通など） |\n| 中堅企業・特定領域（カスタマーサービス等） | ウフル、日立ソリューションズなど専門特化型 |\n| スモールスタート・PoCから始めたい | 富士ソフト（PoC支援中心）、メンバーズなど |\n\n自社の規模や導入目的（営業効率化、カスタマーサービス強化など）、予算感によって最適なパートナーは変わってきます。まずは複数社に相談し、PoC（概念実証）レベルで小さく始められるプランがあるかを比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://bizzine.jp/news/detail/13168",
+    "https://www.salesforce.com/jp/news/press-releases/2026/06/08/japan-forward-deployed-engineer-partner-network/",
+    "https://www.nikkei.com/article/DGXZRSP708118_Y6A600C2000000/",
+    "https://www.fsi.co.jp/Salesforce/column/column17.html",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.members.co.jp/services/customer/agentforce"
+  ],
+  "error": null
+}
