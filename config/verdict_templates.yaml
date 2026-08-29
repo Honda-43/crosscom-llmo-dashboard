@@ -46,6 +46,13 @@ faces:
 
   # ---------------------------------------------------------------- R2 言及率トレンド
   R2:
+    - id: r2_improving_no_action
+      when:
+        mention_rate_delta_7d: {">=": 0.05}
+        last_action_done_date: {"==": "—"}
+      text: >-
+        言及率は7日平均{mention_rate_all_7d}、前週比{mention_rate_delta_7d_text}で改善している。
+        施策の実施記録がないため、外部要因の可能性も含めて次週も観測する。
     - id: r2_improving
       when:
         mention_rate_delta_7d: {">=": 0.05}
@@ -68,6 +75,20 @@ faces:
 
   # ---------------------------------------------------------------- R3 ネガ検知
   R3:
+    - id: r3_no_action_yet
+      when:
+        negative_streak_days: {">=": 1}
+        last_action_done_date: {"==": "—"}
+      text: >-
+        ネガティブ検知が{negative_streak_days}日続いているが、
+        対応する施策の実施記録がない。R8で打つ施策を決める。
+    - id: r3_clear_no_action
+      when:
+        negative_streak_days: {"==": 0}
+        last_action_done_date: {"==": "—"}
+      text: >-
+        ネガティブ検知はない。対応する施策の実施記録もないため、
+        この状態が続くかを観測する。
     - id: r3_within_window
       when:
         negative_streak_days: {">=": 1}

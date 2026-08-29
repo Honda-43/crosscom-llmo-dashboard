@@ -1,0 +1,55 @@
+name: backfill-looker
+
+# Looker 用の lk_* タブを全期間分生成する手動ワークフロー(Phase 6 §2)。
+# Looker を組み直すときや、過去分の線が欠けているときに実行する。
+on:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: '生成する最古の日付 (YYYY-MM-DD、空なら全期間)'
+        required: false
+        default: ''
+      until:
+        description: '生成する最新の日付 (YYYY-MM-DD、空なら全期間)'
+        required: false
+        default: ''
+      tabs:
+        description: '対象タブ (カンマ区切り)'
+        required: false
+        default: 'lk_sov_trend,lk_negative,lk_verdicts'
+      dry_run:
+        description: '書き込まず件数だけ表示する'
+        type: boolean
+        required: false
+        default: true
+
+concurrency:
+  group: llmo-daily      # 日次パイプラインと同時に書き込まない
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    env:
+      GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+      SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Rebuild lk_* tabs
+        run: |
+          python scripts/backfill_looker.py \
+            --tabs '${{ inputs.tabs }}' \
+            ${{ inputs.since && format('--since {0}', inputs.since) || '' }} \
+            ${{ inputs.until && format('--until {0}', inputs.until) || '' }} \
+            ${{ inputs.dry_run && '--dry-run' || '' }}

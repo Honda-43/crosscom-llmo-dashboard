@@ -21,6 +21,14 @@ from settings import (
     TAB_ACTION_LOG,
     TAB_BOARD,
     TAB_CITATION_GAP,
+    TAB_LK_ACTIONS,
+    TAB_LK_ANSWERS,
+    TAB_LK_EVENTS,
+    TAB_LK_HEATGRID,
+    TAB_LK_NEGATIVE,
+    TAB_LK_SCATTER,
+    TAB_LK_SOV_TREND,
+    TAB_LK_VERDICTS,
     TAB_SUMMARY,
     TAB_WEEKLY,
     google_credentials,
@@ -73,12 +81,66 @@ HEADERS_CITATION_GAP = ["date", "domain", "category", "cited_count", "prompts"]
 KEYS_CITATION_GAP = ["date", "domain"]
 
 # Looker Studio 用のフラットタブ。1日1行。
+# verdict_r1 は Phase 6 §1 で末尾に追加(既存カラムの意味・並びは不変)。
 HEADERS_BOARD = [
     "date", "mention_rate_all_7d", "mention_rate_a_7d", "mention_rate_b_7d",
     "sov_rank", "sov_share", "negative_streak_days", "branded_clicks_wk",
-    "ai_sessions_wk", "noise_flag", "material_events",
+    "ai_sessions_wk", "noise_flag", "material_events", "verdict_r1",
 ]
 KEYS_BOARD = ["date"]
+
+# --- Phase 6 headers — Looker 専用の表示タブ ------------------------------
+# すべて他タブから導出できる派生データ。Looker 側で計算式を書かなくても
+# 8面が組めるよう、順位の代理値・四象限・期限までの日数まで確定させて置く。
+HEADERS_LK_VERDICTS = ["date", "face", "face_name", "verdict_text"]
+KEYS_LK_VERDICTS = ["date", "face"]
+
+HEADERS_LK_HEATGRID = [
+    "date", "prompt_id", "prompt_name", "model", "days_mentioned_7d", "cell_label",
+]
+KEYS_LK_HEATGRID = ["date", "prompt_id", "model"]
+
+HEADERS_LK_SCATTER = [
+    "date", "entity", "share_28d", "rank_median", "rank_source", "size_7d",
+    "is_crosscom", "quadrant",
+]
+KEYS_LK_SCATTER = ["date", "entity"]
+
+HEADERS_LK_SOV_TREND = ["date", "entity", "share_7d", "is_crosscom"]
+KEYS_LK_SOV_TREND = ["date", "entity"]
+
+HEADERS_LK_NEGATIVE = ["date", "model", "detected", "note"]
+KEYS_LK_NEGATIVE = ["date", "model"]
+
+HEADERS_LK_EVENTS = [
+    "date", "event_type", "event_name", "place", "detail", "playbook_ref",
+]
+# 同じ日・同じ種別で対象違いの行が並ぶので、place と detail まで鍵に含める。
+KEYS_LK_EVENTS = ["date", "event_type", "place", "detail"]
+
+HEADERS_LK_ACTIONS = [
+    "action_id", "priority", "content", "target_display", "rule_id", "status",
+    "proposed", "executed", "deadline", "days_to_deadline",
+]
+KEYS_LK_ACTIONS = ["action_id"]
+
+HEADERS_LK_ANSWERS = ["date", "prompt_id", "model", "mention", "rank", "answer_text"]
+KEYS_LK_ANSWERS = ["date", "prompt_id", "model"]
+
+# タブ名 -> (ヘッダ, 鍵)。書き出しはこの表だけを見る。
+LOOKER_TABS: Dict[str, tuple] = {
+    TAB_LK_VERDICTS: (HEADERS_LK_VERDICTS, KEYS_LK_VERDICTS),
+    TAB_LK_HEATGRID: (HEADERS_LK_HEATGRID, KEYS_LK_HEATGRID),
+    TAB_LK_SCATTER: (HEADERS_LK_SCATTER, KEYS_LK_SCATTER),
+    TAB_LK_SOV_TREND: (HEADERS_LK_SOV_TREND, KEYS_LK_SOV_TREND),
+    TAB_LK_NEGATIVE: (HEADERS_LK_NEGATIVE, KEYS_LK_NEGATIVE),
+    TAB_LK_EVENTS: (HEADERS_LK_EVENTS, KEYS_LK_EVENTS),
+    TAB_LK_ACTIONS: (HEADERS_LK_ACTIONS, KEYS_LK_ACTIONS),
+    TAB_LK_ANSWERS: (HEADERS_LK_ANSWERS, KEYS_LK_ANSWERS),
+}
+# 直近14日だけを保持する。追記のままだと古い回答が残り続け、
+# 「14日分のみ」という上限もセル数も守れないので毎回入れ替える。
+LOOKER_REWRITE_TABS = (TAB_LK_ANSWERS,)
 # ``detail`` is part of the key so several competitor_added rows for the same
 # day/prompt/model (one per company) coexist while a re-run still overwrites.
 KEYS_CHANGES = ["date", "prompt_id", "model", "change_type", "detail"]
@@ -176,6 +238,33 @@ def _upsert(ss, title: str, headers: List[str], key_cols: List[str],
     print(f"[ok] {title}: {len(updates)} updated, {len(appends)} appended")
 
 
+def _plan_upsert(existing: List[List[str]], headers: List[str],
+                 key_cols: List[str],
+                 rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """既存の値と書きたい行から、``values_batch_update`` 用の範囲を組み立てる。
+
+    行番号まで決めてしまうので、更新も追記も同じ1回の呼び出しに載せられる。
+    """
+    key_pos = [headers.index(k) for k in key_cols]
+    index: Dict[tuple, int] = {}
+    for rnum, row in enumerate(existing[1:], start=2):
+        index[tuple(row[p] if p < len(row) else "" for p in key_pos)] = rnum
+
+    next_row = max(len(existing), 1) + 1
+    writes: List[Dict[str, Any]] = []
+    for d in rows:
+        values = [_to_cell(d.get(h, "")) for h in headers]
+        key = tuple(str(_to_cell(d.get(k, ""))) for k in key_cols)
+        rnum = index.get(key)
+        if rnum is None:
+            rnum = next_row
+            next_row += 1
+            # 同じバッチ内の重複も上書きになるよう、置いた行を覚えておく。
+            index[key] = rnum
+        writes.append({"row": rnum, "values": values})
+    return writes
+
+
 def _read_tab(title: str) -> List[Dict[str, str]]:
     """Read a whole tab as header-keyed dicts (one API read, §8).
 
@@ -240,6 +329,73 @@ def write_board_daily(row: Dict[str, Any]) -> None:
     if not row:
         return
     _upsert(_open_spreadsheet(), TAB_BOARD, HEADERS_BOARD, KEYS_BOARD, [row])
+
+
+def read_ga4() -> List[Dict[str, str]]:
+    """GA4のAI経由流入。週計を出すのに履歴が要る(collect_ga4 は当日分だけ)。"""
+    return _read_tab(TAB_GA4)
+
+
+def read_gsc() -> List[Dict[str, str]]:
+    """指名検索。週計を出すのに履歴が要る(collect_gsc は当日分だけ)。"""
+    return _read_tab(TAB_GSC)
+
+
+# --------------------------------------------------------------------------
+# Looker 用タブの書き出し(Phase 6 §2)
+# --------------------------------------------------------------------------
+def write_looker_tabs(payload: Dict[str, List[Dict[str, Any]]]) -> Dict[str, int]:
+    """lk_* をまとめて更新する。書き込みはタブ数によらず1回。
+
+    タブごとに ``batch_update`` を呼ぶとタブの数だけ書き込みAPIを消費する。
+    行番号は読み込んだ値から決まるので、全タブ分をひとつの
+    ``values_batch_update`` に載せられる(§2 のAPIコール最小化)。
+    """
+    ss = _open_spreadsheet()
+    data: List[Dict[str, Any]] = []
+    written: Dict[str, int] = {}
+
+    for title, rows in payload.items():
+        if title not in LOOKER_TABS:
+            raise ValueError(f"未知のLookerタブです: {title}")
+        headers, key_cols = LOOKER_TABS[title]
+        ws = _ensure_worksheet(ss, title, headers)
+
+        if title in LOOKER_REWRITE_TABS:
+            if not rows:
+                # 入れ替え対象を空で上書きしない。行が0件なのは
+                # 元データが読めていないときで、そのまま消すと復旧できない。
+                print(f"[warn] {title}: 0 rows — 入れ替えを見送りました")
+                written[title] = 0
+                continue
+            # 入れ替え対象は先に消してから全行を置き直す。
+            ws.clear()
+            ws.update(values=[headers], range_name="A1")
+            existing: List[List[str]] = [headers]
+        else:
+            if not rows:
+                written[title] = 0
+                continue
+            existing = ws.get_all_values()
+
+        writes = _plan_upsert(existing, headers, key_cols, rows)
+        if writes:
+            needed = max(w["row"] for w in writes)
+            if ws.row_count < needed:
+                # 行が足りないまま範囲を指定すると書き込みが失敗する。
+                ws.add_rows(needed - ws.row_count + 200)
+            for write in writes:
+                data.append({
+                    "range": f"'{title}'!A{write['row']}",
+                    "values": [write["values"]],
+                })
+        written[title] = len(writes)
+
+    if data:
+        ss.values_batch_update({"valueInputOption": "USER_ENTERED", "data": data})
+    for title, count in written.items():
+        print(f"[ok] {title}: {count} rows")
+    return written
 
 
 def read_for_rules() -> Dict[str, List[Dict[str, str]]]:

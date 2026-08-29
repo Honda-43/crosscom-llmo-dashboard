@@ -31,7 +31,7 @@ STATS = {
 @pytest.fixture
 def wired(monkeypatch, tmp_path):
     """Stub every side effect and record what the orchestrator did."""
-    calls = {"posted": [], "sheet": [], "ahrefs": 0}
+    calls = {"posted": [], "sheet": [], "ahrefs": 0, "scatter": None}
 
     monkeypatch.setattr(run_weekly, "DATA_REPORTS_DIR", tmp_path / "reports")
     monkeypatch.setattr(collect_ahrefs, "collect",
@@ -54,6 +54,9 @@ def wired(monkeypatch, tmp_path):
     monkeypatch.setattr(action_log, "sync_from_report",
                         lambda report, date, existing=None: [])
     monkeypatch.setattr(sheets_writer, "write_action_log", lambda rows: None)
+    # Phase 6: citation_gap 更新後の lk_scatter 再集計
+    monkeypatch.setattr(run_weekly, "_refresh_scatter",
+                        lambda date: calls.__setitem__("scatter", date) or 0)
     return calls, tmp_path
 
 
@@ -62,6 +65,15 @@ def run(argv, monkeypatch):
     with pytest.raises(SystemExit) as exc:
         run_weekly.main()
     return exc.value.code
+
+
+def test_scatter_is_refreshed_after_citation_gap(wired, monkeypatch):
+    """引用元が変わると競合の顔ぶれも変わるので、週次で取り直す(Phase 6 §2)。"""
+    calls, _ = wired
+    monkeypatch.setattr(generate_insight, "generate",
+                        lambda stats, **kw: {"report_md": "本文", "source": "llm"})
+    run(["--date", "2026-08-17"], monkeypatch)
+    assert calls["scatter"] == "2026-08-17"
 
 
 def test_happy_path_saves_posts_and_exits_zero(wired, monkeypatch):

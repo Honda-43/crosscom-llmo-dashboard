@@ -53,7 +53,8 @@ def _entities_in(record: Dict[str, Any]) -> set:
     return entities
 
 
-def analyze(extractions: Sequence[Dict[str, Any]], date: str) -> List[Dict[str, Any]]:
+def analyze(extractions: Sequence[Dict[str, Any]], date: str,
+            verbose: bool = True) -> List[Dict[str, Any]]:
     """Build the ``sov_daily`` rows for ``date``."""
     population = _observations(extractions)
     rows: List[Dict[str, Any]] = []
@@ -82,5 +83,7 @@ def analyze(extractions: Sequence[Dict[str, Any]], date: str) -> List[Dict[str, 
                 "observed_total": len(observations),
             })
 
-    print(f"[ok] analyze_sov {date}: {len(rows)} rows over {len(population)} observations")
+    if verbose:
+        # 履歴を日ごとに再計算する呼び出し(looker_tabs)では1行ずつ出さない。
+        print(f"[ok] analyze_sov {date}: {len(rows)} rows over {len(population)} observations")
     return rows

@@ -18,6 +18,15 @@ if str(SRC_DIR) not in sys.path:
 
 from analyze_diff import parse_bool  # noqa: E402  - needs the sys.path line above
 
+# 値の対応表は src/display_map.py が正。Looker 用タブ(src/looker_tabs.py)と
+# 同じ対応を使わないと、同じ値がこの画面とLookerで違う言葉で出てしまう。
+from display_map import (  # noqa: E402
+    CHANGE_TYPE_LABELS,
+    PILLAR_LABELS,
+    STATUS_LABELS,
+    TARGET_LABELS,
+)
+
 # 表の見出しに出るカラム名。ここに無いカラムは元の名前のまま出す
 # (日本語のカラム名はシート側ですでに日本語のため触らない)。
 COLUMN_LABELS: Dict[str, str] = {
@@ -56,43 +65,11 @@ COLUMN_LABELS: Dict[str, str] = {
     "branded_impressions": "指名検索インプレッション",
 }
 
-# Pillar は観測の区分名。画面では何の区分かが分かる名前で出す。
-PILLAR_LABELS: Dict[str, str] = {
-    "all": "全体(A+B)",
-    "A": "Agentforce系(A)",
-    "B": "Agentic CRM系(B)",
-}
-
-# changes タブの change_type。シートはこの値でキーされているので値は変えない。
-CHANGE_TYPE_LABELS: Dict[str, str] = {
-    "mention_gained": "言及が出た",
-    "mention_lost": "言及が消えた",
-    "rank_up": "順位が上がった",
-    "rank_down": "順位が下がった",
-    "competitor_added": "競合が増えた",
-    "competitor_removed": "競合が消えた",
-    "crosscom_url_added": "自社URLが増えた",
-    "crosscom_url_removed": "自社URLが消えた",
-    "negative_flag_on": "ネガ・旧情報を検知",
-    "negative_flag_off": "ネガ・旧情報が消えた",
-}
-
 # 変化前・変化後が真偽値になる種類。ここだけ「あり・なし」に置き換える
 # (順位や競合名の行まで訳すと値が壊れる)。
 _BOOLEAN_CHANGES = frozenset({
     "mention_gained", "mention_lost", "negative_flag_on", "negative_flag_off",
 })
-
-# 施策の「対象」列の値。プロンプトID(E-1・B-3 等)は識別コードなので
-# 対応表に載せず、そのまま通す。
-TARGET_LABELS: Dict[str, str] = {"KGI": "成果指標"}
-
-# ルール判定の値。値そのもの(rules_engine の fired 等)は変えず、表示だけ訳す。
-STATUS_LABELS: Dict[str, str] = {
-    "fired": "発火",
-    "not_fired": "非発火",
-    "insufficient_data": "判定不能",
-}
 
 YES, NO = "あり", "なし"
 

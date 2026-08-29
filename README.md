@@ -638,7 +638,10 @@ python notify_slack.py --test-weekly --date 2026-08-17               # 週次投
 
 ## Phase 4:ローカル分析アプリ(Streamlit)
 
-日常のグラフ確認は Looker Studio、**回答全文・差分・所見まで一画面で追う深掘り分析**はこのアプリ。
+**日常の閲覧は Looker Studio。本アプリは回答差分の確認用**(Phase 6 §3)。
+8面の指標・判定はすべて Looker 側に出るようになったので、ここを毎日開く必要はない。
+残しているのは、回答全文の突き合わせと2日付の差分表示が Looker では組めないため。
+
 **完全ローカル・読み取り専用**で、実行系(daily / weekly)には一切影響しない。
 
 ### セットアップ(2ステップ)
@@ -837,6 +840,72 @@ Geminiの引用は解決できない形式のため件数だけ報告して集�
 
 1日1行のフラットタブ。移動平均・週計・連続日数まで確定させてあるので、
 Looker側で計算しなくても読める。Looker Studio 自体の再構築は本Phaseの対象外。
+
+---
+
+## Phase 6:Looker Studio 統合(表示用データ層)
+
+Looker Studio はレイアウトをAPIで構築できない。そこで**計算・判定・整形をすべて
+パイプライン側で終わらせ、Looker は「シートのタブを置くだけ」で8面相当が組める
+状態**にした。順位の代理値・四象限・期限までの日数のように、本来なら Looker 側の
+計算フィールドになるものも `lk_*` タブに確定値として入っている。
+
+### lk_* タブと8面の対応
+
+| タブ | 対応する面 | 主な列 | 鍵(冪等更新の単位) |
+|---|---|---|---|
+| `lk_verdicts` | R1〜R8 すべて | `face` / `face_name` / `verdict_text` | date × face |
+| `lk_heatgrid` | R4 獲得マップ | `prompt_name` / `days_mentioned_7d` / `cell_label` | date × prompt_id × model |
+| `lk_scatter` | R5 競合ポジション | `share_28d` / `rank_median` / `rank_source` / `quadrant` | date × entity |
+| `lk_sov_trend` | R2・R5 | `share_7d`(7日移動平均済み) / `is_crosscom` | date × entity |
+| `lk_negative` | R3 ネガ検知 | `detected`(1/0) / `note`(種別要約20字以内) | date × model |
+| `lk_events` | R1・R3 | `event_name`(日本語) / `place` / `playbook_ref` | date × event_type × place × detail |
+| `lk_actions` | R8 アクションボード | `target_display` / `days_to_deadline` | action_id |
+| `lk_answers` | 詳細:回答 | `answer_text`(直近14日・40,000字で切り詰め) | date × prompt_id × model |
+| `board_daily` | R1 サマリ | 既存の列 + `verdict_r1` | date |
+
+既存の `citation_gap` / `action_log` はそのまま使う(`lk_actions` は `action_log` の
+**表示用ミラー**で、元のタブは本田さんの編集用として不変)。
+
+### 読み方の注意
+
+- **`lk_scatter` の `rank_median` は自社だけが実順位。** 競合は言及シェアの順位を
+  代理値として置いている(§4の抽出スキーマ凍結のため競合の実順位は取得していない)。
+  代理値である以上シェアと順位が同じ並びになるので、**競合の `quadrant` は
+  「高シェア×上位」か「低シェア×下位」のどちらかにしかならない**。四象限が意味を
+  持つのは自社の位置だけ。`rank_source` 列でどちらの根拠かを判別できる。
+- **`lk_events` の「競合上位入り」は当日の言及シェア上位5社に限る。** 回答に一度
+  出ただけの社名まで載せるとイベント表が埋まって読めなくなる。
+- **`lk_verdicts` の過去日は「その日までに存在していた施策」だけを見て作る。**
+  施策の状態はシートの現在値しか残っていないため過去の状態は復元できないが、
+  少なくともその日にまだ提案も実施もされていない施策は持ち込まない
+  (これを入れないと「実施から-47日」のような文が並ぶ)。
+
+### 実行
+
+日次(`run_daily.py`)の末尾で `lk_*` 一式を書き出す。書き込みはタブ数によらず
+**1回の `values_batch_update`** にまとめている。週次(`run_weekly.py`)は
+`citation_gap` 更新後に `lk_scatter` を取り直す(28日窓の集計なので、日次の
+追記だけでは引用元の入れ替わりが反映されきらない)。
+
+過去分は手動ワークフロー `backfill-looker`(または直接実行)で作る:
+
+```
+python scripts/backfill_looker.py --dry-run
+python scripts/backfill_looker.py
+python scripts/backfill_looker.py --since 2026-08-01 --tabs lk_sov_trend,lk_negative
+```
+
+対象は `lk_sov_trend` / `lk_negative` / `lk_verdicts` の3つ。残りは当日の
+スナップショットなので過去分を作る意味がない。二度実行しても行は増えない。
+
+### 追加で読むタブ
+
+日次は `llm_observations` に加えて `ga4_ai_traffic` / `gsc_branded` / `action_log`
+を読む。前2つは週計を出すのに履歴が要る(`collect_ga4` / `collect_gsc` は当日分
+しか返さない)ため、`action_log` は `lk_actions` の元になるため。言及率と言及
+シェアの履歴は `llm_observations` から同じ式で復元できるので、`daily_summary` と
+`sov_daily` は読み直していない。
 
 ---
 

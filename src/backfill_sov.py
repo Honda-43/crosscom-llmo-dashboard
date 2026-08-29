@@ -52,6 +52,7 @@ def build_rows(
     observations: Sequence[Dict[str, Any]],
     since: Optional[str] = None,
     until: Optional[str] = None,
+    verbose: bool = True,
 ) -> List[Dict[str, Any]]:
     """Recompute every sov_daily row from stored observations, date by date."""
     by_date: Dict[str, List[Dict[str, Any]]] = defaultdict(list)
@@ -68,7 +69,7 @@ def build_rows(
 
     rows: List[Dict[str, Any]] = []
     for date in sorted(by_date):
-        rows.extend(analyze_sov.analyze(by_date[date], date))
+        rows.extend(analyze_sov.analyze(by_date[date], date, verbose=verbose))
     return rows
 
 

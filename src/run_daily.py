@@ -29,10 +29,12 @@ except Exception:  # tzdata missing (e.g. bare Windows) — JST has no DST, so a
 import analyze_diff
 import analyze_sov
 import board_daily
+import citation_gap
 import collect_ga4
 import collect_gsc
 import collect_llm
 import extract
+import looker_tabs
 import notify_slack
 import sheets_writer
 
@@ -112,23 +114,95 @@ def main() -> None:
     if summary is not None:
         _run("write_daily_summary", lambda: sheets_writer.write_daily_summary(summary), failures)
 
-    # Looker Studio 用のフラットタブ(Phase 5 §6)。すべて読み込み済みの
-    # データから組み立てるので Sheets の追加読み取りは発生しない。
+    # ------------------------------------------------------------------
+    # Looker Studio 用の表示タブ(Phase 6 §1・§2)
+    # ------------------------------------------------------------------
+    # 当日分はまだシートに無いので、読み込んだ履歴に足してから集計する。
+    # 言及率と言及シェアの履歴は llm_observations から同じ式で復元できるので、
+    # daily_summary / sov_daily は読み直さない(§8 のAPI予算)。
+    def _merge(stored: List[Dict[str, Any]], fresh: List[Dict[str, Any]],
+               keys: Tuple[str, ...]) -> List[Dict[str, Any]]:
+        """当日分で履歴を上書きする。
+
+        同じ日を再実行すると読み込んだ履歴にも当日の行が含まれる。
+        単純に足すと観測が二重になり、「7日中12日言及」のような行が出る。
+        """
+        index = {tuple(str(r.get(k, "")) for k in keys): r for r in stored}
+        for row in fresh:
+            index[tuple(str(row.get(k, "")) for k in keys)] = row
+        return list(index.values())
+
+    history = _merge(list(observations),
+                     [sheets_writer._llm_row(r) for r in extractions],
+                     ("date", "prompt_id", "model"))
+    summary_history = looker_tabs.summary_rows_from_observations(history)
+    sov_history = looker_tabs.sov_rows_from_observations(history)
+
+    # 週計を出すには履歴が要る(collect_ga4/gsc は当日分しか返さない)。
+    # action_log は lk_actions の元になるので読む。この3つだけが追加の読み取り。
+    ga4_history = _run("read_ga4", lambda: sheets_writer.read_ga4(), failures) or []
+    gsc_history = _run("read_gsc", lambda: sheets_writer.read_gsc(), failures) or []
+    action_rows = _run(
+        "read_action_log", lambda: sheets_writer.read_action_log(), failures) or []
+
+    ga4_history = _merge(ga4_history, ga4_rows, ("date", "source", "landing_page"))
+    gsc_history = _merge(gsc_history, gsc_rows, ("date", "query"))
+
+    # 引用元の3分類は data/raw のローカル読みだけで出せる(Sheets を使わない)。
+    citation_rows = _run(
+        "citation_rows",
+        lambda: citation_gap.build_rows(
+            date,
+            citation_gap.load_raw_observations(
+                since=looker_tabs.window_of(date, looker_tabs.LOOKBACK_DAYS)[0],
+                until=date),
+            history,
+        ),
+        failures,
+    ) or []
+
+    contexts = _run(
+        "verdict_contexts",
+        lambda: looker_tabs.face_contexts(
+            date, observations=history, summary_rows=summary_history,
+            sov_rows=sov_history, action_rows=action_rows,
+            ga4_rows=ga4_history, gsc_rows=gsc_history,
+            citation_rows=citation_rows,
+        ),
+        failures,
+    ) or {}
+
     _run(
         "write_board_daily",
-        lambda: sheets_writer.write_board_daily(board_daily.build_row(
-            date,
-            summary_rows=[summary] if summary else [],
-            observations=list(observations) + [
-                {"date": date, "prompt_id": r.get("prompt_id"),
-                 "negative_or_outdated": r.get("negative_or_outdated")}
-                for r in extractions if not r.get("error")
-            ],
-            sov_rows=sov_rows, changes=changes,
-            ga4_rows=ga4_rows, gsc_rows=gsc_rows,
+        lambda: sheets_writer.write_board_daily(dict(
+            board_daily.build_row(
+                date,
+                summary_rows=summary_history,
+                observations=history,
+                sov_rows=sov_history, changes=changes,
+                ga4_rows=ga4_history, gsc_rows=gsc_history,
+            ),
+            verdict_r1=looker_tabs.verdict_for_face(contexts, "R1"),
         )),
         failures,
     )
+
+    looker_payload = _run(
+        "build_looker_tabs",
+        lambda: looker_tabs.build_all(
+            date, observations=history, summary_rows=summary_history,
+            sov_rows=sov_history, changes=changes, action_rows=action_rows,
+            ga4_rows=ga4_history, gsc_rows=gsc_history,
+            citation_rows=citation_rows, contexts=contexts,
+            raw_records=citation_gap.load_raw_observations(
+                since=looker_tabs.window_of(date, looker_tabs.ANSWER_DAYS)[0],
+                until=date),
+        ),
+        failures,
+    ) or {}
+    if looker_payload:
+        _run("write_looker_tabs",
+             lambda: sheets_writer.write_looker_tabs(looker_payload), failures)
 
     # Slack alert last, so it can report failures from every preceding phase.
     notified = _run(
@@ -156,6 +230,10 @@ def main() -> None:
             f"- mention_rate_all: {summary.get('mention_rate_all')}",
             f"- negative_flag_count: {summary.get('negative_flag_count')}",
         ]
+    if looker_payload:
+        summary_lines += ["", "### Looker 用タブ"]
+        summary_lines += [f"- {tab}: {len(rows)} rows"
+                          for tab, rows in sorted(looker_payload.items())]
     if failures:
         summary_lines += ["", "### ⚠️ Failed phases"]
         summary_lines += [f"- {f}" for f in failures]

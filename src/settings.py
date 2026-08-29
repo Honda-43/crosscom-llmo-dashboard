@@ -232,6 +232,16 @@ TAB_WEEKLY = "weekly_reports"
 TAB_ACTION_LOG = "action_log"
 TAB_CITATION_GAP = "citation_gap"
 TAB_BOARD = "board_daily"
+# Phase 6 — Looker Studio 専用の表示タブ。接頭辞 lk_ で「計算済み・表示用」を
+# 明示する。中身はすべて他タブから導出できるので、消しても作り直せる。
+TAB_LK_VERDICTS = "lk_verdicts"
+TAB_LK_HEATGRID = "lk_heatgrid"
+TAB_LK_SCATTER = "lk_scatter"
+TAB_LK_SOV_TREND = "lk_sov_trend"
+TAB_LK_NEGATIVE = "lk_negative"
+TAB_LK_EVENTS = "lk_events"
+TAB_LK_ACTIONS = "lk_actions"
+TAB_LK_ANSWERS = "lk_answers"
 
 
 def spreadsheet_url() -> str:

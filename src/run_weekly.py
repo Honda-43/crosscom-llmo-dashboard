@@ -30,6 +30,7 @@ import action_log
 import citation_gap
 import collect_ahrefs
 import generate_insight
+import looker_tabs
 import notify_slack
 import rules_engine
 import sheets_writer
@@ -64,6 +65,19 @@ def _save_stats(date: str, stats: Dict[str, Any]) -> str:
         fh.write("\n")
     print(f"[ok] wrote {path}")
     return str(path)
+
+
+def _refresh_scatter(date: str) -> int:
+    """lk_scatter を週次で取り直す(Phase 6 §2)。
+
+    競合ポジションは28日窓の集計なので、週の途中の日次追記だけでは
+    引用元の入れ替わりが反映されきらない。週次でまとめて置き直す。
+    """
+    observations = sheets_writer.read_llm_observations()
+    sov_rows = looker_tabs.sov_rows_from_observations(observations)
+    rows = looker_tabs.scatter_rows(date, sov_rows, observations)
+    sheets_writer.write_looker_tabs({"lk_scatter": rows})
+    return len(rows)
 
 
 def main() -> None:
@@ -112,6 +126,9 @@ def main() -> None:
                 lambda: sheets_writer.write_citation_gap(gap["rows_for_sheet"]),
                 failures,
             )
+            # 引用元が変わると R6 の判定も競合の顔ぶれも変わるので、
+            # citation_gap を更新した直後に lk_scatter を取り直す(Phase 6 §2)。
+            _run("refresh_lk_scatter", lambda: _refresh_scatter(date), failures)
 
         # 3-3. 所見の推奨アクションを action_log に「提案中」で追記(§5)。
         # 同一内容+同一rule_idが未完了で存在すれば追記しない。
