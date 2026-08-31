@@ -7,8 +7,12 @@ native web-search tool enabled, then stores the full answer plus citations to
 
 Design notes:
 - Model enable/disable + model names live in settings.py.
-- Retry: exponential backoff, max 3 attempts. A model that fails all attempts
-  is recorded as a missing observation for the day; other models continue.
+- Retry: exponential backoff。provider が retryDelay を返したらそちらを優先する。
+  一巡したあと、失敗した観測だけを1回だけ掃き直す(_sweep)。それでも取れなければ
+  その日の欠測として記録し、他のモデル・プロンプトは続行する。
+- 日次のリクエスト枠(gemini 無料枠は1日20回)を守るため、リトライ回数は
+  増やしすぎない。1日枠の 429 を踏んだモデルは、その実行中のリトライを止める
+  (基本の1回は投げる。枠は数十秒で戻ることがあるため)。
 - Perplexity stays disabled by default and a missing PERPLEXITY_API_KEY must
   never raise — activation is key + flag only.
 """
@@ -28,6 +32,8 @@ from settings import (
     DATA_RAW_DIR,
     MAX_RETRIES,
     MODEL_CONFIG,
+    RETRY_DELAY_CAP_SECONDS,
+    SWEEP_COOLDOWN_SECONDS,
     enabled_models,
     load_prompts,
 )
@@ -38,18 +44,85 @@ URL_RE = re.compile(r"https?://[^\s\)\]\"'<>]+")
 # --------------------------------------------------------------------------
 # Retry helper
 # --------------------------------------------------------------------------
-def _with_retry(fn, *, label: str):
+# 再試行しても意味がないエラー。鍵が無効・権限が無い・課金枠を使い切った、は
+# 数十秒待っても変わらない。待つだけ無駄で、しかもリクエスト枠を食う。
+_PERMANENT_MARKERS = (
+    "insufficient_quota", "invalid_api_key", "PERMISSION_DENIED",
+    "UNAUTHENTICATED", "API key not valid", "invalid_request_error",
+)
+_PERMANENT_CODES = ("400", "401", "403", "404")
+
+# 「1日あたり」の枠を使い切ったことを示す quotaId。数秒〜数十秒のリトライで
+# 回復する種類ではないので、そのモデルのリトライを実行中は止める。
+_DAILY_QUOTA_MARKER = "PerDay"
+
+# provider が返す再試行指示。gemini は RetryInfo.retryDelay、
+# メッセージ本文にも "Please retry in 14.44845715s." の形で入る。
+_RETRY_DELAY_RE = re.compile(r"retryDelay'?\s*:\s*'?([0-9.]+)s")
+_RETRY_IN_RE = re.compile(r"retry in ([0-9.]+)s", re.IGNORECASE)
+
+
+def is_permanent(exc: Exception) -> bool:
+    """待っても直らないエラーか。"""
+    text = str(exc)
+    if any(marker in text for marker in _PERMANENT_MARKERS):
+        return True
+    head = text[:40]
+    return any(code in head for code in _PERMANENT_CODES)
+
+
+def is_daily_quota(exc: Exception) -> bool:
+    """1日あたりのリクエスト枠を使い切ったか。"""
+    text = str(exc)
+    return "429" in text[:40] and _DAILY_QUOTA_MARKER in text
+
+
+def retry_delay(exc: Exception) -> Optional[float]:
+    """provider が指定してきた再試行までの秒数。無ければ None。"""
+    text = str(exc)
+    for pattern in (_RETRY_DELAY_RE, _RETRY_IN_RE):
+        found = pattern.search(text)
+        if found:
+            return min(float(found.group(1)), RETRY_DELAY_CAP_SECONDS)
+    return None
+
+
+def _wait_for(exc: Exception, attempt: int) -> float:
+    """次の試行までの待ち時間。provider の指示があればそちらを優先する。"""
+    backoff = BACKOFF_BASE_SECONDS * (2 ** (attempt - 1))
+    told = retry_delay(exc)
+    return max(backoff, told) if told is not None else backoff
+
+
+def _with_retry(fn, *, label: str, attempts: int = MAX_RETRIES,
+                on_daily_quota=None):
     """Run ``fn`` with exponential backoff. Raises the last error after
-    MAX_RETRIES failures so the caller can record the day as missing."""
+    ``attempts`` failures so the caller can record the day as missing.
+
+    3つの理由で早く諦める:
+      - 待っても直らないエラー(鍵・権限・課金)は1回で止める
+      - 1日枠の 429 は、リトライがその枠をさらに食う。1回で止める
+      - provider が retryDelay を返したら、固定のバックオフより優先する
+    """
     last_exc: Optional[Exception] = None
-    for attempt in range(1, MAX_RETRIES + 1):
+    for attempt in range(1, attempts + 1):
         try:
             return fn()
         except Exception as exc:  # noqa: BLE001 - we retry all provider errors
             last_exc = exc
-            wait = BACKOFF_BASE_SECONDS * (2 ** (attempt - 1))
-            print(f"[warn] {label} attempt {attempt}/{MAX_RETRIES} failed: {exc}")
-            if attempt < MAX_RETRIES:
+            print(f"[warn] {label} attempt {attempt}/{attempts} failed: {exc}")
+            if is_permanent(exc):
+                print(f"[warn] {label}: 再試行しても変わらないエラーのため中止")
+                break
+            if is_daily_quota(exc):
+                print(f"[warn] {label}: 1日あたりのリクエスト枠を超過。"
+                      f"このモデルの再試行を実行中は止める")
+                if on_daily_quota is not None:
+                    on_daily_quota()
+                break
+            if attempt < attempts:
+                wait = _wait_for(exc, attempt)
+                print(f"[info] {label}: {wait:.0f}秒待って再試行します")
                 time.sleep(wait)
     assert last_exc is not None
     raise last_exc
@@ -189,6 +262,9 @@ def collect(date: Optional[str] = None) -> List[Dict[str, Any]]:
     models = [m for m in enabled_models() if _model_runnable(m)]
     print(f"[info] date={date} models={models} prompts={len(prompts)}")
 
+    # 1日あたりの枠を使い切ったモデル。以後は基本の1回だけ投げ、
+    # リトライで枠をさらに消費しない。
+    exhausted: set = set()
     records: List[Dict[str, Any]] = []
     for prompt in prompts:
         pid = prompt["id"]
@@ -208,27 +284,94 @@ def collect(date: Optional[str] = None) -> List[Dict[str, Any]]:
                 "cited_urls": [],
                 "error": None,
             }
-            try:
-                answer, native_cits = _with_retry(
-                    lambda mk=model_key, mn=model_name, txt=prompt["text"]: _QUERY_FUNCS[mk](txt, mn),
-                    label=label,
-                )
-                record["answer"] = answer
-                record["cited_urls"] = _merge_urls(answer, native_cits)
-                record["timestamp"] = dt.datetime.utcnow().isoformat() + "Z"
-                print(f"[ok] {label}: {len(answer)} chars, {len(record['cited_urls'])} urls")
-            except Exception as exc:  # noqa: BLE001
-                record["error"] = str(exc)
-                record["timestamp"] = dt.datetime.utcnow().isoformat() + "Z"
-                print(f"[error] {label}: recorded as missing — {exc}")
-
-            raw_path = out_dir / f"{pid}_{model_key}.json"
-            with open(raw_path, "w", encoding="utf-8") as fh:
-                json.dump(record, fh, ensure_ascii=False, indent=2)
-            record["raw_file"] = str(raw_path.relative_to(DATA_RAW_DIR.parent.parent))
+            _attempt(record, prompt["text"], attempts=(
+                1 if model_key in exhausted else MAX_RETRIES
+            ), on_daily_quota=lambda mk=model_key: exhausted.add(mk))
+            _save(record, out_dir)
             records.append(record)
 
+    _sweep(records, prompts, out_dir)
+    missing = missing_observations(records)
+    print(f"[info] {date}: 観測 {len(records)}件中 欠測 {len(missing)}件"
+          + (f" — {', '.join(missing)}" if missing else ""))
     return records
+
+
+def _attempt(record: Dict[str, Any], question: str, *, attempts: int,
+             on_daily_quota=None) -> bool:
+    """1観測を取って ``record`` を埋める。成功したら True。
+
+    失敗しても例外は投げない。1つのモデルの不調で他のプロンプトを
+    落とさないため、欠測として記録して先へ進む(§3)。
+    """
+    label = f"{record['prompt_id']}/{record['model']}"
+    try:
+        answer, native_cits = _with_retry(
+            lambda: _QUERY_FUNCS[record["model"]](question, record["model_name"]),
+            label=label, attempts=attempts, on_daily_quota=on_daily_quota,
+        )
+        record["answer"] = answer
+        record["cited_urls"] = _merge_urls(answer, native_cits)
+        record["error"] = None
+        record["timestamp"] = dt.datetime.utcnow().isoformat() + "Z"
+        print(f"[ok] {label}: {len(answer)} chars, {len(record['cited_urls'])} urls")
+        return True
+    except Exception as exc:  # noqa: BLE001
+        record["error"] = str(exc)
+        record["timestamp"] = dt.datetime.utcnow().isoformat() + "Z"
+        print(f"[error] {label}: recorded as missing — {exc}")
+        return False
+
+
+def _save(record: Dict[str, Any], out_dir: Path) -> None:
+    """観測を data/raw に書く。掃き直しで回復した内容もここで上書きする。"""
+    raw_path = out_dir / f"{record['prompt_id']}_{record['model']}.json"
+    payload = {k: v for k, v in record.items() if k != "raw_file"}
+    with open(raw_path, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
+    try:
+        record["raw_file"] = str(raw_path.relative_to(DATA_RAW_DIR.parent.parent))
+    except ValueError:
+        # リポジトリ外に書いた場合(テストの一時ディレクトリなど)。
+        # 表示用の値なので、ここで落として回復した観測を失うほうが悪い。
+        record["raw_file"] = str(raw_path)
+
+
+def _sweep(records: List[Dict[str, Any]], prompts: List[Dict[str, Any]],
+           out_dir: Path, cooldown: float = SWEEP_COOLDOWN_SECONDS) -> int:
+    """失敗した観測だけを、間を置いてもう一度取り直す。
+
+    観測した provider 側の障害は20〜90秒で収まっており、一巡した頃には
+    抜けていることが多い(08-27・08-30 の gemini は、失敗した次の
+    プロンプトが35秒後に成功している)。回数を増やすのではなく
+    「時間をおいて1回」にするのは、gemini 無料枠の1日20リクエストを
+    リトライで食い潰さないため。
+
+    待っても直らないエラーは掃き直さない。戻した件数を返す。
+    """
+    targets = [r for r in records
+               if r.get("error") and not is_permanent(Exception(r["error"]))]
+    if not targets:
+        return 0
+
+    questions = {p["id"]: p["text"] for p in prompts}
+    labels = ", ".join(f"{r['prompt_id']}/{r['model']}" for r in targets)
+    print(f"[info] 掃き直し: {len(targets)}件を {cooldown:.0f}秒後に再取得します ({labels})")
+    time.sleep(cooldown)
+
+    recovered = 0
+    for record in targets:
+        # 掃き直しは1回だけ。ここで回数を重ねると枠の消費が読めなくなる。
+        if _attempt(record, questions[record["prompt_id"]], attempts=1):
+            recovered += 1
+        _save(record, out_dir)
+    print(f"[info] 掃き直し: {recovered}/{len(targets)}件を回復しました")
+    return recovered
+
+
+def missing_observations(records: List[Dict[str, Any]]) -> List[str]:
+    """欠測になった観測のラベル。run_daily がこれを見て失敗として積む(§4)。"""
+    return [f"{r['prompt_id']}/{r['model']}" for r in records if r.get("error")]
 
 
 def main() -> None:

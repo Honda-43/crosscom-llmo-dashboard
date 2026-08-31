@@ -149,9 +149,28 @@ INSIGHT_MAX_CHARS = int(os.getenv("INSIGHT_MAX_CHARS", "2000"))
 # 足りなければ generate_insight が1度だけ倍にして取り直す。
 INSIGHT_MAX_TOKENS = int(os.getenv("INSIGHT_MAX_TOKENS", "16000"))
 
-# Retry policy (§3): exponential backoff, max 3 attempts.
-MAX_RETRIES = int(os.getenv("MAX_RETRIES", "3"))
-BACKOFF_BASE_SECONDS = float(os.getenv("BACKOFF_BASE_SECONDS", "2"))
+# Retry policy (§3): exponential backoff.
+#
+# 2026-08 まで 3回 / 基準2秒(待機 2+4=6秒)だった。実測した provider 側の
+# 障害は20〜90秒続いており、3回とも同じ障害窓の中で落ちていた
+# (08-27・08-30 の gemini。窓を抜けた次のプロンプトは35秒後に成功している)。
+#
+# ただし回数を増やしすぎてはいけない。gemini の 429 が返す quotaId は
+# `GenerateRequestsPerDayPerProjectPerModel-FreeTier` で quotaValue は 20 ——
+# **1日あたりのリクエスト数**である。7プロンプト×5回 = 35 では、対策が
+# 枠を食い潰して原因を悪化させる。回数は4回に抑え、代わりに
+# 1回あたりの待ちを長くして障害窓をまたぐ(待機 5+10+20=35秒)。
+MAX_RETRIES = int(os.getenv("MAX_RETRIES", "4"))
+BACKOFF_BASE_SECONDS = float(os.getenv("BACKOFF_BASE_SECONDS", "5"))
+
+# provider が「何秒後に再試行せよ」と返してきたときは、その値を優先する
+# (gemini の 429 は RetryInfo.retryDelay を持つ)。ただし1回の実行が
+# 止まらないよう上限を設ける。
+RETRY_DELAY_CAP_SECONDS = float(os.getenv("RETRY_DELAY_CAP_SECONDS", "90"))
+
+# 収集ループを一巡したあと、失敗した観測だけをもう一度取り直す前の待ち時間。
+# 一巡するのに数分かかるので、ここを待てば障害窓はほぼ確実に抜けている。
+SWEEP_COOLDOWN_SECONDS = float(os.getenv("SWEEP_COOLDOWN_SECONDS", "60"))
 
 
 # --------------------------------------------------------------------------

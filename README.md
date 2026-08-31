@@ -142,6 +142,42 @@ crosscom-llmo-dashboard/
 - **chatgpt / Perplexity 有効化は「キー登録 + `ENABLE_CHATGPT=true` / `ENABLE_PERPLEXITY=true`」のみでコード変更不要**。`OPENAI_API_KEY` / `PERPLEXITY_API_KEY` 未設定でもパイプラインはエラーにならない。
 - モデル名は `OPENAI_MODEL` / `GEMINI_MODEL` / `ANTHROPIC_MODEL` / `EXTRACT_MODEL` で上書き可能。
 
+### 収集の再試行と掃き直し
+
+観測が取れなかった日は、その prompt_id × model が丸ごと欠測になる。
+言及率も順位も母数から外れるので、欠測は「言及が無かった」ではなく
+「分からなかった」であり、放っておくと週次の比較が静かに歪む。
+
+| 設定 | 既定 | 役割 |
+|---|---|---|
+| `MAX_RETRIES` | 4 | 1観測あたりの試行回数 |
+| `BACKOFF_BASE_SECONDS` | 5 | 待機の基準(5→10→20秒。合計35秒) |
+| `RETRY_DELAY_CAP_SECONDS` | 90 | provider が指定した待ち時間の上限 |
+| `SWEEP_COOLDOWN_SECONDS` | 60 | 一巡後、掃き直しに入るまでの待ち |
+
+動きは4段階:
+
+1. **provider の指示を優先する。** gemini の 429 は `RetryInfo.retryDelay`(例 14秒)を
+   返す。固定のバックオフより長ければそちらを待つ。
+2. **待っても直らないエラーは1回で止める。** `insufficient_quota`・401・403 など。
+   待つだけ無駄で、しかもリクエスト枠を消費する。
+3. **1日あたりの枠の 429 は、そのモデルのリトライを実行中は止める。**
+   基本の1回は投げる(枠が数十秒で戻ることがあるため)。
+4. **一巡したあと、失敗した観測だけを60秒待って1回だけ取り直す**(掃き直し)。
+
+> **なぜ回数を増やさず待ち時間を増やすのか。**
+> gemini の 429 が返す quotaId は `GenerateRequestsPerDayPerProjectPerModel-FreeTier`、
+> quotaValue は **20 = 1日あたりのリクエスト数**。7プロンプト × 5回 = 35 では、
+> 再試行そのものが枠を食い潰して欠測を増やす。回数は4回に抑え、
+> 1回あたりの待ちを長くして障害窓をまたぐ。
+
+> **2026-08 までの状態。** 待機は 2+4=6秒 しかなく、実測した障害窓(20〜90秒)の
+> 中で3回とも落ちていた。直近7日で gemini が6件欠測(B-1×1・B-2×3・B-3×2)。
+> さらに `collect_llm.collect()` が各レコードのエラーを内部で握って正常に返すため、
+> `run_daily` の `_run` が `failures` に積まず、**日次Slackに欠測が出ていなかった**。
+> 現在は `missing_observations()` の結果を `failures` に積むので、
+> 欠測のある日は「❌ パイプライン一部失敗」に出る。
+
 ---
 
 ## Secrets 一覧(GitHub Actions Secrets に登録)

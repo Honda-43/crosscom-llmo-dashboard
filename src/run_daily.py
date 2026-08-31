@@ -71,6 +71,15 @@ def main() -> None:
 
     # LLM observation -> extraction
     records = _run("collect_llm", lambda: collect_llm.collect(date), failures) or []
+
+    # 収集は1件ずつ失敗を飲み込んで先に進む(1モデルの不調で全部を落とさない)。
+    # そのため collect_llm 自体は例外を投げず、欠測は _run では拾えない。
+    # ここで数え直して failures に積む。積まないと、3件欠測した日と
+    # 無傷の日が日次Slackで見分けられない。
+    missing = collect_llm.missing_observations(records)
+    if missing:
+        failures.append(f"collect_llm(欠測 {len(missing)}件): {', '.join(missing)}")
+        summary_lines.append(f"- ⚠️ 観測の欠測 {len(missing)}件: {', '.join(missing)}")
     extractions = _run(
         "extract",
         lambda: [extract.extract_record(r) for r in records],
