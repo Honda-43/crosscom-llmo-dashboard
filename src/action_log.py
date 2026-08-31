@@ -6,15 +6,28 @@
 
 重複防止:同一内容 + 同一 rule_id が未完了状態で既にあれば追記しない。
 同じ提案が毎週積み上がると一覧が読めなくなるため。
+
+もう一段の重複防止が §A(Phase 7)。既に着手済みの施策と同じ面・同じ根拠の
+提案を、所見文の側で出させない。追記されないだけでは「今週やること」として
+本文に毎週書かれ続けてしまい、読み手が着手済みかどうかを判別できない。
 """
 from __future__ import annotations
 
 import argparse
 import datetime as dt
 import re
-from typing import Any, Dict, List, Optional, Sequence
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
-from verdicts import OPEN_STATUSES, STATUS_MEASURING, STATUS_ON_HOLD, STATUS_PROPOSED
+import insight_style
+from verdicts import (
+    OPEN_STATUSES,
+    SETTLED_STATUSES,
+    STATUS_APPROVED,
+    STATUS_DONE,
+    STATUS_MEASURING,
+    STATUS_ON_HOLD,
+    STATUS_PROPOSED,
+)
 
 ID_PREFIX = "A-"
 ID_PATTERN = re.compile(r"^A-(\d+)$")
@@ -114,7 +127,11 @@ def propose(
 # --------------------------------------------------------------------------
 # 所見文からの抽出(§5)
 # --------------------------------------------------------------------------
-_ACTION_LINE = re.compile(r"^\s*(?:[-*・]|\d+[.)])?\s*(?:\*\*)?アクション(?:\*\*)?\s*[:：]\s*(.+)$")
+# 見出しは「推奨アクション:」に統一したが、過去の所見は「アクション:」で
+# 書かれている。読む側は両方を受ける(書く側だけを揃える)。
+_ACTION_LINE = re.compile(
+    r"^\s*(?:[-*・]|\d+[.)])?\s*(?:\*\*)?(?:推奨)?アクション(?:\*\*)?\s*[:：]\s*(.+)$"
+)
 _RULE_IN_HEADING = re.compile(r"(R-[A-Z0-9]+)")
 
 
@@ -139,6 +156,111 @@ def extract_proposals(report_md: str) -> List[Dict[str, Any]]:
                     "根拠rule_id": current_rule, "優先度": "中",
                 })
     return proposals
+
+
+# --------------------------------------------------------------------------
+# 実施済み施策の再提案の抑止(Phase 7 §A)
+# --------------------------------------------------------------------------
+def settled_actions(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """状態が決着済み(承認/実施済み・効果測定中/完了)の施策。"""
+    return [r for r in rows
+            if str(r.get("状態", "")).strip() in SETTLED_STATUSES]
+
+
+def settled_note(row: Dict[str, Any]) -> str:
+    """所見に1行で書く「これは既にやってある」。
+
+    状態をそのまま出す。「実施済み」とだけ書くと、効果測定の途中なのか
+    判断期限が過ぎたのかが読み取れない。
+    """
+    action_id = str(row.get("action_id", "")).strip() or "—"
+    status = str(row.get("状態", "")).strip()
+    done = str(row.get("実施日", "")).strip() or "—"
+    if status == STATUS_APPROVED:
+        proposed = str(row.get("提案日", "")).strip() or "—"
+        return f"承認済み({action_id}・{proposed})。着手前のため新たな提案はしない"
+    tail = "完了" if status == STATUS_DONE else "効果測定中"
+    return f"実施済み({action_id}・{done})。{tail}"
+
+
+def _targets_in(text: str) -> set:
+    """本文に出てくる対象(prompt_id と KGI)。action_log の対象列と突き合わせる。"""
+    found = set(insight_style.PROMPT_ID_RE.findall(text))
+    if "KGI" in text:
+        found.add("KGI")
+    return found
+
+
+def suppress_settled(report_md: str,
+                     action_rows: Sequence[Dict[str, Any]]
+                     ) -> Tuple[str, List[str]]:
+    """決着済みの施策と同じ「根拠rule_id + 対象」の推奨アクションを差し替える。
+
+    同じ面に同じ根拠でもう手を打ってあるなら、今週やることではない。
+    行を消すのではなく「実施済み(A-00N・実施日)」に置き換えるので、
+    その面に対して何をしたかは所見の上で追える。
+
+    返すのは (差し替え後の本文, 差し替えた説明のリスト)。
+    """
+    settled = settled_actions(action_rows)
+    if not settled:
+        return report_md, []
+
+    lines = report_md.splitlines()
+    notes: List[str] = []
+    # 後ろの項目から処理する。行を1本足す場合があり、前から回すと
+    # 先に取った行範囲がずれる。
+    for start, end in reversed(insight_style._block_spans(lines)):
+        block = lines[start:end]
+        rule_ids = set(_RULE_IN_HEADING.findall(block[0]))
+        targets = _targets_in("\n".join(block))
+        if not rule_ids:
+            continue
+
+        match = next(
+            (r for r in settled
+             if str(r.get("根拠rule_id", "")).strip() in rule_ids
+             and str(r.get("対象", "")).strip() in targets),
+            None,
+        )
+        if match is None:
+            continue
+
+        note = settled_note(match)
+        replaced = False
+        for offset, line in enumerate(block):
+            found = _ACTION_LINE.match(line)
+            if not found:
+                continue
+            indent = line[:len(line) - len(line.lstrip())]
+            lines[start + offset] = f"{indent}{insight_style.LABEL_ACTION}: {note}"
+            replaced = True
+            break
+        if not replaced:
+            lines.insert(end, f"{insight_style.LABEL_ACTION}: {note}")
+        notes.append(f"{'/'.join(sorted(rule_ids))} × {'/'.join(sorted(targets))}: {note}")
+
+    notes.reverse()   # 後ろから回したので、本文と同じ順に戻す
+    return "\n".join(lines), notes
+
+
+def prompt_block(action_rows: Sequence[Dict[str, Any]]) -> str:
+    """決着済み施策の一覧。generate_insight のプロンプトに差し込む。
+
+    後処理で消すより先に、そもそもモデルに提案させないほうがよい。
+    削られる前提で書かせると、限られた3件の枠を使い切ってしまう。
+    """
+    settled = settled_actions(action_rows)
+    if not settled:
+        return "(まだ着手済みの施策はありません)"
+    return "\n".join(
+        f"- {str(r.get('action_id', '')).strip()} | 対象 {str(r.get('対象', '—')).strip()}"
+        f" | 根拠 {str(r.get('根拠rule_id', '—')).strip()}"
+        f" | 状態 {str(r.get('状態', '')).strip()}"
+        f" | 実施日 {str(r.get('実施日', '—')).strip()}"
+        f" | {str(r.get('内容', '')).strip()}"
+        for r in settled
+    )
 
 
 def sync_from_report(report_md: str, date: str,

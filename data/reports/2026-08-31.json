@@ -370,7 +370,7 @@
       "status": "not_fired"
     },
     {
-      "detail": "自社不在プロンプトで1件の競合が定着",
+      "detail": "自社不在プロンプトで1件の競合が4週連続で出現",
       "evidence": [
         {
           "consecutive_weeks": 4,

@@ -465,7 +465,8 @@ def rule_p5(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
         return _verdict("R-P5", NOT_FIRED,
                         f"順位中央値が{weeks_needed}週連続で{threshold}以上のプロンプトはない")
     return _verdict("R-P5", FIRED,
-                    f"{len(evidence)}件のプロンプトが{weeks_needed}週連続で下位定着", evidence)
+                    f"{len(evidence)}件のプロンプトが{weeks_needed}週連続で"
+                    f"順位中央値{threshold:g}位以下", evidence)
 
 
 def rule_p7(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
@@ -592,9 +593,11 @@ def rule_p15(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],
                 })
 
     if not evidence:
-        return _verdict("R-P15", NOT_FIRED, "自社不在プロンプトで定着している競合はない")
+        return _verdict("R-P15", NOT_FIRED,
+                        "自社不在プロンプトで連続出現している競合はない")
     return _verdict("R-P15", FIRED,
-                    f"自社不在プロンプトで{len(evidence)}件の競合が定着", evidence)
+                    f"自社不在プロンプトで{len(evidence)}件の競合が"
+                    f"{weeks_needed}週連続で出現", evidence)
 
 
 def rule_drop(sov: Dict[str, Any], cfg: Dict[str, Any]) -> Dict[str, Any]:

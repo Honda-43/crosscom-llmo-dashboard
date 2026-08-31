@@ -116,6 +116,12 @@ def main() -> None:
         source = result.get("source", "fallback")
         if result.get("error"):
             failures.append(f"generate_insight(fallback used): {result['error']}")
+        # 記述ルール(Phase 7 §B)のうち機械で直せなかったもの。落とさないが、
+        # 毎週見えるところに出す。見えないと直らない。
+        for warning in result.get("warnings") or []:
+            lines.append(f"- ⚠️ 所見の記述ルール: {warning}")
+        for note in result.get("suppressed") or []:
+            lines.append(f"- 実施済みのため再提案を差し替え: {note}")
 
         # 3-2. 引用元の3分類(Phase 5 §3-2)。data/raw を読むだけで
         # Sheets の追加読み取りはしない。

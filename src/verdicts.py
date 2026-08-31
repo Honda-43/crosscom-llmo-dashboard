@@ -35,6 +35,9 @@ IMPLEMENTED_STATUSES = (STATUS_MEASURING, STATUS_DONE)
 # まだ終わっていない=重複提案の判定に使う(§5)
 OPEN_STATUSES = (STATUS_PROPOSED, STATUS_AWAITING, STATUS_APPROVED,
                  STATUS_MEASURING, STATUS_ON_HOLD)
+# 決着済み=週次所見が同じ施策を「これからやること」として再提案してはいけない。
+# 承認まで進んだものは本田さんの判断が既に済んでいるので、提案に戻さない。
+SETTLED_STATUSES = (STATUS_APPROVED, STATUS_MEASURING, STATUS_DONE)
 
 
 # --------------------------------------------------------------------------

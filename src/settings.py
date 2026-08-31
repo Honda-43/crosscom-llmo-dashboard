@@ -141,6 +141,14 @@ EXTRACT_MODEL = os.getenv("EXTRACT_MODEL", "claude-haiku-4-5-20251001")
 INSIGHT_MODEL = os.getenv("INSIGHT_MODEL", "claude-sonnet-5")
 INSIGHT_MAX_CHARS = int(os.getenv("INSIGHT_MAX_CHARS", "2000"))
 
+# 出力トークンの上限。INSIGHT_MAX_CHARS(本文の字数)とは別物で、こちらは
+# モデルが1回の応答で使える枠。2026-08 まで 4096 に固定されていて、
+# 3週続けて所見が文の途中で切れていた(セクション4・5が丸ごと欠落)。
+# 日本語1文字が複数トークンになること、応答トークンが本文だけに使われるとは
+# 限らないことを踏まえ、本文の想定量に対して十分な余裕を取る。
+# 足りなければ generate_insight が1度だけ倍にして取り直す。
+INSIGHT_MAX_TOKENS = int(os.getenv("INSIGHT_MAX_TOKENS", "16000"))
+
 # Retry policy (§3): exponential backoff, max 3 attempts.
 MAX_RETRIES = int(os.getenv("MAX_RETRIES", "3"))
 BACKOFF_BASE_SECONDS = float(os.getenv("BACKOFF_BASE_SECONDS", "2"))

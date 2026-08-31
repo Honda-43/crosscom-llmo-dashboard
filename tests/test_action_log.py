@@ -106,6 +106,105 @@ def test_report_without_actions_yields_nothing():
     assert action_log.extract_proposals("## 1. 今週のサマリ\n\n順調です。") == []
 
 
+def test_the_recommended_action_label_is_also_extracted():
+    """見出しは「推奨アクション:」に統一したが、過去の「アクション:」も読む。"""
+    report = "**R-P7(x)**\n推奨アクション: 担当者がページを修正する。\n"
+    proposals = action_log.extract_proposals(report)
+    assert len(proposals) == 1
+    assert proposals[0]["根拠rule_id"] == "R-P7"
+
+
+# --- 実施済み施策の再提案の抑止(Phase 7 §A) --------------------------------
+SETTLED_LOG = [
+    {"action_id": "A-003", "内容": "/btob-marketing-strategy/ 過去形化改修",
+     "対象": "E-1", "根拠rule_id": "R-P8", "状態": verdicts.STATUS_MEASURING,
+     "提案日": "2026-08-24", "実施日": "2026-08-24"},
+    {"action_id": "A-009", "内容": "B-3のCEP対応ページ新設", "対象": "B-3",
+     "根拠rule_id": "R-P2", "状態": verdicts.STATUS_DONE,
+     "提案日": "2026-08-10", "実施日": "2026-08-12"},
+    {"action_id": "A-010", "内容": "承認だけ済んでいる施策", "対象": "A-1",
+     "根拠rule_id": "R-P5", "状態": verdicts.STATUS_APPROVED,
+     "提案日": "2026-08-29", "実施日": "—"},
+    {"action_id": "A-011", "内容": "まだ保留の施策", "対象": "A-2",
+     "根拠rule_id": "R-P4", "状態": verdicts.STATUS_ON_HOLD,
+     "提案日": "2026-08-29", "実施日": "—"},
+]
+
+SETTLED_REPORT = """## 3. 発火パターンと推奨アクション
+
+**R-P8(旧事業URLの引用)**
+状態: AIの回答はE-1で旧パスを2件引用している。
+推奨アクション: 担当者が来週末までに301統合する。
+
+**R-P4(言及率の改善)**
+状態: A-2で言及率が上がった。
+推奨アクション: 担当者が来週末までに横展開する。
+"""
+
+
+def test_only_settled_states_are_collected():
+    ids = [r["action_id"] for r in action_log.settled_actions(SETTLED_LOG)]
+    assert ids == ["A-003", "A-009", "A-010"]
+
+
+def test_the_note_names_the_action_and_its_date():
+    assert action_log.settled_note(SETTLED_LOG[0]) == \
+        "実施済み(A-003・2026-08-24)。効果測定中"
+
+
+def test_a_completed_action_says_completed():
+    assert action_log.settled_note(SETTLED_LOG[1]) == "実施済み(A-009・2026-08-12)。完了"
+
+
+def test_an_approved_action_has_no_implementation_date():
+    """承認だけ済んでいる施策に「実施済み」と書くと嘘になる。"""
+    note = action_log.settled_note(SETTLED_LOG[2])
+    assert note.startswith("承認済み(A-010・2026-08-29)")
+    assert "実施済み" not in note
+
+
+def test_a_settled_action_replaces_the_recommendation():
+    text, notes = action_log.suppress_settled(SETTLED_REPORT, SETTLED_LOG)
+    assert "推奨アクション: 実施済み(A-003・2026-08-24)。効果測定中" in text
+    assert "301統合" not in text
+    assert len(notes) == 1
+
+
+def test_an_open_action_does_not_suppress_anything():
+    """保留(A-011/R-P4/A-2)は決着していないので、提案を止める理由にならない。"""
+    text, notes = action_log.suppress_settled(SETTLED_REPORT, SETTLED_LOG)
+    assert "横展開する" in text
+    assert not any("R-P4" in n for n in notes)
+
+
+def test_the_same_rule_on_a_different_target_is_not_suppressed():
+    report = ("**R-P8(旧事業URLの引用)**\n"
+              "状態: AIの回答はB-1で旧パスを引用している。\n"
+              "推奨アクション: 担当者が301統合する。\n")
+    text, notes = action_log.suppress_settled(report, SETTLED_LOG)
+    assert "301統合" in text
+    assert notes == []
+
+
+def test_the_note_is_added_when_the_model_wrote_no_action_line():
+    """モデルが指示どおり提案を落とした場合も、実施済みであることは書く。"""
+    report = ("**R-P8(旧事業URLの引用)**\n"
+              "状態: AIの回答はE-1で旧パスを2件引用している。\n")
+    text, notes = action_log.suppress_settled(report, SETTLED_LOG)
+    assert "実施済み(A-003・2026-08-24)。効果測定中" in text
+    assert len(notes) == 1
+
+
+def test_an_empty_action_log_changes_nothing():
+    assert action_log.suppress_settled(SETTLED_REPORT, []) == (SETTLED_REPORT, [])
+
+
+def test_every_settled_action_is_listed_for_the_prompt():
+    block = action_log.prompt_block(SETTLED_LOG)
+    assert "A-003" in block and "A-010" in block
+    assert "A-011" not in block, "保留は着手済みではない"
+
+
 # --- 初期データ(§4) ---------------------------------------------------------
 def test_seed_rows_match_the_spec():
     assert len(action_log.SEED_ROWS) == 7

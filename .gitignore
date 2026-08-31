@@ -25,3 +25,6 @@ Thumbs.db
 # ローカル分析アプリ(Phase 4)
 credentials/
 .streamlit/secrets.toml
+
+# シートから引いた作業用のダンプ(手元確認のみ。成果物ではない)
+.tmp/
