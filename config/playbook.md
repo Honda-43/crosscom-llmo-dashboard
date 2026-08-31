@@ -61,7 +61,7 @@ cross-com.jp(合同会社クロスコム)は **Agentforce導入・定着支援**
 ## P-4 言及率の急改善(横展開の好機)
 
 **状態**
-pillar別 mention_rate の7日平均が前週比 +0.10 以上。
+pillar別 mention_rate の7日平均が前週比 +10ポイント以上。
 
 **原因仮説**
 

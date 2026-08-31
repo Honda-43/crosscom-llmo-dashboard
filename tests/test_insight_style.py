@@ -180,6 +180,27 @@ def test_the_metaphor_use_of_the_same_word_is_still_banned():
     assert insight_style.banned_words("競合がB-3に定着している")
 
 
+def test_the_playbook_states_the_same_thresholds_as_the_yaml():
+    """プロンプトは所見の定義文をプレイブックの「状態」から書かせる。
+
+    その定義に書かれた数がYAMLの閾値とずれると、所見が誤った定義を
+    載せることになる。プレイブックは手で編集するファイルなので、
+    ずれたことに気付ける形にしておく。
+    """
+    text = PLAYBOOK_FILE.read_text(encoding="utf-8")
+    rules = THRESHOLDS["rules"]
+    expected = [
+        (f"直近{rules['R-P2']['consecutive_absent_observations']}観測日連続", "P-2"),
+        (f"+{insight_style.points(rules['R-P4']['mention_rate_delta'])}ポイント以上", "P-4"),
+        (f"中央値が {rules['R-P5']['rank_threshold']:g} 位以下", "P-5"),
+        (f"週が{rules['R-P5']['consecutive_weeks']}週連続", "P-5"),
+        (f"{rules['R-P15']['consecutive_weeks']}週連続で出現", "P-15"),
+        (f"上位{rules['R-DROP']['top_n']}の競合", "P-DROP"),
+    ]
+    for phrase, pattern in expected:
+        assert phrase in text, f"{pattern}: 「{phrase}」がプレイブックに無い"
+
+
 def test_the_playbook_has_no_banned_words():
     """所見の言い回しはプレイブックから写される。元を断つ。"""
     text = PLAYBOOK_FILE.read_text(encoding="utf-8")

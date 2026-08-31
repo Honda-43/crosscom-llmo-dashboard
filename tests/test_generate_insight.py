@@ -98,6 +98,41 @@ def test_system_prompt_bans_the_arrow_everywhere_not_just_in_the_bullets():
     assert "本文のどこでも矢印記法(→)を使わない" in system
 
 
+def test_the_prompt_itself_never_demonstrates_an_arrow():
+    """手本が矢印を使っていると守られない。ルール名として挙げる1回だけ許す。"""
+    system = generate_insight.build_system_prompt(playbook="x")
+    assert system.count("→") == 1
+    user = generate_insight.build_user_prompt(CO_FIRED_STATS, [])
+    assert "→" not in user
+
+
+def test_system_prompt_fixes_the_merged_heading():
+    """統合時にモデルが2つを混ぜた定義を作らないようにする。"""
+    system = generate_insight.build_system_prompt(playbook="x")
+    assert "**R-P2(P-2の定義)・R-P15(P-15の定義) — 対象のprompt_id**" in system
+    assert "プレイブックの該当パターンの「状態」をそのまま使う" in system
+    assert "新しい定義を作らない" in system
+
+
+CO_FIRED_STATS = dict(
+    STATS,
+    rules=[
+        {"rule_id": "R-P2", "status": "fired", "fired": True, "detail": "d",
+         "evidence": [{"prompt_id": "B-3", "model": "gemini"}]},
+        {"rule_id": "R-P15", "status": "fired", "fired": True, "detail": "d",
+         "evidence": [{"prompt_id": "B-3", "entity": "X社"}]},
+    ],
+    fired_rules=["R-P2", "R-P15"],
+)
+
+
+def test_the_user_prompt_names_the_merged_heading_for_the_co_fired_prompt():
+    user = generate_insight.build_user_prompt(CO_FIRED_STATS, [])
+    assert "統合が必要な発火" in user
+    assert "- B-3" in user
+    assert "プレイブックの「状態」をそのまま使ってください" in user
+
+
 def test_system_prompt_no_longer_teaches_the_arrow_notation():
     """矢印を禁じながらテンプレートが矢印で例示していると守られない。"""
     system = generate_insight.build_system_prompt(playbook="x")
