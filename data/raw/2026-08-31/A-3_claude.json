@@ -1,0 +1,23 @@
+{
+  "date": "2026-08-31",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-08-31T00:14:34.237642Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出すための進め方について調べます。\nAgentforceの導入費用相場と費用対効果を出すための進め方について、最新情報を整理してお伝えします。\n\n## 1. Agentforceの料金体系（3つのモデル）\n\n2025年5月の改定により、Agentforceの料金は大きく3つの考え方に整理されています。\nAgentforceの料金は、2025年5月の改定を経て、アクション単位のFlex Credits、会話単位の旧来モデル、社内利用向けのユーザーライセンスという3つの考え方に整理されました\n\n\n### ① Flex Credits（従量課金・中心モデル）\n\nFlex Creditsは、エージェントが1つのアクションを実行するたびにクレジットを消費する、2025年5月15日にSalesforceが発表したAgentforceの中心となる従量課金モデルです\n。導入によって使い方の差を柔軟に吸収できる仕組みで、\n毎日数百回動く現場もあれば、月に数十回しか動かない現場もあるため、一律の定額では、使わない月に払いすぎ、使う月には足りなくなってしまいます\nという背景から生まれました。\n\n**単価**：\nFlex Creditsの購入価格は、日本では10万クレジットあたり60,000円です（米国では同数量が500ドル）。1クレジットに換算すると0.6円になります\n\n\n### ② 会話単位課金（旧モデル）\n\nMicrosoft Copilotは月額固定費が発生し、ユーザー数に応じたライセンスコストがかかるのに対し、Agentforceは「1会話あたり240円」というシンプルな料金体系を採用しています\n。\n\n### ③ ユーザーライセンス（社内利用向け・使い放題型）\n社員が日常的にAIエージェントを使い倒す場合に適した定額プランもあり、\n単価は$125（2026年5月時点で約19,588円）／ユーザー／月\nとなっています。\n\n## 2. 具体的な費用相場\n\n**Salesforce製品込みのライセンス例（月額・ユーザー単位）**\n- Agentforce for Sales：\n1ユーザあたり15,000円（税別）/月\n\n- Agentforce 1 Sales：\n10ユーザーで単純計算すると年間792万円（月額66,000円/ユーザー）\n\n- Agentforce for Service（Pro Suite）：\n月12,000円/ユーザー（年間契約時）\n\n\n**無料枠あり**：\nAgentforceは従量課金制で、Salesforceユーザーは無料で利用開始でき、その後は利用量に応じて課金されます。ボリュームディスカウントも適用されるため、スモールスタートで導入し、コストを最適化しながら柔軟にAIを活用し、段階的に利用規模を拡大できます\n。\n\n**スモールスタート時の実感値**：\n月100アクションを標準アクションで計算すると、消費は2,000クレジット、円換算で1,200円相当です。この規模なら、無料付与されるクレジットの枠内に余裕で収まります\n。つまり検証段階ではクレジット費用はほぼ発生せず、\nスモールスタートの段階では、クレジット消費はごくわずかで、実質的な費用の中心はライセンスと基盤の部分になります\n。\n\n**導入支援・開発費用（大規模の場合）**：基幹システム連携を伴う大規模プロジェクトでは、\nこの大規模な基幹システム連携モデルでは、導入支援費は1,000万円を超える場合が珍しくなく、プロジェクト期間も半年〜1年以上に及ぶケースが多い\nとされ、\n保守運用チームの確保やSalesforce公式サポートプランの活用など、年間のランニングコストも数千万円単位で見積もる必要があります\n。\n\n※2026年後半には利用量のベースラインを事前にコミットする「事前コミットメント」モデルも公開予定とされています（出典：techtouch.jp）。\n\n正式な見積もりは案件ごとに大きく変動するため、詳細はSalesforceの営業担当者への確認が推奨されています。\n\n## 3. 費用対効果を出すための進め方\n\n### ステップ1：ビジネス価値の明確化とユースケース選定\n\n導入検討フェーズにおける最大のハードルは、技術検証",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-pricing/",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://blogbloggerbloggesta.hatenablog.jp/entry/agentforce-price",
+    "https://www.ccc.seraku.co.jp/service/columns/salesforce/01/155",
+    "https://www.ripla.co.jp/blog/system/salesforce-platform-cost/",
+    "https://saas.imitsu.jp/cate-customer-success-tool/service/465/price",
+    "https://service.is-c.jpn.panasonic.com/column/salesforce-agentforce-2",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

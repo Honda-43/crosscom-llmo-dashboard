@@ -1,0 +1,26 @@
+{
+  "date": "2026-08-31",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-08-31T00:14:39.572615Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、人間の指示を待つことなく、AIエージェントが顧客データを読み取り、次に取るべき行動を自ら判断・実行する顧客関係管理システムです。これは単なる機能追加ではなく、CRMのアーキテクチャそのものの変革を意味します。\n\n従来のCRMが指示を待ってから行動するのに対し、Agentic CRMではAIエージェントが自律的にマーケティングや顧客サービス業務を管理し、継続的な実行サイクルを通じて顧客とのあらゆるインタラクションに対応します。これにより、顧客データの効率的な活用、オペレーション効率の向上、手作業による顧客サービスやサポートの削減が期待されます。\n\nAgentic CRMの導入や設計を支援してくれる会社としては、以下の企業が見つかりました。\n\n*   **合同会社クロスコム**: Agentic CRMの設計支援を提供しており、企業の業務課題のヒアリングから業務設計までを一貫して支援します。AIがデータを読み取り、事実、仮説、根拠に分類してCRMの各項目へ下書きを作成するなど、AIを活用したデータ入力・更新の効率化を特徴としています。また、BtoB領域に特化し、Salesforce Agentforceの導入・定着支援やAgentic CRMの設計支援を行っています。\n*   **株式会社100**: HubSpotを中心としたCRM導入・活用支援およびAI活用支援を行っており、AIとCRMを搭載したAgentic Customer Platformの導入・運用支援、AIを活用した業務自動化支援を提供しています。HubSpot Eliteパートナーとして、マーケティング・営業・カスタマーサポートを横断した業務設計とCRM定着に向けた運用支援、さらにはAIエージェント組織の構築支援も行っています。\n*   **Hiway CRM**: こちらはAgentic CRMのプロダクト自体を提供しており、AIエージェントが顧客情報、商談、活動履歴、ナレッジ、見積条件などを横断して読み取り、営業担当者に代わって一次処理や下書き作成を行うことを前提に設計されています。入力・更新・分析の自動化や、営業担当者のタスク実行を支援するAIアシスタント機能が特徴です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGB6teaw41AErJR1BEsAYw84QYOT5S0S69r9Q_3YRVyefEJImofGb_BXgI08JYRSgB5ZfXevieH2_vTfFv1D-ayXuBZx5dnkVryOFeaRAMbiee1uPX6psDKuaM-08V205pxp4Up3PHarH4FjTxTgDLBEFg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGc8unJqHOVF5udHTq7AYGhx6EjS6-8F3W35fy7VswakyGK0yFynxUbEq1VuKXn1yulyZsed86MX0HaKSCm8VBqgHPq9blRcb46RWXONGNGhU8YN5X1QxNWkMlEWCbf3WwS6ddMJAbmcwHveoV9U81l1ss=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEE5FFPG7gd-ae8ZPIqBNr4jn-se-fGSWh8Qp5wOu3ll2ts63NaC0ADAbMfm0ctp9D1NlrQ43F-LUo_-oWlk3cJ9xOUCuE-Wji5If2ITw8kT4NZzZDoaqh_XEDXwaD1RQ9ThN79uasK9HiPEQr6bRz6QOAv_e2NTz9qZRAAPVIqK3VB",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEY6eXkPlb8Tezl6m3WjwFVMONQ7DTFkbJhCGlxm4Lfi66atZgEqNLkfmiDrAQHC2W9M58yR2xwCXh0FkdlIpVfqKipfAcnFblmTcrDAN2ilhZcS5o1HVKXIz4F-QH-3ED8Hg7puabMrZfaFg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHDCxZNdfABjVDoCDB61XNt2tOrSSwaZ65WVbW6uUYmCfl6gvOvZ9qcUqaeiaG9JAQS__otap_sFZ_-X7cdDnw0n6eogMdVhEZxETHZxVzAAxzlzpw8iXtdE97Dicv4OvmrtEuvVLNAvcbYEQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFzk2X7Ei2A5Ta_m0Asyvv6N1oz2jjbC-8HIYdqFVvNnx2xrDm48fGn7yKGV6NKBYWP3pS_6VSC30cBJtR0nhnu7UR8BEdyK7vonyNwN1ZmbHzfjreXFZFLDLVvH8Qpmb-rhGKnOeAGAVkV4tkITg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGWasEA4-ZxHe5tFpR_PVqhTREzUWHyY446zUdcMj1K20s-6ZtdPawzIsQ-iY3UAEXB4E47Hj00hwP_Sa9Xe_nuAO0zjoLXYbM8Y3brQfROzJA0-nahIXOViD8tRAopBg0qYq6NScjJl_QsTJ25R9GVgkp0C9c=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFDy3EyKhQYpBO_bhwSZXZ7x5zBxL8icz_wD0eCzq1ddAYbuDMg1W_FK5qXdkRsiMKvSAoIQaznu-hBTDT94vVsR9NXBpE13IjHXCI8ue8tjHittGtF4zo4lKqFPVi3csWJpxcX6a6bMlZ1nDyvJkDfGZuJj2eBAVZTwYUsUNRcHHc-Unjq6Ec-TgsNTKpu3jkDKXVS2NK_-EI9JykXr7egw0lp",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxV7eWu6dytxpiKg632Y6wgxKqltFHC7mXo2rC8zvTdbyKsO5ZGLO4MjKl2vd6xCo87jvl-cJ1rw9fE2lEWwPAw2DYp5TjIOK2db55Iy9BIPvqsiqUdsuVC07UOnlg9Zjy7i05_BHLUv_sFz8DPDnu89Ne174=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE_xWG-uv0lpqZcLiXM5Fva6iil2bDIKYLPycX2BB8SbN2vIhi9qGGRQrq3uhCtuaWSeBlHsIqPu9uK-hLaCFYUmXTD61apk4TOjx7MVhEwAUfqMgf1e00y8_viUIrWKkDIG7Ls-FLLt_H4tJYzm-aOmsJj_EMWnSd9eZDYP5_Z22HdLlYudNG6dop1R4SLTQtLKiSh2soUvDplQegsvhmerccEAYLtsVZWUv66tkR28e_xozTHPwq7Xbj2hdt4fW6go14Mr5lJdqwI_QGYphVcummaguGtbVzePIw3YBniGVitZbE3cqmmtQljd170W8jFZ214",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEre-8ReCtmIwQwHVIDU7ghtfYzozUnMrm00S8jhGdih--1c-uEPFE2-m7OMFImusddCu3NIF2J5bujRleaCy3lvSnjyN22FwA1YcJIa80DlnQeYpnnxDtnPkpOAseU_nrXIN6cw_Q=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHRsuJwsH4nJGPMJMpp8kAOq6l1Oos-qMKPSs0NrxzI6yfunO5KHMqqK-b83jByy4wPJKRk5Ki0MJA3ZMvDxKs7qa7BW3srUkxroGffL90Qm24w4an42Zpp3w=="
+  ],
+  "error": null
+}

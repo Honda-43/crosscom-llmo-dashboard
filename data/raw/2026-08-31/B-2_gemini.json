@@ -1,0 +1,21 @@
+{
+  "date": "2026-08-31",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-08-31T00:15:14.098335Z",
+  "answer": "中堅企業が特定のベンダーに依存せず、中立的な立場でCRMの設計を支援してくれる会社を探す場合、CRMコンサルティング会社が有力な選択肢となります。これらの会社は、CRM戦略の立案からツールの選定、導入、運用定着までを一貫してサポートし、貴社の課題や目標に最適なソリューションを提案してくれます。\n\n以下に、中立的な立場でCRM設計を支援する可能性のある企業タイプと、具体的な企業名を挙げます。\n\n**中立的なCRMコンサルティング会社のタイプ**\n\n*   **独立系コンサルティングファーム:** 特定のCRMツールに偏らず、企業のニーズに合わせて最適なツールを選定し、戦略設計から導入・運用までを支援します。\n*   **DX・ITコンサルティング会社:** CRMだけでなく、企業のデジタルトランスフォーメーション全体を見据え、CRMをその一部として統合的に設計・支援します。\n\n**具体的な企業例**\n\n*   **株式会社ArchRise（アーチライズ）**: CRM・SFA領域において、ツール選定や要件整理から設計・初期構築、導入後の運用定着まで一貫してサポートしています。Salesforce、Zoho、HubSpotなど複数のクラウドCRM・SFAを比較し、特定ベンダーに偏らない構成を提案することを強みとしています。\n*   **ECマーケティング株式会社**: ECサイトやマーケティングサイトに特化したWebコンサルティング会社ですが、中小・中堅規模の企業から大手企業まで、社内の状況に合わせたサービスを提供しており、特にCRMツールベンダーに紐づかないコンサルティングに注力しています。\n*   **mtc.**: 企業の継続的な事業成長を実現するCRMに特化したコンサルティング会社で、戦略立案から設計、施策の実行、インハウス化まで幅広い支援を行っています。\n*   **株式会社ripla（リプラ）**: CRMの開発とともに、既存のERP/販売管理/マーケティング基盤との全体最適設計を行い、顧客データの統合・分析・活用による業務革新まで支援できるDX/開発支援会社です。\n*   **レイヤーズ・コンサルティング**: 「CX戦略・CRM構築」サービスを提供しており、顧客接点のデジタル化を通じたCX戦略・CRM実践のため、具体化から導入、改善効果の検証、モニタリングまで顧客プロセスに適応し、持続的な成長を支援しています。\n\n**CRMコンサルティング会社を選ぶ際のポイント**\n\n*   **特定ベンダーへの依存度:** 複数のCRMツールを比較検討し、中立的な立場から貴社に最適な提案をしてくれるかを確認することが重要です。\n*   **実績と経験:** 貴社と同様の業種や規模の企業に対するCRM設計・導入実績が豊富であるかを確認しましょう。\n*   **支援範囲:** 戦略立案から設計、ツール選定、導入、運用定着、効果検証まで一貫してサポートしてくれるか、あるいは貴社が必要とするフェーズに特化した支援が可能かを確認します。\n*   **担当者の専門知識と経験:** 潜在的な課題を見抜き、最適な解決策を提案できる経験豊富な担当者がいるかを確認しましょう。\n*   **費用対効果:** コンサルティング費用と、それによって得られるであろう効果を総合的に判断します。\n\nCRMコンサルティングの費用相場は、企業規模や導入範囲によって異なりますが、中小企業の場合、初期費用として300万円から1,000万円程度、年間の運用費用として200万円から500万円程度が目安とされています。\n\nまずは複数の会社に問い合わせを行い、貴社の状況や要望を伝え、どのような提案を受けられるか比較検討することをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHDTgKKAZcPH_WBzQkrBEv3USD35BuBs-r8i7Jx9UUOrVlOdwgmNhwiVwKDRb6I9k50zzvEMOqIARaYg_hGbktLq-lCsoZz4g1TXUoDmv4NHDnILfLcWYgALQ9Ntb5g9t_HWIsiWPlU",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGDNV__rHmLBzMkyC8DP3WfLeFoePts5fw9l6m28J112lt8Nl64WILZ4lyU40iJgT-BXMxbMVvefB5Com77KT1Q8j6xzL1_iVOMD3H2ywTA9pU3Agr63lG9YqoG4DYABI9sWndCu_7jZgvqKw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGrlh2_BI5ZEbELcXKi8YLoS14G8aC8yZxH6Ozk2vkrVkkEHOdw_ILJYVDxjbUd291WTpF7jcbas0m2Go-56QrJ59bUdoeFlf9u-SGY6Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGP5g5JAroxERnEnD2gzwFQ11KHO3PvTN8wNsJrzoZwOLNtFZLv3eJHJV8C5Y3KOsLKjGrNdjZEXM4__xdDbF9kn-RMPDUHRsaydyanrc7utW3Qu_GD4xvGHg9gHVDNwTHtf26uS5_ProJf",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFMq9YrNCIUgodMNSvASWtRzisw_W4wXYh_l12RWLqYhrC-7LVah0oUsUnpB3jjV_WECVh2GGNuflNobDGfyVngDFhfDqluX08hl3ht1ewKAW9BxzfngQPytxUBmB6EcWDDDlyNm5bDUtfa",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELQZ9lp6JJNwE_P6XTPM05Oxhgeqe1nqc0jGrDP-BE0UIMF8guwMBfFrNcWyVp1uFkXFJllTB-RHKslHm4D8xdoldIauqWdS9HYj7uO2M1Do88F3qxUV8auBiR5EgYG3NRF5NcdGtUKJRl9TkFjSh8WMvOVxQ7uo8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGQR5JEINIzxSlDhxzv-YQ4xrlH0IMRt8PLJRD0q2_1ZadFuO7dLfhRZAVdDhsrj_fBirnoJvloNKPW5JtDD7ZpbHl-U-Wx_3iBi99cP6JL7x4M5BbkRZOwlolHeioFYRYDp2tfjQ=="
+  ],
+  "error": null
+}
