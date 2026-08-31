@@ -1,0 +1,262 @@
+{
+ "id": 4194,
+ "date": "2025-02-04T23:38:46",
+ "date_gmt": "2025-02-04T14:38:46",
+ "guid": {
+  "rendered": "https://cross-com.jp/?post_type=case&#038;p=4194"
+ },
+ "modified": "2026-08-27T12:49:36",
+ "modified_gmt": "2026-08-27T03:49:36",
+ "slug": "bku-ma",
+ "status": "publish",
+ "type": "case",
+ "link": "https://cross-com.jp/case/bku-ma/",
+ "title": {
+  "rendered": "株式会社BKU"
+ },
+ "content": {
+  "rendered": "<span class=\"span-reading-time rt-reading-time\" style=\"display: block;\"><span class=\"rt-label rt-prefix\">読了時間</span> <span class=\"rt-time\"> 3</span> <span class=\"rt-label rt-postfix\">分</span></span>\n<h2 class=\"wp-block-heading\">4か月で商談数300%以上UP！「マーケ戦略ｘMA運用」で結果を出したメールマーケティング施策とは</h2>\n\n\n\n<div class=\"wp-block-columns is-layout-flex wp-container-core-columns-is-layout-8f761849 wp-block-columns-is-layout-flex\">\n<div class=\"wp-block-column is-vertically-aligned-center is-layout-flow wp-block-column-is-layout-flow\" style=\"flex-basis:33.33%\">\n<figure class=\"wp-block-pullquote alignleft has-text-align-left\"><blockquote><p><img loading=\"lazy\" decoding=\"async\" width=\"300\" height=\"136\" class=\"wp-image-2253\" style=\"width: 300px;\" src=\"https://cross-com.jp/wp-content/uploads/2024/07/BKU-new-logo-transparent-background_mini.png\" alt=\"\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/07/BKU-new-logo-transparent-background_mini.png 1015w, https://cross-com.jp/wp-content/uploads/2024/07/BKU-new-logo-transparent-background_mini-300x136.png 300w, https://cross-com.jp/wp-content/uploads/2024/07/BKU-new-logo-transparent-background_mini-768x347.png 768w\" sizes=\"auto, (max-width: 300px) 100vw, 300px\" /></p><cite><strong>株式会社BKU<br></strong>事業　：外国人材紹介・DX導入支援<br>従業員：10名以下<br>課題　：新規顧客数を増やしたい<br>　　　　商談数を増やしたい<br>　　　　営業を効率化したい</cite></blockquote></figure>\n</div>\n\n\n\n<div class=\"wp-block-column is-layout-flow wp-block-column-is-layout-flow\" style=\"flex-basis:66%\">\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<p class=\"wp-block-paragraph\">BKU様は、ミャンマーのヤンゴンに本社を構える海外法人で、主にミャンマー人材の紹介とDX（デジタルトランスフォーメーション）導入支援を提供しています。</p>\n\n\n\n<p class=\"wp-block-paragraph\">中小企業の抱えるさまざまな課題を解決する中、特に人手不足が騒がれている最近では、人材の紹介だけでなく、企業全体の生産性を高めるデジタル技術も組み合わせてご提案されています。</p>\n\n\n\n<p class=\"wp-block-paragraph\">そんなBKU様のマーケティング戦略・MA（マーケティングオートメーション）運用をご支援してから、４か月で商談数300%以上UP・粗利を約190％UPを獲得するまでになりました。</p>\n\n\n\n<p class=\"wp-block-paragraph\">どのような課題背景から取り組みを開始し成果を出したのか。BKUの共同代表である山田さんへインタビューさせていただきましたので、<a href=\"https://cross-com.jp/marketing-automation-btob/\">MA運用</a>で成果を出したい方の参考になれば幸いです。</p>\n</div>\n</div>\n\n\n\n<h2 class=\"wp-block-heading\">１．課題背景</h2>\n\n\n<div class=\"wp-block-image\">\n<figure class=\"aligncenter size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"576\" src=\"https://cross-com.jp/wp-content/uploads/2025/02/Issue_BKUxCrosscom-1024x576.webp\" alt=\"課題整理_BKU様xクロスコム\" class=\"wp-image-4199\" srcset=\"https://cross-com.jp/wp-content/uploads/2025/02/Issue_BKUxCrosscom-1024x576.webp 1024w, https://cross-com.jp/wp-content/uploads/2025/02/Issue_BKUxCrosscom-300x169.webp 300w, https://cross-com.jp/wp-content/uploads/2025/02/Issue_BKUxCrosscom-768x432.webp 768w, https://cross-com.jp/wp-content/uploads/2025/02/Issue_BKUxCrosscom.webp 1320w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n</div>\n\n\n<h3 class=\"wp-block-heading\"><strong>「アナログな&#8221;テレアポ営業&#8221;は効率的じゃないな」</strong></h3>\n\n\n\n<h4 class=\"wp-block-heading has-text-color has-link-color wp-elements-1\" style=\"color:#008a9d\"><strong>ー当時抱えていた課題をお伺いしていいですか。</strong></h4>\n\n\n\n<p class=\"wp-block-paragraph\">弊社は小さなベンチャー企業なので、営業活動も自分一人でやっています。営業スタッフを雇うほどの規模に至っていなかったので、<strong>１人のマンパワーで、アナログなテレアポ営業をずっと続けていました</strong>。</p>\n\n\n\n<p class=\"wp-block-paragraph\">しかし、ずっとテレアポ営業を続けているうちに<strong>「あんまり効率的じゃないな」「もっと改善できるところあるよな」</strong>と感じていました（DX支援事業をはじめる前の話）。そこで（もっと効率よく営業活動をするために）円もあって<strong>Salesforce（MAツール&#8221;Account Engagement(旧Pardot)&#8221;）を導入</strong>することにしたんですよね。</p>\n\n\n\n<p class=\"wp-block-paragraph\">導入はしてみたものの、マーケティングというものが何なのか分かっていなかったせいか、自分の力では思ったように（Salesforceを）使いこなせませんでした。<strong>とにかく手当たり次第で行動しようということで、（日本の登録支援機関・監理団体へ）メールを配信したり、配信結果をもとにフォロー電話したりしてたんですが、全然うまくいかなかったです</strong>。そこで、ご協力いただける方を探すことにしました。<br></p>\n\n\n\n<h2 class=\"wp-block-heading\">２．クロスコムを選んだ理由</h2>\n\n\n<div class=\"wp-block-image\">\n<figure class=\"aligncenter size-full\"><img loading=\"lazy\" decoding=\"async\" width=\"914\" height=\"515\" src=\"https://cross-com.jp/wp-content/uploads/2025/02/Buying-Decision-Factor_BKUxCrosscom.webp\" alt=\"購買決定要因_BKU様xクロスコム\" class=\"wp-image-4196\" srcset=\"https://cross-com.jp/wp-content/uploads/2025/02/Buying-Decision-Factor_BKUxCrosscom.webp 914w, https://cross-com.jp/wp-content/uploads/2025/02/Buying-Decision-Factor_BKUxCrosscom-300x169.webp 300w, https://cross-com.jp/wp-content/uploads/2025/02/Buying-Decision-Factor_BKUxCrosscom-768x433.webp 768w\" sizes=\"auto, (max-width: 914px) 100vw, 914px\" /></figure>\n</div>\n\n\n<h3 class=\"wp-block-heading\"><strong>「&#8221;根拠を持って説明できるか&#8221;で企業選びしてました」</strong></h3>\n\n\n\n<h4 class=\"wp-block-heading has-text-color has-link-color wp-elements-2\" style=\"color:#008a9d\"><strong>ー課題解決に向けて、どのような方を探していましたか？</strong></h4>\n\n\n\n<p class=\"wp-block-paragraph\">「マーケティングメールが得意な方」というかは、<strong>マーケティングという自分の知らない世界に対して「根拠を持って説明できるか、教えてくれるかどうか」は選ぶ時に大事にしていました</strong>。というのも、結局マーケティングの世界も、勘と経験でやってる人って結構いると思うんですよね。そのスタンスの人といっしょにやるのは難しいなと思ってました。</p>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<h4 class=\"wp-block-heading has-text-color has-link-color wp-elements-3\" style=\"color:#008a9d\"><strong>ー確かに。けど、どうやってその企業を評価されていたんですか？</strong></h4>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>会社のホームページとかはよく見ていました。で、本田さんの<a href=\"https://note.com/honda_crosscom\" target=\"_blank\" rel=\"noreferrer noopener\">note</a>は結構カギになっていました（笑）</strong>。分析とか色んなことを書いてて、僕も分析が好きなので。分析ができるできないは置いといて、<strong>少なくとも分析のところにアンテナ張っている人がいいなと思っていました</strong>。その分析の観点を持った方だと、話や方向性が合いやすいかなと思ったので、選んだ理由になりましたね。<br></p>\n\n\n\n<h4 class=\"wp-block-heading has-text-color has-link-color wp-elements-4\" style=\"color:#008a9d\"><strong>ー嬉しいです！分析以外の点で弊社を選んでくれた点はありますか？</strong></h4>\n\n\n\n<p class=\"wp-block-paragraph\">契約前に商談の場でも、<strong>お客さんとか関係なくものを言ってくれたのが嬉しかったです</strong>。（相手に過剰に遠慮せず）物を言ってくれる人が良かったので。</p>\n\n\n\n<p class=\"wp-block-paragraph\">あと、<strong>他社さんの支援事例の話を聞いたときにネガティブな話もオープンに話してくれたので、信用できました</strong>。普通だったら、ネガティブなところって結構隠すじゃないですか。特に契約決まる前のお客さんに対して弱みを見せたくないとか。</p>\n\n\n\n<p class=\"wp-block-paragraph\">また、最近法人化されてたから（弊社は2023年5月設立）やる気ありそうで良さそうとも思ってました。創業年数とか実績で判断されてきた自分の経験もあって、同じスタンスで取り組めるなと。</p>\n\n\n\n<h2 class=\"wp-block-heading\">３．プロジェクトの進め方</h2>\n\n\n<div class=\"wp-block-image\">\n<figure class=\"aligncenter size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"575\" src=\"https://cross-com.jp/wp-content/uploads/2025/02/Support-Summary_BKUxCrosscom-1024x575.webp\" alt=\"支援概要_BKU様xクロスコム\" class=\"wp-image-4198\" srcset=\"https://cross-com.jp/wp-content/uploads/2025/02/Support-Summary_BKUxCrosscom-1024x575.webp 1024w, https://cross-com.jp/wp-content/uploads/2025/02/Support-Summary_BKUxCrosscom-300x168.webp 300w, https://cross-com.jp/wp-content/uploads/2025/02/Support-Summary_BKUxCrosscom-768x431.webp 768w, https://cross-com.jp/wp-content/uploads/2025/02/Support-Summary_BKUxCrosscom.webp 1329w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n</div>\n\n\n<h3 class=\"wp-block-heading\"><strong>「ターゲットとコンテンツの設定ですごく助かりました」</strong></h3>\n\n\n\n<h4 class=\"wp-block-heading has-text-color has-link-color wp-elements-5\" style=\"color:#008a9d\"><strong>ーまずはターゲットとコンテンツの方向性を固めてから、MAに落とし込みました。取り組みを進める中で、何か感じたことはありますか？</strong></h4>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>ターゲット設定とコンテンツはすごい助かりました。</strong>プロジェクト開始前はターゲットがぼんやりしてたので、（企業と担当者それぞれでシート作成して）書き出してくれたのは良かったです。</p>\n\n\n<div class=\"wp-block-image\">\n<figure class=\"aligncenter size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"575\" src=\"https://cross-com.jp/wp-content/uploads/2025/02/Persona-sheet_BKUxCrosscom-1024x575.webp\" alt=\"ペルソナシート_BKU様xクロスコム\" class=\"wp-image-4195\" style=\"object-fit:cover\" srcset=\"https://cross-com.jp/wp-content/uploads/2025/02/Persona-sheet_BKUxCrosscom-1024x575.webp 1024w, https://cross-com.jp/wp-content/uploads/2025/02/Persona-sheet_BKUxCrosscom-300x168.webp 300w, https://cross-com.jp/wp-content/uploads/2025/02/Persona-sheet_BKUxCrosscom-768x431.webp 768w, https://cross-com.jp/wp-content/uploads/2025/02/Persona-sheet_BKUxCrosscom.webp 1327w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n</div>\n\n\n<p class=\"wp-block-paragraph\">あとコンテンツですね。コンテンツって聞くと「何書けばいいか全然わからない」時もありました。<strong>やっぱり自社のサービスについてだと考えてたんですが、そうじゃなくて「お客さんに喜んでもらうためのお役立ち資料」なんだっていう、主語の大きい言葉を分解してくれたのが助かりました。</strong>「分解したこの範囲で考えればいいんだ」と思えるようになり、すごい脳の仕事量が減ったというか。</p>\n\n\n\n<p class=\"wp-block-paragraph\">あと、言葉が少し変かもしれませんが、<strong>提案をあんまりゴリ押ししてこなかった点も良かったです。</strong>なんて言うんだろう、、柔軟？みたいな。決めつけでごり押し提案してきたら嫌だったろうなと今では思います。</p>\n\n\n\n<h2 class=\"wp-block-heading\">４．取り組みの成果</h2>\n\n\n<div class=\"wp-block-image\">\n<figure class=\"aligncenter size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"576\" src=\"https://cross-com.jp/wp-content/uploads/2025/02/Output_BKUxCrosscom-1024x576.webp\" alt=\"成果_BKU様xクロスコム\" class=\"wp-image-4197\" srcset=\"https://cross-com.jp/wp-content/uploads/2025/02/Output_BKUxCrosscom-1024x576.webp 1024w, https://cross-com.jp/wp-content/uploads/2025/02/Output_BKUxCrosscom-300x169.webp 300w, https://cross-com.jp/wp-content/uploads/2025/02/Output_BKUxCrosscom-768x432.webp 768w, https://cross-com.jp/wp-content/uploads/2025/02/Output_BKUxCrosscom.webp 1327w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n</div>\n\n\n<h3 class=\"wp-block-heading\"><strong>「４か月で粗利が２倍、商談数は３倍以上に」</strong></h3>\n\n\n\n<h4 class=\"wp-block-heading has-text-color has-link-color wp-elements-6\" style=\"color:#008a9d\"><strong>ープロジェクト支援して４か月が経ちましたが、数値はどのように変化しましたか？</strong></h4>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>まず粗利ですが、４か月期間で前期比およそ２倍になりました。</strong>Pardot（MAツール）を導入していたので、損益分岐はよく見てたんですが、ちゃんとプラスになっているので良かったです。</p>\n\n\n\n<p class=\"wp-block-paragraph\">さらに、メールの送信数も増やせたので、（登録支援機関・管理団体からの）返信や商談数が増えました。<strong>商談数は控えめに言って３倍ですね３倍。</strong>商談で会話しているときも「困った時に頼ってくれる企業」として確立できている手ごたえは実際に感じています。</p>\n\n\n\n<p class=\"wp-block-paragraph\">あと、アウトバウンド営業をしていると、向こうから<strong>「あのBKUさんですか？いつも参考にしています」みたいなことを言ってくれる方が増えたので、それは嬉しいです</strong>。（接点もほとんどなかった方たちなので）コールドもコールドですよ（笑）。</p>\n\n\n\n<p class=\"wp-block-paragraph\">この前も、Giveの精神でメール配信を続けてたら電話かかってきて、<strong>「いつも送ってくれているメール遡って読んだら、すごい大事なことばかり教えてくれて、ありがとうございます！」みたいな、今まであり得なかったです</strong>。<strong>多分これも仕事につながりそうな感じ</strong>。<br></p>\n\n\n\n<h2 class=\"wp-block-heading\">５．今後の取り組みや期待すること</h2>\n\n\n\n<h3 class=\"wp-block-heading\"><strong>「営業を増やして、チームでやっていきたい」</strong></h3>\n\n\n\n<h4 class=\"wp-block-heading has-text-color has-link-color wp-elements-7\" style=\"color:#008a9d\"><strong>ー今後取り組んでいきたいことや、弊社へ期待することがあれば教えてください。</strong></h4>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>営業スタッフを増やして、チームでやりたいですね。</strong>自分で方針を打ち出して、みんなでやっていこうぜという方が多分向いているので、それを目指したいですね。</p>\n\n\n\n<p class=\"wp-block-paragraph\"><strong>（クロスコムには）例えば合同セミナーを開催するとか、お互いの為になるようなことをいっしょにしてほしいですね</strong>。管理団体（技能実習生を受け入れ企業へ紹介する会社）のお客さんはたくさんいるので。会社はどこまでいっても売上を増やしたいから、こういうマーケティングの知見は、どんな業界の人にとっても重要なものなので、それをいっしょに広げていきたいですね。</p>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<h2 class=\"wp-block-heading\">おわりに</h2>\n\n\n\n<p class=\"wp-block-paragraph\">BKU様のように、<strong>テレアポ営業に苦戦している、そして営業とマーケティングを兼部している企業様も少なくないと思います</strong>。そんな企業様は、ぜひメール配信（MAツール含む）の活用とコンテンツマーケティングを実践してみてください。</p>\n\n\n\n<p class=\"wp-block-paragraph\">サービス提案ばかりの営業ではなく、顧客の課題を深く理解しGiveの精神で情報を提供し続ければ、今すぐ客だけではなく「困った時に相談できる企業」として、問い合わせを獲得できる仕組みがつくれます。</p>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<p class=\"wp-block-paragraph\">クロスコムでは、マーケティング戦略を基盤にMA/CRM運用の成果を出すご支援をしています。MA運用の成果は、顧客課題の深い理解に立脚していますので、マーケティング戦略の基盤は欠かせません。</p>\n\n\n\n<p class=\"wp-block-paragraph\">弊社に少しでもご興味を持っていただいた方は、お気軽にご相談くださいませ。相談事や課題が決まっていなくても、壁打ち相手としてご利用いただいても構いません。</p>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n\n\n\n<p class=\"wp-block-paragraph\">P.S 今回のご支援内容で参考になる資料『<a href=\"https://cross-com.jp/download-paper/btob-marketing-automation-practice/\" data-type=\"page\" data-id=\"2103\">【テンプレ付】BtoBビジネス向けマーケティングオートメーション活用方法</a>』も、よければご活用くださいませ。</p>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n",
+  "protected": false
+ },
+ "author": 1,
+ "featured_media": 3656,
+ "template": "",
+ "case_category": [
+  25,
+  26,
+  24
+ ],
+ "class_list": [
+  "post-4194",
+  "case",
+  "type-case",
+  "status-publish",
+  "has-post-thumbnail",
+  "hentry",
+  "case_category-btob-ma-imprement",
+  "case_category-btob-contents-support",
+  "case_category-btob-marketing-strategy"
+ ],
+ "acf": [],
+ "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.3 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>支援事例 - 株式会社BKU - 合同会社クロスコム</title>\n<meta name=\"description\" content=\"4か月で商談数300%以上UP！MAツール「Salesforce Account Engagement」を活用したメールマーケティング施策で成果を出し支援事例についてご紹介しています。\" />\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://cross-com.jp/case/bku-ma/\" />\n<meta property=\"og:locale\" content=\"ja_JP\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"支援事例 - 株式会社BKU - 合同会社クロスコム\" />\n<meta property=\"og:description\" content=\"4か月で商談数300%以上UP！MAツール「Salesforce Account Engagement」を活用したメールマーケティング施策で成果を出し支援事例についてご紹介しています。\" />\n<meta property=\"og:url\" content=\"https://cross-com.jp/case/bku-ma/\" />\n<meta property=\"og:site_name\" content=\"合同会社クロスコム\" />\n<meta property=\"article:modified_time\" content=\"2026-08-27T03:49:36+00:00\" />\n<meta property=\"og:image\" content=\"https://cross-com.jp/wp-content/uploads/2025/01/case_BKU.webp\" />\n\t<meta property=\"og:image:width\" content=\"1201\" />\n\t<meta property=\"og:image:height\" content=\"629\" />\n\t<meta property=\"og:image:type\" content=\"image/webp\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@HONDAWeb1\" />\n<meta name=\"twitter:label1\" content=\"推定読み取り時間\" />\n\t<meta name=\"twitter:data1\" content=\"11分\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/cross-com.jp\\/case\\/bku-ma\\/\",\"url\":\"https:\\/\\/cross-com.jp\\/case\\/bku-ma\\/\",\"name\":\"支援事例 - 株式会社BKU - 合同会社クロスコム\",\"isPartOf\":{\"@id\":\"https:\\/\\/cross-com.jp\\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/cross-com.jp\\/case\\/bku-ma\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/cross-com.jp\\/case\\/bku-ma\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/cross-com.jp\\/wp-content\\/uploads\\/2025\\/01\\/case_BKU.webp\",\"datePublished\":\"2025-02-04T14:38:46+00:00\",\"dateModified\":\"2026-08-27T03:49:36+00:00\",\"description\":\"4か月で商談数300%以上UP！MAツール「Salesforce Account Engagement」を活用したメールマーケティング施策で成果を出し支援事例についてご紹介しています。\",\"breadcrumb\":{\"@id\":\"https:\\/\\/cross-com.jp\\/case\\/bku-ma\\/#breadcrumb\"},\"inLanguage\":\"ja\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/cross-com.jp\\/case\\/bku-ma\\/\"]}]},{\"@type\":\"ImageObject\",\"inLanguage\":\"ja\",\"@id\":\"https:\\/\\/cross-com.jp\\/case\\/bku-ma\\/#primaryimage\",\"url\":\"https:\\/\\/cross-com.jp\\/wp-content\\/uploads\\/2025\\/01\\/case_BKU.webp\",\"contentUrl\":\"https:\\/\\/cross-com.jp\\/wp-content\\/uploads\\/2025\\/01\\/case_BKU.webp\",\"width\":1201,\"height\":629,\"caption\":\"支援事例：株式会社BKU様\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/cross-com.jp\\/case\\/bku-ma\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"ホーム\",\"item\":\"https:\\/\\/cross-com.jp\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"支援事例\",\"item\":\"https:\\/\\/cross-com.jp\\/case\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"株式会社BKU\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/cross-com.jp\\/#website\",\"url\":\"https:\\/\\/cross-com.jp\\/\",\"name\":\"合同会社クロスコム\",\"description\":\"Agentforce・Agentic CRM設計支援\",\"publisher\":{\"@id\":\"https:\\/\\/cross-com.jp\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/cross-com.jp\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"ja\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/cross-com.jp\\/#organization\",\"name\":\"合同会社クロスコム\",\"alternateName\":[\"クロスコム\",\"Crosscom\"],\"url\":\"https:\\/\\/cross-com.jp\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"ja\",\"@id\":\"https:\\/\\/cross-com.jp\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/cross-com.jp\\/wp-content\\/uploads\\/2024\\/12\\/cropped-クロスコム_ロゴ2512x512compact.webp\",\"contentUrl\":\"https:\\/\\/cross-com.jp\\/wp-content\\/uploads\\/2024\\/12\\/cropped-クロスコム_ロゴ2512x512compact.webp\",\"width\":\"512\",\"height\":\"512\",\"caption\":\"合同会社クロスコム\"},\"image\":{\"@id\":\"https:\\/\\/cross-com.jp\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/HONDAWeb1\",\"https:\\/\\/www.linkedin.com\\/in\\/honda-crosscom\\/\",\"https:\\/\\/note.com\\/honda_crosscom\",\"https:\\/\\/www.ipros.com\\/company\\/detail\\/2116989\\/\",\"https:\\/\\/prtimes.jp\\/main\\/html\\/searchrlp\\/company_id\\/132405\",\"https:\\/\\/auba.eiicon.net\\/projects\\/37282\"],\"description\":\"Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行うBtoB特化のコンサルティング会社です。\",\"foundingDate\":\"2023-05\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"円山町5-5 Navi渋谷V 3階\",\"addressLocality\":\"渋谷区\",\"addressRegion\":\"東京都\",\"postalCode\":\"150-0044\",\"addressCountry\":\"JP\"}}]}</script>\n<!-- / Yoast SEO plugin. -->",
+ "yoast_head_json": {
+  "title": "支援事例 - 株式会社BKU - 合同会社クロスコム",
+  "description": "4か月で商談数300%以上UP！MAツール「Salesforce Account Engagement」を活用したメールマーケティング施策で成果を出し支援事例についてご紹介しています。",
+  "robots": {
+   "index": "index",
+   "follow": "follow",
+   "max-snippet": "max-snippet:-1",
+   "max-image-preview": "max-image-preview:large",
+   "max-video-preview": "max-video-preview:-1"
+  },
+  "canonical": "https://cross-com.jp/case/bku-ma/",
+  "og_locale": "ja_JP",
+  "og_type": "article",
+  "og_title": "支援事例 - 株式会社BKU - 合同会社クロスコム",
+  "og_description": "4か月で商談数300%以上UP！MAツール「Salesforce Account Engagement」を活用したメールマーケティング施策で成果を出し支援事例についてご紹介しています。",
+  "og_url": "https://cross-com.jp/case/bku-ma/",
+  "og_site_name": "合同会社クロスコム",
+  "article_modified_time": "2026-08-27T03:49:36+00:00",
+  "og_image": [
+   {
+    "width": 1201,
+    "height": 629,
+    "url": "https://cross-com.jp/wp-content/uploads/2025/01/case_BKU.webp",
+    "type": "image/webp"
+   }
+  ],
+  "twitter_card": "summary_large_image",
+  "twitter_site": "@HONDAWeb1",
+  "twitter_misc": {
+   "推定読み取り時間": "11分"
+  },
+  "schema": {
+   "@context": "https://schema.org",
+   "@graph": [
+    {
+     "@type": "WebPage",
+     "@id": "https://cross-com.jp/case/bku-ma/",
+     "url": "https://cross-com.jp/case/bku-ma/",
+     "name": "支援事例 - 株式会社BKU - 合同会社クロスコム",
+     "isPartOf": {
+      "@id": "https://cross-com.jp/#website"
+     },
+     "primaryImageOfPage": {
+      "@id": "https://cross-com.jp/case/bku-ma/#primaryimage"
+     },
+     "image": {
+      "@id": "https://cross-com.jp/case/bku-ma/#primaryimage"
+     },
+     "thumbnailUrl": "https://cross-com.jp/wp-content/uploads/2025/01/case_BKU.webp",
+     "datePublished": "2025-02-04T14:38:46+00:00",
+     "dateModified": "2026-08-27T03:49:36+00:00",
+     "description": "4か月で商談数300%以上UP！MAツール「Salesforce Account Engagement」を活用したメールマーケティング施策で成果を出し支援事例についてご紹介しています。",
+     "breadcrumb": {
+      "@id": "https://cross-com.jp/case/bku-ma/#breadcrumb"
+     },
+     "inLanguage": "ja",
+     "potentialAction": [
+      {
+       "@type": "ReadAction",
+       "target": [
+        "https://cross-com.jp/case/bku-ma/"
+       ]
+      }
+     ]
+    },
+    {
+     "@type": "ImageObject",
+     "inLanguage": "ja",
+     "@id": "https://cross-com.jp/case/bku-ma/#primaryimage",
+     "url": "https://cross-com.jp/wp-content/uploads/2025/01/case_BKU.webp",
+     "contentUrl": "https://cross-com.jp/wp-content/uploads/2025/01/case_BKU.webp",
+     "width": 1201,
+     "height": 629,
+     "caption": "支援事例：株式会社BKU様"
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://cross-com.jp/case/bku-ma/#breadcrumb",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "ホーム",
+       "item": "https://cross-com.jp/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "支援事例",
+       "item": "https://cross-com.jp/case/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "株式会社BKU"
+      }
+     ]
+    },
+    {
+     "@type": "WebSite",
+     "@id": "https://cross-com.jp/#website",
+     "url": "https://cross-com.jp/",
+     "name": "合同会社クロスコム",
+     "description": "Agentforce・Agentic CRM設計支援",
+     "publisher": {
+      "@id": "https://cross-com.jp/#organization"
+     },
+     "potentialAction": [
+      {
+       "@type": "SearchAction",
+       "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://cross-com.jp/?s={search_term_string}"
+       },
+       "query-input": {
+        "@type": "PropertyValueSpecification",
+        "valueRequired": true,
+        "valueName": "search_term_string"
+       }
+      }
+     ],
+     "inLanguage": "ja"
+    },
+    {
+     "@type": "Organization",
+     "@id": "https://cross-com.jp/#organization",
+     "name": "合同会社クロスコム",
+     "alternateName": [
+      "クロスコム",
+      "Crosscom"
+     ],
+     "url": "https://cross-com.jp/",
+     "logo": {
+      "@type": "ImageObject",
+      "inLanguage": "ja",
+      "@id": "https://cross-com.jp/#/schema/logo/image/",
+      "url": "https://cross-com.jp/wp-content/uploads/2024/12/cropped-クロスコム_ロゴ2512x512compact.webp",
+      "contentUrl": "https://cross-com.jp/wp-content/uploads/2024/12/cropped-クロスコム_ロゴ2512x512compact.webp",
+      "width": "512",
+      "height": "512",
+      "caption": "合同会社クロスコム"
+     },
+     "image": {
+      "@id": "https://cross-com.jp/#/schema/logo/image/"
+     },
+     "sameAs": [
+      "https://x.com/HONDAWeb1",
+      "https://www.linkedin.com/in/honda-crosscom/",
+      "https://note.com/honda_crosscom",
+      "https://www.ipros.com/company/detail/2116989/",
+      "https://prtimes.jp/main/html/searchrlp/company_id/132405",
+      "https://auba.eiicon.net/projects/37282"
+     ],
+     "description": "Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行うBtoB特化のコンサルティング会社です。",
+     "foundingDate": "2023-05",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "円山町5-5 Navi渋谷V 3階",
+      "addressLocality": "渋谷区",
+      "addressRegion": "東京都",
+      "postalCode": "150-0044",
+      "addressCountry": "JP"
+     }
+    }
+   ]
+  }
+ },
+ "_links": {
+  "self": [
+   {
+    "href": "https://cross-com.jp/wp-json/wp/v2/case/4194",
+    "targetHints": {
+     "allow": [
+      "GET"
+     ]
+    }
+   }
+  ],
+  "collection": [
+   {
+    "href": "https://cross-com.jp/wp-json/wp/v2/case"
+   }
+  ],
+  "about": [
+   {
+    "href": "https://cross-com.jp/wp-json/wp/v2/types/case"
+   }
+  ],
+  "author": [
+   {
+    "embeddable": true,
+    "href": "https://cross-com.jp/wp-json/wp/v2/users/1"
+   }
+  ],
+  "wp:featuredmedia": [
+   {
+    "embeddable": true,
+    "href": "https://cross-com.jp/wp-json/wp/v2/media/3656"
+   }
+  ],
+  "wp:attachment": [
+   {
+    "href": "https://cross-com.jp/wp-json/wp/v2/media?parent=4194"
+   }
+  ],
+  "wp:term": [
+   {
+    "taxonomy": "case_category",
+    "embeddable": true,
+    "href": "https://cross-com.jp/wp-json/wp/v2/case_category?post=4194"
+   }
+  ],
+  "curies": [
+   {
+    "name": "wp",
+    "href": "https://api.w.org/{rel}",
+    "templated": true
+   }
+  ]
+ }
+}

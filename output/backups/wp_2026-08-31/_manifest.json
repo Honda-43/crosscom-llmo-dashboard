@@ -1,0 +1,39 @@
+{
+ "taken_at": "2026-08-31T15:59:00",
+ "note": "A-008 反映前のバックアップ。context=edit のブロック生ソースは未取得(認証が必要)。",
+ "items": [
+  {
+   "id": 4194,
+   "type": "case",
+   "link": "https://cross-com.jp/case/bku-ma/",
+   "title": "株式会社BKU",
+   "modified_before": "2026-08-27T12:49:36",
+   "rendered_chars": 11526,
+   "rendered_sha256": "63d45619e1a422a55db6ee427d8c5cf78043181361cf35982d316f8a6f1484f6",
+   "live_sha256": "bf432c304c907c8b7a41fcaaf2cda38e38f67556dd878aedc45afc2f5a9ce5cc",
+   "has_notice_before": false
+  },
+  {
+   "id": 3653,
+   "type": "case",
+   "link": "https://cross-com.jp/case/230831/",
+   "title": "農業系フランチャイズ企業(社名非公開)",
+   "modified_before": "2025-03-31T11:10:09",
+   "rendered_chars": 21676,
+   "rendered_sha256": "f0f9677769849505163b9b846381ff7d2d14113a9779a0c08378924671b090e6",
+   "live_sha256": "a40cd8462af5c2b26f8d0bc4a77f021d648775072c9041a02aaa087e8f355295",
+   "has_notice_before": false
+  },
+  {
+   "id": 1337,
+   "type": "pages",
+   "link": "https://cross-com.jp/service/btob-marketing-strategy/",
+   "title": "BtoB マーケティング戦略コンサルティング支援",
+   "modified_before": "2026-08-24T20:20:09",
+   "rendered_chars": 33901,
+   "rendered_sha256": "3c156985585f67f4fc272a5931136b695a41e20fc9f9e0c5c0ce7d79f1d82e07",
+   "live_sha256": "27fb3339c9411c72f4b903c7089a51e0b091138e44ae5cd1708a0ff10d578583",
+   "has_notice_before": true
+  }
+ ]
+}

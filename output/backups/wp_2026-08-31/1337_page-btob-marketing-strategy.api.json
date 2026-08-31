@@ -1,0 +1,284 @@
+{
+ "id": 1337,
+ "date": "2023-12-22T11:37:29",
+ "date_gmt": "2023-12-22T02:37:29",
+ "guid": {
+  "rendered": "https://cross-com.jp/?page_id=1337"
+ },
+ "modified": "2026-08-24T20:20:09",
+ "modified_gmt": "2026-08-24T11:20:09",
+ "slug": "btob-marketing-strategy",
+ "status": "publish",
+ "type": "page",
+ "link": "https://cross-com.jp/service/btob-marketing-strategy/",
+ "title": {
+  "rendered": "BtoB マーケティング戦略コンサルティング支援"
+ },
+ "content": {
+  "rendered": "\n<div class=\"arkb-section--2 alignfull ark-block-section arkp-scMV12\" data-height=\"custom\"><div class=\"ark-block-section__color arkb-absLayer\" style=\"background-color:var(--ark-color--gray);opacity:0.75\"></div><div class=\"ark-block-section__body\" data-content=\"center-left\"><div class=\"ark-block-section__bodyInner ark-keep-mt\">\n<div class=\"ark-block-columns\"><div class=\"ark-block-columns__inner\">\n<div class=\"ark-block-column ark-keep-mt--s\">\n<div class=\"ark-block-heading has-text-align-left\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">BtoB Marketing Strategy</div><h2 class=\"ark-block-heading__main\">BtoB マーケティング戦略<br>コンサルティング支援</h2></div>\n\n\n\n<p class=\"wp-block-paragraph\">戦略設計から施策の落とし込みまで、BtoB領域に特化したマーケティング支援で、企業の経営課題の解決を支援していました。</p>\n\n\n\n<div class=\"arkb-buttons--1 ark-block-buttons\" data-orientation=\"horizontal\">\n<div class=\"ark-block-button is-btn-outline\" data-hover=\"swap\" style=\"--arkb-btn-color--bg:var(--ark-color--bg);--arkb-btn-radius:100px\"><a href=\"https://cross-com.jp/download-paper/btob-marketing-strategy/\" class=\"ark-block-button__link\" data-has-icon=\"1\"><span class=\"ark-block-button__text\">サービス資料はこちら</span><svg class=\"ark-block-button__icon -right\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\" data-icon=\"PhArrowRight\" viewBox=\"0 0 256 256\"><rect width=\"256\" height=\"256\" fill=\"none\"></rect><line x1=\"40\" y1=\"128\" x2=\"216\" y2=\"128\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\"></line><polyline points=\"144 56 216 128 144 200\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\"></polyline></svg></a></div>\n\n\n\n<div class=\"ark-block-button is-btn-fill\" data-hover=\"swap\"><a href=\"https://meetings-na2.hubspot.com/m-honda1?uuid=f9764572-7c3b-4cfa-bcf4-a4d7806b09f7\" rel=\"noopener noreferrer\" target=\"_blank\" class=\"ark-block-button__link\" data-has-icon=\"1\"><span class=\"ark-block-button__text\">面談日程調整はこちら</span><svg class=\"ark-block-button__icon -right\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\" data-icon=\"PhArrowRight\" viewBox=\"0 0 256 256\"><rect width=\"256\" height=\"256\" fill=\"none\"></rect><line x1=\"40\" y1=\"128\" x2=\"216\" y2=\"128\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\"></line><polyline points=\"144 56 216 128 144 200\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\"></polyline></svg></a></div>\n</div>\n</div>\n\n\n\n<div class=\"ark-block-column ark-keep-mt--s\">\n<div class=\"ark-block-heading\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Form</div><h4 class=\"ark-block-heading__main\">無料相談のお申し込みはこちら</h4></div>\n\n\n\n<p class=\"has-text-align-center wp-block-paragraph\">本サービスの受付は終了しています。現在のサービスへのお問い合わせは会社概要をご覧ください。</p>\n\n\n\n<!-- reCAPTCHA を explicit render で利用 -->\n<script src=\"https://www.google.com/recaptcha/api.js?onload=onloadCallback&amp;render=explicit\" async=\"\" defer=\"\"></script>\n<script>\n  var recaptchaTop, recaptchaBottom;\n\n  function onloadCallback() {\n    recaptchaTop = grecaptcha.render('recaptcha_top', {\n      'sitekey': '6LdP-ZQqAAAAAExfwg1Y0heLxtqbR0WxHoZWDp4H'\n    });\n    recaptchaBottom = grecaptcha.render('recaptcha_bottom', {\n      'sitekey': '6LdP-ZQqAAAAAExfwg1Y0heLxtqbR0WxHoZWDp4H'\n    });\n  }\n\n  function timestamp() {\n    var captchaElems = document.getElementsByName(\"captcha_settings\");\n    for (var i = 0; i < captchaElems.length; i++) {\n      var form = captchaElems[i].closest(\"form\");\n      if (form) {\n        var response = form.querySelector(\"[name='g-recaptcha-response']\");\n        if (!response || response.value.trim() === \"\") {\n          var settings = JSON.parse(captchaElems[i].value);\n          settings[\"ts\"] = JSON.stringify(new Date().getTime());\n          captchaElems[i].value = JSON.stringify(settings);\n        }\n      }\n    }\n  }\n  setInterval(timestamp, 500);\n</script>\n\n<!-- ===================================================== -->\n<!-- 上部フォーム -->\n<!-- ===================================================== -->\n<form class=\"wtl-form\" action=\"https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&amp;orgId=00DGB0000030f8X\" method=\"POST\">\n  <input type=\"hidden\" name=\"captcha_settings\" value=\"{&quot;keyname&quot;:&quot;Crossco&quot;,&quot;fallback&quot;:&quot;true&quot;,&quot;orgId&quot;:&quot;00DGB0000030f8X&quot;,&quot;ts&quot;:&quot;&quot;}\">\n  <input type=\"hidden\" name=\"oid\" value=\"00DGB0000030f8X\">\n  <input type=\"hidden\" name=\"retURL\" value=\"https://cross-com.jp/service/btob-marketing-strategy/thanks/\">\n  <!-- ★フォーム設置ページ：nameは「フォーム設置ページ」カスタム項目のフィールドID(00NGB...)に差し替える -->\n  <!-- <input type=\"hidden\" name=\"debugEmail\" value=\"m.honda@cross-com.jp\"> -->\n  <input type=\"hidden\" name=\"lead_source\" value=\"Webサイト\">\n  <input type=\"hidden\" name=\"00NQ800000MPjRt\" value=\"BtoB マーケティング戦略コンサルティング支援\">\n  <!-- デバッグ用項目（テスト時のみコメント解除） -->\n  <!-- <input type=\"hidden\" name=\"debug\" value=\"1\"> -->\n  <!-- <input type=\"hidden\" name=\"debugEmail\" value=\"m.honda@cross-com.jp\"> -->\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"last_name_top\">姓</label>\n    <input id=\"last_name_top\" maxlength=\"80\" name=\"last_name\" type=\"text\" required=\"\">\n  </div>\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"first_name_top\">名</label>\n    <input id=\"first_name_top\" maxlength=\"40\" name=\"first_name\" type=\"text\" required=\"\">\n  </div>\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"company_top\">会社名</label>\n    <input id=\"company_top\" maxlength=\"40\" name=\"company\" type=\"text\" required=\"\">\n  </div>\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"email_top\">メール</label>\n    <input id=\"email_top\" maxlength=\"80\" name=\"email\" type=\"email\" required=\"\">\n  </div>\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"00NGB00000W0xhl_top\">サービス</label>\n    <select id=\"00NGB00000W0xhl_top\" name=\"00NGB00000W0xhl\" title=\"サービス\" required=\"\">\n      <option value=\"BtoB マーケティング戦略コンサルティング支援\">BtoB マーケティング戦略コンサルティング支援</option>\n    </select>\n  </div>\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"00NGB00000QxJ8b_top\">お問い合わせ</label>\n    <input id=\"00NGB00000QxJ8b_top\" maxlength=\"255\" name=\"00NGB00000QxJ8b\" type=\"text\" required=\"\">\n  </div>\n\n    <div class=\"form-row\">\n    <label for=\"00NQ800000Ulaeg_top\">当社を知ったきっかけ</label>\n    <select id=\"00NQ800000Ulaeg_top\" name=\"00NQ800000Ulaeg\" title=\"認知経路\">\n      <option value=\"\">選択してください（任意）</option>\n      <option value=\"AIに聞いて知った(ChatGPT・Gemini等)\">AIに聞いて知った(ChatGPT・Gemini等)</option>\n      <option value=\"検索エンジンで調べて\">検索エンジンで調べて</option>\n      <option value=\"SNS・note記事\">SNS・note記事</option>\n      <option value=\"紹介・知人から\">紹介・知人から</option>\n      <option value=\"イベント・セミナー\">イベント・セミナー</option>\n      <option value=\"その他\">その他</option>\n    </select>\n  </div>\n\n  <div id=\"recaptcha_top\" class=\"recaptcha-box\"></div>\n\n  <input type=\"submit\" name=\"submit\" value=\"送信する\">\n</form>\n</div>\n\n\n\n<div class=\"ark-block-column ark-keep-mt--s\">\n<p class=\"wp-block-paragraph\"></p>\n</div>\n</div></div>\n</div></div></div>\n\n\n\n<div class=\"ark-block-notice -info is-style-default\"><div class=\"ark-block-notice__head\"><svg class=\"ark-block-notice__icon\" height=\"20\" width=\"20\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\" data-icon=\"LsCheck\" viewBox=\"0 0 48 48\"><path d=\"M45.2 10.1 43.1 8c-.4-.4-1-.4-1.4 0L16.2 33.3l-9.9-9.9c-.4-.4-1-.4-1.4 0l-2.1 2.1c-.4.4-.4 1 0 1.4l13.4 13.4 29-29c.4-.2.4-.9 0-1.2z\"></path></svg><span class=\"ark-block-notice__title\">合同会社クロスコムの現在の提供サービスについて</span></div><div class=\"ark-block-notice__body ark-keep-mt--s\">\n<p class=\"wp-block-paragraph\">本ページはBtoBマーケティング戦略コンサルティング支援の紹介ページです。<strong>合同会社クロスコムは現在、Salesforce公式コンサルティングパートナーとして「Agentforce導入・定着支援」「Agentic CRM設計支援」「BtoB Salesforce導入・構築支援」を中心に提供しています。</strong>本ページで扱うマーケティング戦略コンサルティング支援は、現在は提供しておりません。</p>\n\n\n\n<ul class=\"wp-block-list\">\n<li><a href=\"https://cross-com.jp/service/agentforce-support/\">「Agentforce導入・定着支援」はこちら</a></li>\n\n\n\n<li><a href=\"https://cross-com.jp/service/agentic-crm-design/\">「Agentic CRM設計支援」はこちら</a></li>\n\n\n\n<li><a href=\"https://cross-com.jp/service/salesforce-implementation/\">「BtoB Salesforce導入・構築支援」はこちら</a></li>\n\n\n\n<li><a href=\"https://cross-com.jp/about/\">会社概要・現在の事業内容はこちら</a></li>\n</ul>\n</div></div>\n\n\n\n\n<div class=\"ark-block-heading\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Thinks</div><h2 class=\"ark-block-heading__main\">バイヤーの\"正しい意思決定\"が支援できる役割が<br>マーケティングにも求められている</h2><span class=\"ark-block-heading__line\"></span></div>\n\n\n<div class=\"wp-block-image\">\n<figure class=\"aligncenter size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"486\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/Thinks_BtoB-Marketing-Strategy-1024x486.webp\" alt=\"\" class=\"wp-image-3219\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/Thinks_BtoB-Marketing-Strategy-1024x486.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/Thinks_BtoB-Marketing-Strategy-300x142.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/Thinks_BtoB-Marketing-Strategy-768x365.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/Thinks_BtoB-Marketing-Strategy-1536x729.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/Thinks_BtoB-Marketing-Strategy-2048x972.webp 2048w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n</div>\n\n\n<p class=\"wp-block-paragraph\">バイヤーがより多くの有益情報へ簡単にアクセスできるようになったことで、これまで当たり前だと思われてきたバイヤーの直進的な購買プロセスが複雑化しています。</p>\n\n\n\n<p class=\"wp-block-paragraph\">これが何を意味するかというと、バイヤーは自身で課題を特定するだけでなく、ソリューションの探索やサプライヤーの選定を「営業担当と接触するまでに終わらせている」わけです。つまり、買い手主導の購買体験が一般化していることになります。</p>\n\n\n\n<p class=\"wp-block-paragraph\">しかし、情報を集めすぎることで「結局自社に適した課題とソリューションはどれ？」と選択に困惑する問題がバイヤー社内で発生することが多発しています。そんな購買体験の中、バイヤーが正しい意思決定を行い合意形成ができるよう、有用なコンテンツを提供する役割がマーケティングにも求められていると考えます。</p>\n\n\n\n<div class=\"ark-block-heading\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Solution</div><h2 class=\"ark-block-heading__main\">施策改善も指示できるマーケティングブレイン</h2><span class=\"ark-block-heading__line\"></span></div>\n\n\n<div class=\"wp-block-image\">\n<figure class=\"aligncenter size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"465\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/Problem_BtoB-Marketing-Strategy-1024x465.webp\" alt=\"\" class=\"wp-image-3220\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/Problem_BtoB-Marketing-Strategy-1024x465.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/Problem_BtoB-Marketing-Strategy-300x136.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/Problem_BtoB-Marketing-Strategy-768x349.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/Problem_BtoB-Marketing-Strategy-1536x698.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/Problem_BtoB-Marketing-Strategy-2048x930.webp 2048w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n</div>\n\n\n<p class=\"wp-block-paragraph\">100社以上のプロモーション戦略を支援してきた経験から、小手先のオペレーション改善だけでは、短期成果は出せても将来的な顧客の成功には結びつかないことを身を以て痛感してきました。</p>\n\n\n\n<p class=\"wp-block-paragraph\">特に「誰に」「何を」「どのように」を機能させることが重要なマーケティング戦略は、小手先の短期改善ではなく、中長期にわたって事業成長を後押しするために非常に重要です。</p>\n\n\n\n<p class=\"wp-block-paragraph\">クロスコムのマーケティング戦略コンサルティング支援では、豊富な施策改善経験による短期施策の改善から、中長期的に事業成長を推進するマーケティング戦略設計をご提案していました。</p>\n\n\n\n<div class=\"ark-block-heading\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Feature</div><h2 class=\"ark-block-heading__main\">BtoBマーケティングに特化した戦略を設計していました</h2><span class=\"ark-block-heading__line\"></span></div>\n\n\n<div class=\"wp-block-image\">\n<figure class=\"aligncenter size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"455\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/Feature_BtoB-Marketing-Strategy-1024x455.webp\" alt=\"\" class=\"wp-image-3222\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/Feature_BtoB-Marketing-Strategy-1024x455.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/Feature_BtoB-Marketing-Strategy-300x133.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/Feature_BtoB-Marketing-Strategy-768x341.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/Feature_BtoB-Marketing-Strategy-1536x682.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/Feature_BtoB-Marketing-Strategy-2048x910.webp 2048w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n</div>\n\n\n<div class=\"arkb-section--3 ark-block-section arkp-gnSec11\" data-height=\"content\"><div class=\"ark-block-section__color arkb-absLayer\" style=\"background:linear-gradient(114deg,rgb(255,245,203) 0%,rgb(182,227,212) 0%,rgb(51,167,181) 14%);opacity:1.00\"></div><div class=\"ark-block-section__body\" data-content=\"center-left\"><div class=\"ark-block-section__bodyInner ark-keep-mt\">\n<h2 class=\"wp-block-heading has-text-align-center arkp-gnSec11__heading has-ark-bg-color has-text-color has-link-color wp-elements-1\">相談したいことが決まってなくても構いません！<br>無料相談で悩みを解決しませんか？</h2>\n\n\n\n<p class=\"has-text-align-center has-ark-bg-color has-text-color has-link-color wp-elements-2 wp-block-paragraph\"><strong>BtoB マーケティングの戦略設計から施策への落とし込みまでご支援していました。<br>「BtoB マーケティング戦略コンサルティング支援」は現在提供しておりません。</strong></p>\n\n\n\n<div class=\"ark-block-buttons\" data-orientation=\"horizontal\">\n<div class=\"ark-block-button is-btn-outline\" data-hover=\"swap\" style=\"--arkb-btn-color--bg:var(--ark-color--bg);--arkb-btn-radius:100px\"><a href=\"#form\" class=\"ark-block-button__link\" data-has-icon=\"1\"><span class=\"ark-block-button__text\"><strong>お問い合わせはこちら</strong></span><svg class=\"ark-block-button__icon -right\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\" data-icon=\"PhArrowRight\" viewBox=\"0 0 256 256\"><rect width=\"256\" height=\"256\" fill=\"none\"></rect><line x1=\"40\" y1=\"128\" x2=\"216\" y2=\"128\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\"></line><polyline points=\"144 56 216 128 144 200\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\"></polyline></svg></a></div>\n\n\n\n<div class=\"ark-block-button is-btn-fill\" data-hover=\"swap\" style=\"--arkb-btn-radius:100px\"><a href=\"#form\" class=\"ark-block-button__link\" data-has-icon=\"1\"><span class=\"ark-block-button__text\"><strong>無料面談はこちら</strong></span><svg class=\"ark-block-button__icon -right\" height=\"1em\" width=\"1em\" xmlns=\"http://www.w3.org/2000/svg\" aria-hidden=\"true\" data-icon=\"PhArrowRight\" viewBox=\"0 0 256 256\"><rect width=\"256\" height=\"256\" fill=\"none\"></rect><line x1=\"40\" y1=\"128\" x2=\"216\" y2=\"128\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\"></line><polyline points=\"144 56 216 128 144 200\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"16\"></polyline></svg></a></div>\n</div>\n</div></div></div>\n\n\n\n\n\n<div class=\"wp-block-columns is-layout-flex wp-container-core-columns-is-layout-8f761849 wp-block-columns-is-layout-flex\">\n<div class=\"wp-block-column is-layout-flow wp-block-column-is-layout-flow\">\n<div class=\"ark-block-heading has-text-align-left\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Feature 1</div><h2 class=\"ark-block-heading__main\">商談数を高めるメソッド</h2></div>\n\n\n\n<div style=\"height:46px\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div>\n\n\n\n<p class=\"wp-block-paragraph\">見込み顧客の中でも、ニーズや検討度合いでそれぞれ求められるコンテンツは異なります。営業担当と接触するまでに、見込み顧客は何を検討しているのか？どこのフェーズでつまづき、購買プロセスがストップしているのか？個々の見込み顧客にあわせたパーソナライズな購買体験を提供して商談化へ繋げることは、クロスコムの得意分野です。</p>\n</div>\n\n\n\n<div class=\"wp-block-column is-layout-flow wp-block-column-is-layout-flow\">\n<figure class=\"wp-block-image size-full\"><img loading=\"lazy\" decoding=\"async\" width=\"4253\" height=\"1692\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/Feature1_BtoB-CRM.png\" alt=\"\" class=\"wp-image-3209\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/Feature1_BtoB-CRM.png 4253w, https://cross-com.jp/wp-content/uploads/2024/12/Feature1_BtoB-CRM-300x119.png 300w, https://cross-com.jp/wp-content/uploads/2024/12/Feature1_BtoB-CRM-1024x407.png 1024w, https://cross-com.jp/wp-content/uploads/2024/12/Feature1_BtoB-CRM-768x306.png 768w, https://cross-com.jp/wp-content/uploads/2024/12/Feature1_BtoB-CRM-1536x611.png 1536w, https://cross-com.jp/wp-content/uploads/2024/12/Feature1_BtoB-CRM-2048x815.png 2048w\" sizes=\"auto, (max-width: 4253px) 100vw, 4253px\" /></figure>\n</div>\n</div>\n\n\n\n<div style=\"height:50px\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div>\n\n\n\n<div class=\"wp-block-columns is-layout-flex wp-container-core-columns-is-layout-8f761849 wp-block-columns-is-layout-flex\">\n<div class=\"wp-block-column is-layout-flow wp-block-column-is-layout-flow\">\n<figure class=\"wp-block-image size-large u-mt-40\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"421\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/Feature2_BtoB-CRM-1024x421.webp\" alt=\"\" class=\"wp-image-3210\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/Feature2_BtoB-CRM-1024x421.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/Feature2_BtoB-CRM-300x123.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/Feature2_BtoB-CRM-768x316.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/Feature2_BtoB-CRM-1536x632.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/Feature2_BtoB-CRM-2048x842.webp 2048w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n</div>\n\n\n\n<div class=\"wp-block-column is-layout-flow wp-block-column-is-layout-flow\">\n<div class=\"ark-block-heading has-text-align-right\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Feature 2</div><h2 class=\"ark-block-heading__main\">BtoB営業経験による<br>連携力の強化</h2></div>\n\n\n\n<div style=\"height:46px\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div>\n\n\n\n<p class=\"wp-block-paragraph\">BtoB営業の経験が長いクロスコムは、マーケティング部署と営業部署それぞれの目的も、受け渡しする見込み顧客に求める条件も十分に理解していました。どの見込み顧客へどうアプローチすれば商談そして成約が決まるか？マーケティング思考に営業思考を掛け合わせた戦略設計で、部署間の連携力の強化を支援していました。</p>\n</div>\n</div>\n\n\n\n<div style=\"height:50px\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div>\n\n\n\n<div class=\"wp-block-columns is-layout-flex wp-container-core-columns-is-layout-8f761849 wp-block-columns-is-layout-flex\">\n<div class=\"wp-block-column is-layout-flow wp-block-column-is-layout-flow\">\n<div class=\"ark-block-heading has-text-align-left\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Feature 3</div><h2 class=\"ark-block-heading__main\">短期利益を生み出す施策改善力</h2></div>\n\n\n\n<div style=\"height:46px\" aria-hidden=\"true\" class=\"wp-block-spacer\"></div>\n\n\n\n<p class=\"wp-block-paragraph\">集客～累計100社以上のプロモーション戦略を支援してきた経験から、現行施策をすぐに改善できる具体的なディレクションを行っていました。マーケティング戦略の設計と並行して、短期利益を生み出す施策改善をご提案していました。</p>\n</div>\n\n\n\n<div class=\"wp-block-column is-layout-flow wp-block-column-is-layout-flow\">\n<figure class=\"wp-block-image size-full\"><img loading=\"lazy\" decoding=\"async\" width=\"2560\" height=\"1142\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/Feature3_BtoB-Marketing-Strategy-scaled.webp\" alt=\"\" class=\"wp-image-3224\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/Feature3_BtoB-Marketing-Strategy-scaled.webp 2560w, https://cross-com.jp/wp-content/uploads/2024/12/Feature3_BtoB-Marketing-Strategy-300x134.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/Feature3_BtoB-Marketing-Strategy-1024x457.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/Feature3_BtoB-Marketing-Strategy-768x342.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/Feature3_BtoB-Marketing-Strategy-1536x685.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/Feature3_BtoB-Marketing-Strategy-2048x913.webp 2048w\" sizes=\"auto, (max-width: 2560px) 100vw, 2560px\" /></figure>\n</div>\n</div>\n\n\n\n<div class=\"ark-block-heading\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Compare Table</div><h2 class=\"ark-block-heading__main\">比較表</h2><span class=\"ark-block-heading__line\"></span></div>\n\n\n\n<figure class=\"wp-block-image size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"481\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/Compare_BtoB-Marketing-Strategy-1024x481.webp\" alt=\"\" class=\"wp-image-3225\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/Compare_BtoB-Marketing-Strategy-1024x481.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/Compare_BtoB-Marketing-Strategy-300x141.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/Compare_BtoB-Marketing-Strategy-768x360.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/Compare_BtoB-Marketing-Strategy-1536x721.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/Compare_BtoB-Marketing-Strategy-2048x961.webp 2048w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n\n\n\n<div class=\"ark-block-heading\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Works</div><h2 class=\"ark-block-heading__main\">支援実績</h2><span class=\"ark-block-heading__line\"></span></div>\n\n\n\n<p class=\"has-text-align-center wp-block-paragraph\">クロスコムのメンバーがこれまで支援させていただいた実績を、一部ご紹介します。</p>\n\n\n\n<div class=\"wp-block-columns is-layout-flex wp-container-core-columns-is-layout-8f761849 wp-block-columns-is-layout-flex\">\n<div class=\"wp-block-column is-layout-flow wp-block-column-is-layout-flow\">\n<figure class=\"wp-block-image size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"364\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/case001_1920x698-1024x364.webp\" alt=\"支援事例001\" class=\"wp-image-3097\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/case001_1920x698-1024x364.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/case001_1920x698-300x107.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/case001_1920x698-768x273.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/case001_1920x698-1536x546.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/case001_1920x698.webp 1920w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n\n\n\n<h4 class=\"wp-block-heading has-text-align-center\">農業系事業会社が展開する<br>新規事業の戦略立案、運用</h4>\n\n\n\n<ul class=\"wp-block-list\">\n<li>農業系ベンチャー企業 の事業立ち上げ​</li>\n\n\n\n<li>マーケティング戦略立案、施策運用</li>\n\n\n\n<li>Web広告運用、LP制作、メディア制作、MA運用、公式LINE構築、CRM運用</li>\n</ul>\n</div>\n\n\n\n<div class=\"wp-block-column is-layout-flow wp-block-column-is-layout-flow\">\n<figure class=\"wp-block-image size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"372\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/case002_1920x698-1024x372.webp\" alt=\"\" class=\"wp-image-3228\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/case002_1920x698-1024x372.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/case002_1920x698-300x109.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/case002_1920x698-768x279.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/case002_1920x698-1536x558.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/case002_1920x698.webp 1920w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n\n\n\n<h4 class=\"wp-block-heading has-text-align-center\">HRのBtoBマーケティングで<br>広告・LP最適化の代行支援</h4>\n\n\n\n<ul class=\"wp-block-list\">\n<li>HR系サービスの事業会社</li>\n\n\n\n<li>３C分析、Web広告・LPの戦略立案・運用代行</li>\n\n\n\n<li>Web広告運用、LP最適化、広告クリエイティブ制作、コピーライティング</li>\n</ul>\n</div>\n</div>\n\n\n\n<div class=\"ark-block-heading\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Schedule</div><h2 class=\"ark-block-heading__main\">プロジェクトの進め方</h2><span class=\"ark-block-heading__line\"></span></div>\n\n\n\n<figure class=\"wp-block-image size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"418\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/Schedule_BtoB-Marketing-Strategy-1024x418.webp\" alt=\"\" class=\"wp-image-3226\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/Schedule_BtoB-Marketing-Strategy-1024x418.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/Schedule_BtoB-Marketing-Strategy-300x122.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/Schedule_BtoB-Marketing-Strategy-768x313.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/Schedule_BtoB-Marketing-Strategy-1536x626.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/Schedule_BtoB-Marketing-Strategy-2048x835.webp 2048w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n\n\n\n<p class=\"wp-block-paragraph\">プロジェクト開始後は、まず貴社の状況や課題のヒアリングから行います。ヒアリングした内容と、自社でリサーチした分析データを基に、最大1.5か月の間で施策への落とし込みまでの戦略設計図を納品していました。</p>\n\n\n\n<div class=\"ark-block-heading\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Output Image</div><h2 class=\"ark-block-heading__main\">納品物イメージ</h2><span class=\"ark-block-heading__line\"></span></div>\n\n\n\n<figure class=\"wp-block-image size-large\"><img loading=\"lazy\" decoding=\"async\" width=\"1024\" height=\"359\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/Output_BtoB-Marketing-Strategy-1024x359.webp\" alt=\"\" class=\"wp-image-3227\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/Output_BtoB-Marketing-Strategy-1024x359.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/Output_BtoB-Marketing-Strategy-300x105.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/Output_BtoB-Marketing-Strategy-768x269.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/Output_BtoB-Marketing-Strategy-1536x539.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/Output_BtoB-Marketing-Strategy-2048x718.webp 2048w\" sizes=\"auto, (max-width: 1024px) 100vw, 1024px\" /></figure>\n\n\n\n<div class=\"ark-block-heading\" data-sub=\"top\" id=\"form\"><div class=\"ark-block-heading__sub\">Form</div><h2 class=\"ark-block-heading__main\">まずは気軽に無料相談へ</h2></div>\n\n\n\n<p class=\"has-text-align-center wp-block-paragraph\">本サービスの受付は終了しています。現在のサービスへのお問い合わせは会社概要をご覧ください。</p>\n\n\n\n<!-- ===================================================== -->\n<!-- 下部フォーム -->\n<!-- ===================================================== -->\n<form class=\"wtl-form\" action=\"https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8&amp;orgId=00DGB0000030f8X\" method=\"POST\">\n  <input type=\"hidden\" name=\"captcha_settings\" value=\"{&quot;keyname&quot;:&quot;Crossco&quot;,&quot;fallback&quot;:&quot;true&quot;,&quot;orgId&quot;:&quot;00DGB0000030f8X&quot;,&quot;ts&quot;:&quot;&quot;}\">\n  <input type=\"hidden\" name=\"oid\" value=\"00DGB0000030f8X\">\n  <input type=\"hidden\" name=\"retURL\" value=\"https://cross-com.jp/service/btob-marketing-strategy/thanks/\">\n  <!-- ★フォーム設置ページ：nameは上部と同じフィールドID(00NGB...)に差し替える -->\n  <input type=\"hidden\" name=\"lead_source\" value=\"Webサイト\">\n  <input type=\"hidden\" name=\"00NQ800000MPjRt\" value=\"BtoB マーケティング戦略コンサルティング支援\">\n  <!-- デバッグ用項目（テスト時のみコメント解除） -->\n  <!-- <input type=\"hidden\" name=\"debug\" value=\"1\"> -->\n  <!-- <input type=\"hidden\" name=\"debugEmail\" value=\"m.honda@cross-com.jp\"> -->\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"last_name_bottom\">姓</label>\n    <input id=\"last_name_bottom\" maxlength=\"80\" name=\"last_name\" type=\"text\" required=\"\">\n  </div>\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"first_name_bottom\">名</label>\n    <input id=\"first_name_bottom\" maxlength=\"40\" name=\"first_name\" type=\"text\" required=\"\">\n  </div>\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"company_bottom\">会社名</label>\n    <input id=\"company_bottom\" maxlength=\"40\" name=\"company\" type=\"text\" required=\"\">\n  </div>\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"email_bottom\">メール</label>\n    <input id=\"email_bottom\" maxlength=\"80\" name=\"email\" type=\"email\" required=\"\">\n  </div>\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"00NGB00000W0xhl_bottom\">サービス</label>\n    <select id=\"00NGB00000W0xhl_bottom\" name=\"00NGB00000W0xhl\" title=\"サービス\" required=\"\">\n      <option value=\"BtoB マーケティング戦略コンサルティング支援\">BtoB マーケティング戦略コンサルティング支援</option>\n    </select>\n  </div>\n\n  <div class=\"form-row\">\n    <label class=\"required\" for=\"00NGB00000QxJ8b_bottom\">お問い合わせ</label>\n    <input id=\"00NGB00000QxJ8b_bottom\" maxlength=\"255\" name=\"00NGB00000QxJ8b\" type=\"text\" required=\"\">\n  </div>\n\n    <div class=\"form-row\">\n    <label for=\"00NQ800000Ulaeg_bottom\">当社を知ったきっかけ</label>\n    <select id=\"00NQ800000Ulaeg_bottom\" name=\"00NQ800000Ulaeg\" title=\"認知経路\">\n      <option value=\"\">選択してください（任意）</option>\n      <option value=\"AIに聞いて知った(ChatGPT・Gemini等)\">AIに聞いて知った(ChatGPT・Gemini等)</option>\n      <option value=\"検索エンジンで調べて\">検索エンジンで調べて</option>\n      <option value=\"SNS・note記事\">SNS・note記事</option>\n      <option value=\"紹介・知人から\">紹介・知人から</option>\n      <option value=\"イベント・セミナー\">イベント・セミナー</option>\n      <option value=\"その他\">その他</option>\n    </select>\n  </div>\n\n  <div id=\"recaptcha_bottom\" class=\"recaptcha-box\"></div>\n\n  <input type=\"submit\" name=\"submit\" value=\"送信する\">\n</form>\n\n\n\n<div class=\"ark-block-heading\" data-sub=\"top\"><div class=\"ark-block-heading__sub\">Relative Service</div><h2 class=\"ark-block-heading__main\">関連サービスはこちら</h2></div>\n\n\n\n<div class=\"arkb-boxlinks--4 ark-block-boxLinks\">\n<div class=\"ark-block-boxLink arkb-boxLink -vertical\" tabindex=\"0\" role=\"link\" data-arkb-linkbox=\"1\"><div class=\"arkb-boxLink__inner\"><figure class=\"arkb-boxLink__figure\"><img loading=\"lazy\" decoding=\"async\" class=\"arkb-boxLink__img wp-image-5781\" src=\"https://cross-com.jp/wp-content/uploads/2026/02/Agentforce導入・定着支援.webp\" alt=\"Agentforce導入・定着支援\" width=\"2519\" height=\"1287\" srcset=\"https://cross-com.jp/wp-content/uploads/2026/02/Agentforce導入・定着支援.webp 2519w, https://cross-com.jp/wp-content/uploads/2026/02/Agentforce導入・定着支援-300x153.webp 300w, https://cross-com.jp/wp-content/uploads/2026/02/Agentforce導入・定着支援-1024x523.webp 1024w, https://cross-com.jp/wp-content/uploads/2026/02/Agentforce導入・定着支援-768x392.webp 768w, https://cross-com.jp/wp-content/uploads/2026/02/Agentforce導入・定着支援-1536x785.webp 1536w, https://cross-com.jp/wp-content/uploads/2026/02/Agentforce導入・定着支援-2048x1046.webp 2048w\" sizes=\"auto, (max-width: 2519px) 100vw, 2519px\" /></figure><div class=\"arkb-boxLink__body\"><div class=\"arkb-boxLink__title\"><strong>Agentforce導入・定着支援</strong></div><div class=\"arkb-boxLink__content ark-keep-mt--s\">\n<p class=\"wp-block-paragraph\">Salesforce公式パートナー企業のクロスコムが、実務で活用できるまでしっかり定着までサポートします。</p>\n</div><div class=\"arkb-boxLink__more\"><span class=\"arkb-boxLink__more__text\">詳しくはこちら</span><svg class=\"arkb-boxLink__more__svg\" width=\"16\" height=\"16\" viewBox=\"0 0 32 32\" role=\"img\" aria-hidden=\"true\"><path d=\"M30.4,15.5l-4.5-4.5l-1.1,1.1l3.4,3.4H1.6v1.6h28.8V15.5z\" /></svg></div></div></div><a data-arkb-link=\"1\" aria-hidden=\"true\" href=\"https://cross-com.jp/service/agentforce-support/\">&lt;strong>Agentforce導入・定着支援&lt;/strong></a></div>\n\n\n\n<div class=\"ark-block-boxLink arkb-boxLink -vertical\" tabindex=\"0\" role=\"link\" data-arkb-linkbox=\"1\"><div class=\"arkb-boxLink__inner\"><figure class=\"arkb-boxLink__figure\"><img loading=\"lazy\" decoding=\"async\" class=\"arkb-boxLink__img wp-image-3362\" src=\"https://cross-com.jp/wp-content/uploads/2024/12/BtoB-CRM-Salesforce.webp\" alt=\"BtoB Salesforce導入・構築支援\" width=\"2519\" height=\"1287\" srcset=\"https://cross-com.jp/wp-content/uploads/2024/12/BtoB-CRM-Salesforce.webp 2519w, https://cross-com.jp/wp-content/uploads/2024/12/BtoB-CRM-Salesforce-300x153.webp 300w, https://cross-com.jp/wp-content/uploads/2024/12/BtoB-CRM-Salesforce-1024x523.webp 1024w, https://cross-com.jp/wp-content/uploads/2024/12/BtoB-CRM-Salesforce-768x392.webp 768w, https://cross-com.jp/wp-content/uploads/2024/12/BtoB-CRM-Salesforce-1536x785.webp 1536w, https://cross-com.jp/wp-content/uploads/2024/12/BtoB-CRM-Salesforce-2048x1046.webp 2048w\" sizes=\"auto, (max-width: 2519px) 100vw, 2519px\" /></figure><div class=\"arkb-boxLink__body\"><div class=\"arkb-boxLink__title\"><strong><span class=\"arkb-format-1\"><strong><span class=\"arkb-format-1\"><strong><span class=\"arkb-format-1\">BtoB Salesforce導入・構築支援</span></strong></span></strong></span></strong></div><div class=\"arkb-boxLink__content ark-keep-mt--s\">\n<p class=\"wp-block-paragraph\">SalesforceのMA・CRMツールに関する導入と構築を、パッケージ型とタイムチャージ型の2軸モデルでご支援します。</p>\n</div><div class=\"arkb-boxLink__more\"><span class=\"arkb-boxLink__more__text\">詳しくはこちら</span><svg class=\"arkb-boxLink__more__svg\" width=\"16\" height=\"16\" viewBox=\"0 0 32 32\" role=\"img\" aria-hidden=\"true\"><path d=\"M30.4,15.5l-4.5-4.5l-1.1,1.1l3.4,3.4H1.6v1.6h28.8V15.5z\" /></svg></div></div></div><a data-arkb-link=\"1\" aria-hidden=\"true\" href=\"https://cross-com.jp/service/salesforce-implementation/\">&lt;strong>&lt;span class=\"arkb-format-1\">&lt;strong>&lt;span class=\"arkb-format-1\">&lt;strong>&lt;span class=\"arkb-format-1\">BtoB Salesforce導入・構築支援&lt;/span>&lt;/strong>&lt;/span>&lt;/strong>&lt;/span>&lt;/strong></a></div>\n\n\n\n<div class=\"ark-block-boxLink arkb-boxLink -vertical\" tabindex=\"0\" role=\"link\" data-arkb-linkbox=\"1\"><div class=\"arkb-boxLink__inner\"><figure class=\"arkb-boxLink__figure\"><img loading=\"lazy\" decoding=\"async\" class=\"arkb-boxLink__img wp-image-6451\" src=\"https://cross-com.jp/wp-content/uploads/2026/08/Agentic-CRM設計支援.webp\" alt=\"Agentic CRM設計支援\" width=\"2519\" height=\"1287\" srcset=\"https://cross-com.jp/wp-content/uploads/2026/08/Agentic-CRM設計支援.webp 2519w, https://cross-com.jp/wp-content/uploads/2026/08/Agentic-CRM設計支援-300x153.webp 300w, https://cross-com.jp/wp-content/uploads/2026/08/Agentic-CRM設計支援-1024x523.webp 1024w, https://cross-com.jp/wp-content/uploads/2026/08/Agentic-CRM設計支援-768x392.webp 768w, https://cross-com.jp/wp-content/uploads/2026/08/Agentic-CRM設計支援-1536x785.webp 1536w, https://cross-com.jp/wp-content/uploads/2026/08/Agentic-CRM設計支援-2048x1046.webp 2048w\" sizes=\"auto, (max-width: 2519px) 100vw, 2519px\" /></figure><div class=\"arkb-boxLink__body\"><div class=\"arkb-boxLink__title\"><strong><span class=\"arkb-format-1\">Agentic CRM設計支援</span></strong></div><div class=\"arkb-boxLink__content ark-keep-mt--s\">\n<p class=\"wp-block-paragraph\">オープンソースCRMを基盤にAIの推論能力に最大化したAIネイティブなCRMを貴社専用に設計します。</p>\n</div><div class=\"arkb-boxLink__more\"><span class=\"arkb-boxLink__more__text\">READ MORE</span><svg class=\"arkb-boxLink__more__svg\" width=\"16\" height=\"16\" viewBox=\"0 0 32 32\" role=\"img\" aria-hidden=\"true\"><path d=\"M30.4,15.5l-4.5-4.5l-1.1,1.1l3.4,3.4H1.6v1.6h28.8V15.5z\" /></svg></div></div></div><a data-arkb-link=\"1\" aria-hidden=\"true\" href=\"https://cross-com.jp/service/agentic-crm-design/\">&lt;strong>&lt;span class=\"arkb-format-1\">Agentic CRM設計支援&lt;/span>&lt;/strong></a></div>\n</div>\n\n\n\n<p class=\"wp-block-paragraph\"></p>\n",
+  "protected": false
+ },
+ "excerpt": {
+  "rendered": "<p>バイヤーがより多くの有益情報へ簡単にアクセスできるようになったことで、これまで当たり前だと&hellip;</p>\n",
+  "protected": false
+ },
+ "author": 1,
+ "featured_media": 3343,
+ "parent": 74,
+ "menu_order": 0,
+ "comment_status": "closed",
+ "ping_status": "closed",
+ "template": "templates/one-column.php",
+ "meta": {
+  "_acf_changed": false,
+  "content-type": "",
+  "footnotes": ""
+ },
+ "class_list": [
+  "post-1337",
+  "page",
+  "type-page",
+  "status-publish",
+  "has-post-thumbnail",
+  "hentry"
+ ],
+ "acf": [],
+ "yoast_head": "<!-- This site is optimized with the Yoast SEO plugin v28.3 - https://yoast.com/product/yoast-seo-wordpress/ -->\n<title>BtoB マーケティング戦略コンサルティング支援 - 合同会社クロスコム</title>\n<meta name=\"description\" content=\"「リード数は増えたのに商談につながらない…」そんなBtoBマーケティングの課題を、100社以上の支援実績から本質的な原因を捉え、戦略設計×施策提案でご支援します。まずは無料相談で課題をお聞かせください。\" />\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://cross-com.jp/service/btob-marketing-strategy/\" />\n<meta property=\"og:locale\" content=\"ja_JP\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"BtoB マーケティング戦略コンサルティング支援 - 合同会社クロスコム\" />\n<meta property=\"og:description\" content=\"「リード数は増えたのに商談につながらない…」そんなBtoBマーケティングの課題を、100社以上の支援実績から本質的な原因を捉え、戦略設計×施策提案でご支援します。まずは無料相談で課題をお聞かせください。\" />\n<meta property=\"og:url\" content=\"https://cross-com.jp/service/btob-marketing-strategy/\" />\n<meta property=\"og:site_name\" content=\"合同会社クロスコム\" />\n<meta property=\"article:modified_time\" content=\"2026-08-24T11:20:09+00:00\" />\n<meta property=\"og:image\" content=\"https://cross-com.jp/wp-content/uploads/2024/12/BtoB-Marketing-Strategy.webp\" />\n\t<meta property=\"og:image:width\" content=\"2519\" />\n\t<meta property=\"og:image:height\" content=\"1287\" />\n\t<meta property=\"og:image:type\" content=\"image/webp\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<meta name=\"twitter:site\" content=\"@HONDAWeb1\" />\n<meta name=\"twitter:label1\" content=\"推定読み取り時間\" />\n\t<meta name=\"twitter:data1\" content=\"11分\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"WebPage\",\"@id\":\"https:\\/\\/cross-com.jp\\/service\\/btob-marketing-strategy\\/\",\"url\":\"https:\\/\\/cross-com.jp\\/service\\/btob-marketing-strategy\\/\",\"name\":\"BtoB マーケティング戦略コンサルティング支援 - 合同会社クロスコム\",\"isPartOf\":{\"@id\":\"https:\\/\\/cross-com.jp\\/#website\"},\"primaryImageOfPage\":{\"@id\":\"https:\\/\\/cross-com.jp\\/service\\/btob-marketing-strategy\\/#primaryimage\"},\"image\":{\"@id\":\"https:\\/\\/cross-com.jp\\/service\\/btob-marketing-strategy\\/#primaryimage\"},\"thumbnailUrl\":\"https:\\/\\/cross-com.jp\\/wp-content\\/uploads\\/2024\\/12\\/BtoB-Marketing-Strategy.webp\",\"datePublished\":\"2023-12-22T02:37:29+00:00\",\"dateModified\":\"2026-08-24T11:20:09+00:00\",\"description\":\"「リード数は増えたのに商談につながらない…」そんなBtoBマーケティングの課題を、100社以上の支援実績から本質的な原因を捉え、戦略設計×施策提案でご支援します。まずは無料相談で課題をお聞かせください。\",\"breadcrumb\":{\"@id\":\"https:\\/\\/cross-com.jp\\/service\\/btob-marketing-strategy\\/#breadcrumb\"},\"inLanguage\":\"ja\",\"potentialAction\":[{\"@type\":\"ReadAction\",\"target\":[\"https:\\/\\/cross-com.jp\\/service\\/btob-marketing-strategy\\/\"]}]},{\"@type\":\"ImageObject\",\"inLanguage\":\"ja\",\"@id\":\"https:\\/\\/cross-com.jp\\/service\\/btob-marketing-strategy\\/#primaryimage\",\"url\":\"https:\\/\\/cross-com.jp\\/wp-content\\/uploads\\/2024\\/12\\/BtoB-Marketing-Strategy.webp\",\"contentUrl\":\"https:\\/\\/cross-com.jp\\/wp-content\\/uploads\\/2024\\/12\\/BtoB-Marketing-Strategy.webp\",\"width\":2519,\"height\":1287,\"caption\":\"BtoBマーケティング戦略コンサルティング\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/cross-com.jp\\/service\\/btob-marketing-strategy\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"ホーム\",\"item\":\"https:\\/\\/cross-com.jp\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"サービス一覧\",\"item\":\"https:\\/\\/cross-com.jp\\/service\\/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"BtoB マーケティング戦略コンサルティング支援\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/cross-com.jp\\/#website\",\"url\":\"https:\\/\\/cross-com.jp\\/\",\"name\":\"合同会社クロスコム\",\"description\":\"Agentforce・Agentic CRM設計支援\",\"publisher\":{\"@id\":\"https:\\/\\/cross-com.jp\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/cross-com.jp\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"ja\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/cross-com.jp\\/#organization\",\"name\":\"合同会社クロスコム\",\"alternateName\":[\"クロスコム\",\"Crosscom\"],\"url\":\"https:\\/\\/cross-com.jp\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"ja\",\"@id\":\"https:\\/\\/cross-com.jp\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/cross-com.jp\\/wp-content\\/uploads\\/2024\\/12\\/cropped-クロスコム_ロゴ2512x512compact.webp\",\"contentUrl\":\"https:\\/\\/cross-com.jp\\/wp-content\\/uploads\\/2024\\/12\\/cropped-クロスコム_ロゴ2512x512compact.webp\",\"width\":\"512\",\"height\":\"512\",\"caption\":\"合同会社クロスコム\"},\"image\":{\"@id\":\"https:\\/\\/cross-com.jp\\/#\\/schema\\/logo\\/image\\/\"},\"sameAs\":[\"https:\\/\\/x.com\\/HONDAWeb1\",\"https:\\/\\/www.linkedin.com\\/in\\/honda-crosscom\\/\",\"https:\\/\\/note.com\\/honda_crosscom\",\"https:\\/\\/www.ipros.com\\/company\\/detail\\/2116989\\/\",\"https:\\/\\/prtimes.jp\\/main\\/html\\/searchrlp\\/company_id\\/132405\",\"https:\\/\\/auba.eiicon.net\\/projects\\/37282\"],\"description\":\"Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行うBtoB特化のコンサルティング会社です。\",\"foundingDate\":\"2023-05\",\"address\":{\"@type\":\"PostalAddress\",\"streetAddress\":\"円山町5-5 Navi渋谷V 3階\",\"addressLocality\":\"渋谷区\",\"addressRegion\":\"東京都\",\"postalCode\":\"150-0044\",\"addressCountry\":\"JP\"}}]}</script>\n<!-- / Yoast SEO plugin. -->",
+ "yoast_head_json": {
+  "title": "BtoB マーケティング戦略コンサルティング支援 - 合同会社クロスコム",
+  "description": "「リード数は増えたのに商談につながらない…」そんなBtoBマーケティングの課題を、100社以上の支援実績から本質的な原因を捉え、戦略設計×施策提案でご支援します。まずは無料相談で課題をお聞かせください。",
+  "robots": {
+   "index": "index",
+   "follow": "follow",
+   "max-snippet": "max-snippet:-1",
+   "max-image-preview": "max-image-preview:large",
+   "max-video-preview": "max-video-preview:-1"
+  },
+  "canonical": "https://cross-com.jp/service/btob-marketing-strategy/",
+  "og_locale": "ja_JP",
+  "og_type": "article",
+  "og_title": "BtoB マーケティング戦略コンサルティング支援 - 合同会社クロスコム",
+  "og_description": "「リード数は増えたのに商談につながらない…」そんなBtoBマーケティングの課題を、100社以上の支援実績から本質的な原因を捉え、戦略設計×施策提案でご支援します。まずは無料相談で課題をお聞かせください。",
+  "og_url": "https://cross-com.jp/service/btob-marketing-strategy/",
+  "og_site_name": "合同会社クロスコム",
+  "article_modified_time": "2026-08-24T11:20:09+00:00",
+  "og_image": [
+   {
+    "width": 2519,
+    "height": 1287,
+    "url": "https://cross-com.jp/wp-content/uploads/2024/12/BtoB-Marketing-Strategy.webp",
+    "type": "image/webp"
+   }
+  ],
+  "twitter_card": "summary_large_image",
+  "twitter_site": "@HONDAWeb1",
+  "twitter_misc": {
+   "推定読み取り時間": "11分"
+  },
+  "schema": {
+   "@context": "https://schema.org",
+   "@graph": [
+    {
+     "@type": "WebPage",
+     "@id": "https://cross-com.jp/service/btob-marketing-strategy/",
+     "url": "https://cross-com.jp/service/btob-marketing-strategy/",
+     "name": "BtoB マーケティング戦略コンサルティング支援 - 合同会社クロスコム",
+     "isPartOf": {
+      "@id": "https://cross-com.jp/#website"
+     },
+     "primaryImageOfPage": {
+      "@id": "https://cross-com.jp/service/btob-marketing-strategy/#primaryimage"
+     },
+     "image": {
+      "@id": "https://cross-com.jp/service/btob-marketing-strategy/#primaryimage"
+     },
+     "thumbnailUrl": "https://cross-com.jp/wp-content/uploads/2024/12/BtoB-Marketing-Strategy.webp",
+     "datePublished": "2023-12-22T02:37:29+00:00",
+     "dateModified": "2026-08-24T11:20:09+00:00",
+     "description": "「リード数は増えたのに商談につながらない…」そんなBtoBマーケティングの課題を、100社以上の支援実績から本質的な原因を捉え、戦略設計×施策提案でご支援します。まずは無料相談で課題をお聞かせください。",
+     "breadcrumb": {
+      "@id": "https://cross-com.jp/service/btob-marketing-strategy/#breadcrumb"
+     },
+     "inLanguage": "ja",
+     "potentialAction": [
+      {
+       "@type": "ReadAction",
+       "target": [
+        "https://cross-com.jp/service/btob-marketing-strategy/"
+       ]
+      }
+     ]
+    },
+    {
+     "@type": "ImageObject",
+     "inLanguage": "ja",
+     "@id": "https://cross-com.jp/service/btob-marketing-strategy/#primaryimage",
+     "url": "https://cross-com.jp/wp-content/uploads/2024/12/BtoB-Marketing-Strategy.webp",
+     "contentUrl": "https://cross-com.jp/wp-content/uploads/2024/12/BtoB-Marketing-Strategy.webp",
+     "width": 2519,
+     "height": 1287,
+     "caption": "BtoBマーケティング戦略コンサルティング"
+    },
+    {
+     "@type": "BreadcrumbList",
+     "@id": "https://cross-com.jp/service/btob-marketing-strategy/#breadcrumb",
+     "itemListElement": [
+      {
+       "@type": "ListItem",
+       "position": 1,
+       "name": "ホーム",
+       "item": "https://cross-com.jp/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 2,
+       "name": "サービス一覧",
+       "item": "https://cross-com.jp/service/"
+      },
+      {
+       "@type": "ListItem",
+       "position": 3,
+       "name": "BtoB マーケティング戦略コンサルティング支援"
+      }
+     ]
+    },
+    {
+     "@type": "WebSite",
+     "@id": "https://cross-com.jp/#website",
+     "url": "https://cross-com.jp/",
+     "name": "合同会社クロスコム",
+     "description": "Agentforce・Agentic CRM設計支援",
+     "publisher": {
+      "@id": "https://cross-com.jp/#organization"
+     },
+     "potentialAction": [
+      {
+       "@type": "SearchAction",
+       "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://cross-com.jp/?s={search_term_string}"
+       },
+       "query-input": {
+        "@type": "PropertyValueSpecification",
+        "valueRequired": true,
+        "valueName": "search_term_string"
+       }
+      }
+     ],
+     "inLanguage": "ja"
+    },
+    {
+     "@type": "Organization",
+     "@id": "https://cross-com.jp/#organization",
+     "name": "合同会社クロスコム",
+     "alternateName": [
+      "クロスコム",
+      "Crosscom"
+     ],
+     "url": "https://cross-com.jp/",
+     "logo": {
+      "@type": "ImageObject",
+      "inLanguage": "ja",
+      "@id": "https://cross-com.jp/#/schema/logo/image/",
+      "url": "https://cross-com.jp/wp-content/uploads/2024/12/cropped-クロスコム_ロゴ2512x512compact.webp",
+      "contentUrl": "https://cross-com.jp/wp-content/uploads/2024/12/cropped-クロスコム_ロゴ2512x512compact.webp",
+      "width": "512",
+      "height": "512",
+      "caption": "合同会社クロスコム"
+     },
+     "image": {
+      "@id": "https://cross-com.jp/#/schema/logo/image/"
+     },
+     "sameAs": [
+      "https://x.com/HONDAWeb1",
+      "https://www.linkedin.com/in/honda-crosscom/",
+      "https://note.com/honda_crosscom",
+      "https://www.ipros.com/company/detail/2116989/",
+      "https://prtimes.jp/main/html/searchrlp/company_id/132405",
+      "https://auba.eiicon.net/projects/37282"
+     ],
+     "description": "Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行うBtoB特化のコンサルティング会社です。",
+     "foundingDate": "2023-05",
+     "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "円山町5-5 Navi渋谷V 3階",
+      "addressLocality": "渋谷区",
+      "addressRegion": "東京都",
+      "postalCode": "150-0044",
+      "addressCountry": "JP"
+     }
+    }
+   ]
+  }
+ },
+ "_links": {
+  "self": [
+   {
+    "href": "https://cross-com.jp/wp-json/wp/v2/pages/1337",
+    "targetHints": {
+     "allow": [
+      "GET"
+     ]
+    }
+   }
+  ],
+  "collection": [
+   {
+    "href": "https://cross-com.jp/wp-json/wp/v2/pages"
+   }
+  ],
+  "about": [
+   {
+    "href": "https://cross-com.jp/wp-json/wp/v2/types/page"
+   }
+  ],
+  "author": [
+   {
+    "embeddable": true,
+    "href": "https://cross-com.jp/wp-json/wp/v2/users/1"
+   }
+  ],
+  "replies": [
+   {
+    "embeddable": true,
+    "href": "https://cross-com.jp/wp-json/wp/v2/comments?post=1337"
+   }
+  ],
+  "version-history": [
+   {
+    "count": 108,
+    "href": "https://cross-com.jp/wp-json/wp/v2/pages/1337/revisions"
+   }
+  ],
+  "predecessor-version": [
+   {
+    "id": 6908,
+    "href": "https://cross-com.jp/wp-json/wp/v2/pages/1337/revisions/6908"
+   }
+  ],
+  "up": [
+   {
+    "embeddable": true,
+    "href": "https://cross-com.jp/wp-json/wp/v2/pages/74"
+   }
+  ],
+  "wp:featuredmedia": [
+   {
+    "embeddable": true,
+    "href": "https://cross-com.jp/wp-json/wp/v2/media/3343"
+   }
+  ],
+  "wp:attachment": [
+   {
+    "href": "https://cross-com.jp/wp-json/wp/v2/media?parent=1337"
+   }
+  ],
+  "curies": [
+   {
+    "name": "wp",
+    "href": "https://api.w.org/{rel}",
+    "templated": true
+   }
+  ]
+ }
+}
