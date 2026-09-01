@@ -36,6 +36,7 @@ except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exa
 import collect_llm
 import extract
 import kbf_compare
+import retired_urls
 import notify_slack
 import sheets_writer
 from settings import DATA_RAW_MONTHLY_DIR, load_monthly_prompts
@@ -150,6 +151,27 @@ def main() -> None:
              lambda: sheets_writer.write_kbf_compare(kbf_rows), failures)
     if kbf_rows:
         lines += [f"- 比較KBF: {len(kbf_rows)}行"] +                  [f"  - {s}" for s in kbf_compare.summary(kbf_rows)]
+
+    # 3-3. 取り下げたURLの引用(A-011)。**月次でも数える。**
+    # 日次は E-1 だけを見るが、fsdg.jp のように日次では一度も引用されず
+    # 月次(M-4)で初めて出るURLがある。日次だけだと永久に0件と表示され、
+    # 「引用が止まった」と読めてしまう。月次は12本すべてが自社を聞く面なので
+    # プロンプトを絞らない。
+    retired_rows = _run(
+        "retired_url_citations(monthly)",
+        lambda: retired_urls.event_rows(
+            date, records, resolve=True,
+            prompt_ids=retired_urls.ALL_PROMPTS,
+            scope=retired_urls.SCOPE_MONTHLY),
+        failures,
+    ) or []
+    if retired_rows and not args.no_sheets:
+        _run("write_lk_events(monthly)",
+             lambda: sheets_writer.write_looker_tabs({"lk_events": retired_rows}),
+             failures)
+    if records:
+        lines.append("- " + retired_urls.summary_line(
+            date, records, resolve=True, prompt_ids=retired_urls.ALL_PROMPTS))
 
     # 4. 配信
     if args.no_slack:

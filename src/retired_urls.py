@@ -8,9 +8,16 @@
 切り分けられない。区別できないと待つべきか動くべきかが決まらない。
 
 数え方:
-  日次観測(E-1)の引用URLと config/retired_urls.yaml を突き合わせ、
-  一致した回数をその日の件数として lk_events に「削除済みURLの引用」で記録する。
+  観測の引用URLと config/retired_urls.yaml を突き合わせ、一致した回数を
+  lk_events に「削除済みURLの引用」で記録する。
   引用が0になった日が参照面の入れ替わった日で、retired_on からの日数がラグ。
+
+  **日次と月次の両方で数える。** 日次は E-1(会社説明)だけを見るが、
+  月次は12本すべてが自社について聞く面なので全プロンプトを対象にする。
+  fsdg.jp は日次 E-1 では一度も引用されず、月次 M-4 で初めて出た。
+  日次だけを見ていると、そのURLの引用は永久に0件と表示される。
+  lk_events の place にどの面で引用されたかを残すので、
+  日次由来と月次由来は行を見れば区別できる。
 
 gemini の引用は grounding のリダイレクトで記録される。実測したところ
 **E-1 の引用の約6割がリダイレクト**で、解決しないと中身が一切見えない。
@@ -37,7 +44,14 @@ EVENT_NAME = "削除済みURLの引用"
 # このイベントは P-8(旧事業URLの引用)の続き。消したあとの尾を見ている。
 PLAYBOOK_REF = "P-8"
 
+# 日次で見る面。会社そのものを聞くのは E-1 だけなので、日次はここに絞る。
 ENTITY_PROMPT_ID = "E-1"
+DAILY_PROMPT_IDS = (ENTITY_PROMPT_ID,)
+# 月次は12本すべてが自社について聞く面なので、プロンプトを絞らない。
+ALL_PROMPTS = None
+
+SCOPE_DAILY = "日次"
+SCOPE_MONTHLY = "月次"
 
 # grounding のリダイレクト。実URLに解決しないと中身が分からない。
 REDIRECT_MARKER = "vertexaisearch.cloud.google.com"
@@ -107,17 +121,25 @@ def resolve_redirect(url: str) -> Optional[str]:
 
 def count_citations(rows: Sequence[Dict[str, Any]], date: str,
                     retired: Optional[Sequence[Dict[str, Any]]] = None,
-                    resolve: bool = False) -> List[Dict[str, Any]]:
-    """``date`` の E-1 観測で、取り下げたURLが何回引用されたかを数える。
+                    resolve: bool = False,
+                    prompt_ids: Optional[Sequence[str]] = DAILY_PROMPT_IDS
+                    ) -> List[Dict[str, Any]]:
+    """``date`` の観測で、取り下げたURLが何回引用されたかを数える。
+
+    ``prompt_ids`` を渡すとその面だけを見る。既定は日次の E-1。
+    ``None`` を渡すと全プロンプト(月次はこちら。12本すべてが自社を聞く面)。
 
     返すのはURLごとの ``{"url", "label", "status", "retired_on", "action_id",
-    "count", "models", "days_since_retired"}``。引用が0でも行を返す
-    (0になったことが結果なので、行が消えると入れ替わりを観測できない)。
+    "count", "models", "prompts", "days_since_retired", "unresolved"}``。
+    引用が0でも行を返す(0になったことが結果なので、行が消えると
+    入れ替わりを観測できない)。
     """
     retired = list(retired if retired is not None else load_retired())
+    scope = set(prompt_ids) if prompt_ids is not None else None
     today = [r for r in rows
              if str(r.get("date") or "").strip() == date
-             and str(r.get("prompt_id") or "").strip() == ENTITY_PROMPT_ID]
+             and (scope is None
+                  or str(r.get("prompt_id") or "").strip() in scope)]
 
     # 引用URLを行ごとに展開し、必要ならリダイレクトを解決しておく。
     expanded: List[Dict[str, Any]] = []
@@ -136,17 +158,22 @@ def count_citations(rows: Sequence[Dict[str, Any]], date: str,
                 urls.append(real)
             else:
                 urls.append(u)
-        expanded.append({"model": str(row.get("model") or "").strip(), "urls": urls})
+        expanded.append({
+            "model": str(row.get("model") or "").strip(),
+            "prompt_id": str(row.get("prompt_id") or "").strip(),
+            "urls": urls,
+        })
 
     out: List[Dict[str, Any]] = []
     for entry in retired:
         target = str(entry["url"]).strip()
-        count, models = 0, set()
+        count, models, prompts = 0, set(), set()
         for row in expanded:
             hits = sum(1 for u in row["urls"] if target in u)
             if hits:
                 count += hits
                 models.add(row["model"])
+                prompts.add(row["prompt_id"])
         out.append({
             "url": target,
             "label": str(entry.get("label") or "").strip(),
@@ -155,6 +182,8 @@ def count_citations(rows: Sequence[Dict[str, Any]], date: str,
             "action_id": str(entry.get("action_id") or "").strip(),
             "count": count,
             "models": sorted(m for m in models if m),
+            # どの面で引用されたか。日次はE-1だけだが、月次は面ごとに違う。
+            "prompts": sorted(p for p in prompts if p),
             "days_since_retired": _days_since(entry.get("retired_on"), date),
             # 解決できなかったリダイレクトの数。0件の日にこれが多いと、
             # 「引用が止まった」とは言い切れない。
@@ -173,14 +202,20 @@ def _days_since(retired_on: Any, date: str) -> Optional[int]:
 
 def event_rows(date: str, rows: Sequence[Dict[str, Any]],
                retired: Optional[Sequence[Dict[str, Any]]] = None,
-               resolve: bool = False) -> List[Dict[str, Any]]:
+               resolve: bool = False,
+               prompt_ids: Optional[Sequence[str]] = DAILY_PROMPT_IDS,
+               scope: str = SCOPE_DAILY) -> List[Dict[str, Any]]:
     """lk_events に足す行(Phase 6 のスキーマそのまま)。
 
     引用が0の日も1行出す。**0が続いた日数がラグの答え**なので、
     行が消えると「入れ替わった」のか「集計が動いていない」のかが区別できない。
+
+    ``scope`` は日次由来か月次由来かの区別。同じURLでも見ている面が違うので、
+    place に入れて lk_events 上で混ざらないようにする。
     """
     out = []
-    for c in count_citations(rows, date, retired, resolve=resolve):
+    for c in count_citations(rows, date, retired, resolve=resolve,
+                             prompt_ids=prompt_ids):
         elapsed = "" if c["days_since_retired"] is None \
             else f"取り下げから{c['days_since_retired']}日"
         state = "引用が続いている" if c["count"] else "引用なし"
@@ -201,11 +236,15 @@ def event_rows(date: str, rows: Sequence[Dict[str, Any]],
             # 自社が消したのではないので、引用が止まるのを待つしかない。
             # 打ち手は先方への依頼だけで、こちらの作業では動かせない。
             detail += "(サイト停止・自社では編集不可。先方依頼が必要)"
+        # 引用された面を place に出す。引用0のときは見ている範囲を書く
+        # (「どこを見て0だったのか」が分からないと、0の意味が変わる)。
+        where = "/".join(c["prompts"]) if c["prompts"] else (
+            "/".join(prompt_ids) if prompt_ids else "全プロンプト")
         out.append({
             "date": date,
             "event_type": EVENT_TYPE,
             "event_name": EVENT_NAME,
-            "place": f"{ENTITY_PROMPT_ID} × {c['action_id'] or '—'}",
+            "place": f"{scope} {where} × {c['action_id'] or '—'}",
             "detail": detail,
             "playbook_ref": PLAYBOOK_REF,
         })
@@ -214,9 +253,11 @@ def event_rows(date: str, rows: Sequence[Dict[str, Any]],
 
 def summary_line(date: str, rows: Sequence[Dict[str, Any]],
                  retired: Optional[Sequence[Dict[str, Any]]] = None,
-                 resolve: bool = False) -> str:
+                 resolve: bool = False,
+                 prompt_ids: Optional[Sequence[str]] = DAILY_PROMPT_IDS) -> str:
     """ジョブサマリ用の1行。"""
-    counts = count_citations(rows, date, retired, resolve=resolve)
+    counts = count_citations(rows, date, retired, resolve=resolve,
+                             prompt_ids=prompt_ids)
     still = [c for c in counts if c["count"] and c["status"] in STALE_STATUSES]
     total = sum(c["count"] for c in counts)
     if not counts:
@@ -228,4 +269,7 @@ def summary_line(date: str, rows: Sequence[Dict[str, Any]],
     if not still:
         return f"取り下げURLの引用: 0回(定義{len(counts)}件・{date}){tail}"
     return ("取り下げURLの引用: "
-            + ", ".join(f"{c['label']} {c['count']}回" for c in still))
+            + ", ".join(
+                f"{c['label']} {c['count']}回"
+                + (f"({'/'.join(c['prompts'])})" if c["prompts"] else "")
+                for c in still))

@@ -215,6 +215,63 @@ def test_replaced_is_still_excluded_from_stale():
     assert set(retired_urls.STALE_STATUSES) == {"deleted", "dead"}
 
 
+# --- 月次も数える(要判断1の回答)---------------------------------------------
+def test_the_daily_scope_only_looks_at_e1():
+    """日次で会社そのものを聞くのは E-1 だけ。既定はここに絞る。"""
+    assert retired_urls.DAILY_PROMPT_IDS == ("E-1",)
+    rows = [_obs("claude", [DELETED], prompt_id="M-4")]
+    counts = {c["url"]: c for c in retired_urls.count_citations(rows, DATE, RETIRED)}
+    assert counts[DELETED]["count"] == 0
+
+
+def test_the_monthly_scope_counts_every_prompt():
+    """月次は12本すべてが自社を聞く面なので絞らない。
+
+    fsdg.jp は日次 E-1 では一度も引用されず、月次 M-4 で初めて出た。
+    日次だけを見ていると永久に0件と表示され「引用が止まった」と読めてしまう。
+    """
+    rows = [_obs("claude", [DELETED], prompt_id="M-4")]
+    counts = {c["url"]: c for c in retired_urls.count_citations(
+        rows, DATE, RETIRED, prompt_ids=retired_urls.ALL_PROMPTS)}
+    assert counts[DELETED]["count"] == 1
+    assert counts[DELETED]["prompts"] == ["M-4"]
+
+
+def test_the_place_records_which_prompt_cited_it():
+    rows = retired_urls.event_rows(
+        DATE, [_obs("claude", [DELETED], prompt_id="M-4")], RETIRED,
+        prompt_ids=retired_urls.ALL_PROMPTS, scope=retired_urls.SCOPE_MONTHLY)
+    cited = next(r for r in rows if "1回" in r["detail"])
+    assert cited["place"].startswith("月次 M-4")
+
+
+def test_the_place_records_the_scope_when_nothing_was_cited():
+    """0件のとき、どこを見て0だったのかが分からないと0の意味が変わる。"""
+    rows = retired_urls.event_rows(DATE, [], RETIRED)
+    assert all(r["place"].startswith("日次 E-1") for r in rows)
+
+
+def test_daily_and_monthly_rows_do_not_collide_in_lk_events():
+    """同じ日・同じURLでも、日次由来と月次由来は別の行として残る。"""
+    obs = [_obs("claude", [DELETED], prompt_id="E-1"),
+           _obs("gemini", [DELETED], prompt_id="M-4")]
+    daily = retired_urls.event_rows(DATE, obs, RETIRED)
+    monthly = retired_urls.event_rows(
+        DATE, obs, RETIRED, prompt_ids=retired_urls.ALL_PROMPTS,
+        scope=retired_urls.SCOPE_MONTHLY)
+    # lk_events の鍵は date + event_type + place + detail
+    keys = {(r["date"], r["event_type"], r["place"], r["detail"])
+            for r in daily + monthly}
+    assert len(keys) == len(daily) + len(monthly)
+
+
+def test_the_summary_names_the_prompt_that_cited_it():
+    line = retired_urls.summary_line(
+        DATE, [_obs("claude", [DELETED], prompt_id="M-4")], RETIRED,
+        prompt_ids=retired_urls.ALL_PROMPTS)
+    assert "(M-4)" in line
+
+
 # --- ジョブサマリ ------------------------------------------------------------
 def test_the_summary_reports_zero_clearly():
     line = retired_urls.summary_line(DATE, [_obs("claude", [])], RETIRED)
