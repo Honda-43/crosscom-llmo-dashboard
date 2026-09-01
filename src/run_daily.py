@@ -36,6 +36,7 @@ import collect_llm
 import extract
 import looker_tabs
 import notify_slack
+import retired_urls
 import sheets_writer
 
 
@@ -212,6 +213,15 @@ def main() -> None:
     if looker_payload:
         _run("write_looker_tabs",
              lambda: sheets_writer.write_looker_tabs(looker_payload), failures)
+
+    # 取り下げたURLがまだ引用されているか(A-011)。ジョブサマリに出しておかないと、
+    # 参照面が入れ替わった日を後から探し直すことになる。
+    _run(
+        "retired_url_citations",
+        lambda: summary_lines.append(
+            "- " + retired_urls.summary_line(date, extractions, resolve=True)),
+        failures,
+    )
 
     # Slack alert last, so it can report failures from every preceding phase.
     notified = _run(

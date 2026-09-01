@@ -31,6 +31,8 @@ ENTITY_STOPLIST_FILE = CONFIG_DIR / "entity_stoplist.yaml"
 # Phase 2 — weekly insight engine
 RULES_THRESHOLDS_FILE = CONFIG_DIR / "rules_thresholds.yaml"
 LEGACY_PATHS_FILE = CONFIG_DIR / "legacy_paths.yaml"
+# 取り下げた掲載先URL(A-011)。消したあと何日引用され続けるかを実測する。
+RETIRED_URLS_FILE = CONFIG_DIR / "retired_urls.yaml"
 PLAYBOOK_FILE = CONFIG_DIR / "playbook.md"
 # Phase 5 — 判定欄のテンプレート(LLMを使わず決定的に文面を作る)
 VERDICT_TEMPLATES_FILE = CONFIG_DIR / "verdict_templates.yaml"

@@ -16,6 +16,7 @@ from collections import Counter, defaultdict
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import analyze_diff
+import retired_urls
 import display_map
 import notify_slack
 import verdicts
@@ -686,7 +687,12 @@ def build_all(
         "lk_scatter": scatter_rows(date, sov_rows, observations),
         "lk_sov_trend": sov_trend_rows(date, sov_rows),
         "lk_negative": negative_rows(date, observations),
-        "lk_events": event_rows(date, changes, sov_rows),
+        # 取り下げたURLの引用は changes 由来ではないので別立てで足す(A-011)。
+        # 参照面が入れ替わるまでのラグを実測するため、0件の日も行を出す。
+        # 引用URLの全量は生データにしかない(シートの cited_crosscom_urls は
+        # 自社ドメインだけ)。外部ドメインを数えるので raw_records を渡す。
+        "lk_events": (event_rows(date, changes, sov_rows)
+                      + retired_urls.event_rows(date, raw_records, resolve=True)),
         "lk_actions": action_display_rows(action_rows, date),
         "lk_answers": answer_rows(date, raw_records, observations),
     }
