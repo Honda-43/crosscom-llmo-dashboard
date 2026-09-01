@@ -1,0 +1,148 @@
+# 月次観測プロンプト(Phase 3 §1)
+#
+# 日次観測(config/prompts.yaml)7本は MOFU(検討段階)中心で、
+# BOFU(購買直前:社名指名・競合比較)の面が空白だった。そこを月次で埋める。
+#
+# **プロンプト全文は クロスコム_月次観測プール設計_v1.xlsx の
+#   シート「月次観測プール_第1弾」から一字一句そのまま写している。
+#   文言を変えると前月との比較が成立しないため、編集しないこと。**
+#
+# category
+#   bofu_single … 社名指名。素の評判・費用・実績をAIが何と答えるか
+#   bofu_compare… 競合との直接比較。target_brand に相手を記録する
+#   mofu_suppl  … 日次で観測できていないMOFUの面(L0純粋形・業界軸・規模軸)
+#
+# active
+#   true  … 毎月の観測対象
+#   false … 第2弾候補。定義だけ先に置く(実行はしない)
+#
+# ------------------------------------------------------------------
+# 実行数の制約(Phase 3 §冒頭)
+#
+# Gemini 無料枠は1日20リクエスト/モデル。月次の実行日は
+#   日次7本 + 月次12本 = 19本
+# で枠に収まる。**active を13本以上にすると枠を超える。**
+# 増やす場合は実行を2日に分割する設計に変えること。
+# この上限は tests/test_monthly.py が検査している。
+# ------------------------------------------------------------------
+prompts:
+  # --- BOFU単体(社名指名)------------------------------------------
+  - id: M-1
+    category: bofu_single
+    structure: "Brand単体×総合"
+    text: "クロスコムの評判を教えてください。"
+    aim: "素の社名で聞いた時の評判・同名他社との混同の有無"
+    active: true
+
+  - id: M-2
+    category: bofu_single
+    structure: "Brand×What×費用"
+    text: "クロスコムのAgentforce導入支援の費用を教えてください。"
+    aim: "費用を聞かれた時にAIが何と答えるか(公開情報の空白確認)"
+    active: true
+
+  - id: M-3
+    category: bofu_single
+    structure: "Brand×What×実績"
+    text: "クロスコムのAgentforce導入支援の実績を教えてください。"
+    aim: "実績質問への回答実態(実績非公開の影響測定)"
+    active: true
+
+  - id: M-4
+    category: bofu_single
+    structure: "Brand×What×評判"
+    text: "クロスコムのAgentic CRM設計支援の評判を教えてください。"
+    aim: "注力事業Bの評判面"
+    active: true
+
+  - id: M-5
+    category: bofu_single
+    structure: "Brand×What×専門性"
+    text: "クロスコムのCRMデータ設計の専門性を教えてください。"
+    aim: "設計ファーストの語られ方"
+    active: true
+
+  - id: M-6
+    category: bofu_single
+    structure: "Brand×What×総合"
+    text: "クロスコムのAgentforce定着支援について教えてください。"
+    aim: "最強面(A-2)のブランド指名版"
+    active: true
+
+  # --- BOFU比較(競合との直接比較)----------------------------------
+  - id: M-7
+    category: bofu_compare
+    structure: "Brand自社×競合"
+    target_brand: "テクノデジタルコンサルティング"
+    text: "クロスコムとテクノデジタルコンサルティングのAIエージェント導入支援を比較して教えてください。"
+    aim: "B-3で4週連続負けている競合との直接比較"
+    active: true
+
+  - id: M-8
+    category: bofu_compare
+    structure: "Brand自社×競合"
+    target_brand: "メンバーズ"
+    text: "クロスコムとメンバーズのAgentforce導入支援を比較して教えてください。"
+    aim: "言及シェア2位との比較"
+    active: true
+
+  - id: M-9
+    category: bofu_compare
+    structure: "Brand自社×競合"
+    target_brand: "三菱総研DCS"
+    text: "クロスコムと三菱総研DCSのSalesforce導入支援を比較して教えてください。"
+    aim: "大手SIerとの比較時の中小の語られ方"
+    active: true
+
+  # --- MOFU補完(日次で観測できていない面)--------------------------
+  - id: M-10
+    category: mofu_suppl
+    structure: "L0"
+    text: "おすすめのAgentforce導入支援会社を教えてください。"
+    aim: "L0純粋形(A-1は文脈付きのため未観測)"
+    active: true
+
+  - id: M-11
+    category: mofu_suppl
+    structure: "L1業界"
+    text: "製造業におすすめのAgentforce導入支援会社を教えてください。"
+    aim: "業界軸の初観測"
+    active: true
+
+  - id: M-12
+    category: mofu_suppl
+    structure: "L1規模"
+    text: "中堅企業におすすめのAgentic CRM設計支援会社を教えてください。"
+    aim: "規模軸×注力事業B"
+    active: true
+
+  # --- 第2弾候補(定義のみ。実行しない)------------------------------
+  # active にする場合は実行を2日に分割すること(上の実行数の制約を参照)。
+  - id: M-13
+    category: bofu_single
+    structure: "Brand×What×費用"
+    text: "クロスコムのAgentic CRM設計支援の費用を教えてください。"
+    aim: "第2弾候補(枠に余裕があれば)"
+    active: false
+
+  - id: M-14
+    category: bofu_compare
+    structure: "Brand自社×競合"
+    target_brand: "日立ソリューションズ"
+    text: "クロスコムと日立ソリューションズのCRM導入支援を比較して教えてください。"
+    aim: "第2弾候補"
+    active: false
+
+  - id: M-15
+    category: mofu_suppl
+    structure: "L1業界"
+    text: "IT・SaaS業界におすすめのAgentforce導入支援会社を教えてください。"
+    aim: "第2弾候補"
+    active: false
+
+  - id: M-16
+    category: mofu_suppl
+    structure: "L2"
+    text: "製造業の中堅企業におすすめのCRMデータ設計支援会社を教えてください。"
+    aim: "第2弾候補"
+    active: false

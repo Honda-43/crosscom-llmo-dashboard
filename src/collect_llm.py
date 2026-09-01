@@ -250,15 +250,22 @@ def _model_runnable(model_key: str) -> bool:
     return True
 
 
-def collect(date: Optional[str] = None) -> List[Dict[str, Any]]:
+def collect(date: Optional[str] = None,
+            prompts: Optional[List[Dict[str, Any]]] = None,
+            out_dir: Optional[Path] = None) -> List[Dict[str, Any]]:
     """Run all enabled models across all prompts for ``date`` (YYYY-MM-DD,
     defaults to today UTC). Returns a list of record dicts (also written to
-    disk). Records with ``"error"`` set represent missing observations."""
+    disk). Records with ``"error"`` set represent missing observations.
+
+    ``prompts`` / ``out_dir`` を渡すと別のプロンプト集合を同じ手順で回せる
+    (Phase 3 の月次観測)。リトライ・掃き直し・欠測の数え方を月次側に
+    書き写さないための引数で、既定では日次のまま動く。
+    """
     date = date or dt.datetime.utcnow().strftime("%Y-%m-%d")
-    out_dir = DATA_RAW_DIR / date
+    out_dir = Path(out_dir) if out_dir is not None else DATA_RAW_DIR / date
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    prompts = load_prompts()
+    prompts = load_prompts() if prompts is None else list(prompts)
     models = [m for m in enabled_models() if _model_runnable(m)]
     print(f"[info] date={date} models={models} prompts={len(prompts)}")
 
@@ -274,7 +281,11 @@ def collect(date: Optional[str] = None) -> List[Dict[str, Any]]:
             record: Dict[str, Any] = {
                 "date": date,
                 "prompt_id": pid,
-                "pillar": prompt["pillar"],
+                # 月次プロンプトは pillar を持たず category を持つ。
+                # 抽出とシート書き込みが同じ形を期待するので、両方入れておく。
+                "pillar": prompt.get("pillar", ""),
+                "category": prompt.get("category", ""),
+                "target_brand": prompt.get("target_brand", ""),
                 "model": model_key,
                 "model_name": model_name,
                 "question": prompt["text"],

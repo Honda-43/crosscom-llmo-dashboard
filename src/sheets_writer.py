@@ -17,6 +17,7 @@ from settings import (
     TAB_GA4,
     TAB_GSC,
     TAB_LLM,
+    TAB_MONTHLY,
     TAB_SOV,
     TAB_ACTION_LOG,
     TAB_BOARD,
@@ -40,6 +41,18 @@ HEADERS_LLM = [
     "kbf_tags", "negative_or_outdated", "negative_detail", "cited_crosscom_urls",
     "competitors_mentioned", "raw_file",
 ]
+# Phase 3 — 月次観測。llm_observations と同じ並びに category / target_brand /
+# notes を足しただけ。日次のスキーマは触っていない(既存カラムの意味・並びは不変)。
+# notes はエンティティ混同のような「ネガではないが記録したいこと」を書く欄
+# (指示書 §6:同名他社との混同は negative 扱いにせずここへ)。
+HEADERS_MONTHLY = [
+    "date", "prompt_id", "category", "target_brand", "model", "mention",
+    "mention_type", "rank", "kbf_tags", "negative_or_outdated",
+    "negative_detail", "cited_crosscom_urls", "competitors_mentioned",
+    "notes", "raw_file",
+]
+KEYS_MONTHLY = ["date", "prompt_id", "model"]
+
 HEADERS_GA4 = ["date", "source", "landing_page", "sessions", "key_events"]
 HEADERS_GSC = ["date", "query", "clicks", "impressions"]
 HEADERS_AHREFS = ["date", "aio_keyword_count", "keywords_json"]
@@ -513,6 +526,40 @@ def write_llm_observations(extractions: List[Dict[str, Any]]) -> None:
     ss = _open_spreadsheet()
     rows = [_llm_row(r) for r in extractions]
     _upsert(ss, TAB_LLM, HEADERS_LLM, KEYS_LLM, rows)
+
+
+def _monthly_row(rec: Dict[str, Any]) -> Dict[str, Any]:
+    """抽出結果を monthly_observations の形にする。
+
+    日次の _llm_row を土台に、月次だけが持つ列を足す。エラー行も列を保つのは
+    日次と同じ扱い(観測できなかったことを行として残す)。
+    """
+    row = _llm_row(rec)
+    row.pop("pillar", None)
+    row.update({
+        "category": rec.get("category", ""),
+        "target_brand": rec.get("target_brand", ""),
+        "notes": rec.get("notes", ""),
+    })
+    return {h: row.get(h, "") for h in HEADERS_MONTHLY}
+
+
+def write_monthly_observations(extractions: List[Dict[str, Any]]) -> None:
+    """月次観測を monthly_observations に upsert(Phase 3 §2)。
+
+    **日次の llm_observations には書かない。** 混ぜると言及率・言及シェアの
+    母数が月に一度だけ跳ね、日次指標の時系列が読めなくなる。
+    """
+    if not extractions:
+        return
+    ss = _open_spreadsheet()
+    rows = [_monthly_row(r) for r in extractions]
+    _upsert(ss, TAB_MONTHLY, HEADERS_MONTHLY, KEYS_MONTHLY, rows)
+
+
+def read_monthly_observations() -> List[Dict[str, str]]:
+    """月次観測。タブが無ければ空(初回実行前でもエラーにしない)。"""
+    return _read_tab(TAB_MONTHLY)
 
 
 def write_daily_summary(summary: Dict[str, Any]) -> None:

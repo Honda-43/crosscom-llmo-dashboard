@@ -381,6 +381,128 @@ def notify_weekly(date: str, report_md: str, webhook: Optional[str] = None) -> b
 
 
 # --------------------------------------------------------------------------
+# Monthly summary (Phase 3 §3)
+# --------------------------------------------------------------------------
+# 月次は「BOFU(購買直前)でAIが何と答えるか」を見る面なので、日次の
+# 言及率のような集計値ではなく、プロンプト1本ずつの結果を並べる。
+# 12本しかないうえ、月に一度しか読まないため、畳まずに全部出す。
+CATEGORY_LABELS = {
+    "bofu_single": "BOFU単体(社名指名)",
+    "bofu_compare": "BOFU比較(競合との直接比較)",
+    "mofu_suppl": "MOFU補完",
+}
+
+
+def _by_prompt(rows: Sequence[Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    """prompt_id ごとにモデルの結果をまとめる。"""
+    out: Dict[str, Dict[str, Any]] = {}
+    for r in rows:
+        pid = str(r.get("prompt_id") or "")
+        if not pid:
+            continue
+        entry = out.setdefault(pid, {
+            "category": r.get("category", ""), "target_brand": r.get("target_brand", ""),
+            "models": {},
+        })
+        entry["models"][str(r.get("model") or "")] = r
+    return out
+
+
+def _mention_mark(rec: Dict[str, Any]) -> str:
+    if rec.get("error"):
+        return "欠測"
+    flag = analyze_diff.parse_bool(rec.get("mention"))
+    if flag is None:
+        return "不明"
+    if not flag:
+        return "言及なし"
+    rank = rec.get("rank")
+    return f"言及あり({rank}位)" if rank not in (None, "", "—") else "言及あり"
+
+
+def _compare_verdict(rec: Dict[str, Any], competitor: str) -> str:
+    """比較型で自社と競合のどちらに寄ったか。
+
+    機械で言えるのは「自社に言及があるか」「競合が併記されているか」「順位」まで。
+    どちらが良く書かれたかの判断はここではしない(指示書 §3:判定できない場合は
+    「要目視」と正直に書く)。
+    """
+    if rec.get("error"):
+        return "欠測"
+    mention = analyze_diff.parse_bool(rec.get("mention"))
+    rivals = analyze_diff.split_list(rec.get("competitors_mentioned"))
+    rival_here = any(competitor and competitor in c for c in rivals)
+    rank = rec.get("rank")
+    if mention and not rival_here:
+        return "自社のみ言及"
+    if not mention and rival_here:
+        return f"{competitor}のみ言及"
+    if mention and rival_here:
+        return f"両社に言及(自社{rank}位)" if rank not in (None, "", "—") else "両社に言及・優劣は要目視"
+    return "どちらも言及なし"
+
+
+def build_monthly_message(month: str, extractions: Sequence[Dict[str, Any]] = (),
+                          prompts: Sequence[Dict[str, Any]] = ()) -> str:
+    """月次サマリ本文(Phase 3 §3)。"""
+    lines = [f"📅 *LLMO月次観測* | {month}", ""]
+    grouped = _by_prompt(extractions)
+    aims = {str(p.get("id")): p for p in prompts}
+
+    total = len(grouped)
+    missing = sum(1 for e in grouped.values()
+                  for r in e["models"].values() if r.get("error"))
+    lines.append(f"観測 {total}本 × {len(set(m for e in grouped.values() for m in e['models']))}モデル"
+                 + (f"  |  欠測 {missing}件" if missing else "  |  欠測なし"))
+    lines.append("")
+
+    for category in ("bofu_single", "bofu_compare", "mofu_suppl"):
+        ids = [pid for pid, e in grouped.items() if e["category"] == category]
+        if not ids:
+            continue
+        lines.append(f"*{CATEGORY_LABELS.get(category, category)}*")
+        for pid in sorted(ids, key=lambda x: (len(x), x)):
+            entry = grouped[pid]
+            aim = str(aims.get(pid, {}).get("aim", "")).strip()
+            parts = []
+            for model in sorted(entry["models"]):
+                rec = entry["models"][model]
+                if category == "bofu_compare":
+                    parts.append(f"{model}: {_compare_verdict(rec, entry['target_brand'])}")
+                else:
+                    parts.append(f"{model}: {_mention_mark(rec)}")
+            lines.append(f"• {pid} {aim} — " + " / ".join(parts))
+            # ネガ検知と混同の記録は、件数ではなく中身が要るので行を分けて出す。
+            for model in sorted(entry["models"]):
+                rec = entry["models"][model]
+                if analyze_diff.parse_bool(rec.get("negative_or_outdated")):
+                    lines.append(f"    ⚠️ {model}: {negative_kind(rec.get('negative_detail'))}")
+                if str(rec.get("notes") or "").strip():
+                    lines.append(f"    📝 {model}: {str(rec['notes']).strip()[:80]}")
+        lines.append("")
+
+    url = spreadsheet_url()
+    if url:
+        lines.append(f"回答全文: <{url}|monthly_observations タブ>")
+    return "\n".join(lines).strip()
+
+
+def notify_monthly(month: str, extractions: Sequence[Dict[str, Any]] = (),
+                   prompts: Sequence[Dict[str, Any]] = (),
+                   webhook: Optional[str] = None) -> bool:
+    """月次サマリを投稿。投稿したら True。"""
+    text = build_monthly_message(month, extractions, prompts)
+    webhook = webhook if webhook is not None else SLACK_WEBHOOK_URL
+    if not webhook:
+        print("[warn] SLACK_WEBHOOK_URL is not set — monthly summary not sent:")
+        print(text)
+        return False
+    _post(text, webhook)
+    print(f"[ok] notify_slack monthly {month}: summary sent ({len(text)} chars)")
+    return True
+
+
+# --------------------------------------------------------------------------
 # --test
 # --------------------------------------------------------------------------
 def _test_message(date: str) -> str:
@@ -450,14 +572,36 @@ def main() -> None:
                     help="send the 'no changes' variant of the daily alert")
     ap.add_argument("--test-weekly", action="store_true",
                     help="send one synthetic weekly report")
+    ap.add_argument("--test-monthly", action="store_true",
+                    help="send one synthetic monthly summary")
     ap.add_argument("--date", default="2026-08-18", help="date label used in the message")
     args = ap.parse_args()
 
-    if not (args.test or args.test_quiet or args.test_weekly):
-        ap.error("nothing to do — pass --test / --test-quiet / --test-weekly, "
-                 "or call notify() from run_daily.py")
+    if not (args.test or args.test_quiet or args.test_weekly or args.test_monthly):
+        ap.error("nothing to do — pass --test / --test-quiet / --test-weekly / "
+                 "--test-monthly, or call notify() from run_daily.py")
 
-    if args.test_weekly:
+    if args.test_monthly:
+        rows = [
+            {"prompt_id": "M-1", "category": "bofu_single", "model": "claude",
+             "mention": True, "negative_or_outdated": False,
+             "notes": "【テスト送信】同名の別会社と混同されている"},
+            {"prompt_id": "M-1", "category": "bofu_single", "model": "gemini",
+             "mention": True, "rank": 1, "negative_or_outdated": True,
+             "negative_detail": "【テスト送信】旧MA/メール配信事業の記述"},
+            {"prompt_id": "M-7", "category": "bofu_compare", "model": "claude",
+             "target_brand": "テクノデジタルコンサルティング", "mention": True,
+             "competitors_mentioned": "テクノデジタルコンサルティング",
+             "negative_or_outdated": False},
+            {"prompt_id": "M-10", "category": "mofu_suppl", "model": "gemini",
+             "mention": False, "negative_or_outdated": False},
+        ]
+        prompts = [{"id": "M-1", "aim": "素の社名で聞いた時の評判・同名他社との混同の有無"},
+                   {"id": "M-7", "aim": "B-3で4週連続負けている競合との直接比較"},
+                   {"id": "M-10", "aim": "L0純粋形(A-1は文脈付きのため未観測)"}]
+        text = build_monthly_message(args.date[:7], rows, prompts)
+        label = "test monthly summary"
+    elif args.test_weekly:
         report = (
             "# LLMO週次所見 " + args.date + "\n\n"
             "## 1. 今週のサマリ\n\n【テスト送信】週次レポートの配信テストです。\n\n"

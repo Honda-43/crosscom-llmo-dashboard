@@ -19,7 +19,11 @@ import yaml
 ROOT_DIR = Path(__file__).resolve().parent.parent
 CONFIG_DIR = ROOT_DIR / "config"
 DATA_RAW_DIR = ROOT_DIR / "data" / "raw"
+# 月次の回答全文。日次と混ざると data/raw の日付ディレクトリの意味が変わるため分ける。
+DATA_RAW_MONTHLY_DIR = ROOT_DIR / "data" / "raw" / "monthly"
 PROMPTS_FILE = CONFIG_DIR / "prompts.yaml"
+# Phase 3 — 月次観測(BOFU:社名指名・競合比較)。日次とはファイルを分ける。
+PROMPTS_MONTHLY_FILE = CONFIG_DIR / "prompts_monthly.yaml"
 # Entity alias table (Phase 1 §2-1) — appended to during operation, no code change.
 ENTITY_ALIASES_FILE = CONFIG_DIR / "entity_aliases.yaml"
 # Generic phrases that are not company names and must not be counted.
@@ -81,6 +85,19 @@ def load_yaml(path: Any) -> Any:
 def load_prompts() -> List[Dict[str, Any]]:
     """Load the approved observation prompts from config/prompts.yaml."""
     return load_yaml(PROMPTS_FILE)["prompts"]
+
+
+def load_monthly_prompts(active_only: bool = True) -> List[Dict[str, Any]]:
+    """月次観測プロンプト(Phase 3 §1)。
+
+    ``active_only`` が真なら実行対象だけを返す。第2弾候補は
+    ``active: false`` で定義だけ置いてあるので、実行数の見積もりと
+    区別できるようにしている。
+    """
+    prompts = load_yaml(PROMPTS_MONTHLY_FILE)["prompts"]
+    if active_only:
+        return [p for p in prompts if p.get("active")]
+    return prompts
 
 
 # --------------------------------------------------------------------------
@@ -255,6 +272,9 @@ TAB_SOV = "sov_daily"
 TAB_CHANGES = "changes"
 # Phase 2
 TAB_WEEKLY = "weekly_reports"
+# Phase 3 — 月次観測。日次の llm_observations には混ぜない
+# (言及率など日次指標の母数を汚さないため)。
+TAB_MONTHLY = "monthly_observations"
 # Phase 5
 TAB_ACTION_LOG = "action_log"
 TAB_CITATION_GAP = "citation_gap"

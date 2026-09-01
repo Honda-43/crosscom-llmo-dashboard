@@ -75,9 +75,11 @@ crosscom-llmo-dashboard/
 ├── .github/workflows/
 │   ├── daily.yml          # 毎朝07:00 JST(cron: '0 22 * * *' UTC)
 │   ├── weekly.yml         # 毎週月曜08:30 JST(cron: '30 23 * * 0' UTC)
+│   ├── monthly.yml        # 毎月第1火曜07:30 JST(Phase 3)
 │   └── backfill_sov.yml   # sov_daily 全期間再生成(手動実行)
 ├── config/
 │   ├── prompts.yaml       # 観測プロンプト定義(承認済み・変更禁止)
+│   ├── prompts_monthly.yaml # 月次観測プロンプト M-1〜M-16(Phase 3・xlsx原文)
 │   ├── entity_aliases.yaml  # 企業名エイリアス(運用中に追記する)
 │   ├── entity_stoplist.yaml # 企業名でない一般名詞の除外リスト
 │   ├── playbook.md          # 運用プレイブック(Phase 2・所見生成の根拠)
@@ -106,7 +108,8 @@ crosscom-llmo-dashboard/
 │   ├── sheets_writer.py   # Sheets追記の共通処理(冪等upsert)
 │   ├── settings.py        # 環境変数・定数・モデル有効/無効
 │   ├── run_daily.py       # 日次オーケストレータ
-│   └── run_weekly.py      # 週次オーケストレータ
+│   ├── run_weekly.py      # 週次オーケストレータ
+│   └── run_monthly.py     # 月次オーケストレータ(Phase 3)
 ├── app/                   # ローカル分析アプリ(Phase 4・Streamlit・読み取り専用)
 │   ├── main.py            # エントリポイント(5ページのナビゲーション)
 │   ├── data_source.py     # Sheets/ローカルの読み取りとキャッシュ
@@ -742,6 +745,95 @@ python notify_slack.py --test-weekly --date 2026-08-17               # 週次投
 **終了コードの約束**:Ahrefs の失敗は best-effort なので緑のまま。
 それ以外の失敗(所見のフォールバック使用を含む)は**赤にする** —
 数値だけのレポートが届いたことに気付けるようにするため。
+
+---
+
+## Phase 3:月次観測(BOFU・購買直前面)
+
+### なぜ足したか
+
+日次観測7本は **MOFU(検討段階)** 中心で、**BOFU(購買直前:社名指名・競合比較)**
+の面が空白だった。「Agentforce導入支援の会社を教えて」は観測できていたが、
+「クロスコムの評判は」「クロスコムとテクノデジタルコンサルティングを比較して」は
+一度も観測していなかった。**買う直前にAIが何と答えるか**を月次で12本測る。
+
+### 実行数の制約(設計の中心)
+
+Gemini 無料枠は `GenerateRequestsPerDayPerProjectPerModel-FreeTier` で
+**1日20リクエスト/モデル**。月次は日次と同じ日に走るので合計で見る必要がある。
+
+```
+日次 7本 + 月次 12本 = 19 / 20
+```
+
+**active な月次プロンプトを13本以上にすると枠を超える。**
+増やす場合は実行を2日に分割する設計に変えること。
+この上限は `tests/test_monthly.py::test_the_monthly_run_fits_in_the_gemini_daily_quota`
+が検査していて、超えると CI が落ちる。
+
+### 構成
+
+| ファイル | 役割 |
+|---|---|
+| `config/prompts_monthly.yaml` | M-1〜M-16。**M-1〜M-12 が active、M-13〜M-16 は第2弾候補で active: false** |
+| `src/run_monthly.py` | オーケストレータ。収集 → 抽出 → シート → Slack |
+| `.github/workflows/monthly.yml` | 毎月第1火曜 07:30 JST + workflow_dispatch |
+| `monthly_observations`(タブ) | `llm_observations` + `category` / `target_brand` / `notes` |
+| `data/raw/monthly/YYYY-MM-DD/` | 回答全文 |
+
+**日次・週次には一切混ぜない。** `monthly_observations` は別タブで、
+`daily_summary` にも `read_for_rules()` にも入らない。混ぜると言及率・言及シェアの
+母数が月に一度だけ跳ね、日次指標の時系列が読めなくなる。
+`tests/test_monthly.py` がこの分離を固定している。
+
+収集は `collect_llm.collect(date, prompts=..., out_dir=...)` を使い回す。
+リトライ・掃き直し・欠測通知を月次側に書き写すと、片方だけ直るバグの温床になる。
+
+### プロンプトの区分(LANYフレームとの対応)
+
+| category | 本数 | 内容 |
+|---|---:|---|
+| `bofu_single` | 6 | 社名指名。評判・費用・実績・専門性をAIが何と答えるか |
+| `bofu_compare` | 3 | 競合との直接比較。`target_brand` に相手を記録 |
+| `mofu_suppl` | 3 | 日次で観測できていないMOFU(L0純粋形・業界軸・規模軸) |
+
+**プロンプト全文は `クロスコム_月次観測プール設計_v1.xlsx` の
+シート「月次観測プール_第1弾」から一字一句そのまま写している。**
+文言を変えると前月との比較が成立しないため、`tests/test_monthly.py` が
+16本すべての原文を持って照合している。
+
+### 比較型の読み方
+
+月次サマリは、比較型について機械で言えるところまでしか書かない。
+
+- 自社に言及があるか / 競合が併記されているか / 順位
+- 両社に言及があって順位が取れない場合は **「要目視」** と書く
+
+どちらが良く書かれたかの判断はしない。抽出スキーマ(§4)は変更しておらず、
+勝敗判定のような新項目は足していない。
+
+**同名他社との混同は `negative` 扱いにしない。** `notes` 列に記録して
+月次サマリで「📝」として報告する。エンティティの混同は情報の古さとは別の問題で、
+混ぜると R-P7 の意味が壊れる。
+
+### 第2弾の追加手順
+
+1. `config/prompts_monthly.yaml` の該当プロンプトを `active: true` にする
+2. `tests/test_monthly.py` の枠テストが落ちることを確認する(13本以上で落ちる)
+3. 落ちるなら **実行を2日に分割する**(1日の枠を超えたまま動かさない)
+4. `tests/test_monthly.py` の `test_the_first_wave_is_twelve_prompts` を更新する
+
+### 実行
+
+```bash
+# 定期実行:毎月第1火曜 07:30 JST(cron: '30 22 * * 1' + JSTの日付でガード)
+# 手動実行:Actions → monthly → Run workflow(date を指定可)
+
+cd src
+python run_monthly.py                          # 通常
+python run_monthly.py --no-slack --no-sheets   # 手元で本文だけ確認
+python notify_slack.py --test-monthly          # 月次サマリのテスト送信
+```
 
 ---
 

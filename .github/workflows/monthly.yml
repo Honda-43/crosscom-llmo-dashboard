@@ -1,0 +1,100 @@
+name: monthly
+
+on:
+  # 毎週火曜 07:30 JST に起動し、その月の第1火曜のときだけ実行する。
+  # cron は「第1火曜」を直接書けない(日と曜日を両方指定すると OR になる)。
+  # また 07:30 JST = 22:30 UTC の前日なので、UTCの日付で判定すると1日ずれる。
+  # そのため JST の日付でガードする。
+  #
+  # 日次は 07:00 JST なので、同日の実行順は 日次7本 -> 月次12本 = 19/20。
+  - cron: '30 22 * * 1'   # 月曜22:30 UTC = 火曜07:30 JST
+  workflow_dispatch:
+    inputs:
+      date:
+        description: '観測日 (YYYY-MM-DD、空なら当日JST)'
+        required: false
+        default: ''
+      force:
+        description: '第1火曜でなくても実行する'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write      # data/raw/monthly/ のcommitに必要
+
+concurrency:
+  group: llmo-monthly
+  cancel-in-progress: false
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.check.outputs.run }}
+    steps:
+      - name: Is today the first Tuesday (JST)?
+        id: check
+        run: |
+          DOM=$(TZ=Asia/Tokyo date +%d)
+          DOW=$(TZ=Asia/Tokyo date +%u)   # 1=Mon .. 7=Sun
+          echo "JST $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M') day-of-month=$DOM day-of-week=$DOW"
+          if [ "${{ inputs.force }}" = "true" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          elif [ "$DOW" = "2" ] && [ "$DOM" -le 07 ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::第1火曜ではないためスキップします。"
+          fi
+
+  monthly:
+    needs: guard
+    if: needs.guard.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    env:
+      GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+      SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run monthly observation
+        working-directory: src
+        run: |
+          python run_monthly.py \
+            ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
+
+      - name: Commit monthly raw answers
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/raw/monthly
+          if git diff --cached --quiet; then
+            echo "No new monthly answers to commit."
+          else
+            git commit -m "data: monthly observations $(TZ=Asia/Tokyo date +%Y-%m)"
+            git push
+          fi
+
+      - name: Notify Slack on workflow failure
+        if: failure() && env.SLACK_WEBHOOK_URL != ''
+        run: |
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          TEXT="*LLMO月次アラート*\n*❌ ワークフロー失敗*\n• monthly.yml が異常終了しました(月次サマリが未配信の可能性あり)\n<$RUN_URL|実行ログを開く>"
+          printf '{"text":"%s"}' "$TEXT" > payload.json
+          curl -sS -X POST -H 'Content-type: application/json' \
+            --data @payload.json "$SLACK_WEBHOOK_URL" > /dev/null

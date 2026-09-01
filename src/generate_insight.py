@@ -130,6 +130,8 @@ _SYSTEM_TEMPLATE = """あなたはLLMO(LLM最適化)の週次レポートを書�
 
 ## 5. 判定不能・データ不足
 insufficient_data のルールと、観測日数が不足している項目を明示する。無ければ「なし」。
+**このセクションの末尾に、次の1行を必ずそのまま入れる(観測範囲の注記):**
+「日次観測は検討段階(MOFU)中心であり、購買直前(社名指名・競合比較)の面は月次観測を参照」
 
 # 文量
 全体で{max_chars}字以内。冗長な前置きは書かない。
@@ -403,6 +405,10 @@ def fallback_report(stats: Dict[str, Any],
     lines.append(
         f"- 観測日数: 今週 {quality.get('observation_days_this_week', 0)}日 / "
         f"前週 {quality.get('observation_days_prev_week', 0)}日"
+    )
+    lines.append(
+        "- 日次観測は検討段階(MOFU)中心であり、"
+        "購買直前(社名指名・競合比較)の面は月次観測を参照"
     )
     noisy = stats.get("kgi", {}).get("noise_zone_metrics") or []
     if noisy:
