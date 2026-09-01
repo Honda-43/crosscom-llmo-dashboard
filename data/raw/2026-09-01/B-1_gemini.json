@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-09-01T01:01:42.741264Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、人間の指示を待つことなく、自律的なAIエージェントが顧客データを読み解き、多段階のワークフローを計画・実行・適応させる顧客関係管理システムです。従来のCRMがデータの保存と人間によるアクションを待つのに対し、Agentic CRMはAIエージェントが顧客対応やマーケティング活動を自律的に行い、戦略とガイドラインの範囲内でパフォーマンスを最適化します。\n\n**Agentic CRMの主な特徴:**\n*   **自律的な意思決定:** AIエージェントは設定されたガードレールの範囲内でデータとコンテキストに基づいて行動し、各ステップでの人間の承認を必要としません。\n*   **目標指向の行動:** 営業リードの評価、サービスチケットの解決、マーケティングキャンペーンの最適化など、定義された目標を追求し、それに合わせて行動を順序立てます。\n*   **結果からの継続的な学習:** チームが結果をレビューし、エージェントの指示を洗練させ、依拠するデータを更新することで、エージェントのパフォーマンスは時間とともに向上します。\n*   **文脈理解と適応:** 単に条件をアウトプットに合わせるだけでなく、顧客データを推論し、状況に応じた適切な行動を特定し、次に何が起こるかに基づいてアプローチを調整します。\n\n**Agentic CRMのメリット:**\n*   **対応速度の向上:** AIエージェントが情報処理とアクションを迅速に行うため、顧客のニーズにより速く対応できます。\n*   **パーソナライゼーションの深化:** 顧客情報や過去のインタラクションを活用し、個々のニーズに合わせたメール、推奨事項、提案などをAIエージェントが作成します。\n*   **手作業の削減:** 記録の更新、タスク作成、フォローアップ送信など、定型的な業務をAIエージェントが処理することで、従業員はより人間的な関係構築に集中できます。\n*   **24時間365日の顧客サポート:** AI顧客エージェントが顧客からの質問に常時対応し、人間の介入なしに多くの問い合わせを処理できます。\n\n**導入や設計を支援してくれる会社:**\n\nAgentic CRMの導入や設計を支援する会社も存在します。\n\n*   **合同会社クロスコム:**\n    BtoB領域に特化し、Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を提供しています。AIが読み書きすることを前提としたCRMの業務設計から貴社専用に設計・構築することに強みがあり、ツール導入前の業務設計とデータ設計を重視しています。\n\n*   **株式会社100:**\n    HubSpotとAI Agent、DXを統合する「Agentic CRM パートナー」として、HubSpotを共通基盤にAIエージェントを組み込んだ顧客フロント業務（マーケティング・営業・CS）の再設計・実装を支援しています。HubSpotの導入・活用支援や、複数部門をまたぐDX×AI推進のPMO伴走支援も行っています。\n\n*   **ボンギンカン株式会社:**\n    企業がAIツールを導入する段階から、AI Agentが働く組織へと進化するための「Agentic Company導入支援」サービスを提供しています。単体のAI活用ではなく、業務に組み込まれた「Agent Teams」の構築に特化しており、オンプレミス環境での安全なシステム構築にも対応しています。\n\nこれらの企業は、Agentic CRMの導入における業務設計、データ基盤の構築、AIエージェントの役割定義など、多岐にわたる支援を提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFWO8FdfeENQa6BMXk3rj9Y_W3tgW6Qc4Tvg09e-Npr_UYIFalOEqEgliJRbWcNZeaZ9iNHtfxe1adUXj0Y2UFvwVMlPCxZNWi-8y2-xhoP976VDQKITJ08RRDYBsj3hjQ8HGXRq4bKDh5Q0MXVFlwUm44=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEncdpNoyX4WOv4q5tjoUaKTCaqTPfDx09uLzyyf03jFyzvV5oqEtuNKuYLA18ttVY7tfgnskoOkXe8ONFduMc1Y7BaWaV1S2unRm9PwVsOWA1ooWQhKPyi96PzPwyNH1s4JpyrEFSSjNOWZvyjo_6SaKA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE65fOHNmEOQMzFetciVQmwegGXfrokOvR7WDtifhbD3obANCvGmN_kR6DclHZB4FlM10l2F68czJ2BbsbBEYK_aUKenvw5cwYiHR7A9WRcbwOG5hpsGa_7iF7lWjE1ZEouFGVkTK8hiWFxaQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHjjVzRYHbp27Z9VjVpvcsC__mznRoZQ4JUdkXdSWPBNLkzQen0uI_sozinl9pvvrVN65_NwBGJGgO7pfvcdh5c_9ziC4b72-fjCMkdjuXIaBqYGjbm9qDsgc3knA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8yEmNKX1GFTwZqLSzg_oWVAYdA3xXww55Xw-uFOkZdMJGVpRmkdGqe3nSKtMc2biogjnh3jlty9kv0pRbmqAIHu-MuldrkxVp_Z9cpws-rVQMZFq4ku8OyuAiY0VtiacrMfJfqxFhMTkz4w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGuJosG_gb58dzOoPhIOVPPpFVVd9kTTyuoo3XCWMPfQQoIwRrs3-oWAVJ4x5XHtW9eRYTQfjD0rQ7-6fYqcPM4ioqyL5p0fvzM0nt-Fy5czq4aF2iIQmkj3uKwauxf02VFwAtqxjarpWU5TA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHBvUdih9JboutOK7BWsVsW14sLksy1Le3m6qvgX4pcPQTnbE7oke7icb6DXDvLuAolJ87Iw0M7FIOKlYM3bB0DwkFF3-9srwErGa62cCh4WiNNoacGQSNSIqu2I9e3Ayc2C7C2Ryda9PWcjVJ5ksHvxAIsCHGP_HWzW6P5Kl7933FHtLQhoAfP46aA5bKDhKTEERHwnrNa-NTnlfC7qpl3RyH5",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF3qI4LQ4VDIrkFqZQH07C_iEsX02fu0Sbin-kk_L6spN6_nnOvGsiltfS_atdF5JSHgLUR1_a_CciF427slh-qgDanbuuD0_89stNlV5AthgrnkBBpt0dCfPt9Q7Q5KtoXVM1n3514ZgQudaPlV-OldHKDiToTi2Jtnw9gbWnF-9j61avg0JZO227bfV4lJyBNL-8K5DgoHwgnHi-ejTyklxJPBGe9elRHX_2V7uYl5ukqEPjI2hNhVF6UmFn_XFxmIPvy3medRQAFjSdGQixm2hc5P6ZMD32iUyqokg1cpLpDDiUxciPsfPNogtU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHEhg4kWwKdPyT1fwz0k3-Hiz4Yv7y35H4csPLYM_ZCDoBcnZ2FDni8ROmSMUNPz5IxAeINcqS6Rca9Id3hg_fnztUd-yyMLJFYGDYZBKWIJoCcvDQ0lnHuNMw_wwc="
+  ],
+  "error": null
+}

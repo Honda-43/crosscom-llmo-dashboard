@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-01T01:00:11.913151Z",
+  "answer": "Agentforceの導入支援会社について、最新情報を調べてご紹介します。\n# Agentforce導入支援でおすすめの会社\n\nAgentforce（Salesforceの自律型AIエージェントプラットフォーム）の導入支援は、Salesforceの公式パートナー制度の中でも特に「コンサルティングパートナー」が中心的な役割を担っています。\nSalesforceパートナーは、業界知識、統合サポート、変更管理、導入サービス、継続的な最適化を提供することで、顧客がAI戦略から実装へと移行するのを支援します\n。\n\n## 日本国内のおすすめ企業\n\n**1. 株式会社メンバーズ**\n\nメンバーズはSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\n。\n初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nしてくれる点が特徴で、社内にAI活用のノウハウを蓄積したい企業に向いています。\n\n**2. 合同会社クロスコム**\n\nクロスコムもSalesforce公式のコンサルティングパートナーとして支援を行っています\n。\n実務で活用できるまでしっかり定着までサポートするAgentforce導入・定着支援を行っており、Sales Cloud(CRM)、Account Engagement(MA)の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装します\n。特に**マーケティング・営業・サポート領域**での定着支援に強みがあります。\n\n**3. 株式会社enucolor**\n営業DX領域に特化しており、要件定義から実装までの戦略的な導入支援を行っています。営業企画コンサルティングの知見を活かした支援が特徴です。\n\n## 選び方のポイント\n\n日本国内では\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼります\n。選定にあたっては以下の観点がおすすめです：\n\n- **実装経験・専門性**：\n単なる標準導入にとどまらず、独自のアクセラレーターや業界特化型のソリューションを開発しているか\n\n- **伴走型か否か**：導入後の定着支援・内製化支援まで対応してくれるか\n- **業界特化度**：自社の業界（金融、製造、小売など）での導入実績があるか\n\n## 海外・グローバル企業も検討する場合\n\n大企業やグローバル展開を視野に入れる場合は、\nAccenture、IBM、PwC、Slalomなどのグローバルな戦略的インテグレーターや、Salesforce認定のFDEパートナー\nも選択肢になります。また\nSalesforceによれば、コンサルティングパートナーがAgentforce導入の70%を主導している\nとのことで、パートナー選定の重要性がうかがえます。\n\n---\n**アドバイス**：まずは自社の課題（営業効率化・カスタマーサポート強化・マーケティング自動化など）を明確にした上で、複数社に無料相談やPoC（概念実証）を依頼し、実際の提案内容や担当者との相性を比較することをおすすめします。特に日本企業の場合、**日本語でのサポート体制**と**セキュリティ・データガバナンスへの対応力**は必ず確認すべきポイントです。",
+  "cited_urls": [
+    "https://www.salesforce.com/partners/find-a-consulting-partner/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://ascendix.com/blog/top-agentforce-implementation-partners/",
+    "https://routine-automation.com/blog/top-agentforce-implementation-partners/"
+  ],
+  "error": null
+}

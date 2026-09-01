@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-09-01T01:02:23.588610Z",
+  "answer": "中堅企業様が特定のベンダーに依存せず、中立的な立場でCRMの設計を支援してくれる会社をお探しの場合、CRMコンサルティングを専門とする企業や、独立系のシステムインテグレーター、あるいは特定のソリューションに縛られない形でデータ活用支援を行う企業が選択肢となります。\n\nこれらの企業は、主に以下の特徴を持っています。\n\n*   **中立的な立場での提案**：特定のCRMツールや製品の販売を目的とせず、お客様の現状の課題や目標、業務プロセスに最も適したCRM戦略やツリューションを提案します。ツールありきではなく、「CRMの導入ではなく活用法が最も重要」という視点から、成果につながる支援を行います。。\n*   **戦略立案から運用定着までの一貫した支援**：単なるシステム導入に留まらず、現状分析、要件定義、システム設計、カスタマイズ、データ移行、そして導入後の運用定着支援や効果測定まで、CRMプロジェクト全体をサポートします。。\n*   **業務設計とデータ活用の重視**：CRMツールを最大限に活用するためには、その前の業務設計が非常に重要です。顧客データの収集・分析方法、営業・マーケティング・カスタマーサービスといった各部門でのデータ活用方法を具体的に設計し、貴社専用の思考プロセスや判断基準を明確にする支援を行います。。\n*   **多様なCRMツールの知見**：幅広いCRMツールの知識を持ち、各ツールのメリット・デメリットを比較検討した上で、貴社に最適なものを提案します。これにより、特定のベンダーにロックインされるリスクを避けることができます。。\n\n**具体的な会社や探す上でのヒント**\n\n1.  **CRMコンサルティング専門会社**：CRM戦略の立案から実行までを専門とするコンサルティングファームです。例えば、大規模なコンサルティングファーム（PwCコンサルティング、アクセンチュア、アビームコンサルティングなど）もこの領域を扱いますが、中堅企業様であれば、より伴走型の支援を行う中小規模の専門会社も検討に値します。\n2.  **独立系システムインテグレーター**：特定のハードウェアやソフトウェアベンダーに属さず、顧客のニーズに基づいて最適なシステムを選定・構築する企業です。CRM導入支援の実績が豊富で、中立性をアピールしている企業を探すと良いでしょう。\n3.  **データ活用支援・DX推進を行う企業**：「特定のCRM製品を前提とせず、AIが読み書きする前提のCRMを業務設計から貴社専用に設計する」といったユニークなアプローチを提示している企業もあります（例：合同会社クロスコム）。データ基盤の構築からCRMへの接続、AI活用までを見据えた支援は、将来的なビジネス成長に貢献する可能性があります。。\n\n**会社を選定する際のポイント**\n\n*   **「ベンダーニュートラル」「特定ベンダーに依存しない」という姿勢を明確にしているか確認する。** 提案内容が特定のツールに偏っていないかを見極めましょう。。\n*   **貴社の業界や事業規模での実績があるか。** 中堅企業様ならではの課題を理解し、適切な提案ができるかが重要です。\n*   **コンサルタントの専門性や経験。** CRMに関する深い知識はもちろん、業務課題のヒアリング能力、課題解決への提案力、プロジェクトマネジメント能力などを確認してください。\n*   **提案内容と貴社の課題・目標がマッチしているか。** 貴社が本当に解決したい課題に対し、具体的な施策が提案されているかを検証することが重要です。。\n*   **導入後のサポート体制。** 導入して終わりではなく、長期的な視点で運用を定着させ、効果を最大化するための伴走支援を提供してくれるかどうかも確認しましょう。。\n\nまずは複数の企業から話を聞き、それぞれの強みやアプローチを比較検討することをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGUh5b9sC0MeEs8sMW-Lu8N1DKeTSfy58xEJTx_yQjf_skmaKRBfEVzRlsE9J7r3O0QmLJN95dyFtPSm_HsYNAF7AA27xTComoAzzrkjzfrFaVqkOirdB9uEgOOezO3BFr8wha6DuCpaJj5mg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpDTwmYAI0k9s_30Nhpbagasc0uFx0Z-qtOGkTp1OiJDmV46Aj42ZWWUHERAWCKEpSnO3p46BuWp2tlVvXKgMPjNRgHW53hkrSovQmYk2TzO123UQ_x3e-rMD0lg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEBrxWkE0pGtN76zEjOxJLD8PX-4UPLxsbMBe9FZmy3JV4C_beY1H67GsG8YFvYt6h5OzWZ6Q_ZOfj3lXQnIlcCoZ5PxJWV-LgxW14kS9f_Zg-rLs1iCRyjja_4CR6_rkQT3Ygxr2EkkGwPIQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFmgjLlWJMEFqzup5jUy7o38qoOrDfnFZJQqLszob8hEGlkeLWbdx1ufS4SN5NwWbn_IuDh-OoNTHSkJQ3WjFskCHPx8YpK8NGSMFlN45EFNJzV33PUBxqK8CTF0_KAOiwaf7M=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGgRZe8ucwma5zCZPF3rq08fj84SzED9kJypBBFNS93eldG0TprHVywQ_WFgOJc_yHlP-ogbJfI8owyEL8VBwL2ULCSGycmcNYUWrnuPl--XoC01cmnbzMb2DEhx8X6mzMc7K3Pd851AOE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH9tXthWu9qQviqkaJS1sMpcdbn13i0oOl3QHQV_bNvjng1a2GLkyJ4h1J-A5hc43EZv3PnUXeC3RijQi1_uQ8H_K3NCqIOjYMRRDjhMD8IFq9cpLNrIFyMkXCwcVzW0uE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGpOyqiqXJaIllMeHpBV9Z1-9Bc_GlITclESJLCyV8Jin38EhWLMGNdD8s4FR2sauhzqLXD9XbQSDg73zhslOEFuLNZ6hLsbm6zbGCO8hVeCdUcIgIcZHETqY3ngmfRLemqjdbwAmJXZQLxFWeF0N4S-j2yWIyH_gFvCv0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEX1UwKE4dWM6ZrJ4DybpDxBuobb3I3hryYovVD2Kg53TY4pGgXBUAtrNkt8MYjJHc2vMsaaG9Nti1wGbb1-Dbt7hOgggA_LNSJgS8URkDvdOETqx3R1A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELrW7FXn4eVYw_H9dxegrgUHQAiUKvuIdmOcVPRwazYZQhFUgb6EhkGxNwnCtWKhnh0z2nw_to9A7vs9FZ9KrjCj09it58LVDZPwstAMQ-hyC0voliew_ZpLkxSH3_jnRZjnXqsfGl",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHvohMi_pTcC4kNYByJfOiotT3L59pp380Xqot04S0UfiEiguacpvLfnoKyYUPTBEVk-ACgSxZakVm5H2rUNQsnp2_WWrfU86ZodSdxRLDYrYSxqh03kq779t9G8Fe2s8vNS9QpDPWBiysf-v3BYQ9JKIU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHdfwTWqOnG60xJM8W7bMskdXqjMXEXt7ZtlEw8Dqj6MqHIDKRnIjfIFKYFfK8DZPMQ0j2CQI0hS5RZXwB5C7kbqMGvnVckOxTHTKNHi-7leMdss1WKP_-99WwDGZ2vBooDt7kNXu3iZqEHMFSGKsqdZRrEK4A="
+  ],
+  "error": null
+}

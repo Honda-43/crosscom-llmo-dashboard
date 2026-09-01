@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-01T01:01:34.019638Z",
+  "answer": "Agentforceの導入費用相場と、費用対効果を最大化するための進め方について、最新情報を調査してお伝えします。\n# Agentforce導入費用の相場と費用対効果を出す進め方\n\n## 1. 費用構造の全体像\n\nAgentforceの費用は「単一の価格」ではなく、複数のコンポーネントの積み上げになります。まずこの構造を理解することが重要です。\n\n\nAgentforceはデータ統合基盤としてData Cloudの利用を前提としており、これはオプションではありません\n。また\n利用料は会話課金（1会話2ドル）をベースにした概算であり、為替レート・契約条件・エディションによって変動する\n点、さらに\n初期構築コストはプロンプト設計・テスト・日本語調整・パートナー委託費用の積み上げによる参考値でありプロジェクト規模や要件により大きく異なる\n点に注意が必要です。\n\n### ① Agentforce利用料（従量課金）\n\n現在、Salesforceは3つの課金モデルを併存させています（\nSalesforceは約18か月でAgentforceに3つの異なる価格モデルを投入しており、すべて同一製品で同時に稼働している\n）。\n\n| モデル | 単価 | 特徴 |\n|---|---|---|\n| **Flex Credits** | \n標準アクションは20クレジット（$0.10）、音声アクションは30クレジット（$0.15）\n | \nクレジットは10万単位で500ドルにて購入\n。アクション数に応じた細かい従量課金 |\n| **Conversations（会話課金）** | \n1会話あたり2ドル（チャネルによって最大24時間の会話ウィンドウ）\n | 長い対話が多い顧客対応向け |\n| **ユーザーライセンス** | \n1ユーザー月額125〜550ドル\n | 社内向けエージェントを使い放題にできる |\n\nどちらが得かの目安として、\n損益分岐点は1会話あたり約20アクションで、それ未満であればFlex Creditsの方が安くなる\nという試算があります。また\nFlex CreditsとConversationsは同一Salesforceオルグ内で同時利用できない\nため、事前にユースケースの想定アクション数を見積もって選択する必要があります。\n\n### ② Data Cloud費用（見落とされがちな最大要因）\n\n\nAgentforceはData Cloudが正常に機能するために必須であり、これは多くの購入者が見落としがちな、Agentforceのライセンス費用自体を上回ることも多いコスト\nです。海外の参考値では\nData Cloud Plusが年間約6.5万ドル、Premiumが約17.5万ドル\nとされ、\nAgentforceに5万ドルの予算を承認した後にData Cloudライセンスとして6.5万〜17.5万ドルが別途必要と判明するケースが多い\nと指摘されています。日本国内でも同様の見落としが起きやすいポイントです。\n\n### ③ Salesforce本体ライセンス\n\n\nAgentforce単体のコストに加え、Salesforce本体ライセンス費用（",
+  "cited_urls": [
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://aquiva.com/blog/agentforce-pricing-gets-a-long-overdue-fix-flex-credits-are-now-live",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://ekfrazo.com/resources/blogs/salesforce-agentforce-pricing-2026/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained"
+  ],
+  "error": null
+}
