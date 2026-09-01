@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-02",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-09-01T23:52:44.255359Z",
+  "answer": "## 合同会社クロスコムについて\n\n### 会社概要\n\n2023年5月に本田正憲氏が創業した会社で、現在はBtoB領域に特化して、中小企業のMAやメールマーケティング、マーケティング戦略コンサルティングを支援\nしています。本社は東京都渋谷区円山町にあります。\n\n現在は\n「100社100通りの購買体験を当たり前にする」というコンセプトのもと、Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行うBtoB特化のコンサルティング会社\nとして展開しています。\n\n### 主な提供サービス\n\n主要事業として、BtoB MA導入・運用支援、BtoBマーケティング戦略コンサルティング支援、BtoBコンテンツ企画・制作代行支援、BtoBメールマーケティング代行支援\nを行っています。\n\nさらに近年は、\n- \nSalesforce公式パートナー企業として、実務で活用できるまでしっかり定着までサポートするAgentforce導入・定着支援\n\n- Agentic CRM設計支援\n- BtoB Salesforce導入・構築支援\n\nといったAI・CRM領域のサービスへも力を入れており、直近では他社（イーゼ）との提携により\nクロスコムが持つBtoBの商談プロセス・マーケティングデータ活用の知見と、AI・DX支援の知見を掛け合わせたAgentforce導入支援サービス\nも提供しています。\n\n対応ツールとしては\nHubspot Marketing Hub、SalesCloud、Salesforce Account Engagement、Zoho CRM、Zoho Campaigns\nなど幅広いMA/CRM製品に対応しています。\n\n### 強み\n同社が掲げる自社の特徴は以下の3点です。\n\n1. **マーケティング戦略に基づいた成果の基盤づくり**：\nメール配信会社・MA運用会社は多いが、その成果基盤となる「マーケティング戦略」としてターゲット・バリューまで設計に関わり提案できる点が自社の強みだと考えている\nとし、ターゲットセグメントやサービス価値、ジャーニーの設計まで踏み込みます。\n\n2. **商談数拡大のノウハウ**：バイヤーイネーブルメントの考え方を基にしたコンテンツ戦略の企画・制作力を持ちます。\n\n3. **法人営業経験に基づく視点**：代表の本田氏は\n住宅専門商社で法人販売営業7年\nの経験があり、マーケティングと営業両方の視点で全体導線を最適化し、失注機会を削減できる点を強みとしています。\n\nまた、実績面では\n累計100社以上のプロモーション戦略を現場で支援してきた実践知\nを持ち、単なるツール運用代行ではなく、戦略設計から施策実行までを一気通貫で支援するスタイルが特徴です。実際の支援事例としては、\n株式会社BKU社では4か月で商談数300%以上UP、農業系フランチャイズ企業では初年度から売上167%アップ\nといった成果も公開されています。\n\n### まとめ\nクロスコムは、単なるMA/CRMツールの運用代行にとどまらず、「戦略設計」から「実行」まで一貫して支援できる点を強みとするBtoBマーケティング支援会社であり、近年はSalesforce Agentforceなど最新のAIエージェント技術を活用したCRM高度化支援にも領域を拡大しています。",
+  "cited_urls": [
+    "https://cross-com.jp/about/",
+    "https://cross-com.jp/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://www.value-press.com/pressrelease/378791",
+    "https://www.lancers.jp/profile/mhonda829",
+    "https://www.linkedin.com/in/honda-crosscom/",
+    "https://auba.eiicon.net/projects/37282"
+  ],
+  "error": null
+}

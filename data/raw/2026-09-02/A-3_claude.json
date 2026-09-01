@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-02",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-01T23:50:29.108591Z",
+  "answer": "Agentforceの導入費用や進め方について、最新情報を調査します。\nAgentforceの導入費用の相場と、費用対効果を高める進め方について、最新の情報をもとに整理します。\n\n## 1. Agentforceの費用構造\n\nAgentforceの費用は大きく「①基盤ライセンス費」「②Agentforce利用料（従量課金）」「③構築・導入支援費」の3層に分かれます。\n\n### ①基盤ライセンス費\n\nAgentforce for Serviceは、24時間365日、あらゆるチャネルでカスタマーサポートを提供し、信頼できる企業データに基づいて自然言語でケースを迅速に解決します\n。ただし前提として\nまず、Service Cloudを基盤にします（Enterprise Edition、Unlimited Edition、Performance Edition、Einstein 1 Editionの場合）\nため、既存のSalesforce CRM/Service Cloudのライセンス費用が土台として必要です。\n\n### ②Agentforce利用料（従量課金：Flex Credits）\n2025年5月に価格体系が刷新され、\nFlex Creditsは、エージェントが1つのアクションを実行するたびにクレジットを消費する、2025年5月15日にSalesforceが発表したAgentforceの中心となる従量課金モデルです\n。\n\n具体的な単価は次の通りです。\n- \nFlex Creditsの価格は、10万クレジットあたり6万円。1つのAgentforceアクションは20クレジット（12円）を消費\n\n- \nAgentforce Voice（音声）アクション1回＝30 Flex Credits\n\n- 定額制を望む場合は\n従業員向けに大規模展開する場合は、Agentforce Add-on（$125/user/month・約15,000円）という定額制の選択肢もあります\n\n\n会話単位の従来課金モデルの目安としては、\nAgentforceはライセンス毎の課金ではなく、コンサンプションモデル（従量課金制）を採用しており、1会話あたり240円\nとなっており、利用量に応じたボリュームディスカウントもあります。\n\n**小規模利用の場合の試算例**：\n月100アクションを標準アクションで計算すると、消費は2,000クレジット、円換算で1,200円相当です。この規模なら、無料付与されるクレジットの枠内に余裕で収まります\n。実際、\nAgentforceは従量課金制で、Salesforceユーザーは無料で利用開始でき、その後は利用量に応じて課金されます\n。\n\n### ③構築・導入支援費\n\nAgentforce Employee AgentはSalesforceの標準機能と連携して動作するため、ノーコードまたはローコードで設定が可能です。テンプレートやアセットライブラリを活用すれば、専門的な開発スキルがなくても構築・運用を開始できるため、初期費用や外注コストを抑えながらスモールスタートを実現できます\n。一方で、複雑なワークフローや高度なカスタマイズには外部パートナー/SIerへの構築委託費が別途発生するのが一般的です。\n\n**費用相場の全体像（目安）**\n| 項目 | 相場感 |\n|---|---|\n| CRM基盤ライセンス | 月額数千円〜数万円/ユーザー（エディションによる） |\n| Agentforce利用料 | 小規模PoCなら実質無料枠内〜数千円/月、本格運用でアクション数に応じ数万〜数十万円/月 |\n| 定額プラン | 約$125/ユーザー/月（約15,000円） |\n| 構築・導入支援 | 案件規模により数十万〜数百万円（1ユースケース×数ヶ月のスモールスタート型が主流） |\n\n※正式な見積もりは\n本ページは情報提供のみを目的として作成されており、変更されることがあります。詳しい価格情報については、営業担当者にお問い合わせください\nとされており、個別見積もりが必要です。\n\n## 2. 費用対効果を出すための進め方\n\n### ステップ1：小さく始める（スモールスタート）\n\n当社では、PoC（概念実証）を通じて効果を可視化しながら、Agentforceの活用範囲を段階的に広げる導入アプローチのご提案が可能です。まずはスモールスタートで短期間に導入し、実業務における効果やROIを検証した結果を踏まえて次の活用領域へと段階的に拡大していくことで、導入リスクを最小限に抑え、無理なくAIの価値を最大化します\n。\n\n具体的には、\n1ユースケース×3ヶ月のスモールスタートプラン\nのような形で、対象業務を1つに絞って始めるのが定石です。\n\n### ステップ2：費用対効果の出やすい業務から着手する\n\nスコープの限定：最初から全業務をAIに任せるのではなく、「配送状況の確認」「アカウントロックの解除」など\n、定型的で頻度が高く、成果を測定しやすい業務から始めることが重要です。社内向けであれば、\n",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/service/ai/agentforce-for-service-pricing/",
+    "https://cross-com.jp/agentforce-pricing/",
+    "https://cloud.watch.impress.co.jp/docs/news/2015263.html",
+    "https://zenn.dev/pacific_creator/articles/511209053946bc",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://service.is-c.jpn.panasonic.com/column/salesforce-agentforce-2",
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://www.dcs.co.jp/solution/crm/agentforce/",
+    "https://aurant-technologies.com/blog/salesforce-implementation-design-2714/"
+  ],
+  "error": null
+}

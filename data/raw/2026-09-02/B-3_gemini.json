@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-02",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-09-01T23:51:49.315676Z",
+  "answer": "営業においてAIエージェントの活用を検討されており、ツール選定の前にCRMのデータ設計から支援を受けられるパートナーをお探しとのこと、承知いたしました。CRMのデータ設計からAIエージェントの活用までを一貫して支援するパートナーとして、以下の企業が挙げられます。\n\n*   **テクノデジタルコンサルティング**は、「CRM・データ戦略設計サービス」を提供しており、ツールありきではなく成果から逆算した戦略設計を起点とすることを特徴としています。20年以上にわたりCRMや顧客データ活用を支援してきた実績があり、データ統合・基盤設計、AI活用構想、RFP作成支援、ベンダー選定までを一貫してサポートしています。特に、「データ活用で何を実現するのか」を定義し、成果につながる活用基盤を上流から構想・設計することを重視しており、CRM導入やツール選定の前のデータ設計に強みを持っています。\n*   **日立コンサルティング**は、「営業DX（CRM&生成AI活用）コンサルティング」を提供しています。CRM/SFAシステムの採用だけでなく、生成AIなどの先端技術の活用を含めた課題解決策を提案しており、貴社が培ってきた営業スタイルを生かしながら、効率的かつ成約率を高める営業プロセス改革の推進を支援します。\n*   **タナベコンサルティング**は、営業DX導入のステップとして、目標設定と現状分析の後、「推進組織の組成とツールの選定」においてMA（マーケティングオートメーション）やCRMなどのシステム構想を設計すると明記しています。データに基づく売上予測や戦略立案を重視しており、CRMデータの戦略的活用も支援の範囲に含まれます。\n*   **電通デジタル**や**Hakuhodo DY ONE**といった企業もCRMコンサルティングを提供しており、顧客データを統合・分析し、パーソナライズされたコミュニケーション設計や、LTV最大化を見据えた顧客育成プログラムの構築、CRM活用を定着させるための組織設計・業務プロセス変革支援までを担っています。\n\nこれらのパートナーは、CRMデータの戦略的な活用や設計を重視し、AIエージェント導入に向けた基盤作りから支援を提供できると考えられます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGucltASFKhj11xSf6jy6l245jy8EH8A4ju7pUo1juLKK1fD2JLZgiq8_kDs3oP2yatqkd8WwO_snxBNi5ymkW48_E7wEHHu1dXlL9yWsX2nVkjGNIheWTwkL4nlrk7W7W6s5Gya6IxtFOWl4O3ffNEVQs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbjaE1FrI78GcF5qk4wERzI9ucrsy9i2An3QbTSawzTFMddtDIUwJOBkLctppWbF68dDWROC1NrwZlB35pB1lJiVRMU5aT8DXhEb99rBhxL0Jl5kalYnEvHHuHmas2vOrZ-4-34htkOktsiIUmO7r0ReSJojptxkyR_lCJTJfz0AtUhA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE8Q_Ti1-5dmXW8-GRW8AahB5jdu-sEc-lUJUc5JFwa7UzmkG9hb_fPegQujy4EGOWzIYc-Lg9TYUmL-4FfBlEuy5rcisMZXrd8lYVfAgzQw_7-PnEADfmmrG4v1IIGCqzI4QFH4i6cizCFMbJAJ1M=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFZo88mBvMnp87CT1lFMsz8YfwlNah6kUV_CnT-gFOyaKd7yTUMh6K70002Ap4JraBdfEBrWOxEae9li0Gg-GrpA43EA1mz3Vu-8nkknEHakMqXstzjXWSgJ90LIek7KAbeerrls2aApQ8iFyG3fXFQcEVe4j7ADiZzB5WsX3ni5crBxQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVwqJpymDRbb1O7mjdZ52hP9AO4YK8hBq2ZV_Y4BYM1xvo3guqqmPVI6gFsE9USRr3hyWUvXaCDNICFEo3CtOs2JHY-uFQ-D2x4cX6GT3NJqfSUSqGqL2CYcrl-F7LNBGt0moxFMs="
+  ],
+  "error": null
+}
