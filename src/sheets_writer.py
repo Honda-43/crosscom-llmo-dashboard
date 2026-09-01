@@ -17,6 +17,7 @@ from settings import (
     TAB_GA4,
     TAB_GSC,
     TAB_LLM,
+    TAB_LK_KBF_COMPARE,
     TAB_MONTHLY,
     TAB_SOV,
     TAB_ACTION_LOG,
@@ -52,6 +53,13 @@ HEADERS_MONTHLY = [
     "notes", "raw_file",
 ]
 KEYS_MONTHLY = ["date", "prompt_id", "model"]
+
+# 比較型観測のKBF別評価(Phase 3 追加)。
+# 優劣は入れない。入るのは「その軸を誰が語ったか」だけ。
+HEADERS_KBF_COMPARE = [
+    "month", "prompt_id", "model", "kbf", "self_eval", "rival_eval", "diff",
+]
+KEYS_KBF_COMPARE = ["month", "prompt_id", "model", "kbf"]
 
 HEADERS_GA4 = ["date", "source", "landing_page", "sessions", "key_events"]
 HEADERS_GSC = ["date", "query", "clicks", "impressions"]
@@ -555,6 +563,18 @@ def write_monthly_observations(extractions: List[Dict[str, Any]]) -> None:
     ss = _open_spreadsheet()
     rows = [_monthly_row(r) for r in extractions]
     _upsert(ss, TAB_MONTHLY, HEADERS_MONTHLY, KEYS_MONTHLY, rows)
+
+
+def write_kbf_compare(rows: List[Dict[str, Any]]) -> None:
+    """lk_kbf_compare を upsert(月 × prompt_id × model × kbf をキーに)。"""
+    if not rows:
+        return
+    _upsert(_open_spreadsheet(), TAB_LK_KBF_COMPARE,
+            HEADERS_KBF_COMPARE, KEYS_KBF_COMPARE, rows)
+
+
+def read_kbf_compare() -> List[Dict[str, str]]:
+    return _read_tab(TAB_LK_KBF_COMPARE)
 
 
 def read_monthly_observations() -> List[Dict[str, str]]:

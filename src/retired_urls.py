@@ -28,6 +28,10 @@ from typing import Any, Dict, List, Optional, Sequence
 
 from settings import RETIRED_URLS_FILE, load_yaml
 
+# 旧事業の情報が載ったまま引用されうる状態。replaced(中身を差し替え済み)は
+# 引用されても害がないので含めない。
+STALE_STATUSES = ("deleted", "dead")
+
 EVENT_TYPE = "retired_url_cited"
 EVENT_NAME = "削除済みURLの引用"
 # このイベントは P-8(旧事業URLの引用)の続き。消したあとの尾を見ている。
@@ -193,6 +197,10 @@ def event_rows(date: str, rows: Sequence[Dict[str, Any]],
             # 中身を差し替えただけのURLは、引用されても旧事業は入らない。
             # 同じ数え方をすると「古い参照が残っている」と誤読される。
             detail += "(URLは存置・中身は現行事業に差し替え済み)"
+        elif c["status"] == "dead":
+            # 自社が消したのではないので、引用が止まるのを待つしかない。
+            # 打ち手は先方への依頼だけで、こちらの作業では動かせない。
+            detail += "(サイト停止・自社では編集不可。先方依頼が必要)"
         out.append({
             "date": date,
             "event_type": EVENT_TYPE,
@@ -209,7 +217,7 @@ def summary_line(date: str, rows: Sequence[Dict[str, Any]],
                  resolve: bool = False) -> str:
     """ジョブサマリ用の1行。"""
     counts = count_citations(rows, date, retired, resolve=resolve)
-    still = [c for c in counts if c["count"] and c["status"] == "deleted"]
+    still = [c for c in counts if c["count"] and c["status"] in STALE_STATUSES]
     total = sum(c["count"] for c in counts)
     if not counts:
         return "取り下げたURLの定義なし"
@@ -218,6 +226,6 @@ def summary_line(date: str, rows: Sequence[Dict[str, Any]],
     if unresolved:
         tail += f" ※未解決のリダイレクト{unresolved}件"
     if not still:
-        return f"削除済みURLの引用: 0回(定義{len(counts)}件・{date}){tail}"
-    return ("削除済みURLの引用: "
+        return f"取り下げURLの引用: 0回(定義{len(counts)}件・{date}){tail}"
+    return ("取り下げURLの引用: "
             + ", ".join(f"{c['label']} {c['count']}回" for c in still))

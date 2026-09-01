@@ -99,8 +99,21 @@ def propose(
     """追記すべき行だけを返す。既存と重複するものは落とす。
 
     ``proposals`` は {"内容", "対象", "根拠rule_id", "優先度"} を持つ辞書の列。
+
+    次の3つは明示できる。**指定がなければ従来どおり自動で決まる。**
+
+      action_id … 採番を上書きする。週次の自動提案は連番でよいが、
+                  手で番号を決めて入れたい場合(別系統で採番済み・欠番を
+                  埋める)に、自動採番だと違う番号が付いてしまう。
+      状態      … 既定は「提案中」。承認済み・実施済みの施策を
+                  後から記録する場合に使う。
+      実施日    … 状態が実施済み以降のときに入れる。
+
+    明示した action_id が既存と衝突する場合は ValueError。黙って上書きすると
+    本田さんがシートで編集した状態列が消える。
     """
     rows = list(existing)
+    taken = {str(r.get("action_id", "")).strip() for r in rows}
     new_rows: List[Dict[str, Any]] = []
     for proposal in proposals:
         content = str(proposal.get("内容", "")).strip()
@@ -109,15 +122,27 @@ def propose(
         rule_id = str(proposal.get("根拠rule_id", "") or "—").strip()
         if is_duplicate(content, rule_id, rows) or is_duplicate(content, rule_id, new_rows):
             continue
+        action_id = str(proposal.get("action_id", "") or "").strip()
+        if action_id:
+            if action_id in taken:
+                raise ValueError(
+                    f"action_id {action_id} は既に存在します。"
+                    "上書きすると状態列が消えるため追記しません"
+                )
+            if not ID_PATTERN.match(action_id):
+                raise ValueError(f"action_id の形式が不正です: {action_id}")
+        else:
+            action_id = next_action_id(rows + new_rows)
+        taken.add(action_id)
         row = {
-            "action_id": next_action_id(rows + new_rows),
+            "action_id": action_id,
             "優先度": str(proposal.get("優先度", "中")).strip() or "中",
             "内容": content,
             "対象": str(proposal.get("対象", "—")).strip() or "—",
             "根拠rule_id": rule_id,
-            "状態": STATUS_PROPOSED,
+            "状態": str(proposal.get("状態", "") or STATUS_PROPOSED).strip(),
             "提案日": date,
-            "実施日": "—",
+            "実施日": str(proposal.get("実施日", "—") or "—").strip(),
             "判断期限": str(proposal.get("判断期限", "—")).strip() or "—",
         }
         new_rows.append(row)

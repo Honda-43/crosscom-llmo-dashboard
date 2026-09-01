@@ -277,6 +277,8 @@ TAB_WEEKLY = "weekly_reports"
 # Phase 3 — 月次観測。日次の llm_observations には混ぜない
 # (言及率など日次指標の母数を汚さないため)。
 TAB_MONTHLY = "monthly_observations"
+# 比較型観測のKBF別評価。月次実行のたびに書き換える(Phase 3 追加)。
+TAB_LK_KBF_COMPARE = "lk_kbf_compare"
 # Phase 5
 TAB_ACTION_LOG = "action_log"
 TAB_CITATION_GAP = "citation_gap"

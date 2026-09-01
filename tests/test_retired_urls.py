@@ -27,12 +27,17 @@ def _obs(model, urls, prompt_id="E-1", date=DATE):
 
 
 # --- 定義ファイル -----------------------------------------------------------
-def test_the_config_lists_the_three_prtimes_urls():
+def test_the_config_lists_the_prtimes_urls_from_a011():
     data = load_yaml(RETIRED_URLS_FILE)["retired"]
-    urls = [r["url"] for r in data]
-    assert len(urls) == 3
-    assert all("prtimes.jp" in u for u in urls)
-    assert all(r["action_id"] == "A-011" for r in data)
+    a011 = [r for r in data if r["action_id"] == "A-011"]
+    assert len(a011) == 3
+    assert all("prtimes.jp" in r["url"] for r in a011)
+
+
+def test_every_entry_has_a_known_status():
+    data = load_yaml(RETIRED_URLS_FILE)["retired"]
+    assert data, "定義が空"
+    assert {r["status"] for r in data} <= {"deleted", "replaced", "dead"}
 
 
 def test_the_company_page_is_marked_replaced_not_deleted():
@@ -183,6 +188,31 @@ def test_resolution_never_runs_when_not_asked(monkeypatch):
 
     monkeypatch.setattr(retired_urls, "resolve_redirect", boom)
     retired_urls.count_citations([_obs("gemini", [REDIRECT])], DATE, RETIRED)
+
+
+# --- status: dead(サイトごと停止・自社では直せない)-------------------------
+DEAD = "https://www.fsdg.jp/zoho/success/success-411/"
+RETIRED_DEAD = RETIRED + [
+    {"url": DEAD, "label": "第三者メディアの旧事業事例", "retired_on": "2026-09-01",
+     "action_id": "—", "status": "dead"},
+]
+
+
+def test_a_dead_url_counts_as_stale():
+    """自社が消したかどうかに関わらず、旧事業が引用されていれば問題。"""
+    line = retired_urls.summary_line(DATE, [_obs("claude", [DEAD])], RETIRED_DEAD)
+    assert "第三者メディアの旧事業事例 1回" in line
+
+
+def test_a_dead_url_is_annotated_as_not_editable():
+    rows = retired_urls.event_rows(DATE, [_obs("claude", [DEAD])], RETIRED_DEAD)
+    detail = next(r["detail"] for r in rows if "第三者メディア" in r["detail"])
+    assert "自社では編集不可" in detail
+
+
+def test_replaced_is_still_excluded_from_stale():
+    assert "replaced" not in retired_urls.STALE_STATUSES
+    assert set(retired_urls.STALE_STATUSES) == {"deleted", "dead"}
 
 
 # --- ジョブサマリ ------------------------------------------------------------

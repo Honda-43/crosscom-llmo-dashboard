@@ -109,7 +109,9 @@ crosscom-llmo-dashboard/
 │   ├── settings.py        # 環境変数・定数・モデル有効/無効
 │   ├── run_daily.py       # 日次オーケストレータ
 │   ├── run_weekly.py      # 週次オーケストレータ
-│   └── run_monthly.py     # 月次オーケストレータ(Phase 3)
+│   ├── run_monthly.py     # 月次オーケストレータ(Phase 3)
+│   ├── kbf_compare.py     # 比較型のKBF別集計(Phase 3・lk_kbf_compare)
+│   └── retired_urls.py    # 取り下げURLの引用ラグ測定(A-011)
 ├── app/                   # ローカル分析アプリ(Phase 4・Streamlit・読み取り専用)
 │   ├── main.py            # エントリポイント(5ページのナビゲーション)
 │   ├── data_source.py     # Sheets/ローカルの読み取りとキャッシュ
@@ -837,6 +839,25 @@ Gemini 無料枠は `GenerateRequestsPerDayPerProjectPerModel-FreeTier` で
 **同名他社との混同は `negative` 扱いにしない。** `notes` 列に記録して
 月次サマリで「📝」として報告する。エンティティの混同は情報の古さとは別の問題で、
 混ぜると R-P7 の意味が壊れる。
+
+### 比較型のKBF別集計(`lk_kbf_compare`)
+
+比較3本(M-7〜M-9)は自然文なので、毎月人が読み直さずに済むよう
+**KBFごとに「その軸を誰が語ったか」だけ**を機械で拾い、月をまたいで並べる。
+
+| 列 | 内容 |
+|---|---|
+| `month` / `prompt_id` / `model` / `kbf` | 一意キー |
+| `self_eval` / `rival_eval` | その軸が自社/競合の文脈で語られたか |
+| `diff` | `self` / `rival` / `both` / `neither` |
+
+**優劣は判定しない。**「どちらが優れているか」は回答文の含意で、機械では取れない。
+取れないものを取れたことにすると月次サマリの「要目視」と矛盾する。
+ここで出すのは**軸の占有**だけ。`diff: rival` が埋めるべき軸になる。
+
+自社/競合の切り分けは、KBF語の**直前にある社名**で決める。比較回答は
+「◯◯社は…」と社名で節が始まる構造のため。単純な近さで測ると、直後に
+別の社名が来ただけでそちらの節に取られる。
 
 ### 第2弾の追加手順
 

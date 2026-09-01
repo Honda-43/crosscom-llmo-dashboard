@@ -1,4 +1,6 @@
 """action_log のテスト(Phase 5 §4 / §5 / DoD 6)."""
+import pytest
+
 import action_log
 import verdicts
 
@@ -71,6 +73,65 @@ def test_row_uses_the_approved_columns():
     row = action_log.propose([{"内容": "新しい施策", "根拠rule_id": "R-P7"}], [], DATE)[0]
     assert set(row) == {"action_id", "優先度", "内容", "対象", "根拠rule_id",
                         "状態", "提案日", "実施日", "判断期限"}
+
+
+# --- action_id / 状態 / 実施日 の明示指定 -------------------------------------
+def test_an_explicit_action_id_is_used_as_is():
+    """別系統で採番済みの番号や欠番を、自動採番に上書きさせない。"""
+    row = action_log.propose(
+        [{"action_id": "A-012", "内容": "番号を指定した施策", "根拠rule_id": "R-P7"}],
+        EXISTING, DATE)[0]
+    assert row["action_id"] == "A-012"
+
+
+def test_the_auto_numbering_still_works_without_an_id():
+    row = action_log.propose([{"内容": "新しい施策", "根拠rule_id": "R-P7"}],
+                             EXISTING, DATE)[0]
+    assert row["action_id"] == "A-008"
+
+
+def test_a_colliding_action_id_raises():
+    """黙って上書きすると本田さんが編集した状態列が消える。"""
+    with pytest.raises(ValueError, match="既に存在"):
+        action_log.propose(
+            [{"action_id": "A-001", "内容": "衝突する施策", "根拠rule_id": "R-P8"}],
+            EXISTING, DATE)
+
+
+def test_a_malformed_action_id_raises():
+    with pytest.raises(ValueError, match="形式"):
+        action_log.propose(
+            [{"action_id": "X-1", "内容": "不正な番号", "根拠rule_id": "R-P8"}],
+            EXISTING, DATE)
+
+
+def test_an_explicit_status_and_done_date_are_kept():
+    """承認済み・実施済みの施策を後から記録できる。"""
+    row = action_log.propose(
+        [{"action_id": "A-011", "内容": "実施済みの施策", "根拠rule_id": "R-P7",
+          "状態": verdicts.STATUS_MEASURING, "実施日": "2026-09-01"}],
+        EXISTING, DATE)[0]
+    assert row["状態"] == verdicts.STATUS_MEASURING
+    assert row["実施日"] == "2026-09-01"
+
+
+def test_the_status_defaults_to_proposed():
+    row = action_log.propose([{"内容": "既定の施策", "根拠rule_id": "R-P7"}],
+                             EXISTING, DATE)[0]
+    assert row["状態"] == verdicts.STATUS_PROPOSED
+    assert row["実施日"] == "—"
+
+
+def test_ids_within_one_batch_do_not_collide():
+    """明示した番号より後の自動採番は、その番号の次から続ける。
+
+    A-008 に戻すと、次に自動採番したときに A-020 と衝突しうる。
+    番号が飛んでも単調増加を保つほうが安全。
+    """
+    rows = action_log.propose(
+        [{"action_id": "A-020", "内容": "施策X", "根拠rule_id": "R-P7"},
+         {"内容": "施策Y", "根拠rule_id": "R-P7"}], EXISTING, DATE)
+    assert [r["action_id"] for r in rows] == ["A-020", "A-021"]
 
 
 # --- 所見文からの抽出(§5) --------------------------------------------------

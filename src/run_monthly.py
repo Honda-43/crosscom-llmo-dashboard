@@ -35,6 +35,7 @@ except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exa
 
 import collect_llm
 import extract
+import kbf_compare
 import notify_slack
 import sheets_writer
 from settings import DATA_RAW_MONTHLY_DIR, load_monthly_prompts
@@ -135,6 +136,20 @@ def main() -> None:
     else:
         _run("write_monthly_observations",
              lambda: sheets_writer.write_monthly_observations(extractions), failures)
+
+    # 3-2. 比較型のKBF別評価(lk_kbf_compare)。
+    # 比較3本は自然文なので、毎月人が読み直さずに済むよう軸の占有だけを
+    # 機械で拾う。優劣は入れない(月次サマリの「要目視」と揃える)。
+    kbf_rows = _run(
+        "kbf_compare",
+        lambda: kbf_compare.rows_from_records(month, records, prompts),
+        failures,
+    ) or []
+    if kbf_rows and not args.no_sheets:
+        _run("write_kbf_compare",
+             lambda: sheets_writer.write_kbf_compare(kbf_rows), failures)
+    if kbf_rows:
+        lines += [f"- 比較KBF: {len(kbf_rows)}行"] +                  [f"  - {s}" for s in kbf_compare.summary(kbf_rows)]
 
     # 4. 配信
     if args.no_slack:
