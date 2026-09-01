@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "M-12",
+  "pillar": "",
+  "category": "mofu_suppl",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "中堅企業におすすめのAgentic CRM設計支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-09-01T12:17:47.989098Z",
+  "answer": "中堅企業向けの「Agentic CRM」設計支援について、最新の情報を調べてみます。\n検索結果をもとに、中堅企業向けの「Agentic CRM」設計支援でおすすめの会社をご紹介します。\n\n## Agentic CRMとは\nまず前提として、\nAgentic CRMは、今あるCRMを捨てて入れ替えるものとは限らず、多くの企業にとってSalesforceなどはすでにSOR（System of Record）として機能しているため、置き換えではなくそこへ良いデータを戻すことが重要とされています\n。\n問い合わせを受けた瞬間に活動履歴が生まれ、見積依頼から案件と見積データが生まれるといった業務の流れの副産物としてデータが貯まる設計が肝になります\n。\n\n## おすすめの支援会社\n\n### 1. 合同会社クロスコム\n「Agentic CRM設計支援」を明確にサービス名として掲げている、現時点では珍しい専門会社です。\nSalesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行うBtoB特化のコンサルティング会社です\n。\n\n特徴として、\nオープンソースCRMを基盤にAIの推論能力を最大化したAIネイティブなCRMを貴社専用に設計するサービスを提供しています\n。また、\nSales Cloud(CRM)、Account Engagement(MA)の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装する\n強みがあります。中堅企業のBtoB営業・マーケティング部門で「属人化した営業プロセスをAIエージェント前提で再設計したい」というニーズに合っています。\n\n### 2. Salesforce（Agentforce）本体・パートナー経由\nそもそもの土台として、\nSalesforceは自律的に作業をするAIエージェントの新指標「エージェンティック・エンタープライズ（Agentic Enterprise）インデックス」を公開し、同社のAIエージェント「Agentforce」の利用データに基づく企業のAIエージェント活用実態を明らかにしています\n。実際に\nMUFGはFinancial Services Cloud（FSC）を活用して構築した新CRMシステム「EPOC」にAgentforceを組み合わせ、AIが法人営業担当者の伴走者として情報収集から面談支援、提案までをサポートする体制を目指しています\n。大企業事例ですが、中堅企業向けにはAgentforce認定パートナー（クロスコムのような専門会社）経由での導入が現実的です。\n\n### 3. 一般的なCRMコンサル会社（AI活用を含む上流設計から必要な場合）\nAgentic CRM専業ではありませんが、CRM戦略設計の土台を作る会社として選択肢になります。\n- **電通デジタル**：\nCRMをコミュニケーション設計やクリエイティブ制作を含む統合施策の中に組み込み、施策立案から実行、運用、分析までを一気通貫で設計・推進可能\nで、大規模予算・データを扱う案件向き。\n- **アビームコンサルティング**：\n住友商事や東京海上などの有名企業のCRMも請け負い、ビッグデータ分析を得意とする一方、中堅～小規模の通販・EC事業にはやや不向き\nとされています。\n\n## 中堅企業が選ぶ際のポイント\n\n1. **「専業か併設か」を見極める**：現状、「Agentic CRM設計支援」を明確なサービスとして打ち出しているのはクロスコムのようなブティック型BtoB特化会社が中心です。大手コンサルは「AI活用CRM」という文脈で語られることが多く、Agentic特化ではない点に注意。\n\n2. **既存CRM（Salesforce等）との接続性**：\nSalesforceなどがすでにSOR（正となる業務データの保管先）として機能している場合、置き換えではなくデータ還流の設計ができるかがポイントです\n。\n\n3. **予算感**：\nブレインパッドのようなビッグデータ特化コンサルは超大企業での実績が多く、コンサル費用も数千万円～と高額\nになりがちなので、中堅企業は身の丈に合った規模の専門会社（クロスコムなど）から検討するのが現実的です。\n\n---\n中堅企業（従業員数百名規模、営業・マーケ組織がある程度確立している企業）であれば、まずは**Agentforce導入済みまたは検討中ならクロスコムのような専業支援会社**、**CRM刷新から検討したいなら電通デジタルやアビームコンサルティングのような総合系**、という切り分けで比較検討することをおすすめします。実際の発注前には、自社の従業員規模・予算感・既存CRMの有無を伝えた上で、複数社から提案を取ることをおすすめします。",
+  "cited_urls": [
+    "https://product.hiway.app/blog/agentic-crm/",
+    "https://cross-com.jp/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://news.yahoo.co.jp/articles/d20ba8989259fdaf4e96a2e67c31a7b467864b1d",
+    "https://www.salesforce.com/jp/",
+    "https://www.aspicjapan.org/asu/article/89215",
+    "https://ecmarketing.co.jp/contents/archives/2413"
+  ],
+  "error": null
+}

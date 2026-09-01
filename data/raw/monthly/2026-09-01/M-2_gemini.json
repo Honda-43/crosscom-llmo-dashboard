@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "M-2",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムのAgentforce導入支援の費用を教えてください。",
+  "cep": null,
+  "timestamp": "2026-09-01T12:10:46.832115Z",
+  "answer": "クロスコムのAgentforce導入支援の費用について、具体的な金額は公開されていませんが、以下の情報が提供されています。\n\n*   **タイムチャージ型支援**：クロスコムは「タイムチャージ型支援」を採用しており、あらかじめ定めた固定時給のもと、依頼業務の分だけ発注できる柔軟な対応が可能です。固定時給額については、問い合わせることで案内してもらえます。\n*   **パッケージ型**：導入・初期構築の段階では、要望に応じて運用開始できる状態までのフォローとして、固定金額のパッケージ型も提案されています。例えば、初期構築後にカスタム項目や商談プロセスの作成を依頼する場合、5万円といった費用例が挙げられています。\n*   **個別見積もり**：事業規模や業務内容に応じたプランが提案され、無駄を省き、必要な構築を効率的に実現するとしています。\n\nAgentforce自体の料金体系は、Flex Credits（アクション単位の従量課金）、会話単位課金、ユーザーライセンス型（アドオン）の3種類があり、これにSalesforceの既存ライセンスやData Cloudの費用なども考慮する必要があります。しかし、これらはAgentforceの利用料であり、導入支援費用とは異なります。\n\nクロスコムのAgentforce導入支援の具体的な費用を知るためには、直接問い合わせる必要があります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE4YGS66tCf3W6N5PC8carTb0is_4-Fzsqz79fsjJ1BTehfYDaOmbSFvvMrwaM2pbEab6mnKO5YOySiZXJFfulUEiI27wNyOkRF43XSEl6pmbP0KIrGyZ3REM1OgZVnfI8p_-3XD8Rd74TAsiPI_yLOuKA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHP5QZDR-XbWWQeF9tY41NIu6-9b-s2Z5V_KZT3MaFqyUCVUjIieZTvnHjDbI5vgFzHNlgZcjKTGHgWTJTEv6dZTqhWVsiFFbX1VovL4737Ya3EItKLLL_oPT9teTrluG8tzMQ="
+  ],
+  "error": null
+}

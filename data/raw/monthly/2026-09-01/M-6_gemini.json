@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "M-6",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムのAgentforce定着支援について教えてください。",
+  "cep": null,
+  "timestamp": "2026-09-01T12:13:08.206308Z",
+  "answer": "クロスコムのAgentforce定着支援は、Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から活用定着までを、カスタマーサクセスチームが伴走して支援するサービスです。クロスコムはSalesforceの公式コンサルティングパートナーとして、「100社100通りの購買体験を当たり前にする」というビジョンを掲げ、企業のパーソナライズされた体験提供を支援しています。\n\nこの支援では、顧客企業の目標から逆算し、「どの業務で、誰が、何を判断できるようにするか」を明確に定義します。そして、マーケティング、営業、サポートといった各部門のユースケースに合わせてAgentforceを業務フローに組み込みます。導入後も、カスタマーサクセスチームが利用状況と出力品質を継続的にモニタリングし、目標達成に向けて活用が定着するまで最低3ヶ月間、伴走してサポートします。\n\n**Agentforce定着支援の主な特徴:**\n\n*   **カスタマーサクセスチームによる伴走支援:** 導入後も継続的に利用状況と出力品質を監視し、活用が定着するまでサポートします。\n*   **目標逆算型のアプローチ:** 顧客企業の具体的な目標に基づき、Agentforceを導入する業務領域と目的を明確にします。\n*   **BtoBマーケティング・営業の知見:** クロスコムが持つBtoBマーケティングとプロダクト営業の経験を活かし、業務フローを深く理解した上で、実際の運用と定着を見据えた設計を提案します。\n*   **Sales Cloud・Account Engagementの運用知見:** Salesforceの主要ツールに関する豊富な運用経験に基づき、Agentforceの活用を実装します。\n\n**支援の具体的なフェーズ:**\n\n1.  **導入支援:** エージェントの作成、トピック・アクションの設定、単体テスト、出力品質チェック、ユーザー受け入れテスト、本番反映などが含まれます。\n2.  **活用定着サポート（3ヶ月〜）:** ロードマップ設定、初期設定サポート、プレイブック共有、効果測定、レビュー・振り返りなどを実施し、Agentforceが実務で活用されるよう支援します。\n\n**Agentforceの活用事例:**\nクロスコムでは、ソリューション営業における初回面談前の準備プロセスの標準化や、問い合わせ企業に関するリサーチ業務の効率化などのユースケースでAgentforceの実装を支援しています。 その他、商談前の顧客情報の自動収集、商談内容の要約と共有、提案書骨子の生成、リード対応の自動化（Agentforce SDR）、AIロールプレイによる営業スキル向上（Agentforce Sales Coach）なども可能な機能として挙げられます。\n\nクロスコムは、Agentforce導入・定着支援サービスの拡大に向け、ビジネスパートナーも募集しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2KBgIit7paA0dq4P4t-WhQ9KtShLEXHhJHktEtjP99UW9oftB68Zyq6CoZfJZUx78HtXc1n-LxsErvJKw2WPliV1Z_5w30X0PVdABRHnyw3UVBnP9EbZhDtGNeFcH3aGbjtVkVFf3HEclMA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFsbIVOuYWGx6i1tY1uTTYJmp1mHIetlsWZHSdl3A6X3FUcVSX2XKpDQwnrSPvtmqvfwea39k4shpKGz2X-Fd3R6ge1IwOAIQX8tvGszudFL8viTjj0JEQdIbvWtA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXOvidG5uBLrywENtEPMiQFp8ea0yOw5vTr7qb6xlqvvTnKLd1uZ_xBBpavF2QP-jQ3nP-j7cmH0tlVNj_ml-GLyctx5y8VIeUPkKfarluFvT9_sVAgsQE0a_rh_jasZS6mfBgKmPa2tcsEaM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE6xQI3ulwHwh481PZiNHg0KeUqCldFr_uZ2lX9AYg-KvUcHv0WnTlj0PSr9lGcl5ICokPF-GK8calBjVcBbaH6uKcGlvW4IZMdGj0yKUvyrw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFvcsi-YZQnebNjS7XLyWV5qHk2I3U_42eHhVWiX5BS-cj4xMKbDX8mEpD4o-L8YEaKf1JexESs7kL5r8AFqCHz1P7ab56b6SRPhZMRGiTh0MdxMs0yQ13ozd3-uE4--gzImaqP2O_j6Y7wg2nsYqM7hoKz2n4="
+  ],
+  "error": null
+}

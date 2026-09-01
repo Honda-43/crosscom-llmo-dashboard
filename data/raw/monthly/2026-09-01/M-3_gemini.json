@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "M-3",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムのAgentforce導入支援の実績を教えてください。",
+  "cep": null,
+  "timestamp": "2026-09-01T12:11:18.231159Z",
+  "answer": "クロスコムは、SalesforceのAIエージェントプラットフォーム「Agentforce」の導入・定着支援を提供しており、顧客サクセスチームによる伴走支援を強みとしています。\n\nクロスコムのAgentforce導入支援における主な実績と特徴は以下の通りです。\n\n*   **伴走支援と定着サポート**：カスタマーサクセスチームが最低3か月間、利用状況と評価指標を継続的に確認し、Agentforceの定着まで伴走支援を行います。これにより、企業の目標達成に向けた活用をサポートします。\n*   **BtoBビジネスへの深い理解**：BtoBマーケティングとプロダクト営業の経験に基づき、顧客企業の業務フローを深く理解し、実際の運用と定着を見据えたAgentforceの設計・提案が可能です。Sales Cloud（CRM）やAccount Engagement（MA）の運用知見も活用し、現場のSalesforce理解に基づいたAgentforceの活用を実装します。\n*   **具体的なユースケースの実装**：\n    *   **ソリューション営業における初回面談前準備プロセスの標準化**：面談準備プロセスの標準化、問い合わせ企業に関するリサーチ業務の効率化、リサーチ情報からの課題自動仮説立てなどを支援しています。\n    *   **AIセールスコーチの構築支援**：セールスロールプレイングを評価する「AIセールスコーチ」の構築支援も行っており、Agentforceを活用した営業力強化に関する情報提供も行っています。\n*   **他社との提携による支援強化**：株式会社イーゼと提携し、イーゼが提供するAgentforce導入支援サービスにおいて、クロスコムが持つBtoBの商談プロセスやマーケティングデータ活用の知見を提供しています。この提携により、業務ヒアリングから要件定義、AIエージェントの設計・構築、PoCによる効果測定（KPI設定）、運用の自走化までを一気通貫で支援することが可能です。\n\nこれらの実績は、クロスコムがAgentforceの導入から定着、さらには具体的な業務改善や営業力強化まで幅広く支援していることを示しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFa_XYk1vPFUv9wgpGedhj73Srn1a5p6NkgUbcoQKyuAtp-HWJvrV3VT6XuUAtvcvWON3yFYGvmYzzoh-gy9lrIEPu3x7gqrJ9nXT4KLu91AsS7Yf2ErrHz9V0C_jX9J1DgT75WUHFPEmfS",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFW5dzwr7hRhFSWLPnNO0vY7SkAIFS0ex7mZjyerh5fn8CUXBQNSMakLXjWYvXq_yGx6A_55M-uSlsYNVJrjgFiJEmoJSwh-r3ln6UIK-yGME0Hoa3aMbWGhcCe9Tc3q9yJwx2-NvbCSD7XxwgMSCU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXWyv8qNScqoH-kYG_Wneagnc1EOdmYTLOUwvl_Pb5EMEik-zdLUc846BQVIOHuipnNSOMw_dB30QACHEFgZZsvF3KgVuml71o1XTJd2ruAUNRfPMQ1mR6jDBc",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFbQQOeeBCVZ8Ucv-Ui3h9tbrHXxJXPk_fe6PRrVpJiMLUYsjBQpEEpjRMLARUJLlz034Ypkab3j2S_nS2WSDUNmjmgLIQaQjvCM6ik7SC7unOmml-2SAmFH9qFqDFRMYTTSksMOVZ_GYI="
+  ],
+  "error": null
+}

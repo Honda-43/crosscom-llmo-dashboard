@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "M-10",
+  "pillar": "",
+  "category": "mofu_suppl",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "おすすめのAgentforce導入支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-09-01T12:16:29.761254Z",
+  "answer": "Agentforceの導入支援会社について、最新情報を調べてお伝えします。\n## Agentforce導入支援会社のおすすめ\n\n日本国内でAgentforce導入支援を提供している主な会社を、特徴別にご紹介します。\n\n### 大手SIer・コンサルティング系\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援している\n。導入検討フェーズでの技術検証だけでなく、ビジネス価値の明確化にも重点を置いている点が特徴です。\n\n**KPMGコンサルティング**\n大規模導入事例やAI活用構想において実績を持ち、Salesforce関連イベントでの講演実績もある大手コンサルティングファームです。\n\n### Salesforce専門・特化型パートナー\n\n**メンバーズ サースプラスカンパニー**\n\n導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバーしています。Service・Marketing・Salesの各テンプレートに対応し、SlackやTeams、Salesforceなどとの連携や社内ナレッジの統合も支援\nし、セキュリティやガバナンス整備まで対応可能です。\n\n**フロッグウェル**\n\n各業界・業務の特性に合わせたAgentforceの導入支援を行っており、豊富な業界知識とSalesforce専門性を活かし、課題に最適化されたAIソリューションの設計から構築、運用まで一貫してサポート\nしています。住宅業界のマッチング業務自動化など具体的な導入実績もあります。\n\n**ウフル**\n\nSalesforceが提供する「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供し、Data 360の設定からAgentforceの構築、システム設定、動作確認、リリース準備までを含め、最短3カ月のスケジュールで導入を支援\nします。\n\n**enucolor**\n\n初期導入前コンサルティング、Agentforce構築（PoC支援）、活用及び改善サポートまでを提供し、Agentforce for Service/Marketing/Salesに対応\nしています。SFA・営業領域のAI活用に強みがあります。\n\n**クロスコム**\n\n実務で活用できるまでの定着支援に重点を置いたサービスを提供し、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込み、導入後はカスタマーサクセスチームが継続的にモニタリング\nする体制です。1ユースケース単位のスモールスタートに対応しています。\n\n---\n\n### 選び方のポイント\n\n会社選定にあたっては、以下の観点で比較することをおすすめします。\n\n1. **Salesforce公式パートナー認定の有無**：\nパートナーは支援会社より広い概念で、すべてのパートナーが導入から定着まで対応するわけではない\nため、対応範囲を事前に確認することが重要です。\n2. **対象領域**：Agentforce for Service / Marketing / Sales のうち、どの領域に強みがあるか\n3. **PoCから本番運用・内製化までの支援範囲**\n4. **業界特化の実績**があるか\n\n自社の業界・ユースケース（カスタマーサービス、営業支援、マーケティングなど）に応じて、複数社から見積もりを取り、実際の導入事例や体制を比較検討されることをおすすめします。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}

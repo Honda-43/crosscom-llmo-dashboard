@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "M-4",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "クロスコムのAgentic CRM設計支援の評判を教えてください。",
+  "cep": null,
+  "timestamp": "2026-09-01T12:12:22.867047Z",
+  "answer": "# クロスコムのAgentic CRM設計支援について\n\n## 会社概要\n\n合同会社クロスコムは、Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行うBtoB特化のコンサルティング会社です。\n2023年5月設立、代表は本田正憲氏で、東京都渋谷区に拠点を置いています。\n\n代表の本田氏について、\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入。現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供している\nという経歴です。\n\n## サービスの特徴\n- **Agentic CRM設計支援**：\nオープンソースCRMを基盤にAIの推論能力に最大化したAIネイティブなCRMを貴社専用に設計\nするサービスを提供しています。\n- **Agentforce導入・定着支援**：\n貴社の目標から逆算して「どの業務で・誰が・何を判断できるようにするか」を定義し、マーケ・営業・サポートのユースケースに合わせてAgentforceを業務フローへ組み込みます。公開後はカスタマーサクセスチームが、利用状況と出力品質を継続モニタリングしながら、目標達成に向けて活用が定着するまで伴走します。Sales Cloud(CRM)、Account Engagement(MA)の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装します。\n\n- スモールスタートも可能で、\n1ユースケース×3ヶ月のスモールスタートプランから対応\nしているとのことです。\n\n## 実績・評判に関する情報\n- 元々はBtoBマーケティング支援を中心に活動しており、\n累計100社以上のプロモーション戦略を現場で支援してきた実践知をもとに、インバウンドマーケティングを主軸としたマーケティング支援を展開\nしてきた実績があります。\n- 具体的な成果事例として、\n株式会社BKUでは4か月で商談数300%以上UP、農業系フランチャイズ企業（社名非公開）では初年度から売上167%アップ\nという支援実績が公開されています。\n- Zoho CRMの導入事例サイトでも紹介されており、\n広告運用やメディア制作のようなリード獲得だけでなく、マーケティングオートメーションや公式LINEなどを活用したリード育成まで、「顧客導線の最適化」を目的とした戦略立案や運用代行を行っている\n会社として紹介されています。\n\n## 補足\n- 現時点（2026年9月）で検索できる情報では、Agentic CRM設計支援そのものに対する**第三者からの明確な「評判・レビュー」（口コミサイトでの評価点など）は見つかりませんでした**。同社の情報は主に自社サイト（cross-com.jp）、代表個人のnote・X（旧Twitter）、およびAUBAやビズ比較といった企業プロフィール掲載サイトが中心です。\n- Agentic CRMおよびAgentforce関連の支援自体が比較的新しいサービス（Salesforce Agentforceの日本展開自体も2025年前後からの動き）であるため、第三者評価やユーザーレビューの蓄積はまだ少ない状況と考えられます。\n- 判断材料としては、**元々のBtoBマーケティング支援における具体的な数値成果（商談数300%UP等）が公開されている点**が、実績面での信頼性を測る参考になりそうです。\n\nより詳しい評判を確認したい場合は、直接クロスコムに問い合わせて過去のAgentforce/Agentic CRM関連の支援事例や顧客の声を確認することをお勧めします。",
+  "cited_urls": [
+    "https://cross-com.jp/",
+    "https://cross-com.jp/agentforce-marketing/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-small-business/",
+    "https://auba.eiicon.net/projects/37282",
+    "https://cross-com.jp/case/",
+    "https://www.fsdg.jp/zoho/success/success-411/"
+  ],
+  "error": null
+}

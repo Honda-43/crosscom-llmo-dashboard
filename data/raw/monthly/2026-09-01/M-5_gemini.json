@@ -1,0 +1,19 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "M-5",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムのCRMデータ設計の専門性を教えてください。",
+  "cep": null,
+  "timestamp": "2026-09-01T12:12:30.255734Z",
+  "answer": "合同会社クロスコムは、AIがデータを読み書きすることを前提とした「Agentic CRM」の設計支援に専門性を持っています。彼らのCRMデータ設計における主な専門性は以下の通りです。\n\n*   **AI主導のデータ処理**：AIが能動的にデータ入力、更新、分析を行うことを前提にCRMシステムを設計します。これにより、営業担当者の手動入力作業を削減し、自動化されたプロセスを推進します。\n*   **「データの意味付け」**：トップセールスの思考プロセス（顧客の課題、仮説の根拠、検証結果など）を言語化し、データベースの構造として実装することで、データの意味を明確に定義します。\n*   **構造的な情報整理と可視化**：顧客ごとの情報を構造的に整理し、情報間のつながりや意味関係を理解しやすいように図解に変換する能力があります。これにより、担当者は情報の全体像を迅速に把握し、商談準備に活用できます。\n*   **既存ワークフローとの統合**：会議の議事録、顧客からのメール、打ち合わせメモなどをSlackに投稿するだけで、AIが内容を読み取り、CRMの各項目に下書きとして振り分けるなど、既存の業務フローにシームレスに組み込むことを目指しています。\n*   **成果志向のデータ活用**：CRMの導入だけでなく「活用」に重点を置き、顧客戦略、KPI、業務、組織、システムを一体として整理・設計することで、データが実際の成果につながるように支援します。\n*   **企業ごとの専用設計**：特定のCRM製品に限定せず、オープンソースCRMを基盤として、AIが読み書きすることを前提としたCRMシステムを各企業専用に設計・構築します。\n*   **BtoB特化のコンサルティング**：BtoB領域に特化したコンサルティング会社として、Salesforce Agentforceの導入・定着支援やAgentic CRMの設計支援を行っています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF73vjgGznyjjDbnSa9hClS21eQMmpYyDMkmZbqq6wwjTNqhVGjhTPaHiUELLwFY8kzZ0TwxEXLZGIy2J6DYOXIWnOvnVDTkAJ0WzZqVRIrAQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEQlt66C8vkkf7JKi8v7xp0F8-jtn8nLaVN-guJmnk9FLRLRjD6ziS5ZM5dRcpv6njaVkWlxPYrKRkA9cVlmlto_82gpg3z9vq1JTqVBnOtftXGGL2CSkku9wLQNz3sUl0z_knehYBRuX1Sw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQnUdJgOILt3RlaWE4rmM_hSWirJkDE46yjPx_gYU3mZc3eHwYbuh2DDbmpP07tal_3Npsu0NDyNfUHilA4Qx_6kD6JzVPzjF2EMsuA83LWQc_DU20gOdgh7WilmJ1OEZYa2aS-5nRdQLfIGE4qxz3w_b3"
+  ],
+  "error": null
+}

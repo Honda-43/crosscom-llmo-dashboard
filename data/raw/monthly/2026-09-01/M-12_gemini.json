@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "M-12",
+  "pillar": "",
+  "category": "mofu_suppl",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業におすすめのAgentic CRM設計支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-09-01T12:17:15.792714Z",
+  "answer": "中堅企業におすすめのAgentic CRM設計支援会社として、以下の企業が挙げられます。\n\n*   **合同会社クロスコム**\n    合同会社クロスコムは、「Agentic CRM設計支援」を提供しており、特定のCRM製品に依存せず、AIが自律的にデータの読み書きを行うCRMを業務設計から企業専用に設計することに強みを持っています。同社は、マーケティング・営業・カスタマーサクセスに分散したデータと業務をAIエージェントが自律的に動く前提で再設計し、どの業務を自律化し、どこに人の判断を残すか、その判断に必要なデータがどこにどう蓄積されるべきかを設計します。CRMを導入済みの企業向けには、現行運用を前提とした段階的な移行設計も提案しています。\n\n*   **株式会社セールスフォース・ジャパン**\n    セールスフォース・ジャパンは、中堅・中小企業およびスタートアップ向けのCRMプラットフォーム「Salesforce スイート」の全プランに、AIエージェントプラットフォーム「Agentforce」を統合しています。これにより、限られたリソースで生産性を最大化し、日常業務の自動化と迅速な顧客対応を実現することを目指しています。複雑な設定なしで、顧客データに基づいた商談の自動要約や、パーソナライズされたメールの下書き作成などが可能です。\n\n*   **ブリッジインターナショナルグループ**\n    ブリッジインターナショナルグループは、「Agentic Revenue Organization構築支援」を提供しており、人とAIエージェントが協働する新しい営業・マーケティング組織の構築を支援しています。SalesforceとAgentforceを活用し、構想策定から設計・実装、運用・継続改善まで一貫してサポートすることで、持続的な売上成長と生産性向上を実現します。\n\n*   **Hiway CRM**\n    Hiway CRMは、営業担当者の入力・更新・分析を自動化し、タスク実行まで支援するAgentic CRMです。カレンダー、メール、会議メモなどから活動ログを自動生成し、取引先や担当者情報の変化を検知して最新化、具体的なアクションに繋がる分析を提供します。これにより、「管理のためのCRM」ではなく、「成果を生むためのCRM」として機能することを目指しています。\n\nまた、直接的な設計支援というよりは、AI機能を搭載したCRM製品として、中堅企業にも適しているものとして以下の製品があります。\n\n*   **Zoho CRM**\n    Zoho CRMは、コストパフォーマンスに優れた中小企業やスタートアップ向けのCRMシステムです。低価格でありながらビジネスに必要な顧客管理機能を網羅し、独自の「Zia AI」が営業活動をサポートします。無料プランから始められるため、予算を抑えつつ本格的なAI機能を導入したい企業に適しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEhvbkSwOmmA5Tp1JGlH7hF1g-9iBnOWTr4b0jBbp2YETWrs3gQ16BKnNFzvNCeMN-G7VYAYtU9vRYVPw0jV1YCb2Jasj6zUE-_etC6K6x16xOkoG4H8VZpnrMXz7W-94fA1CE_XZDdpkGrEg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF3q0bjbzpwjXLYy7XlvfM6T5r1w6hSiUoi-e8toGtGkr-xoctn4rw2C53NXgsG0pm6essWwnfW9rbJIo-vg3v9DZnnTECj7n0olXHupp_8RP1mkEe8UfhC_0kOx6kRmSJIx3c2-PKcIs0AsA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHTv0ApoEThapwBpE7QgeaWp_owwhAGW_4fk5N7vfpolzkViofzng7Ct0_UZoQnBICctEa0bFFP3y1Cw5lq5i2k2ZDKgTXSHNuMh9M8lhVYLjw6TxLMes_jf30Jg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGiS2l3NukIXdFmD_TaasgKkpawt39LCwWU1Wp1-zXRYrKsr8FDxCx728VrcSA_zbCHb53tAdGJ6ioHeRXHTk0A6SoWLiGZH6_JqGpTyHU2JTldouj-4dg2M_c15vRmJCRoMrXa21GHqzL_xK5qgrdKnerZ3Zs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEP7-V0A3uVsVpcsvg8mqHJNtcXYYHuoQFhproetxKMB7NvqDaCnUrcXPMCqQQPv_p7DjwTYazZXPkSFpkj9CeDJCpALFIYRqKCwyaENQOsRhHHzFtDnj4On4zQzPJAf5FOt5ojDekxC44gp1CHWkSmCgACmSAigbULpw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHirNnhTqtU00jbqom1P14_NHTm-LjqabQBFWfEGIfbWk6KHC4LN9XnPWL7SOTAT_22yFAkJzQhoPF9mCixY_MFRmVrqsdA065lbOBBg4js2q_yzd5dpX3f8hw7r0DIQ_w7",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0sixpqE-PqylkrzUy97vPhuPaZjPNFVlbcXtmvwbjSbZyuUptCFe-QKDQFqyFipQldu7J2-Xdc2r-VrxDcs9PPhE7rd_YBd21LCkuleraI2kJjEUFybMqaZhBk-77bv7f4Ec45l8pDjyTUtBpqmwEfoWR5v4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFPMzffeYVPpKKXWXlZ2eq9YgChDmAdYk55RlFC-b0qz-VYQ3B6d6PszpFPz73wSNw6xHE0pYv7wfkd30u4KPXCZuq2o1runUavMpcj6EdlZXrXAHvhE3Zssyli8bBwugRXaqY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFPSCNGeoqAQRxlYLvgI3eARSWGd1PPM18zwqPK64IEFrNWP3FKVYs3_qi2AI_MLzWpGNVW8f4JUgKqm2JmeqBg2rSQVEE4XR4gkP1aaKeQwsy91MEDHrEVMg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8jDvyYXdU8dA60jtcuvZrSSUXO_MA7mZsceJI2IcnYcMTmb9MVDbfdJMNGv4JytMRn9xKFjlP25s9As7G-B-0rJ5przjq-ex78JBCm9Zqcp5P6B00kn9HRdpOgrP4Dnm5j5ykPkU="
+  ],
+  "error": null
+}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "M-4",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムのAgentic CRM設計支援の評判を教えてください。",
+  "cep": null,
+  "timestamp": "2026-09-01T12:11:53.177013Z",
+  "answer": "クロスコムが提供するAgentic CRM設計支援は、AIがデータと業務を自律的に処理することを前提としたCRMシステムの設計・構築サービスです。このサービスは、マーケティング、営業、カスタマーサービスに分散するデータと業務をAIが動かすことを目的としています。\n\n**サービスの特徴と利点:**\n\n*   **「入力しない」:** 商談議事録、顧客からのメール、打ち合わせメモなどをSlackに投稿するだけで、AIが内容を読み取り、会社名、担当者、商談状況、課題などをCRMの各項目に下書きとして振り分けます。担当者は下書きを確認・承認するだけでよく、手動でのデータ入力や後からのデータ整理が不要になります。情報登録時に「事実・仮説・根拠」に分類されるため、未確認の情報が自動で入力されることはありません。\n*   **「分析しない」:** AIが蓄積された商談データ（仮説の検証結果を含む）を分析し、ターゲットとする業界や企業、優先すべき案件、受注につながりやすい提案パターンなどを特定します。これにより、営業責任者が行っていたデータ集計や分析の作業をAIが代替します。\n*   **「教え込まない」:** トップセールスの思考プロセスや判断基準（立てた仮説、その根拠、商談での検証結果）が日々の活動を通じてCRMに自然と記録されていきます。これにより、特別な研修や同行なしに、組織全体でトップセールスと同様の商談準備を展開することが可能になります。\n*   **個別企業に特化した設計:** 既存のパッケージ製品ではなく、オープンソースCRMを基盤として、AIが読み書きすることを前提とした貴社専用のCRMシステムを業務設計から構築します。企業ごとに独立した環境で構築されるため、他社とCRMシステムを共有することはありません。\n*   **「データの意味付け」:** トップセールスが頭の中で行っている「この顧客の課題は何か」「どんな根拠が課題仮説を支えるか」「何をもって検証済みとするか」といった判断基準を言語化し、データベースの構造として実装することがサービスの核となります。\n\n**評判について:**\n\n現在の検索結果からは、「合同会社クロスコム」が提供するAgentic CRM設計支援そのものに対する直接的な顧客からの具体的な「評判」や「口コミ」は見当たりませんでした。ただし、同社のサービスはイプロスにおいてIT/ソフトウェア、営業・顧客管理、CRMシステムなどのカテゴリで紹介されています。\n\nなお、「読広クロスコム」に関する従業員の口コミや評判がいくつか確認されましたが、これは広告代理店である「株式会社読広クロスコム」のものであり、Agentic CRM設計支援を提供している「合同会社クロスコム」とは別の企業であるため、本サービスに関する評判とは直接関連がありません。\n\nしたがって、クロスコムのAgentic CRM設計支援は、AIを活用した効率的で自律的なCRM運用を目指す革新的なアプローチを提供していることが分かりますが、現時点では具体的な顧客評価に関する情報は見つかりませんでした。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEUcOIrxLRT30Nt_RqYiNP0IOj0zH9A6H8t1HPe1Q3TGurLZ1A26tIKccIk4HnWBYfek-JF6WLme-fJS1TPWsw6sej4W3StOzAGKQeQizmpAxnbRsUXDYcaOcL_5c83luUVFsB_uyPPWuSkIUIUDQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHoHesoSao6kfvY6nPy_Khbutpb29upVdCJwdoXWghrOtVbAQjifAo-OmqkKubhRdAM-Bk3R1bdAgSQmRwpufjDsDYAXrCw4f1B0XwcSPJOy-kCwUAVw9OqMrQZo5kIRo75RqTjwrQZyIYtEQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGhV_v5c6d-MrHiRqkDvmQvpJElOlzn3wqMf_-tNU3QuJTRbzUnJga4zj3HxLkJU4e5SiJ8JJfuuyytd3crEmCqf-g7i_4X77ZN7kR_4G49fxpXpHKRpb6njEFQwwvwO0nueiGuRtop724Oeg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQESwdr64dY6pdfg5HSXc4uhhPYoNXpGRX-Da1CjU7UxsMBW9taaRVHZOldD9NA8AXr9AD3XAjaxn48i2hr-sstJzn3R26Zz1Nlekcov9XPqMRPe03e9UpJieMnVSuuhB6cQOgT70FfrHCHe7JBjxyV24w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXHywLB3KKWpeCakGlRukEl3PRJnCocrcFWGo2tfeHan91p_9o4HiSqld0N6F7NLpNDNVSnxAVAxZR1QJ4Am1lQP3DcMlwFbI7Rieh7tTWScY526rCOCh8K1znpWzeS8EUtScvHSkSJGQkT16bmrI6YZshDnTC8PC60dc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpi5jTt-0KGqTiojw07XYVUCylyx0D6CNe8GhNA7vEO7PV4g1BHIbwsB-MHcfeevAPWvIZclkwVttCojUh2swTvrjYHzVrTnDyAAyW3_1HB8EI2re-b7xmU72sd3nY00k-EGXOu1omJ0vY4AuqfBXOJx0B",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFlgwVo7CRKexgA-njXY9Bfq57eJ5QolI-1zB0pmzeecYgXTs-P5H7KwvJXt4JaUYMczQ_YpghyQjMn8eo9UAwfR8TeapnUxEzcgGbX9X7i3YSqY_9bnamPQ4Td7tXn7pog1oK7wjgtbyBpr3C_Jcuf6z6xw7fZth-8ZQ=="
+  ],
+  "error": null
+}

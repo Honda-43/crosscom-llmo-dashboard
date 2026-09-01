@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-01",
+  "prompt_id": "M-3",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "クロスコムのAgentforce導入支援の実績を教えてください。",
+  "cep": null,
+  "timestamp": "2026-09-01T12:11:44.285916Z",
+  "answer": "クロスコム（合同会社クロスコム）のAgentforce導入支援に関する実績・特徴について、検索結果からわかる内容をまとめます。\n\n## 会社概要・強み\n\n合同会社クロスコムは、Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行うBtoB特化のコンサルティング会社です\n。\nBtoBビジネスを展開する中小企業を中心に、100社以上のマーケティングを支援しており、MA・CRM領域を軸に戦略設計から施策実行まで一気通貫で実施するのが得意\nとしています。また\nSalesforce認定のSalesCloudコンサルタント・Account Engagementスペシャリスト資格を取得し、現在コンサルティングパートナーとして活動中\nです。\n\n## Agentforce導入・定着支援サービスの特徴\n- \n貴社の目標から逆算して「どの業務で・誰が・何を判断できるようにするか」を定義し、マーケ・営業・サポートのユースケースに合わせてAgentforceを業務フローへ組み込みます。公開後はカスタマーサクセスチームが、利用状況と出力品質を継続モニタリングしながら、目標達成に向けて活用が定着するまで伴走します\n。\n- \nカスタマーサクセスチームが、最低3か月か、利用状況と評価指標を継続的に確認して、定着支援します\n。\n- \nクロスコムは、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援を、1ユースケース×3ヶ月のスモールスタートプランから提供しています\n。\n- 強みの背景として、\nSales Cloud(CRM)、Account Engagement(MA)の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装します\n。\n\n## 業界内での連携・提携実績\n2026年8月には、AI・DX支援を手がける株式会社イーゼとの業務提携が発表されました。\nクロスコムが持つBtoBの商談プロセス・マーケティングデータ活用の知見と、イーゼが持つAI・DX支援の知見を掛け合わせることで、業務プロセスへの実装力と豊富なAI導入支援実績を活かした「Agentforce導入支援」サービスを提供する\nという内容で、\n2026年8月10日にサービスページを公開し、初期セットアップからエージェント設計・構築、効果測定（KPI可視化）、運用の自走化までを一貫して支援する\n体制を整えています。\n\n## 補足\nAgentforce専用の導入支援自体は比較的新しいサービスラインで、具体的な「導入社数」などの数値実績は現時点の公開情報には明記されていません。一方でMA/CRM（Salesforce Account Engagement・Sales Cloudなど）の運用支援では\n100社以上のマーケティングを支援\nしてきた実績があり、この知見をAgentforce導入・定着支援に活かす形でサービス展開している、というのが現状の位置づけです。\n\nより詳細な事例（企業名や数値成果）を確認したい場合は、クロスコム公式サイトの「支援事例（Case）」ページを直接ご確認いただくのがおすすめです。",
+  "cited_urls": [
+    "https://cross-com.jp/",
+    "https://cross-com.jp/service/btob-crm-salesforce/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.value-press.com/pressrelease/378791"
+  ],
+  "error": null
+}
