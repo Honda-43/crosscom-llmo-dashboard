@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-03",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-09-03T00:04:12.926574Z",
+  "answer": "営業にAIエージェントを活用するにあたり、ツール選定前のCRMデータ設計から支援を提供するパートナーは複数存在します。以下に、関連するサービスを提供する企業を挙げます。\n\n*   **RECHANCE**\n    RECHANCEは、営業DX支援の一環として、データ基盤の構築を支援しています。営業データの一元管理と分析可能な基盤を構築し、データドリブンな意思決定を実現します。また、現状分析・課題抽出からDX戦略・ロードマップ策定、AIツール開発・カスタマイズ、プロセス設計・最適化まで、包括的な営業DX支援を提供しており、既存のCRM/SFAとの連携も可能です。\n\n*   **セゾンテクノロジー**\n    セゾンテクノロジーは、CRM連携基盤構築サービスを提供しており、マーケティング活動から営業、受注までのデータ連携を支援します。データに基づいた改善サイクルを回し、最新のデータに基づいた精度の高い営業管理を実現することで、営業DXを強力に支援しています。\n\n*   **株式会社Speee**\n    株式会社Speeeは、BtoB事業の営業・マーケティング改革において、「データを起点とした営業・マーケティング連携基盤の構築」や「CRM／データ基盤を活用したデータ連携の設計・整備」を支援した事例があります。\n\n*   **Salesforce (セールスフォース・ジャパン)**\n    Salesforce自体はCRMツールですが、そのプロフェッショナルサービスでは、Salesforceの導入や定着、業務の変革を支援しています。SalesforceのAI機能（Einstein、Agentforceなど）を最大限に活用するためには、CRMに蓄積されたデータの設計が重要となります。 dotData Insight for Salesforceのようなソリューションも、Salesforceデータの可視化から高度なデータ分析、実践的なアクションプラン設計までをワンストップで実現し、データドリブンな営業DXを支援します。\n\nこれらのパートナーは、AIエージェント活用を見据えたCRMデータ設計において、現状分析、データ基盤構築、プロセス再設計などの面で支援を提供できると考えられます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHEBDeiE3Aeezg-2jDyGYQnFFBXV4O6R8nUpHzgv9kZKlIYEfq5cgDV0or3xSWiib03rJNyW_X5rT8g_ylUJ5_2YksSXKaToof9XEMAYPw21yvWJDbLWtkfjhzPT9yAkSR5D7zg_w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFhZ41-Jv3T2FdM3oHDHlE5z2ZEdRejHfz-FUzi_Cwo_yb-Ky9stnCs5hkPH8Jdhz4oo1ayDF1AojjH7-1wObO7MM9cW84RJG41YkrJQ6YUjAWkM_0tRYXH_sHxKWyKuCD9EKJMrxXNzfuShNoKfx9VVYJg_ED9kGr",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEjWvRES6lUBL02bx9WBGrx36k5bWCsjfO0TrP_Z0vXGSvALgaZ-BY-K3MVko2FJqt36L2as11eOYI9hRlgKMNnFtUIM11FSPGLZTIooIcVGRahgfccOlMGeMq3gR2dwCaGz3qbAujrLJEB81UI7-r6j2zJ-3U=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVPziCN6Oqsv_3rlCivoJM5kaCyTMm-sKqfgOo9SkDiVxlDGJPK89uj0CgNXmaJN7IT-Oyd9ZeLxFzM8WJmPd1VD41Kv6WvltnenQ5Bmy0VSaWTm9yirSeT-Q9FWe7MXDtiH_6IcIR-f_rzieqVvukSQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFL3z7_YaurEWgYy6K0SISq2P6_HP7F6R4df9-8yKqVmwfGGPRE_zz9nOoWvwU0kkENLdQ8eKz-cuxdeLPcEo9qsx34XijUpeaHjnRUB6E3axxPQfgGY4BPET7gerTbJOarMr4YeMmS53q-WTXWRJyCKS960p4x"
+  ],
+  "error": null
+}

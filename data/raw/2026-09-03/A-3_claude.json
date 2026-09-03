@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-03",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-02T23:58:15.615879Z",
+  "answer": "# Agentforce導入費用の相場\n\n## 1. 料金体系（3つの課金モデル）\n\nAgentforceは2026年時点で複数の課金モデルが用意されており、デプロイ方法によって選択します。\n\n\nSalesforce Agentforceの料金モデルは、1会話あたり2ドル、Flex Creditsが10万クレジットあたり500ドル、ユーザー単位ライセンスは月額125ドルからという3種類\nがあります。\n\n**主な料金オプション：**\n- **会話課金**：\n顧客対応向けエージェントには1会話あたり2ドルの会話課金が引き続き利用可能\n\n- **Flex Credits（従量課金）**：\n消費型モデルはFlex Creditsが10万クレジットあたり500ドルからスタートし、AIエージェントが実行する標準的な1アクションが20クレジット（約0.10ドル）を消費\n\n- **ユーザーライセンス**：\n従業員向け展開では、Agentforce User Licenseは月額5ドル（Flex Credits消費が別途必要）、Agentforceアドオンは月額125〜150ドルで従業員の無制限利用が可能、Agentforce 1 EditionsはFlex CreditsとData 360クレジットがバンドルされ月額550ドルから\n\n- **無料枠**：\nSalesforce Foundationsは、Enterprise Edition以上の全顧客が利用できる無料ティアで、20万Flex Credits、25万Data Cloudクレジット、Agent Builder、Prompt Builderが無料で含まれる\n\n\n## 2. 見落としがちな「隠れコスト」\n\n**Data Cloud（Data 360）が実質必須**\n\nData CloudはAgentforceの会話料金には含まれておらず、統合された顧客データにエージェントを紐づけたい場合（本番運用では推奨）はData Cloudが必要\n。\nData Cloudの価格は2026年時点で、1,000万件の統合プロファイルに対し年間10万8,000ドル（Salesforce定価）\nとなっており、これが総コストの中で最も大きな追加費用になりがちです。\n\n**総所有コスト（TCO）の実態**\n中堅企業（500ユーザー規模）の場合、\nAgentforce単体の年間コストは1万5,000〜5万ドル（Data Cloud費用を除く）だが、Data Cloud・導入・保守を含めた総所有コストは初年度で15万〜42万5,000ドルに達する\nとされます。同様に別の分析でも\n中堅企業の実質的な初年度コストは15万〜60万ドルで、これはAgentforceにData Cloud契約（年間10万8,000ドル以上）、導入サービス、ナレッジベース構築が必須となるため\nと報告されています。\n\n## 3. 日本国内での費用感\n\n日本語圏の情報では、以下の点に注意が必要です。\n\n\n利用料は会話課金（1会話2ドル）をベースにした概算であり、為替レート・契約条件・Salesforceのエディションによって変動する。初期構築コストはプロンプト設計・テスト・日本語調整・パートナー委託費用の積み上げによる参考値で、プロジェクト規模や要件により大きく異なる\nため、正確な見積もりは認定パートナーへの確認が必須です。\n\nまた、\nAgentforce単体のコストに加え、Salesforce本体ライセンス費用（Enterprise Editionの場合、1ユーザーあたり月額数万円規模）との合算が総保有コスト（TCO）になる\n点、\nData Cloudの契約を見積もりに入れ忘れる会社が多い\n点は日本企業でも共通の注意点です。\n\n大規模な基幹連携を伴う場合はさらに費用が膨らみ、\n全社的なデジタル基盤として構築する100名超の大規模組織では、基幹システム連携を伴う導入支援費が1,000万円を超える場合が珍しくなく、プロジェクト期間も半年〜1年以上に及ぶケースが多い\nとされています。\n\n---\n\n# 費用対効果を出すための進め方\n\n## ステップ1：ビジネス価値の明確化とKPI設定（着手前）\n\n多くの支援会社が共通して強調するのは「技術検証より先にビジネス価値を定義すること」です。\n導入検討フェーズにおける最大のハードルは、技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定\nとされています。\n\n具体的には、\n「議事録が楽になった」「検索が早くなった」という現場の定性的な成果ではなく、「売上xx%向上」や「何人月の工数削減」といった定量的な指標を明確にすることでROIが明確になり、本番導入への道が開ける\nとされ、定量KPIの事前設計が重要です。\n\n同様のアプローチとして、\n現状業務ヒアリングと業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果(ROI)の試算\nを最初のフェーズで行う支援会社もあります。\n\n## ステップ2：ユースケース選定（効果×実現",
+  "cited_urls": [
+    "https://coworker.ai/blog/salesforce-agentforce-pricing",
+    "https://magicfuse.co/blog/agentforce-cost",
+    "https://kovil.ai/agentforce/playbook/agentforce-pricing-guide-2026",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://www.members-saasplus.com/agentforce"
+  ],
+  "error": null
+}

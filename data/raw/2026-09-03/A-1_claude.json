@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-03",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-02T23:52:56.748011Z",
+  "answer": "Agentforce(Salesforceのエージェント型AI基盤)の導入支援を行っている会社について、最新情報を調べてご紹介します。\n# Agentforce導入支援のおすすめ会社\n\nSalesforceの自律型AIエージェントプラットフォーム「Agentforce」の導入支援は、Salesforceコンサルティングパートナーを中心に多くの企業が提供しています。\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼります\n。その中から特徴的な企業をいくつかご紹介します。\n\n## 大手SIer・コンサル系\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援しています\n。PoCで終わらせず着実に成果を出すことに重点を置いています。\n\n**電通総研**\n\n「Agentforce」のPoCを実施したい企業向けにPoCパッケージプランを提供しています\n。まず小さく試したい企業に向いています。\n\n**バーチャレクス・コンサルティング**\n\nAgentforce導入・活用支援サービスは、導入から定着化、活用促進までの包括的な支援を提供します\n。特に\nコンタクトセンターをはじめとする顧客接点部門での課題解決\nに強みがあります。\n\n**DCS（大興電子通信）**\n\n現行業務の可視化を行ったうえで、あるべき姿の整理、業務課題やAI活用ユースケースの抽出を実施するワークショップを提供しており\n、\n設計・導入から運用開始後の活用支援や現場での定着化まで伴走型でトータルサポート\nします。\n\n## 伴走型・内製化支援に強い企業\n\n**メンバーズ（サースプラスカンパニー）**\n\n初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nするのが特徴です。\n130名以上の社員がSalesforce認定資格を保有\nしており、専門性の高さが強みです。\n\n## 特定領域に特化した企業\n\n**クロスコム**\n\nソリューション営業に特化したAgentforce導入・定着支援を行っており\n、\n1ユースケース×3ヶ月のスモールスタートから対応\nできるため、まず小規模に試したい企業向けです。\n\n**富士ソフト**\n\nPoC支援を中心にサービスを組み立てており、ユースケースの整理や導入データの質のチェックから始め、要件定義、技術検証、効果測定、本番移行計画までを反復的に支援します\n。\n\n**フロッグウェル**\n住宅業界やコンサルティング業界向けの導入実績があり、\n構築済みエージェントによる即座の課題解決開始、Salesforceデータとの直接連携による情報漏洩リスク回避\nを強みとしています。\n\n**enucolor**\n\n営業DXのプロフェッショナルが実現する確実なSalesforce AI導入と業務最適化\nを提供しており、要件定義から実装まで一気通貫で対応します。\n\n---\n\n## 選び方のポイント\n\n- **大手企業・複雑な要件**なら日立ソリューションズ、電通総研、DCSなどの大手SIer系\n- **まず小さく試したい**なら電通総研（PoCパッケージ）やクロスコム（スモールスタート）\n- **内製化・人材育成も重視**したいならメンバーズ\n- **特定業務領域（営業・住宅業界など）に特化**したいならクロスコムやフロッグウェル\n\n自社の業界・規模・目的（PoC重視か、本格導入か、内製化重視か）によって最適なパートナーは異なりますので、複数社に相談して比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://www.dentsusoken.com/news/topics/2025/0808.html",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://www.dcs.co.jp/solution/agentforce/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}
