@@ -1,0 +1,31 @@
+{
+  "date": "2026-09-04",
+  "prompt_id": "A-2",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか",
+  "cep": "導入後の定着課題",
+  "timestamp": "2026-09-03T23:48:14.868888Z",
+  "answer": "Agentforceの現場への定着や活用にお困りの場合、定着支援や活用支援を提供しているコンサルティング会社が複数存在します。これらの企業は、システム導入後の運用最適化、従業員の利用促進、そして継続的な改善をサポートします。\n\nAgentforceの導入・活用支援を明示しているコンサルティング会社には、以下のようなものがあります。\n\n*   **バーチャレクス・コンサルティング**：SalesforceのAIエージェント基盤「Agentforce」の導入・活用支援サービスを提供しており、「初期導入」「伴走支援」「構想策定」の3つのプランで構成されています。特に「伴走支援プラン」では、運用最適化と継続的改善を支援し、専門家によるチューニングや改善提案を提供しています。\n*   **合同会社クロスコム**：Agentforceの導入・定着支援を行っており、BtoBマーケティング戦略コンサルティング支援も得意としています。Salesforce認定のコンサルタント資格を保有しており、現場のSalesforce理解に基づいたAgentforceの活用を実装します。\n*   **三菱総研DCS**：Agentforce導入・活用支援サービスを提供しており、Salesforce単体導入にとどまらず、社内基幹システムに分散するデータの統合も含めた導入を一気通貫で支援します。\n*   **メンバーズ サースプラスカンパニー**：Agentforceの導入・運用支援を提供し、利活用・定着化支援として利用状況の可視化と分析レポート提供、改善提案、必要な各種設定やローコード開発などを行っています。\n*   **日立ソリューションズ**：自律型AIエージェント「Agentforce」の導入・活用をトータルで支援するサービスを提供しています。\n*   **K2 Partnering Solutions**：Agentforceに関する専門家のサポートを提供しています。\n\nこれらの企業は、Agentforceの導入だけでなく、その後の「定着化」や「活用促進」に重点を置いたサービスを提供しており、貴社の課題解決に貢献できる可能性があります。\n\nまた、Agentforceに特化していなくとも、一般的な業務システム導入における定着化支援やチェンジマネジメントに強みを持つコンサルティング会社も参考になります。\n*   **Ataway**：チェンジマネジメントコンサルティングサービスを提供し、変革の戦略策定から実行、定着化までをトータルサポートしています。特に「定着支援」では、持続的な効果実現と目的達成に向けたモニタリングと追加施策の計画・実行を支援します。\n*   **PwCコンサルティング**：国内外の豊富な支援実績に基づき、人の意識・行動・スキル、そして組織カルチャーに働きかけるチェンジマネジメントおよび組織カルチャー変革を支援しています。\n*   **EY Japan**：従業員が変化を「体験」できるよう常に努めることで、トランスフォーメーションの成果を向上させる新しいアプローチのチェンジマネジメントを提供しています。\n*   **ジャパンシステム株式会社**：構想策定からシステム実装・業務改革の定着までを一貫して支援するコンサルティングサービスを提供しており、改革を現場に根づく“仕組み化された変革”として定着させます。\n*   **ソフトバンク**：DX定着化支援サービスを提供しており、業務分析支援、利用定着支援、運用体制構築支援のフェーズごとにソリューションを用意し、DX実現をバックアップします。\n*   **中央システム**：Salesforceの導入から定着化までお客様に寄り添ったサポートを提供しており、現状ヒアリング、課題抽出、段階的なゴールの設定、施策立案、定常運用サポートまで実施します。\n\nこれらのコンサルティング会社に相談し、貴社の具体的な状況や課題に合わせた定着・活用支援を検討されることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbTUc8zhKX-fno_yZcNobXq6Gz8LE6GcyY98pGcOvWgyCkTyj4Q4lSLBTX6fjqhGkbGgfhNti1iAZ8cRkt03OCrq-kySlD1_IDuv9S3Tw2b1oz9eWQDFjI2uz_E7ZAp1b7hZZW_MHB",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEt8lWgl-XmNQwQtLmcpeSPI-f8AX-odtCG0jIP4fenOIqzik9_JnoKhGHUIBvPOtcQzPNURCjsW3daU3F5rjuMs_WawaFo7YxOJuisJTroz58Cq6yb0K2G0rPXKJKET5Aitha9upFMz1ypQsk735-CK38ORlERNCL3zsQeyKs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHg5nZ7AQRE4VyBqDfjkwQYRWmgSSc2Ef-maMVs-iNfafpIIueoVIHwjKDyqlmPcsn-qubTVd6lyhGia0H3I7JrIqLFF3gjJuktnCaDSZ0588Mb7l_KbtDHAoPgiecEG1suk9x1-47aInTigw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHd_d_D0Ta6EihLP5pOet-IsuZ6YnnZ62B9hUBHGnD0ca-_NpZwhvS02rZ0KdGY6YMjIkguA5wU-ssVbsFBPjfnNicOaO5PKNZOXE9c9T_xSX_Fe_-YJVmWP2UbAA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGkewY6jTHv_PLMdn2_EvduGidlhPw-cAjfqXUO_gg4RcNaFRv9wcyQMq97gBQ7U43E4gtuYbp8GTT2yZNybeCTGh9pcFGGELNgL2JgR3Zba4rvXCY5bFBEe-aekpP4zu_vIY7em2_L7VE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyMbgmSK996yWbJbNzfsNvYRPDeDWwMnqXzmO6YLgrQDcVGOS_7Hf2Jkv1cdEEx-iopNgOnwdukBvQJAqW7Nwr5zDzIlo-RJLbXTjAxYVLGzkCR4o26dTjdIyajjpItS9xs5wsNOY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEp6Y-5adDEd1CgHwHHR6C_i52ZHb0TFsw7uJzoHRTxzUCc725One-J8HurbP6fpw9T5nXgFNUdjk6vxuSX8ByDaPPTc817Sc0FgREAVoJuyEPE-aOECxHZ2AND0L8Lm8pBySYDcZ_lspSWADvDhodsrLxm3VemKoKVyeflp-Q=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGkseQgpwD0Ggk5NOaA6Bgq_iL61xvH4Cu_nIkXTu-K1n5oVZrtrxHfpQStZN_UmKLpsi02BM-IfpfqJ1onLfkZw98n_QrYHY6tm80aPPoRdQQnCZlm2dI83eawupjSJGZx30oIKkouQuSHmEyzjzrUouSqbYbDt6J_vv9hGHCCnuV6IsSn",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHdu1zXJbEU8sOSdsVQ5--zPX-mgvD3gIt8mIjzyq5cPPGlQJV-Flce_bIeGHXXJWD_EuXiD3l4bTaYkOohtSIiA7CmmaLN2wwhwLUM_j9Cy3RPHroNnwjDsBHTN0mHrwbT4mCwATpjGJ9TxFRGIEeFTvhcImizeBImE8j_YfbDPYdvNlEcrDYecTIpbK7wHK6GWNWVZo_13B54J_O-SHFneWpcIz9Dgx1Hj7BNVw-z",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFp-vm8j2iUBgKv6oD_2vnUIyqnVJOMjCHN6DPR-22SYVcZ-bilmOBnZUbQhIaOghOZLjSFGgr7ZzDU2gUtUZiF86jcen8Snb0ETzYeUejfWPjpKqJRkdi_rgYPRDwS0ohIVECU1Xr2Jc_cCE9OEuDZl4dnfl55xRTTE3uFS3MrFBbN",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHIgLJw-ee4XOrcmueevQUu9GQeW9mX5GD2EiJRjMoROEB6fGPmqwJVZQoRtacJiQNT3jerZLPCR-Qzubex2Gkw2OHEbdQ_EFVrAPSX02hz13eoINNYBx0RfPj8JG86k2k5swD7-7vS5AolZvSyoJT0cyyu02JSpc4rKUUVpqQyH89dWqKdl8P_fmhzwPdU1tG-_t2gXwWXhvkq-O1ALJosnXCxZd_36dfEZQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEb7V-IRc74ZqFwWA9VKp26zYr29w52MCPrwy3wOTtr-5Fs4dknh_06qCzAcNnCJ8JkhQBO7Cb0BAHq3-8-R4YiBJJquF-sVW0W6C0672f6lqkcQ9e2g1WPKZKk1zwNxPcUGXFsMn_Ai3Strm9SrvcWNyK7kP75rg3iAG-n5OPaCmdgUA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFArXnrsvFHdx3GPpamLWPuBsZ7dZP8cj_A4NeRoKawhLwqm11IDUAYRzQIhghIPLKP0nTWTRhhbT_zLSNWD8MjRZWz7yITCtm-mo45I25UDDCihu47lo0LNhWys4UAGBa_uhIYR_jrkc_yyCkhck_dyVrX1iI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEbhq-ib_N3M7XaJyso0lfjt_Q74N4RPkPZYV4m5_1JhcPteQ0tELXMHSSfhTzZ7ajDQiYuaLK3rmdg1q-7C66vMtS0ptxkmueilP4VIS7C_xPsCcI_1upfjXmUCsDCUR2FFu40fOTiOCu_FyV325LULv-S1BmQ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFaYXy0LFEdzlhlKR_PSopNCTOO0xzHY7AF3iSSx0dsGgknRQENHhqEJw3bl4lAkruvLvHdtBpGd7O_DRIWPt9Rbhouiuba62hCMGAaFe19v-tFbXP3OwYQNghvoXxQcIVQPlGB_Hh01EdelJvZ-oJVfCBVyGoMBmhj2WGGUTXwtcdAxebTt_vCF7S-bP7z"
+  ],
+  "error": null
+}

@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-04",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-03T23:48:48.470701Z",
+  "answer": "Agentforceの導入費用は、Flex Creditsと呼ばれる従量課金だけでなく、Salesforceの契約条件、AIエージェントのAction設計、データ接続、初期実装、教育、継続的な運用改善費用など、複数の要素で構成されます。\n\n**Agentforce導入費用の相場**\n\n*   **初期実装費用:** BlueAIの試算では、初期実装費用として100万円から300万円が目安とされています。\n*   **月次運用費用:** 同様にBlueAIの試算では、月次運用費用として10万円から30万円が目安です。\n*   **Flex Credits:** 公式従量料金は、10万Creditsあたり6万円です。\n*   **3年間TCO（総所有コスト）の目安:** 月間Action数によって変動し、Salesforce基本ライセンス費用は除外されます。\n    *   **小規模 (月1,000 Action / 1業務 / 10人):** 約583万円\n    *   **中規模 (月10,000 Action / 3業務 / 50人):** 約1,502万円\n    *   **大規模 (月100,000 Action / 5業務 / 200人):** 約5,900万円\n*   **考慮すべきその他のコスト:** ライセンス費用に加え、導入設計、データ整備、運用改善にかかるコストも考慮する必要があります。Salesforceのマーケティング製品の場合、「ライセンス費用」「初期導入・カスタマイズ費用」「CRM/SFAとの連携範囲」の3つで総額が決まります。\n*   **Salesforceの既存環境:** AgentforceはSalesforceを基盤としているため、既にSalesforceを利用している場合は、そのナレッジや情報を活用できる点が大きなメリットとなります。\n*   **中小企業への適性:** 一般的に、Agentforceは専任のSalesforceチームと高いインタラクションボリュームを持つ企業向けに設計されており、中小企業では実装コストだけでも、サポートスタック全体に費やす金額を超えるケースが多いとされています。ただし、中小企業での導入効果も報告されています。\n\n**費用対効果を出すための進め方**\n\nAgentforceで費用対効果を最大化するためには、以下の点に注目して導入を進めることが重要です。\n\n1.  **目的と範囲の明確化:**\n    *   Agentforce for Sales（営業支援）とAgentforce for Service（顧客サポート）では費用の考え方や費用対効果の測り方が異なります。\n    *   Agentforce for Salesでは、AIによって創出される商談数や営業工数削減効果を含めて評価します。\n    *   Agentforce for Serviceでは、「どれだけの問い合わせをAIに任せるか」という視点で費用対効果を検討します。\n    *   まずは問い合わせ件数が多い定型業務や、ROIが明確に出やすいカスタマーサービスなどの領域から導入し、効果を確認しながら対象範囲を拡大していく方法が有効です。カスタマーサービスでは、ROI 213%、応答時間84%短縮などの実績が報告されています。\n\n2.  **事前の要件整理と費用試算:**\n    *   導入前に、自社の利用規模やAI化する業務範囲を具体的に定めて、綿密な要件整理と費用試算を行うことで、導入後の失敗リスクを大幅に減らすことができます。\n\n3.  **データ整備と運用設計:**\n    *   Agentforceの導入成功には、データ整備と運用設計が不可欠です。顧客情報やナレッジが適切に整理されていなければ、AIが適切な回答や提案を生成できません。データの存在はAgentforceの生命線とも言えます。\n    *   データクレンジングの工数や、スコアリング・シナリオの複雑さ、外部システムとの連携範囲によって初期導入・カスタマイズ費用が変動する可能性があります。\n\n4.  **段階的な導入と効果測定:**\n    *   AI活用のテーマ創出、クイックアセスメント、PoC（概念実証）といった段階を経て、単一プロジェクトで終わらせずに全社的なテーマ拡張を目指す実践的な方法論が推奨されています。\n    *   Salesforce自身もAgentforceをヘルプサイトに導入し、わずか4週間で問い合わせの85%を解決した事例があります。このように、初期のスコープを限定することで精度の向上にも取り組みやすくなります。\n\n5.  **パートナー企業の活用:**\n    *   導入形態や利用人数、会話数に応じた最新の公式価格の確認や、自社に最適なソリューションの提案を受けるためには、Salesforceや営業・マーケティングに精通したコンサルタントに相談することが有効です。\n\n適切な計画と準備により、Agentforceは業務効率化や顧客体験向上に大きく貢献し、投資対効果を発揮することが期待できます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJZqZcAeGkLtbxe9NlLDP_M1yHsY0hGVwu1NuTTqXY3dEQIAGYxnuc_X51YOawycUP2tX1nFVROGc1u7yE4ymfwdsGVK009900X4VGW21iXS_GnfRmNRQCOvCbC6LMQVYdgiPvZ3DXFjBeS7eDNx02LkE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEMNHGbScP_Gmry7XXo8iPVSdTmaBmcL9cHm2G4monDYQBf0mhnowEsrefDbiBidt1YeI7JkgdLpAFU85Nvp6OOD7RD7S3TlRv0Mm9ojkUVAl3XKgqfIq4QdYH9MstEvTR5eRoMwBx8byZ0sfFzj4_Li9IQOec39Br2M1EOaJY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHiQdGLoeSXpVo_QgfsBfDHnIlyyGBzWmEM0bhcil9BHBT2bEs4Qtcs_49bOtJf95iEJlTEqrZUJHzIDhTjjJm5r95oT41tA55D8Bqg3glrmPnueW40HWSTAVSGFVRL4Hg_wfAoLxqsRnvj7royPYLp0LglC1hmcrWae9jjQ9F8ad9uHIMWGjQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGllrzldanvYkoSSsH7mUbEQmwiHUwlhnsD1Q9-dw9_VNWlahB5CxY0lAxa5tW0RHvOdzVrgrj3MZKwZGlUx8JU7bKr3wGJ8jC3GMOVoZFvKbyIqJyUKQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEe4fmP1MLXT2C0kMnD1E-4k92Hkfbb3y4UJ9lAamw1B92gZnzD_h_MDGtgoB80QmqgWyMBoBz_9KwBh1O-TRDNSjgkDtXjzGXFjOTVzgXzESAzBbHPCatvy0lS-U3j9_tz9weAhIg_LbGp360P3GGsZCylXjCllCVw3Ae_Jrs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG81P3orasE1CYOuntvaWJz0tst7eJdyeyXJnzqVsDlbbEjFy2fHy2qGk1m-xF4NQARAl55cediVullet0KILIP4SU3g1uCz8wF75fLk9LjwioQEeYT-PahvBuhIPFGDT7yJ5RHMhY9D3AtAsi1RD_ur0J5OdEyTnb3hG1ly2i7",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGvW4MqPUfrVn0bPIWnPkaLpI97FZBHUNUYgLFBrtfA5c_P4lbgnSXitnkuz9cqLa0ds-m25s_TzMwlZaioEZexzRKmXNImB3mUErlm3GlQBqSc3KKAdvJssuDUUkaLNUVpPb1L1m7nkPmjfY-U--aPMr1A",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHPxKHSxjElaJE7fEXdWenDPKiNY0NV0mLt3hvZO5WkNlzPcDIjlCbY4vWXoKBU4PoQtXNOyGj86ikQLWsNCVltQqVICiyC5I4z08lcFpE8oFyRSoWwZ7qefWq2tcUjyKfvzFCgwvEEpgXKzkvr7KboO4bSWjJFmlRKLcfvMzJwKWcnQZ4BDNL02BM="
+  ],
+  "error": null
+}

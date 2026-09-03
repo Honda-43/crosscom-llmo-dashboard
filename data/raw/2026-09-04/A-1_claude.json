@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-04",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-03T23:48:06.926526Z",
+  "answer": "Agentforceの導入支援をしてくれる会社について調べてみます。\n# Agentforce導入支援でおすすめの会社\n\nSalesforceの自律型AIエージェント「Agentforce」の導入を支援している国内企業をいくつかご紹介します。\n\n## 1. 株式会社メンバーズ（メンバーズ サースプラスカンパニー）\n\n\nメンバーズはSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\n。\n初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nしてくれる点が特徴です。\nService・Marketing・Salesの各テンプレートに対応し、SlackやTeams、Salesforceなどとの連携や社内ナレッジの統合も支援。セキュリティやガバナンスの整備まで含めて対応する\nのが強みです。\n\n## 2. 日立ソリューションズ\n\n大手SIerとして、\n「導入・活用支援サービス for Agentforce」で、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援\nしています。PoCで終わらせず着実に成果を出すためのアプローチ策定に強みがあります。\n\n## 3. 合同会社クロスコム\n\n\nSalesforce公式のコンサルティングパートナーとして支援を行っている\n会社です。\n「Agentforce導入・定着支援」として、実務で活用できるまでの定着支援に重点を置いたサービスを提供し、目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込みます\n。\n導入後はカスタマーサクセスチームが継続的にモニタリングし、1ユースケース×3ヶ月のスモールスタートから対応\nしており、小さく始めたい企業向けです。\n\n## 4. フロッグウェル株式会社\n\n住宅業界やBtoBサービス業など、実際の導入事例が豊富な会社です。\n住宅業界向けコンサルティング企業へ、SalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援を実施し、Einstein Conversation Insightsの活用と会話サマリーの自動化による業務効率の向上を図っています\n。\n\n## 5. 株式会社enucolor\n\n営業DXに特化した支援会社です。\n要件定義から実装まで、プロジェクト成功に導く戦略的導入支援を行っており、CRMや外部データを自動分析し、タスク実行やワークフロー起動を自律処理して業務効率化と意思決定を支援\nするサービスを提供しています。\n\n---\n\n## 選び方のポイント\n\n- **Salesforce公式コンサルティングパートナーかどうか**：\n国内のSalesforceコンサルティングパートナーは約300社にのぼり\n、まずはこの区分から相談先を探すのが安心です\n- **PoCだけでなく定着支援まで対応しているか**：導入して終わりではなく、運用・内製化まで伴走してくれる会社が望ましいです\n- **自社の業界・ユースケースに近い実績があるか**：営業・マーケティング・カスタマーサポートなど、活用したい領域での実績を確認しましょう\n\nまずは自社の課題（例：営業効率化、カスタマーサポート自動化など）を明確にした上で、複数社に相談・見積もりを取って比較することをおすすめします。",
+  "cited_urls": [
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}

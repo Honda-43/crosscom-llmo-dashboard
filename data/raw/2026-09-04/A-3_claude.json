@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-04",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-03T23:49:19.540602Z",
+  "answer": "# Agentforceの導入費用の相場と費用対効果を出す進め方\n\n## 1. 費用の全体像（合計コスト）\n\nAgentforceのコストは「ライセンス単体」ではなく、複数要素の合算で考える必要があります。\n\n\n総所有コスト（Data Cloud、導入、保守を含む）は、中堅企業の場合、初年度で15万〜42.5万ドルの範囲になります\n。同様の試算では、\nAgentforceは1会話2ドルから始まるとされていますが、中堅企業の実質的な初年度コストは15万〜60万ドルに及びます\n。この差が生まれる理由は、\nAgentforceには年間10.8万ドル以上の必須のData Cloudサブスクリプションが必要になるためです\n。\n\n日本国内の情報でも同様の注意喚起があり、\n利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要があるとされています\n。\n\n## 2. Agentforce自体の料金モデル（3種類が併存）\n\n2025年以降、料金体系が段階的に整理され、現在は主に3つのモデルから選べます。\n\n**① Conversations（会話単位課金）**\n\n「Conversations」モデルは1会話につき2ドルを課金する仕組みで（会話ウィンドウはチャネルにより最大24時間有効）、長時間の対応が発生する顧客対応型ボットに向いています\n。ただし\n当初の$2/会話モデルはNPOや中小企業、AI予算の少ない組織を締め出す結果となり、大企業からも「予測不能で実コストと乖離している」との声が上がりました\n。\n\n**② Flex Credits（従量課金）**\n\nFlex Creditsモデルでは、標準的な1アクションが20クレジット（10万クレジット5万円=500ドルの単価で約0.10ドル）、ボイスアクションは30クレジット（約0.15ドル）を消費します\n。\n損益分岐点は1会話あたり約20アクションで、それ以下であればFlex Creditsの方が割安になります\n。日本円ベースでは\n「Flexクレジット」エディションで6万円/10万クレジット利用できます\n。\n\n**③ ユーザー単位ライセンス**\n\nユーザー単位オプションは1ユーザーあたり月額125〜550ドルで、Sales/Serviceクラウド上での125ドル/ユーザー/月プランでは、ライセンスを持つ従業員は社内向けエージェントを無制限に利用できます\n。フルパッケージ型では\n「Agentforce 1 Sales / Service」が550ドル/ユーザー/月で、CRMライセンス＋Agentforceアドオン＋年間100万クレジット（Flex）＋250万クレジット（Data Cloud）が含まれます\n。\n\nなお\nAgentforceは1組織あたり250クレジットの無料枠から始められます\n。\n\n## 3. 見落とされがちな追加コスト：Data Cloud\n\n\nAgentforceが正しく機能するにはData Cloudが必須であり、これは多くの購入者が見落とすコストで、しばしばAgentforceのライセンス費用そのものを上回ります\n。具体的には\nData Cloud Starterは基本機能付きで無料枠に含まれますが、Plusは年間約6.5万ドル、Premiumは年間約17.5万ドルとなり\n、\nAgentforceに5万ドルの予算を承認した企業が、実際に稼働させるには6.5万〜17.5万ドルのData Cloudライセンスが別途必要だと後から判明するケースが多い\nようです。結果として\n実装・保守費用を加えると、実質的な投資額は表面上の3〜5倍になることがあります\n。\n\n## 4. 費用対効果（ROI）を出すための進め方\n\n日本の導入支援各社が示す共通のステップは以下の通りです。\n\n**STEP1：現状分析とユースケース選定**\n\n営業プロセス（対象業務）を詳細に分析し、最も効果が期待できるユースケースを特定します\n。\n導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性・難易度に基づく実現アプローチ」の策定です\n。\n\n**STEP2：適合性×難易度のマトリクス評価**\n\nユースケースごとに、Salesforce上での実装適合性と、実装に必要な工数・技術（難易度）をマトリクスで評価し、「効果が高く、かつ実現し",
+  "cited_urls": [
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://aquiva.com/blog/agentforce-pricing-gets-a-long-overdue-fix-flex-credits-are-now-live",
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://blogbloggerbloggesta.hatenablog.jp/entry/agentforce-price",
+    "https://frogwell.co.jp/blogs/agentforce-usecases/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

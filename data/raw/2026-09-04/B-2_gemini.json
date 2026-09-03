@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-04",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-09-03T23:50:10.742395Z",
+  "answer": "中堅企業が特定のベンダーに依存せず中立的な立場でCRMの設計支援を求める場合、以下の特徴を持つコンサルティング会社や支援企業が選択肢となります。\n\n**1. ベンダーニュートラルなCRMコンサルティング会社**\n特定のCRMツールに特化せず、顧客企業の業務内容や課題、目標に合わせて最適なツール選定から設計、導入、運用までを一貫して支援する会社です。\n*   **特徴**:\n    *   複数のCRMツール（Salesforce、HubSpot、Zohoなど）を比較検討し、客観的な視点から最適なソリューションを提案します。\n    *   企業のデータ、マーケティング、システムに関する専門知識を融合し、多角的な視点からCRM戦略の立案・実行を担います。\n    *   ツール導入の成否を分ける要件整理やツール選定において、ベンダーのセールストークに流されず、中立的な立場からアドバイスを提供することが重要視されます。\n\n*   **具体的な企業例**:\n    *   **電通デジタル**: プライム上場企業から中堅・中小企業まで幅広い実績を持ち、「CRM統合コンサルティング」として施策立案からコミュニケーション設計、運用、分析まで一体で提供しています。\n    *   **ECマーケティング株式会社**: 中小・中堅規模のEC/通販企業を中心に、ベンダーに左右されず中立的な立場でCRMコンサルティングを提供しています。\n    *   **株式会社ripla**: 業務設計からシステム構築・運用まで一気通貫で支援するDX/開発支援会社で、標準CRMパッケージでは不足する要件や自社特有の業務プロセスを反映したCRMが必要な中堅〜大企業に適しています。\n    *   **ムーブエフコンサルティング合同会社**: 中小企業のデジタルトランスフォーメーション（DX）実現を支援し、企業の営業スタイルに合わせたCRMのスムーズな導入のためにカスタマイズを前提とした導入支援を行っています。\n    *   **辻・本郷 ITコンサルティング**: 特定ベンダーに依存しない中立的な立場での最適なシステムやSaaSの選定・提案を行っています（経理DXアウトソーシングサービスの一環として）。\n\n**2. 独立系ITコンサルティング企業**\n特定のメーカーやサービスに縛られず、顧客にとって最適なIT戦略やシステム導入を支援する企業もCRM設計において中立的な立場での支援が期待できます。\n\n**3. 専門性を持つCRM導入支援パートナー**\nHubSpotなどの特定のCRMツールの導入支援パートナーであっても、「HubSpotの効果を最短で最大化できる」ように、顧客の業種や課題に最適化された導入プランの策定やワークフロー構築など、深い専門性で支援してくれる場合があります。中堅企業向けの導入実績を持つパートナーを選ぶことが重要です。\n\n**選定のポイント**:\n*   **中堅企業への支援実績**: 自社の規模感に合った企業への導入・設計実績が豊富かを確認することが重要です。\n*   **支援範囲**: CRM戦略の立案からツール選定、設計、開発、導入後の運用・定着支援まで、どの範囲をカバーできるかを確認しましょう。\n*   **コンサルタントの専門性**: 実際に担当するコンサルタントがCRMの戦略設計やデータ活用のノウハウ、実務経験を豊富に持っているかを確認すると良いでしょう。\n*   **コミュニケーション体制**: 営業担当と実際の支援担当が同一人物であるか、あるいは密な連携が取れる体制であるかを確認すると、要望が正確に伝わりやすくなります。\n\nこれらの情報を参考に、貴社に最適なCRM設計支援会社を検討されることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1u1bq4SYxNfAvhQtecQ0SN5DNvIXiXzmtFiNbNDMLStogROgkQgrbbOmSMG4in19P2vYG3WUwncuGxBXsen2UXzqCQo3ifgdz_W5X91tb1Rj5WoP6Rbwp3buDf3UhYScJWkU9CreB",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEZXDbE775h9bTcu59cY5_wIrao8RW-ri4Da2LangrO4Ssu34HegbbGfHrSFh-PyMot5981X7nkkEVdp6vNjOJyW6-F_4-3VZUJB8lV_llL5-zA3vAWPQlIaLZ2Es3Dqs4Ov3rLP590Wr89mA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHh_-iHWwt1NzEX45EsvqHSBuIKGsII4Ay-wleHIuLLVtWgjd8aWx22tl2TQ7KDnZxcbKLzsNkWOuqt_ezyjX8bolgQsON0q5bVmrFLGnavTML3I1ss2D0_LcFQQzQySCmwwjtW1GE0d_4INa-uIfI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE8TzggLpvu2r0ugUjeUKZDYw4ij5_L3H0WZDqms3GtmuPfjaVwHVEgHASIUghVp4yy92EJ4J0Kqf07Vf8EWwLPFqsJGfngiKu38mbE1DrjOV_Zb4movbgntLfTpksKN69-bDfEkIOjYnxo",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQENaOPFVqkUswGXWPqRSnDwaMSuwNpMOsWHsXm-ADMwlzzRFNjzKtO5cNUqyVK3X3lX2FBYDR8oF2Hv49rclVFAZvYeniTJ-g2dCpLDoCTkxmY_Hrs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEOpaMigtDUZVaZwVxCtCoCYpONbmlIz7-k2bZPKz2Sj9RoKN9ZAlaemV9gFoSmlBogjynk87IsKJeDx5j9CaIakAMrTVthysE0iZTFJqMfEieLl41SZRwjzhtYpSt5P7sUcfTMfCnOpzvcgKi-9Z-BF8pS9Co=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGPTjyj-3l2jione4NKD1qBi3XoaVmgeFB9yp1OEhCykL1sIqfnOo2YVO1GL71hES99d4EBQ2gmj8eyf0S-aF3aTAepIHN57JR8eAtgFeOt2Pa4m_2uP0z0CzWQ_WyIYOmSAQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE4x6Cz9f_xoq2i0C8SQCG356D4Kg7UZTMliRW4g6kspLprfPeU54lPj-qqt_FRZxG_lwM6JxG7TOzP4dTcLqzFs4uNKTGJgRo3g7WRyZ3z4TPLBgG9Laf6zaFNSlFSx5kSjOklnJF2Bbg57Vwiu1GZksU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXL6Oj8dbOz_whtjiZ1GoayQKDAVa1P4kZVDJmTsdXMVysBF6G0bmR8WpyWm31A-VVZQ5UsuINFcsqPY0iBC1y6RcF2UMwCtSkxgM2ZGG55bwO_F6XCy7donb18XgpV_nay_TDHg=="
+  ],
+  "error": null
+}
