@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-05",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-04T23:45:00.689134Z",
+  "answer": "Agentforce(Salesforceの新しいAIエージェントプラットフォーム)の導入支援会社について調べてみます。\nAgentforce（Salesforceの自律型AIエージェントプラットフォーム）の導入支援を行っている会社について、日本市場を中心にご紹介します。\n\n## 日本国内でおすすめの導入支援会社\n\n**1. サークレイス株式会社**\n\nSalesforceが2024年10月30日より日本市場で提供を開始した自律型AIエージェント「Agentforce」について、認定パートナーとしていち早く、同年11月より導入・構築サービスの提供を開始\nしています。\n\n**2. 株式会社メンバーズ**\n\nSalesforceが提供する自律型AIエージェントAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nするサービスを提供しています。\n\n**3. フロッグウェル株式会社**\n住宅業界やマッチングサービスなど、具体的な業界向けにAgentforce導入実績があります。\n住宅業界向けコンサルティングを行う企業へ、Salesforceの生成AI技術を活用したマッチングシステムの導入支援を実施\nした事例があります。\n\n**4. 合同会社クロスコム**\n\nSalesforce公式パートナー企業のクロスコムが、実務で活用できるまでしっかり定着までサポートするAgentforce導入・定着支援を行っています\n。特徴として、\n目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込み、導入後はカスタマーサクセスチームが継続的にモニタリング\nする体制があります。\n\n**5. 株式会社enucolor**\n\n初期導入前コンサルティング（現状整理や業務課題の把握）、Agentforce構築（PoC支援）、活用及び改善サポートを提供\nしており、要件定義から実装まで伴走支援を行っています。\n\n## グローバルで評価の高いパートナー（参考）\n\n海外系では以下のような企業も知られています：\n- **Noltic**：\n深いSalesforce経験と技術力、ビジネス理解の融合により、Salesforce Agentforceコンサルティングパートナーのリストをリードしており、Summit-tierパートナーとして400以上の認定資格を保有\n\n- **Ascendix**：\n日本を含む米国、英国、カナダ、チリ、デンマーク、ドイツ、イスラエル、マレーシア、オランダ、プエルトリコ、スイスに拠点を持つ\n企業\n\n## 選び方のポイント\n\n導入支援会社を選ぶ際は、Salesforce公式の「パートナー制度」の理解が重要です。\nパートナーは支援会社より広い概念で、すべてのパートナーが導入から定着まで対応するわけではありません\n。そのため、以下の点を確認することをおすすめします：\n\n1. **認定資格の有無**：Agentforce Specialist認定など、Salesforce公式の認定を保有しているか\n2. **業界実績**：自社の業界・業務に近い導入事例があるか\n3. **定着支援の範囲**：導入後の運用サポートやモニタリング体制があるか\n4. **スモールスタート対応**：PoC（概念検証）から始められる柔軟性があるか\n\n貴社の業界・規模・予算感によって最適な会社は変わってきますので、まずは2〜3社に無料相談やPoC提案を依頼し、実績や提案内容を比較検討されることをおすすめします。",
+  "cited_urls": [
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://noltic.com/stories/top-10-salesforce-agentforce-implementation-partners",
+    "https://ascendix.com/blog/agentforce-consulting-partners/"
+  ],
+  "error": null
+}

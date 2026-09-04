@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-05",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-04T23:46:22.416585Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出すための進め方について調べます。\nAgentforceの導入費用相場と費用対効果を出すための進め方について、最新情報を整理してお伝えします。\n\n## 1. Agentforceの料金体系（3つのモデル）\n\n2025年5月の改定で、料金体系は大きく3つに整理されています。\nAgentforceの料金は、2025年5月の改定を経て、アクション単位のFlex Credits、会話単位の旧来モデル、社内利用向けのユーザーライセンスという3つの考え方に整理されました。\n\n\n### ① Flex Credits（従量課金・現在の主流モデル）\n\nFlex Creditsにより、顧客レコードの更新や複雑なワークフローの自動化、ケースの解決など、Agentforceが実行したアクションに対してのみ、料金を支払うことが可能となる\n仕組みです。\n\n具体的な単価は以下の通りです。\n- \nFlex Creditsの購入価格は、日本では10万クレジットあたり60,000円です（米国では同数量が500ドル）。1クレジットに換算すると0.6円になります。\n\n- \nAgentforce アクションは20 Flexクレジット、Agentforce Voiceアクションは30 Flexクレジットです。\n（1アクション約12円換算）\n\nSalesforce公式の試算例では、\n60 Flex Credit X 3ケース/日 X 20日/月 X 100ユーザー = 1,800米ドル/月\nというシミュレーションが示されています。\n\n### ② 会話単位課金（旧来モデル）\n\n1会話あたり約240円（2ドル相当）での利用が可能です。\n小規模・低頻度の利用ならこちらの方がシンプルです。\n\n### ③ ユーザーライセンス\n社内利用（従業員向け）を想定した固定ライセンス型で、利用量が多く読みやすい場合に適しています。\n\n※注意点として、\nFlex CreditsとConversationsは、同一のSalesforce org内で同時に使えません。どちらか一方を選ぶ必要があります。\n\n\n## 2. 前提となる基盤費用\n\nAgentforceは単体では使えず、\nまず、Service Cloudを基盤にします（Enterprise Edition、Unlimited Edition、Performance Edition、Einstein 1 Editionの場合）。次に、以下の製品を追加するだけでAgentforce for Serviceソリューションの使用を開始できます。\nSales Cloud側も同様にEnterprise Edition以上が前提となるケースが一般的です。\n\n## 3. 導入支援・コンサルティング費用の相場\n\n自社だけで構築するのは難しいため、パートナー企業への支援依頼が一般的です。相場感としては、\n依頼する範囲によって幅がありますが、月額伴走型なら月額数十万円程度から、プロジェクト一括型なら数百万円規模からが一つの目安です。これとは別に、Agentforce本体のライセンス費用が発生します。\n\n\n費用に幅が出る理由は、\n設計だけを頼むのか、定着まで並走してもらうのかで、関わる工数がまったく違うから\nです。\n\n## 4. 費用対効果を出すための進め方\n\n### スモールスタートが鉄則\n複数の情報源が共通して強調しているのが「小さく始める」アプローチです。\nAgentforceの導入で最も大切なのは「小さく始めて、成果を確認しながら拡張する」ことです。最初から完璧を目指す必要はありません。まずは1つのユースケースで効果を実感し、そこから徐々に適用範囲を広げていく。そのアプローチが、世界12,000社以上の導入企業が選んだ成功への近道です。\n\n\n具体的な提供形態としても、\n1ユースケース×3ヶ月のスモールスタートプランから対応\nする支援会社が増えています。\n\n### 中小企業・大企業共通の考え方\n\nいきなり全社に広げず、一つの業務で効果を確かめてから広げられれば、リスクを抑えて導入できます。Agentforceは、対象を絞ってスモールスタートする進め方ができます。大きな初期投資をまとめて行う必要がないため、体力の限られた中小企業でも一歩を踏み出しやすくなります。\n\n\n成功パターンとしては、\nまず問い合わせ対応の一次受けだけをエージェントに任せ、効果を見てから次の業務へ広げる\nという段階的な展開が有効です。小さく始めることで\n費用も影響範囲も限定でき、失敗しても立て直しやすくなります\n。\n\n### 最初に着手すべきユースケース\n実践的な進め方として、\n成功率",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-pricing/",
+    "https://cloud.watch.impress.co.jp/docs/news/2015263.html",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://ai-market.jp/services/salesforce-agent-force/",
+    "https://zenn.dev/pacific_creator/articles/511209053946bc",
+    "https://www.salesforce.com/jp/service/ai/agentforce-for-service-pricing/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://hatenabase.jp/blog/salesforce-agentforce-getting-started/",
+    "https://cross-com.jp/agentforce-small-business/"
+  ],
+  "error": null
+}
