@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-06",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-09-05T23:44:00.483582Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず、中立的な立場でCRMの設計支援を求める場合、以下のような会社が選択肢として考えられます。これらの企業は、お客様のビジネスに最適なCRM戦略の策定からツール選定、導入、そして運用・定着までを一貫してサポートすることを強みとしています。\n\n**中立的な立場でのCRM設計支援を提供する企業**\n\n*   **Vertex AI Search のデータ活用・AIコンサルティングサービス**: 特定の製品に縛られず、公平な立場で最適なソリューションを選定することを掲げています。CRM戦略の設計、MAツールの導入支援、データ基盤構築、導入後の定着支援、さらにはAI活用の高度化まで一気通貫で支援するサービスを提供しています。\n*   **ストラ株式会社**: Salesforce、Zoho、HubSpotなど複数のクラウドCRM・SFAツールを比較検討し、特定のベンダーに偏らない最適な構成を提案します。また、導入後の社員トレーニングや運用改善のサポートも行っています。\n*   **合同会社クロスコム**: 「Agentic CRM設計支援」というサービスを提供しており、特定のCRM製品を前提とせず、AIが読み書きすることを前提としたCRMを、業務設計から企業様向けに専用設計します。オープンソースCRMを基盤とし、企業ごとに独立した環境でシステムを構築することが特徴です。\n*   **株式会社SPONTO**: ベンダーニュートラルなIT戦略コンサルティングを提供しており、特定のベンダーやプロダクトに依存せず、お客様のビジネスに最適な技術を公平な視点で選定します。ITロードマップ策定やRFP作成代行、PMO支援なども手掛けています。\n*   **MCネクスト**: 客観的な視点からツールを選定し、企業の文化、営業戦略、マネジメントの現状を踏まえた導入・活用プランの策定、さらには活用のためのトレーニングや研修などもサポートしています。\n*   **辻・本郷 ITコンサルティング**: 中堅・中小企業向けに、経営課題の本質を捉えたコンサルティングを行い、特定のベンダーに依存しない中立的な立場で最適なシステムやSaaSの選定・提案を行っています。\n*   **Finner株式会社**: 元Salesforce社員の経験やノウハウを活かしつつ、データ活用を目的とした顧客情報の見える化や、CRM/SFAを「全員が使える環境」へ再構築することを支援しています。\n*   **mtc.**: CRMの戦略立案から設計までを支援し、見込み客から既存顧客、離反顧客まで、あらゆるフェーズの顧客と一貫したコミュニケーションを取ることを目的としたCRM構築に取り組んでいます。\n*   **Coguru**: 単なる管理ツールの導入に留まらず、顧客データの分析から戦略設計、メールやLINEを活用したコミュニケーション施策の実行・改善を通じて、顧客のLTV（Life Time Value）最大化を支援しています。\n\nこれらの企業は、貴社のような中堅企業が抱える「標準CRMパッケージでは要件が不足する」「自社特有の業務プロセスを反映したCRMが必要」といった課題に対し、開発支援も含めた幅広い支援を提供できる可能性があります。\n\nCRM選定・導入においては、機能の多さだけでなく、現場での使いやすさ、費用対効果、そして充実したサポート体制が重要となります。無料トライアルやデモを活用し、実際に使用する現場のメンバーが操作性を確認することも有効な手段です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGipY7uoPyC1x1YloNnJVLWQCE-QpV5mP3LlozZXX9uQPT24yS5wOCDNuKMsBBsGvpN_6Vir1F2V8jFLq5keU5on8LpzQnYDZvyT0uYapW0eMUfeEibxG3VmL1CQeabeCBtRw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH3O1Ab5NacsdszP34bfs_BdoZ7HvMLX8TeD7zixyY8Snb1-J1pfUNZOVk7LSaoO9VCezgKGjrnEb6FmPmdVCP4p58iH25SFowRHqVSshZDVlg7hSlP0094-JJymmpRqPgBY0w3yJ0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFe5WzMM9ggWbEPP-xvuaylwiMYp3LGQ2idTTAxBxlDk_Bljm99QSR1aEQFhydi-zZYv04vrVQDU9sq9Ulrx-yncAtZa8WBPl4pLpXkaEZIZQP0lEVTGY7JK2Eza_YJghJ2OQnM-ez6WgqJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8bPubXLE3TJpxORZDTOPIEX3wySlzceRFcZ93TZbTxWjxxDjcdjYcy_FDwqwocjzSgUPWms3xJS5G9hLqlG-ZQGzePTLSBfkzqzgaCBbXh7Rz_eMBBQKI8DOB6bdeUpA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEqsW12lbkn2r8s9aSDHQ3M-ayHAqNGU-WRlu1dT3CexK7SjayS882Egzv3I4tYSHXnkAIdD82oFUrDdFE-3rplvH-xlzXmztoczh2QQiVuhmBMXnBU9PRKfEgOtHeOuA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFvQMRV2aOMJBnh0e2NZqkHVIpY-SxwCUP_9EuAMRRJYh2QkO2Zq72LgFp_gmLqQq6g2ufITBImuNWI2pGm3wu3Hpl9bbDpKR1xO2AHf9PfmHaN1KtPoI4bc07BBfh6pCRIqgjivKvb9XieodRZiBWHbZDRZA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGPhdQZTYX65_i3Oyrx479M42bK9y9v5L6QIS9Xey6HDW6J4zCbI1FBMkSTMFWim1-M0A1B40oHJQX5T5eWseZE4NKvjaPOzbo8kXpSA2QZd4uRllwBdJUXVkO34YQPuooCcTeXGjw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7_zh0kAnwOQsUZRBlI0OVGt3I7kgQ0vYtXo-dweM_XdyRyUKRLOaVYEovcbRQOfsZ9z3md9zSg-fIPpGpd9emqpnI7aWjYeaczi2gUuB-zzFspE5EfPnsaqm_I6-blPLhAA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeGpnXsefUO8FaTrBjmoZziXZRgKi5UgBzLwKdIDMYc5xvQiY8A7aIeUsFN5qpFH1fWwHY57jfoucI93RXw4Fxqq34DhyqfAJcEkNi6MnL1SZ00WUHIkyvTFI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHixJvhp6WFyiox9dhs03xitpJZMXpE4NO61a703VpCeZK5VaZqG8-5yvu94JbDcZOPm_NkABwePn6e8vY8rdQlUGC9HDeUHmeh-zJ1EYIlPVRyjrwz-5IZ6nvwmp40fWmBbJiaogWoTKY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEMHOa-hv7otRr2CNw8C_YhMmfnXh3G1mdtJLWzYL6i2GX7x8NHVXX_di7yPMaIbw8-UEgVTj_Jpl9skVxNKlhM3zGRu2ZyC64kWYL9lOTp8-4nO0aK6q-h23xkqBffVhASjJ21NayxwDo="
+  ],
+  "error": null
+}

@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-06",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-05T23:34:45.626412Z",
+  "answer": "Agentforceの導入支援会社について検索して、最新情報をお伝えします。\nAgentforce（Salesforceの自律型AIエージェント）の導入支援を行っている会社について、検索結果からいくつかご紹介します。\n\n## Agentforce導入支援でおすすめの会社\n\n### 1. 株式会社メンバーズ（サースプラスカンパニー）\n\n2025年3月より、企業向け導入・活用支援サービスの提供を開始しました。本サービスでは、Agentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援までを伴走支援します。\nプロフェッショナル人材による組織改善チームが強みです。\n\n### 2. バーチャレクス・コンサルティング株式会社\n\nAgentforce導入・活用支援サービスは、お客様の力を引き出し、それぞれのビジネス課題を解決へと導くことで、お客様の成功を支援するというコミットメントを体現するもの\nと評価されており、コンタクトセンター領域に強みを持ちます。\nこのサービスは「Agentforce」の導入から定着化、活用促進までの包括的な支援を提供します。\n\n\n### 3. サークレイス株式会社\n\nSalesforceが2024年10月30日より日本市場で提供を開始した自律型AIエージェント「Agentforce」について、認定パートナーとしていち早く、同年11月より導入・構築サービスの提供を開始\nした、業界内でも先行して対応した企業です。\n\n### 4. Uhuru（ウフル）株式会社\n\nデータ活用とIoTに強みを持つパートナーで、最短3ヶ月でAgentforceを導入するクイック支援サービスを展開しています。マーケティング（Agentforce for Marketing）とカスタマーサービス（Agentforce Service）の両領域に対応でき\nます。スモールスタートでの効果検証や内製化を見据えた企業に向いています。\n\n### 5. フロッグウェル株式会社\n実績として、\n住宅業界向けコンサルティングを行う企業へ、Salesforceの生成AI技術を活用したマッチングシステムの導入支援を実施し、AIエージェントによる住宅購入者と工務店のマッチング業務を自動化\nするなど、業界特化型の導入事例があります。\n\n### 6. 株式会社enucolor\n\nAgentforceの導入支援はSalesforce社が提供する自律型AIエージェントの構築及びPoC（概念検証）を行うサービスで、CRMや外部データを自動分析し、タスク実行やワークフロー起動を自律処理して、業務効率化と意思決定を支援\nする点が特徴で、特にSFA・営業領域に強みがあります。\n\n### 7. クロスコム（合同会社）\n\nSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っており、1ユースケース×3ヶ月のスモールスタートプランから対応しています。\n\n\n### 8. KPMGコンサルティング株式会社\n大手コンサルティングファームとしても参入しており、\nSalesforce大規模導入事例とAI活用構想に関する講演を行うなど、Agentforce World Tour Tokyoにも協賛しています\n。大規模・エンタープライズ向けの導入実績があります。\n\n---\n\n## 選定のポイント\n\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼります。\n選ぶ際は以下の観点を確認するとよいでしょう。\n\n- **対応領域**：Sales / Service / Marketing のどの領域に強いか\n- **規模感**：スモールスタート（PoC中心）か大規模導入向けか\n- **業界特化の実績**：自社の業界に近い導入事例があるか\n- **内製化支援の有無**：導入後に自社で運用できる体制まで支援してくれるか\n\n貴社の業種・規模・優先したいユースケース（営業支援／カスタマーサポート／マーケティング等）を教えていただければ、より絞り込んだご提案も可能です。",
+  "cited_urls": [
+    "https://www.members.co.jp/company/news/2025/0306",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://kpmg.com/jp/ja/media/press-releases/2025/10/kc-salesforce-agentforce.html"
+  ],
+  "error": null
+}

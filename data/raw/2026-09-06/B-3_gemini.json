@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-06",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-09-05T23:44:22.214437Z",
+  "answer": "営業にAIエージェントを活用するにあたり、ツール選定の前にCRMのデータ設計から支援してくれるパートナーは存在します。多くの企業が、AI活用を前提としたCRM戦略やデータ基盤構築のコンサルティングサービスを提供しています。\n\n具体的な支援内容としては、以下のようなサービスが挙げられます。\n\n*   **CRM戦略・データ設計の策定**：顧客データを起点に、事業成果につながるCRM戦略を設計し、AI活用を見据えたデータモデルやデータ基盤の構築を支援します。これには、顧客データの統合やDWH（データウェアハウス）の設計などが含まれます。\n*   **既存CRMの監査と再設計**：既存のCRMデータを監査し、重複排除、マージ、データクレンジングを行い、AIの活用に適したデータ構造への再設計を支援します。実際の販売方法に合わせてフィールドやパイプライン、ライフサイクルステージの再設計も行います。\n*   **AI活用を前提とした要件定義**：AI導入を見据えた要件定義、RFP作成、ベンダー選定まで一貫してサポートするパートナーもいます。\n*   **プロセス改善ワークショップ**：本格的なソリューション設計の前に、プロセス改善ワークショップを実施し、非効率な点を特定し、短期的な成果創出を支援するケースもあります。\n*   **課題整理から運用改善までの一貫支援**：単にAIツールを導入するだけでなく、企業ごとの悩みや業務上の課題をヒアリングし、AIを活用して課題解決と業務変革を支援します。課題整理から要件設計、構築、運用改善まで一貫したサポートを提供するパートナーも存在します。\n\nこれらのパートナーは、生成AIの精度が土台となる顧客データの構造に依存することを理解しており、AIを最大限に活用できるようCRMのデータ設計から戦略的に支援します。これにより、営業活動におけるパーソナライゼーションの強化、リードスコアリングの改善、自動化の促進といったAIのメリットを享受できる基盤を構築することが可能になります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGt_Xxw5h-h1Oz_kqnm3MH31Tq-VkeqwjCgDn6snBAyvu7WA5AiGhzG5j0fi_NpTGDqtCJAOd00gkVIXxw-SUA19naZkHwumk1RCXWhQduhK7nsIErXHlcbfqPa09b6nAEpNJA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHEtiFVr4OTVomLkdhj_9_PST4avJKLgnEMIMRpQquBDjeCzDZWltpgSGu2J-KWOPg_Min5xs15gXljGV1ce_BjZhpCcpY0cNk8yQorqtRyuKwHd5RC6p8zOr1xH56btAptSjAH3PTTmnPD",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFIT2om7GhQDCXhLFIjFiPy4jiMTxOXkgFA9x8I3UbNsoYKgbpMW2ZLI3MWl08FfR9l4hDc3B8V_WoxxkLe2KsWb6x4gb-nsax1rLbdGLPiY1mCcz3XOaJLwYEKq9SwZTHWgZl-oacXF5xp5r4HXiEyriZgcpmfA96SmI75k7A=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFkvumiegKdTlx-QVx4bnackj7zJIDXsSMLROLfjsZneFhCru-Wq2gF--DCvaNbobscmTCsi-ybc01Td49W2jExD-jua-Tu3upDrW_8O3tBHxgx4RctxchI_ps1hZYzmFJyj2XWaQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFcTRq263R1Jqg_5qiCaJg0r2oYOwdZryHLywU4k4JVb-un1o5MdAwT3MXDE6Ic-ApjRh1SJvZ6pY1if-6C-jdIhbmKjjpDHO4uQgMK3nrSTKniW1qDfH17y5ZCuAWxkSs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRLm3SsUtzNHeVZihv3mUn9JfojLYIbU8oCrTDXFmR5_f_RtxL4qYtPKtxmfa1mR6ZTQqeVsiVqGHPN-Qu9nKlTB73T3jCgdkUirHfLVwvpEc3eRkRm_iqNol1IWru9iUM2xoJxsVRlA=="
+  ],
+  "error": null
+}

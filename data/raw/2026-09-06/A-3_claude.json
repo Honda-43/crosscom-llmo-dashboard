@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-06",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-05T23:43:16.765303Z",
+  "answer": "Agentforceの導入費用と、費用対効果を出すための進め方について、現時点の公開情報を整理してご説明します。\n\n## 1. Agentforceの料金体系（3つの課金モデル）\n\nSalesforceの現在の価格ページによると、\nFlex Creditや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスからお選びいただける\nようになっており、大きく3パターンあります。\n\n### ①会話単位（Conversations）課金\n\nAgentforceはライセンス毎の課金ではなく、コンサンプションモデル（従量課金制）を採用しており、1会話あたり240円となっています\n（\n会話ごとの従量課金制で、初期費用・最低利用期間・最低利用人数はなし\n）。社外向け顧客対応チャネルに向いています。\n\n### ②アクション単位（Flex Credits）課金\n2025年に登場した新しい方式で、\n会話単位ではなく、AIエージェントが実行する「アクション」単位で課金されます\n。\n1アクションあたり20クレジット（約12円/0.10ドル相当）を消費し、クレジット購入は100,000クレジットを60,000円（500ドル）で購入できます\n。なお\nAgentforce アクションは20 Flexクレジット、Agentforce Voiceアクションは30 Flexクレジットです\n。\n\nSalesforceが示す試算例では、\n40 Flex Credit × 1日20件のリクエスト × 1か月30日 = 月額120ドル\n程度になるケースもあります。\n\n### ③ユーザー単位ライセンス（従業員向け定額）\n社内利用を大規模に展開する場合、\n従業員向けにAgentforceエージェントを導入する場合、600円/ユーザー/月（Flexクレジットが必要）\nというプランや、\n従業員向けに大規模展開する場合はAgentforce Add-on（$125/user/month・約15,000円）という定額制の選択肢もあります\n。\n\n**注意点**：\nAgentforceの導入にはData360（Data Cloud）が必須で、これも別途課金対象です\n。\nCRMライセンス＋Agentforceアドオン＋年間100万クレジット（Flex）＋250万クレジット（Data Cloud）がパッケージされたエンタープライズ企業向け構成もあります\n。\n\n## 2. 費用感の目安（スモールスタートの場合）\n\n小規模な検証段階であれば費用は抑えられます。\n月100アクションを標準アクションで計算すると、消費は2,000クレジット、円換算で1,200円相当となり、この規模なら無料付与されるクレジットの枠内に収まることが多いです\n。\n\n一方、全社展開などSaaS基盤自体の費用も含めると、\nたとえば10ユーザーで単純計算すると、Agentforce 1 Salesは年間792万円という試算もあります\n（Edition・ユーザー数により大きく変動）。\n\n※これらはSalesforceプラットフォーム自体の費用であり、実際の導入プロジェクトでは、別途要件定義・Agent Builderでのエージェント設計・既存システム連携・プロンプト設計・テストなどの**構築コンサルティング費用**（SIerやパートナーへの委託費）が加わる点にご留意ください。金額はベンダーや要件により大きく異なるため、個別見積りが必要です。\n\n## 3. 費用対効果を出すための進め方\n\n### ステップ1：小さく始めて検証する（PoC）\n\nまずAgentforceを一つのチャネル（例：チャット対応やリード資格判定）に限定してデプロイする\nことが推奨されます。その上で\n自動解決率、エスカレーション率、精度、CSATといった主要指標をモニタリングします\n。\n\n### ステップ2：明確な業務課題から始める\n\nAI導入を明確な業務課題から始める組織はわずか26%で、43%は技術先行でユースケースを後付けしている\nという調査結果があり、これが失敗要因になりがちです。\nAgentforceは迅速な構築・展開の枠組みを提供するため、機能があるからという理由だけで作りたくなる誘惑がありますが、真にROIを得ている組織は目的を持って順序立てて能力を構築しています\n。\n\n### ステップ3：プロンプト・データ取得範囲を絞り込みコスト効率を上げる\n消費課金型のため、",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://ai-sainavi.com/categories/ai-agent/services/4667/",
+    "https://ai-market.jp/services/salesforce-agent-force/",
+    "https://zenn.dev/pacific_creator/articles/511209053946bc",
+    "https://blogbloggerbloggesta.hatenablog.jp/entry/agentforce-price",
+    "https://cross-com.jp/agentforce-pricing/",
+    "https://www.ripla.co.jp/blog/system/salesforce-platform-cost/",
+    "https://valintry360.com/blogs/agentforce-roi-driving-efficiency-in-salesforce-service-sales",
+    "https://coastalcloud.us/resources/achieving-agentforce-roi-through-agent-management/"
+  ],
+  "error": null
+}
