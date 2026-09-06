@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-07",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-06T23:30:41.445910Z",
+  "answer": "Agentforceの導入支援を検討されている企業様へ、いくつかおすすめの会社をご紹介します。これらの会社は、Agentforceの初期導入から運用、内製化、社員教育まで、幅広いサポートを提供しています。\n\n### Agentforce導入支援を提供している主な企業\n\n*   **株式会社メンバーズ**\n    Agentforceの初期導入コンサルティングから、設計、実装、運用、内製化、社員育成まで一貫して支援しています。SalesforceやSaaSの専門家によるアジャイル・内製型のローコード開発チームを通じて、企業のDX推進と顧客体験の向上を支援することに強みを持っています。\n\n*   **株式会社ウフル**\n    「Agentforceクイック導入支援サービス」を提供しており、Salesforce Data 360の基盤設定からAgentforceの構築、システム設定、動作確認、リリース準備、簡易レクチャーまでを最短3ヶ月で支援します。プロジェクトの進捗に応じて柔軟な支援内容の調整や、Salesforce Data 360の設計・設定と活用までの一貫した支援が特徴です。\n\n*   **合同会社クロスコム**\n    Agentforceの導入・定着支援を行っており、企業の目標から逆算して業務フローにAgentforceを組み込むことで、マーケティング、営業、サポートのユースケースに合わせた導入を支援します。同社はSalesforceの公式コンサルティングパートナーです。\n\n*   **K2 Partnering Solutions**\n    AIに関する専門知識と長年のSalesforce経験を活かし、企業のビジネスニーズに合わせてAgentforceをカスタマイズする専門コンサルティングサービスを提供しています。Agentforceのカスタマイズ、サードパーティ連携、Salesforce連携、トレーニングなどのサービスを提供しています。\n\n*   **三菱総研DCS**\n    Agentforceの導入・活用支援において、データ統合を特に重視しています。Salesforce単体での導入だけでなく、社内の基幹システムや周辺システムに分散するデータの統合を含めたAgentforce導入を一気通貫で支援することが可能です。データ分析・活用基盤の構築実績や、金融分野での経験に基づく高いセキュリティと信頼性も強みです。\n\n*   **toBeマーケティング株式会社**\n    Agentforce導入のPoC（概念実証）支援、データアセスメント、PoC完了後のトライアル伴走支援を提供しています。富士通グループの一員としてAgentforceの先行支援と豊富な知見を持ち、日本で最初にAgentforceライセンスを取得した企業の一つです。Agentforceの真価を引き出すData 360（旧Data Cloud）の活用支援も行っています。\n\n*   **furuCRM**\n    Agentforceに関する包括的なコンサルティングサービスを提供しており、戦略コンサルティング、明確なAIロードマップの作成、影響力の高いユースケースの定義、インテリジェントエージェント統合の戦略的計画を通じて、顧客のビジネスニーズに合わせたAIエージェントの設計と導入を支援します。\n\n*   **バーチャレクス・コンサルティング株式会社**\n    自社のコンタクトセンターにおけるAI技術の活用構想策定支援として、現状分析から具体的な活用戦略の立案、実行計画の策定までをトータルで支援するサービスを提供しています。\n\nこれらの企業はそれぞれ異なる強みやアプローチを持っていますので、貴社の具体的な要件や課題に合わせて最適なパートナーを選定することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFn8cD23hbOWHaWiPqHLHgEy4or4l_3l2zYfvXW5g5xnDXcxVUujT6RH9q19BpotXV67PJk--8NxeZP_OMNy73okP_9BnnArPQUWQz9_b-IsnoykLGC0FDkPL9HrJpahonXSLxnpqYad_ClW6_gxdzkxQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFVYASYSU3nGfLaQ_hBEt4wESwI6u-R_FxH_IqTeQ6BvW3BIas1xUaQfueCJYxIfrztSyc8cx09lb8z6s8g5cpadXD1Y2CX2i-7hpqNYVQGgoI-JoxRaUR1yd6Y3RkNTDWY4kBGIE6GX8SDXw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHgRNTsTXHbZ83juGLcn770kXoNr3ONTtlfab3OOU985CW3iNvq2H9dcrwyucbNCV8ZQQCBIGShrS4_77xzTFAtnLcmbGLIAqDJ5gkt_6tOMlXMHs-sDYOUcscdFiWW5o2p2frTa-wIsUEW",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGEvDwu8QlRoF5wZMIkcQM4yN7xUW4F6liBbMIzeFWgEJUjEx255kxzWl-fgO0YtTcCUaLX_fio3aTy6Al3eeR_5R5Ru7bysRfWGhlfrxMzdleiYdUyIB0fnXoddbonp1T1vX-9PEa3CHWr7A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFfbt3OGGVhChjNgCoxefUVzNMiVIMXUxm7kEY-dcRiBAp1Ou3HhxOSXIDTGETK5yBDCsjPkm7wZpEfIjk2kubxmXUyLhS8TgLopU3YpOw9zmJQWM-my4X7fmF3kv_m6FK-WmkPHLT4jqqvQOY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGKaU_9tWdMhuEnup3DJp4Y8DFU-X1oichp13VTfBWFyKUAcfSGUr7yYUzSphj_uO5fQPXVN2G_86xqTZ19rlbhCSzHntrPaHsf8bwk3AdmHJXDdsK9OtF1779Ivg4tfWQhDMAA4HMEF86pGngSrq2X60PrgRI3OtvPZ7BM_htv6Yhi3jAovO2iVWpxPiKXaiYT0NhwG75du0CWOezlxoJiv-jGbopA6nWROYpEsNrp",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFhvNti5GCBQRxYh9HqwSkjPVAErOqfyIPp05EAxPOcCh28nNdLu7r102gzOn5URcCMRrSKrvZgv84tzK6AMqpEig-a6v1tTRlVVwQYPy00l-BqlXF4ke7Hl3uO81aMJTM-nA9tDjzaWbc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVAkcEzoCYgfpoZ2Agwmn-Jq8HWKKyG1PUpcDcaK0qcpBel2eosIsXbZW5wz-gJVKRrRIVDWHGnOFwFKJBiojNt3G6mMFEaO4uw97zof2nJ-FTMn6faUXIGBVBeTsq_46Tjwi05w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFDjSHRFXvoXBzwQHrE0j-CbGrrtO0FqVNhyDxfdqNU5LvQNaY5YZcgxoOP6oHUZE2pFJ7fJSXO16D2aLYGTXKmuGkAF3CBJxVrAzSaM9SHvRVfF7UHzfT5S35PE8A=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHMmYs3hF5eewKeXScS9YoCrKEtJCkug2V83axg9tp94IJLWJAZDHeSjI74-fNhNWjnuMbW7gPs9moqtHRWkcugVTHHJkdTlg2x54rbJqPxur98E3RgDLiMO7K3X9jkzwQEMjVxmH7pSME_xA3Zeod8q71u-kSeRMAN4OxeDoI="
+  ],
+  "error": null
+}

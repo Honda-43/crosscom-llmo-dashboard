@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-07",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-06T23:31:06.347768Z",
+  "answer": "Agentforceの導入支援会社について、最新の情報を検索してお調べします。\n# Agentforce導入支援でおすすめの会社\n\nSalesforceの自律型AIエージェント「Agentforce」の導入支援を行う会社は数多くありますが、実績や強み別に代表的な企業をご紹介します。\n\n## 1. メンバーズ（株式会社メンバーズ サースプラスカンパニー）\n\n2025年3月より、企業向け導入・活用支援サービスの提供を開始し、Agentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援までを伴走支援します\n。\n部門ごとにAIを試験導入したが定着していない、社内データが分散していて、AI活用のためのデータ統合に課題があるといった悩みにも対応\nしており、幅広い課題に対応できるのが特徴です。\n\n## 2. バーチャレクス・コンサルティング\n\n「Agentforce」の導入から定着化、活用促進までの包括的な支援を提供し、顧客接点領域におけるAI活用を推進、顧客体験（CX）の向上およびオペレーション効率の最適化を実現\nできるサービスを展開しています。コンタクトセンターなど顧客接点部門での活用に強みがあります。\n\n## 3. サークレイス\n\nSalesforceが2024年10月30日より日本市場で提供を開始した自律型AIエージェント「Agentforce」について、認定パートナーとしていち早く、同年11月より導入・構築サービスの提供を開始\nした、国内でも先駆けとなる支援実績を持つ会社です。\n\n## 4. ウフル（Uhuru）\n\nデータ活用とIoTに強みを持つパートナーで、最短3ヶ月でAgentforceを導入するクイック支援サービスを展開しています。マーケティング（Agentforce for Marketing）とカスタマーサービス（Agentforce Service）の両領域に対応でき、複数のチャネルを横断した顧客体験の設計が得意\nです。スピード重視のスモールスタートを希望する企業に向いています。\n\n## 5. フロッグウェル\n住宅業界向けのマッチングシステム構築など、業界特化型の導入事例を持つ会社です。\n住宅業界向けコンサルティングを行う企業へ、Salesforceの生成AI技術「Einstein for Service」を活用したマッチングシステムの導入支援を実施し、AIエージェントによる自動化を実現\nした実績があります。\n\n## 6. enucolor\n\nSFA・営業領域のAI活用に向けたAgentforce導入支援サービスを提供しており、初期導入前コンサルティングから、Agentforce構築（PoC支援）、活用及び改善サポートまで対応\nしています。営業DXに特化した支援が特徴です。\n\n## 7. クロスコム\n\nSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っており、1ユースケース×3ヶ月のスモールスタートプランから対応\nしています。小規模から始めたい企業に適しています。\n\n## 8. KPMGコンサルティング\n大手コンサルティングファームとしての実績もあり、\n2025年11月開催の「Agentforce World Tour Tokyo」にランチセッションSILVERスポンサーとして協賛し、大規模導入事例とAI活用構想について講演\nするなど、大企業向けの大規模導入支援に強みを持っています。\n\n---\n\n## 選び方のポイント\n\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼります\n。選定にあたっては以下の観点がおすすめです：\n\n- **規模感**：スモールスタートで試したいなら、ウフルやクロスコムのような3ヶ月程度の短期プランを提供する会社\n- **業界特化**：自社の業界に近い導入事例を持つ会社（例：住宅業界ならフロッグウェル）\n- **大規模・全社導入**：KPMGコンサルティングやバーチャレクスのような大手コンサル系\n- **内製化重視**：メンバーズのように社員育成・内製化支援まで含む会社\n\nまずは自社の課題（営業強化なのか、カスタマーサービスなのか、マーケティングなのか）を明確にした上で、その領域に強い会社に無料相談してみることをおすすめします。",
+  "cited_urls": [
+    "https://www.members.co.jp/company/news/2025/0306",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://kpmg.com/jp/ja/media/press-releases/2025/10/kc-salesforce-agentforce.html"
+  ],
+  "error": null
+}

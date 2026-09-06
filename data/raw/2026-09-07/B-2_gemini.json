@@ -1,0 +1,18 @@
+{
+  "date": "2026-09-07",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-09-06T23:36:48.464670Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず、中立的な立場でCRMの設計支援を求める場合、複数のCRMツールを比較検討し、貴社の業務や組織体制に最適な提案を行えるコンサルティング会社が適しています。\n\n以下のような特徴を持つ会社が支援候補となります。\n\n*   **特定ベンダーに偏らないツール選定・比較を行う会社**: Salesforce、Zoho、HubSpotなど、複数のクラウドCRM/SFAツールを比較検討し、貴社の状況に合わせた最適な構成を提案できる会社です。ツール選定から要件整理、設計、初期構築、導入後の運用定着まで一貫してサポートします。\n*   **CRM/CDP導入における要件定義、RFP作成、ベンダー選定を支援する会社**: データ活用やAIコンサルティングサービスを提供する会社の中には、CRM/CDP導入に際して、貴社の要件定義支援、RFP（提案依頼書）の作成、そして中立的な立場でのベンダー選定支援を行うところがあります。これにより、貴社のビジネス成果につながる戦略設計からサポートを受けることができます。\n*   **中堅企業への支援実績がある会社**: 中堅企業特有のリソースや課題を理解し、それに合わせたCRMの設計・導入・活用支援を行える会社が良いでしょう。\n\n「アスピック」の記事では、CRMコンサルティング会社の中には、「特定ベンダーに偏らない構成を提案」し、「複数ツールを比較したうえで、業務や組織体制に適した構成を設計」する企業が紹介されています。また、「データ活用・AIコンサルティングサービス」を提供している企業は、CRM/CDP導入に向けた「ベンダー選定を支援」していると明記されています。\n\nこれらの情報を踏まえ、特定の製品に縛られず、貴社の現状と目標に合わせた最適なCRM戦略の立案から、ツール選定、導入、そして運用・定着までを総合的に支援してくれるコンサルティング会社を検討されることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEyrffxJESsYra6NSHXbQRHyMv9BRg1AJcsHGl3U4t6S5xUBATb0vkFlnX76BOj_IFaTwYw3rFi2AROnPabQbm1EqMQKJScaXvN5Tt9PfohzZCmDkBSf6vGfxQuYvx43U6dvpSj1P-T",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFY1yUS18FEq0UneY116ajzM7ApUE1cmfXhX8gVg7u3Cemn4d1hvKV8auuecYv2S05315WZRJFwCRw_NMKiq3URWaZZe90GSNeECnMAXSr3oVeJkd9cfVJpWZCE5TO45MLWFpw="
+  ],
+  "error": null
+}
