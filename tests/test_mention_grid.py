@@ -33,9 +33,13 @@ def test_every_daily_prompt_carries_the_classification():
             assert prompt.get(field), (prompt["id"], field)
 
 
-def test_every_active_monthly_prompt_carries_the_classification():
-    """active にしたのに分類を書き忘れたら落とす(M-13〜16 を有効化したとき)。"""
-    for prompt in load_monthly_prompts(active_only=True):
+def test_every_monthly_prompt_carries_the_classification():
+    """第2弾候補(active: false)も含めて全件に分類がある。
+
+    有効化した日から Looker の funnel / layer フィルタがそのまま効くように
+    しておく。新しいプロンプトを分類なしで足したらここで落ちる。
+    """
+    for prompt in load_monthly_prompts(active_only=False):
         for field in looker_tabs.META_FIELDS:
             assert prompt.get(field), (prompt["id"], field)
 
@@ -55,6 +59,11 @@ def test_every_active_monthly_prompt_carries_the_classification():
     ("M-10", "MOFU", "L0", "準顕在"),
     ("M-11", "MOFU", "L1", "顕在"),
     ("M-12", "MOFU", "L2", "顕在"),
+    # 第2弾候補(active: false)。有効化しても分類はこのまま使える。
+    ("M-13", "BOFU", "brand_single", "指名"),
+    ("M-14", "BOFU", "brand_compare", "指名"),
+    ("M-15", "MOFU", "L1", "顕在"),
+    ("M-16", "MOFU", "L2", "顕在"),
 ])
 def test_the_agreed_classification(prompt_id, funnel, layer, stage):
     meta = looker_tabs.prompt_meta()[prompt_id]
@@ -66,7 +75,8 @@ def test_meta_covers_daily_and_monthly_in_one_table():
     assert {"A-1", "B-1", "E-1"} <= set(meta)          # 日次
     assert {f"M-{n}" for n in range(1, 13)} <= set(meta)  # 月次
     # active: false の第2弾候補も引ける(過去に観測した行のラベルが消えないよう)
-    assert "M-13" in meta
+    assert {f"M-{n}" for n in range(13, 17)} <= set(meta)
+    assert meta["M-14"]["short_label"] == "大手SIerと比較"
 
 
 def test_prompt_text_is_the_full_prompt():

@@ -179,6 +179,10 @@ prompts:
     text: "クロスコムのAgentic CRM設計支援の費用を教えてください。"
     aim: "第2弾候補(枠に余裕があれば)"
     active: false
+    funnel: BOFU
+    layer: brand_single
+    intent_stage: 指名
+    short_label: "設計支援の費用"
 
   - id: M-14
     category: bofu_compare
@@ -187,6 +191,10 @@ prompts:
     text: "クロスコムと日立ソリューションズのCRM導入支援を比較して教えてください。"
     aim: "第2弾候補"
     active: false
+    funnel: BOFU
+    layer: brand_compare
+    intent_stage: 指名
+    short_label: "大手SIerと比較"
 
   - id: M-15
     category: mofu_suppl
@@ -194,6 +202,10 @@ prompts:
     text: "IT・SaaS業界におすすめのAgentforce導入支援会社を教えてください。"
     aim: "第2弾候補"
     active: false
+    funnel: MOFU
+    layer: L1
+    intent_stage: 顕在
+    short_label: "IT業界で導入支援"
 
   - id: M-16
     category: mofu_suppl
@@ -201,3 +213,7 @@ prompts:
     text: "製造業の中堅企業におすすめのCRMデータ設計支援会社を教えてください。"
     aim: "第2弾候補"
     active: false
+    funnel: MOFU
+    layer: L2
+    intent_stage: 顕在
+    short_label: "製造業・中堅でデータ設計"

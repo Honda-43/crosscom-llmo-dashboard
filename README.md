@@ -1163,8 +1163,9 @@ Looker Studio はレイアウトをAPIで構築できない。そこで**計算�
 | 日次 | A-1〜A-3(L1) / B-1(L0) / B-2・B-3(L2) | E-1(brand_single) |
 | 月次 | M-10(L0) / M-11(L1) / M-12(L2) | M-1〜M-6(brand_single) / M-7〜M-9(brand_compare) |
 
-`active: false` の第2弾候補(M-13〜M-16)には分類を付けていない。**有効化する
-ときは4キーを足すこと** — 足し忘れは `tests/test_mention_grid.py` が落とす。
+`active: false` の第2弾候補(M-13〜M-16)にも分類を付けてある。有効化した日から
+`funnel` / `layer` のフィルタがそのまま効く。**新しいプロンプトを足すときは
+4キーも一緒に書くこと** — 足し忘れは `tests/test_mention_grid.py` が落とす。
 
 ### 実行
 
