@@ -35,7 +35,8 @@ import citation_gap  # noqa: E402  - needs the sys.path line above
 import looker_tabs  # noqa: E402
 import sheets_writer  # noqa: E402
 
-BACKFILLABLE = ("lk_sov_trend", "lk_negative", "lk_verdicts")
+BACKFILLABLE = ("lk_sov_trend", "lk_negative", "lk_verdicts",
+                "lk_mention_grid")
 
 
 def observation_dates(observations: Sequence[Dict[str, Any]],
@@ -51,12 +52,18 @@ def build(observations: Sequence[Dict[str, Any]],
           action_rows: Sequence[Dict[str, Any]] = (),
           ga4_rows: Sequence[Dict[str, Any]] = (),
           gsc_rows: Sequence[Dict[str, Any]] = (),
+          monthly_observations: Sequence[Dict[str, Any]] = (),
           since: Optional[str] = None,
           until: Optional[str] = None,
           tabs: Sequence[str] = BACKFILLABLE) -> Dict[str, List[Dict[str, Any]]]:
-    """全期間分の lk_* 行。日次と同じ関数を日付ごとに回すだけ。"""
+    """全期間分の lk_* 行。日次と同じ関数を日付ごとに回すだけ。
+
+    ``monthly_observations`` は lk_mention_grid だけが使う。日次と月次が
+    同じタブに入るので、過去分もまとめて作らないと funnel での切り替えが
+    片側だけ空になる。
+    """
     dates = observation_dates(observations, since, until)
-    if not dates:
+    if not dates and not monthly_observations:
         return {tab: [] for tab in tabs}
 
     sov_rows = looker_tabs.sov_rows_from_observations(observations)
@@ -93,6 +100,14 @@ def build(observations: Sequence[Dict[str, Any]],
             rows.extend(looker_tabs.verdict_rows(day, contexts))
         payload["lk_verdicts"] = rows
 
+    if "lk_mention_grid" in payload:
+        meta = looker_tabs.prompt_meta()
+        combined = list(observations) + list(monthly_observations)
+        rows = []
+        for day in observation_dates(combined, since, until):
+            rows.extend(looker_tabs.mention_grid_rows(day, combined, meta=meta))
+        payload["lk_mention_grid"] = rows
+
     return payload
 
 
@@ -119,12 +134,17 @@ def main() -> None:
     action_rows = sheets_writer.read_action_log() if "lk_verdicts" in tabs else []
     ga4_rows = sheets_writer.read_ga4() if "lk_verdicts" in tabs else []
     gsc_rows = sheets_writer.read_gsc() if "lk_verdicts" in tabs else []
+    monthly = (sheets_writer.read_monthly_observations()
+               if "lk_mention_grid" in tabs else [])
 
     payload = build(observations, action_rows=action_rows, ga4_rows=ga4_rows,
-                    gsc_rows=gsc_rows, since=args.since, until=args.until,
-                    tabs=tabs)
+                    gsc_rows=gsc_rows, monthly_observations=monthly,
+                    since=args.since, until=args.until, tabs=tabs)
 
     dates = observation_dates(observations, args.since, args.until)
+    if monthly:
+        print(f"[ok] 月次観測 {len(monthly)} 行 "
+              f"({len(observation_dates(monthly, args.since, args.until))} 日分)")
     print(f"[ok] {len(dates)} 日分 "
           + (f"({dates[0]} .. {dates[-1]})" if dates else ""))
     for tab in tabs:

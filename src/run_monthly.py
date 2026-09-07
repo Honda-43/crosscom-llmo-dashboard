@@ -36,6 +36,7 @@ except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exa
 import collect_llm
 import extract
 import kbf_compare
+import looker_tabs
 import retired_urls
 import notify_slack
 import sheets_writer
@@ -151,6 +152,22 @@ def main() -> None:
              lambda: sheets_writer.write_kbf_compare(kbf_rows), failures)
     if kbf_rows:
         lines += [f"- 比較KBF: {len(kbf_rows)}行"] +                  [f"  - {s}" for s in kbf_compare.summary(kbf_rows)]
+
+    # 3-2b. プロンプト別の推移(lk_mention_grid)。日次と同じタブに入れる。
+    # 月次だけ別タブにすると「BOFUは伸びたのか」を見るのに2つの表を
+    # 突き合わせることになる。funnel 列で切り分けられるので1枚で足りる。
+    grid_rows = _run(
+        "mention_grid(monthly)",
+        lambda: looker_tabs.mention_grid_rows(date, extractions),
+        failures,
+    ) or []
+    if grid_rows and not args.no_sheets:
+        _run("write_lk_mention_grid(monthly)",
+             lambda: sheets_writer.write_looker_tabs({"lk_mention_grid": grid_rows}),
+             failures)
+    if grid_rows:
+        mentioned = sum(int(r["mentioned"]) for r in grid_rows)
+        lines.append(f"- プロンプト別推移: {len(grid_rows)}行(うち言及あり {mentioned}件)")
 
     # 3-3. 取り下げたURLの引用(A-011)。**月次でも数える。**
     # 日次は E-1 だけを見るが、fsdg.jp のように日次では一度も引用されず

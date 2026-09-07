@@ -293,6 +293,9 @@ TAB_LK_NEGATIVE = "lk_negative"
 TAB_LK_EVENTS = "lk_events"
 TAB_LK_ACTIONS = "lk_actions"
 TAB_LK_ANSWERS = "lk_answers"
+# Phase 7 — プロンプト別の推移。日次と月次の両方が同じタブに入り、
+# funnel(MOFU/BOFU)で区別できる。
+TAB_LK_MENTION_GRID = "lk_mention_grid"
 
 
 def spreadsheet_url() -> str:

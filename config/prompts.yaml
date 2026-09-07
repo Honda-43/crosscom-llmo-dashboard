@@ -1,29 +1,64 @@
+# 分類メタデータ(Looker の lk_mention_grid 用。観測の挙動には影響しない)
+#   funnel       … MOFU(検討段階) / BOFU(購買直前)
+#   layer        … 質問の絞り込み度合い。L0 前置きなし / L1 軸1つ /
+#                  L2 軸2つ / L3 さらに限定 / brand_single 社名指名 /
+#                  brand_compare 競合との直接比較
+#   intent_stage … 準顕在 / 顕在 / 指名
+#   short_label  … 画面表示用の短い日本語名(プロンプト全文は text 側を見る)
 prompts:
   - id: A-1
     pillar: A
     text: "Agentforceの導入支援をしてくれるおすすめの会社を教えてください"
     cep: "導入検討初期・パートナー探し"
+    funnel: MOFU
+    layer: L1
+    intent_stage: 顕在
+    short_label: "導入支援会社を探す"
   - id: A-2
     pillar: A
     text: "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか"
     cep: "導入後の定着課題"
+    funnel: MOFU
+    layer: L1
+    intent_stage: 顕在
+    short_label: "定着支援を探す"
   - id: A-3
     pillar: A
     text: "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください"
     cep: "料金比較・稟議準備"
+    funnel: MOFU
+    layer: L1
+    intent_stage: 顕在
+    short_label: "導入費用の相場を調べる"
   - id: B-1
     pillar: B
     text: "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか"
     cep: "カテゴリ認知+支援会社探し"
+    funnel: MOFU
+    layer: L0
+    intent_stage: 準顕在
+    short_label: "Agentic CRMとは何か"
   - id: B-2
     pillar: B
     text: "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています"
     cep: "ベンダー中立ポジション"
+    funnel: MOFU
+    layer: L2
+    intent_stage: 顕在
+    short_label: "ベンダー中立の設計支援を探す"
   - id: B-3
     pillar: B
     text: "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか"
     cep: "設計ファースト方法論"
+    funnel: MOFU
+    layer: L2
+    intent_stage: 顕在
+    short_label: "データ設計から支援する会社を探す"
   - id: E-1
     pillar: entity
     text: "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください"
     cep: "エンティティ情報の鮮度"
+    funnel: BOFU
+    layer: brand_single
+    intent_stage: 指名
+    short_label: "クロスコムはどんな会社か"

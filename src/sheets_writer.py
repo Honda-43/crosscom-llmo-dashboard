@@ -27,6 +27,7 @@ from settings import (
     TAB_LK_ANSWERS,
     TAB_LK_EVENTS,
     TAB_LK_HEATGRID,
+    TAB_LK_MENTION_GRID,
     TAB_LK_NEGATIVE,
     TAB_LK_SCATTER,
     TAB_LK_SOV_TREND,
@@ -148,6 +149,15 @@ KEYS_LK_ACTIONS = ["action_id"]
 HEADERS_LK_ANSWERS = ["date", "prompt_id", "model", "mention", "rank", "answer_text"]
 KEYS_LK_ANSWERS = ["date", "prompt_id", "model"]
 
+# プロンプト別の推移(Phase 7)。日次と月次の両方がこの1タブに入り、
+# funnel(MOFU/BOFU)で区別できる。mentioned は必ず 1/0 の数値で、
+# Looker で合計すれば言及日数、件数を数えれば観測日数になる。
+HEADERS_LK_MENTION_GRID = [
+    "date", "prompt_id", "short_label", "model", "funnel", "layer",
+    "intent_stage", "prompt_text", "mentioned", "rank",
+]
+KEYS_LK_MENTION_GRID = ["date", "prompt_id", "model"]
+
 # タブ名 -> (ヘッダ, 鍵)。書き出しはこの表だけを見る。
 LOOKER_TABS: Dict[str, tuple] = {
     TAB_LK_VERDICTS: (HEADERS_LK_VERDICTS, KEYS_LK_VERDICTS),
@@ -158,6 +168,7 @@ LOOKER_TABS: Dict[str, tuple] = {
     TAB_LK_EVENTS: (HEADERS_LK_EVENTS, KEYS_LK_EVENTS),
     TAB_LK_ACTIONS: (HEADERS_LK_ACTIONS, KEYS_LK_ACTIONS),
     TAB_LK_ANSWERS: (HEADERS_LK_ANSWERS, KEYS_LK_ANSWERS),
+    TAB_LK_MENTION_GRID: (HEADERS_LK_MENTION_GRID, KEYS_LK_MENTION_GRID),
 }
 # 直近14日だけを保持する。追記のままだと古い回答が残り続け、
 # 「14日分のみ」という上限もセル数も守れないので毎回入れ替える。

@@ -25,6 +25,13 @@
 # 増やす場合は実行を2日に分割する設計に変えること。
 # この上限は tests/test_monthly.py が検査している。
 # ------------------------------------------------------------------
+# 分類メタデータ(Looker の lk_mention_grid 用。観測の挙動には影響しない)
+#   funnel       … MOFU(検討段階) / BOFU(購買直前)
+#   layer        … 質問の絞り込み度合い。L0 前置きなし / L1 軸1つ /
+#                  L2 軸2つ / L3 さらに限定 / brand_single 社名指名 /
+#                  brand_compare 競合との直接比較
+#   intent_stage … 準顕在 / 顕在 / 指名
+#   short_label  … 画面表示用の短い日本語名(プロンプト全文は text 側を見る)
 prompts:
   # --- BOFU単体(社名指名)------------------------------------------
   - id: M-1
@@ -33,6 +40,10 @@ prompts:
     text: "クロスコムの評判を教えてください。"
     aim: "素の社名で聞いた時の評判・同名他社との混同の有無"
     active: true
+    funnel: BOFU
+    layer: brand_single
+    intent_stage: 指名
+    short_label: "評判(社名のみ)"
 
   - id: M-2
     category: bofu_single
@@ -40,6 +51,10 @@ prompts:
     text: "クロスコムのAgentforce導入支援の費用を教えてください。"
     aim: "費用を聞かれた時にAIが何と答えるか(公開情報の空白確認)"
     active: true
+    funnel: BOFU
+    layer: brand_single
+    intent_stage: 指名
+    short_label: "導入支援の費用"
 
   - id: M-3
     category: bofu_single
@@ -47,6 +62,10 @@ prompts:
     text: "クロスコムのAgentforce導入支援の実績を教えてください。"
     aim: "実績質問への回答実態(実績非公開の影響測定)"
     active: true
+    funnel: BOFU
+    layer: brand_single
+    intent_stage: 指名
+    short_label: "導入支援の実績"
 
   - id: M-4
     category: bofu_single
@@ -54,6 +73,10 @@ prompts:
     text: "クロスコムのAgentic CRM設計支援の評判を教えてください。"
     aim: "注力事業Bの評判面"
     active: true
+    funnel: BOFU
+    layer: brand_single
+    intent_stage: 指名
+    short_label: "設計支援の評判"
 
   - id: M-5
     category: bofu_single
@@ -61,6 +84,10 @@ prompts:
     text: "クロスコムのCRMデータ設計の専門性を教えてください。"
     aim: "設計ファーストの語られ方"
     active: true
+    funnel: BOFU
+    layer: brand_single
+    intent_stage: 指名
+    short_label: "データ設計の専門性"
 
   - id: M-6
     category: bofu_single
@@ -68,6 +95,10 @@ prompts:
     text: "クロスコムのAgentforce定着支援について教えてください。"
     aim: "最強面(A-2)のブランド指名版"
     active: true
+    funnel: BOFU
+    layer: brand_single
+    intent_stage: 指名
+    short_label: "定着支援の内容"
 
   # --- BOFU比較(競合との直接比較)----------------------------------
   - id: M-7
@@ -77,6 +108,10 @@ prompts:
     text: "クロスコムとテクノデジタルコンサルティングのAIエージェント導入支援を比較して教えてください。"
     aim: "B-3で4週連続負けている競合との直接比較"
     active: true
+    funnel: BOFU
+    layer: brand_compare
+    intent_stage: 指名
+    short_label: "比較:テクノデジタル"
 
   - id: M-8
     category: bofu_compare
@@ -85,6 +120,10 @@ prompts:
     text: "クロスコムとメンバーズのAgentforce導入支援を比較して教えてください。"
     aim: "言及シェア2位との比較"
     active: true
+    funnel: BOFU
+    layer: brand_compare
+    intent_stage: 指名
+    short_label: "比較:メンバーズ"
 
   - id: M-9
     category: bofu_compare
@@ -93,6 +132,10 @@ prompts:
     text: "クロスコムと三菱総研DCSのSalesforce導入支援を比較して教えてください。"
     aim: "大手SIerとの比較時の中小の語られ方"
     active: true
+    funnel: BOFU
+    layer: brand_compare
+    intent_stage: 指名
+    short_label: "比較:三菱総研DCS"
 
   # --- MOFU補完(日次で観測できていない面)--------------------------
   - id: M-10
@@ -101,6 +144,10 @@ prompts:
     text: "おすすめのAgentforce導入支援会社を教えてください。"
     aim: "L0純粋形(A-1は文脈付きのため未観測)"
     active: true
+    funnel: MOFU
+    layer: L0
+    intent_stage: 準顕在
+    short_label: "導入支援会社を探す(前置きなし)"
 
   - id: M-11
     category: mofu_suppl
@@ -108,6 +155,10 @@ prompts:
     text: "製造業におすすめのAgentforce導入支援会社を教えてください。"
     aim: "業界軸の初観測"
     active: true
+    funnel: MOFU
+    layer: L1
+    intent_stage: 顕在
+    short_label: "製造業向けの導入支援を探す"
 
   - id: M-12
     category: mofu_suppl
@@ -115,6 +166,10 @@ prompts:
     text: "中堅企業におすすめのAgentic CRM設計支援会社を教えてください。"
     aim: "規模軸×注力事業B"
     active: true
+    funnel: MOFU
+    layer: L2
+    intent_stage: 顕在
+    short_label: "中堅企業向けの設計支援を探す"
 
   # --- 第2弾候補(定義のみ。実行しない)------------------------------
   # active にする場合は実行を2日に分割すること(上の実行数の制約を参照)。

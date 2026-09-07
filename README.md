@@ -1121,6 +1121,7 @@ Looker Studio はレイアウトをAPIで構築できない。そこで**計算�
 | `lk_events` | R1・R3 | `event_name`(日本語) / `place` / `playbook_ref` | date × event_type × place × detail |
 | `lk_actions` | R8 アクションボード | `target_display` / `days_to_deadline` | action_id |
 | `lk_answers` | 詳細:回答 | `answer_text`(直近14日・40,000字で切り詰め) | date × prompt_id × model |
+| `lk_mention_grid` | プロンプト別の推移 | `mentioned`(1/0) / `funnel` / `layer` / `intent_stage` / `prompt_text` | date × prompt_id × model |
 | `board_daily` | R1 サマリ | 既存の列 + `verdict_r1` | date |
 
 既存の `citation_gap` / `action_log` はそのまま使う(`lk_actions` は `action_log` の
@@ -1135,14 +1136,40 @@ Looker Studio はレイアウトをAPIで構築できない。そこで**計算�
   持つのは自社の位置だけ。`rank_source` 列でどちらの根拠かを判別できる。
 - **`lk_events` の「競合上位入り」は当日の言及シェア上位5社に限る。** 回答に一度
   出ただけの社名まで載せるとイベント表が埋まって読めなくなる。
+- **`lk_mention_grid` は観測できた行しか出さない。** `mentioned` は必ず 1/0 の
+  数値で、`SUM(mentioned)` が言及日数、`COUNT` が観測日数になる。収集エラーや
+  欠測の行に 0 を置くと「観測したが言及されなかった」と区別できず、観測日数が
+  実際より多く出るため、行そのものを出さない。
 - **`lk_verdicts` の過去日は「その日までに存在していた施策」だけを見て作る。**
   施策の状態はシートの現在値しか残っていないため過去の状態は復元できないが、
   少なくともその日にまだ提案も実施もされていない施策は持ち込まない
   (これを入れないと「実施から-47日」のような文が並ぶ)。
 
+### プロンプトの分類(`lk_mention_grid`)
+
+日次と月次のプロンプトを1つのタブに入れ、`funnel` で切り替えて読む。分類は
+`config/prompts.yaml` / `config/prompts_monthly.yaml` の各プロンプトに直接
+書いてある(観測の挙動には影響しない、表示とフィルタ専用のキー)。
+
+| キー | 値 |
+|---|---|
+| `funnel` | MOFU(検討段階) / BOFU(購買直前) |
+| `layer` | L0 前置きなし / L1 軸1つ / L2 軸2つ / L3 さらに限定 / brand_single 社名指名 / brand_compare 競合との直接比較 |
+| `intent_stage` | 準顕在 / 顕在 / 指名 |
+| `short_label` | 画面表示用の短い日本語名(全文は `prompt_text` 列) |
+
+| | MOFU | BOFU |
+|---|---|---|
+| 日次 | A-1〜A-3(L1) / B-1(L0) / B-2・B-3(L2) | E-1(brand_single) |
+| 月次 | M-10(L0) / M-11(L1) / M-12(L2) | M-1〜M-6(brand_single) / M-7〜M-9(brand_compare) |
+
+`active: false` の第2弾候補(M-13〜M-16)には分類を付けていない。**有効化する
+ときは4キーを足すこと** — 足し忘れは `tests/test_mention_grid.py` が落とす。
+
 ### 実行
 
-日次(`run_daily.py`)の末尾で `lk_*` 一式を書き出す。書き込みはタブ数によらず
+日次(`run_daily.py`)の末尾で `lk_*` 一式を書き出す。月次(`run_monthly.py`)は
+`lk_mention_grid` にその月の観測を足す(同じタブ・同じ鍵なので日次と衝突しない)。書き込みはタブ数によらず
 **1回の `values_batch_update`** にまとめている。週次(`run_weekly.py`)は
 `citation_gap` 更新後に `lk_scatter` を取り直す(28日窓の集計なので、日次の
 追記だけでは引用元の入れ替わりが反映されきらない)。
@@ -1155,8 +1182,10 @@ python scripts/backfill_looker.py
 python scripts/backfill_looker.py --since 2026-08-01 --tabs lk_sov_trend,lk_negative
 ```
 
-対象は `lk_sov_trend` / `lk_negative` / `lk_verdicts` の3つ。残りは当日の
-スナップショットなので過去分を作る意味がない。二度実行しても行は増えない。
+対象は `lk_sov_trend` / `lk_negative` / `lk_verdicts` / `lk_mention_grid` の4つ。
+残りは当日のスナップショットなので過去分を作る意味がない。二度実行しても行は
+増えない。`lk_mention_grid` は `monthly_observations` も読んで日次と月次の
+両方を埋める(片方だけだと `funnel` の切り替えが空になる)。
 
 ### 追加で読むタブ
 

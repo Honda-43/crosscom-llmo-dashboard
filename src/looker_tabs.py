@@ -21,7 +21,7 @@ import display_map
 import notify_slack
 import verdicts
 from analyze_diff import parse_bool, parse_rank
-from settings import SELF_ENTITY, load_prompts
+from settings import SELF_ENTITY, load_monthly_prompts, load_prompts
 
 WINDOW_DAYS = 7
 LOOKBACK_DAYS = 28
@@ -119,6 +119,27 @@ def prompt_names() -> Dict[str, str]:
         for separator in ("・", "+", "/", "、"):
             head = head.split(separator)[0]
         out[prompt_id] = f"{prompt_id} {head}".strip()
+    return out
+
+
+# 分類メタの列。YAML に無い場合は空欄にする(値を作らない)。
+META_FIELDS = ("short_label", "funnel", "layer", "intent_stage")
+
+
+def prompt_meta() -> Dict[str, Dict[str, str]]:
+    """prompt_id -> 分類メタ + プロンプト全文。日次と月次を1つの表にする。
+
+    月次は ``active`` を問わず読む。過去に観測した prompt_id が後で
+    ``active: false`` に落ちても、その日の行のラベルが消えないようにするため。
+    """
+    out: Dict[str, Dict[str, str]] = {}
+    for prompt in list(load_prompts()) + list(load_monthly_prompts(active_only=False)):
+        prompt_id = str(prompt.get("id") or "").strip()
+        if not prompt_id:
+            continue
+        meta = {field: str(prompt.get(field) or "").strip() for field in META_FIELDS}
+        meta["prompt_text"] = str(prompt.get("text") or "").strip()
+        out[prompt_id] = meta
     return out
 
 
@@ -424,6 +445,52 @@ def heatgrid_rows(date: str,
 
 
 # --------------------------------------------------------------------------
+# lk_mention_grid — プロンプト別の推移
+# --------------------------------------------------------------------------
+def mention_grid_rows(date: str, observations: Sequence[Dict[str, Any]],
+                      meta: Optional[Dict[str, Dict[str, str]]] = None,
+                      ) -> List[Dict[str, Any]]:
+    """``date`` の prompt_id × model を1行ずつ。日次・月次の両方で使う。
+
+    ``mentioned`` は必ず 1/0 の数値。Looker で合計すれば言及日数になる。
+    そのため **言及の有無が判定できない行(収集エラー・欠測)は出さない**。
+    0 を置くと「観測したが言及されなかった」と区別できず、件数で数えた
+    観測日数が実際より多くなる。
+
+    入力は llm_observations のシート行でも、抽出結果そのままでもよい
+    (``mention`` が "TRUE" でも True でも同じに読む)。
+    """
+    meta = prompt_meta() if meta is None else meta
+    rows = []
+    for row in observations:
+        if _day(row) != date:
+            continue
+        mention = parse_bool(row.get("mention"))
+        if mention is None:
+            continue
+        prompt_id = str(row.get("prompt_id") or "").strip()
+        model = str(row.get("model") or "").strip()
+        if not prompt_id or not model:
+            continue
+        info = meta.get(prompt_id, {})
+        rank = parse_rank(row.get("rank"))
+        rows.append({
+            "date": date,
+            "prompt_id": prompt_id,
+            "short_label": info.get("short_label", "") or prompt_id,
+            "model": model,
+            "funnel": info.get("funnel", ""),
+            "layer": info.get("layer", ""),
+            "intent_stage": info.get("intent_stage", ""),
+            "prompt_text": info.get("prompt_text", ""),
+            "mentioned": 1 if mention else 0,
+            "rank": "" if rank is None else rank,
+        })
+    rows.sort(key=lambda r: (r["prompt_id"], r["model"]))
+    return rows
+
+
+# --------------------------------------------------------------------------
 # lk_scatter — 競合ポジション
 # --------------------------------------------------------------------------
 def scatter_rows(date: str, sov_rows: Sequence[Dict[str, Any]],
@@ -684,6 +751,7 @@ def build_all(
     return {
         "lk_verdicts": verdict_rows(date, contexts),
         "lk_heatgrid": heatgrid_rows(date, observations),
+        "lk_mention_grid": mention_grid_rows(date, observations),
         "lk_scatter": scatter_rows(date, sov_rows, observations),
         "lk_sov_trend": sov_trend_rows(date, sov_rows),
         "lk_negative": negative_rows(date, observations),
