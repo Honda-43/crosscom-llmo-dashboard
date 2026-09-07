@@ -1121,7 +1121,7 @@ Looker Studio はレイアウトをAPIで構築できない。そこで**計算�
 | `lk_events` | R1・R3 | `event_name`(日本語) / `place` / `playbook_ref` | date × event_type × place × detail |
 | `lk_actions` | R8 アクションボード | `target_display` / `days_to_deadline` | action_id |
 | `lk_answers` | 詳細:回答 | `answer_text`(直近14日・40,000字で切り詰め) | date × prompt_id × model |
-| `lk_mention_grid` | プロンプト別の推移 | `mentioned`(1/0) / `funnel` / `layer` / `intent_stage` / `prompt_text` | date × prompt_id × model |
+| `lk_mention_grid` | プロンプト別の推移 | `mentioned`(1/0) / `funnel` / `layer` / `intent_stage` / `service_line` / `prompt_text` | date × prompt_id × model |
 | `board_daily` | R1 サマリ | 既存の列 + `verdict_r1` | date |
 
 既存の `citation_gap` / `action_log` はそのまま使う(`lk_actions` は `action_log` の
@@ -1157,6 +1157,25 @@ Looker Studio はレイアウトをAPIで構築できない。そこで**計算�
 | `layer` | L0 前置きなし / L1 軸1つ / L2 軸2つ / L3 さらに限定 / brand_single 社名指名 / brand_compare 競合との直接比較 |
 | `intent_stage` | 準顕在 / 顕在 / 指名 |
 | `short_label` | 画面表示用の短い日本語名(全文は `prompt_text` 列) |
+| `service_line` | 事業カテゴリ。`Agentforce` / `AgenticCRM` / `全社` |
+
+`service_line` だけ、YAML は識別子を持ち、タブには表示名が入る
+(`Agentforce導入・定着支援` / `Agentic CRM設計支援` / `全社・その他`)。変換表は
+`src/display_map.py`。表示名を変えたくなったとき YAML と過去の観測を触らずに
+済ませるため。
+
+| service_line | プロンプト |
+|---|---|
+| Agentforce導入・定着支援 | A-1〜A-3 / M-2 / M-3 / M-6 / M-7 / M-8 / M-10 / M-11 / M-15 |
+| Agentic CRM設計支援 | B-1〜B-3 / M-4 / M-5 / M-12 / M-13 / M-16 |
+| 全社・その他 | E-1 / M-1 / M-9 / M-14 |
+
+事業名が明示されていない比較(M-9「Salesforce導入支援」、M-14「CRM導入支援」)は
+事業横断なので全社に入れている。
+
+**`service_line` は Looker の表示軸専用で、Pillar A/B の既存集計とは別物。**
+`board_daily` と週次所見の数値ハイライトは従来どおり Pillar で集計する
+(同じ数字を2つの軸で二重管理しないため)。
 
 | | MOFU | BOFU |
 |---|---|---|

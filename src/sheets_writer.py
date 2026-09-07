@@ -154,7 +154,7 @@ KEYS_LK_ANSWERS = ["date", "prompt_id", "model"]
 # Looker で合計すれば言及日数、件数を数えれば観測日数になる。
 HEADERS_LK_MENTION_GRID = [
     "date", "prompt_id", "short_label", "model", "funnel", "layer",
-    "intent_stage", "prompt_text", "mentioned", "rank",
+    "intent_stage", "service_line", "prompt_text", "mentioned", "rank",
 ]
 KEYS_LK_MENTION_GRID = ["date", "prompt_id", "model"]
 

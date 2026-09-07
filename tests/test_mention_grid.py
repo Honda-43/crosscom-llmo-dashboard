@@ -13,6 +13,7 @@ import pytest
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
 import backfill_looker  # noqa: E402
+import display_map  # noqa: E402
 import looker_tabs  # noqa: E402
 import sheets_writer  # noqa: E402
 from settings import load_monthly_prompts, load_prompts  # noqa: E402
@@ -84,6 +85,68 @@ def test_prompt_text_is_the_full_prompt():
     assert meta["A-1"]["prompt_text"] == (
         "Agentforceの導入支援をしてくれるおすすめの会社を教えてください")
     assert meta["M-8"]["prompt_text"].startswith("クロスコムとメンバーズ")
+
+
+# --- 事業カテゴリ ------------------------------------------------------------
+# Pillar A/B の既存集計とは別軸。二重管理にしないよう、board_daily と週次所見は
+# 従来どおり Pillar で集計し、service_line は Looker の表示軸としてのみ持つ。
+SERVICE_LINES = {
+    "Agentforce": ["A-1", "A-2", "A-3", "M-2", "M-3", "M-6", "M-7", "M-8",
+                   "M-10", "M-11", "M-15"],
+    "AgenticCRM": ["B-1", "B-2", "B-3", "M-4", "M-5", "M-12", "M-13", "M-16"],
+    "全社": ["E-1", "M-1", "M-9", "M-14"],
+}
+
+
+def test_the_agreed_service_lines():
+    meta = looker_tabs.prompt_meta()
+    for line, prompt_ids in SERVICE_LINES.items():
+        for prompt_id in prompt_ids:
+            assert meta[prompt_id]["service_line"] == line, prompt_id
+
+
+def test_every_prompt_has_exactly_one_service_line():
+    """23本すべてがどれか1つに入る(取りこぼしも重複もない)。"""
+    assigned = [pid for ids in SERVICE_LINES.values() for pid in ids]
+    assert len(assigned) == len(set(assigned)) == 23
+    defined = {p["id"] for p in load_prompts()} | {
+        p["id"] for p in load_monthly_prompts(active_only=False)}
+    assert set(assigned) == defined
+
+
+def test_the_column_carries_the_display_name():
+    row = looker_tabs.mention_grid_rows(DATE, [obs("A-1", "claude")])[0]
+    assert row["service_line"] == "Agentforce導入・定着支援"
+    row = looker_tabs.mention_grid_rows(DATE, [obs("B-2", "claude")])[0]
+    assert row["service_line"] == "Agentic CRM設計支援"
+    row = looker_tabs.mention_grid_rows(DATE, [obs("E-1", "claude")])[0]
+    assert row["service_line"] == "全社・その他"
+
+
+def test_the_yaml_keeps_the_stable_identifier():
+    """表示名を変えたくなったとき YAML と過去の観測を触らずに済ませる。"""
+    assert looker_tabs.prompt_meta()["A-1"]["service_line"] == "Agentforce"
+    assert display_map.service_line("Agentforce") == "Agentforce導入・定着支援"
+    assert display_map.service_line("") == ""          # 未分類は空欄のまま
+
+
+def test_a_cross_business_comparison_is_company_wide():
+    """M-9(Salesforce導入比較)と M-14(CRM導入比較)は事業横断。"""
+    meta = looker_tabs.prompt_meta()
+    assert meta["M-9"]["service_line"] == "全社"
+    assert meta["M-14"]["service_line"] == "全社"
+    # 事業名が明示されている比較はその事業に入る
+    assert meta["M-8"]["service_line"] == "Agentforce"
+
+
+def test_the_pillar_based_aggregation_is_untouched():
+    """service_line を足しても既存の Pillar 集計は別物のまま。"""
+    assert "service_line" not in sheets_writer.HEADERS_BOARD
+    assert "service_line" not in sheets_writer.HEADERS_SUMMARY
+    assert "service_line" not in sheets_writer.HEADERS_LLM
+    assert "service_line" not in sheets_writer.HEADERS_MONTHLY
+    # 日次の pillar は従来どおり YAML に残っている
+    assert {p["pillar"] for p in load_prompts()} == {"A", "B", "entity"}
 
 
 # --- 2. 行の形 --------------------------------------------------------------

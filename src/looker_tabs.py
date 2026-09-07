@@ -123,7 +123,8 @@ def prompt_names() -> Dict[str, str]:
 
 
 # 分類メタの列。YAML に無い場合は空欄にする(値を作らない)。
-META_FIELDS = ("short_label", "funnel", "layer", "intent_stage")
+META_FIELDS = ("short_label", "funnel", "layer", "intent_stage",
+               "service_line")
 
 
 def prompt_meta() -> Dict[str, Dict[str, str]]:
@@ -482,6 +483,8 @@ def mention_grid_rows(date: str, observations: Sequence[Dict[str, Any]],
             "funnel": info.get("funnel", ""),
             "layer": info.get("layer", ""),
             "intent_stage": info.get("intent_stage", ""),
+            # 事業カテゴリは表示名で出す(値は YAML 側が識別子として持つ)。
+            "service_line": display_map.service_line(info.get("service_line", "")),
             "prompt_text": info.get("prompt_text", ""),
             "mentioned": 1 if mention else 0,
             "rank": "" if rank is None else rank,

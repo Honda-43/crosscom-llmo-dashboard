@@ -36,6 +36,16 @@ CHANGE_TYPE_LABELS: Dict[str, str] = {
     "negative_flag_off": "ネガ・旧情報が消えた",
 }
 
+# 事業カテゴリ(config/prompts*.yaml の service_line)。
+# 値は識別子として安定させ、画面に出す名前はここだけで決める。
+# Pillar A/B の既存集計とは別物で、Looker の表示軸としてのみ使う
+# (board_daily と週次所見の数値は従来どおり Pillar で集計する)。
+SERVICE_LINE_LABELS: Dict[str, str] = {
+    "Agentforce": "Agentforce導入・定着支援",
+    "AgenticCRM": "Agentic CRM設計支援",
+    "全社": "全社・その他",
+}
+
 # 観測の区分。画面では何の区分かが分かる名前で出す。
 PILLAR_LABELS: Dict[str, str] = {
     "all": "全体(A+B)",
@@ -66,3 +76,7 @@ def change_type(value: Any) -> str:
 
 def pillar(value: Any) -> str:
     return _lookup(PILLAR_LABELS, value)
+
+
+def service_line(value: Any) -> str:
+    return _lookup(SERVICE_LINE_LABELS, value)
