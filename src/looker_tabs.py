@@ -16,19 +16,26 @@ from collections import Counter, defaultdict
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import analyze_diff
+import citation_gap
 import retired_urls
 import display_map
 import notify_slack
 import verdicts
-from analyze_diff import parse_bool, parse_rank
-from settings import SELF_ENTITY, load_monthly_prompts, load_prompts
+from analyze_diff import parse_bool, parse_rank, split_list
+from normalize import resolve_entity
+from settings import (DATA_RAW_MONTHLY_DIR, SELF_ENTITY,
+                      load_monthly_prompts, load_prompts)
 
 WINDOW_DAYS = 7
 LOOKBACK_DAYS = 28
-ANSWER_DAYS = 14
-# Google Sheets のセル上限は50,000字。指示書の指定どおり40,000字で切り詰める。
-ANSWER_CHAR_LIMIT = 40_000
+ANSWER_DAYS = 30
+# Google Sheets のセル上限は50,000字。全文はここまでで切り詰める。
+ANSWER_CHAR_LIMIT = 30_000
 TRUNCATION_MARK = "…(以下省略)"
+# 表で既定表示する冒頭。全文は必要なときだけ answer_text を開く運用にする。
+ANSWER_HEAD_CHARS = 400
+# 引用URLは上位いくつまで載せるか。全部並べるとセルが読めなくなる。
+CITED_URL_LIMIT = 5
 
 SCATTER_ENTITIES = 10
 TREND_ENTITIES = 5
@@ -691,10 +698,59 @@ def _truncate(text: str, limit: int = ANSWER_CHAR_LIMIT) -> str:
     return text[:limit - len(TRUNCATION_MARK)] + TRUNCATION_MARK
 
 
+def _head(text: str, limit: int = ANSWER_HEAD_CHARS) -> str:
+    """表のセルで読める冒頭。改行を潰さないと1行がセルからはみ出す。"""
+    flat = " ".join(str(text or "").split())
+    return flat if len(flat) <= limit else flat[:limit] + TRUNCATION_MARK
+
+
+def _competitor_names(value: Any) -> str:
+    """言及された競合。正規化した社名で出す(自社は除く)。
+
+    lk_scatter や lk_sov_trend と同じ表記にしないと、Looker で社名を
+    突き合わせたときに別物として並ぶ。
+    """
+    names = set()
+    for raw in split_list(value):
+        entity = resolve_entity(raw)
+        if entity and entity != SELF_ENTITY:
+            names.add(entity)
+    return ", ".join(sorted(names))
+
+
+def _cited_urls(record: Dict[str, Any], limit: int = CITED_URL_LIMIT) -> str:
+    """引用URL(先頭 ``limit`` 本)。
+
+    Gemini の grounding リダイレクトは元ドメインが解決できないうえ1本200字を
+    超える。並べてもどこを見て答えたか分からないので除く(citation_gap の
+    集計と同じ扱い)。
+    """
+    out: List[str] = []
+    for url in (record.get("cited_urls") or []):
+        url = str(url or "").strip()
+        if not url or url in out:
+            continue
+        domain = citation_gap.domain_of(url)
+        if domain and citation_gap.is_unresolvable(domain):
+            continue
+        out.append(url)
+        if len(out) >= limit:
+            break
+    return ", ".join(out)
+
+
 def answer_rows(date: str, raw_records: Sequence[Dict[str, Any]],
                 observations: Sequence[Dict[str, Any]],
-                days: int = ANSWER_DAYS) -> List[Dict[str, Any]]:
-    """直近 ``days`` 日の回答全文。差分表示は Looker では組めないので対象外。"""
+                days: int = ANSWER_DAYS,
+                meta: Optional[Dict[str, Dict[str, str]]] = None,
+                ) -> List[Dict[str, Any]]:
+    """直近 ``days`` 日の回答。日次と月次の両方を同じタブに入れる。
+
+    ``raw_records`` と ``observations`` には日次と月次を混ぜて渡す
+    (呼び出し側で結合する)。どちらの観測かは funnel 列で分かる。
+    差分表示は Looker では組めないので対象外(ローカルアプリに残す)。
+    """
+    meta = prompt_meta() if meta is None else meta
     window = window_of(date, days)
     index: Dict[Tuple[str, str, str], Dict[str, Any]] = {}
     for row in observations:
@@ -708,18 +764,37 @@ def answer_rows(date: str, raw_records: Sequence[Dict[str, Any]],
         key = (_day(record), str(record.get("prompt_id") or "").strip(),
                str(record.get("model") or "").strip())
         observation = index.get(key) or {}
+        info = meta.get(key[1], {})
         mention = parse_bool(observation.get("mention"))
         rank = parse_rank(observation.get("rank"))
+        answer = str(record.get("answer") or "")
         rows.append({
             "date": key[0],
             "prompt_id": key[1],
+            "short_label": info.get("short_label", "") or key[1],
             "model": key[2],
+            "funnel": info.get("funnel", ""),
+            "service_line": display_map.service_line(info.get("service_line", "")),
+            "intent_stage": info.get("intent_stage", ""),
             "mention": "" if mention is None else ("あり" if mention else "なし"),
             "rank": "" if rank is None else rank,
-            "answer_text": _truncate(str(record.get("answer") or "")),
+            "competitors": _competitor_names(observation.get("competitors_mentioned")),
+            "cited_urls": _cited_urls(record),
+            "answer_head": _head(answer),
+            "prompt_text": info.get("prompt_text", ""),
+            "answer_text": _truncate(answer),
         })
     rows.sort(key=lambda r: (r["date"], r["prompt_id"], r["model"]))
     return rows
+
+
+def answer_sources(date: str, days: int = ANSWER_DAYS):
+    """lk_answers の元になる生データ(日次 + 月次)。ローカル読みだけ。"""
+    since = window_of(date, days)[0]
+    daily = citation_gap.load_raw_observations(since=since, until=date)
+    monthly = citation_gap.load_raw_observations(
+        since=since, until=date, base_dir=DATA_RAW_MONTHLY_DIR)
+    return list(daily) + list(monthly)
 
 
 # --------------------------------------------------------------------------
@@ -737,6 +812,7 @@ def build_all(
     gsc_rows: Sequence[Dict[str, Any]] = (),
     citation_rows: Sequence[Dict[str, Any]] = (),
     raw_records: Sequence[Dict[str, Any]] = (),
+    monthly_observations: Sequence[Dict[str, Any]] = (),
     contexts: Optional[Dict[str, Dict[str, Any]]] = None,
     noise_floor: float = 10.0,
 ) -> Dict[str, List[Dict[str, Any]]]:
@@ -765,7 +841,11 @@ def build_all(
         "lk_events": (event_rows(date, changes, sov_rows)
                       + retired_urls.event_rows(date, raw_records, resolve=True)),
         "lk_actions": action_display_rows(action_rows, date),
-        "lk_answers": answer_rows(date, raw_records, observations),
+        # 月次の回答も同じタブに入れる。日次の観測集合には混ぜない
+        # (混ぜると言及率と言及シェアの母数が月に一度だけ跳ねる)。
+        "lk_answers": answer_rows(
+            date, raw_records,
+            list(observations) + list(monthly_observations)),
     }
 
 

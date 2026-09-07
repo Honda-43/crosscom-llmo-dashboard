@@ -284,3 +284,105 @@ def test_the_observed_prompts_are_unchanged():
 def test_the_monthly_active_set_is_unchanged():
     active = [p["id"] for p in load_monthly_prompts(active_only=True)]
     assert active == [f"M-{n}" for n in range(1, 13)]
+
+
+# --- lk_answers(同じ分類メタを使う) ---------------------------------------
+ANSWER_HEADERS, ANSWER_KEYS = sheets_writer.LOOKER_TABS["lk_answers"]
+
+
+def raw(prompt_id, model, answer="本文", urls=(), date=DATE):
+    return {"date": date, "prompt_id": prompt_id, "model": model,
+            "answer": answer, "cited_urls": list(urls)}
+
+
+def test_answer_rows_match_the_tab_schema():
+    rows = looker_tabs.answer_rows(DATE, [raw("A-1", "claude")],
+                                   [obs("A-1", "claude", rank="3")])
+    assert [list(r.keys()) for r in rows] == [ANSWER_HEADERS]
+
+
+def test_answers_carry_the_classification():
+    row = looker_tabs.answer_rows(DATE, [raw("B-2", "claude")],
+                                  [obs("B-2", "claude")])[0]
+    assert row["short_label"] == "ベンダー中立の設計支援を探す"
+    assert row["service_line"] == "Agentic CRM設計支援"
+    assert row["funnel"] == "MOFU"
+    assert row["intent_stage"] == "顕在"
+    assert row["prompt_text"].startswith("中堅企業です。")
+
+
+def test_the_monthly_answers_land_in_the_same_tab():
+    """月次12本の回答本文が Looker から読めていなかったのがこの列の目的。"""
+    rows = looker_tabs.answer_rows(
+        DATE,
+        [raw("A-1", "claude"), raw("M-1", "claude"), raw("M-8", "gemini")],
+        [obs("A-1", "claude"), obs("M-1", "claude"), obs("M-8", "gemini")])
+    by_id = {r["prompt_id"]: r for r in rows}
+    assert set(by_id) == {"A-1", "M-1", "M-8"}
+    assert by_id["A-1"]["funnel"] == "MOFU"      # funnel で日次/月次を切り分ける
+    assert by_id["M-1"]["funnel"] == "BOFU"
+    assert by_id["M-8"]["service_line"] == "Agentforce導入・定着支援"
+
+
+def test_the_head_is_flattened_and_capped():
+    long_answer = "見出し\n\n本文です。" + "あ" * 1000
+    row = looker_tabs.answer_rows(DATE, [raw("A-1", "claude", long_answer)],
+                                  [obs("A-1", "claude")])[0]
+    assert len(row["answer_head"]) == (
+        looker_tabs.ANSWER_HEAD_CHARS + len(looker_tabs.TRUNCATION_MARK))
+    assert "\n" not in row["answer_head"]        # 表のセルで1行に収まること
+    assert row["answer_head"].startswith("見出し 本文です。")
+
+
+def test_the_head_is_the_whole_answer_when_it_is_short():
+    row = looker_tabs.answer_rows(DATE, [raw("A-1", "claude", "短い回答")],
+                                  [obs("A-1", "claude")])[0]
+    assert row["answer_head"] == "短い回答"
+    assert row["answer_text"] == "短い回答"
+
+
+def test_the_full_text_is_capped_at_thirty_thousand():
+    row = looker_tabs.answer_rows(DATE, [raw("A-1", "claude", "あ" * 60_000)],
+                                  [obs("A-1", "claude")])[0]
+    assert looker_tabs.ANSWER_CHAR_LIMIT == 30_000
+    assert len(row["answer_text"]) == 30_000
+    assert row["answer_text"].endswith(looker_tabs.TRUNCATION_MARK)
+
+
+def test_competitors_use_the_normalised_names():
+    """lk_scatter や lk_sov_trend と同じ表記でないと突き合わせられない。"""
+    observation = obs("A-1", "claude")
+    observation["competitors_mentioned"] = "メンバーズ, Uhuru, クロスコム, メンバーズ"
+    row = looker_tabs.answer_rows(DATE, [raw("A-1", "claude")], [observation])[0]
+    # 表記ゆれは寄せ、重複は落とし、自社は除く
+    assert row["competitors"] == "ウフル, メンバーズ"
+
+
+def test_cited_urls_are_capped_and_drop_the_unresolvable_ones():
+    urls = [f"https://example{n}.jp/a" for n in range(8)]
+    redirect = "https://vertexaisearch.cloud.google.com/grounding-api-redirect/xyz"
+    row = looker_tabs.answer_rows(
+        DATE, [raw("A-1", "claude", urls=[redirect] + urls)],
+        [obs("A-1", "claude")])[0]
+    listed = row["cited_urls"].split(", ")
+    assert len(listed) == looker_tabs.CITED_URL_LIMIT == 5
+    assert redirect not in row["cited_urls"]     # 元ドメインが解決できない
+    assert listed[0] == "https://example0.jp/a"
+
+
+def test_the_window_is_thirty_days():
+    assert looker_tabs.ANSWER_DAYS == 30
+
+
+def test_building_the_answers_twice_gives_identical_rows():
+    records = [raw("A-1", "claude"), raw("M-1", "gemini")]
+    seen = [obs("A-1", "claude"), obs("M-1", "gemini")]
+    assert (looker_tabs.answer_rows(DATE, records, seen)
+            == looker_tabs.answer_rows(DATE, records, seen))
+
+
+def test_the_answers_tab_is_replaced_not_appended():
+    """入れ替え方式なので、書く側は日次と月次の両方を含める必要がある。"""
+    from settings import TAB_LK_ANSWERS
+
+    assert TAB_LK_ANSWERS in sheets_writer.LOOKER_REWRITE_TABS

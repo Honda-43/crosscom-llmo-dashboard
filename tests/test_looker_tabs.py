@@ -239,13 +239,18 @@ def test_the_action_log_itself_is_untouched():
 
 
 def test_answers_are_limited_to_the_recent_window(observations):
-    old = (dt.date.fromisoformat(TODAY) - dt.timedelta(days=20)).isoformat()
+    """保持は直近30日。窓の外は入れ替えで落ちる。"""
+    inside = (dt.date.fromisoformat(TODAY)
+              - dt.timedelta(days=looker_tabs.ANSWER_DAYS - 1)).isoformat()
+    outside = (dt.date.fromisoformat(TODAY)
+               - dt.timedelta(days=looker_tabs.ANSWER_DAYS)).isoformat()
     records = [
         {"date": TODAY, "prompt_id": "A-1", "model": "claude", "answer": "新しい"},
-        {"date": old, "prompt_id": "A-1", "model": "claude", "answer": "古い"},
+        {"date": inside, "prompt_id": "A-1", "model": "claude", "answer": "端"},
+        {"date": outside, "prompt_id": "A-1", "model": "claude", "answer": "古い"},
     ]
     rows = looker_tabs.answer_rows(TODAY, records, observations)
-    assert [r["date"] for r in rows] == [TODAY]
+    assert [r["date"] for r in rows] == [inside, TODAY]
 
 
 def test_answers_are_truncated_at_the_cell_limit(observations):

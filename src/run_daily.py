@@ -154,6 +154,11 @@ def main() -> None:
     gsc_history = _run("read_gsc", lambda: sheets_writer.read_gsc(), failures) or []
     action_rows = _run(
         "read_action_log", lambda: sheets_writer.read_action_log(), failures) or []
+    # lk_answers は入れ替え方式。日次だけで書くと月次の回答が消えるので、
+    # 月次の観測もここで読んで一緒に書き出す(§2 のタブ定義は変えない)。
+    monthly_rows = _run(
+        "read_monthly_observations",
+        lambda: sheets_writer.read_monthly_observations(), failures) or []
 
     ga4_history = _merge(ga4_history, ga4_rows, ("date", "source", "landing_page"))
     gsc_history = _merge(gsc_history, gsc_rows, ("date", "query"))
@@ -204,9 +209,8 @@ def main() -> None:
             sov_rows=sov_history, changes=changes, action_rows=action_rows,
             ga4_rows=ga4_history, gsc_rows=gsc_history,
             citation_rows=citation_rows, contexts=contexts,
-            raw_records=citation_gap.load_raw_observations(
-                since=looker_tabs.window_of(date, looker_tabs.ANSWER_DAYS)[0],
-                until=date),
+            raw_records=looker_tabs.answer_sources(date),
+            monthly_observations=monthly_rows,
         ),
         failures,
     ) or {}

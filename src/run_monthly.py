@@ -169,6 +169,29 @@ def main() -> None:
         mentioned = sum(int(r["mentioned"]) for r in grid_rows)
         lines.append(f"- プロンプト別推移: {len(grid_rows)}行(うち言及あり {mentioned}件)")
 
+    # 3-2c. 回答の閲覧用(lk_answers)。**日次分も一緒に書く。**
+    # このタブは入れ替え方式なので、月次分だけで書くと日次の回答が消える。
+    # 日次側も同じ集合を書くので、どちらが先に走っても結果は同じになる。
+    answer_rows = _run(
+        "lk_answers(monthly)",
+        lambda: looker_tabs.answer_rows(
+            date,
+            looker_tabs.answer_sources(date),
+            list(sheets_writer.read_llm_observations())
+            + list(sheets_writer.read_monthly_observations()),
+        ),
+        failures,
+    ) or []
+    if answer_rows and not args.no_sheets:
+        _run("write_lk_answers(monthly)",
+             lambda: sheets_writer.write_looker_tabs({"lk_answers": answer_rows}),
+             failures)
+    if answer_rows:
+        monthly_count = sum(1 for r in answer_rows
+                            if r["prompt_id"].startswith("M-"))
+        lines.append(f"- 回答の閲覧用: {len(answer_rows)}行"
+                     f"(うち月次 {monthly_count}件)")
+
     # 3-3. 取り下げたURLの引用(A-011)。**月次でも数える。**
     # 日次は E-1 だけを見るが、fsdg.jp のように日次では一度も引用されず
     # 月次(M-4)で初めて出るURLがある。日次だけだと永久に0件と表示され、

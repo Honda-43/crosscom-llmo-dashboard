@@ -146,7 +146,13 @@ HEADERS_LK_ACTIONS = [
 ]
 KEYS_LK_ACTIONS = ["action_id"]
 
-HEADERS_LK_ANSWERS = ["date", "prompt_id", "model", "mention", "rank", "answer_text"]
+# 回答の閲覧用。日次と月次の両方が入り、funnel で区別できる。
+# 表では answer_head を既定表示にし、全文(answer_text)は必要時に開く。
+HEADERS_LK_ANSWERS = [
+    "date", "prompt_id", "short_label", "model", "funnel", "service_line",
+    "intent_stage", "mention", "rank", "competitors", "cited_urls",
+    "answer_head", "prompt_text", "answer_text",
+]
 KEYS_LK_ANSWERS = ["date", "prompt_id", "model"]
 
 # プロンプト別の推移(Phase 7)。日次と月次の両方がこの1タブに入り、
@@ -170,8 +176,10 @@ LOOKER_TABS: Dict[str, tuple] = {
     TAB_LK_ANSWERS: (HEADERS_LK_ANSWERS, KEYS_LK_ANSWERS),
     TAB_LK_MENTION_GRID: (HEADERS_LK_MENTION_GRID, KEYS_LK_MENTION_GRID),
 }
-# 直近14日だけを保持する。追記のままだと古い回答が残り続け、
-# 「14日分のみ」という上限もセル数も守れないので毎回入れ替える。
+# 直近30日だけを保持する。追記のままだと古い回答が残り続け、
+# 保持期間の上限もセル数も守れないので毎回入れ替える。
+# **入れ替えなので、書く側は必ず日次と月次の両方を含めること。**
+# 片方だけで書くともう片方が消える。
 LOOKER_REWRITE_TABS = (TAB_LK_ANSWERS,)
 # ``detail`` is part of the key so several competitor_added rows for the same
 # day/prompt/model (one per company) coexist while a re-run still overwrites.

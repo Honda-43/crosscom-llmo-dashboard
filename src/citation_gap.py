@@ -26,7 +26,7 @@ from collections import defaultdict
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 from urllib.parse import urlparse
 
-from settings import DATA_RAW_DIR
+from settings import DATA_RAW_DIR, DATA_RAW_MONTHLY_DIR
 
 SELF_DOMAIN_FRAGMENTS = ("cross-com.jp", "crosscom")
 UNRESOLVABLE_HOSTS = ("vertexaisearch.cloud.google.com",)
@@ -52,12 +52,19 @@ def is_unresolvable(domain: str) -> bool:
 
 
 def load_raw_observations(since: Optional[str] = None,
-                          until: Optional[str] = None) -> List[Dict[str, Any]]:
-    """data/raw から観測を読む。answer本文は使わないので捨てる。"""
+                          until: Optional[str] = None,
+                          base_dir: Optional[Any] = None) -> List[Dict[str, Any]]:
+    """``base_dir`` 配下の ``<日付>/*.json`` から観測を読む。
+
+    既定は日次(data/raw)。月次の回答全文は data/raw/monthly に分けてあるので、
+    そちらを読むときだけ ``base_dir`` を渡す。日次の glob は ``*/*.json`` で
+    1階層ぶんしか降りないため、既定のままでは月次を拾わない。
+    """
     out: List[Dict[str, Any]] = []
-    if not DATA_RAW_DIR.exists():
+    root = DATA_RAW_DIR if base_dir is None else base_dir
+    if not root.exists():
         return out
-    for path in sorted(DATA_RAW_DIR.glob("*/*.json")):
+    for path in sorted(root.glob("*/*.json")):
         date = path.parent.name
         if since and date < since:
             continue

@@ -1120,7 +1120,7 @@ Looker Studio はレイアウトをAPIで構築できない。そこで**計算�
 | `lk_negative` | R3 ネガ検知 | `detected`(1/0) / `note`(種別要約20字以内) | date × model |
 | `lk_events` | R1・R3 | `event_name`(日本語) / `place` / `playbook_ref` | date × event_type × place × detail |
 | `lk_actions` | R8 アクションボード | `target_display` / `days_to_deadline` | action_id |
-| `lk_answers` | 詳細:回答 | `answer_text`(直近14日・40,000字で切り詰め) | date × prompt_id × model |
+| `lk_answers` | 詳細:回答 | `answer_head`(先頭400字) / `answer_text`(直近30日・30,000字で切り詰め) / `competitors` / `cited_urls` | date × prompt_id × model |
 | `lk_mention_grid` | プロンプト別の推移 | `mentioned`(1/0) / `funnel` / `layer` / `intent_stage` / `service_line` / `prompt_text` | date × prompt_id × model |
 | `board_daily` | R1 サマリ | 既存の列 + `verdict_r1` | date |
 
@@ -1136,6 +1136,14 @@ Looker Studio はレイアウトをAPIで構築できない。そこで**計算�
   持つのは自社の位置だけ。`rank_source` 列でどちらの根拠かを判別できる。
 - **`lk_events` の「競合上位入り」は当日の言及シェア上位5社に限る。** 回答に一度
   出ただけの社名まで載せるとイベント表が埋まって読めなくなる。
+- **`lk_answers` は入れ替え方式。書く側は日次と月次の両方を含めること。**
+  直近30日だけを保持するため毎回タブごと置き換える。片方だけで書くと
+  もう片方が消えるので、日次も月次も `looker_tabs.answer_sources()` で
+  `data/raw` と `data/raw/monthly` の両方を読んでから書く。
+  表では `answer_head`(先頭400字・改行を潰したもの)を既定表示にし、全文の
+  `answer_text` は必要なときだけ開く。`cited_urls` は最大5本で、Gemini の
+  grounding リダイレクトは元ドメインが解決できないため除いている。
+  `competitors` は正規化した社名で出す(`lk_scatter` と突き合わせられるように)。
 - **`lk_mention_grid` は観測できた行しか出さない。** `mentioned` は必ず 1/0 の
   数値で、`SUM(mentioned)` が言及日数、`COUNT` が観測日数になる。収集エラーや
   欠測の行に 0 を置くと「観測したが言及されなかった」と区別できず、観測日数が
