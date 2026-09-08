@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-08",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-08T00:04:05.206437Z",
+  "answer": "Agentforceの導入支援をしてくれるおすすめの会社として、以下の企業が挙げられます。\n\n*   **K2 Partnering Solutions**\n    K2 Partnering Solutionsは、Salesforceの長年の実績とAIに関する専門知識を活かし、Agentforceをお客様の既存のエコシステムに統合するためのコンサルティングサービスを提供しています。効率的でスケーラブルなAgentforce導入を実現し、市場洞察の獲得、不正行為の検出、顧客関係強化、価値ある新しいマーケティングリードの創出などを支援します。また、Agentforce導入後の最適化と保守を行う応用管理サービス（AMS）も提供しています。\n\n*   **株式会社メンバーズ**\n    メンバーズは、Salesforceが提供する自律型AIエージェントAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成までを一貫して支援しています。企業の業務・組織の最適化や生産性向上につながるAgentforceの導入・活用・内製化をプロフェッショナル人材がワンストップで伴走支援し、売上・利益の最大化、受注率や中間コンバージョンの向上、顧客育成を推進します。\n\n*   **株式会社ウフル**\n    ウフルは、「Agentforceクイック導入支援サービス」を提供しており、Salesforceのテクノロジーを活かした業務支援の経験に基づいて、Agentforceの導入・活用を現実的かつ実践的に支援します。既存のSalesforce組織の確認、ユースケースの整理、Salesforce Data 360の設定、Agentforceの各種設定といった支援内容が含まれます。現在は特に「Agentforce for Service」を対象としたカスタマーサービス領域に特化した支援を提供しています。\n\n*   **三菱総研DCS**\n    三菱総研DCSは、「Agentforce導入・活用支援サービス」を提供しています。Salesforceが提供する自律型AIエージェントプラットフォームであるAgentforceを中核としたデータ統合型導入支援が特長で、データ分析・活用基盤の構築、クラウド利活用、多様なシステムの横断的な統合において豊富な実績を有しています。金融分野で培った実績に基づく高いセキュリティと信頼性も強みです。\n\n*   **日立ソリューションズ**\n    日立ソリューションズは、「導入・活用支援サービス for Agentforce」を通じて、Agentforceの導入・活用をトータルで支援します。AIワークショップを通じて現場の業務課題を深く理解し、全社戦略と整合した「ビジネス価値を生むAIエージェント」の実装を支援することに注力しています。製造業の保守対応やインサイドセールスの成約率向上といったユースケースでの導入実績があります。\n\n*   **合同会社クロスコム**\n    クロスコムはSalesforce公式パートナー企業として、マーケティング・営業・カスタマーサポートのあらゆる課題を解決するAgentforceの導入・定着支援を提供しています。BtoBの中小企業を中心に100社以上のマーケティング施策を支援した実績があり、MA・CRM領域を軸に戦略設計から施策実行まで一貫して得意としています。\n\n*   **toBeマーケティング**\n    toBeマーケティングは、富士通グループの先行支援と豊富な知見を活かし、Agentforceの導入支援を提供しています。日本で最初にAgentforceライセンスを取得した富士通と共に検証・運用を進め、自社への導入から蓄積した知見・ノウハウを活かした質の高い支援が特徴です。データアセスメント、Agentforce導入PoC支援、PoC完了後のトライアル伴走支援などを行います。\n\nこれらの企業は、それぞれ異なる強みや得意分野を持っています。Agentforceの導入を検討されている場合は、自社の課題や目的に合わせて、最適なパートナーを選ぶことが重要です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF3oiF5z9BHQlzfSjbX57ASeZJMyOyJRzRNb2YuE6kYBogzPir0EOOYyWKytG-eH9kFyZT9W9HixGMoVjaESphhZn0kC3V3rE_WocQxbdpWhccKjf1E6qiYJk6o2GjdKEemNGrmUzValmHdwA6iMY4J--2mQG7AEeWXJq5RrB8e22UMr63EYis3o_gvl4q3ES01S2qTPzQ_1o4ylf0_bf4IjqqEreDPEP1BBvRMP6pM",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpWFauKqcu35tnYEDf7YaqaIKwvuUHhdFC1MUyUAdxJx7i0IwUqOlx24o-H8t4CmuA1uehMlf6bD_6Ry2uKD3L9uL8ZRlfCsviQhi41okUHydRnZE8Je7Ra4WsAiPKIxid_E3yE5_efax5wSnEXYPQrA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG1nrQNIma5U-PQn1AawfQ1voDejQrfB2P87rW5lbl3MeFjQ-iz3x8hWYZFwUr8eJpBqpc90gej2ofbp8o1fR_JHL-T0LT8CefMSIflmOuUpVoMWL8Rh1ybna2mR0oIjvDDqHy88zAxDlYq",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEF73nMx0tlMNvicB4uwDTlMQ4PrPLn6Fk3isFfChl0ZJdIty6jukClNw52cMsV8dFInuxIRYOf6nPUrhLrQ_1DzfWNS0vunuPhqDf1aSz8Ku8D4fAfEOPG4T8FAuLt-wb_yH8MQ9oAhSA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFxs9VQ2GPwybaHou4ufnXYEMwuvp4BvpuVzJlSvgYP-8cDQQ4Sa5VqTZlJHxP4hJVtH-KNfF1qOlWapuWvsKuUWvFePP6ttnEpHXeR22Vyraq2glRmcMfbOEdMRVbgxGGaxEtXkFUk8SvCE_QyALBLkkzuxN5BtV2MExum6g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEHWdndSOww-qgh401mOyKNFHKugUtdJ_lWERR9ORPFwRqYyDYORUpUkrygkGQNcGXj2rBrzeC1B4nEnb-BB-xwlZntHdZ2XyanPKO1107NH6lLKSKohBtwFZ7ENbAhYW9ev-StuPjwa34VHg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE5Rb3uyhBwzlKx7L9PnGiaeZNa-tU_WMYZIWKvNvs8OZbB1EPZhxCAyFddfbf3xL0siS6UCmmu7N400-a1Jw5wDvFC-y_oiy1iJPuye5TydCHhdhBEyeMReHX59J6FGvr-1-Cyqw=="
+  ],
+  "error": null
+}

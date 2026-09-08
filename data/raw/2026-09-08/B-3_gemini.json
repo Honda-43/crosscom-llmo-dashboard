@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-08",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-09-08T00:35:04.916829Z",
+  "answer": "営業にAIエージェントの活用を検討されており、ツール選定前のCRMデータ設計から支援を希望されているとのこと、そのようなニーズに対応できるパートナー企業は複数存在します。\n\n具体的には、以下のような企業がCRMデータ戦略設計とAI活用支援を組み合わせたコンサルティングサービスを提供しています。\n\n*   **テクノデジタルコンサルティング**：CRM導入やAI活用において成果を出すためには、ツール選定の前に「何のために、誰に、何を届けるか」といった顧客戦略やKPI設計、そして「必要なデータをどう集め、整備するか」というデータ統合・基盤設計が重要であると提唱しています。CRM・データ戦略設計サービスでは、顧客戦略・KPI設計からデータ統合・基盤設計、さらにはAI活用・AIエージェント開発まで一貫して支援しており、「AI-Readyな組織」への変革をサポートしています。\n*   **日立コンサルティング**：営業DX（デジタルトランスフォーメーション）の一環として、CRMと生成AIを活用したコンサルティングを提供しています。貴社が培ってきた営業スタイルを生かしつつ、CRM/SFAシステムの導入に加え、生成AIなどの先端技術を活用した営業プロセス改革を支援し、顧客体験・ロイヤルティー向上に貢献することを目指しています。\n*   **FLYO LLC**：データ、マーケティング、CRM/SFAのすべての領域にAIを掛け合わせ、業務の自動化・高度化を推進するAI活用コンサルティングを提供しています。CRM/SFAの導入・運用支援も行い、生成AIの実装から社内展開まで伴走支援しています。\n*   **フュージョン（CRM Forecaster）**：AI（機械学習）を活用したマーケティング支援として、データ分析に留まらず、分析結果を利用したCRM設計を提供しています。顧客行動予測モデルの構築を通じて、データコンサルティングや予測結果の活用提案を行っています。\n\nこれらの企業は、CRMデータがAIエージェントの効果を最大化するための基盤となることを理解しており、単なるツールの導入ではなく、データ戦略の上流工程から支援することで、貴社の営業DXを成功に導くためのパートナーとなり得るでしょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEcM8oz9hQxUE_pN1LKXWue2wcM2O8rFy1Y4sP5enlvxKF6WEDJKJ-nC_uqnG97_n07zYsfPC4skdpLerqDRxVCie_MgriJZn6q_ouruayCO-t40wErwF9-0oZzbgaK4qLZkdGkGd8fJwYPMdvQwZnlZBM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9ByrMrKtchx4mvSwefP2zp3fwuvIGMm2_fIpcomAtMprQDHYzMjeltc5Vi8eH1wISl_EcBKSwD86hZxw9Pmo3YEGv8o7NMarHHk-PtRql3C1IBwCL-LroodY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG3uZBA2EXKo01cBrtVuuz-b56XO_FbgYUkgkWR9ZP28y_SqVc_1xqTYPjcFxPsI846QMF5rWfclC85C4MYq-iFPAFaH3icedV5ZtcOLMdliVIspxsyPxfe_TJgqQWjgBieTHqqofkCExCAuEcOcC8z9cExB4i2r81XCEQ3TnzDZswb2w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQERPuTTp_TdXi8TTvVIiVxTNp4Ah9g0caEd2ZCNvzQ102kebdRok65-aI5Cti8ptD5mxhxgFPnFA0S7I91ZvI17EZAzJu9bAP1o97rH4nhxO5-EgLj0AY4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEjVr9VzWSih6qQOgr97n4UfRSB-fFnCG3AvXHqa6P8Qht-onwMPL9YaCCKC7Uzt0PPxYxrXGtFF5WXLtqUTho2xWqxiIZ9C_bO80PqxgEZ_KFu9ayC64VO6JsimekEP-rg4g20UMtr0AI="
+  ],
+  "error": null
+}
