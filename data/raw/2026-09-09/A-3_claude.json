@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-09",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-08T23:52:48.974777Z",
+  "answer": "Agentforceの導入費用や進め方について、最新情報を調査してお答えします。\n# Agentforce導入費用の相場と費用対効果を出すための進め方\n\n## 1. 費用の全体構造（3つのコスト要素）\n\nAgentforceの費用は大きく分けて「①Agentforce本体の利用料」「②基盤となるSalesforceライセンス」「③導入構築・定着支援コスト」の3層で構成されます。\n\n### ①Agentforce本体の利用料（3つの課金モデル）\n\n2025年5月の料金改定以降、\n当初の1会話あたり2ドルの固定料金だけでなく、2025年5月にAgentforceは会話単位ではなくアクション単位で支払う従量課金制のFlex Creditsを導入しました\n。現在は主に3つのモデルから選択します。\n\n| モデル | 料金 | 特徴 |\n|---|---|---|\n| **会話課金（Conversations）** | 1会話$2固定 | \n会話内のアクション数に関わらず1会話$2の、シンプルで予測しやすいモデル。広く使いやすく予算化しやすい設計。会話内のその後のすべてのエージェント活動は単一の料金に含まれる\n |\n| **Flex Credits（従量課金）** | $500/10万クレジット（1アクション約$0.10） | \n標準アクションは20クレジット（$0.10）、音声アクションは30クレジット（$0.15）を消費。クレジットは10万単位$500で購入\n |\n| **ユーザーライセンス** | $125〜$550/ユーザー/月 | \nSales・Service・Field Serviceは月額$125/ユーザー（Industriesは$150）で使い放題の定額アドオン。Agentforce 1 Editionsは月額$550/ユーザーで組織あたり年間250万Flex Creditsを含む統合バンドル\n |\n\n注意点として、\n会話課金モデルとFlex Creditsは同一組織内で混在させることはできません\n。また実際の会話コストは、\n複雑なワークフローでは1会話あたり20アクションを超えることもあり、Flex Credits換算での実質コストはシンプルな問い合わせで$0.50、複雑なやり取りでは$2.00以上になる場合があります\n。\n\n### ②見落とされがちな付随コスト\n\nAgentforceは単体では動作せず、基盤となるSalesforce Cloud（Service Cloud等のEnterprise Edition以上）とData Cloudが必要です。\nAgentforceはData Cloudが正常に機能するために必須であり、これは購入者が見落としがちなコストで、Agentforceライセンス自体を上回ることも多い\n費用です。\n\n海外の試算では、\n中堅企業（500ユーザー）の場合Data Cloudコストを除いてAgentforce自体は年間$15,000〜$50,000程度だが、Data Cloud・導入・保守を含めた総所有コストは初年度$150,000〜$425,000に達する\nとされています。\n\n### ③日本国内の導入支援（コンサルティング）費用の目安\n\n国内パートナーの支援費用については、\n依頼範囲によって幅があるが、月額伴走型なら月額数十万円程度から、プロジェクト一括型なら数百万円規模からが一つの目安\nとなっています（これとは別にAgentforce本体のライセンス費用が発生）。\n\n## 2. 費用対効果を出すための進め方\n\n### ステップ1：スモールスタートを徹底する\n\n複数の専門家・支援会社が共通して強調しているのが「小さく始める」原則です。\nAgentforceの導入で最も大切なのは「小さく始めて、成果を確認しながら拡張する」ことで、最初から完璧を目指す必要はなく、まずは1つのユースケースで効果を実感し、そこから徐々に適用範囲を広げていくアプローチ\nが推奨されています。\n\n実務的には、\n1ユースケース×3ヶ月のスモールスタートプラン\nのような形で、期間と対象業務を限定してPoC（概念実証）を行うのが一般的です。\n\n### ステップ2：着手する業務（ユースケース）の見極め\n\n成果が出やすい業務には共通パターンがあります。中小企業向けの事例では、\n問い合わせ対応の一次受けは毎日発生し、その大半が定型的な質問であるため、一次受けをエージェントに任せたときの効果も表れやすい\nとされています。\n\n製造業での実例としては、\nユースケースの導入効果を定量化し、適合性や難易度を総合的に評価することでビジネス価値を可視化する\nアプローチが取られており、実際に保守対応業務では\nAgentforceが受付内容と過去の対応データをもとに想定される故障箇所や使用部品を自動的にリスト化し、保守員が事前確認できるようになったことで初回完了率が向上、現場対応時間の短縮にも貢献\nした事例があります。\n\n### ステップ3：料金モデルは「試してから選ぶ」\n\nFlex Creditsと会話課金はどちらが得か一概に言えないため、\nまず会話単位の料金で始めて実際の利用状況を測定し、その後Flex Creditsに切り替えた方がコスト削減になるかを評価する\nという段階的な選び方が実務的です。特にFlex",
+  "cited_urls": [
+    "https://magicfuse.co/blog/agentforce-cost",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://www.eesel.ai/blog/agentforce-pricing",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://hatenabase.jp/blog/salesforce-agentforce-getting-started/",
+    "https://cross-com.jp/agentforce-pricing/",
+    "https://cross-com.jp/agentforce-small-business/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/"
+  ],
+  "error": null
+}

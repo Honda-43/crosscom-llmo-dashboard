@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-09",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-09-08T23:54:46.840538Z",
+  "answer": "合同会社クロスコムは、BtoB領域に特化したコンサルティング会社です。2023年5月に設立され、東京都渋谷区に本社を構えています。主にSalesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を提供しています。\n\n**強み**\n合同会社クロスコムの主な強みは以下の通りです。\n\n*   **BtoB領域への特化**：BtoBマーケティング支援に特化しており、この分野における深い専門知識と経験を持っています。\n*   **業務設計起点のコンサルティング**：ツール導入前の業務設計から、運用が現場に定着するまで一貫して支援するスタイルを採っています。特にソリューション営業の業務プロセスに特化した支援が特徴です。\n*   **AIエージェントに関する専門知識**：Claude CodeとMCP連携によるAgent Script開発の実装知見を有しており、コードベースでの構築・改善にも対応可能です。AIエージェントを前提とした業務プロセスの再設計も得意としています。\n*   **スモールスタートと伴走支援**：1つのユースケースから3ヶ月程度のスモールスタートを推奨し、現場での定着まで伴走する支援体制をとっています。小規模な依頼や設計レビューのみのスポット相談にも対応しています。\n*   **戦略立案から施策実行までの一貫支援**：代表者のBtoB法人営業経験とマーケティング経験を活かし、商談獲得のメソッドを用いて戦略立案から施策実行まで一気通貫で支援します。\n*   **Salesforce認定資格保有者による支援**：代表者はSalesforce認定のSales CloudコンサルタントおよびAccount Engagementスペシャリスト資格を保有しており、質の高い支援を提供します。\n*   **顧客中心主義**：顧客の声を経営判断に活かし、顧客の期待を超えるサービス提供を目指す消費者志向に基づいた事業活動を行っています。\n\n**提供サービス**\n提供している主なサービスは以下の通りです。\n\n*   **Agentforce導入・定着支援**：エージェント設計、トピック構成、アクション配線、導入に伴う業務プロセス設計、運用定着に向けた伴走支援、自社構築を進める企業への設計アドバイザリーなどを行います。\n*   **Agentic CRM設計支援**：オープンソースCRMを基盤に、AIの推論能力を最大限に活かしたAIネイティブなCRMを企業ごとに設計します。マーケティング・営業・カスタマーサクセスのデータ統合設計や、AIエージェントを前提とした業務プロセスの再設計、ツール選定前の要件設計などが含まれます。\n*   **BtoB Salesforce導入・構築支援**：Salesforce環境の構築、Sales CloudやSalesforce Account Engagementの導入・運用定着を支援します。\n*   **BtoBマーケティング戦略コンサルティング支援**：ターゲット設計、バリュー選定などのマーケティング戦略設計から、商談獲得の最大化までを支援します。\n*   **MA・CRM導入・運用支援**：Salesforce、Hubspot、Zohoなどのマーケティングオートメーション（MA）や顧客関係管理（CRM）ツールの導入から運用代行までを行います。\n*   **コンテンツ企画・制作**：ホワイトペーパー、ウェビナー、Web記事、Webページなどの企画・制作も手掛けます。\n*   **その他**：Claude CodeとMCP連携によるAgent Script開発、Agentforce Coworkerの活用設計、設計レビューのみのスポット相談なども提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF6i2dGREgdRgI4rFwN4_7qaENlibuMeQ8O0BmJ4Kl4lJMZ08qdXqRL-JJZ4ebjnuZiYtGMODJ7Gk5r4RMyNwp0_IKLal0LhOpYYqfhUWBkTOHZMedukA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFuIc6qYy9Lym_N12gDuVC4A7ZajoIJdIUsLTevZe0jjRu6GAh3UFw4ytf7-dqr6EQi6y-mTQSAlrUrY7B_mAsklreay2Z8BJGkcH6PPzsPc6D3_OuK-o1xg2yUXjjTBWeucflxstW5Tw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHtvXoABtbF9H9ZApscanYCj0LRhTJDwctbtROx9mNNh8dAK90zsbxc5sRVKdtbrhg6S2Cr9Jjw5r6qfkrjVCDTu9jcNW_cmNATJ1FgkU9rTQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbzFwAxLCg7FXLKRYu39cwO22JiYIfDxL5fPzEWnaQxYT5JXr6hjtU8C01TVvOC4059mKOhR6ua39qVPc3Q4JjaILvxeF-I-3KZcsuMI8t0EkuaqlSp3yz",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHnviEZov-FqCS3WG4oHPfe1VoBTc7TERbUFe4N8b0_ADgBHlZvnq4JEQBMPqJ1G5YY9Hd-oN_r33MiaWtm9GF0uhNh0e5U6Mv2Cc1gutUp7sUguqy9Bo11tRiEL3-8G5wUf0uL_YZK1w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFuaBu9FWASRrFTMavr4QCN6WBc56prqFEcoJeXlx_mIhOGnwa-aBGKBxkHqQ8ellqQIb8-q4615-p_v1f_54v1QTCNkvWTzUmxY7AZBnXHx-qKx-MIDqfTpP3OLm8UxhLik_MAqkfV0OEz5Ud-DvT0MMuNIjgEhA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFwSmrZ-l9d5L3uWVV0fifV37BU6IVwXn7zsYHnOzJzw8wqh5DsyJKM4HA5ZPjz3zjPRWCDnYpNV5mpjIqc1Sukjw1SLWdYKsnzb1KGPDvIe62v0_QBfL4SfU5Jhp-0ZRtaeGGKNAH5",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEliYtDqXHS4O4s_ETnL1_GQoA8smq71-icP9_vBv2HI2IKTfDggSVU-4feM0D2RCbY3HcfdIec2PjpKhpZ0o1WzH-KIFwbQb-koObTa1aNORLPfbNz1n5ZstgilAEtp2jA",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFjlabxisuqX5jiSlTRI5M0Yz7SGeSS6hENxaSTF8u9XxJ1AmK2yoeywBr9DqW07CtpewK6wO407PVOW4Ni4dml8BbRmG0mqjh3ILBW_luq6ak6pQmQxhgBDVOnLW7EU6jZrg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFTiRnPu6XT1L4-sEZ_0_mSRNi0uhIaEnmKFYtgI6KxL697ZfU7MKE7XRSycFelVOt7SZrdU4FndvgfyvGkZWlx1Gd-T9bI34fj1lZfETBIL2z8uKRzq4-8UUICrkIFyx0Sjwfi2oFKlyXKt-lwFiFz"
+  ],
+  "error": null
+}

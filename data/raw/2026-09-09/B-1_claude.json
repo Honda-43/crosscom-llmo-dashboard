@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-09",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-09-08T23:53:31.935925Z",
+  "answer": "# Agentic CRMとは\n\n**Agentic CRM（エージェンティックCRM）** とは、AIエージェントが自律的に判断・行動する機能を組み込んだ顧客関係管理（CRM）システムのことです。\n\n## 従来のCRMとの違い\n\n\n従来のCRMが担当者の電話ログ記録やレコード更新を待つのに対し、エージェンティックCRMはその情報をもとに指示を待たずに行動します。\n従来型のルールベース自動化とは根本的に異なり、\nルールベースのシステムは「リードのスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従うのに対し、エージェンティックシステムは文脈を解釈し、単に条件と結果をマッチングさせるのではなく、顧客データを推論し、状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整します。\n\n\n## 主な特徴\n\nSalesforceの定義によれば、\nエージェンティックCRMとは、人間だけでなく、多段階のワークフローを計画・実行・適応させる自律型AIエージェントも利用するCRMシステムであり、各ステップごとの人間の承認を必要としません。エージェントは事前に設定されたガードレール内で行動し、必要な場合には人間にエスカレーションします。\n\n\n具体的な活用例として、\n商談が5日間動きがないことを営業担当者に通知するだけでなく、エージェンティックCRMは過去の会話を確認し、成約確度を評価し、フォローアップメールの下書きを作成し、営業担当者向けのタスクを作成するといった対応が可能です。\n\n\n## 代表的なプラットフォーム\n\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションが、エージェンティックCRMがどのように市場を変革し、今後の標準を築いているかを示しています。\n\n\nSalesforceの場合、\nAgentforceは既存のSalesforce CRMの上に構築されたエージェント層で、営業・サービス・マーケティング・コマース全体で自律型エージェントの構築とデプロイをサポートし、事前構築済みのアクション、業界別テンプレート、統合機能により、企業はガバナンスと可視性を保ちながらAIエージェントの利用を拡大できます。\n\n\n---\n\n# 導入・設計を支援してくれる会社\n\n## 日本国内の主なプレイヤー\n\n**① Salesforce認定コンサルティングパートナー（AppExchange経由）**\nSalesforce導入を軸とした支援会社が複数存在します。例えば\nグローバルウェイは、Salesforce導入・活用支援を軸に、MuleSoftを活用したデジタルサービス基盤づくり、Agentforce／AIエージェント活用まで一気通貫で支援しています\n。また株式会社プログレスなど、製造業・中堅企業向けのDX支援実績を持つ会社もあります。\n\n**② 経営コンサルティング系**\n船井総合研究所は、\nCRM導入支援として、KGI/KPIの設計からシステム選定、運用の定着化までを支援する総合的な経営コンサルティングを提供しています。\n\n\n**③ CRM専門コンサルティング会社**\n\nCRMコンサルティング会社は「施策を考える→データで裏付ける→システムに落とし込み、運用・改善する」という一連のプロセスを実務レベルで支援し、社内だけでは属人化しやすいCRMの設計・活用を再現性のある仕組みとして整える役割を担っています。\n複数の比較サイト（アスピック、Ai CMOなど）でおすすめ企業がまとめられています。\n\n**④ 大手金融機関の導入事例**\n日本ではすでに大企業レベルでの導入が進んでおり、\nSMBCグループはAgentforce導入により、AIが顧客企業の「財務部長」として資金繰りから経営判断までサポートする構想を進めています。\n同様に\nMUFGもFinancial Services Cloudを活用した新CRMシステム「EPOC」にAgentforceを導入しています。\n\n\n## 海外・グローバルベンダー系\n\n- **Salesforce（Agentforce）**：Salesforce自身が提供するエージェント機能。\nパートナーエコシステムがAgentforce導入の70%に関与しており、コンサルタントは組織が導入のハードルを乗り越える上で特に重要な役割を果たしています。\n\n- **Microsoft Dynamics 365向け**：Inogicのような専門コンサル会社が\nAzure OpenAIをDynamics 365ユーザーの日常業務に組み込むことに注力し、テクノ・ファンクショナルコンサルティングへの深い理解と1,000件以上の導入実績を持っています。\n\n- **Creatio、HubSpot、Zoho**なども自社エコシステム内に認定パートナー網を持っています。\n\n## 導入時の注意点\n\nコンサルティング会社を選ぶ際は、単に「AIを使った実績がある」だけでなく、\nAIエージェントに書き込み権限を無制限に与えると、通常の活動に見えるため発見しにくい形でデータが破損する恐れがあるため、AIエージェントの権",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.vtiger.com/blog/what-is-agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://appexchangejp.salesforce.com/consulting",
+    "https://www.funaisoken.co.jp/solution/dc-crm_705_S092",
+    "https://www.aspicjapan.org/asu/article/89215",
+    "https://www.salesforce.com/jp/",
+    "https://www.channeldive.com/news/salesforce-consulting-partner-program-revamp-saas-benioff/813529/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://integrateiq.com/blogs/crm-consulting-services-companies/"
+  ],
+  "error": null
+}

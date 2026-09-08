@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-09",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-08T23:52:17.014428Z",
+  "answer": "Agentforceの導入費用は、利用形態や規模によって変動しますが、月額課金モデルと従量課金モデルが中心です。費用対効果を最大化するためには、段階的な導入と明確な運用設計が重要となります。\n\n### Agentforceの導入費用の相場\n\nAgentforceの価格体系は柔軟で、主に以下の形態があります。\n\n*   **ユーザーごとのライセンス費用**:\n    *   2025年後半から2026年にかけて導入されたユーザーごとのライセンスでは、Agentforceアドオンが月額125ドル/ユーザー、Agentforce 1 Editionsが月額550ドル/ユーザー以上で提供されています。これにより、予測可能な予算編成が可能になった一方で、プレミアムな価格設定となっています。\n    *   Redditの投稿でも月額550ドル/ユーザーという情報があります。\n    *   ある導入事例では、5ユーザーで月額約10万円（1人あたり約125ドル）という費用で、初期費用は無料と報告されています。\n*   **会話数に応じた従量課金制（Flex Credit/PayGo）**:\n    *   前払いなしで利用した分だけ支払う方式です。Flex Creditは、AIエージェントが実行する各アクションに応じて消費される支払い単位です。\n    *   月間1,000セッション程度の中規模利用の場合、会話ベース課金で月額20万円程度が目安とされています。\n*   **初期費用と運用費用**:\n    *   ライセンス費用だけでなく、初期設計、データ接続、初期実装、教育、継続的な運用改善にかかる費用も考慮する必要があります。\n    *   BlueAIの試算では、初期実装費用が100万円〜300万円、月次運用費用が10万円〜30万円が目安とされています。\n    *   小規模利用（月間1,000アクション、1業務、10人）の場合、3年間の総所有コスト（TCO）はAgentforceで583万円と試算されています。\n*   **既存のSalesforceユーザー**:\n    *   既存のSalesforceユーザーは、Salesforce Foundationsを通じてAgentforceを無料で開始できる場合があります。これは、現在契約していないSalesforce Cloud製品の無料プランに含まれる形で提供されます。\n\n### 費用対効果を出すための進め方\n\nAgentforceを導入して費用対効果を最大化するためには、以下のステップが有効です。\n\n1.  **ROI（投資対効果）指標の事前定義**:\n    *   導入前に、どのような成果をもって「費用対効果があった」と判断するか、具体的な指標（例：自己解決率向上、応答時間短縮、営業リード獲得数増加など）を明確に定義することが重要です。\n    *   Salesforceは、AIが問題を解決できなかった場合に料金をゼロにする「成果に紐づく料金モデル」を2026年7月に導入予定であり、これによりROIが100%保証される状況になる可能性が指摘されています。\n\n2.  **スモールスタートとPoC（概念実証）**:\n    *   まずは特定のユースケース（例：FAQ自動応答）に絞ってAgentforceを導入し、精度や運用方法を検証するPoCを実施することが推奨されます。\n    *   これにより、本格導入前のリスクを抑え、成功パターンを確立できます。\n\n3.  **データ整備とナレッジ構築**:\n    *   AgentforceのAIエージェントは、Salesforceに蓄積された顧客データやナレッジを活用するため、元となるデータの品質が非常に重要です。データが整理されていない場合や品質が低い場合は、改修作業が必要になります。\n    *   Data Cloud基盤の整備に2〜4ヶ月程度の期間を要することもあります。\n\n4.  **運用ガバナンスの設計**:\n    *   AIエージェントの本番運用では、以下の設計が不可欠です。\n        *   **ハルシネーション対策**: 誤った情報を生成しないよう、商談金額や契約条件などの数値情報はCRMから取得するようGroundingを設計する。\n        *   **エスカレーションルール**: エージェントが回答できない場合や信頼度が低い場合、感情的な問い合わせがあった場合に、人間による対応に切り替える条件を明確にする。\n        *   **監視・ログ・KPI**: エージェントの全会話を記録し、解決率、エスカレーション率、顧客満足度などのKPIを週次でレビューする。\n        *   **プロンプト・指示文の継続改善**: AIエージェントへの指示文（プロンプト）や設定を継続的に改善し、精度を高める。\n\n5.  **ユースケースの段階的拡張**:\n    *   スモールスタートで得られた成功体験をもとに、営業、SDR（Sales Development Representative）、ナレッジ管理など、他の業務領域へ段階的にAgentforceの活用範囲を広げていくことで、全社的な効果を創出します。\n\n6.  **AIと人間の役割分担の最適化**:\n    *   Agentforceは定型業務やルーティン作業を自動化することで、人間の担当者が非定型で感情的な対応や、より高度なコンサルティング業務に集中できる環境を構築するためのツールと位置づけることが重要です。\n\nこれらの進め方を踏まえ、自社の状況に合わせた最適な導入計画を立てることで、Agentforceの費用対効果を最大化することができます。Salesforceの公式ROI計算ツールなどの活用も検討すると良いでしょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFy49GCvFAlswFc7knGH-YoFVA4b1kGbswZF9nb618NxRrBpqKTm6YiQLzHR-4UacShajA1Z8oP8OQl97KcoXAQaWCe0-0qCq7YeZjJa3OoN-5X74y9qHdGAqPAMHAHXKd3Wen4GAQY2-iKiHHQwM2LklwEA1e9dr_YvDh6zZM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG57IsS5IFu0FEqlDjAklE6uuejQYdCgcFGCAV0IvawFNgc08nzmm7ayFOodM2UpL945XOREiTqcsQi_QWM6xLMjL0zk_4pgCzRffpR7P7NPGRRXlno7Ayp3dyrmMyQNdMbsk-0pK2wuJoN8fPCy0yy0PIpib7-GrOQwcwkqStSUPywATAaZVOV",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHbZi46X5k1sH344A1sNMwjCjDH0kLWtsdKQWowg1nCA-IVKjo-guVOHSjGMmKH4fxUuC7-a3WAKsZwc2QW0aQR4noKhDzzUlBMlGMVxFFzWVBrSuwnDw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVnTsIc1LbiFLyxj4A227hUQ-4MIh6C_ariEiorw89Us8dxfqhvAgwS9DFHnldL3mKxsF4pQJPGPCy26q5267n-D_naSUCF2jWe3dRay9U8JNAyVHvB0_WEiE5DE1xuld90lBm_W4AKP3cEw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGrZQQxQBFjAeA-zfmLgnYgFe4FwVjXypm8nX52cdXlOftJu4H0s2pB_Vls3Babq84ZGZuG4BWOIC47SJgExb6S0wh8b27gssz2XVTj3SKPwl6-u4nWL4xwHUmKrS1rEjzRcg7V5umxXqdwFmegJnjWFlUpvwsi75AJmb7yJud4kEPFwaurzBz-WdQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG1xEVeI73s-JxH-ndfAbZ5-IIXSMJevhHoJvIoVHWOmsfLR_ohv3IUkOZ3pYmjTeErTHqoGKs-BfrEzh0u11CTdsXDv8J6Y4HiRQEZg8Quuam9ql0ujKZaUB6gCWXRaTJ1VVLY2j6_Bz2uzEd6Ioc72FI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQExfAeZlj6VHU2DQ1xtCIxZ6SuR8SKwwnH6KmuP9awYfXGzAkyyq1XICuU7y9xLDyINU7X27h_I4wMBWKkw_fk0-V0j-xNLiCFVqipHcsgzCtsqs-0l-3Ow7KXpnOc1DbUK4qyw4OL_0Pg3DrdwpP5ONn3HGa9pYj8U06r-WFs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHPxiMTwrULxlT8aeubyh8kyFhHr2TSRLqRHQrW2T0OiTsb6hIpi_VvMLszJ_rPzhjvZD4hTEpGSr_JIBLtuEDhRvuFS_jgciElZxiSjPVLplxKGUECIJXHb1Y-FaVT7Y8tfi3ooAxREpHmzSwZxxYwAU-u",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHp35q_RaizLLi_4dTQk9_YUArfo2I0TyyFP_1KcWOchxYJ5RACzAXA2pyQvg_ntuOkDvDxpxsMwSv-hX8ECqGezXJm9_81hJI5KXIIp8E10v-eEGxNHRTeNiFaypH9gxp2-h42IDDwkA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEUyOsi59SRXZ5gjEUz4jbC6RqAOTURSHXtouIjh9fC1sMJdz62JjBT1925iUFDGJOlTdlN5m_lDBt1TPZ-N0BAtHfbiR0GhDPIVPPcNRZ-dGNlUi10A-_gjpU_LLLVFOhftw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEcl-eDLWwpuq4xiJzGXRH17SKI_J0gjoQO9pbaeS6AbE8_leIx1xzKI07OJfvsmQLyJVnvu2LokyuC7mwV0jFyoHHKPjz669XYiZu-voY4JZ6kh0r8gDD38a31yv5lpF3ccARClu1u1Vq3Rck3gEYYqaBELCr6ZK4YLAXlAznnWEgIij4RglsvVwc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHZd8Bkz7BfXQplwiJ646rGL8Hag4_g5ILhhyoj7c5MyI5p7ocRP9rqau8z_SvBClQqmgCD3T9N_9-BaUlcbvcEX6RhxyBKTuL914REBhOSBZ2yT7lDtXHgBiO83OK4e0YNRkB_1fQG-tCrxwEGazWt_GRK0w3PxsaoWg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEvGC4guY8lWnwamNzuZJ3Q2bD12xbpSSiKqPRtbS28PVQiEwkY1IBGvMSqo_RKeSKauOuic8f_47f1ofOpixxd82d0716hn-HLS5tLR0213nXm679tIke85Q_DWPQ6Vpqk-LxjwpaL71KbAoSw7t7M3woxkoyV4km6H5NcC5k="
+  ],
+  "error": null
+}

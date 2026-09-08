@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-09",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-09-08T23:52:59.790683Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、自律的なAIエージェントを活用して顧客関係管理のワークフローを自動化・最適化するシステムです。従来のCRMが人間による入力や指示に大きく依存していたのに対し、Agentic CRMではAIエージェントが自ら考えて行動し、業務を遂行します。\n\n**Agentic CRMの主な特徴**\n\n*   **自律的な実行** AIエージェントは、あらかじめ設定された範囲内で、人間の承認を逐一必要とせずに複数のステップからなるワークフローを計画、実行、適応させることができます。必要に応じて人間にエスカレーションします。\n*   **業務の自動化と効率化** リード管理、パイプラインの衛生管理、商談、アウトバウンド活動、予測など、営業活動全般にわたる定型的な作業をAIが代行します。これにより、営業担当者は顧客との関係構築や意思決定といった、より価値の高い業務に集中できるようになります。\n*   **データ活用と学習** 顧客データ、製品ログ、問い合わせ履歴などをAIエージェントが統合的に参照し、顧客の状況を瞬時に把握します。活動ログの自動生成、取引先・担当者情報の自動更新、具体的なアクションにつながる分析の自動化などを通じて、AIの提案・実行精度が向上します。\n*   **ヒューマン・イン・ザ・ループ** AIが「下調べ」や「骨の折れる作業」を担う一方で、最終的な判断や顧客との関係性、意思決定は人間が行います。\n\nAgentic CRMは、これまでのCRM導入における課題（「使われない」「定着しない」「ROIが出ない」など）の根本原因であった、多すぎる入力項目やデータの陳腐化といった問題を解決することを目指しています。\n\n**導入や設計を支援してくれる会社**\n\nAgentic CRMの導入や設計を支援する企業は複数存在します。以下はその一例です。\n\n*   **合同会社クロスコム**\n    Agentic CRMの設計支援を提供しており、AIが読み書きすることを前提としたCRMシステムの設計・構築を専門としています。トップセールスが持つ判断基準を言語化し、データベース構造として実装することに強みを持っています。\n*   **ブリッジインターナショナルグループ（ブリッジプロセステクノロジー株式会社）**\n    「Agentic Revenue Organization構築支援」を提供しています。これは、人とAIエージェントが協働する業務プロセスや組織の設計を含み、レベニュープロセスの設計、Salesforce/Agentforceの構想・設計・実装、CRM・データ・周辺システムの連携、運用設計、定着、継続的な改善まで一貫して支援します。\n*   **株式会社100**\n    「Agentic CRMパートナー」として、HubSpotを共通基盤にAIエージェントを組み込んだ顧客フロント業務（マーケティング・営業・CS）の設計・実装を支援しています。HubSpotの導入・活用支援や、AIエージェント組織の構築サービスも提供しています。\n\nこれらの企業は、AIエージェントの導入だけでなく、その手前の業務設計やデータ設計から支援することで、Agentic CRMの価値を最大限に引き出すことを目指しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF5V_ej93_0aUNzcFh5LK7yfdAT2gMygMHhFoArE05x7K1wOc0QcEN7OVX_vO0r5naEAxxtbZn6_zlA5ZsPZTIS5x0VjA7OMN27sePQNrzT2jGfm6_KG97y_0KewXygjjNuEssLakE3OZfYZ1TOPhMs5Y5KKeICDlmWcodO85Zs_KEg",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFS-IohnoWGwxPKZ5zRx2MRME08TFkjsyL2o4_I3dgzxtpRHGzW0RuQ31hgWqHgQp3fDq2I93XFgryrWTVtKoWR85H-wlgaKPMf8r3bwmkbvtPqarXKnD2RXCilHUGFlzvysEE63gyLDuZ3t_eXNgnExgQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF8l5LTT4vObsGqO12l1vYlFxIK-2Dr4THX5MExV85m73HcWZFcUAmVUefl6o-1QP0EkGvp0AJfemY97UXmF_EnI2Wx7uFVHyZ-TpvXoZcnlMx69KFzOeIL7iQytgDzCYbZ6EkZI3XhU5SkOZM1B9G0vw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1Pvn2fm68Ck9IAxXQbTnQnbUqHwHRrV6H0yAuNHf_KvttQIGHUyw4QJQbkoImDyvnThurm6sBM0VxqTea7UXdaPbTC_zjPI6eoKmXxcc8neUNpZYHueYaC8N5lDhxKyWilwMPbOZ53iY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpoPnxYu9HKArOea4Fujt_i_-R2ebag3gbDCI8esIx-ZcWYc67dtUtjX_R_e0VW5Ij9TZlq_6y8n1ilof-WWSqH5mjzbCw1_tIlSrxJRH2l92u-MMh7kUVrl_CTF5tDvNW-9_MHMO38iOvhyL8qp0CN2E=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF3-kA4ixV-565fukYrJF9W6U0Zw99sFEvO__BZpj_dDv5Bq1Y205c96oLXvGjDbBeAo2H50T3eaZ5utJ7FC5r8uRE6uBV2xhW3OSNrho4MSF97jgyj0xNZkGPHotxtol72BoIut773i0o5gQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF0vkODOxVozPxzk2zk36l7sKFHP6bD4h3xAakw2hjTpUsWQX9Km5SjbpKbQmjQWhIRbcqwUDiWY5mMV2ciuvVsRPMJNTkIoQxOKKlztatPidO8crLdIZomCw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGY7lamR--JVZKWTEToht0oL5t65D9TrP6eZPnbUQwVrMVFLUw_a2jGJJs4JNjkxE9_KO2oeIN3AB9HXpr1uu6ThQemWKxHzrBs-Vw49Nyr_fqeOX_pp7q8BAW-rXXJ9EwcEq_ca2sck5qzUQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHDAUa-dza-vMnNhegcam0ZFBEMxBLei1HAYexDIeMXbeUoJVZuwdWChI1EqEJOOsN21m-rGC7VgAL4OGbxkSCAIs-XzSVSCd5wWzfUlNstN2Pz4N8hxvvWcLNBNjUgYfvQ_IO_LcG_6AFyydWbcMcfuNYFftA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGGL5-31gu8l1Nx_lfTMb2N7qH1CmMHghl_RgIHf6NYGkerO8qwc0wg7RS1BjI_fmkmVogBgbESSE1rW5wUKMRDjKCsUgqc7A_arZ4MvUdZZ8Tl4Ojtefdzodgfbcz1E-KuEdZ0KxVS1q5PDSV21DbWfb07RwYDibKotzIp4AmxkemYgU6DvtWkdp4s_dvTkudPaROKpR3blLegVcNWfBtQX-1CtOtQBIstJzM9eG4bGoEu20vSx2gNgwCb-4Z1iJ_EbMPTXVEvjEW4X1njEL-mtgkS24fw1RQheK_-BfzlJyfLZvYcok0fLovWxB3gUjog4oJaXCn4"
+  ],
+  "error": null
+}
