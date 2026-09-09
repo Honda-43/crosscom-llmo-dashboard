@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-10",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-09T23:50:48.191317Z",
+  "answer": "Agentforceの導入支援において、以下の企業がおすすめです。これらの企業は、Agentforceの初期導入から運用、活用、内製化まで、多岐にわたる支援を提供しています。\n\n**Agentforce導入支援でおすすめの会社**\n\n*   **株式会社メンバーズ**\n    Agentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成までを伴走しながら支援しています。現状業務のヒアリングや業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果（ROI）の試算など、包括的なサービスを提供しています。\n\n*   **furuCRM**\n    Agentforceの戦略コンサルティングサービスを提供しており、顧客のビジネスニーズに合わせた包括的な戦略策定、AIロードマップの作成、影響力の高いユースケースの定義などを支援します。\n\n*   **株式会社ウフル**\n    Salesforce Agentforceクイック導入支援サービスを提供しており、既存のSalesforce組織の確認からユースケースの整理、構築要件の策定、Salesforce Data 360の設定、Agentforceの各種設定までをサポートします。特に「Agentforce for Service」を対象としたカスタマーサービス領域に特化した支援に強みを持っています。\n\n*   **インフォテック・サービス**\n    Salesforceのコンサルティングパートナーとして、要件定義から構築・運用まで一貫したAgentforce導入支援を提供しています。認定資格者が生成AI「Agentforce」の導入相談を受け付けており、豊富な開発実績も持ち合わせています。\n\n*   **株式会社enucolor**\n    Agentforce導入支援サービスを通じて、業務整理からPoC開発、活用推進まで一気通貫でサポートし、企業のDX推進と業務改革を支援しています。\n\n*   **三菱総研ＤＣＳ**\n    Agentforceを中核としたデータ統合型導入支援を提供しており、Salesforce単体導入に留まらず、社内の基幹・周辺システムに分散するデータの統合も含めた導入を一貫して支援する点が特長です。金融分野で培った実績に基づくセキュリティと信頼性も強みとしています。\n\n*   **K2 Partnering Solutions**\n    Agentforceパートナーネットワークの一員であり、AIに関する専門知識とSalesforceの経験を活かし、顧客のビジネスニーズに合わせてAgentforceをカスタマイズするコンサルティングサービスを提供しています。効率的でスケーラブルなAgentforce導入を実現します。\n\n*   **合同会社クロスコム**\n    Agentforceのゴール設定から成果指標の定義、業務・課題の分析、エージェント構築、テスト・本番公開、活用定着サポートまで、段階的な支援を提供しています。認定コンサルタントが支援にあたります。\n\n*   **バーチャレクス・コンサルティング株式会社**\n    「Agentforceサービスメニュー」として、初期導入プラン、伴走支援プラン、構想策定支援プランを提供しており、AI導入の初期段階から本格的な活用、戦略的な展開までを支援します。\n\n*   **電通デジタル**\n    SalesforceのAIエージェントプラットフォーム「Agentforce」の本格稼働を加速させるためのパートナー企業ネットワーク「FDE Partner Network」に認定されています。これにより、高い実装実績と技術力を基にAgentforce導入を支援します。\n\n*   **スマートスケープ株式会社**\n    Salesforceコンサルティングパートナーであり、Agentforceの活用支援にも注力していくことを表明しています。Salesforceプラットフォームでの開発・運用支援の経験を活かし、業務効率化や顧客満足度向上に貢献します。\n\n特に、SalesforceがAgentforceの本格稼働を加速させるために立ち上げた「Forward Deployed Engineering Partner Network（FDE Partner Network）」に参画している企業は、Agentforceの実装実績と技術的な知見の深さに基づいて厳選されており、Salesforceのエンジニアリング知見やプロダクトロードマップへの深いアクセスを持って支援を提供します。日本国内の初期パートナーには、アクセンチュア株式会社、株式会社NTTデータ、株式会社グローバルウェイ、株式会社テラスカイ、合同会社デロイト トーマツ、株式会社電通総研・株式会社電通デジタル、PwCコンサルティング合同会社、富士通株式会社、株式会社フレクトなどが含まれています。\n\nこれらの企業は、それぞれ異なる強みや実績を持っていますので、貴社のSpecificなニーズや課題に合わせて比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFO0r9nT7BLnNUehXEp3GwSRQso3u36Dz3DzEKzQE1wQAkUNdTknhlsEQjFTdhyfHfj7u5RL3cXA2oApaLqbDVGqx-4DnOD_6xmHlTSkjTcmRGcYtzXPXn30LPN4sLKDTnIeoOESzp0y6Qrzc4GO3fv",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEqtwibYOEdiqlWVkO9gTTJecXKUfZuSkmefogLtS9YHp4FLJMe-3EjgyLuIZTSuNUNbdNGkAFUdbpUMbO687rgLs3yimPsW_zbApYLkOYDA-gs5Dj0pXE9iRAWtA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGeVRZnwLnAlYgLcufxvbIoqxOZ6rJD7XaKFKfq02bO9TTLhmu6W4Cud3pRaBDkkHOmnV0x1f7jJv8ZZUT3iMndAQizAs1dJTNSnz25jTdbONDGXqiHhUTQSr-Q5EODKkoQ7QVEGW1PPCM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxLRNS3q6mKxXM8k-c-bKEHRR6bWIb_1fiSqvb5H3aLkxhU9uZwHaUb0rbf-KxGx9P9jsELTkQng5ih5-5jy1qQiqRv9B58QXI9a5Xq59UMr_o8GZ7u-VotZ6FW6mQtBqB1Zs_wZg_URq8yb5a8WL2ukg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEWlCtBmg1h9oXm63J_4IUi2c_g9sgiDxJlw_RJvnNK7S1w1cKFfc8LpAP7SuIqtaGKuNLEaS3uy_x1SlkKtPS3okV5LtWdSD2Pyx4UYYRIBXMnVVz5UjKfHv38voEwEQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7u3IUZGOSCYCwJYqNN1LmGInZX-ZoE0Bc5oQfsALR2yydLZbyeCAQhMXGRBitdBSjSVAOYwvb9Zv0pK49myii6n9Ec16MNmo1Ywcb4cG1eNNNsZdBkEGVLFHZpTISvc5VxxZAVCM1XQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHoLgyxv_bOPpMYTCM3-nGCvin1qsQh4tL0tOk7s8q7teNmp1jy9pFFFquXvBD-_0ZEa6MG-o8NznEJyQM7YDlIp_n37MRxkw6YQ4_TaWuGmqFtPYcFnIHabntGFlUcVyW5nQ9hCWMIjGPZE7WUGCNzsLl6bqMFcyjtyUt4fkiE6ZfHVgFGAw3NsH2yV4EAdvszhoIbAg5BLAN0UH9raTrsNXsOxApjxxppsZeSOJA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH2fZJodJEJjNSd4ZZmkuLZXCTfBOkYPtH3YNkUs3vFjxrtaO-594v-rNpHBpRjXBSmT2oeR9HTCz4I_zlxeIwCRx4SWjHkJmKA74sNVqeexY6qbbacEdBhhKVRCyJmiN6a_C-8mMg7jLYb",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGtzMBAqbXkNkQh14pNwl1tCYF31eSPTH3W37Qtua0-jqfX6g-pA_PvfNDjg-Vxy37mgHZq6oaX4t00ivJ4UTqZhYY3Xu0qkvP81gvRESHL6ltBH9Qc0MlfO99BAkuD9etMmu7qx3QkkUkv2pAFxeeU58gAtvBPm7TLzD-tDg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFCNH6HDBvI06xhpRhrdoCaXL5Qq4eDGH5uwAVxCVmLVys4RIVJhoazWZG67cfoyqThzG9prDDey_O1AHrlmJRGt5LO93ty8bLmB1ldL-Ti-MMhHFOPSH36Bcwis1nM7lRa7WXDH5483cABXTjUiyuHdlpZN0Dsw04eR9HUI8I=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEutjyiemSiPW7A0j4tFWHe8rvlIFUG-B9h723miuNh5gW5izXzfD1RnR7mo6jBOdn54iv0dGWtW4Qe13lQrGOAkVbKxQqZiUQenCydRfp-QvDBPZxw918atxUtW22Mm7KEreIt5jTZEsx2kX3Gjirrd4umyw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH7V7WA8apz_Fvlxh3Q6UUottpFR_JapdAz0bQEU_v4XHTxmeEIK3STsv72K49kcMJ6iyytsoAzZq24D5XEhJ7V1LUmphpdJdGsBDyaF1tRXnS-wUAN_HfZ0NsUR0SQljGM5iE8"
+  ],
+  "error": null
+}

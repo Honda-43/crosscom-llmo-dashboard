@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-10",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-09T23:52:26.389469Z",
+  "answer": "Agentforceの導入費用と費用対効果を高める進め方について、最新情報を調査してお答えします。\nSalesforce Agentforceの導入費用の実態と、費用対効果を高めるための進め方について、最新の情報をまとめてご説明します。\n\n## 1. Agentforceの料金体系(3種類)\n\nAgentforceは短期間に価格モデルが3種類に増えており、\nSalesforceは約18ヶ月の間にAgentforceの価格モデルを3つ展開しており、まず会話1件あたり2ドル、次に2025年5月にアクション1回あたり0.10ドルのFlex Credits、そして現在は月額125ドル/ユーザーから始まるユーザー単位ライセンスとなっています\n。\n\n**① 会話課金モデル(Conversations)**\n\n1会話は AI エージェントの最初の応答から、問題が解決してクローズされるか24時間操作がない場合のいずれか早い方までと定義され、2ドルで課金されます。24時間操作がなければ会話は自動終了し、再度のやり取りは新しい会話として扱われ再度2ドルが課金されます\n。\n\n**② Flex Credits(従量課金)**\n\n標準アクションは1回20クレジット(0.10ドル)、音声アクションは30クレジット(0.15ドル)で、クレジットは10万クレジットあたり500ドルで購入します\n。ただし\n両モデルを同一組織内で混在させることはできません\n。\n\n**③ ユーザー単位ライセンス**\n\n定額オプションとして、Sales/Service/Field Serviceは月額125ドル/ユーザー、Industriesは月額150ドルで使い放題となるほか、Agentforce 1 Editionsは月額550ドル/ユーザーからで年間250万Flex Creditsが含まれます\n。\n\n## 2. 見落とされがちな隠れコスト\n\n最も注意すべき点は、Agentforce単体の価格だけでは済まないことです。\n\n**Data Cloudが必須**\n\nAgentforceが適切に機能するにはData Cloudが必要であり、これは多くの購入者が見落としがちなコストで、Agentforceのライセンス費用自体を上回ることも少なくありません\n。具体的には\nData Cloud Plusは年間約6.5万ドルで統合プロファイル・セグメンテーション・ベクター検索が可能、Data Cloud Premiumは年間約17.5万ドルでフルリアルタイム処理と高度なAI機能が使えます\n。\n\n**中堅企業での実質コスト感**\n\n500ユーザー規模の中堅企業の場合、Data Cloud費用を除いてもAgentforce単体で年間1.5万〜5万ドル程度かかり、Data Cloud・導入・保守を含めた総所有コストは初年度で15万〜42.5万ドルに達します\n。別の試算でも\n中堅企業の実質的な初年度コストは15万〜60万ドルとされ、これはAgentforceにData Cloudの契約(年間10.8万ドル以上)が必須なためです\n。\n\n## 3. 日本市場での料金体系\n\n日本語版の公式サイトでも同様の仕組みが案内されています。\nFlex Creditや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスから選択可能で、AIをどのように、どの場面で導入するかに合わせて設計されたオプションが用意されています\n。国内の解説記事でも\nAgentforceは「1会話あたり240円」というシンプルな料金体系を採用しており、本当に使った分だけ支払うことが可能で初期コストを抑えつつ導入できる点で優位性がある\nと紹介されています。また\nAgentforceを動かすにはData Cloudが必須(RAG:検索拡張生成の基盤)で、こちらもクレジット制であり、データの取り込み・統合・ベクタライズ・セグメント作成ごとにクレジットを消費します\n。\n\n---\n\n## 4. 費用対効果(ROI)を出すための進め方\n\n上記の料金構造を踏まえると、費用対効果を最大化するには以下のステップが重要です。\n\n### ステップ1:料金モデルを実測データで選ぶ(いきなり大量契約しない)\nFlex CreditsとConversationsは併用不可で契約後の変更コストが高いため、専門家は\nまず会話課金モデルでスタートし、実際の使用量を測定した上で、Flex Creditsに切り替えた方がコスト削減になるかを評価すべき\nと推奨しています。理由は\nクレジット消費量はエージェントを2〜3ヶ月運用してみるまで予測が難しい\nためです。\n\n### ステップ2:ユースケースごとに「アクション数」を試算する\n1会話あたりの実質コストは業務の複雑さで大きく変動します。\n外部API呼び出しやデータ検索を伴う複数ステップの複雑なワークフローでは1会話あたり20アクションを超えることもあり、Flex Credits換算での実質コストはシンプルな問い合わせで0.50ドル、複雑な対話では2ドル以上になります\n。逆に",
+  "cited_urls": [
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://www.concret.io/blog/new-agentforce-pricing-model",
+    "https://www.jitendrazaa.com/blog/salesforce/salesforce-agentforce-credits-cost-model-complete-guide-2026/",
+    "https://www.eesel.ai/blog/agentforce-pricing",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://blogbloggerbloggesta.hatenablog.jp/entry/agentforce-price"
+  ],
+  "error": null
+}

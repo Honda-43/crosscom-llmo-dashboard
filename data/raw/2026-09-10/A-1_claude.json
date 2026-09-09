@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-10",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-09T23:51:12.113418Z",
+  "answer": "Agentforce(Salesforceの AI エージェントプラットフォーム)の導入支援をしてくれる企業について調べてみます。\nAgentforce（Salesforceの自律型AIエージェントプラットフォーム）の導入支援を行っている企業について、日本国内・海外の両方の情報をまとめました。\n\n## 日本国内の導入支援会社\n\n**1. 日立ソリューションズ**\n\nSalesforceのコンサルティングパートナーとして「導入・活用支援サービス for Agentforce」を提供しています。営業・サービス・マーケティング・コマースなど幅広い業務領域に対応し、長年の実績をもとに導入支援コンサルティングを手がけています\n。金融や医療など高いセキュリティが求められる業界での支援にも対応しています。\n\n**2. 富士ソフト**\n\nSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供開始しました\n。\nPoC（概念実証）支援を中心にサービスを組み立てており、ユースケースの整理や導入データの質のチェックから始め、要件定義、技術検証、効果測定、本番移行計画までを反復的に支援します\n。\n\n**3. Uhuru（ウフル）**\n\nSalesforceのテクノロジーを活かした業務支援の現場に数多く携わってきた経験をもとに、Agentforceの導入・活用を現実的かつ実践的に支援。まずは「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供し、Data 360の設定からリリース準備、簡易レクチャーまでを含め、最短3カ月のスケジュールで導入を支援します\n。\n\n**4. メンバーズ（サースプラスカンパニー）**\n現状業務ヒアリングから、ユースケースのPoC、カスタムエージェントの設計・実装、業務フロー自動化連携まで、導入から運用まで一貫した支援を提供しています。\n\n**5. フロッグウェル**\nSalesforce環境における企業課題をAIによる業務自動化で解決するサービスを提供しており、実際の導入支援実績があります。\n\n**6. enucolor（エヌカラー）**\n初期導入前コンサルティングからPoC支援、活用及び改善サポートまで、Agentforce for Service/Marketing/Salesの導入を支援しています。\n\n## 海外の主要パートナー（参考）\n\nグローバルでは\nAgentforceプラットフォームは2024年9月のローンチ以来、年間経常収益9億ドルを生み出し、フォーチュン100企業の約半数がこれらのソリューションを採用しています\n。海外大手では以下のような企業がAgentforce専門コンサルティングを提供しています：\n\n- **Mastek**：\nSalesforce実践において500以上のAgentforceスペシャリスト認定を取得\n\n- **Noltic**：\nSummit-tierパートナーとして400以上の認定資格を持ち、11のAgentforceスペシャリスト認定、8人のSalesforceアーキテクトを擁する\n\n\n## 選定時のポイント\n\n導入支援会社を選ぶ際は以下の点を確認すると良いでしょう：\n\n1. **Salesforce認定パートナーであるか**（Agentforce Partner Networkのメンバーかどうか）\n2. **対応可能なユースケース**（Sales/Service/Marketing等、自社の目的に合っているか）\n3. **PoCからスモールスタートできるか**（多くの企業が1ユースケース×3ヶ月程度のスモールスタートプランを提供）\n4. **業界特化の実績**（金融・医療など高セキュリティ業界の実績があるか）\n5. **導入後の運用・改善支援まで対応しているか**\n\nまずは自社の業務課題（営業効率化、カスタマーサポート自動化など）を明確にした上で、複数社に無料相談や見積もりを依頼し、PoC（概念実証）から始められるプランがあるかを比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://crm.folio3.com/blog/salesforce-agentforce-consulting-partners/",
+    "https://www.mastek.com/services/salesforce/agentforce-partner/",
+    "https://noltic.com/stories/top-10-salesforce-agentforce-implementation-partners"
+  ],
+  "error": null
+}
