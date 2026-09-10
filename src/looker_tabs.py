@@ -34,6 +34,11 @@ ANSWER_CHAR_LIMIT = 30_000
 TRUNCATION_MARK = "…(以下省略)"
 # 表で既定表示する冒頭。全文は必要なときだけ answer_text を開く運用にする。
 ANSWER_HEAD_CHARS = 400
+# ピボット(1プロンプト1行 × 日付を横)のセル。列が日付ぶん並ぶので、
+# lk_answers の answer_head より短く切る。
+PIVOT_HEAD_CHARS = 200
+# ピボットに並べる日数。増やすと横に伸びて読めなくなる。
+PIVOT_DAYS = 14
 # 引用URLは上位いくつまで載せるか。全部並べるとセルが読めなくなる。
 CITED_URL_LIMIT = 5
 
@@ -768,24 +773,61 @@ def answer_rows(date: str, raw_records: Sequence[Dict[str, Any]],
         mention = parse_bool(observation.get("mention"))
         rank = parse_rank(observation.get("rank"))
         answer = str(record.get("answer") or "")
+        # 並びは HEADERS_LK_ANSWERS と同じにする(シートの列順がこの順になる)。
         rows.append({
             "date": key[0],
-            "prompt_id": key[1],
             "short_label": info.get("short_label", "") or key[1],
+            "prompt_id": key[1],
             "model": key[2],
-            "funnel": info.get("funnel", ""),
             "service_line": display_map.service_line(info.get("service_line", "")),
             "intent_stage": info.get("intent_stage", ""),
+            "funnel": info.get("funnel", ""),
             "mention": "" if mention is None else ("あり" if mention else "なし"),
             "rank": "" if rank is None else rank,
             "competitors": _competitor_names(observation.get("competitors_mentioned")),
             "cited_urls": _cited_urls(record),
-            "answer_head": _head(answer),
             "prompt_text": info.get("prompt_text", ""),
+            "answer_head": _head(answer),
             "answer_text": _truncate(answer),
         })
-    rows.sort(key=lambda r: (r["date"], r["prompt_id"], r["model"]))
+    # 日付降順。シートで直接読むとき、最新が上に来ていないと毎回
+    # 一番下までスクロールすることになる。
+    rows.sort(key=lambda r: (r["date"], r["prompt_id"], r["model"]), reverse=True)
     return rows
+
+
+def answer_pivot(answer_rows_: Sequence[Dict[str, Any]],
+                 days: int = PIVOT_DAYS,
+                 head_chars: int = PIVOT_HEAD_CHARS):
+    """1プロンプト1行 × 日付を横に並べた表。``(ヘッダ, 行)`` を返す。
+
+    lk_answers を縦に読むと、同じプロンプトの回答が日付ぶん離れて並ぶ。
+    「同じ問いに先週と今週で何と答えたか」を見るには横に並べるほうが速い。
+
+    列が日付なのでヘッダは実行のたびに変わる。固定ヘッダのタブ登録
+    (LOOKER_TABS)には入れず、専用の書き出しで丸ごと置き換える。
+    """
+    dates = sorted({r["date"] for r in answer_rows_}, reverse=True)[:days]
+    if not dates:
+        return ["short_label", "model"], []
+
+    keep = set(dates)
+    cells: Dict[Tuple[str, str, str], str] = {}
+    order: Dict[Tuple[str, str], str] = {}
+    for row in answer_rows_:
+        if row["date"] not in keep:
+            continue
+        key = (str(row["short_label"]), str(row["model"]))
+        cells[(key[0], key[1], row["date"])] = _head(row["answer_head"], head_chars)
+        # 並び順は prompt_id で決める(short_label は表示名なので変わりうる)。
+        order.setdefault(key, str(row["prompt_id"]))
+
+    headers = ["short_label", "model"] + list(dates)
+    rows = [
+        [label, model] + [cells.get((label, model, d), "") for d in dates]
+        for (label, model) in sorted(order, key=lambda k: (order[k], k[1]))
+    ]
+    return headers, rows
 
 
 def answer_sources(date: str, days: int = ANSWER_DAYS):

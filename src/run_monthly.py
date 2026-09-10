@@ -186,6 +186,10 @@ def main() -> None:
         _run("write_lk_answers(monthly)",
              lambda: sheets_writer.write_looker_tabs({"lk_answers": answer_rows}),
              failures)
+        _run("write_answer_pivot(monthly)",
+             lambda: sheets_writer.write_answer_pivot(
+                 *looker_tabs.answer_pivot(answer_rows)),
+             failures)
     if answer_rows:
         monthly_count = sum(1 for r in answer_rows
                             if r["prompt_id"].startswith("M-"))

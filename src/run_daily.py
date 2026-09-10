@@ -217,6 +217,12 @@ def main() -> None:
     if looker_payload:
         _run("write_looker_tabs",
              lambda: sheets_writer.write_looker_tabs(looker_payload), failures)
+        # 1プロンプト1行 × 日付を横に並べた表。lk_answers を縦に読むより
+        # 「同じ問いに先週と今週で何と答えたか」が速く分かる。
+        _run("write_answer_pivot",
+             lambda: sheets_writer.write_answer_pivot(
+                 *looker_tabs.answer_pivot(looker_payload["lk_answers"])),
+             failures)
 
     # 取り下げたURLがまだ引用されているか(A-011)。ジョブサマリに出しておかないと、
     # 参照面が入れ替わった日を後から探し直すことになる。

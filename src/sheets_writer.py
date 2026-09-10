@@ -25,6 +25,7 @@ from settings import (
     TAB_CITATION_GAP,
     TAB_LK_ACTIONS,
     TAB_LK_ANSWERS,
+    TAB_LK_ANSWERS_PIVOT,
     TAB_LK_EVENTS,
     TAB_LK_HEATGRID,
     TAB_LK_MENTION_GRID,
@@ -148,10 +149,14 @@ KEYS_LK_ACTIONS = ["action_id"]
 
 # 回答の閲覧用。日次と月次の両方が入り、funnel で区別できる。
 # 表では answer_head を既定表示にし、全文(answer_text)は必要時に開く。
+# 列順はシートで直接読む前提で決めてある。左から「いつ・何を・どのモデルが」、
+# 次に分類、次に結果(言及・順位・競合・引用)、最後に長文。
+# funnel は本田さん指定の並びには無いが、日次と月次を切り分ける唯一の列なので
+# 分類のかたまりの中に残している(要判断)。
 HEADERS_LK_ANSWERS = [
-    "date", "prompt_id", "short_label", "model", "funnel", "service_line",
-    "intent_stage", "mention", "rank", "competitors", "cited_urls",
-    "answer_head", "prompt_text", "answer_text",
+    "date", "short_label", "prompt_id", "model", "service_line",
+    "intent_stage", "funnel", "mention", "rank", "competitors", "cited_urls",
+    "prompt_text", "answer_head", "answer_text",
 ]
 KEYS_LK_ANSWERS = ["date", "prompt_id", "model"]
 
@@ -590,6 +595,29 @@ def write_kbf_compare(rows: List[Dict[str, Any]]) -> None:
         return
     _upsert(_open_spreadsheet(), TAB_LK_KBF_COMPARE,
             HEADERS_KBF_COMPARE, KEYS_KBF_COMPARE, rows)
+
+
+def write_answer_pivot(headers: List[str], rows: List[List[Any]]) -> int:
+    """lk_answers_pivot を丸ごと置き換える(ヘッダが日付なので毎回変わる)。
+
+    列が日付なので、日が進むとヘッダの中身が変わる。upsert では古い日付の列が
+    残り続けるため、値も書式も含めて毎回入れ替える。
+    """
+    if not rows:
+        print(f"[warn] {TAB_LK_ANSWERS_PIVOT}: 0 rows — 入れ替えを見送りました")
+        return 0
+    ss = _open_spreadsheet()
+    ws = _ensure_worksheet(ss, TAB_LK_ANSWERS_PIVOT, headers)
+    needed_cols, needed_rows = len(headers), len(rows) + 1
+    if ws.col_count < needed_cols:
+        ws.add_cols(needed_cols - ws.col_count)
+    if ws.row_count < needed_rows:
+        ws.add_rows(needed_rows - ws.row_count + 50)
+    ws.clear()
+    values = [headers] + [[_to_cell(c) for c in row] for row in rows]
+    ws.update(values=values, range_name="A1", value_input_option="USER_ENTERED")
+    print(f"[ok] {TAB_LK_ANSWERS_PIVOT}: {len(rows)} rows × {len(headers)} cols")
+    return len(rows)
 
 
 def read_kbf_compare() -> List[Dict[str, str]]:

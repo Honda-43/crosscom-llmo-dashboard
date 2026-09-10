@@ -250,7 +250,8 @@ def test_answers_are_limited_to_the_recent_window(observations):
         {"date": outside, "prompt_id": "A-1", "model": "claude", "answer": "古い"},
     ]
     rows = looker_tabs.answer_rows(TODAY, records, observations)
-    assert [r["date"] for r in rows] == [inside, TODAY]
+    # 日付降順(シートで直接読むときに最新が上に来ること)
+    assert [r["date"] for r in rows] == [TODAY, inside]
 
 
 def test_answers_are_truncated_at_the_cell_limit(observations):

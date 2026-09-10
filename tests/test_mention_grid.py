@@ -5,6 +5,7 @@
   2. mentioned が必ず 1/0 の数値で、Looker で合計すると言及日数になること
   3. 分類を足しても既存の観測設定(プロンプト文・active)が変わっていないこと
 """
+import datetime as dt
 import sys
 from pathlib import Path
 
@@ -386,3 +387,72 @@ def test_the_answers_tab_is_replaced_not_appended():
     from settings import TAB_LK_ANSWERS
 
     assert TAB_LK_ANSWERS in sheets_writer.LOOKER_REWRITE_TABS
+
+
+# --- lk_answers_pivot(1プロンプト1行 × 日付を横)-----------------------------
+def test_the_pivot_puts_one_row_per_prompt_and_model():
+    rows = looker_tabs.answer_rows(
+        DATE,
+        [raw("A-1", "claude", "きょうの回答"), raw("A-1", "gemini", "別モデル"),
+         raw("A-1", "claude", "きのうの回答", date="2026-09-06")],
+        [obs("A-1", "claude"), obs("A-1", "gemini"),
+         obs("A-1", "claude", date="2026-09-06")])
+    headers, pivot = looker_tabs.answer_pivot(rows)
+
+    assert headers == ["short_label", "model", DATE, "2026-09-06"]  # 日付は降順
+    assert [r[:2] for r in pivot] == [["導入支援会社を探す", "claude"],
+                                      ["導入支援会社を探す", "gemini"]]
+    assert pivot[0][2] == "きょうの回答"
+    assert pivot[0][3] == "きのうの回答"
+    assert pivot[1][3] == ""          # その日に観測がない組み合わせは空欄
+
+
+def test_the_pivot_is_limited_to_the_recent_days():
+    records, seen = [], []
+    for offset in range(20):
+        day = (dt.date.fromisoformat(DATE) - dt.timedelta(days=offset)).isoformat()
+        records.append(raw("A-1", "claude", f"回答{offset}", date=day))
+        seen.append(obs("A-1", "claude", date=day))
+    headers, pivot = looker_tabs.answer_pivot(
+        looker_tabs.answer_rows(DATE, records, seen))
+    assert len(headers) == 2 + looker_tabs.PIVOT_DAYS == 16
+    assert headers[2] == DATE                     # 最新が左
+    assert len(pivot) == 1
+
+
+def test_the_pivot_cells_are_shorter_than_the_answers_tab():
+    long_answer = "あ" * 2000
+    rows = looker_tabs.answer_rows(DATE, [raw("A-1", "claude", long_answer)],
+                                   [obs("A-1", "claude")])
+    _, pivot = looker_tabs.answer_pivot(rows)
+    cell = pivot[0][2]
+    assert looker_tabs.PIVOT_HEAD_CHARS == 200
+    assert len(cell) == 200 + len(looker_tabs.TRUNCATION_MARK)
+
+
+def test_the_pivot_is_empty_when_there_are_no_answers():
+    assert looker_tabs.answer_pivot([]) == (["short_label", "model"], [])
+
+
+def test_the_pivot_orders_rows_by_prompt_id():
+    rows = looker_tabs.answer_rows(
+        DATE, [raw("E-1", "claude"), raw("A-1", "claude"), raw("B-1", "claude")],
+        [obs("E-1", "claude"), obs("A-1", "claude"), obs("B-1", "claude")])
+    _, pivot = looker_tabs.answer_pivot(rows)
+    assert [r[0] for r in pivot] == [
+        "導入支援会社を探す", "Agentic CRMとは何か", "クロスコムはどんな会社か"]
+
+
+def test_the_answers_tab_is_sorted_newest_first():
+    rows = looker_tabs.answer_rows(
+        DATE, [raw("A-1", "claude", date="2026-09-05"), raw("A-1", "claude")],
+        [obs("A-1", "claude", date="2026-09-05"), obs("A-1", "claude")])
+    assert [r["date"] for r in rows] == [DATE, "2026-09-05"]
+
+
+def test_the_answers_columns_are_in_the_reading_order():
+    """シートで直接読む前提の並び。左から日付・何を・どのモデルが。"""
+    assert ANSWER_HEADERS[:4] == ["date", "short_label", "prompt_id", "model"]
+    assert ANSWER_HEADERS[-3:] == ["prompt_text", "answer_head", "answer_text"]
+    # funnel は指定の並びには無いが、日次と月次を切り分ける唯一の列なので残す
+    assert "funnel" in ANSWER_HEADERS

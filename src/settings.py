@@ -296,6 +296,9 @@ TAB_LK_ANSWERS = "lk_answers"
 # Phase 7 — プロンプト別の推移。日次と月次の両方が同じタブに入り、
 # funnel(MOFU/BOFU)で区別できる。
 TAB_LK_MENTION_GRID = "lk_mention_grid"
+# 1プロンプト1行 × 日付を横に並べた回答の一覧。列が日付なので
+# ヘッダが実行のたびに変わる。LOOKER_TABS(固定ヘッダ)には入れない。
+TAB_LK_ANSWERS_PIVOT = "lk_answers_pivot"
 
 
 def spreadsheet_url() -> str:
