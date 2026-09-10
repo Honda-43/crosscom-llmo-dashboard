@@ -75,7 +75,7 @@ crosscom-llmo-dashboard/
 ├── .github/workflows/
 │   ├── daily.yml          # 毎朝07:00 JST(cron: '0 22 * * *' UTC)
 │   ├── weekly.yml         # 毎週月曜08:30 JST(cron: '30 23 * * 0' UTC)
-│   ├── monthly.yml        # 毎月第1水曜07:30 JST(Phase 3)
+│   ├── monthly.yml        # 毎月第1水曜・第1木曜07:30 JST(2日分割・Phase 3)
 │   └── backfill_sov.yml   # sov_daily 全期間再生成(手動実行)
 ├── config/
 │   ├── prompts.yaml       # 観測プロンプト定義(承認済み・変更禁止)
@@ -801,7 +801,7 @@ Gemini 無料枠は `GenerateRequestsPerDayPerProjectPerModel-FreeTier` で
 |---|---|
 | `config/prompts_monthly.yaml` | M-1〜M-16。**M-1〜M-12 が active、M-13〜M-16 は第2弾候補で active: false** |
 | `src/run_monthly.py` | オーケストレータ。収集 → 抽出 → シート → Slack |
-| `.github/workflows/monthly.yml` | 毎月第1水曜 07:30 JST + workflow_dispatch |
+| `.github/workflows/monthly.yml` | 毎月第1水曜(バッチA)・第1木曜(バッチB) 07:30 JST + workflow_dispatch |
 | `monthly_observations`(タブ) | `llm_observations` + `category` / `target_brand` / `notes` |
 | `data/raw/monthly/YYYY-MM-DD/` | 回答全文 |
 
@@ -884,9 +884,16 @@ Gemini 無料枠は `GenerateRequestsPerDayPerProjectPerModel-FreeTier` で
 ### 実行
 
 ```bash
-# 定期実行:毎月第1水曜 07:30 JST(cron: '30 22 * * 2' + JSTの日付でガード)
-# 日次(07:00 JST)の翌日に置いてある。同日だと Gemini の枠が 日次7+月次12=19/20 で、
-# リトライが1本走ると超えるため。
+# 定期実行:毎月第1水曜=バッチA / 第1木曜=バッチB(JSTの曜日でガードがバッチを決める)
+#   cron: '30 22 * * 2'(水) と '30 22 * * 3'(木)
+#
+# **2日に分けている理由。** Gemini の枠は20/日で、日次7本は毎日走る。
+# 月次12本を1日で回すと 7+12=19。上限には収まるが MAX_RETRIES=4 なので
+# 1本でもリトライすると22で超える。6本ずつなら各日 7+6=13 で余地が残る。
+#   バッチA … M-1〜M-6(BOFU単体)
+#   バッチB … M-7〜M-12(BOFU比較 + MOFU補完)
+# 月次サマリは**バッチBの完了後に1回だけ**投稿する(その月の12本をまとめて1枚)。
+# 手動実行(workflow_dispatch)でバッチを指定しなければ従来どおり12本走る。
 # 手動実行:Actions → monthly → Run workflow(date を指定可)
 
 cd src

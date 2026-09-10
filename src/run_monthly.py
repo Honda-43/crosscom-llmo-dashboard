@@ -40,7 +40,8 @@ import looker_tabs
 import retired_urls
 import notify_slack
 import sheets_writer
-from settings import DATA_RAW_MONTHLY_DIR, MAX_RETRIES, load_monthly_prompts
+from settings import (DATA_RAW_MONTHLY_DIR, MAX_RETRIES, MONTHLY_BATCHES,
+                      load_monthly_prompts)
 
 # 日次観測の本数。月次を日次と同じ日に走らせる場合だけ足す。
 DAILY_PROMPT_COUNT = 7
@@ -68,13 +69,17 @@ def _run(name: str, fn: Callable[[], Any], failures: List[str]) -> Any:
 
 
 def request_budget(active_count: int,
-                   same_day_as_daily: bool = False) -> Dict[str, int]:
+                   same_day_as_daily: bool = True) -> Dict[str, int]:
     """月次実行日の Gemini リクエスト数の見積もり。
 
-    2026-09-11 に月次を**日次の翌日(第1水曜)**へ移した。日次と同じ日に
-    走らせると 7 + 12 = 19 で上限20には収まるが、``MAX_RETRIES`` が4なので
+    **日次は毎日走る。** 月次をどの曜日に置いても、その日の枠には日次7本が
+    先に入っている。既定で足しているのはそのため。
+
+    12本を1日で回すと 7+12=19。上限20には収まるが ``MAX_RETRIES`` が4なので、
     1本でもリトライすると 22 になって超える。超えた分は 429 で欠測になり、
     「枠切れの欠測」と「provider 障害の欠測」が区別できなくなる。
+    そこで 2026-09-11 に **6本ずつ2日に分割**した(バッチA=第1水曜 /
+    バッチB=第1木曜)。各日 7+6=13 で、リトライぶんの余地が残る。
 
     ``retry_headroom`` は「何本まで最大リトライしても枠に収まるか」。
     1本の失敗が余分に使うのは ``MAX_RETRIES - 1`` 回(初回は総数に入っている)。
@@ -94,24 +99,73 @@ def request_budget(active_count: int,
     }
 
 
+def _as_observation(row: Dict[str, Any]) -> Dict[str, Any]:
+    """保存済みの monthly_observations 行を、サマリが読める形にする。
+
+    シートには ``error`` 列が無く、欠測は negative_detail の "[error] …" に
+    残っている。そのままだと欠測が「不明」と表示されるので戻しておく。
+    """
+    detail = str(row.get("negative_detail") or "")
+    out = dict(row)
+    if detail.startswith("[error]"):
+        out["error"] = detail[len("[error]"):].strip()
+    return out
+
+
+def _month_to_date(month: str, extractions: List[Dict[str, Any]],
+                   args: Any) -> tuple:
+    """その月に観測済みの全バッチ分を集めて返す。
+
+    最後のバッチの実行時に、前のバッチ(別の日に走った分)はシートにしか
+    残っていない。今回の抽出結果と突き合わせて、月の全体で1枚の表にする。
+    """
+    prompts = load_monthly_prompts()          # 月の全 active
+    if args.batch is None or args.no_sheets:
+        return extractions, prompts
+
+    try:
+        stored = [r for r in sheets_writer.read_monthly_observations()
+                  if str(r.get("date") or "").startswith(month)]
+    except Exception as exc:  # noqa: BLE001 - サマリのために実行を止めない
+        print(f"[warn] monthly_observations を読めませんでした({exc}) — "
+              "今回のバッチ分だけでサマリを作ります")
+        return extractions, prompts
+
+    # 同じ (prompt_id, model) は今回の抽出結果で上書きする。
+    index = {(str(r.get("prompt_id")), str(r.get("model"))): _as_observation(r)
+             for r in stored}
+    for record in extractions:
+        index[(str(record.get("prompt_id")), str(record.get("model")))] = record
+    return list(index.values()), prompts
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Monthly LLMO observation (Phase 3)")
     ap.add_argument("--date", help="観測日 YYYY-MM-DD(既定: 当日JST)")
     ap.add_argument("--no-slack", action="store_true", help="投稿せず本文を表示する")
     ap.add_argument("--no-sheets", action="store_true",
                     help="シートに書かない(手元での確認用)")
+    ap.add_argument("--batch", choices=list(MONTHLY_BATCHES),
+                    help="その日に走らせるバッチ(未指定なら全部)")
     args = ap.parse_args()
 
     date = args.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
     month = date[:7]
 
-    prompts = load_monthly_prompts()
+    prompts = load_monthly_prompts(batch=args.batch)
     budget = request_budget(len(prompts))
+    # 月次サマリは最後のバッチが終わった時点で1回だけ出す。
+    # バッチAの日に出すと、まだ半分しか観測していない表が届く。
+    is_last_batch = args.batch is None or args.batch == MONTHLY_BATCHES[-1]
     failures: List[str] = []
-    lines: List[str] = [f"## LLMO monthly observation — {month}", ""]
+    lines: List[str] = [f"## LLMO monthly observation — {month}"
+                        + (f" (batch {args.batch})" if args.batch else ""), ""]
+    if args.batch and not prompts:
+        print(f"[warn] batch {args.batch} に active なプロンプトがありません")
     lines.append(
-        f"- Gemini リクエスト見積もり: 月次{budget['monthly']}本"
-        + (f" + 日次{budget['daily']}本" if budget["daily"] else "(日次とは別日)")
+        f"- Gemini リクエスト見積もり: 日次{budget['daily']}本 + "
+        + (f"月次batch {args.batch} {budget['monthly']}本" if args.batch
+           else f"月次{budget['monthly']}本")
         + f" = {budget['total']} / 上限{budget['limit']}"
         + f"(リトライの余地 {budget['retry_headroom']}本)"
     )
@@ -236,13 +290,21 @@ def main() -> None:
         lines.append("- " + retired_urls.summary_line(
             date, records, resolve=True, prompt_ids=retired_urls.ALL_PROMPTS))
 
-    # 4. 配信
-    if args.no_slack:
-        print(notify_slack.build_monthly_message(month, extractions, prompts))
+    # 4. 配信。**最後のバッチのときだけ、その月の全観測をまとめて1回投稿する。**
+    # バッチAの日にも出すと、同じ月について半分の表と全部の表が2通届く。
+    if not is_last_batch:
+        lines.append(f"- 月次サマリ: batch {args.batch} のため投稿しない"
+                     f"(batch {MONTHLY_BATCHES[-1]} の完了後に1回だけ出す)")
     else:
-        _run("notify_monthly",
-             lambda: notify_slack.notify_monthly(month, extractions, prompts),
-             failures)
+        summary_rows, summary_prompts = _month_to_date(month, extractions, args)
+        if args.no_slack:
+            print(notify_slack.build_monthly_message(
+                month, summary_rows, summary_prompts))
+        else:
+            _run("notify_monthly",
+                 lambda: notify_slack.notify_monthly(
+                     month, summary_rows, summary_prompts),
+                 failures)
 
     lines += [
         f"- 観測: {len(prompts)}本 × モデル = {len(records)}レコード",

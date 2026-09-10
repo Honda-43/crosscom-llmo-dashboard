@@ -101,22 +101,33 @@ def test_the_monthly_workflow_matches_the_others():
     assert set(monthly) == set(weekly) == {"schedule", "workflow_dispatch"}
 
 
-def test_the_monthly_run_is_gated_on_the_first_wednesday():
-    """毎週水曜に起動して guard で絞る。cron では第1水曜を書けないため。
+def test_the_monthly_run_is_split_over_two_days():
+    """第1水曜=バッチA / 第1木曜=バッチB。cron では第1◯曜を書けないため guard で絞る。
 
-    水曜なのは日次(07:00 JST)の翌日に置くため。同日だと Gemini の枠が
-    日次7+月次12=19/20 になり、リトライが1本走ると超える。
+    分割の理由は Gemini の枠。日次7本は毎日走るので、月次12本を1日で回すと
+    19/20 になり、リトライが1本走るだけで超える。6本ずつなら各日 13/20。
     """
     doc = _load(WORKFLOW_DIR / "monthly.yml")
-    # 火曜22:30 UTC = 水曜07:30 JST
-    assert _triggers(doc)["schedule"] == [{"cron": "30 22 * * 2"}]
+    # 火曜22:30 UTC = 水曜07:30 JST / 水曜22:30 UTC = 木曜07:30 JST
+    assert _triggers(doc)["schedule"] == [{"cron": "30 22 * * 2"},
+                                          {"cron": "30 22 * * 3"}]
     assert doc["jobs"]["monthly"]["if"] == "needs.guard.outputs.run == 'true'"
-    # guard は JST の曜日で見る(3=水)。UTCの日付で判定すると1日ずれる。
-    guard = doc["jobs"]["guard"]["steps"][0]["run"]
-    assert '"$DOW" = "3"' in guard and "$DOM" in guard
 
-    # **日次は毎日走る。** 曜日を移しても日次と同じ日になることは変わらない
-    # (daily.yml の曜日欄は "*")。枠の共有はこの変更では解消しない。
+    # guard は JST の曜日でバッチを決める(3=水→A / 4=木→B)。
+    # UTCの日付で判定すると1日ずれる。
+    guard = doc["jobs"]["guard"]["steps"][0]["run"]
+    assert '"$DOW" = "3"' in guard and "batch=A" in guard
+    assert '"$DOW" = "4"' in guard and "batch=B" in guard
+    assert "$DOM" in guard, "第1週かどうかを日付で見ていない"
+    assert doc["jobs"]["guard"]["outputs"]["batch"]
+
+    # バッチが run_monthly に渡っていること。渡らないと毎回12本走る。
+    step = [s for s in doc["jobs"]["monthly"]["steps"]
+            if s.get("name") == "Run monthly observation"][0]
+    assert "--batch" in step["run"] and "needs.guard.outputs.batch" in step["run"]
+
+    # **日次は毎日走る。** 曜日をどこに置いても日次と同じ日になる
+    # (daily.yml の曜日欄は "*")。だから分割でしか枠は空かない。
     daily = _triggers(_load(WORKFLOW_DIR / "daily.yml"))["schedule"][0]["cron"]
     assert daily.split()[-1] == "*", (
-        "日次が毎日でなくなったら、月次との枠の共有を作り直すこと")
+        "日次が毎日でなくなったら、月次の分割の前提を作り直すこと")

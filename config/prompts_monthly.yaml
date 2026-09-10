@@ -35,6 +35,14 @@
 #   service_line … 事業カテゴリ。Agentforce / AgenticCRM / 全社
 #                  (表示名への変換は src/display_map.py。Pillar A/B の
 #                   既存集計とは別物で、Looker の表示軸としてのみ使う)
+#
+# batch(実行日の分割。2026-09-11 追加)
+#   A … 第1水曜に実行   B … 第1木曜に実行
+#   Gemini の枠は 20/日で、日次7本は毎日走る。12本を1日で回すと
+#   7+12=19 になり、リトライが1本走るだけで超える。6本ずつに割ると
+#   各日 7+6=13 で、リトライぶんの余地が残る。
+#   **active な月次プロンプトには必ず batch を書くこと**
+#   (tests/test_monthly.py が検査している)。
 prompts:
   # --- BOFU単体(社名指名)------------------------------------------
   - id: M-1
@@ -48,6 +56,7 @@ prompts:
     intent_stage: 指名
     short_label: "評判(社名のみ)"
     service_line: 全社
+    batch: A
 
   - id: M-2
     category: bofu_single
@@ -60,6 +69,7 @@ prompts:
     intent_stage: 指名
     short_label: "導入支援の費用"
     service_line: Agentforce
+    batch: A
 
   - id: M-3
     category: bofu_single
@@ -72,6 +82,7 @@ prompts:
     intent_stage: 指名
     short_label: "導入支援の実績"
     service_line: Agentforce
+    batch: A
 
   - id: M-4
     category: bofu_single
@@ -84,6 +95,7 @@ prompts:
     intent_stage: 指名
     short_label: "設計支援の評判"
     service_line: AgenticCRM
+    batch: A
 
   - id: M-5
     category: bofu_single
@@ -96,6 +108,7 @@ prompts:
     intent_stage: 指名
     short_label: "データ設計の専門性"
     service_line: AgenticCRM
+    batch: A
 
   - id: M-6
     category: bofu_single
@@ -108,6 +121,7 @@ prompts:
     intent_stage: 指名
     short_label: "定着支援の内容"
     service_line: Agentforce
+    batch: A
 
   # --- BOFU比較(競合との直接比較)----------------------------------
   - id: M-7
@@ -122,6 +136,7 @@ prompts:
     intent_stage: 指名
     short_label: "比較:テクノデジタル"
     service_line: Agentforce
+    batch: B
 
   - id: M-8
     category: bofu_compare
@@ -135,6 +150,7 @@ prompts:
     intent_stage: 指名
     short_label: "比較:メンバーズ"
     service_line: Agentforce
+    batch: B
 
   - id: M-9
     category: bofu_compare
@@ -148,6 +164,7 @@ prompts:
     intent_stage: 指名
     short_label: "比較:三菱総研DCS"
     service_line: 全社
+    batch: B
 
   # --- MOFU補完(日次で観測できていない面)--------------------------
   - id: M-10
@@ -161,6 +178,7 @@ prompts:
     intent_stage: 準顕在
     short_label: "導入支援会社を探す(前置きなし)"
     service_line: Agentforce
+    batch: B
 
   - id: M-11
     category: mofu_suppl
@@ -173,6 +191,7 @@ prompts:
     intent_stage: 顕在
     short_label: "製造業向けの導入支援を探す"
     service_line: Agentforce
+    batch: B
 
   - id: M-12
     category: mofu_suppl
@@ -185,6 +204,7 @@ prompts:
     intent_stage: 顕在
     short_label: "中堅企業向けの設計支援を探す"
     service_line: AgenticCRM
+    batch: B
 
   # --- 第2弾候補(定義のみ。実行しない)------------------------------
   # active にする場合は実行を2日に分割すること(上の実行数の制約を参照)。

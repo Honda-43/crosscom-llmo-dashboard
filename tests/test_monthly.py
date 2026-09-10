@@ -71,41 +71,62 @@ def test_comparison_prompts_record_the_competitor():
 
 
 # --- 実行数の制約(DoD 4)---------------------------------------------------
-def test_the_monthly_run_fits_in_the_gemini_daily_quota():
-    """日次7本 + 月次12本 = 19 <= 20。
+# Gemini 無料枠は GenerateRequestsPerDayPerProjectPerModel-FreeTier で
+# 1日20リクエスト。**日次7本は毎日走る**ので、月次をどの曜日に置いても
+# その日の枠には日次が先に入っている。12本を1日で回すと 19 になり、
+# リトライが1本走るだけで超える。そこで6本ずつ2日に分割した。
+DAY_LIMIT_AFTER_SPLIT = 13
 
-    Gemini 無料枠は GenerateRequestsPerDayPerProjectPerModel-FreeTier で
-    1日20リクエスト。月次は日次と同じ日に走るので、合計で見ないと意味がない。
-    """
-    # 月次は日次の翌日(第1水曜)に走るので、その日の消費は月次ぶんだけ。
-    budget = run_monthly.request_budget(len(ACTIVE))
-    assert budget["total"] == 12
-    assert not budget["over"], (
-        f"月次{budget['monthly']}本で{budget['total']}件になり、"
-        f"上限{budget['limit']}を超える。プロンプトを減らすか実行日を分けること"
+
+@pytest.mark.parametrize("batch", settings.MONTHLY_BATCHES)
+def test_each_batch_day_stays_at_thirteen_or_under(batch):
+    """分割後は各日13以下。日次7 + 月次6 = 13/20。"""
+    prompts = settings.load_monthly_prompts(batch=batch)
+    budget = run_monthly.request_budget(len(prompts))
+    assert budget["total"] <= DAY_LIMIT_AFTER_SPLIT, (
+        f"batch {batch} は月次{budget['monthly']}本で{budget['total']}件になる。"
+        f"分割の意味が無くなるので、バッチの本数を見直すこと"
     )
+    assert not budget["over"]
     # リトライで超えないだけの余地があること。ここが0だと、1本の失敗で
     # 枠を使い切り「枠切れの欠測」と「provider障害の欠測」が混ざる。
     assert budget["retry_headroom"] >= 2, budget
 
 
+def test_the_two_batches_cover_every_active_prompt_exactly_once():
+    """どちらのバッチにも入らない、あるいは両方に入るプロンプトが無いこと。"""
+    seen = []
+    for batch in settings.MONTHLY_BATCHES:
+        seen += [p["id"] for p in settings.load_monthly_prompts(batch=batch)]
+    assert sorted(seen) == sorted(p["id"] for p in ACTIVE)
+    assert len(seen) == len(set(seen))
+
+
+def test_every_active_prompt_declares_its_batch():
+    """active にしたのに batch を書き忘れると、その本は一度も走らない。"""
+    for prompt in ACTIVE:
+        assert prompt.get("batch") in settings.MONTHLY_BATCHES, prompt["id"]
+
+
 def test_the_budget_check_catches_an_over_sized_pool():
     budget = run_monthly.request_budget(21)
-    assert budget["total"] == 21 and budget["over"]
+    assert budget["total"] == 28 and budget["over"]
 
 
-def test_running_on_the_same_day_as_the_daily_run_eats_the_headroom():
-    """火曜(日次と同日)に戻すと、リトライ1本で枠を超える。
+def test_running_all_twelve_in_one_day_eats_the_headroom():
+    """分割前(12本を1日)だと、リトライ1本で枠を超える。分割した理由がこれ。"""
+    one_day = run_monthly.request_budget(len(ACTIVE))
+    assert one_day["total"] == 19 and not one_day["over"]
+    assert one_day["retry_headroom"] == 0
 
-    月次を水曜に移した理由がこれ。同日だと 7+12=19 で上限には収まるが、
-    1本の失敗が余分に使う3回ぶんの余地が無い。
-    """
-    same_day = run_monthly.request_budget(len(ACTIVE), same_day_as_daily=True)
-    assert same_day["total"] == 19 and not same_day["over"]
-    assert same_day["retry_headroom"] == 0
+    split = run_monthly.request_budget(len(ACTIVE) // 2)
+    assert split["total"] == DAY_LIMIT_AFTER_SPLIT
+    assert split["retry_headroom"] > one_day["retry_headroom"]
 
-    apart = run_monthly.request_budget(len(ACTIVE))
-    assert apart["retry_headroom"] > same_day["retry_headroom"]
+
+def test_the_daily_run_is_always_counted():
+    """日次は毎日走る。月次の曜日を変えても枠は共有される。"""
+    assert run_monthly.request_budget(6)["daily"] == run_monthly.DAILY_PROMPT_COUNT
 
 
 def test_the_daily_prompt_count_matches_the_real_config():
@@ -247,3 +268,78 @@ def test_missing_observations_are_counted_in_the_summary():
 def test_notify_monthly_without_a_webhook_never_raises(capsys):
     assert notify_slack.notify_monthly("2026-09", [], [], webhook="") is False
     assert "SLACK_WEBHOOK_URL is not set" in capsys.readouterr().out
+
+
+# --- 2日分割の動き -----------------------------------------------------------
+# 月次サマリは最後のバッチが終わった時点で1回だけ出す。バッチAの日にも出すと、
+# 同じ月について「半分の表」と「全部の表」が2通届く。
+def _run_monthly(argv, monkeypatch, stored=(), posted=None, records=None):
+    import run_monthly
+
+    monkeypatch.setattr("sys.argv", ["run_monthly.py"] + argv)
+    monkeypatch.setattr(collect_llm, "collect",
+                        lambda date, prompts=None, out_dir=None:
+                        [dict(r, date=date) for r in (records or [])])
+    monkeypatch.setattr(collect_llm, "missing_observations", lambda records: [])
+    monkeypatch.setattr(run_monthly.extract, "extract_record", lambda r: dict(r))
+    monkeypatch.setattr(sheets_writer, "write_monthly_observations", lambda rows: None)
+    monkeypatch.setattr(sheets_writer, "read_monthly_observations", lambda: list(stored))
+    monkeypatch.setattr(sheets_writer, "write_kbf_compare", lambda rows: None)
+    monkeypatch.setattr(sheets_writer, "write_looker_tabs", lambda payload: None)
+    monkeypatch.setattr(run_monthly.kbf_compare, "rows_from_records",
+                        lambda month, records, prompts: [])
+    monkeypatch.setattr(run_monthly.retired_urls, "event_rows", lambda *a, **k: [])
+    monkeypatch.setattr(run_monthly.retired_urls, "summary_line", lambda *a, **k: "—")
+    monkeypatch.setattr(run_monthly.looker_tabs, "mention_grid_rows", lambda *a, **k: [])
+    monkeypatch.setattr(run_monthly.looker_tabs, "answer_rows", lambda *a, **k: [])
+    monkeypatch.setattr(run_monthly.looker_tabs, "answer_sources", lambda *a, **k: [])
+    monkeypatch.setattr(sheets_writer, "read_llm_observations", lambda: [])
+    monkeypatch.setattr(
+        notify_slack, "notify_monthly",
+        lambda month, extractions=(), prompts=(), **kw:
+        (posted if posted is not None else []).append((month, list(extractions))) or True)
+    with pytest.raises(SystemExit):
+        run_monthly.main()
+
+
+def _record(pid, model="claude"):
+    return {"prompt_id": pid, "model": model, "category": "bofu_single",
+            "mention": True, "answer": "本文", "cited_urls": []}
+
+
+def test_batch_a_does_not_post_the_monthly_summary(monkeypatch):
+    posted = []
+    _run_monthly(["--date", "2026-10-07", "--batch", "A"], monkeypatch,
+                 records=[_record("M-1")], posted=posted)
+    assert posted == [], "バッチAの日にサマリを出すと半分の表が届く"
+
+
+def test_batch_b_posts_once_covering_the_whole_month(monkeypatch):
+    """2日目は、前日に走ったバッチAのぶんもシートから拾って1枚にまとめる。"""
+    stored = [{"date": "2026-10-07", "prompt_id": "M-1", "model": "claude",
+               "category": "bofu_single", "mention": "TRUE", "negative_detail": ""}]
+    posted = []
+    _run_monthly(["--date", "2026-10-08", "--batch", "B"], monkeypatch,
+                 stored=stored, records=[_record("M-7")], posted=posted)
+
+    assert len(posted) == 1, "サマリは1回だけ"
+    ids = {str(r.get("prompt_id")) for r in posted[0][1]}
+    assert ids == {"M-1", "M-7"}, ids   # 前日ぶん + 当日ぶん
+
+
+def test_a_stored_error_row_is_shown_as_missing_not_unknown(monkeypatch):
+    """シートには error 列が無く、欠測は negative_detail に残っている。"""
+    import run_monthly
+
+    row = {"prompt_id": "M-1", "model": "claude", "mention": "",
+           "negative_detail": "[error] timeout"}
+    assert run_monthly._as_observation(row)["error"] == "timeout"
+    assert "error" not in run_monthly._as_observation(dict(row, negative_detail=""))
+
+
+def test_without_a_batch_every_prompt_runs(monkeypatch):
+    """手動実行でバッチ未指定なら従来どおり12本。"""
+    posted = []
+    _run_monthly(["--date", "2026-10-07"], monkeypatch,
+                 records=[_record("M-1")], posted=posted)
+    assert len(posted) == 1

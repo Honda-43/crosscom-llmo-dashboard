@@ -9,7 +9,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 import yaml
 
@@ -89,16 +89,28 @@ def load_prompts() -> List[Dict[str, Any]]:
     return load_yaml(PROMPTS_FILE)["prompts"]
 
 
-def load_monthly_prompts(active_only: bool = True) -> List[Dict[str, Any]]:
+# 月次観測の実行日の分割(2026-09-11)。順番に意味がある — 最後のバッチが
+# 終わった時点で月次サマリを投稿する。
+MONTHLY_BATCHES = ("A", "B")
+
+
+def load_monthly_prompts(active_only: bool = True,
+                         batch: Optional[str] = None) -> List[Dict[str, Any]]:
     """月次観測プロンプト(Phase 3 §1)。
 
     ``active_only`` が真なら実行対象だけを返す。第2弾候補は
     ``active: false`` で定義だけ置いてあるので、実行数の見積もりと
     区別できるようにしている。
+
+    ``batch`` を渡すとその日に走らせるぶんだけを返す。Gemini の枠が
+    20/日で、日次7本が毎日走るため、月次12本を1日で回すと 19 になって
+    リトライの余地が無い。6本ずつ2日に割っている(settings.MONTHLY_BATCHES)。
     """
     prompts = load_yaml(PROMPTS_MONTHLY_FILE)["prompts"]
     if active_only:
-        return [p for p in prompts if p.get("active")]
+        prompts = [p for p in prompts if p.get("active")]
+    if batch:
+        prompts = [p for p in prompts if str(p.get("batch") or "").strip() == batch]
     return prompts
 
 

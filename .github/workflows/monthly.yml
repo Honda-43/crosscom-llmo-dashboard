@@ -2,26 +2,36 @@ name: monthly
 
 on:
   schedule:
-    # 毎週水曜 07:30 JST に起動し、その月の第1水曜のときだけ実行する。
+    # 月次観測を2日に分ける(2026-09-11)。
+    #   第1水曜 … バッチA(M-1〜M-6 / BOFU単体)
+    #   第1木曜 … バッチB(M-7〜M-12 / BOFU比較 + MOFU補完)
+    #
+    # **分割する理由。** Gemini の枠は 20/日で、日次7本は毎日走る。
+    # 月次12本を1日で回すと 7+12=19 になり、上限には収まるが
+    # MAX_RETRIES=4 なので1本でもリトライすると 22 で超える。超えた分は
+    # 429 で欠測になるだけで実行は止まらないが、「枠切れの欠測」と
+    # 「provider 障害の欠測」が区別できなくなる。
+    # 6本ずつに割ると各日 7+6=13 で、リトライぶんの余地が残る。
+    #
     # cron は「第1水曜」を直接書けない(日と曜日を両方指定すると OR になる)。
     # また 07:30 JST = 22:30 UTC の前日なので、UTCの日付で判定すると1日ずれる。
-    # そのため JST の日付で guard ジョブが判定する。
-    #
-    # **火曜ではなく水曜にしている理由(2026-09-11 変更)。**
-    # 火曜だと日次7本と同じ日に月次12本が走り、Gemini の枠は 19/20 になる。
-    # 上限そのものには収まるが、MAX_RETRIES=4 なので1本でもリトライが走ると
-    # 22 になって超える。超えた分は 429 で欠測になるだけなので実行は止まらないが、
-    # 「枠切れの欠測」と「provider 障害の欠測」が区別できなくなる。
-    # 日次の翌日に寄せると、その日の Gemini 消費は月次12本+リトライだけになる。
-    - cron: '30 22 * * 2'   # 火曜22:30 UTC = 水曜07:30 JST
+    # そのため JST の日付で guard ジョブが判定し、曜日からバッチを決める。
+    - cron: '30 22 * * 2'   # 火曜22:30 UTC = 水曜07:30 JST → バッチA
+    - cron: '30 22 * * 3'   # 水曜22:30 UTC = 木曜07:30 JST → バッチB
   workflow_dispatch:
     inputs:
       date:
         description: '観測日 (YYYY-MM-DD、空なら当日JST)'
         required: false
         default: ''
+      batch:
+        description: '実行するバッチ(空なら12本すべて)'
+        type: choice
+        options: ['', 'A', 'B']
+        required: false
+        default: ''
       force:
-        description: '第1水曜でなくても実行する'
+        description: '第1水曜・第1木曜でなくても実行する'
         type: boolean
         required: false
         default: false
@@ -38,20 +48,30 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       run: ${{ steps.check.outputs.run }}
+      batch: ${{ steps.check.outputs.batch }}
     steps:
-      - name: Is today the first Wednesday (JST)?
+      - name: Is today the first Wednesday or Thursday (JST)?
         id: check
         run: |
           DOM=$(TZ=Asia/Tokyo date +%d)
           DOW=$(TZ=Asia/Tokyo date +%u)   # 1=Mon .. 7=Sun
           echo "JST $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M') day-of-month=$DOM day-of-week=$DOW"
-          if [ "${{ inputs.force }}" = "true" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # 手動実行はバッチの指定に従う(空なら12本すべて)。
             echo "run=true" >> "$GITHUB_OUTPUT"
-          elif [ "$DOW" = "3" ] && [ "$DOM" -le 07 ]; then
+            echo "batch=${{ inputs.batch }}" >> "$GITHUB_OUTPUT"
+          elif [ "$DOM" -gt 07 ]; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::第1週ではないためスキップします。"
+          elif [ "$DOW" = "3" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "batch=A" >> "$GITHUB_OUTPUT"
+          elif [ "$DOW" = "4" ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+            echo "batch=B" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::第1水曜ではないためスキップします。"
+            echo "::notice::第1水曜・第1木曜ではないためスキップします。"
           fi
 
   monthly:
@@ -81,7 +101,8 @@ jobs:
         working-directory: src
         run: |
           python run_monthly.py \
-            ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
+            ${{ inputs.date && format('--date {0}', inputs.date) || '' }} \
+            ${{ needs.guard.outputs.batch && format('--batch {0}', needs.guard.outputs.batch) || '' }}
 
       - name: Commit monthly raw answers
         if: always()
