@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-11",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-10T23:45:06.236494Z",
+  "answer": "# Agentforce導入支援でおすすめの会社\n\nSalesforceの自律型AIエージェントプラットフォーム「Agentforce」の導入支援は、Salesforce公式のコンサルティングパートナーを中心に多くの企業が提供しています。\nSalesforceのコンサルティングパートナーはコンプライアンスやガバナンスFHを維持しながらビジネス成果を生み出すAIエージェントのコンサルティングやアドバイザリー、導入や実装、稼働をサポートする体制を構築しており、SIパートナーエコシステムは日本市場でこれまでに数百のAgentforceの導入を支援してきた実績があります\n。以下、タイプ別に代表的な会社をご紹介します。\n\n## 大手SIer系（総合力・大規模導入向け）\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援しており、PoCで終わらせず着実に成果を出すためのアプローチを重視しています\n。\n\n**富士ソフト**\n\nSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供しており、社内での試験導入・検証を通じて得たセールス向け機能の実践的な知見やノウハウを活かしています\n。\n\n## Salesforce専業・特化型パートナー\n\n**メンバーズ（サースプラスカンパニー）**\n\n「Agentforce導入・運用支援」として、導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまで一貫して支援\nしています。\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有\nしている点も強みです。\n\n**ウフル**\n\nSalesforceのテクノロジーを活かした業務支援の経験をもとに、Agentforceの導入・活用を現実的かつ実践的に支援。まずは「Agentforce for Service」を対象にカスタマーサービス領域に特化した支援を提供し、構築・システム設定・動作確認・リリース準備までを最短3カ月のスケジュールで支援\nしています。\n\n**サークレイス**\n\n「Agentforce」リリースを受けて導入・構築を全面サポートする新サービスを提供開始しており、労働生産性の向上やイノベーション促進など多岐にわたる企業価値向上を支援対象としています\n。\n\n## 中小企業・スモールスタート向け\n\n**クロスコム**\n\n実務で活用できるまでの定着支援に重点を置いたサービスを提供しており、目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込みます。導入後はカスタマーサクセスチームが継続的にモニタリングし、1ユースケース×3ヶ月のスモールスタートから対応\nしています。\n\n**フロッグウェル**\n\n各業界・業務の特性に合わせたAgentforceの導入支援を行っており、豊富な業界知識とSalesforce専門性を活かし、課題に最適化されたAIソリューションの設計から構築、運用まで一貫してサポート\nしています。\n\n## 選び方のポイント\n\n\n2026年時点で国内のSalesforceコンサルティングパートナーは約300社にのぼり、要件の整理から設計、現場トレーニング、導入後の改善まで一貫して任せられる区分が実質このコンサルティングパートナーに限られます\n。そのため、まずは「Salesforce公式コンサルティングパートナー」かどうかを確認した上で、以下の観点で比較検討することをおすすめします。\n\n- **規模・予算感**：大規模・複数部門横断なら大手SIer、スモールスタートなら特化型・中小企業向けパートナー\n- **業界特化度**：自社業界での導入実績があるか\n- **支援範囲**：PoCのみか、内製化・定着化まで伴走してくれるか\n- **料金体系**：個別見積もりが多いため、複数社から見積もりを取り比較するのが安心です\n\n具体的な要件（対象業務、予算規模、導入スケジュールなど）があれば、より絞り込んだ提案も可能ですのでお知らせください。",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/news/press-releases/2025/11/20/agentforce-world-tour-tokyo/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://www.members-saasplus.com/agentforce",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://frogwell.co.jp/blogs/agentforce/"
+  ],
+  "error": null
+}

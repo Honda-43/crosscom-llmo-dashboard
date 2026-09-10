@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-11",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-10T23:46:25.596057Z",
+  "answer": "# Agentforce導入費用の相場と費用対効果を出す進め方\n\n## 1. Agentforceの料金体系（3つのモデル）\n\nAgentforceは\nFlex Creditや会話数に応じた従量課金制の価格設定、またはユーザー単位のライセンスから選べます\n。具体的には以下の3パターンがあります。\n\n**① 会話課金（Conversations）**\n\n1会話あたり2ドルで、AIエージェントの最初の応答から問題解決・顧客によるクローズ、または24時間の無操作のいずれか早い方までを「1会話」と定義。24時間操作がなければ会話は自動終了し、再度やり取りが発生すると新しい会話として再度2ドルが課金されます\n。\n\n**② Flex Credits（従量課金・アクション単位）**\n\n標準的なアクションは20クレジット（$500/10万クレジットの定価で$0.10）、音声アクションは30クレジット（$0.15）\nです。\n損益分岐点は1会話あたり約20アクションで、それを下回ればFlex Creditsの方が安くなります\n。\nAgentforceは1組織あたり250Flex Creditsが無料で付与される形で開始できます\n。\n\n**③ ユーザー単位ライセンス**\n\nper-userオプションは1ユーザーあたり月額125～550ドル程度\nで、\nSales/Service Cloudで1ユーザー月額125ドルなら、ライセンス保持者は社内向けエージェントを無制限に利用できます\n。\n\nなお\n1つの組織ではFlex CreditsかConversationsのどちらか一方しか選べません\n。\n\n## 2. 実際の費用感（TCOの目安）\n\n料金表の数字だけでなく、実際の導入では以下のような周辺コストが発生します。\n\n- **中堅企業（500ユーザー規模）**：\nData Cloudコストを含めずAgentforce単体で年間1.5万～5万ドル程度\nが目安。\n- **Data Cloud（ほぼ必須）**：\nAgentforceはRAG（検索拡張生成）の基盤としてData Cloudが必要で、これを見落とすと想定外の高額コストが発生しがち\n。\nData Cloud Plusで年間約6.5万ドル、Data Cloud Premiumで約17.5万ドル\nという水準感です。\n- **初年度TCO全体**：\n中堅企業のAgentforce導入は年間15万～60万ドル規模になることが多く、これはData Cloudの必須契約（10.8万ドル以上/年）や導入費用が加わるため\nです。\nData Cloud・導入・保守を含めた総保有コストは初年度で15万～42.5万ドルのレンジ\nという試算もあります。\n- **日本国内では**、Agentforce自体の利用料に加え、\nSalesforce本体ライセンス費用（Enterprise Editionで1ユーザー月額数万円規模）との合算が真のTCOになる\n点に注意が必要です。プロンプト設計・日本語調整・パートナー委託などの初期構築費用も別途かかります。\n\n**注意点**：料金は2025年以降大きく変動しており、\n当初は1会話2ドル固定でしたが、2025年5月にアクション単位で支払うFlex Creditsが導入され\n、その後も\nユーザー単位ライセンスや従業員向けアドオン、バンドル版など複数の課金モデルが追加され続けています\n。正確な見積もりは必ず営業担当者・認定パートナーに確認してください。\n\n## 3. 費用対効果を出すための進め方\n\n日立ソリューションズなど導入支援企業の知見によると、成功の鍵は技術検証よりも「ビジネス価値の明確化」にあります。\n\n### ステップ1：スモールスタート＋PoC\n\nAgentforceは従量課金制のためSalesforceユーザーは無料で利用開始でき、ボリュームディスカウントも適用されるため、スモールスタートで導入しコストを最適化しながら段階的に規模を拡大できます\n。\nPoCにより、大規模投資前にAgentforceの有効性を早期把握し、リスク評価とROI測定が可能になり、データ連携や業務フロー調整といった課題も洗い出せます\n。\n\n### ステップ2：ユースケースの優先順位付け（効果×実現難易度マトリクス）\n\n導入検討フェーズの最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性・難易度に基づく実現アプローチ」の策定\nです。",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://www.concret.io/blog/new-agentforce-pricing-model",
+    "https://aquiva.com/blog/agentforce-pricing-gets-a-long-overdue-fix-flex-credits-are-now-live",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://magicfuse.co/blog/agentforce-cost",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

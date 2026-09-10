@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-11",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-09-10T23:47:14.385656Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず、中立的な立場でCRMの設計支援を求める場合、以下の企業が有力な選択肢となります。これらの企業は、ツールの導入ありきではなく、貴社のビジネス課題や目標に合わせた戦略立案から支援することに強みを持っています。\n\n### 特定ベンダーに依存しないCRM設計支援会社\n\n*   **StockSun株式会社**\n    StockSunは、特定のツールに誘導することなく、「中立的なツール選定」を強みとしています。ゴールをツールの導入ではなく、売上やLTV（顧客生涯価値）の最大化に置き、事業や競合を踏まえたオーダーメイドの戦略を策定します。ツール選定から運用定着まで一気通貫で伴走し、経営目線での提案を行います。\n\n*   **テクノデジタルコンサルティング**\n    「ツールありきではなく、成果から逆算した戦略設計を起点とする」ことを重視しており、CRM戦略・KPI設計・業務設計からシステム選定、運用定着までを一貫して支援します。大手から中堅企業まで100社以上の支援実績があり、顧客戦略・KPI・業務・組織・システムを一体として整理・設計することで、データ活用を成果につなげることを目指しています。\n\n*   **フュージョン株式会社**\n    CRMコンサルティングおよびCRM戦略設計支援を提供しており、「伴走型」の支援を大切にしています。売上総利益や営業利益の増加を目標に、戦略立案から施策の実行・運用まで幅広くサポートします。\n\n*   **株式会社ripla**\n    業務設計からシステム構築・運用まで一貫して支援するDX/開発支援会社です。CRM開発においては、単なる顧客情報管理にとどまらず、営業・マーケティング・カスタマーサポートの業務プロセス設計と連動した顧客データ活用基盤の設計まで対応可能です。既存のERPや販売管理システムとの全体最適設計も得意としています。\n\n*   **株式会社GeNEE**\n    業務系システムの企画・設計・開発を手がけるITベンダーで、CRMやSFAを含む顧客・営業管理系システムの構築実績が豊富です。CRM単体の開発だけでなく、営業支援・案件管理・商談管理・MA連携など、多機能領域の統合設計に対応し、要件定義から運用設計まで一貫して支援します。\n\n### 会社選びのポイント\n\n中立的な立場でCRM設計を支援してくれる会社を選ぶ際には、以下の点を考慮すると良いでしょう。\n\n*   **ベンダーニュートラルな姿勢:** 特定のCRMツールに偏らず、貴社の課題や要件に最適なソリューションを提案してくれるかを確認しましょう。\n*   **戦略立案からの支援:** 単なるツール導入ではなく、貴社のビジネス目標達成に向けたCRM戦略の策定から支援してくれるかどうかが重要です。\n*   **中堅企業への実績:** 中堅企業の規模感や特性を理解し、適切な提案ができる実績があるかを確認すると安心です。\n*   **伴走型のサポート:** 導入後の運用・定着まで含め、長期的な視点で伴走してくれる企業を選ぶことで、CRMの活用を成功に導きやすくなります。\n\nこれらの情報を参考に、貴社に最適なパートナーを見つけてください。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHR2bpj1Jpi7wHS85kT9x_vcvpFaQIvVcJdHh3IIkBOro3P2vD1bvHlHZAAg2Iq_JJhQsE2zzbBgiAmn_aLsaLpAlJJIBvMjju8oPDZn8o-Zx4_Otfa8Qmp32FjO6k=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFE6bBpHiTCOEi_boGcIT5aRu312rHzBQLyrySoekw_rYLYHT-UCv0bWqb3UVxIJtgOb9Rj4sqG-5yZ2lMmUxoMB0ESLnSRthFPP7Jk-SBtBGKU-MFzR9LF38dXYCvD2OJFBqme2jlta1D5p34Nl7xF-XGe",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtcgrGDHf9Xp-4zk2oiej-6i_-5SYfLgPRkWfDmsg13ozqyb0MNe0z3iFBJwlnTxfw_pXP_ZOXZiRYntqTm87Pr94E2pNwIln2gr54YvAV33S0yw-C3biilSZZPHv6t1kA-Qz5n5RZYOO-hMbsoBoMRmA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxa2TzQkgz2rHYovIgnlcmANjPpm0e4gbr2JEaYROBAgKDPX9rvGahCQjoHNaeMUCF3e7bHesxoUmWpdT6B-0kbEa8-WPULRJwQUiyMHbPlsP-t9EkgY_azlkPyxISzT-k5AeqBzb6OurZ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqqv-iV9hh7AL_cuFrVcaLjrb5hYPAbc3-75b0ENu9ygX1sOVZIny4Sqkps4x4Ikdtkcm8T-G0rReabbko6BoQtwUBYRCC5XqEK6OmMOeBCdYsITmDWiIL2sHvNdLebQ0="
+  ],
+  "error": null
+}
