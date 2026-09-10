@@ -225,7 +225,7 @@ def test_an_approved_action_has_no_implementation_date():
 
 
 def test_a_settled_action_replaces_the_recommendation():
-    text, notes = action_log.suppress_settled(SETTLED_REPORT, SETTLED_LOG)
+    text, notes, _ = action_log.suppress_settled(SETTLED_REPORT, SETTLED_LOG)
     assert "推奨アクション: 実施済み(A-003・2026-08-24)。効果測定中" in text
     assert "301統合" not in text
     assert len(notes) == 1
@@ -233,7 +233,7 @@ def test_a_settled_action_replaces_the_recommendation():
 
 def test_an_open_action_does_not_suppress_anything():
     """保留(A-011/R-P4/A-2)は決着していないので、提案を止める理由にならない。"""
-    text, notes = action_log.suppress_settled(SETTLED_REPORT, SETTLED_LOG)
+    text, notes, _ = action_log.suppress_settled(SETTLED_REPORT, SETTLED_LOG)
     assert "横展開する" in text
     assert not any("R-P4" in n for n in notes)
 
@@ -242,7 +242,7 @@ def test_the_same_rule_on_a_different_target_is_not_suppressed():
     report = ("**R-P8(旧事業URLの引用)**\n"
               "状態: AIの回答はB-1で旧パスを引用している。\n"
               "推奨アクション: 担当者が301統合する。\n")
-    text, notes = action_log.suppress_settled(report, SETTLED_LOG)
+    text, notes, _ = action_log.suppress_settled(report, SETTLED_LOG)
     assert "301統合" in text
     assert notes == []
 
@@ -251,13 +251,13 @@ def test_the_note_is_added_when_the_model_wrote_no_action_line():
     """モデルが指示どおり提案を落とした場合も、実施済みであることは書く。"""
     report = ("**R-P8(旧事業URLの引用)**\n"
               "状態: AIの回答はE-1で旧パスを2件引用している。\n")
-    text, notes = action_log.suppress_settled(report, SETTLED_LOG)
+    text, notes, _ = action_log.suppress_settled(report, SETTLED_LOG)
     assert "実施済み(A-003・2026-08-24)。効果測定中" in text
     assert len(notes) == 1
 
 
 def test_an_empty_action_log_changes_nothing():
-    assert action_log.suppress_settled(SETTLED_REPORT, []) == (SETTLED_REPORT, [])
+    assert action_log.suppress_settled(SETTLED_REPORT, []) == (SETTLED_REPORT, [], [])
 
 
 def test_every_settled_action_is_listed_for_the_prompt():
@@ -278,3 +278,41 @@ def test_five_seed_actions_are_annotated_on_charts():
     annotated = verdicts.implemented_actions(action_log.SEED_ROWS)
     assert [a["action_id"] for a in annotated] == [
         "A-001", "A-002", "A-003", "A-004", "A-005"]
+
+
+# --- 差し替えた行が新しい提案として登録されないこと(A-016 の再発防止)--------
+# 実施済み抑制は推奨アクションの行を「実施済み(A-00N・実施日)。効果測定中」に
+# 差し替える。その本文をそのまま提案として拾うと、中身のない施策が
+# action_log に増える(2026-09-07 に A-016 として実際に起きた)。
+def test_a_suppressed_line_is_not_taken_as_a_new_proposal():
+    text, _, settled_lines = action_log.suppress_settled(SETTLED_REPORT, SETTLED_LOG)
+    assert settled_lines, "差し替えが起きていない(前提が崩れている)"
+
+    def contents(proposals):
+        return [p["内容"] for p in proposals]
+
+    # 渡さないと差し替えた本文まで拾ってしまう = これが A-016 の原因
+    without = contents(action_log.extract_proposals(text))
+    assert any("実施済み(" in c for c in without), without
+
+    # 生成側から渡せば、差し替えた行だけが落ちる(本物の提案は残る)
+    with_skip = contents(action_log.extract_proposals(text, settled_lines))
+    assert not any("実施済み(" in c for c in with_skip), with_skip
+    assert with_skip, "本物の推奨アクションまで落としてはいけない"
+    assert len(with_skip) == len(without) - len(settled_lines)
+
+
+def test_the_skip_matches_on_the_content_not_on_a_prefix():
+    """文面が変わっても壊れないこと。判定は生成側が渡した実物との一致で行う。"""
+    report = "**R-P7 — E-1**\n推奨アクション: これから決める文面。\n"
+    # 「実施済み(」で始まらない文面でも、渡せば除かれる
+    assert action_log.extract_proposals(report, ["これから決める文面"]) == []
+    # 渡していない別の行は残る
+    assert len(action_log.extract_proposals(report, ["別の行"])) == 1
+
+
+def test_sync_passes_the_settled_lines_through():
+    text, _, settled_lines = action_log.suppress_settled(SETTLED_REPORT, SETTLED_LOG)
+    rows = action_log.sync_from_report(text, "2026-09-07", existing=SETTLED_LOG,
+                                       settled_lines=settled_lines)
+    assert all("実施済み(" not in str(r.get("内容", "")) for r in rows), rows

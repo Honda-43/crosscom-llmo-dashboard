@@ -75,7 +75,7 @@ crosscom-llmo-dashboard/
 ├── .github/workflows/
 │   ├── daily.yml          # 毎朝07:00 JST(cron: '0 22 * * *' UTC)
 │   ├── weekly.yml         # 毎週月曜08:30 JST(cron: '30 23 * * 0' UTC)
-│   ├── monthly.yml        # 毎月第1火曜07:30 JST(Phase 3)
+│   ├── monthly.yml        # 毎月第1水曜07:30 JST(Phase 3)
 │   └── backfill_sov.yml   # sov_daily 全期間再生成(手動実行)
 ├── config/
 │   ├── prompts.yaml       # 観測プロンプト定義(承認済み・変更禁止)
@@ -801,7 +801,7 @@ Gemini 無料枠は `GenerateRequestsPerDayPerProjectPerModel-FreeTier` で
 |---|---|
 | `config/prompts_monthly.yaml` | M-1〜M-16。**M-1〜M-12 が active、M-13〜M-16 は第2弾候補で active: false** |
 | `src/run_monthly.py` | オーケストレータ。収集 → 抽出 → シート → Slack |
-| `.github/workflows/monthly.yml` | 毎月第1火曜 07:30 JST + workflow_dispatch |
+| `.github/workflows/monthly.yml` | 毎月第1水曜 07:30 JST + workflow_dispatch |
 | `monthly_observations`(タブ) | `llm_observations` + `category` / `target_brand` / `notes` |
 | `data/raw/monthly/YYYY-MM-DD/` | 回答全文 |
 
@@ -884,7 +884,9 @@ Gemini 無料枠は `GenerateRequestsPerDayPerProjectPerModel-FreeTier` で
 ### 実行
 
 ```bash
-# 定期実行:毎月第1火曜 07:30 JST(cron: '30 22 * * 1' + JSTの日付でガード)
+# 定期実行:毎月第1水曜 07:30 JST(cron: '30 22 * * 2' + JSTの日付でガード)
+# 日次(07:00 JST)の翌日に置いてある。同日だと Gemini の枠が 日次7+月次12=19/20 で、
+# リトライが1本走ると超えるため。
 # 手動実行:Actions → monthly → Run workflow(date を指定可)
 
 cd src

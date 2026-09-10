@@ -2,13 +2,18 @@ name: monthly
 
 on:
   schedule:
-    # 毎週火曜 07:30 JST に起動し、その月の第1火曜のときだけ実行する。
-    # cron は「第1火曜」を直接書けない(日と曜日を両方指定すると OR になる)。
+    # 毎週水曜 07:30 JST に起動し、その月の第1水曜のときだけ実行する。
+    # cron は「第1水曜」を直接書けない(日と曜日を両方指定すると OR になる)。
     # また 07:30 JST = 22:30 UTC の前日なので、UTCの日付で判定すると1日ずれる。
     # そのため JST の日付で guard ジョブが判定する。
     #
-    # 日次は 07:00 JST なので、同日の実行順は 日次7本 -> 月次12本 = 19/20。
-    - cron: '30 22 * * 1'   # 月曜22:30 UTC = 火曜07:30 JST
+    # **火曜ではなく水曜にしている理由(2026-09-11 変更)。**
+    # 火曜だと日次7本と同じ日に月次12本が走り、Gemini の枠は 19/20 になる。
+    # 上限そのものには収まるが、MAX_RETRIES=4 なので1本でもリトライが走ると
+    # 22 になって超える。超えた分は 429 で欠測になるだけなので実行は止まらないが、
+    # 「枠切れの欠測」と「provider 障害の欠測」が区別できなくなる。
+    # 日次の翌日に寄せると、その日の Gemini 消費は月次12本+リトライだけになる。
+    - cron: '30 22 * * 2'   # 火曜22:30 UTC = 水曜07:30 JST
   workflow_dispatch:
     inputs:
       date:
@@ -16,7 +21,7 @@ on:
         required: false
         default: ''
       force:
-        description: '第1火曜でなくても実行する'
+        description: '第1水曜でなくても実行する'
         type: boolean
         required: false
         default: false
@@ -34,7 +39,7 @@ jobs:
     outputs:
       run: ${{ steps.check.outputs.run }}
     steps:
-      - name: Is today the first Tuesday (JST)?
+      - name: Is today the first Wednesday (JST)?
         id: check
         run: |
           DOM=$(TZ=Asia/Tokyo date +%d)
@@ -42,11 +47,11 @@ jobs:
           echo "JST $(TZ=Asia/Tokyo date '+%Y-%m-%d %H:%M') day-of-month=$DOM day-of-week=$DOW"
           if [ "${{ inputs.force }}" = "true" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
-          elif [ "$DOW" = "2" ] && [ "$DOM" -le 07 ]; then
+          elif [ "$DOW" = "3" ] && [ "$DOM" -le 07 ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::第1火曜ではないためスキップします。"
+            echo "::notice::第1水曜ではないためスキップします。"
           fi
 
   monthly:

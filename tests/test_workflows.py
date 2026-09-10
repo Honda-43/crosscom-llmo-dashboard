@@ -101,8 +101,22 @@ def test_the_monthly_workflow_matches_the_others():
     assert set(monthly) == set(weekly) == {"schedule", "workflow_dispatch"}
 
 
-def test_the_monthly_run_is_gated_on_the_first_tuesday():
-    """毎週火曜に起動して guard で絞る。cron では第1火曜を書けないため。"""
+def test_the_monthly_run_is_gated_on_the_first_wednesday():
+    """毎週水曜に起動して guard で絞る。cron では第1水曜を書けないため。
+
+    水曜なのは日次(07:00 JST)の翌日に置くため。同日だと Gemini の枠が
+    日次7+月次12=19/20 になり、リトライが1本走ると超える。
+    """
     doc = _load(WORKFLOW_DIR / "monthly.yml")
-    assert _triggers(doc)["schedule"] == [{"cron": "30 22 * * 1"}]
+    # 火曜22:30 UTC = 水曜07:30 JST
+    assert _triggers(doc)["schedule"] == [{"cron": "30 22 * * 2"}]
     assert doc["jobs"]["monthly"]["if"] == "needs.guard.outputs.run == 'true'"
+    # guard は JST の曜日で見る(3=水)。UTCの日付で判定すると1日ずれる。
+    guard = doc["jobs"]["guard"]["steps"][0]["run"]
+    assert '"$DOW" = "3"' in guard and "$DOM" in guard
+
+    # **日次は毎日走る。** 曜日を移しても日次と同じ日になることは変わらない
+    # (daily.yml の曜日欄は "*")。枠の共有はこの変更では解消しない。
+    daily = _triggers(_load(WORKFLOW_DIR / "daily.yml"))["schedule"][0]["cron"]
+    assert daily.split()[-1] == "*", (
+        "日次が毎日でなくなったら、月次との枠の共有を作り直すこと")

@@ -160,12 +160,21 @@ _ACTION_LINE = re.compile(
 _RULE_IN_HEADING = re.compile(r"(R-[A-Z0-9]+)")
 
 
-def extract_proposals(report_md: str) -> List[Dict[str, Any]]:
+def extract_proposals(report_md: str,
+                      settled_lines: Sequence[str] = ()) -> List[Dict[str, Any]]:
     """週次所見の「アクション:」行を拾う。
 
     所見文の形式は変更しない(§5)ので、既に出力されている行を読むだけ。
     直近に出てきた rule_id を根拠として紐づける。
+
+    ``settled_lines`` は ``suppress_settled`` が差し替えて書き込んだ本文。
+    差し替えた行は「もう打ってある」という報告であって新しい提案ではないので、
+    ここで取ると action_log に中身のない行が増える(A-016 がそれ)。
+
+    **判定は文字列の見た目ではなく、生成側から渡された実物との一致で行う。**
+    「実施済み(」で始まるかどうかで見ると、所見の文面を変えた日に黙って壊れる。
     """
+    skip = {str(line).strip().rstrip("。") for line in settled_lines}
     proposals: List[Dict[str, Any]] = []
     current_rule = "—"
     for line in (report_md or "").splitlines():
@@ -175,6 +184,8 @@ def extract_proposals(report_md: str) -> List[Dict[str, Any]]:
         match = _ACTION_LINE.match(line)
         if match:
             content = match.group(1).strip().rstrip("。")
+            if content in skip:
+                continue
             if content:
                 proposals.append({
                     "内容": content[:120], "対象": "—",
@@ -225,14 +236,17 @@ def suppress_settled(report_md: str,
     行を消すのではなく「実施済み(A-00N・実施日)」に置き換えるので、
     その面に対して何をしたかは所見の上で追える。
 
-    返すのは (差し替え後の本文, 差し替えた説明のリスト)。
+    返すのは (差し替え後の本文, 差し替えた説明のリスト, 差し替えた本文のリスト)。
+    3つめは ``extract_proposals`` に渡して、差し替えた行を提案として
+    拾わないようにするためのもの。
     """
     settled = settled_actions(action_rows)
     if not settled:
-        return report_md, []
+        return report_md, [], []
 
     lines = report_md.splitlines()
     notes: List[str] = []
+    written: List[str] = []
     # 後ろの項目から処理する。行を1本足す場合があり、前から回すと
     # 先に取った行範囲がずれる。
     for start, end in reversed(insight_style._block_spans(lines)):
@@ -263,10 +277,12 @@ def suppress_settled(report_md: str,
             break
         if not replaced:
             lines.insert(end, f"{insight_style.LABEL_ACTION}: {note}")
+        written.append(note)
         notes.append(f"{'/'.join(sorted(rule_ids))} × {'/'.join(sorted(targets))}: {note}")
 
     notes.reverse()   # 後ろから回したので、本文と同じ順に戻す
-    return "\n".join(lines), notes
+    written.reverse()
+    return "\n".join(lines), notes, written
 
 
 def prompt_block(action_rows: Sequence[Dict[str, Any]]) -> str:
@@ -289,14 +305,19 @@ def prompt_block(action_rows: Sequence[Dict[str, Any]]) -> str:
 
 
 def sync_from_report(report_md: str, date: str,
-                     existing: Optional[Sequence[Dict[str, Any]]] = None
+                     existing: Optional[Sequence[Dict[str, Any]]] = None,
+                     settled_lines: Sequence[str] = ()
                      ) -> List[Dict[str, Any]]:
-    """所見文から提案を抽出し、追記すべき行を返す(書き込みは呼び出し側)。"""
+    """所見文から提案を抽出し、追記すべき行を返す(書き込みは呼び出し側)。
+
+    ``settled_lines`` には ``postprocess`` が差し替えた本文を渡す。
+    渡さないと、差し替えた「実施済み(…)」の行が新しい提案として登録される。
+    """
     if existing is None:
         import sheets_writer
 
         existing = sheets_writer.read_action_log()
-    return propose(extract_proposals(report_md), existing, date)
+    return propose(extract_proposals(report_md, settled_lines), existing, date)
 
 
 def main() -> None:

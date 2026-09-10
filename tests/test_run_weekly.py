@@ -52,7 +52,7 @@ def wired(monkeypatch, tmp_path):
                         lambda date, **kw: {"rows_for_sheet": [], "rows": []})
     monkeypatch.setattr(sheets_writer, "write_citation_gap", lambda rows: None)
     monkeypatch.setattr(action_log, "sync_from_report",
-                        lambda report, date, existing=None: [])
+                        lambda report, date, existing=None, settled_lines=(): [])
     monkeypatch.setattr(sheets_writer, "write_action_log", lambda rows: None)
     # Phase 6: citation_gap 更新後の lk_scatter 再集計
     monkeypatch.setattr(run_weekly, "_refresh_scatter",

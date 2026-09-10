@@ -40,9 +40,9 @@ import looker_tabs
 import retired_urls
 import notify_slack
 import sheets_writer
-from settings import DATA_RAW_MONTHLY_DIR, load_monthly_prompts
+from settings import DATA_RAW_MONTHLY_DIR, MAX_RETRIES, load_monthly_prompts
 
-# 日次観測の本数。月次と足して Gemini の1日の枠に収まるかを見るのに使う。
+# 日次観測の本数。月次を日次と同じ日に走らせる場合だけ足す。
 DAILY_PROMPT_COUNT = 7
 # Gemini 無料枠(GenerateRequestsPerDayPerProjectPerModel-FreeTier)
 GEMINI_DAILY_REQUEST_LIMIT = 20
@@ -67,15 +67,30 @@ def _run(name: str, fn: Callable[[], Any], failures: List[str]) -> Any:
         return None
 
 
-def request_budget(active_count: int) -> Dict[str, int]:
-    """月次実行日の Gemini リクエスト数の見積もり。"""
-    total = DAILY_PROMPT_COUNT + active_count
+def request_budget(active_count: int,
+                   same_day_as_daily: bool = False) -> Dict[str, int]:
+    """月次実行日の Gemini リクエスト数の見積もり。
+
+    2026-09-11 に月次を**日次の翌日(第1水曜)**へ移した。日次と同じ日に
+    走らせると 7 + 12 = 19 で上限20には収まるが、``MAX_RETRIES`` が4なので
+    1本でもリトライすると 22 になって超える。超えた分は 429 で欠測になり、
+    「枠切れの欠測」と「provider 障害の欠測」が区別できなくなる。
+
+    ``retry_headroom`` は「何本まで最大リトライしても枠に収まるか」。
+    1本の失敗が余分に使うのは ``MAX_RETRIES - 1`` 回(初回は総数に入っている)。
+    """
+    daily = DAILY_PROMPT_COUNT if same_day_as_daily else 0
+    total = daily + active_count
+    spare = GEMINI_DAILY_REQUEST_LIMIT - total
+    extra_per_failure = max(1, MAX_RETRIES - 1)
     return {
-        "daily": DAILY_PROMPT_COUNT,
+        "daily": daily,
         "monthly": active_count,
         "total": total,
         "limit": GEMINI_DAILY_REQUEST_LIMIT,
         "over": total > GEMINI_DAILY_REQUEST_LIMIT,
+        "spare": spare,
+        "retry_headroom": max(0, spare // extra_per_failure),
     }
 
 
@@ -95,14 +110,18 @@ def main() -> None:
     failures: List[str] = []
     lines: List[str] = [f"## LLMO monthly observation — {month}", ""]
     lines.append(
-        f"- Gemini リクエスト見積もり: 日次{budget['daily']} + 月次{budget['monthly']}"
-        f" = {budget['total']} / 上限{budget['limit']}"
+        f"- Gemini リクエスト見積もり: 月次{budget['monthly']}本"
+        + (f" + 日次{budget['daily']}本" if budget["daily"] else "(日次とは別日)")
+        + f" = {budget['total']} / 上限{budget['limit']}"
+        + f"(リトライの余地 {budget['retry_headroom']}本)"
     )
     if budget["over"]:
         # 止めはしない。枠を超えるのは設計の問題で、当日の実行を諦める理由には
         # ならない(超えた分は 429 として欠測に記録される)。
         lines.append("- ⚠️ 1日の枠を超える見込み。プロンプトを減らすか実行日を分けること")
         print("[warn] active な月次プロンプトが多く、Geminiの1日の枠を超える見込みです")
+    elif not budget["retry_headroom"]:
+        lines.append("- ⚠️ 枠には収まるが、リトライが1本走ると超える")
 
     # 1. 収集(日次と同じリトライ・掃き直し・欠測通知を使う)
     out_dir = DATA_RAW_MONTHLY_DIR / date

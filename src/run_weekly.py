@@ -140,7 +140,8 @@ def main() -> None:
         # 同一内容+同一rule_idが未完了で存在すれば追記しない。
         proposals = _run(
             "propose_actions",
-            lambda: action_log.sync_from_report(report_md, date),
+            lambda: action_log.sync_from_report(
+                report_md, date, settled_lines=result.get("settled_lines") or []),
             failures,
         ) or []
         if proposals:

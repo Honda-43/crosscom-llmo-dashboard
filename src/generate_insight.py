@@ -443,7 +443,9 @@ def postprocess(report_md: str, stats: Dict[str, Any],
                 thresholds: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """記述ルールのうち、確定的に直せるものを当てる(§A・§B)。
 
-    返り値は ``{"report_md", "suppressed", "warnings"}``。
+    返り値は ``{"report_md", "suppressed", "warnings", "settled_lines"}``。
+    ``settled_lines`` は差し替えて書き込んだ本文で、action_log 側が
+    「これは新しい提案ではない」と判別するために使う。
     直せないもの(主語の省略、残った比喩)は warnings に積んで、
     ジョブサマリで見えるようにする。黙って直すより、直っていないことが
     分かるほうがよい。
@@ -457,7 +459,7 @@ def postprocess(report_md: str, stats: Dict[str, Any],
 
     import action_log
 
-    text, suppressed = action_log.suppress_settled(text, actions)
+    text, suppressed, settled_lines = action_log.suppress_settled(text, actions)
     text = insight_style.apply_number_format(
         text, insight_style.number_replacements(stats, flat)
     )
@@ -474,7 +476,8 @@ def postprocess(report_md: str, stats: Dict[str, Any],
     if missing:
         warnings.append(f"セクションが欠落しています: {', '.join(missing)}")
 
-    return {"report_md": text.strip(), "suppressed": suppressed, "warnings": warnings}
+    return {"report_md": text.strip(), "suppressed": suppressed,
+            "warnings": warnings, "settled_lines": settled_lines}
 
 
 # --------------------------------------------------------------------------

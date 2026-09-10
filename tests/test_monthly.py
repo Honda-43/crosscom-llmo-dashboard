@@ -77,17 +77,35 @@ def test_the_monthly_run_fits_in_the_gemini_daily_quota():
     Gemini 無料枠は GenerateRequestsPerDayPerProjectPerModel-FreeTier で
     1日20リクエスト。月次は日次と同じ日に走るので、合計で見ないと意味がない。
     """
+    # 月次は日次の翌日(第1水曜)に走るので、その日の消費は月次ぶんだけ。
     budget = run_monthly.request_budget(len(ACTIVE))
-    assert budget["total"] == 19
+    assert budget["total"] == 12
     assert not budget["over"], (
-        f"月次{budget['monthly']}本では日次と合わせて{budget['total']}件になり、"
+        f"月次{budget['monthly']}本で{budget['total']}件になり、"
         f"上限{budget['limit']}を超える。プロンプトを減らすか実行日を分けること"
     )
+    # リトライで超えないだけの余地があること。ここが0だと、1本の失敗で
+    # 枠を使い切り「枠切れの欠測」と「provider障害の欠測」が混ざる。
+    assert budget["retry_headroom"] >= 2, budget
 
 
 def test_the_budget_check_catches_an_over_sized_pool():
-    budget = run_monthly.request_budget(14)
+    budget = run_monthly.request_budget(21)
     assert budget["total"] == 21 and budget["over"]
+
+
+def test_running_on_the_same_day_as_the_daily_run_eats_the_headroom():
+    """火曜(日次と同日)に戻すと、リトライ1本で枠を超える。
+
+    月次を水曜に移した理由がこれ。同日だと 7+12=19 で上限には収まるが、
+    1本の失敗が余分に使う3回ぶんの余地が無い。
+    """
+    same_day = run_monthly.request_budget(len(ACTIVE), same_day_as_daily=True)
+    assert same_day["total"] == 19 and not same_day["over"]
+    assert same_day["retry_headroom"] == 0
+
+    apart = run_monthly.request_budget(len(ACTIVE))
+    assert apart["retry_headroom"] > same_day["retry_headroom"]
 
 
 def test_the_daily_prompt_count_matches_the_real_config():
