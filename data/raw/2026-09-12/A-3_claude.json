@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-12",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-11T23:54:40.677086Z",
+  "answer": "# Agentforce導入費用の相場と費用対効果を出すための進め方\n\n## 1. Agentforceの料金体系（3つの購入モデル）\n\nSalesforceは\nAgentforceについて約18ヶ月の間に3つの異なる料金モデルを展開しており、当初は「1会話あたり2ドル」、その後2025年5月に「1アクションあたり0.10ドル」のFlex Credits、そして現在は「1ユーザーあたり月額125ドル」からのユーザーライセンスが追加されています\n。\n\n**①会話課金型（Conversations）**\n\nConversationsモデルはチャネルによって最大24時間続く会話ウィンドウに対して1会話あたり2ドルを課金し、長時間のやり取りが多い顧客対応ボットに適しています\n。日本国内の紹介記事でも\nAgentforceは「1会話あたり240円」というシンプルな料金体系を採用していると説明されています\n。\n\n**②Flex Credits（従量課金型）**\n\nFlex Creditsモデルでは、標準的なアクション1回につき20クレジット（10万クレジットあたり500ドルの定価で0.10ドル相当）、音声アクションは30クレジット（0.15ドル）を消費します\n。\n組織はFlex CreditsかConversationsのどちらか一方のモデルを選択する必要があり、両方を同時利用することはできません。損益分岐点は1会話あたり約20アクションで、それを下回ればFlex Creditsの方が割安になります\n。\n\n**③ユーザーライセンス型**\n\nSales CloudまたはService Cloud上で1ユーザーあたり月額125ドルを支払うことで、ライセンスを持つ従業員は社内向けエージェント機能を無制限に利用できます\n。さらに上位版として\nAgentforce 1 Editionsは月額550ドルから始まり、組織あたり年間250万Flex Creditsがバンドルされています\n。\n\n## 2. 見落とされがちな「Data Cloud」の必須コスト\n\n重要な注意点として、\nAgentforceはData Cloudを正しく機能させるために必須であり、これは多くの導入検討者が見落としがちなコストで、Agentforceのライセンス費用そのものを上回ることも少なくありません\n。海外の目安では\nData Cloud Plusで年間約6万5,000ドル、Data Cloud Premiumで約17万5,000ドルとされ、Agentforceの予算だけを承認した後にData Cloud費用が別途発生することに気づくケースが多いと指摘されています\n。\n\n## 3. 総コスト（TCO）の目安\n\n海外の試算例（1ドル=150円換算はご自身で調整ください）:\n- \n中規模企業（500ユーザー）の場合、Data Cloud費用を除いてAgentforce単体で年間1万5,000～5万ドル程度が目安とされています\n\n- \nData Cloud・導入・保守を含めた初年度の総保有コストは15万～42万5,000ドルの範囲になるとされています\n\n- 別の試算でも\n中堅企業における初年度の実質コストは15万～60万ドルとされ、その差はData Cloudの年間契約（10万8,000ドル以上）や導入費用が必須となることに起因します\n\n\n## 4. 日本国内の導入支援（コンサル/SI）費用の考え方\n\n国内SIerやコンサル会社の支援は、フェーズごとに費用が発生する形が一般的です。例えばある支援会社のプロセスは\n①現状業務ヒアリングと業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出し、投資対効果(ROI)の試算 ②ユースケースのPoC、最適なAIエージェントの選定と導入計画立案、カスタムエージェントの設計・実装 ③利用状況の可視化と分析レポート提供、改善提案 ④業務フロー自動化・連携という段階を踏みます\n。\n\nまたAgentforce特有の観点として、\nAI活用を見据える場合は、AI機能への対応実績に加えて、データ整備・定着運用まで支援できる会社かを確認することが重要\nとされており、「初期構築は大手SIer、定着・運用フェーズは専門会社」といった使い分けも一般的です。\n\n## 5. 費用対効果を出すための進め方（4ステップ）\n\n日立ソリューションズなど導入支援各社が共通して強調するのは、**技術検証よりも「ビジネス価値の明確化」が最大のハードル**という点です。\n導入検討フェーズにおける最大のハードルは、技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定であり、PoCで終わらせず着実に成果を出すためのステップが重要とされています\n。\n\n**ステップ1：定量指標へのKPI変換**\n",
+  "cited_urls": [
+    "https://www.saastr.com/salesforce-now-has-3-pricing-models-for-agentforce-and-maybe-right-now-thats-the-way-to-do-it",
+    "https://aquiva.com/blog/agentforce-pricing-gets-a-long-overdue-fix-flex-credits-are-now-live",
+    "https://www.strh.co.jp/knowledge/salesforce-agentforce",
+    "https://www.concret.io/blog/new-agentforce-pricing-model",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://www.members-saasplus.com/agentforce",
+    "https://cone-c-slide.com/liblog/salesforce-implementation/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

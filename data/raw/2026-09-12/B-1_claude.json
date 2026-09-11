@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-12",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-09-11T23:55:18.179332Z",
+  "answer": "Agentic CRMについて調べて、正確な情報をお伝えします。\n# Agentic CRMとは\n\nAgentic CRM(エージェンティックCRM)とは、\n人間、自律的なAIエージェント、そしてそれらが動作するプラットフォームが協力して顧客の成功を推進する顧客関係管理システム\nのことです。\n\n## 従来のCRMとの違い\n\n従来のCRMは受動的なデータベースでした。\n従来のCRMは受動的で、情報を保存するだけで、人間がシステムを開いて行動を起こさない限り、その情報を使って何かをすることはありません。\n\n\n一方、Agentic CRMは\n人間だけでなく、各ステップで人間の承認を必要とせずに多段階のワークフローを計画・実行・適応させる自律的なAIエージェントが利用するシステムであり、あらかじめ設定されたガードレール内でエージェントが行動し、必要な場合は人間にエスカレーションする\nという特徴があります。\n\n### ルールベース自動化との違い\n\nこれは単なるルールベースの自動化とは異なります。\nルールベースのCRM自動化とは大きく異なります。ルールベースのシステムは、例えば「リードのスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従います。一方、エージェント型システムは文脈を解釈するため、単に条件と出力をマッチングさせているわけではなく、顧客データを推論し、状況に応じた適切なアクションを特定し、その後の結果に基づいてアプローチを調整します。\n\n\n具体例として、\n商談が5日間停滞していることを営業担当者に警告する代わりに、エージェンティックCRMは過去の会話を確認し、成約確率を評価し、フォローアップメールの草案を作成し、営業担当者のためにタスクを作成することで、停滞した商談を分析することができます。\n\n\n## 主要ベンダー\n\n現在、大手CRMベンダーの多くがAgentic機能を展開しています。\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要なソリューションは、エージェンティックCRMがすでに市場を再形成し、将来の標準を設定しつつあることを示しています。\n代表的な製品としてはSalesforceの「Agentforce」があり、\nSalesforceのagentic AIをあらゆるアプリケーション、ワークフロー、プロセスに統合できるデジタル労働力プラットフォームであり、チャットだけでなく、動的な推論・意思決定・アクションのオーケストレーションによって重要なビジネス機能を強化することができます。\n\n\n## 導入・設計を支援する会社\n\nAgentic CRMの導入や設計を支援する企業はいくつか存在します。\n\n**1. Salesforce系コンサルティング**\n- **CRMIT**:\nSalesforceの認定コンサルティングパートナーとして、agentic AIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供\nしています。\n\n**2. Microsoft Dynamics 365系**\n- **Inogic**:\n自律システムの構築はDIYプロジェクトではなく、テクノ機能コンサルティングへの深い理解と1,000件以上の導入実績が必要であり、Dynamics 365ユーザーの日常業務にAzure OpenAIの力を取り入れることに注力\nしています。\n\n**3. マルチプラットフォーム対応の総合コンサル**\n- **RSM US**:\nAIアドバイザーが、AIエージェントが組織にとって最も価値をもたらす領域を理解する支援を行い、agentic AIの開発・展開のための包括的な戦略を策定\nします。\n- **Kanerika**:\nエージェントはERP、CRM、クラウドプラットフォームに直接接続され、並行して管理・維持すべき別システムは不要で、アクセス制御・監査証跡・説明可能性が最初のエージェント稼働前からアーキテクチャに組み込まれています。\n\n\n**4. アウトカム重視型の新興企業**\n- **congruentX**:\nCRMコンサルティングサービスを通じて、システムを単なる記録媒体から「行動のプラットフォーム」へと変革し、AIエージェントプラットフォーム技術で非営業活動を自動化\nすることを提唱しています。\n\n## 導入時の注意点\n\n導入を検討する際は、AIエージェントの権限設計が重要な論点になります。\nAIエージェントを含む構築の場合、ユーザーロールと同様にビルドフェーズでスコープと権限設定を行う必要があり、CRMレコードへの無制限な書き込みアクセス権を持つAIエージェントは、通常の活動のように見えるため発見が難しく、悪い統合と同じくらいデータを破損させる可能性があります。コンサルティングパートナーには、単に「AIを使ったことがある」かだけでなく、AIエージェントの権限設定と監査ログをそのプラットフォーム上で実際に構成した経験があるかを直接確認すべき\nとされています。\n\n---\n\n**まとめ**:Agentic CRMはまだ比較的新しい概念で、2025〜2026年にかけて急速に普及しています。導入を検討される場合は、①どのCRMプラットフォーム(Salesforce/Dynamics 365/HubS",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.fullpath.com/blog/what-is-an-agentic-crm-understanding-the-future-of-dealership-customer-management/",
+    "https://www.vtiger.com/blog/what-is-agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://www.crmit.com/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://congruentx.com/",
+    "https://integrateiq.com/blogs/crm-consulting-services-companies/"
+  ],
+  "error": null
+}

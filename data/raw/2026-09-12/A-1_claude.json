@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-12",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-11T23:53:28.501765Z",
+  "answer": "Agentforce（Salesforceの自律型AIエージェント）の導入支援を行っている日本国内の代表的な会社をいくつかご紹介します。特徴が分かれるので、自社の目的や規模に合わせて選ぶとよいでしょう。\n\n## 主な導入支援会社\n\n### 1. 株式会社メンバーズ（サースプラスカンパニー）\n\n現状業務ヒアリングと業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果(ROI)の試算\nから、\nユースケースのPoC（概念検証）、最適なAIエージェントの選定と導入計画立案、カスタムエージェントの設計・実装（プロンプト、ナレッジ連携、API接続）\nまで一貫して支援しています。また\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\n。戦略策定から実装・運用まで幅広くカバーしたい企業向けです。\n\n### 2. Uhuru（ウフル）株式会社\n\nまずはSalesforceが提供する「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供し、最短3カ月のスケジュールで導入を支援\nします。\nデータ活用とIoTに強みを持つパートナーで、マーケティング（Agentforce for Marketing）とカスタマーサービス（Agentforce Service）の両領域に対応\nできるのが特徴で、スモールスタートで素早く効果検証したい企業に向いています。\n\n### 3. クロスコム（合同会社）\n\n当社はSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っています\n。\n実務で活用できるまでの定着支援に重点を置いたサービスを提供しており、目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込みます\n。\n1ユースケース×3ヶ月のスモールスタートプランから対応\nしているため、小さく始めたい企業に適しています。\n\n### 4. フロッグウェル株式会社\n実績のある事例が豊富で、住宅業界向けのマッチングシステムなど\nAIエージェントによる住宅購入者と工務店のマッチング業務を自動化\nするような、業界特化型の構築を得意としています。\n\n### 5. 株式会社enucolor\n\n現状業務の深い理解及び業務課題の整理を行い、AIエージェントで解決すべき課題を概念検証\nしていく方式で、\n対象サービス：Agentforce for Service/ Agentforce for Marketing / Agentforce for Sales\nと幅広く対応しています。SFA・営業領域のAI活用支援に強みがあります。\n\n### 6. 株式会社テラスカイ\n\n昨年10月にSalesforceのAgentforceのパートナーエコシステムにいち早く参画し、日本市場のお客様向けにAgentforce対応サービスの提供を開始\nした老舗のSalesforceパートナーで、大規模企業導入の実績が豊富です。\n\n### 7. 富士通\n自社導入の先行事例として有名で、\n2025年1月からAgentforceをSalesforceサポートデスクに採用しています\n。大企業向けの大規模導入・実証支援に強みがあります。\n\n## 選び方のポイント\n\n- **Salesforce公式パートナー認定の有無**：\n現在、日本市場では15社のパートナーが対応を開始しています\nので、認定パートナーかどうかは信頼性の目安になります。\n- **対象領域（Service/Sales/Marketing）が自社ニーズと合っているか**\n- **PoCからスモールスタートできるか**：\n1ユースケース×3ヶ月のスモールスタートプラン\nのように、小規模から始められる会社は初めての導入に向いています。\n- **内製化支援の有無**：定着化やトレーニングまで対応してくれるかも重要な比較ポイントです。\n\n---\n\nまずは1〜2社に無料相談やPoC（概念検証）から始めて、自社の業務課題やユースケースに合うかを見極めるのがおすすめです。特に初めての導入であれば、スモールスタート型の支援（クロスコムやenucolorなど）から着手し、効果を見ながら本格導入を検討する進め方が失敗しにくいでしょう。",
+  "cited_urls": [
+    "https://www.members-saasplus.com/agentforce",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://prtimes.jp/main/html/rd/p/000000279.000041550.html",
+    "https://global.fujitsu/ja-jp/events/reports/sf-agentforce-20250416"
+  ],
+  "error": null
+}

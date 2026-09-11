@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-12",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-09-11T23:54:50.925339Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、AIエージェントが自律的にマーケティングやサービス業務を管理する顧客関係管理システムを指します。従来のCRMが指示を待つ受動的なシステムであるのに対し、Agentic CRMではAIエージェントが顧客データとインテリジェントな自動化を組み合わせ、より適切で一貫した顧客体験を提供します。これにより、企業は戦略とガバナンスに集中できるようになります。\n\nAgentic CRMの主な特徴は以下の通りです。\n*   **自律的なタスク実行**：AIエージェントが、複数ステップにわたるワークフローを計画、実行、適応し、各ステップでの人間の承認なしに進めます。\n*   **データに基づいた意思決定**：AIエージェントは、顧客情報、商談履歴、活動履歴、ナレッジ、見積条件などを横断的に読み取り、営業担当者に代わって一次処理や下書き作成を行います。\n*   **学習と適応**：システムがデータから学習し、結果に基づいて適応し、リアルタイムで行動します。\n*   **業務効率の向上**：議事録、顧客からのメール、打ち合わせメモなどをSlackなどに投稿するだけで、AIが内容を読み取り、CRMの各項目へ下書きとして振り分けるなど、入力・更新・分析作業を自動化します。これにより、営業担当者は承認作業のみに集中できます。\n*   **提案力・思考力の強化**：トップパフォーマーの思考プロセスや判断基準（仮説・根拠・検証結果）をAIが推論して記録することで、営業チーム全体の思考力や提案力の向上を支援します。\n\nAgentic CRMの導入や設計を支援してくれる会社は複数存在します。\n\n**導入・設計支援を提供している主な会社:**\n\n*   **株式会社ハイウェイ (Hiway)**:\n    「Hiway CRM」というAIネイティブCRMを提供しており、Agentic CRMとしての導入・設計を支援しています。入力・更新・分析の自動化に強みを持ち、大規模な代理店ネットワークや複雑な見積業務を持つエンタープライズ企業に適しているとされています。\n*   **合同会社クロスコム**:\n    「Agentic CRM設計支援」を提供しており、オープンソースCRMを基盤に、AIが読み書きすることを前提としたCRMシステムを企業専用に設計・構築します。特に、トップセールスが頭の中で行っている判断基準を言語化し、データベースの構造として実装することに重点を置いています。\n*   **ブリッジインターナショナルグループ**:\n    「Agentic Revenue Organization構築支援」や「Salesforce/Agentforce導入活用支援」を提供しています。構想策定からPoC、設計、実装、教育、運用、継続的な改善まで一貫して支援し、Salesforceを中心としたCRM・SFAの構築・運用、およびAgentforceを活用したAIエージェントの設計・実装を支援します。\n*   **株式会社100**:\n    HubSpotとAIエージェント、DXを統合する「Agentic CRM パートナー」として、HubSpotの導入・活用支援、AIエージェント組織構築、全社DX x AI推進のPMO伴走支援などを行っています。\n*   **ソフトバンク**:\n    「AGENTIC STAR」というAIエージェントの実行基盤となるPaaSを提供しており、既存システムやCRM、BIツールなどとのAPI連携を通じて、AI伴走による業務改革を支援します。SaaSモデルからカスタマイズ、開発基盤提供まで様々なサービスモデルがあります。\n*   **LaKeel (ラキール)**:\n    「LaKeel Agentic Assistant」を提供しており、社内システムから自律的に情報を収集し、リアルタイムに最適解を導くAIエージェントによって業務効率を向上させます。CRMを含むあらゆる社内システムとシームレスに連携が可能です。\n*   **Salesforce**:\n    Agentic CRMの概念を提唱しており、「Agentforce」などの自社製品でAgentic AIの機能を提供しています。また、ブリッジインターナショナルグループのようなパートナー企業がSalesforce製品の導入・活用支援を行っています。\n*   **HubSpot**:\n    「AI搭載のカスタマープラットフォーム」を提供しており、「Agentic Customer Platform」として従来のCRMを超えた価値を実現することを目指しています。顧客データの集約とチーム・AI双方による全体像の把握を強みとしています。\n\nこれらの企業は、Agentic CRMの概念的な理解から、具体的なシステム設計、実装、そして現場での定着まで、様々なフェーズで支援を提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG6KvXqDAKcjmf77i04VLQAd716bMIZFbbM1n4si8Fx0k1qvEAbOI9jrszXZ00tcit4GvzhwYrLx-8hgborWp1-WZLx7t2wTQHNYVNwXe0GjO7OQheiUBS4Lq_7e9VEo1K7LGiEcxwN1E8FWiATU8IxJhs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFExSvSrbfQ0G6waOVkUMKUYB_ixqt7l8MsILDtOfsEBpFPt4M-IHK6MV2RGUYx7SDJl_KDZctYEXUFOnNGgE4ItmFuNhL5UiGxvoF9HyYr55kd0G9Q0JH_sYJh_V_gEQcm3yrPDykDigq6U5MvOAnF3FM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE6BqRabOpymLwOH-ckgJyFvyzBCNpKRQeMSNMqJqBknQd42cUNFuMj8bXkzXHohvqyLES95kTATc5GQfhRKZk45E184lrs6nPvJzvAiDdK5vQR4LghQVvMcBDT-eTC47tUcW2cia0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGdw7G2n6C9X2_KRByf30oI4BEJZQ89cSokN_HXZe-xkytZcVeKxrUJ_zF-Q3I97WvK4KseJGeTkLW_32Ko1rGZnN3zKMdz46i59BNa9oFsKRfgT8Oxit5Do8OfMbLiZ48xtXZ8TSLchAkqdg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVqHR42THpl99Mvnzkm17igHlLArbjVrKhpuWSxT0rSHut3DlJDpHKCxiKhCxsuN7wfw1Bm988jwskOe2OiRUrmNwH-0AUO66xCLcDV130fXuxBZIrZcmLDw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoeCqC9qTwcBsOAmLDLvs9XyG15Flv1gfUYBMeMkNF6N_BB_w0pvubNJCvP5athRn6Uu2kJbYtzPBwhfIYn-00iuuAH3WvjxKo5472FgiMsTAfZneu5MPo28VHmNN1O9T9d67o3cDLYLxTOB_Go2KwAtks98M=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGf229kX3A8wh2sO34zLa4-mVqkn5SfuDPb3x3EkCumxx7Qw9c_ur75wlOysEZODKgdK4AO1GXA2Pr_gtDV1Vbz859spSLcWU2HZeTMCbXLoe8aSEsDMXS8vnJ0VLrJU0wDLB-8iUnA8O2fA90TQnIRL72xoPw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHctL0Vmm_JjZ6Bh_k54dFWiu9yGeSEjSWy_xzMNLnpp2OA4wVVo1jLGAdqxNWvrT_uVgB7mVVxpQHqwapzg2qq-gRK8ylP08jJVIi171dC8DEhkQoOBKNFkI7yFuoztaai-NM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFyFYBX45mw9ImfczsBe2PsTJzlLYgRweM2YdzfbxXMlNtcWmqYc71isNh68d8Bmdh2ByTcVkPET02zEbAKX0XkFJ0h2qyMZBLlWIHlwUraM6OAOor8DbsgrnaKMpfPuEi5lyrYLOrY-djQU9eYds9r6Mpz1T-5vw4o5aPaJEsR8MBBiJTbTC102W5VyUq_f5WzOl7Bkdtg3J5JdQoTUKpyL4jiHJ0mEK3pLJOesZrvPRSrOAkTldeNdhTIxe-9uGJMZPHwZWKOYNa1tiSuSPSh6YL9wBokURltGewYeEgmaRBss0_M1-s=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGNcuyXduIClDwtPQ9qrOzIO3xrfrlOmbp26ergfgKlfNmEQhAhKRorkAt3Y6tzmAHvGwYQMzc6uwpP6dFS-Lmwkmi-Jkipu-MfvPVsUARpPG5V-oalM_-3g2mXJrG2i8ccnvqLpA-jBnwtoaCPHWZ82fVS7g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQESFT47FTQBGzAUSs4xpj-WcwIKu8DX-epJWy2yH0DgjEphMz2jbFVz2VqzpAngqewCtcFDvVoXEpUwbSYGS8OeBiTp4TGcybi0XKBdgKKdhYVPRiBBaTlcbeagbjlwcbNWfA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDiZ6l9iejm5i0MPqzNuLQc_xxLNgmxxLd0VxR70mYkzZe6iFSHPUYQm7R1W1fXJKhIIyVlblm0OwSzSKoGD-57w1PeCDgrXAOx0raVUN5nwWuVdegL_59KH1CCXLWn7NdzqaJMu-6mZAGfJ0V6NdxUA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGYLamBuMozcvfrOTUmHY9Rf2MfGDD9Ayuo_j-ybR-iBeJqkWLeVclCYergj9y7Jlwx-x4vzp8kKUH2YWXKW8pf0Dan3przl5oGz3M9nB6bmKlg-9XSaUJgFRE7NwB7zXnehqY6QEGn1EYwo88="
+  ],
+  "error": null
+}
