@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-13",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-09-12T23:55:13.124291Z",
+  "answer": "営業にAIエージェントを活用するにあたり、ツール選定前のCRMデータ設計から支援してくれるパートナーをお探しとのこと、承知いたしました。CRMのデータ設計は、AIエージェントが最大限のパフォーマンスを発揮するための基盤となるため、非常に重要なフェーズです。\n\n以下に、CRMデータ設計支援や、AI活用を視野に入れたCRMコンサルティングを提供している企業をいくつかご紹介します。\n\n*   **合同会社クロスコム**\n    Agentic CRM設計支援を提供しており、AIが自動で入力・更新作業を行うCRMシステムの設計に強みがあります。AIが営業データを学習し、提案や実行精度を向上させることを前提とした「データの意味付け」を重視したデータベース設計を行っています。\n*   **テクノデジタルコンサルティング**\n    CRM・データ戦略設計サービスを提供しており、CRMは単なるシステム導入ではなく、顧客データを活用し、顧客理解を深め、継続的な関係構築につなげるための戦略であると位置付けています。ツール選定前に「何のために、誰のデータを、どう活用するか」を設計することの重要性を強調しており、CRMもAIも上流設計なしには真の価値を発揮できないとしています。\n*   **PixPot株式会社**\n    顧客・商談・行動データを活用した営業・マーケティングへのAI活用を支援しています。業務・データ整理、ユースケース選定からAI設計を起点に、設計・実行・運用改善まで一貫した支援を提供しており、HubSpot等のCRMの顧客・商談・行動データをAI活用へつなげることに強みがあります。\n*   **アルビド・ジャパン株式会社**\n    CRM構築・顧客データ活用支援を行っており、CRM導入コンサルティングから、顧客管理（DB）や履歴データの設計・構築、各種施策とのデータ連携・拡張性を考慮した設計支援まで対応しています。CRM戦略設計から導入支援、データ基盤の構築と活用環境の整備までを包括的に支援します。\n*   **日立コンサルティング**\n    営業DX（CRM&生成AI活用）コンサルティングを提供しており、CRM/SFAシステムの採用に加え、生成AIなどの先端技術の活用を含めた営業プロセス改革を支援しています。成約に至った商談プロセスを分析し、成功要因を導出することで、CRMや生成AIを駆使した営業プロセスの高度化を提案します。\n*   **株式会社HubOne**\n    CRM活用支援サービスを提供しており、顧客管理基盤整備として、顧客情報の管理設計、顧客セグメント設計、名寄せ・データクレンジングなどに対応しています。マーケティング・営業・カスタマーサクセスが連携できる「使えるCRM基盤」の構築を支援します。\n*   **株式会社ripla**\n    CRM開発において、業務設計からシステム構築・運用まで一気通貫で支援するDX／開発支援会社です。営業／マーケティング／サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応できます。\n*   **ナウビレッジ株式会社**\n    CRM構築・導入支援サービスを提供しており、データ入力ルール、商談管理フローなどの運用ルール設計や、お客様の営業活動に合わせた営業プロセス設計を通じて、効率的で属人化しない営業体制の構築を支援します。\n\nこれらの企業は、CRMのデータ設計から、AIエージェントの活用を見据えたコンサルティングまで、貴社のニーズに合わせた支援を提供できる可能性があります。まずは複数のパートナーに相談し、貴社の具体的な課題や目指す方向性に合致する企業を選定することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEFjJ586-hyfa_eUagGBJ8AfbVIqeiMLbNt0QrTLqJ2pzBTsI7XQiXNMs9OgUHmtVklB0p2o6c-0J5nzpmXAR4aAbpr_TEbfJkF46JWowy4KOX1vsTC7Cz-rqr8UTPZBp73KdIFZuWUv_zUzQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEN1yafCcy3mkWHldVF05bzUkFGoRsvOjWKaEPnAL038ctd3EaILjBWr2Xg4cirZ5dg6kJDrE8xBBPGmoUEL0vlEBRjuyhOXtx3-wfTMVbYN3nE_RbWVO0RSb3L7bu8vL_Orqoc8J-OfjvQR_q1Ig428qG3",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfpRFOpobwWgp0b0cV-GWFofhQNe5bB_zH73oWopGstvz11XqueGNW2bxTewc3vk2u7gOt3824EKtVhyb-ygC01VeVSEj8wNJHJMMNIWOrz6lVNWzmpmRaL3R9PSelgTIIb3kfxs0Xgn3jhkY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGI3cr8X1aNJjc8fpWnzEnpQBr4fcnD9U5H8-yj5Ll3B3ezGO5w8KnZMLXARipb8k2yNEUBbvP-epLQt79ilRT1BfIlw0FnNii5h4OEkr1XL_81X7nRRsK2Pxfq4G3O2v_rowc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG3eGdqZSrix11_sHOGaGwmUFSulZ36_CaiZUjogW97IIQhYDA9q_b1MXPXzg3qMH2uPU20xuAm4yeIMeRRDsxEiS8U3ZhF_8cD-EW7FjZa7k3rnK3q-5RffqrvmIycezBuoxYvtPbe7YFv5lBqawTETZ0jdTItCKP7u7-kA9ukwt1AoiE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEAn0SEfLSvCnT7WA4eWmEPBdr36yG8MwdCclc-mdK4mDeg2tGZWF_P_0rWvvoxk2_PzE68YR0fvwELD5_dPOfhiHaGpA82v-EI1TOk0NKpuoPixeACMSJWPBlxO9p_L1qzThHDRo76",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHR3NPjpKq5Rf0XnOYO_0qWkETD7Ta5259TTdDjgWTpEJnSZK9ukET5Mlrb3qtjWkI00fAw4FIsCdNl61qLiOGMnFt4-EWiDIyWWUBBzbCZH4SQ0ONrh4OoY0ldUrq-WKsaAwU3AmuGSXwg",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFI6m2HT2w8tRO9IBzgK5UJSC3I2jfYg6hD9xKQtKwSD3A1WyL1oiq3gHEuWjQl-GoUBCRo4QUtUEoI870KvxYWjpVuSfXcoREi6GDxszxB4W2nhSU3ClmjigSrI-a_sIT6KLimxjHPGc7VD2Q="
+  ],
+  "error": null
+}

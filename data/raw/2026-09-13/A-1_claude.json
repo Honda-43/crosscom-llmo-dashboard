@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-13",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-12T23:47:13.104303Z",
+  "answer": "Agentforceの導入支援を行っている会社について、最新の情報を検索してご紹介します。\nAgentforce（Salesforceの自律型AIエージェントプラットフォーム）の導入支援を行っている会社をいくつかご紹介します。選定の際は、まずSalesforce公式の「コンサルティングパートナー」区分から探すのが基本とされています。\n\n## Agentforce導入支援会社の例\n\n**1. 株式会社メンバーズ（サースプラスカンパニー含む）**\n\nSalesforceが提供する自律型AIエージェントAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nしています。\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有\nしている点が強みです。カスタムエージェントの設計・実装（プロンプト、ナレッジ連携、API接続）なども対応可能です。\n\n**2. 合同会社クロスコム**\n\n「Agentforce導入・定着支援」として、実務で活用できるまでの定着支援に重点を置いたサービスを提供\nしています。\nSales Cloud(CRM)、Account Engagement(MA)の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装\nする点が特徴です。\n\n**3. バーチャレクス・コンサルティング株式会社**\n\nAgentforce導入・活用支援サービスは、導入から定着化、活用促進までの包括的な支援を提供\nし、\nコンサルティング、テクノロジー、オペレーションを組み合わせたワンストップ支援が特徴で、導入後の定着やPDCA運営の定常化までを対象\nとしています。主に顧客接点領域（コンタクトセンター等）のAI活用に強みがあります。\n\n**4. 富士ソフト株式会社**\n\nAgentforceの導入に向けたPoC（概念実証）支援を中心にサービスを組み立てており、ユースケースの整理や導入データの質のチェックから始め、要件定義、技術検証、効果測定、本番移行計画までを反復的に支援\nしています。\n\n**5. 株式会社enucolor**\n\n要件定義から実装まで、プロジェクト成功に導く戦略的導入支援\nを行っており、\n初期導入前コンサルティング（現状整理や業務課題の把握）、Agentforce構築（PoC支援）、活用及び改善サポート\nという流れでサービスを提供しています。\n\n## 選び方のポイント\n\n\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼります\n。会社選定の際は以下を確認するとよいでしょう：\n\n- **公式パートナー認定**の有無（コンサルティングパートナー vs AppExchange/ISVパートナー）\n- 自社の業界・ユースケース（営業・マーケティング・カスタマーサポート等）での実績\n- **PoCから本番運用・定着化まで**を一貫して支援できるか\n- 既存のSalesforce環境（CRM、MA等）の運用実績\n\n各社でPoC重視、定着支援重視、業界特化など強みが異なるため、まずは自社の課題（例：問い合わせ対応の自動化、営業支援、マーケティング最適化など）を明確にした上で、複数社に相談・比較することをおすすめします。",
+  "cited_urls": [
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null
+}

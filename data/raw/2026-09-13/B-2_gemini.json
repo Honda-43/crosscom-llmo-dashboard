@@ -1,0 +1,22 @@
+{
+  "date": "2026-09-13",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-09-12T23:54:25.596435Z",
+  "answer": "中堅企業が特定のベンダーに依存せず、中立的な立場でCRMの設計を支援してくれる会社をお探しの場合、CRMコンサルティングを提供している企業が有力な選択肢となります。これらの企業は、企業の現状分析から最適なCRMツールの選定、導入支援、さらには導入後の運用サポートまでを一貫して支援します。\n\n特に、中立的な立場での支援を重視する際には、以下の点を考慮して会社を選ぶと良いでしょう。\n\n*   **ベンダーフリーの姿勢**: 特定のCRMツールに偏らず、複数製品を比較検討し、貴社のビジネス目標や課題に最も適したツールを提案してくれる会社が理想的です。CRMツールベンダーは自社ツールの販売を主題とする傾向があるため、中立的な視点を持つコンサルティング会社を選ぶことが重要とされています。\n*   **戦略策定から実行までの一貫支援**: 単にツールの導入だけでなく、CRM戦略の策定、データ活用方法の設計、マーケティング・営業プロセスの改善など、貴社の事業成長に繋がる包括的な支援を提供できるかを確認しましょう。\n*   **実績と専門性**: 中堅企業でのCRM導入実績が豊富で、様々な業種のノウハウを持つコンサルタントがいる会社は、貴社の状況に合わせた具体的な提案が期待できます。\n\n中立的なツール選定を強みとしている会社の一例として、StockSun株式会社は「特定ツールありきの提案はせず、事業規模・目的・社内リソースを踏まえて最適なCRM/MA・SFAを中立的に選定する」と明言しています。\n\nCRMコンサルティング会社は、企業の「データ」「マーケティング」「システム」に関する専門知識を融合し、客観的かつ多角的な視点からCRM施策の立案・実行を支援するパートナーです。 自社内だけでは見落としがちな課題や改善ポイントを明確にし、データに基づいた再現性のあるCRM戦略の構築をサポートしてくれます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQENcuToyVWZ5sn1RZvSWdUmF6_-mW8bxzJnLc6hRUzasFNEc4LmV9VPY2Wb5h3kMdQ4aNsQytnWopHRlBfzDBu536mn5vagHrSo5VuOcvgtiw9HNq4BPHn3FE9Sy_6d4u7PU9PQqA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEWRsX5vyuUuFXNt4NN1yWeybgrjlNAOEfegO5H5MK4VaEXFXxcuwjGPeUCRgBTTtEV1wG-nxuiZObiL-Dv-4bSRqlmpa_gGxcqzXRhtoaOIySwQSrWkKGOpATMkbevUSJ5XG0RLMEA7euJ9Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHmkq1U08NJjLwSZt-Ts-bNQgfOAA-lVR3q7iYvHmOdoVyQKla2Q8m-Yu4Hm0iSBkT5aK7CXa-RfRZwviK4602Jh3LOhfcP3VJ0opWwWO07OeJjR2QCpKxxYfURdN9nAx5_mXeghO_H",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFxfh760IJcWYmEaYLAfQseFPL8vuYqOT5KKfFYjMuuwHM5aoMy21Qa0kEQza1kiDF24_A9dmzDN-B7CDQATwQu6-l4AFyAoleULBS0lwLpRx12Nay6RljV8gVauGaGA-IL4bSlmx61PWw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFuq9-edlg7UlDs_u4UyAtK7HzoGtNA1rDsAzoCFdjnpNMSshLUJyn-pHlcH16oYv6DFPk6cEGUo3SogAAQIGf03kOX6Hw3CKgh6F9_8K2he21_Q-dYai0qvlJ-sHNXoeZF5uIinghMWXn_KskM-u4TsTE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG1WKN3xPRdcUnTi0FS51JlL3jitHYovppPqZiGOfB21bBUbEqK36NX-CRxNz--ZpN-37kNgysmDOEEnZeuw2AiKAn8ARkT3k-78YiHgQjXRg4eSYNyWYaBlR-EJeY="
+  ],
+  "error": null
+}

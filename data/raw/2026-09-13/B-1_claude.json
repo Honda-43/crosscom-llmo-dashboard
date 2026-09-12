@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-13",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-09-12T23:54:18.718975Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRM(エージェンティックCRM)とは、\n人間、自律型AIエージェント、そしてそれらが動作するプラットフォームが協働して顧客成功を推進する顧客関係管理システム\nのことです。\n\n## 従来のCRMとの違い\n\n従来のCRMは、\n担当者が通話内容を記録したり、データを更新したりするのを待つ受け身のシステム\nでした。一方でAgentic CRMは、\n人間だけでなく、各ステップで人間の承認を必要とせずに多段階のワークフローを計画・実行・適応させる自律型AIエージェントが利用されるシステムであり、エージェントは事前に設定されたガードレールの範囲内で行動し、必要な場合は人間にエスカレーションする\nという特徴があります。\n\nまた、従来のルールベース自動化(「リードスコアが閾値を超えたら定型メールを送る」等の固定ロジック)とは異なり、\nエージェント型システムは文脈を解釈するため単に条件と結果をマッチングするだけではなく、顧客データを推論して状況に適した行動を特定し、その後の結果に応じてアプローチを調整\nします。\n\n具体例として、\n停滞している商談を放置せず、以前の会話を確認し、成約確率を評価し、フォローアップメールを作成し、営業担当者へのタスクを作成するといった対応\nを自動で行うことが挙げられます。\n\nCreatioの整理によれば、真のAgentic CRMには4つの特徴があるとされ、その一つが\n自律的な意思決定:エージェントはデータと文脈に基づいて、設定されたガードレールの範囲内で行動する\nことです。また、\nAIエージェントがソフトウェアに不可欠な一部となり、CRMのオブジェクト・ワークフロー・関係性にアクセスし、全体的に理解する必要がある\n点も重要とされています。\n\n## 主なプラットフォーム例\n\nすでに大手CRMベンダー各社がAgentic CRM機能を展開しています。\nCreatio、Salesforce、Microsoft、HubSpot、Zohoといった主要ソリューションが、Agentic CRMが市場をどのように再形成しつつあるかを示している\nとされます。例えばSalesforceの「Agentforce」は、\nエージェント型AIをあらゆるアプリケーション・ワークフロー・プロセスに統合できるデジタル労働力プラットフォームであり、単なるチャット用ではなく、動的な推論・意思決定・アクションのオーケストレーションによって重要な業務機能を強化する\nものです。\n\n---\n\n# 導入・設計を支援してくれる会社\n\nAgentic CRMの導入・設計を支援する会社は複数存在し、大きく「CRMベンダー系コンサル」と「独立系AI/CRMコンサルティングファーム」に分けられます。\n\n### 1. CRMベンダーの認定パートナー系\n- **CRMIT**:\nSalesforceの認定コンサルティングパートナーとして、エージェント型AIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供し、企業がデータをリアルタイムの意思決定に変換できるよう支援している\n会社です。\n- **Inogic**(Microsoft Dynamics 365向け):\nテクノ・ファンクショナルコンサルティングへの深い理解と1,000件以上の導入実績を持ち、Dynamics 365ユーザーにAzure OpenAIの力をもたらすことに注力している\n企業です。\n\n### 2. 独立系AI/CRMコンサルティングファーム\n- **Kanerika**:\nエージェントをERP・CRM・クラウドプラットフォームに直接接続し、並行システムを管理する必要をなくし、アクセス制御・監査証跡・説明可能性を最初のエージェント稼働前からアーキテクチャに組み込む\nアプローチを取っています。\n- **congruentX**:\nCRMコンサルティングサービスにより、記録のためのシステムを「行動のプラットフォーム」へと変革し、AIエージェントプラットフォーム技術で非営業活動を自動化する\nことを掲げています。\n- **RSM US**:\nAIアドバイザーがAIエージェントが最も価値を発揮できる領域を見極め、エージェント型AIの開発・展開に向けた包括的な戦略を策定する支援を行う\n大手アドバイザリーファームです。\n\n### 3. HubSpot等の中小企業向け導入支援\n- **Integrate IQ**などのHubSpot実装パートナーもあり、記事では",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.vtiger.com/blog/what-is-agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://rsmus.com/services/digital-transformation/artificial-intelligence/agentic-ai.html",
+    "https://www.crmit.com/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://congruentx.com/"
+  ],
+  "error": null
+}
