@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-14",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-13T23:54:13.039179Z",
+  "answer": "Agentforceの導入支援において、以下の会社が挙げられます。\n\n*   **三菱総研DCS**：Agentforceの導入・活用支援サービスを提供しており、Salesforce単体導入に留まらず、社内の基幹・周辺システムに分散するデータの統合も含めた導入を一気通貫で支援します。特に金融分野での実績に基づくセキュリティと信頼性が強みです。\n*   **メンバーズ**：Agentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成まで伴走しながら支援を提供しています。\n*   **furuCRM**：Agentforceの戦略コンサルティングサービスを提供し、AI駆動型ソリューションでお客様のビジネスを強化するための戦略的コンサルティングサービスを提供しています。明確なAIロードマップの作成や影響力の高いユースケースの定義、インテリジェントエージェントの統合を戦略的に計画することを支援します。\n*   **日立ソリューションズ**：「導入・活用支援サービス for Agentforce」を提供し、AIワークショップを通じて現場の業務課題を深く理解し、ビジネス価値を生むAIエージェントの実装を支援します。\n*   **toBeマーケティング**：富士通グループとしてのAgentforce先行支援と豊富な知見、日本初のAgentforceライセンス取得で培った実践力が強みです。データアセスメントから導入PoC支援、PoC完了後のトライアル伴走支援までを提供します。\n*   **ブリッジインターナショナルグループ**：長年の法人営業の課題解決の経験とノウハウに基づき、CRM/SFAの導入・運用から、AgentforceなどのAIエージェント活用までを支援します。\n*   **ギブリー**：Agentforceの導入・活用において、戦略策定から環境構築、利活用、組織浸透までをトータルでサポートします。生成AI領域での豊富な実績とSalesforce連携プロジェクトの成功経験があります。\n*   **バーチャレクス・コンサルティング株式会社**：Agentforce 初期導入プラン、Agentforce 伴走支援プラン、構想策定支援プランなど、AI導入の初期段階から本格的な活用、そして戦略的な展開に至るまで、顧客のあらゆるフェーズに寄り添い、成果創出を支援するサービスメニューを提供しています。\n\nこれらの会社は、Agentforceの導入におけるコンサルティング、システム構築、運用支援、社員教育など、多岐にわたるサービスを提供しており、企業の状況やニーズに合わせて選択することが可能です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQElC3Qi4Ibyuqf9XCIzHFpazDHy_9X631uFIFScFRkE4YAWWZRyugMIwah1UKXvefQhrlKjlcBmIwH0KlP2gYlqpoQa68Nxa_w4y1HUFXVEulAHVGm_ITs_2wuo17SN-iYXvfxOZ3fbmw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoPfOjvDEV6XUWtiCjOE275D4L2qlfHy8FmGy7YoFeEJFFGwv_YBWOekMGJLJXehXRaWuA9ZTQIKlxmZeaCX-iY_GH6UxVBZcVWqZrMxmi0p6mQEdFB-NQjbN2mhhgugLkchHLE1tGt_-N6_GRo-EW",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHlLTkX80CRU1gjGVDXYI3jV-CHnS8Jpw3EHdLrWRRuY723YZgRtipDLF9MaVLxLx9Q0afK0LDgHKcHtq2qxtwl1BnQriuj7ZcGlrk3PgnlelnqZQE2Kkgcz9UDeg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGApGD3_rQ90vTLyTxEGpQ9Jv4e-DGRpQQlWqcLocrxxhdi5gfLEWCFqpRNR0xSbDfMpjkOGOrMLJzeBk7-PCHuhIEYkHbky26F_IFwo-S-a9G3awaFm_suRwzT28CvKHVXbMKA_my1vExnmCv7dR8HrY2-aadv58aCCkn7",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEMjPWDC9XO9bWwb2cEZ4I7DAZkzK5cPKVHCt49uo3nO_1BoTr_UuzIQ0Jood6peNFe9GNo_dLVzZTV2qEv_hRcLpuFikg0D2-9Qifc5jovmOkhUrqWg--qHDZoGdgB2YQq30fO",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqBCpM82hebNDrspuSFO_dwoAnhW8d0zYeJ4KcTJbIDrInXxnIRhO-m6JRdq2u9k-pkKpevugmE0qRx7UWTPLlyVNnd63J-OYwwb9Qmc7e2WlZ-q5VmVPR09pHbVs0MBlgzA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG572IFruKBG5ED0cdDrHaxniDn8L0hJQbjow0quDqIb0GTG_UW2Ics99AlJl8sNeXEIdIvG0DVCS71Fy9JkBVN6NitNv7-rAerCaXClC1TOYAz2hb3FDgT3g5FjrkIl9uD1yQ7obiW-AKg6KhX77eeFP_iRHoTJLBO2SCNr_C8wefh-rQMzggls9Rk_Q4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGuVy1ybmMZYpCfE_5H9YdZL6MzJfwX4Uiji1rafw6sKBmWCYAERBiczmwdAIWcGMJz-C0_IXptqBh7ENwqlOe8cK_H5QgL3IlUGAQ-Mmrq6G4D3249Zf4klBXfAmJbgRoZLYy5dNd4c0HW_359ycga2cYcTBnODKBMLS4alA=="
+  ],
+  "error": null
+}

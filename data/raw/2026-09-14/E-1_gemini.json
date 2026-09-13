@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-14",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-09-13T23:57:48.577541Z",
+  "answer": "合同会社クロスコムは、2023年5月に設立された東京都渋谷区に本社を置く、BtoB領域に特化したコンサルティング会社です。Salesforce Agentforceの導入・定着支援と、Agentic CRM（AIネイティブなCRM）の設計支援を主な事業としています。単にツールを導入するだけでなく、導入前の業務設計から運用が定着するまで一貫して支援することを強みとしています。\n\n**強み:**\n\n*   **BtoB特化のコンサルティング力:** BtoBマーケティングと営業の両方のキャリア経験を持つ代表者による、商談獲得の最大化を支援するノウハウがあります。\n*   **戦略立案から実行までの一貫支援:** マーケティング戦略の立案から施策実行、そして導入後の定着までを一気通貫でサポートします。\n*   **業務設計を起点とした支援:** ツール導入の前に、どのような業務を自動化し、何を人が担うべきか、データの連携方法といった業務プロセスの設計を重視しています。これにより、「導入したものの定着しない」「どの業務から始めるべきか決められない」といった企業の課題解決に貢献します。\n*   **AIエージェントを見据えたシステム設計:** Salesforceの導入だけでなく、その上でAgentforceを効果的に活用できるよう、データ構造や業務プロセスがAIエージェントの参照に耐えうる設計を提案します。\n*   **柔軟な支援モデル:** 初期構築から運用支援まで、事業規模や業務内容に応じて「パッケージ型」と「タイムチャージ型」の2軸モデルで、無駄なく柔軟な構築支援を実現します。\n*   **専門性と実績:** Salesforce認定コンサルタントによる安全な構築支援を提供しており、100社以上の支援実績からBtoBマーケティングの課題に対する本質的な原因を捉え、解決に導きます。\n\n**提供サービス:**\n\n合同会社クロスコムは、多岐にわたるBtoBマーケティングおよびSalesforce関連のサービスを提供しています。\n\n*   **Salesforce Agentforceの導入・定着支援:** AIエージェントの設計、トピック構成、アクション配線、導入に伴う業務プロセス設計、運用定着に向けた伴走支援、自社構築を進める企業への設計アドバイザリーを行います。\n*   **Agentic CRMの設計支援:** オープンソースCRMを基盤にAIの推論能力を最大化したAIネイティブなCRMを企業専用に設計します。マーケティング、営業、カスタマーサクセスのデータ統合設計や、AIエージェントを前提とした業務プロセスの再設計、ツール選定前の要件設計も含まれます。\n*   **BtoBマーケティング戦略コンサルティング:** ターゲットから提供価値の策定、施策実行への反映までを支援し、リード数増加だけでなく商談獲得の最大化を目指します。\n*   **BtoB MA（Marketing Automation）導入・運用支援:** SalesforceのMA・CRMツール（Salesforce Account Engagementなど）の導入と構築を、パッケージ型とタイムチャージ型の2軸モデルで支援し、実務で活用できるまで定着をサポートします。\n*   **コンテンツ企画・制作代行:** ホワイトペーパー、ウェビナー、Web記事、Webページなどのコンテンツ企画・制作を行います。\n*   **HubSpot導入・構築支援:** HubSpotの活用定着を通じた売上拡大を支援し、コンテンツ企画・制作、データ分析企画・レポート作成、ワークフロー構築、メール企画・文章制作、各種タグ設定などを行います。\n*   **その他:** 戦略コンサルティングから施策実行までの一気通貫の支援、スポットでの設計レビュー相談、Claude CodeとMCP連携によるAgent Script開発、Agentforce Coworkerの活用設計なども提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEoM_wE3MYLIb3btSJQ5lvIRDS0CoMVN7rEmjjSQZzCAwixDDcOUaHV9zgqsK4HKONfxfSQobl3M8Ny6WCjnzQGnXCRKWTnT3VH_WWoAXi2Q4z-Iy0pKQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-JjuFxQg_IDwDoV4qvMbiz-IvYMcdOmR1u_zoQujS0289YDdgj1486pC7f8p9FaMY3KqfHECJVJ90WeDOkrDc5DSiIhYXb6CqJlu5svb8iDf0pwMK5BwfXKHkXS1r-XT_Sx3lPfR78A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF6ROqx5MNh7BNMadiYT_2vRwvR7Kugl3VXB4oU_URNmsfVUIduPAGKwGVjdt2PgrZInqC3ZGvTvQgNZ_hSpfCvtyXJsd7B7n80Hc8bHSFJlMRFN5_c5KFC2fSaLuKtHFgJj057FHitxaQ5",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHO6bn5VcsX4uB8fhMwHwuk4yGUZUubxD5mb9OTmNk5j9xzQSnkOUaGRZqlhZwDjh6tITu9bjz1sZ4JpVKA2lt8waAY51tw-Al1vTwBBUrBRQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGQN9wMR_s4oAMvH7gTUgyQYAn_G20ivc1ngrv8l19KdkMVzsOiOjl9Vq3_-VFv_kOtru7nf9HudJ-o-G21vQj98t_U4rqrgBaE8MJ0cRk94FDHGGB4zlqU5eDnx4HkEzk3bbPN56pEOw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGa8Tcf7ueQQ5GKetS6-8adkgcTaoENrb7lpRwyPIRU3n42LqXXImxVsqFCU9bXDSVtRbGEdDSEPcrpj5AuhDqu7-ovNu6ZCFZFMhhI8A_1QwQpwrzbOmeMGckDIlw7B2JI",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFODOTR-5wW-OA5eRfspba9TKnw-ORzDO4O9VDQJ9AHfhc_OTVALaxedLbR6Y2QZKg69jBljRE0gnPAHhtuQ6WBMMs_97IxjJ7IFwjER8-wgQRsyQIQ-xwHedRGWvxMvIpgSZsb7rCVrp_xiyAMyjNMH_M=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGcBh3N-lDpcL6erqkyofYJf91HdyqvxNTLj9XIEFL5q42CmaHJSDOUrNYd-vZ-yyvUeO1b0rVB6DwK2956tfLiL07mdwDPFVYrGz5KavDNwS-Th8MPQRfSJVb6FIe5qW0sljn5x2YIjZ5FokF4VrvT",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHKUEa_QaGQZudvIe-ks-byl3pzQbYO3kt9ajF0sEJ0Gj13tnHLxRxFn4b2zeQo3QkbpVO2pNAUi9kWVCiG3nW8QQoMv73drQhdv4FYu2JDiVhbT0K1SThC",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEK7EIS_ntLj_CeO7EXOYaNKa_ou22F7WuKOwXNF7XgO6Z9omdlHC8aX-5pyIqjIzn-zyR0-msRBJYoQzy9RlRvDoaUaZt6MS7yy9z16Z5Tj6nOr2VeqF-zlwkLbptRe9iSubOS_guWEHIt0TpZjakZSDJkm--gcg=="
+  ],
+  "error": null
+}

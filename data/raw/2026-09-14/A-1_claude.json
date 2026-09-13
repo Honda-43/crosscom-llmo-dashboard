@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-14",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-13T23:54:36.306466Z",
+  "answer": "## Agentforce導入支援でおすすめの会社\n\nSalesforceの自律型AIエージェント「Agentforce」の導入支援を行っている会社はいくつかタイプ分けできます。それぞれの特徴を整理します。\n\n### 1. スピード重視・特定領域特化型\n\n**ウフル（Uhuru）**\n\nデータ活用とIoTに強みを持つパートナーで、最短3ヶ月でAgentforceを導入するクイック支援サービスを展開しています。マーケティング（Agentforce for Marketing）とカスタマーサービス（Agentforce Service）の両領域に対応でき、複数のチャネルを横断した顧客体験の設計が得意です\n。スモールスタートで素早く効果検証を行いたい企業向けです。\n\n### 2. 総合コンサルティング・伴走支援型\n\n**メンバーズ（サースプラスカンパニー）**\n\nSalesforceが提供する自律型AIエージェントAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながらご支援します\n。また\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\nという点も強みです。具体的には\n現状業務ヒアリングと業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果(ROI)の試算\nといったステップで支援しています。\n\n### 3. 営業・SFA領域特化型\n\n**クロスコム**\n\n実務で活用できるまでの定着支援に重点を置いたサービスを提供しています。目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込みます\n。\n導入後はカスタマーサクセスチームが継続的にモニタリングし、1ユースケース×3ヶ月のスモールスタートから対応します\n。\n\n**enucolor**\n\nAgentforceの導入支援はSalesforce社が提供する自律型AIエージェントの構築及びPoC（概念検証）を行うサービスです\n。SFA・営業領域のAI活用に特化しています。\n\n### 4. 大手SIer型（大規模・複雑案件向け）\n\n**富士通**\n\n2025年1月からAgentforceをSalesforceサポートデスクに採用しています\n。実証実験では\nAgentforceを活用した際の平均の応対時間は、チャットボットよりも71.5%、人による対応よりも67%、それぞれ短くなりました\nという実績があり、自社での実運用経験を活かした支援が可能です。\n\n**日鉄ソリューションズ（NSSOL）**\n\nNSSOLはSalesforce社のパートナーであり、様々なユースケースに応じたエージェントの開発を通じて、技術力や知見を積み上げ、Agentforce国内No.1パートナーを目指しています\n。\n\n**フロッグウェル**\n実績として、\nカーサ・プロジェクト株式会社様へ、Salesforceの生成AI技術「Einstein for Service」を活用したマッチングシステムの導入支援をいたしました\nなど、業界特化型の導入事例があります。\n\n---\n\n## 選び方のポイント\n\n導入支援会社を選ぶ際は、以下の観点で比較するとよいでしょう：\n\n1. **対応領域**：Sales / Service / Marketingのどのユースケースに強いか\n2. **支援範囲**：PoCのみか、本番導入・定着化・内製化まで伴走するか\n3. **予算感**：スモールスタート（3ヶ月程度）が可能か、大規模プロジェクト向けか\n4. **Salesforceパートナー認定**：コンサルティングパートナーとしての実績・資格保有者数\n5. **セキュリティ・ガバナンス対応**：情報漏洩対策や社内データ統合への対応可否\n\nなお、Salesforce公式サイトの「パートナー検索」機能を使うと、認定コンサルティングパートナーの一覧を業種・規模別に絞り込んで確認することもできます。まずは自社の課題（例：カスタマーサポート効率化、営業支援、マーケティング自動化）を明確にした上で、該当領域に強い会社に無料相談してみることをおすすめします。",
+  "cited_urls": [
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.members-saasplus.com/agentforce",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://global.fujitsu/ja-jp/events/reports/sf-agentforce-20250416",
+    "https://note.com/nssol_note/n/n1839fa740632",
+    "https://frogwell.co.jp/blogs/agentforce/"
+  ],
+  "error": null
+}

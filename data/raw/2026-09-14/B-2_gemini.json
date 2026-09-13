@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-14",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-09-13T23:56:36.397130Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず中立的な立場でCRMの設計を支援する会社をお探しの場合、以下の企業が選択肢として考えられます。これらの企業は、顧客の事業内容や組織体制に最適なCRMの導入・活用を支援することに重点を置いています。\n\n**中立的な立場でCRM設計を支援する企業**\n\n*   **ストラ株式会社**: 特定のベンダーに依存せず、Salesforce、HubSpot、Zohoなど複数のツールを比較検討し、業務や組織体制に適したCRM構成を設計するサービスを提供しています。導入後の社員トレーニングや運用改善を通じて、現場で使われ続ける仕組みを整え、営業効率や顧客体験の向上に貢献します。\n*   **テクノデジタルコンサルティング**: 「ベンダーニュートラル」を明言しており、特定の製品に縛られず、顧客に最適なソリューションを公平な立場で選定・支援しています。CRM戦略コンサルティング、CRM/CDP導入に向けた要件定義、RFP作成、ベンダー選定、運用サポート・最適化まで幅広く対応しています。\n*   **ECマーケティング株式会社**: ECサイトやマーケティングサイトに特化したWebコンサルティング会社で、中小・中堅規模から大手企業まで、社内の状況に合わせたサービスを提供しています。\n*   **フュージョン株式会社**: 「伴走型CRM支援」を重視しており、CRM戦略設計、顧客分析・データ基盤整備、コミュニケーション設計、実行・改善サイクル構築までを一体で捉え、クライアント企業のCRM成熟度に応じて支援しています。\n*   **Coguru**: CRMコンサルティングとLTV（顧客生涯価値）最大化支援を提供しています。単なる管理ツールの導入にとどまらず、顧客データの分析から戦略設計、コミュニケーション施策の実行・改善まで一貫してサポートします。\n*   **株式会社ripla**: 業務設計からシステム構築・運用まで一気通貫で支援するDX/開発支援会社です。既存のERP/販売管理/マーケティング基盤との全体最適設計を行うことで、顧客データの統合・分析・活用による業務革新まで支援し、中堅〜大企業の「標準CRMパッケージでは不足する要件がある」「自社特有の業務プロセスを反映したCRMが必要」といったニーズに応えます。\n*   **株式会社GeNEE**: 業務系システムの企画・設計・開発を手がけるITベンダーで、CRMやSFAを含む顧客・営業管理系システムの構築実績が豊富です。CRM単体の開発だけでなく、営業支援・案件管理・商談管理・MA連携など、多機能領域の統合設計に対応できます。\n*   **アーカス・ジャパン株式会社**: CRMの専門的な開発・設計に強みを持つITコンサルティング企業です。\n\n**会社選びのポイント**\n\nCRMコンサルティング会社を選ぶ際には、以下の点に注意すると良いでしょう。\n\n*   **ベンダー中立性**: 特定のツールに縛られず、貴社の課題解決に最適なCRMツールを選定・提案してくれるかを確認することが重要です。\n*   **支援範囲**: CRM戦略の立案から、要件定義、RFP作成、ベンダー選定、導入、そして導入後の運用支援、改善提案まで一貫してサポートしてくれるかを確認しましょう。\n*   **実績と専門性**: 中堅企業への導入実績や、貴社の業界への理解、データ分析、AI活用などの専門知識を持っているかを確認することも大切です。\n*   **伴走型支援**: 導入して終わりではなく、長期的な視点でCRMの活用を定着させ、成果創出まで伴走してくれる体制があるかどうかも重要な選定基準となります。\n\nまずは、複数の企業に問い合わせを行い、貴社の現状の課題や目指す姿を共有し、どのような提案がもらえるか比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE-bce7LKBximQKafUOFIgcLf4LdpR2dUyeiO7_AC7X9_uv8OGoY_AdusC-UBE3JZFHXVGCTRqZmFhwANBblds-ZKAuWHNafpU6Z8TAI5OfUQE9hz3SU34-P6gdVTC4ZJV8Kl1JqTZV",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHYfXjS9klEj4YZ0ks11wzNXlrGprnsYlF5pFzcX8HydV7Qe0uaI3vPVeeAmdqIw9cG_lyKw6_BpWj8VPc4WIDyVRAri83_ta8bxciSirVAHEvlZDaflvMsisFH5Wdc-kQnu0UOZFu1skqRB1dbPX6Zm0fc4A7O",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHS4FbUTMWV8BrBPG-JneoY1wQOVNVK4dRlF_LVYIcNIX8bwqQBI2HWl5gaZQSPXsmbbjXsMr9r_p8S2g6onKYlY-U8K9T51Mu2Ujrr646r9y81_yUBq0cg8Hd8taOgHJ_Q37toc7avM0YMIA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEI6Ulb2ahEK_XDXgMTKH9WiT7sJNhvtE12_apEITII0XTPLlx-mEyP5jn1czJuKkjVCj4FbY15XbiEAyYHU4LSY3udukElEipq5_mfSFgIow9iQs4aeQez5rOqTLEcS54XnTNHpcsdcxKS4xrt2KdHzBDNuJg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHtO_Kd6pg5G6CbxarQ--sDXYEM-pxI2tEQC5uLPsuM3-_bNmBVzbcHrxTyPAbNZ59EuYUCxezWCP6fpvfIAfC8q_tYEuM_Wv52D-Nw5vjVCIrP8HJZqZPW5ZXn",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEaxIBprFN6zXCsRckOZkzx_GD4CRdl9P7ZpnM3mojfI1r4nKB_Ej8RsHbPNAjvz3zWgBKCedIy-beGKVbFuiXZEV-GbibT-4RH8k85Cx4-HpmmDrfulBUyRrO1Fv2N4_KGxdPZZH1ivF10",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGo5MUwuyFKY3MTeUKJ-ktm6ur2hlyIJBQ4U1HyfNgtKQ7FOwXb4vVdqXcZ9BiScf2jsawM-CGp9BvBByyY8z2siGH2YARj-gvZskclJoKa0cg1mve9kz9rKikJUXgO4vE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6RK9JeWjtj_iAstAcgcMMWcZVRSx5wYqoYh_MUTS1KqmvloctkB4otUrHmhH_k8AfmVhPjgMLORQvYxA5Pyr5OIN2gKMX9z1f7_Uas3FsscdS6SU56wDgiXkbR-HkXXFDAlq9",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEPnkUydi3WMAMsfiZkAuwWU1t060E16lPYvALdmCPXwvWY1yP0eASxufYFSFQ66QvDIU84AaPL8wjuCwzlIHxmQlo-GrIryIl4lHxhkPqwUQ-eWpkMn8AZV6lMp1bBZnJsEo1Lyq_jhUGZ7vSY7_ibyXbHXSzxVk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtYJraUBP1mPj9ZZ4IsXMORZIhWXKMIizdWKHSkFoe8AmKykuOzs-iZo21R-PfgmFan2duwdRlPUFWayJu8h36SdTFTZ7usjyEbqKJEbwtZ2rIW5u_DUm5uBXr4F45fvEsS6-R8e19PrbkWoxySV8oBB-zRQ=="
+  ],
+  "error": null
+}
