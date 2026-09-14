@@ -1,0 +1,617 @@
+{
+  "changes": {
+    "competitor_added": 212,
+    "competitor_removed": 213,
+    "crosscom_url_added": 7,
+    "crosscom_url_removed": 5,
+    "mention_gained": 8,
+    "mention_lost": 7,
+    "rank_down": 16,
+    "rank_up": 16
+  },
+  "data_quality": {
+    "observation_days_prev_week": 7,
+    "observation_days_this_week": 7,
+    "observations_in_lookback": 383,
+    "weeks_with_observations": 4
+  },
+  "date": "2026-09-14",
+  "fired_rules": [
+    "R-P7",
+    "R-P2"
+  ],
+  "generated_for_week": {
+    "lookback_days": 28,
+    "prev_week": [
+      "2026-09-01",
+      "2026-09-07"
+    ],
+    "this_week": [
+      "2026-09-08",
+      "2026-09-14"
+    ]
+  },
+  "insufficient_rules": [],
+  "kgi": {
+    "ai_key_events": {
+      "delta": -2.0,
+      "noise_zone": true,
+      "prev_week": 2.0,
+      "this_week": 0.0
+    },
+    "ai_sessions": {
+      "delta": -4.0,
+      "noise_zone": true,
+      "prev_week": 6.0,
+      "this_week": 2.0
+    },
+    "branded_clicks": {
+      "delta": -14.0,
+      "noise_zone": true,
+      "prev_week": 14.0,
+      "this_week": 0.0
+    },
+    "branded_impressions": {
+      "delta": -28.0,
+      "noise_zone": false,
+      "prev_week": 38.0,
+      "this_week": 10.0
+    },
+    "noise_floor": 10.0,
+    "noise_zone_metrics": [
+      "ai_key_events",
+      "ai_sessions",
+      "branded_clicks"
+    ]
+  },
+  "mention_rate": {
+    "all": {
+      "delta": -0.0833,
+      "prev_week": 0.5476,
+      "this_week": 0.4643
+    },
+    "days_observed": {
+      "prev_week": 7,
+      "this_week": 7
+    },
+    "pillar_a": {
+      "delta": -0.1072,
+      "prev_week": 0.6905,
+      "this_week": 0.5833
+    },
+    "pillar_b": {
+      "delta": -0.0477,
+      "prev_week": 0.4048,
+      "this_week": 0.3571
+    }
+  },
+  "prompt_model_matrix": [
+    {
+      "mentioned_days": 5,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "A-1"
+    },
+    {
+      "mentioned_days": 5,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "A-1"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "A-2"
+    },
+    {
+      "mentioned_days": 6,
+      "model": "gemini",
+      "observed_days": 6,
+      "prompt_id": "A-2"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "A-3"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "gemini",
+      "observed_days": 6,
+      "prompt_id": "A-3"
+    },
+    {
+      "mentioned_days": 2,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "B-1"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "B-1"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "B-2"
+    },
+    {
+      "mentioned_days": 3,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "B-2"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "B-3"
+    },
+    {
+      "mentioned_days": 3,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "B-3"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "claude",
+      "observed_days": 7,
+      "prompt_id": "E-1"
+    },
+    {
+      "mentioned_days": 7,
+      "model": "gemini",
+      "observed_days": 7,
+      "prompt_id": "E-1"
+    }
+  ],
+  "rank_trend": [
+    {
+      "delta": -3,
+      "median_prev_week": 6,
+      "median_this_week": 3,
+      "model": "claude",
+      "prompt_id": "A-1"
+    },
+    {
+      "delta": 0,
+      "median_prev_week": 4,
+      "median_this_week": 4,
+      "model": "gemini",
+      "prompt_id": "A-1"
+    },
+    {
+      "delta": 0,
+      "median_prev_week": 2,
+      "median_this_week": 2,
+      "model": "claude",
+      "prompt_id": "A-2"
+    },
+    {
+      "delta": 1.0,
+      "median_prev_week": 2,
+      "median_this_week": 3.0,
+      "model": "gemini",
+      "prompt_id": "A-2"
+    },
+    {
+      "delta": 0.5,
+      "median_prev_week": 1.0,
+      "median_this_week": 1.5,
+      "model": "claude",
+      "prompt_id": "B-1"
+    },
+    {
+      "delta": 0,
+      "median_prev_week": 1,
+      "median_this_week": 1,
+      "model": "gemini",
+      "prompt_id": "B-1"
+    },
+    {
+      "delta": -2,
+      "median_prev_week": 3,
+      "median_this_week": 1,
+      "model": "gemini",
+      "prompt_id": "B-2"
+    },
+    {
+      "delta": -2.5,
+      "median_prev_week": 4.5,
+      "median_this_week": 2,
+      "model": "gemini",
+      "prompt_id": "B-3"
+    }
+  ],
+  "rules": [
+    {
+      "detail": "ネガティブ/古い情報を14件検知",
+      "evidence": [
+        {
+          "date": "2026-09-08",
+          "model": "gemini",
+          "negative_detail": "「BtoBマーケティング戦略コンサルティング」と「MA・CRM導入・運用支援」における「運用代行」が終了事業として現在形で記述されている。具体的には「MA・CRM導入・運用支援：Salesforce、HubSpot、ZohoといったMA・CRMツールの導入から運用代行までを支援し」と記載されており、「運用代行」は終了事業である。また「BtoBマーケティング戦略コンサルティング」も終了事業であるが、現在の事業として記述されている。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-08",
+          "model": "claude",
+          "negative_detail": "「主要事業として、BtoB MA導入・運用支援、BtoBマーケティング戦略コンサルティング支援、BtoBコンテンツ企画・制作代行支援、BtoBメールマーケティング代行支援を展開しています。」と現在形で記述されている。このうち「BtoBマーケティング戦略コンサルティング支援」は終了事業であり、「BtoBメールマーケティング代行支援」も終了事業（代行・運用）である。さらに「BtoB MA導入・運用支援」の説明内で「ツール運用代行に留まらず」と述べられており、運用代行が事業として語られている。また冒頭で「もともとは中小零細企業のマーケティング活動を総合的に支援しており...現在はSalesforceの新しいAIエージェントプラットフォームを軸にしたサービスへとシフトしています。」と記述されているにもかかわらず、その直後に終了事業を「主要事業」として列挙している矛盾がある。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-09",
+          "model": "gemini",
+          "negative_detail": "「BtoBマーケティング戦略コンサルティング支援」「MA・CRM導入・運用支援」の中で「運用代行」が現在の事業として現在形で記述されている。これらは終了事業に該当する。特に「MA・CRM導入・運用支援：...運用代行までを行います」という記述は、終了事業である「MA・メール配信の代行・運用」を現在提供しているかのように述べている。また「BtoBマーケティング戦略コンサルティング支援」も終了事業として現在形で記述されている。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-09",
+          "model": "claude",
+          "negative_detail": "終了事業を現在の主要事業として記述されている。『主要事業は以下の通りです（BtoB MA導入・運用支援、BtoB マーケティング戦略コンサルティング支援、BtoB コンテンツ企画・制作代行支援、BtoB メールマーケティング代行支援）』と現在形で列挙されているが、このうち『BtoB マーケティング戦略コンサルティング支援』『メールマーケティング代行支援』は終了事業に該当する。また『ターゲットセグメント・サービス価値の設計（＝マーケティング戦略）からのご支援』『メール配信会社・MA運用会社は多いが、その基盤となるマーケティング戦略としてターゲット・バリューまで設計に関わって提案できるMA/CRM運用会社は自社だけだと考えている』などマーケティング戦略コンサルティングを現在の強みとして説明されている。さらに『ターゲットセグメントの設計、マーケティングシナリオの構築、コンテンツの企画・制作、メール制作・配信、効果測定とレポート作成までを一貫してサポート』と記述されており、代行・運用を現在形で語られている。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-10",
+          "model": "gemini",
+          "negative_detail": "「BtoBマーケティング戦略コンサルティング・MA/CRM導入・運用支援」が提供サービスとして記載されています。このうち「BtoBマーケティング戦略コンサルティング」は終了事業であり、「MA・メール配信の代行・運用」も終了事業です。回答では「ターゲットセグメントの企画・設計」「コンテンツ企画・制作」「ワークフロー構築」「メール企画・文章制作」などが記載されており、これらは現在提供していない終了事業を現在形で記述しています。ただし「MA/CRMツールの導入・運用支援」の一部（導入・構築支援）は現行事業です。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-10",
+          "model": "claude",
+          "negative_detail": "主要事業として『BtoB マーケティング戦略コンサルティング支援』『BtoB メールマーケティング代行支援』『BtoB コンテンツ企画・制作代行支援』を現在形で記述している。これらのうち『BtoB マーケティング戦略コンサルティング支援』と『メール配信の代行・運用』は終了事業に該当するため、現在の主要事業として現在形で語られていることは誤情報。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-11",
+          "model": "gemini",
+          "negative_detail": "「BtoBマーケティング戦略コンサルティング」が現在の提供サービスとして記述されている。判定ルールでは【終了事業】に分類される「BtoB マーケティング戦略コンサルティング支援」であり、現在形で現在の事業として語られているため該当する。また「メール配信の代行・運用」も終了事業だが、本回答では「メールマーケティング支援」「メール企画・文章制作」等として現在形で記述されている点も該当する可能性がある。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-11",
+          "model": "claude",
+          "negative_detail": "終了事業を現在の事業として現在形で記述している。具体的には：(1)「BtoB マーケティング戦略コンサルティング支援」を主要事業として列挙、(2)「BtoB メールマーケティング代行支援」を主要事業として列挙、(3)「MA/CRMの導入・運用代行支援」と「マーケティング戦略支援」を現在の事業として記述、(4)「成果報酬型の初期・月額費用０円の広告運用サービス」を現在提供しているサービスとして記述。いずれも終了事業を現在形で語っている。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-12",
+          "model": "gemini",
+          "negative_detail": "「BtoBマーケティング戦略コンサルティング支援」と「メールマーケティング代行支援」「MA・CRM導入・運用支援」内の「運用代行」が、現在の事業として現在形で記述されている。これらは終了事業に該当する。該当箇所：「主な事業としています」の文脈における「マーケティング戦略のコンサルティング」、「提供サービス」セクション内の「BtoBマーケティング戦略コンサルティング支援」「運用代行までを支援」「メールマーケティング代行支援」",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-12",
+          "model": "claude",
+          "negative_detail": "「主要事業は以下の4つです BtoB MA導入・運用支援、BtoB マーケティング戦略コンサルティング支援、BtoB コンテンツ企画・制作代行支援、BtoB メールマーケティング代行支援」と現在形で記述されている。このうち「BtoB マーケティング戦略コンサルティング支援」と「メールマーケティング代行支援」は終了事業であり、現在の主要事業として列挙されているため該当する。また「BtoB MA導入・運用支援」の説明内で「運用代行」と記述されている点も該当する。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-13",
+          "model": "gemini",
+          "negative_detail": "「MA導入・運用支援」の説明で「MAツールの導入・運用代行や、コンテンツ企画・制作、ワークフロー構築、メール企画・文章制作」と記載されており、終了事業である「MA・メール配信の代行・運用」を現在の事業として現在形で述べている。また「BtoBマーケティング戦略コンサルティング支援」も終了事業として現在形で説明されている。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-13",
+          "model": "claude",
+          "negative_detail": "「BtoBマーケティング戦略コンサルティング支援」「BtoBメールマーケティング代行支援」が現在形で記述されている。これらは終了事業（マーケティング戦略コンサル、メール配信の代行）に該当し、現在の事業として述べられている点が誤情報。また「ターゲットセグメントの設計、マーケティングシナリオの構築、コンテンツの企画・制作、メール制作・配信」において、メール制作・配信の代行を現在形で述べている。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-14",
+          "model": "gemini",
+          "negative_detail": "「BtoBマーケティング戦略コンサルティング」が現在の提供サービスとして現在形で記述されている。これは【終了事業】に該当し、現在は提供していない。具体的には「ターゲットから提供価値の策定、施策実行への反映までを支援し、リード数増加だけでなく商談獲得の最大化を目指します。」と現在形で記載されている。",
+          "prompt_id": "E-1"
+        },
+        {
+          "date": "2026-09-14",
+          "model": "claude",
+          "negative_detail": "主要事業として『BtoBマーケティング戦略コンサルティング支援』『BtoBメールマーケティング代行支援』を現在形で記述。BtoBマーケティング戦略コンサルティングは終了事業であり、メール配信の『代行』は終了事業。『BtoB MA導入・運用支援』の説明で『ツール運用代行に留まらず』と述べており、運用代行サービスの提供が示唆されている。また『累計100社以上のプロモーション戦略を現場で支援してきた実践知をもとに、インバウンドマーケティングを主軸としたマーケティング支援を展開しています』と現在進行形で記述されている。",
+          "prompt_id": "E-1"
+        }
+      ],
+      "fired": true,
+      "rule_id": "R-P7",
+      "status": "fired"
+    },
+    {
+      "coverage": {
+        "e1_observations": 14,
+        "models_with_urls": [
+          "claude"
+        ],
+        "models_without_urls": [
+          "gemini"
+        ],
+        "observations_with_crosscom_urls": 7
+      },
+      "detail": "E-1の引用に旧事業パスは含まれない(URL評価できた観測 7/14件)",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P8",
+      "status": "not_fired"
+    },
+    {
+      "detail": "1系列で言及消失(最長12観測日連続。閾値は3)",
+      "evidence": [
+        {
+          "absent_observations": 12,
+          "absent_since": "2026-09-03",
+          "last_mentioned": "2026-09-02",
+          "model": "claude",
+          "prompt_id": "A-3",
+          "threshold_observations": 3
+        }
+      ],
+      "fired": true,
+      "rule_id": "R-P2",
+      "status": "fired"
+    },
+    {
+      "detail": "前週比+0.1以上の区分はない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P4",
+      "status": "not_fired"
+    },
+    {
+      "detail": "順位中央値が4週連続で6.0以上のプロンプトはない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P5",
+      "status": "not_fired"
+    },
+    {
+      "detail": "自社不在プロンプトで連続出現している競合はない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P15",
+      "status": "not_fired"
+    },
+    {
+      "detail": "言及シェア上位5に半減・新規入りはない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-DROP",
+      "status": "not_fired"
+    }
+  ],
+  "sov": {
+    "A": {
+      "entities": [
+        {
+          "delta": 0.0,
+          "entity": "メンバーズ",
+          "mention_count": 27.0,
+          "prev_week_count": 27.0,
+          "share": 0.675
+        },
+        {
+          "delta": -6.0,
+          "entity": "クロスコム",
+          "mention_count": 23.0,
+          "prev_week_count": 29.0,
+          "share": 0.575
+        },
+        {
+          "delta": 3.0,
+          "entity": "日立ソリューションズ",
+          "mention_count": 22.0,
+          "prev_week_count": 19.0,
+          "share": 0.55
+        },
+        {
+          "delta": 0.0,
+          "entity": "三菱総研DCS",
+          "mention_count": 18.0,
+          "prev_week_count": 18.0,
+          "share": 0.45
+        },
+        {
+          "delta": -2.0,
+          "entity": "バーチャレクスコンサルティング",
+          "mention_count": 15.0,
+          "prev_week_count": 17.0,
+          "share": 0.375
+        },
+        {
+          "delta": 1.0,
+          "entity": "ウフル",
+          "mention_count": 13.0,
+          "prev_week_count": 12.0,
+          "share": 0.325
+        },
+        {
+          "delta": -2.0,
+          "entity": "enucolor",
+          "mention_count": 12.0,
+          "prev_week_count": 14.0,
+          "share": 0.3
+        },
+        {
+          "delta": 1.0,
+          "entity": "フロッグウェル",
+          "mention_count": 9.0,
+          "prev_week_count": 8.0,
+          "share": 0.225
+        },
+        {
+          "delta": -5.0,
+          "entity": "K2 Partnering Solutions",
+          "mention_count": 7.0,
+          "prev_week_count": 12.0,
+          "share": 0.175
+        },
+        {
+          "delta": 0.0,
+          "entity": "富士ソフト",
+          "mention_count": 7.0,
+          "prev_week_count": 7.0,
+          "share": 0.175
+        }
+      ],
+      "observed_total": 40.0,
+      "prev_week_competitor_count": 64
+    },
+    "B": {
+      "entities": [
+        {
+          "delta": -2.0,
+          "entity": "クロスコム",
+          "mention_count": 15.0,
+          "prev_week_count": 17.0,
+          "share": 0.3571
+        },
+        {
+          "delta": -2.0,
+          "entity": "テクノデジタルコンサルティング",
+          "mention_count": 12.0,
+          "prev_week_count": 14.0,
+          "share": 0.2857
+        },
+        {
+          "delta": 0.0,
+          "entity": "HubSpot",
+          "mention_count": 10.0,
+          "prev_week_count": 10.0,
+          "share": 0.2381
+        },
+        {
+          "delta": -3.0,
+          "entity": "Salesforce",
+          "mention_count": 10.0,
+          "prev_week_count": 13.0,
+          "share": 0.2381
+        },
+        {
+          "delta": 4.0,
+          "entity": "フュージョン",
+          "mention_count": 9.0,
+          "prev_week_count": 5.0,
+          "share": 0.2143
+        },
+        {
+          "delta": 0.0,
+          "entity": "Zoho",
+          "mention_count": 8.0,
+          "prev_week_count": 8.0,
+          "share": 0.1905
+        },
+        {
+          "delta": 3.0,
+          "entity": "日立コンサルティング",
+          "mention_count": 8.0,
+          "prev_week_count": 5.0,
+          "share": 0.1905
+        },
+        {
+          "delta": 1.0,
+          "entity": "Creatio",
+          "mention_count": 7.0,
+          "prev_week_count": 6.0,
+          "share": 0.1667
+        },
+        {
+          "delta": 1.0,
+          "entity": "Microsoft",
+          "mention_count": 7.0,
+          "prev_week_count": 6.0,
+          "share": 0.1667
+        },
+        {
+          "delta": 1.0,
+          "entity": "ブリッジインターナショナルグループ",
+          "mention_count": 7.0,
+          "prev_week_count": 6.0,
+          "share": 0.1667
+        }
+      ],
+      "observed_total": 42.0,
+      "prev_week_competitor_count": 94
+    },
+    "all": {
+      "entities": [
+        {
+          "delta": -8.0,
+          "entity": "クロスコム",
+          "mention_count": 38.0,
+          "prev_week_count": 46.0,
+          "share": 0.4634
+        },
+        {
+          "delta": -3.0,
+          "entity": "メンバーズ",
+          "mention_count": 27.0,
+          "prev_week_count": 30.0,
+          "share": 0.3293
+        },
+        {
+          "delta": 3.0,
+          "entity": "日立ソリューションズ",
+          "mention_count": 22.0,
+          "prev_week_count": 19.0,
+          "share": 0.2683
+        },
+        {
+          "delta": 1.0,
+          "entity": "三菱総研DCS",
+          "mention_count": 19.0,
+          "prev_week_count": 18.0,
+          "share": 0.2317
+        },
+        {
+          "delta": -1.0,
+          "entity": "バーチャレクスコンサルティング",
+          "mention_count": 16.0,
+          "prev_week_count": 17.0,
+          "share": 0.1951
+        },
+        {
+          "delta": -3.0,
+          "entity": "enucolor",
+          "mention_count": 13.0,
+          "prev_week_count": 16.0,
+          "share": 0.1585
+        },
+        {
+          "delta": 1.0,
+          "entity": "ウフル",
+          "mention_count": 13.0,
+          "prev_week_count": 12.0,
+          "share": 0.1585
+        },
+        {
+          "delta": -2.0,
+          "entity": "テクノデジタルコンサルティング",
+          "mention_count": 12.0,
+          "prev_week_count": 14.0,
+          "share": 0.1463
+        },
+        {
+          "delta": 5.0,
+          "entity": "ブリッジインターナショナルグループ",
+          "mention_count": 11.0,
+          "prev_week_count": 6.0,
+          "share": 0.1341
+        },
+        {
+          "delta": 0.0,
+          "entity": "HubSpot",
+          "mention_count": 10.0,
+          "prev_week_count": 10.0,
+          "share": 0.122
+        }
+      ],
+      "observed_total": 82.0,
+      "prev_week_competitor_count": 143
+    }
+  }
+}
