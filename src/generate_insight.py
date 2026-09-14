@@ -518,12 +518,15 @@ def generate(stats: Dict[str, Any], model: Optional[str] = None,
         for note in result["suppressed"]:
             print(f"[ok] 実施済みのため再提案を差し替え: {note}")
         print(f"[ok] generate_insight: {len(result['report_md'])} chars via {model}")
+        # settled_lines を必ず返す。落とすと run_weekly が差し替えた本文を
+        # 新しい提案として action_log に登録する(A-016・A-018 の原因)。
         return {"report_md": result["report_md"], "source": "llm", "error": None,
-                "suppressed": result["suppressed"], "warnings": result["warnings"]}
+                "suppressed": result["suppressed"], "warnings": result["warnings"],
+                "settled_lines": result["settled_lines"]}
     except Exception as exc:  # noqa: BLE001 - degrade, never drop the report
         print(f"[warn] generate_insight failed ({exc}) — falling back to the numeric summary")
         return {"report_md": fallback_report(stats), "source": "fallback",
-                "error": str(exc), "suppressed": [], "warnings": []}
+                "error": str(exc), "suppressed": [], "warnings": [], "settled_lines": []}
 
 
 def main() -> None:

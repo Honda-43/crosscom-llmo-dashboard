@@ -365,6 +365,65 @@ def test_the_skip_matches_on_the_content_not_on_a_prefix():
     assert len(action_log.extract_proposals(report, ["別の行"])) == 1
 
 
+def test_a_settled_note_is_skipped_even_without_settled_lines():
+    """A-018 の再発防止。settled_lines が途中で落ちても、決着済み施策の
+    「実施済み(…)」の文面は提案として登録しない。"""
+    text, _, _ = action_log.suppress_settled(SETTLED_REPORT, SETTLED_LOG)
+    rows = action_log.sync_from_report(text, "2026-09-14", existing=SETTLED_LOG)
+    assert all("実施済み(" not in str(r.get("内容", "")) for r in rows), rows
+    assert rows, "本物の推奨アクション(横展開)は残る"
+
+
+# --- 類似内容の重複(A-017 / A-019 の再発防止) -----------------------------
+A017 = ("クロスコムの担当者が、A-3とB-3に対応する事例・実績ページをそれぞれ1本更新し、"
+        "支援社数・費用レンジ・導入期間などの具体的な数値を追加する。期限は2026-09-14とする")
+A019 = ("担当者がA-3のCEP(費用相場)に対応する事例・費用ページを1本、今週中に更新する。"
+        "具体的な費用レンジ・導入期間の数値を追加し、競合の同テーマページの記載項目と比較する")
+REAL_LOG = [
+    {"action_id": "A-007", "内容": "B-3対応の一次情報ページ更新", "対象": "B-3",
+     "根拠rule_id": "R-P2", "状態": verdicts.STATUS_ON_HOLD},
+    {"action_id": "A-010", "内容": "PR TIMES現行事業リリース", "対象": "E-1",
+     "根拠rule_id": "R-P7", "状態": verdicts.STATUS_ON_HOLD},
+    {"action_id": "A-017", "内容": A017, "対象": "—",
+     "根拠rule_id": "R-P2", "状態": verdicts.STATUS_PROPOSED},
+]
+
+
+def test_a_reworded_proposal_for_the_same_face_is_a_duplicate():
+    """9/14 に A-019 として登録されたもの。A-017 と同じ面(A-3)・同じ根拠。"""
+    assert action_log.propose([{"内容": A019, "根拠rule_id": "R-P2"}], REAL_LOG, DATE) == []
+
+
+def test_a_similar_text_without_a_shared_face_is_not_a_duplicate():
+    """A-010 と A-011 は文面が A-017/A-019 より近いが別施策(面の記載が無い)。"""
+    rows = action_log.propose(
+        [{"内容": "PR TIMES旧リリース3本削除(64回引用の汚染源)", "根拠rule_id": "R-P7"}],
+        REAL_LOG, DATE)
+    assert len(rows) == 1
+
+
+def test_the_same_face_with_a_different_measure_is_not_a_duplicate():
+    """面が同じでも中身が違う施策は通す(A-007 と A-017 は B-3 を共有するが別施策)。"""
+    log = [r for r in REAL_LOG if r["action_id"] == "A-007"]
+    assert len(action_log.propose([{"内容": A017, "根拠rule_id": "R-P2"}], log, DATE)) == 1
+
+
+def test_a_similar_proposal_under_another_rule_is_not_a_duplicate():
+    assert len(action_log.propose([{"内容": A019, "根拠rule_id": "R-P4"}], REAL_LOG, DATE)) == 1
+
+
+def test_a_closed_similar_action_does_not_block():
+    log = [dict(r, 状態=verdicts.STATUS_REJECTED) if r["action_id"] == "A-017" else r
+           for r in REAL_LOG]
+    assert len(action_log.propose([{"内容": A019, "根拠rule_id": "R-P2"}], log, DATE)) == 1
+
+
+def test_the_measured_similarities_behind_the_threshold():
+    """閾値の根拠(SIMILAR_DICE のコメント)が崩れていないこと。"""
+    assert action_log.similarity(A017, A019) >= action_log.SIMILAR_DICE
+    assert action_log.similarity("B-3対応の一次情報ページ更新", A017) < action_log.SIMILAR_DICE
+
+
 def test_sync_passes_the_settled_lines_through():
     text, _, settled_lines = action_log.suppress_settled(SETTLED_REPORT, SETTLED_LOG)
     rows = action_log.sync_from_report(text, "2026-09-07", existing=SETTLED_LOG,

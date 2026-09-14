@@ -193,6 +193,26 @@ def test_every_kgi_metric_gets_a_display_form():
     assert "指名検索表示: 120回" in user
 
 
+def test_generate_returns_the_settled_lines(monkeypatch):
+    """A-018 の原因。postprocess が作った settled_lines を generate が返さず、
+    run_weekly に届かなかった。"""
+    report = ("**R-P8(旧事業URLの引用)**\n"
+              "状態: AIの回答はE-1で旧パスを2件引用している。\n"
+              "推奨アクション: 担当者が301統合する。\n")
+    monkeypatch.setattr(generate_insight, "_call_model", lambda *a, **k: report)
+    settled = [{"action_id": "A-003", "内容": "x", "対象": "E-1", "根拠rule_id": "R-P8",
+                "状態": "実施済み・効果測定中", "提案日": "2026-08-24", "実施日": "2026-08-24"}]
+    result = generate_insight.generate(STATS, playbook="x", actions=settled)
+    assert result["settled_lines"] == ["実施済み(A-003・2026-08-24)。効果測定中"]
+
+
+def test_the_fallback_also_returns_settled_lines(monkeypatch):
+    def boom(*a, **k):
+        raise RuntimeError("x")
+    monkeypatch.setattr(generate_insight, "_call_model", boom)
+    assert generate_insight.generate(STATS, playbook="x", actions=[])["settled_lines"] == []
+
+
 def test_key_events_before_the_valid_date_are_labelled_as_not_comparable():
     stats = dict(STATS, kgi=dict(
         STATS["kgi"],

@@ -28,6 +28,9 @@ STATS = {
 }
 
 
+REAL_SYNC = action_log.sync_from_report   # fixture で差し替える前の実物
+
+
 @pytest.fixture
 def wired(monkeypatch, tmp_path):
     """Stub every side effect and record what the orchestrator did."""
@@ -73,6 +76,34 @@ def run(argv, monkeypatch):
     with pytest.raises(SystemExit) as exc:
         run_weekly.main()
     return exc.value.code
+
+
+def test_a_suppressed_recommendation_is_not_registered_end_to_end(wired, monkeypatch):
+    """A-016(9/7)・A-018(9/14)の再発防止。
+
+    部品ごとのテストは通っていたのに本番で起きた。generate() が postprocess の
+    settled_lines を返し忘れ、run_weekly に届いていなかったため。
+    モデル呼び出しだけを差し替え、generate → sync_from_report → 書き込みを通して確かめる。
+    """
+    calls, _ = wired
+    settled = [{"action_id": "A-001", "内容": "外部プロフィール更新", "対象": "E-1",
+                "根拠rule_id": "R-P7", "状態": "実施済み・効果測定中",
+                "提案日": "2026-08-08", "実施日": "2026-08-11"}]
+    report = ("## 3. 発火パターンと推奨アクション\n\n"
+              "**R-P7(ネガティブ/古い情報の検知)**\n"
+              "状態: E-1(会社説明)で終了事業が現在形で記述されている。\n"
+              "推奨アクション: 担当者が来週末までに外部プロフィールを更新する。\n")
+    monkeypatch.setattr(sheets_writer, "read_action_log", lambda: settled)
+    monkeypatch.setattr(generate_insight, "_call_model", lambda *a, **k: report)
+    monkeypatch.setattr(action_log, "sync_from_report", REAL_SYNC)
+    written = []
+    monkeypatch.setattr(sheets_writer, "write_action_log", lambda rows: written.extend(rows))
+
+    run(["--date", "2026-09-14", "--no-slack"], monkeypatch)
+
+    assert calls["sheet"], "所見が書き込まれていない(前提が崩れている)"
+    assert "実施済み(A-001・2026-08-11)" in calls["sheet"][0][1], "差し替えが起きていない"
+    assert not any("実施済み(" in r["内容"] for r in written), written
 
 
 def test_same_day_actions_are_recorded_weekly(wired, monkeypatch):

@@ -79,14 +79,53 @@ def _normalize(text: Any) -> str:
     return re.sub(r"[\s　・,、。.／/]+", "", str(text or "")).lower()
 
 
+# 類似とみなす下限(文字バイグラムの Dice 係数)。2026-09-14 に action_log の
+# 同一rule_id の組み合わせで実測して決めた:
+#   A-017 × A-019(R-P2・A-3の事例/費用ページ更新 = 重複)   0.42
+#   A-010 × A-011(R-P7・PR TIMES の新規リリース / 旧リリース削除 = 別施策) 0.45
+#   A-007 × A-017(R-P2・B-3 一次情報 / A-3・B-3 事例ページ = 別施策)   0.13
+# 文面の近さだけでは重複と別施策を分けられない(0.42 < 0.45)。そのため
+# 「同じ面(プロンプトID)を扱っている」ことを必須にし、そのうえでこの下限を見る。
+SIMILAR_DICE = 0.30
+
+
+def _bigrams(text: Any) -> set:
+    norm = _normalize(text)
+    return {norm[i:i + 2] for i in range(len(norm) - 1)}
+
+
+def similarity(a: Any, b: Any) -> float:
+    """文字バイグラムの Dice 係数(0〜1)。週ごとに言い回しが変わる所見文の比較用。"""
+    left, right = _bigrams(a), _bigrams(b)
+    if not left or not right:
+        return 0.0
+    return 2 * len(left & right) / (len(left) + len(right))
+
+
+def _faces(content: Any, target: Any = "") -> set:
+    """施策が扱う面(A-3 など)。本文と対象列の両方から拾う。"""
+    return set(insight_style.PROMPT_ID_RE.findall(f"{content or ''} {target or ''}"))
+
+
 def is_duplicate(content: Any, rule_id: Any,
-                 rows: Sequence[Dict[str, Any]]) -> bool:
-    """同一内容 + 同一rule_id が未完了状態で存在するか(§5)。"""
-    target = (_normalize(content), _normalize(rule_id))
+                 rows: Sequence[Dict[str, Any]], target: Any = "") -> bool:
+    """同一rule_id で、同じか類似した内容の施策が未完了状態で存在するか(§5)。
+
+    所見はモデルが毎週書き直すので、同じ提案でも文面が一致しない
+    (A-017 と A-019)。完全一致だけを見ていると、同じ面への同じ根拠の
+    提案が毎週新しいIDで積み上がる。
+    """
+    norm_content, norm_rule = _normalize(content), _normalize(rule_id)
+    faces = _faces(content, target)
     for row in rows:
         if str(row.get("状態", "")).strip() not in OPEN_STATUSES:
             continue
-        if (_normalize(row.get("内容")), _normalize(row.get("根拠rule_id"))) == target:
+        if _normalize(row.get("根拠rule_id")) != norm_rule:
+            continue
+        if _normalize(row.get("内容")) == norm_content:
+            return True
+        if (faces & _faces(row.get("内容"), row.get("対象"))
+                and similarity(content, row.get("内容")) >= SIMILAR_DICE):
             return True
     return False
 
@@ -120,7 +159,9 @@ def propose(
         if not content:
             continue
         rule_id = str(proposal.get("根拠rule_id", "") or "—").strip()
-        if is_duplicate(content, rule_id, rows) or is_duplicate(content, rule_id, new_rows):
+        target = proposal.get("対象", "")
+        if (is_duplicate(content, rule_id, rows, target)
+                or is_duplicate(content, rule_id, new_rows, target)):
             continue
         action_id = str(proposal.get("action_id", "") or "").strip()
         if action_id:
@@ -362,7 +403,11 @@ def sync_from_report(report_md: str, date: str,
         import sheets_writer
 
         existing = sheets_writer.read_action_log()
-    return propose(extract_proposals(report_md, settled_lines), existing, date)
+    # 二重の防御。settled_lines が経路のどこかで落ちても(A-018 は generate が
+    # 返し忘れていた)、決着済み施策から作れる「実施済み(…)」の文面そのものは
+    # 提案として登録しない。見た目の接頭辞ではなく、施策記録から作った実物と突き合わせる。
+    skip = list(settled_lines) + [settled_note(r) for r in settled_actions(existing)]
+    return propose(extract_proposals(report_md, skip), existing, date)
 
 
 def main() -> None:
