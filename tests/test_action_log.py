@@ -72,7 +72,61 @@ def test_proposed_rows_start_in_the_proposed_state():
 def test_row_uses_the_approved_columns():
     row = action_log.propose([{"内容": "新しい施策", "根拠rule_id": "R-P7"}], [], DATE)[0]
     assert set(row) == {"action_id", "優先度", "内容", "対象", "根拠rule_id",
-                        "状態", "提案日", "実施日", "判断期限"}
+                        "状態", "提案日", "実施日", "判断期限", "備考"}
+
+
+def test_the_note_column_is_appended_at_the_end():
+    """人が編集している列の位置をずらさない。"""
+    import sheets_writer
+
+    assert sheets_writer.HEADERS_ACTION_LOG[:9] == [
+        "action_id", "優先度", "内容", "対象", "根拠rule_id", "状態",
+        "提案日", "実施日", "判断期限"]
+    assert sheets_writer.HEADERS_ACTION_LOG[-1] == "備考"
+
+
+# --- 同日実施の記録(測定設計 2026-09-17 §4) --------------------------------
+SAME_DAY_LOG = [
+    {"action_id": "A-002", "実施日": "2026-08-18", "備考": ""},
+    {"action_id": "A-003", "実施日": "2026-08-24", "備考": ""},
+    {"action_id": "A-004", "実施日": "2026-08-24", "備考": "人が書いたメモ"},
+    {"action_id": "A-005", "実施日": "2026-08-24"},
+    {"action_id": "A-006", "実施日": "—", "備考": ""},
+    {"action_id": "A-007", "実施日": "—", "備考": ""},
+]
+
+
+def test_actions_sharing_a_date_are_grouped():
+    assert action_log.same_day_groups(SAME_DAY_LOG) == {
+        "2026-08-24": ["A-003", "A-004", "A-005"]}
+
+
+def test_undated_actions_are_not_a_same_day_group():
+    """実施日が「—」の行同士を同日扱いにしない。"""
+    groups = action_log.same_day_groups(SAME_DAY_LOG)
+    assert not any("A-006" in ids for ids in groups.values())
+
+
+def test_the_note_names_the_other_actions():
+    notes = action_log.same_day_notes(SAME_DAY_LOG)
+    assert set(notes) == {"A-003", "A-004", "A-005"}
+    assert notes["A-003"] == "同日実施のため個別効果は分離不能(2026-08-24にA-004/A-005と同日)"
+
+
+def test_a_human_note_is_kept():
+    notes = action_log.same_day_notes(SAME_DAY_LOG)
+    assert notes["A-004"].startswith("人が書いたメモ。同日実施のため個別効果は分離不能")
+
+
+def test_an_already_recorded_row_is_not_rewritten():
+    """毎週走るので、記録済みの行を書き直さない。"""
+    log = [dict(r) for r in SAME_DAY_LOG]
+    log[1]["備考"] = "同日実施のため個別効果は分離不能(2026-08-24にA-004/A-005と同日)"
+    assert "A-003" not in action_log.same_day_notes(log)
+
+
+def test_a_date_with_a_single_action_gets_no_note():
+    assert "A-002" not in action_log.same_day_notes(SAME_DAY_LOG)
 
 
 # --- action_id / 状態 / 実施日 の明示指定 -------------------------------------

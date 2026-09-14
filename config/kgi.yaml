@@ -1,0 +1,30 @@
+# 目標指標(KGI)の定義 — 2026-09-14 確定(本田さん)
+# 設計の根拠: output/reports/measurement_design_2026-09-14.md §1
+#
+# 数値の意味を変える変更(対象の値・有効開始日)は、この yaml だけで行う。
+# 変えた場合は README の「判定基準の変更履歴」に日付と理由を残すこと。
+
+# 正式指標: 問い合わせフォームの認知経路で「AIに聞いて知った」を選んだ件数。
+# A-005(2026-08-24)で全16フォームに設置。Web-to-Lead で Lead に入る。
+official:
+  name: AI認知経由の問い合わせ件数
+  object: Lead
+  field: Recognition_Route__c
+  # 選択リストの API 値そのもの(括弧は全角)。2026-09-14 に Salesforce の
+  # 項目定義から写した。表示ラベルを変えても API 値が変わらなければ集計は壊れない。
+  value: "AIに聞いて知った(ChatGPT・Gemini等)"
+  date_field: CreatedDate
+  valid_from: "2026-08-24"   # 選択肢の設置日。これより前は「選べなかった」のであって0件ではない
+
+# 補助指標: GA4 の参照元がAIドメインのセッションとキーイベント。
+# 参照元の判定は settings.AI_SOURCE_FRAGMENTS(collect_ga4 と同じ)。
+supplementary:
+  name: AI経由セッション / キーイベント
+  sessions:
+    valid_from: null           # セッションは収集開始時から有効
+  key_events:
+    # キーイベント = 問い合わせフォーム送信(サンクスページ到達)
+    definition: 問い合わせフォーム送信(サンクスページ到達)
+    # retURL 不備でサンクスページに到達せず、キーイベントが発火していなかった。
+    # この日より前の key_events は 0 ではなく欠測として扱う。
+    valid_from: "2026-09-01"

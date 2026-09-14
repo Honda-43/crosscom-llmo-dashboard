@@ -144,6 +144,7 @@ def propose(
             "提案日": date,
             "実施日": str(proposal.get("実施日", "—") or "—").strip(),
             "判断期限": str(proposal.get("判断期限", "—")).strip() or "—",
+            "備考": str(proposal.get("備考", "") or "").strip(),
         }
         new_rows.append(row)
     return new_rows
@@ -304,6 +305,50 @@ def prompt_block(action_rows: Sequence[Dict[str, Any]]) -> str:
     )
 
 
+# --------------------------------------------------------------------------
+# 同日実施の記録(measurement_design_2026-09-17 §4)
+# --------------------------------------------------------------------------
+# 対照群を置かないので、効果は実施日の前後で読むしかない。同じ日に複数の
+# 施策を打つと、その日以降の変化をどれにも帰属できない。原則は日をずらすが、
+# 重なった場合はそれを action_log に残し、個別の効果を主張しないようにする。
+SAME_DAY_NOTE = "同日実施のため個別効果は分離不能"
+_DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def same_day_groups(rows: Sequence[Dict[str, Any]]) -> Dict[str, List[str]]:
+    """実施日が同じ施策が2本以上ある日 -> action_id の一覧。"""
+    by_day: Dict[str, List[str]] = {}
+    for row in rows:
+        day = str(row.get("実施日", "")).strip()[:10]
+        action_id = str(row.get("action_id", "")).strip()
+        if action_id and _DATE.match(day):
+            by_day.setdefault(day, []).append(action_id)
+    return {day: sorted(ids) for day, ids in sorted(by_day.items()) if len(ids) > 1}
+
+
+def same_day_notes(rows: Sequence[Dict[str, Any]]) -> Dict[str, str]:
+    """備考に同日実施の記録を足すべき行 -> 書き込む備考の全文。
+
+    既に記録がある行は返さない(毎週書き直さない)。人が書いた備考は
+    消さずに後ろへ足す。
+    """
+    groups = same_day_groups(rows)
+    partners = {aid: (day, ids) for day, ids in groups.items() for aid in ids}
+    out: Dict[str, str] = {}
+    for row in rows:
+        action_id = str(row.get("action_id", "")).strip()
+        if action_id not in partners:
+            continue
+        current = str(row.get("備考", "") or "").strip()
+        if SAME_DAY_NOTE in current:
+            continue
+        day, ids = partners[action_id]
+        others = "/".join(i for i in ids if i != action_id)
+        note = f"{SAME_DAY_NOTE}({day}に{others}と同日)"
+        out[action_id] = f"{current}。{note}" if current else note
+    return out
+
+
 def sync_from_report(report_md: str, date: str,
                      existing: Optional[Sequence[Dict[str, Any]]] = None,
                      settled_lines: Sequence[str] = ()
@@ -323,11 +368,25 @@ def sync_from_report(report_md: str, date: str,
 def main() -> None:
     ap = argparse.ArgumentParser(description="action_log の初期データ投入")
     ap.add_argument("--seed", action="store_true", help="§4の初期データを投入する")
+    ap.add_argument("--mark-same-day", action="store_true",
+                    help="同日実施の施策の備考に「個別効果は分離不能」を記録する")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
 
+    if args.mark_same_day:
+        import sheets_writer
+
+        notes = same_day_notes(sheets_writer.read_action_log())
+        for action_id, note in sorted(notes.items()):
+            print(f"{action_id}: {note}")
+        if args.dry_run:
+            print(f"[dry-run] {len(notes)} 行(書き込みなし)")
+            return
+        sheets_writer.write_action_log_column(notes, "備考")
+        return
+
     if not args.seed:
-        ap.error("--seed を指定してください")
+        ap.error("--seed か --mark-same-day を指定してください")
 
     if args.dry_run:
         for row in SEED_ROWS:

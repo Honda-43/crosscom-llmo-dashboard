@@ -193,6 +193,16 @@ def test_every_kgi_metric_gets_a_display_form():
     assert "指名検索表示: 120回" in user
 
 
+def test_key_events_before_the_valid_date_are_labelled_as_not_comparable():
+    stats = dict(STATS, kgi=dict(
+        STATS["kgi"],
+        ai_key_events={"this_week": 2.0, "prev_week": None, "delta": None,
+                       "valid_from": "2026-09-01", "partial": False},
+    ))
+    user = generate_insight.build_user_prompt(stats)
+    assert "2026-09-01より前は計測されていないため比較できない" in user
+
+
 def test_generate_reads_the_action_log_when_not_given(monkeypatch):
     seen = {}
     monkeypatch.setattr(generate_insight, "_load_actions",

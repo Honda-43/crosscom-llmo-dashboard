@@ -234,6 +234,8 @@ def _formatted_numbers(stats: Dict[str, Any], flat: int) -> str:
                              ("branded_impressions", "指名検索表示", "回")):
         series = kgi.get(key) or {}
         note = "(母数が小さく判断できない水準)" if series.get("noise_zone") else ""
+        if series.get("valid_from") and (series.get("partial") or series.get("prev_week") is None):
+            note += f"({series['valid_from']}より前は計測されていないため比較できない)"
         lines.append(
             f"- 成果指標(KGI) {label}: {insight_style.count_text(series.get('this_week'), unit)}"
             f"(前週 {insight_style.count_text(series.get('prev_week'), unit)}、"

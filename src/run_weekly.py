@@ -149,6 +149,18 @@ def main() -> None:
                  lambda: sheets_writer.write_action_log(proposals), failures)
             lines.append(f"- 新規アクション提案: {len(proposals)}件")
 
+        # 3-4. 同日実施の施策に「個別効果は分離不能」を記録する(測定設計 §4)。
+        # 実施日は人がシートで入れるので、週次で読み直して足りない記録だけ書く。
+        same_day = _run(
+            "same_day_notes",
+            lambda: action_log.same_day_notes(sheets_writer.read_action_log()),
+            failures,
+        ) or {}
+        if same_day:
+            _run("write_same_day_notes",
+                 lambda: sheets_writer.write_action_log_column(same_day, "備考"), failures)
+            lines.append(f"- 同日実施の記録: {', '.join(sorted(same_day))}")
+
         # 4. Persist and deliver
         _run(
             "write_weekly_report",

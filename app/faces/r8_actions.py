@@ -82,7 +82,7 @@ if "対象" in display.columns:
     display["対象"] = display["対象"].map(labels.target)
 
 columns = [c for c in ["action_id", "優先度", "内容", "対象", "根拠rule_id",
-                       "状態", "提案日", "実施日", "判断期限", "期限まで"]
+                       "状態", "提案日", "実施日", "判断期限", "期限まで", "備考"]
            if c in display.columns]
 
 

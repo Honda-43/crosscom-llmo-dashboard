@@ -35,6 +35,8 @@ from settings import (
     TAB_LLM,
     TAB_SOV,
     TAB_SUMMARY,
+    key_events_valid,
+    key_events_valid_from,
     load_yaml,
 )
 
@@ -297,20 +299,34 @@ def _kgi(ga4_rows: List[Dict[str, Any]], gsc_rows: List[Dict[str, Any]],
     """
     this_window, prev_window = week_window(date, 0, days), week_window(date, 1, days)
 
-    def series(this_value: float, prev_value: float) -> Dict[str, Any]:
+    def series(this_value: Optional[float], prev_value: Optional[float]) -> Dict[str, Any]:
         entry = _comparison(this_value, prev_value)
-        entry["noise_zone"] = this_value < noise_floor
+        entry["noise_zone"] = this_value is not None and this_value < noise_floor
         return entry
+
+    # キーイベントは有効開始日(config/kgi.yaml)より前を数えない。
+    # retURL 不備で発火していなかった期間の 0 を足すと、前週比が
+    # 「問い合わせが増えた」に見えてしまう。窓が丸ごと開始日より前なら None。
+    events_from = key_events_valid_from()
+
+    def key_events(window: Tuple[str, str]) -> Optional[float]:
+        if events_from and window[1] < events_from:
+            return None
+        return _sum([r for r in _rows_in(ga4_rows, window)
+                     if key_events_valid(r.get("date"), events_from)], "key_events")
+
+    events = series(key_events(this_window), key_events(prev_window))
+    events["valid_from"] = events_from
+    # 窓の途中で有効になった週は、日数が足りないまま比べることになる
+    events["partial"] = bool(events_from) and any(
+        w[0] < events_from <= w[1] for w in (this_window, prev_window))
 
     kgi = {
         "ai_sessions": series(
             _sum(_rows_in(ga4_rows, this_window), "sessions"),
             _sum(_rows_in(ga4_rows, prev_window), "sessions"),
         ),
-        "ai_key_events": series(
-            _sum(_rows_in(ga4_rows, this_window), "key_events"),
-            _sum(_rows_in(ga4_rows, prev_window), "key_events"),
-        ),
+        "ai_key_events": events,
         "branded_clicks": series(
             _sum(_rows_in(gsc_rows, this_window), "clicks"),
             _sum(_rows_in(gsc_rows, prev_window), "clicks"),

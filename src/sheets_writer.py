@@ -16,6 +16,7 @@ from settings import (
     TAB_CHANGES,
     TAB_GA4,
     TAB_GSC,
+    TAB_GSC_PAGES,
     TAB_LLM,
     TAB_LK_KBF_COMPARE,
     TAB_MONTHLY,
@@ -66,6 +67,11 @@ KEYS_KBF_COMPARE = ["month", "prompt_id", "model", "kbf"]
 HEADERS_GA4 = ["date", "source", "landing_page", "sessions", "key_events"]
 HEADERS_GSC = ["date", "query", "clicks", "impressions"]
 HEADERS_AHREFS = ["date", "aio_keyword_count", "keywords_json"]
+# 記事単位のGSC(2026-09-14)。queries はその日に表示された非匿名クエリの種類数。
+HEADERS_GSC_PAGES = ["date", "page", "impressions", "clicks", "position", "queries"]
+KEYS_GSC_PAGES = ["date", "page"]
+# 1回の書き込みに載せる行数。16か月分を1リクエストにすると上限に当たる。
+GSC_PAGES_WRITE_CHUNK = 5000
 HEADERS_SUMMARY = [
     "date", "mention_rate_all", "mention_rate_pillar_a", "mention_rate_pillar_b",
     "negative_flag_count", "ai_sessions", "branded_clicks",
@@ -93,9 +99,11 @@ CELL_CHAR_LIMIT = 49_000
 
 # --- Phase 5 headers ------------------------------------------------------
 # 施策記録。状態はアプリからではなく本田さんがシート上で直接編集する。
+# 備考は 2026-09-14 に末尾へ追加(既存列の並びは不変)。同日実施で個別効果を
+# 分離できない施策に、その旨を記録する(measurement_design_2026-09-17 §4)。
 HEADERS_ACTION_LOG = [
     "action_id", "優先度", "内容", "対象", "根拠rule_id", "状態",
-    "提案日", "実施日", "判断期限",
+    "提案日", "実施日", "判断期限", "備考",
 ]
 KEYS_ACTION_LOG = ["action_id"]
 
@@ -229,6 +237,9 @@ def _ensure_worksheet(ss, title: str, headers: List[str]):
         return ws
 
     current = ws.row_values(1)
+    if ws.col_count < len(headers):
+        # 列を末尾に足したとき、グリッドが狭いと見出しの書き込みが失敗する
+        ws.add_cols(len(headers) - ws.col_count)
     if current != headers:
         ws.update(values=[headers], range_name="A1")
     return ws
@@ -361,6 +372,32 @@ def write_action_log(rows: List[Dict[str, Any]]) -> None:
         return
     _upsert(_open_spreadsheet(), TAB_ACTION_LOG, HEADERS_ACTION_LOG,
             KEYS_ACTION_LOG, rows)
+
+
+def write_action_log_column(values: Dict[str, str], column: str) -> int:
+    """action_log の1列だけを action_id ごとに書く。
+
+    ``write_action_log`` は行ごと上書きするので、人がシートで編集した
+    状態列を読み込み時点の値で戻してしまう恐れがある。後から記録を
+    足すだけの処理は、対象のセルだけを書く。
+    """
+    if not values:
+        return 0
+    import gspread
+
+    ss = _open_spreadsheet()
+    ws = _ensure_worksheet(ss, TAB_ACTION_LOG, HEADERS_ACTION_LOG)
+    col = gspread.utils.rowcol_to_a1(1, HEADERS_ACTION_LOG.index(column) + 1)[:-1]
+    ids = ws.col_values(1)
+    updates = [
+        {"range": f"{col}{rnum}", "values": [[values[action_id]]]}
+        for rnum, action_id in enumerate(ids, start=1)
+        if rnum > 1 and action_id.strip() in values
+    ]
+    if updates:
+        ws.batch_update(updates, value_input_option="RAW")
+    print(f"[ok] {TAB_ACTION_LOG}.{column}: {len(updates)} cells")
+    return len(updates)
 
 
 def write_citation_gap(rows: List[Dict[str, Any]]) -> None:
@@ -646,6 +683,56 @@ def write_gsc(rows: List[Dict[str, Any]]) -> None:
         return
     ss = _open_spreadsheet()
     _upsert(ss, TAB_GSC, HEADERS_GSC, KEYS_GSC, rows)
+
+
+def contiguous_writes(writes: List[Dict[str, Any]],
+                      chunk: int = GSC_PAGES_WRITE_CHUNK) -> List[Dict[str, Any]]:
+    """``_plan_upsert`` の1行ずつの書き込みを、連続した行ごとの範囲にまとめる。
+
+    バックフィルは数万行になる。1行1範囲のまま送ると範囲の数で
+    リクエストが膨らむので、続き番号の行はひとつの範囲に載せる。
+    """
+    ranges: List[Dict[str, Any]] = []
+    for write in sorted(writes, key=lambda w: w["row"]):
+        last = ranges[-1] if ranges else None
+        if (last and last["row"] + len(last["values"]) == write["row"]
+                and len(last["values"]) < chunk):
+            last["values"].append(write["values"])
+        else:
+            ranges.append({"row": write["row"], "values": [write["values"]]})
+    return ranges
+
+
+def write_gsc_pages(rows: List[Dict[str, Any]]) -> int:
+    """gsc_pages を date × page で upsert する。
+
+    読むのは鍵の2列(date, page)だけ。行数が多いタブを毎日まるごと
+    読むと、日次の読み取り量がバックフィルの行数に比例して増える。
+    """
+    if not rows:
+        return 0
+    import gspread
+
+    ss = _open_spreadsheet()
+    ws = _ensure_worksheet(ss, TAB_GSC_PAGES, HEADERS_GSC_PAGES)
+    last_key = max(HEADERS_GSC_PAGES.index(k) for k in KEYS_GSC_PAGES)
+    key_range = f"A:{gspread.utils.rowcol_to_a1(1, last_key + 1)[:-1]}"
+    existing = ws.get_values(key_range)
+    writes = _plan_upsert(existing, HEADERS_GSC_PAGES, KEYS_GSC_PAGES, rows)
+
+    needed = max(w["row"] for w in writes)
+    if ws.row_count < needed:
+        ws.add_rows(needed - ws.row_count + 1000)
+    ranges = contiguous_writes(writes)
+    for rng in ranges:
+        ss.values_batch_update({
+            "valueInputOption": "USER_ENTERED",
+            "data": [{"range": f"'{TAB_GSC_PAGES}'!A{rng['row']}", "values": rng["values"]}],
+        })
+    appended = sum(1 for w in writes if w["row"] > max(len(existing), 1))
+    print(f"[ok] {TAB_GSC_PAGES}: {len(writes) - appended} updated, "
+          f"{appended} appended ({len(ranges)} requests)")
+    return len(writes)
 
 
 def write_sov_daily(rows: List[Dict[str, Any]]) -> None:

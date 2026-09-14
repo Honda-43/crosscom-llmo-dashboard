@@ -328,6 +328,61 @@ def test_kgi_judges_on_this_week_alone():
     assert kgi["ai_sessions"]["delta"] == -18
 
 
+# ===========================================================================
+# KGI キーイベントの有効開始日(config/kgi.yaml・2026-09-14)
+# ===========================================================================
+def events(date, count):
+    return dict(ga4(date, 1), key_events=str(count))
+
+
+def kgi_on(date, rows, valid_from="2026-09-01", monkeypatch=None):
+    monkeypatch.setattr(rules_engine, "key_events_valid_from", lambda: valid_from)
+    return rules_engine.build_stats(date, {TAB_GA4: rows}, legacy_paths=[])["kgi"]
+
+
+def test_key_events_before_the_valid_date_are_not_counted(monkeypatch):
+    """retURL 不備の期間の値は、入っていても数えない。"""
+    rows = [events("2026-08-31", 5), events("2026-09-02", 1), events("2026-09-03", 1)]
+    kgi = kgi_on("2026-09-06", rows, monkeypatch=monkeypatch)   # 今週 = 08-31〜09-06
+    assert kgi["ai_key_events"]["this_week"] == 2
+    assert kgi["ai_key_events"]["partial"] is True
+    assert kgi["ai_sessions"]["this_week"] == 3, "セッションは開始日の影響を受けない"
+
+
+def test_a_week_entirely_before_the_valid_date_is_missing_not_zero(monkeypatch):
+    """0 と書くと「前週0件→今週2件で増えた」と読まれる。"""
+    rows = [events("2026-08-28", 4), events("2026-09-03", 2)]
+    kgi = kgi_on("2026-09-07", rows, monkeypatch=monkeypatch)   # 前週 = 08-25〜08-31
+    assert kgi["ai_key_events"]["this_week"] == 2
+    assert kgi["ai_key_events"]["prev_week"] is None
+    assert kgi["ai_key_events"]["delta"] is None
+    assert kgi["ai_key_events"]["valid_from"] == "2026-09-01"
+
+
+def test_key_events_after_the_valid_date_compare_normally(monkeypatch):
+    rows = [events("2026-09-10", 1), events("2026-09-16", 3)]
+    kgi = kgi_on("2026-09-20", rows, monkeypatch=monkeypatch)
+    assert (kgi["ai_key_events"]["this_week"], kgi["ai_key_events"]["prev_week"]) == (3, 1)
+    assert kgi["ai_key_events"]["partial"] is False
+
+
+def test_the_configured_valid_date_is_september_first():
+    import settings
+
+    assert settings.key_events_valid_from() == "2026-09-01"
+    assert settings.key_events_valid("2026-09-01") is True
+    assert settings.key_events_valid("2026-08-31") is False
+
+
+def test_the_official_kgi_value_matches_the_salesforce_picklist():
+    """API 値は括弧が全角。半角で書くと0件になり、効果が無いように見える。"""
+    import settings
+
+    official = settings.load_kgi()["official"]
+    assert official["field"] == "Recognition_Route__c"
+    assert official["value"] == "AIに聞いて知った(ChatGPT・Gemini等)"
+
+
 def test_kgi_flags_a_drop_from_a_barely_meaningful_base():
     """今回のレビュー実データ: 指名クリック 前週10 → 今週4。"""
     rows = [gsc(days_before(1), 4), gsc(days_before(8), 10)]

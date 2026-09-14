@@ -7,6 +7,10 @@ GitHub Actions による毎朝の自動収集 → Google Sheets 蓄積 → Looke
 Brand Radar(Ahrefs)は Lite プランで利用不可のため、**LLM API 定点観測スクリプトで代替**している。
 これが本システムの核である。
 
+> **測定設計(確定版):[`output/reports/measurement_design_2026-09-17.md`](output/reports/measurement_design_2026-09-17.md)**
+> 目標指標の定義・記事単位GSC(`gsc_pages`)・効果の読み方(対照群なし/面ごとの前後比較+中断時系列)・
+> 同日実施の記録・p値を使わない判断基準。指標を読む・施策を打つ前に参照する。
+
 ---
 
 ## アーキテクチャ
@@ -24,7 +28,7 @@ Brand Radar(Ahrefs)は Lite プランで利用不可のため、**LLM API 定点
                          │   ├─ analyze_sov.py  ── 競合SoV集計(Phase1) │
                          │   ├─ analyze_diff.py ── 前回観測との差分     │
                          │   ├─ collect_ga4.py ── AI経由流入(前日)     │
-                         │   ├─ collect_gsc.py ── 指名検索(3日前)      │
+                         │   ├─ collect_gsc.py ── 指名検索・記事(3日前)│
                          │   ├─ sheets_writer.py ─▶ Google Sheets       │
                          │   └─ notify_slack.py ─▶ Slack Webhook       │
                          │                                              │
@@ -76,7 +80,8 @@ crosscom-llmo-dashboard/
 │   ├── daily.yml          # 毎朝07:00 JST(cron: '0 22 * * *' UTC)
 │   ├── weekly.yml         # 毎週月曜08:30 JST(cron: '30 23 * * 0' UTC)
 │   ├── monthly.yml        # 毎月第1水曜・第1木曜07:30 JST(2日分割・Phase 3)
-│   └── backfill_sov.yml   # sov_daily 全期間再生成(手動実行)
+│   ├── backfill_sov.yml   # sov_daily 全期間再生成(手動実行)
+│   └── backfill_gsc_pages.yml # gsc_pages を16か月分取り込む(手動実行)
 ├── config/
 │   ├── prompts.yaml       # 観測プロンプト定義(承認済み・変更禁止)
 │   ├── prompts_monthly.yaml # 月次観測プロンプト M-1〜M-16(Phase 3・xlsx原文)
@@ -103,7 +108,7 @@ crosscom-llmo-dashboard/
 │   ├── citation_gap.py    # 引用元ドメインの3分類(Phase 5)
 │   ├── board_daily.py     # Looker用フラットタブ(Phase 5)
 │   ├── collect_ga4.py     # GA4:AI経由流入・CV
-│   ├── collect_gsc.py     # GSC:指名検索
+│   ├── collect_gsc.py     # GSC:指名検索 / 記事単位(gsc_pages)
 │   ├── collect_ahrefs.py  # 週次:AI Overviews引用KW(失敗時スキップ可)
 │   ├── sheets_writer.py   # Sheets追記の共通処理(冪等upsert)
 │   ├── settings.py        # 環境変数・定数・モデル有効/無効
@@ -234,12 +239,13 @@ cd src && python run_weekly.py --skip-ahrefs --no-slack   # 所見だけ手元�
 | `llm_observations` | 1日×1プロンプト×1モデル | date, prompt_id, pillar, model, mention, mention_type, rank, kbf_tags, negative_or_outdated, negative_detail, cited_crosscom_urls, competitors_mentioned, raw_file |
 | `ga4_ai_traffic` | 1日×source×LP | date, source, landing_page, sessions, key_events |
 | `gsc_branded` | 1日×query | date, query, clicks, impressions |
+| `gsc_pages`(2026-09-14) | 1日×記事URL | date, page, impressions, clicks, position, queries |
 | `ahrefs_aio`(週次) | 1週 | date, aio_keyword_count, keywords_json |
 | `daily_summary` | 1日 | date, mention_rate_all, mention_rate_pillar_a, mention_rate_pillar_b, negative_flag_count, ai_sessions, branded_clicks |
 | `sov_daily`(Phase 1) | 1日×pillar×企業 | date, pillar, entity, mention_count, observed_total |
 | `changes`(Phase 1) | 変化1件 | date, prompt_id, model, change_type, before, after, detail |
 | `weekly_reports`(Phase 2) | 1週 | date, stats_json, report_md |
-| `action_log`(Phase 5) | 施策1件 | action_id, 優先度, 内容, 対象, 根拠rule_id, 状態, 提案日, 実施日, 判断期限 |
+| `action_log`(Phase 5) | 施策1件 | action_id, 優先度, 内容, 対象, 根拠rule_id, 状態, 提案日, 実施日, 判断期限, 備考(2026-09-14 追加) |
 | `citation_gap`(Phase 5) | 1週×ドメイン | date, domain, category, cited_count, prompts |
 | `board_daily`(Phase 5) | 1日 | date, mention_rate_all_7d, …, noise_flag, material_events |
 
@@ -253,6 +259,19 @@ cd src && python run_weekly.py --skip-ahrefs --no-slack   # 所見だけ手元�
 ---
 
 ## 判定基準の変更履歴
+
+### 2026-09-14 — GA4 キーイベントを 2026-09-01 以降だけ数える
+
+retURL の不備でサンクスページに到達せず、**2026-09-01 より前はキーイベント
+(= 問い合わせフォーム送信)が発火していなかった**。この期間の `key_events` の 0 は
+「問い合わせが無かった」ではなく「数えられていなかった」。
+
+- 定義: `config/kgi.yaml` の `supplementary.key_events.valid_from`
+- 週次ルール・週次所見・R7 は開始日より前を足さない。前週が丸ごと開始日より前なら「データなし」
+- シート `ga4_ai_traffic` の過去の値は書き換えていない(読む側で切る)
+
+正式指標(認知経路「AIに聞いて知った」)の定義も同じ yaml に置いた。
+詳細は [測定設計 §1](output/reports/measurement_design_2026-09-17.md)。
 
 指標の時系列を読むときは、**基準そのものが変わった日**を必ず確認する。
 基準変更をまたいだ数値の増減は、実態の変化ではなく定義の変化であることがある。

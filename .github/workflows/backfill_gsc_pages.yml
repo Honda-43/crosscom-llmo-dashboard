@@ -1,0 +1,59 @@
+name: backfill-gsc-pages
+
+# 記事単位のGSC(gsc_pages)を過去分まで取り込む手動ワークフロー(2026-09-14)。
+# 既定は GSC の保持期間(16か月)いっぱい。date × page の upsert なので再実行しても重複しない。
+#
+# push でも走る:このファイルを変更して main に入れたときに1回だけ書き込みまで行う
+# (inputs が空なので dry_run にならない)。初回のバックフィルをこれで実行した。
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/backfill_gsc_pages.yml
+  workflow_dispatch:
+    inputs:
+      since:
+        description: '開始日 (YYYY-MM-DD、空なら16か月前)'
+        required: false
+        default: ''
+      until:
+        description: '終了日 (YYYY-MM-DD、空なら3日前)'
+        required: false
+        default: ''
+      dry_run:
+        description: '書き込まず件数だけ表示する'
+        type: boolean
+        required: false
+        default: true
+
+concurrency:
+  group: llmo-daily      # 日次パイプラインと同時に書き込まない
+  cancel-in-progress: false
+
+jobs:
+  backfill:
+    runs-on: ubuntu-latest
+    env:
+      GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+      SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
+      GSC_SITE_URL: ${{ secrets.GSC_SITE_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Backfill gsc_pages
+        working-directory: src
+        run: |
+          python collect_gsc.py --pages --backfill \
+            ${{ inputs.since && format('--since {0}', inputs.since) || '' }} \
+            ${{ inputs.until && format('--until {0}', inputs.until) || '' }} \
+            ${{ !inputs.dry_run && '--write' || '' }}

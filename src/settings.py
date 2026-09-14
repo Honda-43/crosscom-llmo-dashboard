@@ -36,6 +36,8 @@ RETIRED_URLS_FILE = CONFIG_DIR / "retired_urls.yaml"
 PLAYBOOK_FILE = CONFIG_DIR / "playbook.md"
 # Phase 5 — 判定欄のテンプレート(LLMを使わず決定的に文面を作る)
 VERDICT_TEMPLATES_FILE = CONFIG_DIR / "verdict_templates.yaml"
+# 目標指標(KGI)の定義と、各指標が有効になった日(2026-09-14 確定)
+KGI_FILE = CONFIG_DIR / "kgi.yaml"
 DATA_REPORTS_DIR = ROOT_DIR / "data" / "reports"
 
 
@@ -79,6 +81,29 @@ def load_yaml(path: Any) -> Any:
     """Load a config YAML, failing loudly on duplicate keys."""
     with open(path, "r", encoding="utf-8") as fh:
         return yaml.load(fh, Loader=_StrictLoader)
+
+
+# --------------------------------------------------------------------------
+# 目標指標(KGI)の定義(config/kgi.yaml)
+# --------------------------------------------------------------------------
+def load_kgi() -> Dict[str, Any]:
+    return load_yaml(KGI_FILE)
+
+
+def key_events_valid_from() -> Optional[str]:
+    """GA4 キーイベントが有効になった日(YYYY-MM-DD)。
+
+    これより前は retURL 不備で発火していなかったので、0 は「問い合わせが
+    無かった」ではなく「数えられていなかった」。集計側はこの日で切る。
+    """
+    value = ((load_kgi().get("supplementary") or {}).get("key_events") or {}).get("valid_from")
+    return str(value).strip() if value else None
+
+
+def key_events_valid(date: Any, valid_from: Optional[str] = None) -> bool:
+    """その日の key_events を数に入れてよいか。"""
+    start = valid_from if valid_from is not None else key_events_valid_from()
+    return not start or str(date or "").strip()[:10] >= start
 
 
 # --------------------------------------------------------------------------
@@ -279,6 +304,8 @@ def google_credentials():
 TAB_LLM = "llm_observations"
 TAB_GA4 = "ga4_ai_traffic"
 TAB_GSC = "gsc_branded"
+# 記事単位のGSC(2026-09-14)。差の差分析の単位。gsc_branded とは別に持つ。
+TAB_GSC_PAGES = "gsc_pages"
 TAB_AHREFS = "ahrefs_aio"
 TAB_SUMMARY = "daily_summary"
 # Phase 1 tabs (approved — do not change the schema)

@@ -54,6 +54,14 @@ def wired(monkeypatch, tmp_path):
     monkeypatch.setattr(action_log, "sync_from_report",
                         lambda report, date, existing=None, settled_lines=(): [])
     monkeypatch.setattr(sheets_writer, "write_action_log", lambda rows: None)
+    # 同日実施の記録(測定設計 2026-09-17 §4)
+    calls["same_day"] = {}
+    monkeypatch.setattr(sheets_writer, "read_action_log", lambda: [
+        {"action_id": "A-003", "実施日": "2026-08-24", "備考": ""},
+        {"action_id": "A-004", "実施日": "2026-08-24", "備考": ""},
+    ])
+    monkeypatch.setattr(sheets_writer, "write_action_log_column",
+                        lambda values, column: calls["same_day"].update(values) or len(values))
     # Phase 6: citation_gap 更新後の lk_scatter 再集計
     monkeypatch.setattr(run_weekly, "_refresh_scatter",
                         lambda date: calls.__setitem__("scatter", date) or 0)
@@ -65,6 +73,16 @@ def run(argv, monkeypatch):
     with pytest.raises(SystemExit) as exc:
         run_weekly.main()
     return exc.value.code
+
+
+def test_same_day_actions_are_recorded_weekly(wired, monkeypatch):
+    """実施日は人が入れるので、週次で読み直して同日実施を記録する。"""
+    calls, _ = wired
+    monkeypatch.setattr(generate_insight, "generate",
+                        lambda stats, **kw: {"report_md": "本文", "source": "llm"})
+    run(["--date", "2026-08-17", "--no-slack"], monkeypatch)
+    assert set(calls["same_day"]) == {"A-003", "A-004"}
+    assert "分離不能" in calls["same_day"]["A-003"]
 
 
 def test_scatter_is_refreshed_after_citation_gap(wired, monkeypatch):

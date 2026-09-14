@@ -8,6 +8,7 @@ import streamlit as st
 import board
 import common
 import data_source
+from settings import key_events_valid_from
 
 board.face_header("R7", "成果指標(KGI)", "先行指標から遅行指標への波及を順に見る")
 
@@ -38,7 +39,12 @@ rate_prev = board.window_mean(summary, "mention_rate_all", end - pd.Timedelta(da
 ai_now, ai_prev = week_sum(ga4, "sessions"), week_sum(ga4, "sessions", 1)
 clicks_now, clicks_prev = week_sum(gsc, "clicks"), week_sum(gsc, "clicks", 1)
 impressions_now = week_sum(gsc, "impressions")
-events_now = week_sum(ga4, "key_events")
+# キーイベントは有効開始日(config/kgi.yaml)より前を数えない。retURL 不備で
+# 発火していなかった期間の 0 は、問い合わせが無かったことを意味しない。
+events_from = key_events_valid_from()
+ga4_events = (ga4[ga4["date"] >= pd.Timestamp(events_from)]
+              if events_from and not ga4.empty and "date" in ga4.columns else ga4)
+events_now = week_sum(ga4_events, "key_events")
 
 st.caption(f"対象週: {end - pd.Timedelta(days=6):%Y-%m-%d} 〜 {end:%Y-%m-%d}")
 
@@ -76,7 +82,8 @@ board.metric_card(cards[2], "AI経由セッション(週計)", f"{ai_now:.0f}",
                   note=(f"母数が判断に足りない(週{floor:.0f}未満)"
                         if ai_now < floor else "母数は判断に足る"))
 board.metric_card(cards[3], "AI経由の主要イベント(週計)", f"{events_now:.0f}",
-                  None, note="遅行指標。母数が小さいうちは0が続く")
+                  None, note=("遅行指標。母数が小さいうちは0が続く"
+                              + (f"。{events_from}より前は計測なし" if events_from else "")))
 
 st.divider()
 st.subheader("週次の推移")

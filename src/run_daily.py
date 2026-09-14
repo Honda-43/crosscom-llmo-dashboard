@@ -107,6 +107,8 @@ def main() -> None:
     # GA4 / GSC (independent of the LLM observation)
     ga4_rows = _run("collect_ga4", lambda: collect_ga4.collect(), failures) or []
     gsc_rows = _run("collect_gsc", lambda: collect_gsc.collect(), failures) or []
+    # 記事単位(gsc_pages)。指名検索の集計とは独立に取る(2026-09-14)。
+    gsc_page_rows = _run("collect_gsc_pages", lambda: collect_gsc.collect_pages(), failures) or []
 
     # Build summary row
     summary = _run(
@@ -121,6 +123,7 @@ def main() -> None:
     _run("write_changes", lambda: sheets_writer.write_changes(changes), failures)
     _run("write_ga4", lambda: sheets_writer.write_ga4(ga4_rows), failures)
     _run("write_gsc", lambda: sheets_writer.write_gsc(gsc_rows), failures)
+    _run("write_gsc_pages", lambda: sheets_writer.write_gsc_pages(gsc_page_rows), failures)
     if summary is not None:
         _run("write_daily_summary", lambda: sheets_writer.write_daily_summary(summary), failures)
 
@@ -250,6 +253,7 @@ def main() -> None:
         f"- LLM observations: {ok_obs} ok / {err_obs} error (total {len(extractions)})",
         f"- GA4 AI-referral rows: {len(ga4_rows)}",
         f"- GSC branded-query rows: {len(gsc_rows)}",
+        f"- GSC page rows: {len(gsc_page_rows)}",
         f"- SoV rows: {len(sov_rows)}",
         f"- Detected changes: {len(changes)}",
         f"- Slack alert: {'sent' if notified else 'none'}",
