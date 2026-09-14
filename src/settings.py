@@ -6,6 +6,8 @@ model can be toggled without touching collector code (§3).
 """
 from __future__ import annotations
 
+import csv
+import datetime as dt
 import json
 import os
 from pathlib import Path
@@ -24,6 +26,11 @@ DATA_RAW_MONTHLY_DIR = ROOT_DIR / "data" / "raw" / "monthly"
 PROMPTS_FILE = CONFIG_DIR / "prompts.yaml"
 # Phase 3 — 月次観測(BOFU:社名指名・競合比較)。日次とはファイルを分ける。
 PROMPTS_MONTHLY_FILE = CONFIG_DIR / "prompts_monthly.yaml"
+# LLMO効果測定実験(2026-09-14)。47記事に対応する質問文。本田さんが貼った CSV を
+# **加工せずそのまま**置いている(YAML にするとクォートの付け方で文字が変わりうる)。
+PROMPTS_EXPERIMENT_FILE = CONFIG_DIR / "prompts_experiment.csv"
+# 実験の回答全文。日次・月次の日付ディレクトリと混ぜない。
+DATA_RAW_EXPERIMENT_DIR = ROOT_DIR / "data" / "raw" / "experiment"
 # Entity alias table (Phase 1 §2-1) — appended to during operation, no code change.
 ENTITY_ALIASES_FILE = CONFIG_DIR / "entity_aliases.yaml"
 # Generic phrases that are not company names and must not be counted.
@@ -137,6 +144,110 @@ def load_monthly_prompts(active_only: bool = True,
     if batch:
         prompts = [p for p in prompts if str(p.get("batch") or "").strip() == batch]
     return prompts
+
+
+# --------------------------------------------------------------------------
+# 観測の曜日割り(2026-09-14 確定)
+# --------------------------------------------------------------------------
+# 曜日は JST の date.weekday()(月=0 … 日=6)。
+#
+# Gemini 無料枠は1日20リクエスト。本田さんの判定(2026-09-14):
+#   - 日次7本は 火・木・土 だけ観測する(ワークフロー自体は毎日走る。
+#     GA4 / GSC は1回の実行で1日分しか取らないので、止めると欠ける)
+#   - 実験の Claude は 月・木 に47本
+#   - 実験の Gemini は**週2回**。47本を2周に割り、毎日少しずつ回す
+#       1周目 月E01-18 火E19-29 水E30-42 木E43-47
+#       2周目 金E01-18 土E19-29 日E30-47
+#     同じ質問の2回の観測は3〜4日あく。
+#
+# 曜日ごとの Gemini の計画本数(日次 + 月次 + 実験)。**第1週が最も厳しい**:
+#   月18 火18 水13(第1週19) 木12(第1週18) 金18 土18 日18
+# 週の実験94本 + 日次21本。第1週は月次12本も入り、枠の余りは週で13しかない。
+# どの日も余りは1〜2本で、通常のリトライ(1観測で最大3回追加)は収まらない。
+# そのため実験の Gemini は**リトライをその日の余りの範囲に限る**(run_experiment)。
+#
+# Gemini の1日は太平洋時間で切り替わる(JST 16〜17時)。どのワークフローも
+# JST の朝に走るので、JST の1日と枠の1日は1対1に対応する。
+DAILY_LLM_WEEKDAYS = (1, 3, 5)                  # 火・木・土
+EXPERIMENT_CLAUDE_WEEKDAYS = (0, 3)             # 月・木
+# 曜日 -> 実験IDの番号の範囲(両端を含む)
+EXPERIMENT_GEMINI_GROUPS: Dict[int, tuple] = {
+    0: (1, 18),     # 月 E01〜E18(1周目)
+    1: (19, 29),    # 火 E19〜E29
+    2: (30, 42),    # 水 E30〜E42
+    3: (43, 47),    # 木 E43〜E47
+    4: (1, 18),     # 金 E01〜E18(2周目)
+    5: (19, 29),    # 土 E19〜E29
+    6: (30, 47),    # 日 E30〜E47
+}
+# 月次のバッチが走る曜日(第1週のみ)。monthly.yml の guard と同じ判定。
+MONTHLY_BATCH_WEEKDAYS = {"A": 2, "B": 3}
+GEMINI_DAILY_REQUEST_LIMIT = 20
+WEEKDAY_LABELS = ("月", "火", "水", "木", "金", "土", "日")
+
+
+def _weekday(date: str) -> int:
+    return dt.date.fromisoformat(str(date)[:10]).weekday()
+
+
+def is_daily_llm_day(date: str) -> bool:
+    """日次の7本を観測する日か(JST の日付)。"""
+    return _weekday(date) in DAILY_LLM_WEEKDAYS
+
+
+def load_experiment_prompts() -> List[Dict[str, Any]]:
+    """実験の47本。CSV の値は**strip も含めて一切加工しない**。
+
+    collect_llm が読むキー(``id`` / ``text``)に合わせて ``prompt`` 列を
+    ``text`` として渡す。元の列名も残す。
+    """
+    with open(PROMPTS_EXPERIMENT_FILE, "r", encoding="utf-8", newline="") as fh:
+        rows = list(csv.DictReader(fh))
+    return [dict(row, text=row["prompt"]) for row in rows]
+
+
+def experiment_number(prompt_id: str) -> int:
+    """"E07" -> 7"""
+    return int(str(prompt_id).lstrip("E"))
+
+
+def experiment_plan(date: str) -> Dict[str, List[Dict[str, Any]]]:
+    """その日に観測する実験プロンプトをモデルごとに返す。無いモデルは入れない。"""
+    weekday = _weekday(date)
+    prompts = load_experiment_prompts()
+    plan: Dict[str, List[Dict[str, Any]]] = {}
+    group = EXPERIMENT_GEMINI_GROUPS.get(weekday)
+    if group:
+        lo, hi = group
+        plan["gemini"] = [p for p in prompts if lo <= experiment_number(p["id"]) <= hi]
+    if weekday in EXPERIMENT_CLAUDE_WEEKDAYS:
+        plan["claude"] = list(prompts)
+    return plan
+
+
+def gemini_requests_on(date: str, daily_count: int = 7,
+                       monthly_batch_size: int = 6) -> Dict[str, int]:
+    """その日(JST)の Gemini リクエスト数の見積もり。日次・月次・実験の合計。
+
+    ``retry_headroom`` は「何本まで最大リトライしても枠に収まるか」
+    (run_monthly.request_budget と同じ数え方)。
+    """
+    day = dt.date.fromisoformat(str(date)[:10])
+    weekday = day.weekday()
+    daily = daily_count if weekday in DAILY_LLM_WEEKDAYS else 0
+    monthly = (monthly_batch_size
+               if day.day <= 7 and weekday in MONTHLY_BATCH_WEEKDAYS.values() else 0)
+    experiment = len(experiment_plan(date).get("gemini", []))
+    total = daily + monthly + experiment
+    spare = GEMINI_DAILY_REQUEST_LIMIT - total
+    return {
+        "daily": daily, "monthly": monthly, "experiment": experiment,
+        # 日次・月次を引いたあとに実験が使える本数(計画 + リトライの上限)
+        "experiment_budget": GEMINI_DAILY_REQUEST_LIMIT - daily - monthly,
+        "total": total, "limit": GEMINI_DAILY_REQUEST_LIMIT,
+        "over": total > GEMINI_DAILY_REQUEST_LIMIT, "spare": spare,
+        "retry_headroom": max(0, spare // max(1, MAX_RETRIES - 1)),
+    }
 
 
 # --------------------------------------------------------------------------
@@ -316,6 +427,8 @@ TAB_WEEKLY = "weekly_reports"
 # Phase 3 — 月次観測。日次の llm_observations には混ぜない
 # (言及率など日次指標の母数を汚さないため)。
 TAB_MONTHLY = "monthly_observations"
+# LLMO効果測定実験(2026-09-14)。ダッシュボード用のタブとは混ぜない。
+TAB_EXPERIMENT = "llm_experiment"
 # 比較型観測のKBF別評価。月次実行のたびに書き換える(Phase 3 追加)。
 TAB_LK_KBF_COMPARE = "lk_kbf_compare"
 # Phase 5

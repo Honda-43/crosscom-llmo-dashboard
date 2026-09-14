@@ -3,8 +3,16 @@ name: daily
 on:
   schedule:
     # 07:00 JST = 22:00 UTC (previous day)
+    # **毎日走らせる。** LLMの7本を観測するのは 火・木・土 だけで、判定は
+    # run_daily.py が JST の曜日で行う(2026-09-14)。GA4 / GSC は毎日取る。
     - cron: '0 22 * * *'
   workflow_dispatch:
+    inputs:
+      force_llm:
+        description: '日次観測の曜日(火・木・土)でなくても7本を観測する'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write
@@ -43,7 +51,7 @@ jobs:
       - name: Run daily pipeline (LLM -> extract -> SoV/diff -> Sheets, GA4, GSC, Slack)
         id: pipeline
         working-directory: src
-        run: python run_daily.py
+        run: python run_daily.py ${{ inputs.force_llm && '--force-llm' || '' }}
 
       - name: Commit new raw LLM answers
         if: always()

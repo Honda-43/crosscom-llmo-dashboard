@@ -24,6 +24,7 @@ from settings import (
     TAB_ACTION_LOG,
     TAB_BOARD,
     TAB_CITATION_GAP,
+    TAB_EXPERIMENT,
     TAB_LK_ACTIONS,
     TAB_LK_ANSWERS,
     TAB_LK_ANSWERS_PIVOT,
@@ -632,6 +633,83 @@ def write_kbf_compare(rows: List[Dict[str, Any]]) -> None:
         return
     _upsert(_open_spreadsheet(), TAB_LK_KBF_COMPARE,
             HEADERS_KBF_COMPARE, KEYS_KBF_COMPARE, rows)
+
+
+# --------------------------------------------------------------------------
+# LLMO効果測定実験(2026-09-14)— llm_experiment
+# --------------------------------------------------------------------------
+# **鍵の3列を先頭に置く。** 回答全文を持つタブなので、upsert のたびに全列を
+# 読むと週を追うごとに読み込みが重くなる。鍵だけ(A〜C列)を読んで行番号を決める。
+HEADERS_EXPERIMENT = [
+    "date", "experiment_id", "model",
+    "layer", "target_url", "model_name", "timestamp",
+    "cited_domain", "cited_article", "mentioned", "cited_domains",
+    "unresolved_redirects", "cited_urls", "error",
+    "question", "answer_text", "raw_file",
+]
+KEYS_EXPERIMENT = ["date", "experiment_id", "model"]
+# USER_ENTERED では、この文字で始まる文字列が数式として解釈されてセルが壊れる。
+# 先頭の ' は「文字列として扱う」指示で、セルの値には残らない。
+_FORMULA_PREFIXES = ("=", "+", "-", "@")
+
+
+def _as_text(value: Any) -> str:
+    text = "" if value is None else str(value)
+    return "'" + text if text.startswith(_FORMULA_PREFIXES) else text
+
+
+def _experiment_row(rec: Dict[str, Any]) -> Dict[str, Any]:
+    """collect_llm のレコード + experiment.evaluate の列を1行にする。
+
+    欠測の行も残す(判定列は空)。観測できなかったことが記録になる。
+    """
+    answer = rec.get("answer_text") or ""
+    if len(answer) > CELL_CHAR_LIMIT:
+        # 1セル5万字の上限。全文は raw_file(data/raw/experiment)にある。
+        answer = answer[:CELL_CHAR_LIMIT] + "…[続きは raw_file]"
+    return {
+        "date": rec.get("date"),
+        "experiment_id": rec.get("experiment_id") or rec.get("prompt_id"),
+        "model": rec.get("model"),
+        "layer": rec.get("layer", ""),
+        "target_url": rec.get("target_url", ""),
+        "model_name": rec.get("model_name", ""),
+        "timestamp": rec.get("timestamp", ""),
+        "cited_domain": rec.get("cited_domain", ""),
+        "cited_article": rec.get("cited_article", ""),
+        "mentioned": rec.get("mentioned", ""),
+        "cited_domains": rec.get("cited_domains", []),
+        "unresolved_redirects": rec.get("unresolved_redirects", ""),
+        "cited_urls": rec.get("resolved_urls", []),
+        "error": _as_text(rec.get("error") or ""),
+        "question": _as_text(rec.get("question") or ""),
+        "answer_text": _as_text(answer),
+        "raw_file": rec.get("raw_file", ""),
+    }
+
+
+def write_experiment(records: List[Dict[str, Any]]) -> int:
+    """実験の観測を llm_experiment に upsert する。書いた行数を返す。
+
+    **日次(llm_observations)・月次(monthly_observations)・lk_* には書かない。**
+    """
+    if not records:
+        return 0
+    ss = _open_spreadsheet()
+    ws = _ensure_worksheet(ss, TAB_EXPERIMENT, HEADERS_EXPERIMENT)
+    existing = ws.get(f"A1:C{ws.row_count}") or [HEADERS_EXPERIMENT[:3]]
+    writes = _plan_upsert(list(existing), HEADERS_EXPERIMENT, KEYS_EXPERIMENT,
+                          [_experiment_row(r) for r in records])
+    needed = max(w["row"] for w in writes)
+    if ws.row_count < needed:
+        ws.add_rows(needed - ws.row_count + 200)
+    ss.values_batch_update({
+        "valueInputOption": "USER_ENTERED",
+        "data": [{"range": f"'{TAB_EXPERIMENT}'!A{w['row']}", "values": [w["values"]]}
+                 for w in writes],
+    })
+    print(f"[ok] {TAB_EXPERIMENT}: {len(writes)} rows")
+    return len(writes)
 
 
 def write_answer_pivot(headers: List[str], rows: List[List[Any]]) -> int:

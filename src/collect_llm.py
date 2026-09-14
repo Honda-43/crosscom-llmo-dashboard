@@ -252,7 +252,10 @@ def _model_runnable(model_key: str) -> bool:
 
 def collect(date: Optional[str] = None,
             prompts: Optional[List[Dict[str, Any]]] = None,
-            out_dir: Optional[Path] = None) -> List[Dict[str, Any]]:
+            out_dir: Optional[Path] = None,
+            models: Optional[List[str]] = None,
+            attempts: Optional[int] = None,
+            sweep: bool = True) -> List[Dict[str, Any]]:
     """Run all enabled models across all prompts for ``date`` (YYYY-MM-DD,
     defaults to today UTC). Returns a list of record dicts (also written to
     disk). Records with ``"error"`` set represent missing observations.
@@ -260,13 +263,22 @@ def collect(date: Optional[str] = None,
     ``prompts`` / ``out_dir`` を渡すと別のプロンプト集合を同じ手順で回せる
     (Phase 3 の月次観測)。リトライ・掃き直し・欠測の数え方を月次側に
     書き写さないための引数で、既定では日次のまま動く。
+
+    ``models`` を渡すとそのモデルだけを回す(実験は Gemini と Claude で
+    観測する曜日と本数が違う)。有効でない・鍵が無いモデルは従来どおり飛ばす。
+
+    ``attempts`` / ``sweep`` はリトライの回数を呼び出し側で管理したいとき用
+    (実験の Gemini は、その日の枠の余りの範囲でしかリトライしない)。
+    既定は従来どおり MAX_RETRIES と掃き直しあり。
     """
     date = date or dt.datetime.utcnow().strftime("%Y-%m-%d")
     out_dir = Path(out_dir) if out_dir is not None else DATA_RAW_DIR / date
     out_dir.mkdir(parents=True, exist_ok=True)
 
     prompts = load_prompts() if prompts is None else list(prompts)
-    models = [m for m in enabled_models() if _model_runnable(m)]
+    candidates = enabled_models() if models is None else [
+        m for m in enabled_models() if m in models]
+    models = [m for m in candidates if _model_runnable(m)]
     print(f"[info] date={date} models={models} prompts={len(prompts)}")
 
     # 1日あたりの枠を使い切ったモデル。以後は基本の1回だけ投げ、
@@ -296,12 +308,13 @@ def collect(date: Optional[str] = None,
                 "error": None,
             }
             _attempt(record, prompt["text"], attempts=(
-                1 if model_key in exhausted else MAX_RETRIES
+                1 if model_key in exhausted else (attempts or MAX_RETRIES)
             ), on_daily_quota=lambda mk=model_key: exhausted.add(mk))
             _save(record, out_dir)
             records.append(record)
 
-    _sweep(records, prompts, out_dir)
+    if sweep:
+        _sweep(records, prompts, out_dir)
     missing = missing_observations(records)
     print(f"[info] {date}: 観測 {len(records)}件中 欠測 {len(missing)}件"
           + (f" — {', '.join(missing)}" if missing else ""))

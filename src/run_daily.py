@@ -38,6 +38,7 @@ import looker_tabs
 import notify_slack
 import retired_urls
 import sheets_writer
+from settings import WEEKDAY_LABELS, is_daily_llm_day
 
 
 def _job_summary(lines: List[str]) -> None:
@@ -62,6 +63,8 @@ def _run(name: str, fn: Callable[[], Any], failures: List[str]) -> Any:
 def main() -> None:
     ap = argparse.ArgumentParser(description="Daily LLMO pipeline")
     ap.add_argument("--date", help="YYYY-MM-DD for LLM observations (default: today JST)")
+    ap.add_argument("--force-llm", action="store_true",
+                    help="日次観測の曜日(火・木・土)でなくても7本を観測する")
     args = ap.parse_args()
     # Timezone-aware, Asia/Tokyo-based date so the daily run is keyed to the
     # Japan business day regardless of the runner's clock (GitHub Actions is UTC).
@@ -70,8 +73,18 @@ def main() -> None:
     failures: List[str] = []
     summary_lines: List[str] = [f"## LLMO daily pipeline — {date}", ""]
 
+    # 日次7本の観測は 火・木・土 だけ(2026-09-14。実験47本に Gemini の枠を回すため)。
+    # **ワークフローは毎日走らせる。** GA4 / GSC は1回の実行で1日分しか取らないので、
+    # 実行ごと止めるとその日のデータが欠ける。止めるのは LLM の観測だけ。
+    llm_day = args.force_llm or is_daily_llm_day(date)
+    if not llm_day:
+        weekday = WEEKDAY_LABELS[dt.date.fromisoformat(date).weekday()]
+        summary_lines.append(f"- LLM観測: {weekday}曜は日次観測の曜日ではないためスキップ"
+                             "(GA4・GSC・Looker用タブは通常どおり)")
+
     # LLM observation -> extraction
-    records = _run("collect_llm", lambda: collect_llm.collect(date), failures) or []
+    records = (_run("collect_llm", lambda: collect_llm.collect(date), failures) or []
+               if llm_day else [])
 
     # 収集は1件ずつ失敗を飲み込んで先に進む(1モデルの不調で全部を落とさない)。
     # そのため collect_llm 自体は例外を投げず、欠測は _run では拾えない。
@@ -116,6 +129,11 @@ def main() -> None:
         lambda: sheets_writer.build_summary(extractions, ga4_rows, gsc_rows, date),
         failures,
     )
+    if summary is not None and not llm_day:
+        # build_summary は観測0件の言及率を 0.0 にする。観測しなかった日に 0% を
+        # 書くと、7日平均(board_daily)が観測日の数だけ引き下げられる。空欄にする。
+        summary.update(mention_rate_all=None, mention_rate_pillar_a=None,
+                       mention_rate_pillar_b=None, negative_flag_count=None)
 
     # Write to Sheets (tabs 1, 2, 3, 5 + sov_daily / changes)
     _run("write_llm_observations", lambda: sheets_writer.write_llm_observations(extractions), failures)
@@ -237,6 +255,7 @@ def main() -> None:
     )
 
     # Slack alert last, so it can report failures from every preceding phase.
+    # 観測しない日は、失敗があったときだけ投稿する(「言及率 —」だけの通知を毎日出さない)。
     notified = _run(
         "notify_slack",
         lambda: notify_slack.notify(
@@ -244,7 +263,7 @@ def main() -> None:
             sov_rows=sov_rows, observations=observations,
         ),
         failures,
-    )
+    ) if (llm_day or failures) else None
 
     # Counts for the job summary
     ok_obs = sum(1 for r in extractions if not r.get("error"))

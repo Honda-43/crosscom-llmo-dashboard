@@ -1,0 +1,77 @@
+name: experiment
+
+on:
+  schedule:
+    # LLMO効果測定実験(2026-09-14)。何を回すかは曜日から settings.experiment_plan が決める。
+    # Gemini は週2回(47本を2周に割って毎日)、Claude は 月・木 に47本。
+    #   月 E01〜E18 + Claude47 / 火 E19〜E29 / 水 E30〜E42 / 木 E43〜E47 + Claude47
+    #   金 E01〜E18 / 土 E19〜E29 / 日 E30〜E47
+    # 08:00 JST = 前日 23:00 UTC。毎日走る。
+    # 日次(07:00 JST)・月次(07:30 JST)のあとに走らせ、git push がぶつからないようにする。
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: '観測日 (YYYY-MM-DD、空なら当日JST)。曜日で観測する本数が決まる'
+        required: false
+        default: ''
+
+permissions:
+  contents: write      # data/raw/experiment/ のcommitに必要
+
+concurrency:
+  group: llmo-experiment
+  cancel-in-progress: false
+
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+      SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run experiment observation
+        working-directory: src
+        run: |
+          python run_experiment.py \
+            ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
+
+      - name: Commit experiment raw answers
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/raw/experiment
+          if git diff --cached --quiet; then
+            echo "No new experiment answers to commit."
+          else
+            git commit -m "data: experiment observations $(TZ=Asia/Tokyo date +%Y-%m-%d)"
+            # 日次・月次の push と重なった場合に備えて取り込んでから送る
+            git pull --rebase
+            git push
+          fi
+
+      - name: Notify Slack on workflow failure
+        if: failure() && env.SLACK_WEBHOOK_URL != ''
+        run: |
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          TEXT="*LLMO実験アラート*\n*❌ ワークフロー失敗*\n• experiment.yml が異常終了しました(観測の欠測を含む)\n<$RUN_URL|実行ログを開く>"
+          printf '{"text":"%s"}' "$TEXT" > payload.json
+          curl -sS -X POST -H 'Content-type: application/json' \
+            --data @payload.json "$SLACK_WEBHOOK_URL" > /dev/null

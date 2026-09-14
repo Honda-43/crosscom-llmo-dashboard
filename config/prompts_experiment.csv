@@ -1,0 +1,48 @@
+id,layer,url,prompt
+E01,古,https://cross-com.jp/agentforce-for-sales-sdr-sales-coach/,Agentforce for SalesのSDRエージェントとSales Coachは営業でどう使う？活用事例も知りたい
+E02,古,https://cross-com.jp/agentforce-retention/,Agentforceを設定したのに現場で使われない。定着させるための3ヶ月のロードマップは？
+E03,古,https://cross-com.jp/agentic-crm-pipeline-kpi-monitoring/,Agentic CRMでパイプライン管理のKPIを自律的にモニタリングする設計はどう作る？
+E04,古,https://cross-com.jp/agentforce-observability/,Agentforce Observabilityとは？定着と精度を測る指標はどう設計する？
+E05,古,https://cross-com.jp/agentforce-roi/,Agentforce導入のROIを稟議で示すには？総コストの内訳と効果の測り方
+E06,古,https://cross-com.jp/agentforce-rag/,Agentforce RAGの精度が上がらない原因と改善方法は？
+E07,古,https://cross-com.jp/agentforce-einstein-difference/,Salesforce EinsteinとAgentforceの違いは？どちらを使うべきかの判断軸
+E08,古,https://cross-com.jp/agentforce-small-business/,中小企業でもAgentforceは使いこなせる？向いている理由と成果が出やすい業務
+E09,古,https://cross-com.jp/agentforce-mcp/,Salesforce MCPとは？Agentforceと外部システムの接続方式と境界の設計
+E10,古,https://cross-com.jp/agentforce-service-agent/,Agentforce Service Agentと従来のチャットボットの違いは？導入設計のポイント
+E11,古,https://cross-com.jp/agentforce-vibes/,Agentforce Vibesとは？使い方・料金・対応IDEを知りたい
+E12,古,https://cross-com.jp/agentforce-features/,Agentforceの機能一覧を整理して教えて。360・Coworker・Voiceの違いも
+E13,古,https://cross-com.jp/agentforce-testing-center/,Agentforceテストセンターとは？AIエージェントの品質保証はどう設計する？
+E14,古,https://cross-com.jp/agentforce-in-slack/,Agentforce in Slackで何ができる？導入手順も知りたい
+E15,中,https://cross-com.jp/agentforce-certification/,Agentforceスペシャリスト資格の試験内容と勉強法は？
+E16,中,https://cross-com.jp/agentforce-chatgpt-copilot-comparison/,AgentforceとChatGPT・Microsoft Copilotは何が違う？営業部門で使うならどれ？
+E17,中,https://cross-com.jp/agentforce-security-risk-design/,AIエージェントのセキュリティリスクとAgentforceでの対策設計は？OWASP対応も含めて
+E18,中,https://cross-com.jp/agentforce-usecase-selection/,Agentforceをどの業務から始めるべき？ユースケースの選び方の判断軸
+E19,中,https://cross-com.jp/agentforce-usage/,Agentforceで最初のエージェントを1体作るまでの設定手順を教えて
+E20,中,https://cross-com.jp/agentforce-use-cases/,Agentforceで成果を出している営業組織の活用事例を知りたい
+E21,中,https://cross-com.jp/agentforce-agent-script/,Agent Scriptとは？Agentforceの設定を画面ではなくコードで管理すべきケースは？
+E22,中,https://cross-com.jp/agentforce-reasoning-control/,Agentforceの出力が毎回変わって安定しない。モデル選択と推論制御の設定は？
+E23,中,https://cross-com.jp/buyer-enablement/,バイヤーイネーブルメントとは？BtoBの購買体験をAIでどう変える？
+E24,中,https://cross-com.jp/salesforce-ai/,Salesforce AIのEinstein・Agentforce・Data 360はどう関係している？使い分けは？
+E25,中,https://cross-com.jp/agentforce-marketing/,Agentforce for Marketingで何を任せられる？営業への引き渡しはどう設計する？
+E26,中,https://cross-com.jp/salesforce-data-360/,Salesforce Data 360（旧Data Cloud）はAgentforceに必要？導入すべきかの判断基準
+E27,中,https://cross-com.jp/hyper-personalization/,BtoBで人手を増やさずに顧客ごとに提案を個別化する方法は？ハイパーパーソナライゼーションの実装
+E28,中,https://cross-com.jp/revops-guide/,RevOpsとは？The Modelで部門ごとの数字が合わない問題をどう解消する？
+E29,中,https://cross-com.jp/agentic-ai-guide/,エージェンティックAIとAIエージェントの違いは？営業やCRMで何が変わる？
+E30,中,https://cross-com.jp/einstein-trust-layer/,Einstein Trust Layerとは？AIに任せる範囲と人が承認すべき場面はどう分ける？
+E31,中,https://cross-com.jp/agentforce-employee-agent/,Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？
+E32,新,https://cross-com.jp/tableau-ai/,Tableau AIとPulseで何が変わる？ダッシュボードを誰も見ない問題は解決する？
+E33,新,https://cross-com.jp/agentforce-sales-roleplay/,営業ロープレは意味がないと言われるのはなぜ？効果が出る練習場面の選び方は？
+E34,新,https://cross-com.jp/agentic-crm-pipeline-stagnation-detection/,CRMでパイプラインの停滞商談を自動で検知して営業に知らせる仕組みは作れる？
+E35,新,https://cross-com.jp/agentforce-deal-notes/,商談メモが後から読まれない。読まれる商談メモの項目はどう決める？
+E36,新,https://cross-com.jp/agentforce-voice/,Agentforce Voiceで電話業務のどこまでを任せられる？対応チャネルと費用も知りたい
+E37,新,https://cross-com.jp/agentforce-coworker/,Agentforce Coworkerとは何？営業がどんな場面で使える？
+E38,新,https://cross-com.jp/agentforce-subagents/,Agentforceのサブエージェントはどういう単位で分ければいい？指示文の書き分け方も
+E39,新,https://cross-com.jp/sfa-teichaku/,Salesforceの定着化が進まない理由と、入力を促す以外の対策は？
+E40,新,https://cross-com.jp/agentforce-lost-deal-analysis/,失注分析をしても次の受注につながらない。商談の途中で記録を残す方法を教えて
+E41,新,https://cross-com.jp/agentforce-sales-dependency/,営業の属人化を解消したい。手順書やCRM入力以外に、AIで判断を引き継ぐ方法はある？
+E42,新,https://cross-com.jp/agentforce-sales-meeting/,営業会議が数字の読み上げで長引く。会議の外で数字を確認できるようにする方法は？
+E43,新,https://cross-com.jp/agentforce-no-code-scope/,Agentforceの設定は開発者なしで営業部門だけでできる？開発が必要になる範囲はどこから？
+E44,新,https://cross-com.jp/agentforce-data-volume/,CRMのデータが少ない会社でもAgentforceは使える？始める前に確認すべき条件
+E45,新,https://cross-com.jp/agentforce-data-library/,Agentforceのデータライブラリに入れる文書はどう選ぶ？社内マニュアルや議事録を読ませたい
+E46,新,https://cross-com.jp/agentforce-permission-set/,Agentforceの権限セットは何を設定する？AIエージェントにどこまでデータアクセスを渡していい？
+E47,新,https://cross-com.jp/agentforce-proposal-review/,提案書のレビューが遅くて商談が止まる。営業部門でレビュー待ちを減らす仕組みの作り方は？
