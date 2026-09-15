@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-15",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-15T00:21:01.305235Z",
+  "answer": "Agentforceの導入費用相場と費用対効果の出し方について、最新情報を調査します。\nAgentforceの導入費用相場と、費用対効果を出すための進め方について、最新情報をまとめます。\n\n## 1. Agentforceの料金体系（複雑なので要注意）\n\nAgentforceは単一の料金ではなく、**複数の課金モデルが並存**しており、これが「相場が分かりにくい」最大の理由です。\n\n### 主な課金モデル\n\nSalesforce Agentforceは現在、会話あたり2ドル、Flex Creditsは10万クレジットあたり500ドル、ユーザーあたりライセンスは月額125ドルからという3つの料金モデルを持っています。\n\n\n- **①会話課金（Conversations）**：\n1会話（チャネルによって最大24時間続く会話ウィンドウ）につき2ドルで、長い対話を伴う顧客向けボットに向いています。\n\n- **②Flex Credits（アクション課金）**：\nFlex Creditsモデルでは、標準的な1アクションが20クレジット、リスト価格の10万クレジット500ドルで換算すると0.10ドルになります。\n \n1会話あたり約20アクションが損益分岐点で、それ未満であればFlex Creditsの方が安くなります。\n\n- **③ユーザー単位ライセンス**：\nSales、Service、Field Field Service向けのAgentforceアドオンは月額ユーザーあたり125ドル、業種特化版は150ドルです。Agentforce 1 Editionsは月額550ドルから始まり、組織あたり年間250万Flex Creditsがバンドルされます。\n\n\nまた、\n1つの組織はFlex CreditsかConversationsのどちらか一方の課金モデルしか選べません。\n\n\n### 見落としがちな追加コスト：Data Cloud\nAgentforceの実用にはデータ基盤が必須で、これが総コストを大きく押し上げます。\n\nAgentforceはData Cloudが正常に機能するために必須であり、これは多くの購入者が見落としがちなコストで、しばしばAgentforceのライセンス費用自体を上回ります。\n \nData Cloud Plusは年間約6.5万ドル、Data Cloud Premiumは年間約17.5万ドルで、Agentforceに5万ドルの予算を承認した後にData Cloudライセンスがさらに6.5万〜17.5万ドル必要と判明するケースが多い。\n\n\n## 2. 費用相場（規模別の目安）\n\n- **ライセンス費用**：\n中堅企業（500ユーザー規模）ではData Cloudコスト抜きで年間1.5万〜5万ドル程度が目安です。\n\n- **総保有コスト（初年度）**：\nData Cloud、導入、保守を含めた総コストは初年度で15万〜42.5万ドルの範囲になります。\n\n- 別の試算では\nAgentforceは会話あたり2ドルから始まりますが、中堅企業の実際の初年度コストは15万〜60万ドルに及びます。\n\n\n日本国内では、\nAgentforceの利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要があります。\nまた国内SIerの支援サービスでは、PoC（実証実験）支援メニューが用意されているのが一般的です。\n\n## 3. 費用対効果（ROI）を出すための進め方\n\n### ステップ①：段階的アプローチ（いきなり全社展開しない）\n\nAgentforce導入の投資対効果を明確にするには段階的なアプローチが推奨されます。まず小規模な業務領域で試験導入を行い、具体的な効果測定を実施した上で、段階的に適用範囲を拡大する方法が効果的です。\n\n\nより具体的なフェーズ配分の例としては、\n\nフェーズ1（PoC）として限定部署での3〜6か月の実証実験（投資額は総予算の10%程度）、フェーズ2（パイロット）として複数部門での半年〜1年の試験運用（投資額は総予算の30%程度）、フェーズ3（本格展開）として全社展開（残りの60%を投資）という3段階があり、各フェーズ終了時に「KPI達成率80%以上」などの基準で次フェーズへの移行を判断します。この方式によりPoC失敗時の損失を総予算の10%に抑制できます。\n\n\n### ステップ②：PoCで終わらせない仕組み作り\n日立ソリューションズの支援サービスによれば、\n導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプロー",
+  "cited_urls": [
+    "https://coworker.ai/blog/salesforce-agentforce-pricing",
+    "https://aquiva.com/blog/agentforce-pricing-gets-a-long-overdue-fix-flex-credits-are-now-live",
+    "https://www.concret.io/blog/new-agentforce-pricing-model",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://www.fsi.co.jp/Salesforce/column/column19.html",
+    "https://aslead.nri.co.jp/ownedmedia/knowledge/post-4541/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/"
+  ],
+  "error": null
+}

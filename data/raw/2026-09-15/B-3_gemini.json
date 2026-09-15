@@ -1,0 +1,20 @@
+{
+  "date": "2026-09-15",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-09-15T00:22:27.093449Z",
+  "answer": "営業にAIエージェントを活用するにあたり、CRMのデータ設計から支援してくれるパートナーは複数存在します。これらのパートナーは、AIの精度が顧客データの構造に大きく依存することを理解し、AI活用を前提としたCRMデータ基盤の構築や再設計を支援しています。\n\n以下に、関連サービスを提供している企業を挙げます。\n\n*   **テクノデジタルコンサルティング**: 「CRM・データ活用×AIコンサルティング」を提供しており、「AI活用を前提としたデータ基盤」の重要性を強調しています。CRM戦略からデータ活用、AI活用構想まで、事業成果につながるデータ戦略の設計を支援しています。100社以上の支援実績があるとのことです。\n*   **株式会社UniteX**: 生成AIの精度が顧客データの構造によって決まることを指摘し、AIを最大限に活用するためのCRM再設計のポイントについて解説しています。これは、AI導入前のデータ設計の重要性を理解している証拠と言えるでしょう。\n*   **日立コンサルティング**: 「営業DX（CRM&生成AI活用）コンサルティング」を提供しており、CRM/SFAシステムの採用と生成AIなどの先端技術の活用を通じて営業プロセス改革を支援しています。チャネルや社内情報を連結したCRM/SFAシステムの導入支援も行っており、データ設計を含む総合的なサポートが期待できます。\n*   **コムデック**: AIとCRMを活用して顧客管理を最適化し、売上向上につなげるための支援を提供しています。CRMツールで蓄積した顧客データが十分に活用されていないケースに対し、データ設計、構築、運用改善まで一貫してサポートするとしています。\n\nこれらの企業は、CRMデータがAIエージェントの効果を最大化するための基盤となることを認識しており、その設計段階から支援を行う専門知識と実績を持っています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGhT7EizflXHhPc-fPjHaQ8wu-KLmpEtvIZNT-af-1BXz_jq_UHdusiwqg6kivGrw_O8llaz3dY3LStfCSvfWt2jcSdgbLCwFW1okB9bhxc0txjKOd67TJfnxQc",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFuvudus3abeahQcMgqb0ExWwL5CPu7mTPIGiC36UXS1J-PeXHCNVHfSB06R_RkDAue9KPZCx45NAAMZTCsiGrTJl3rqUq7CH8yRFNT1MaZYtIJ5OeoO88Svp5tW7gMiVs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2mk3iqelQEQ4BCfRTYnN3d3ZIFRV_PzLzqZFSadJLntRFWrapazf3U8v8GpJbIHlvB1A1l8XwUTuGQgEOtMdTbl5OZ8ElD9LnJ7zVZ2sYlfqtPAwcOL6w8LQqt1bX1O9hnwzt2VwnJBzXlLzVCwvA1OdcBcwb1CA6iQwAA8a9PLsSoaA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEMT3S410pOE1F4SE8RavsSERe0ViTW-7kBfk6U3NjAYAk20lHFMaTlLbixCZXyx81k-HK9C1Lt5pJrpzFnQ17EOdDoi4v5c4kJbxKyM6x0sT5ZO2oNpYIiC3DhZq10BY-4e2ADFg=="
+  ],
+  "error": null
+}
