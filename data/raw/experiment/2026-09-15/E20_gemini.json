@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-15",
+  "prompt_id": "E20",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceで成果を出している営業組織の活用事例を知りたい",
+  "cep": null,
+  "timestamp": "2026-09-15T01:11:24.313554Z",
+  "answer": "Agentforceを活用して成果を上げている営業組織の事例は多岐にわたり、AIによる業務効率化、成約率向上、リード獲得・育成の最適化などに貢献しています。\n\n主な活用事例は以下の通りです。\n\n*   **営業支援AIによる成約率向上**：AIが最適な提案を行うことで、成約率が1.5倍に向上した事例があります。これにより、営業担当者はより効果的な顧客対応に集中できます。\n*   **リード創出と迅速な対応**：\n    *   Salesforceが自社利用でAgentforceを活用し、43,000件のリードから170万ドル（約2.5億円）の新規パイプラインを創出しました。\n    *   Siemensでは、週に2,800件以上のリードに即時対応し、月間12,000件のB2Bリードを獲得しています。\n*   **営業担当者の業務負担軽減と生産性向上**：\n    *   Agentforceは、営業担当者個人のAIアシスタントとして機能し、商談議事録の自動作成、Salesforceへのデータ入力支援、過去の対応履歴を参照したメール返信案の自動作成など、事務作業を効率化します。\n    *   これにより、定型業務から解放された営業担当者は、より戦略的な顧客提案や関係構築、新規商談の開拓といった付加価値の高い活動に集中できるようになり、営業チーム全体の生産性が飛躍的に向上します。\n*   **マーケティング戦略への応用**：\n    *   Agentforce for Marketingは、Salesforceの顧客データをAIで分析し、ターゲットリストを精密にセグメンテーションします。\n    *   顧客の興味やニーズに合わせたパーソナライズされたメッセージを自動生成し、最適なチャネルで配信することで、ターゲット精度が向上し、キャンペーンのROIを高め、リードの質と量を同時に改善できます。\n*   **特定の営業プロセス変革**：リード育成から見積もり作成までの営業プロセスをAgentforceが代行・最適化し、チーム全体の生産性と成果を高めている例が、ヘルスケア、テクノロジー、研究機関などの業界で見られます。\n*   **具体的なユースケース**：営業会議のサポート、会話分析による営業戦略の最適化、会議スケジューリングの自動化、個別化されたフォローアップメールの自動生成、直感的なCRMデータ管理など、多岐にわたる活用がされています。\n*   **ベルフェイスの事例**：リード対応の初動を自動化することで、受注工数を45%削減し、営業生産性を200%向上させました。また、営業活動の振り返りや育成プロセスにもAgentforceを活用しています。\n*   **中小企業の活用事例**：株式会社TAPPでは、急成長する顧客接点をAgentforceのマーケティングAI戦略で支え、ビジネス成果を実現しています。\n*   **社内問い合わせ工数の削減**：テラスカイ・テクノロジーズでは、AgentforceをSlackやData Cloud、ナレッジと連携させることで、社内規定やQ&Aの一元化を実現。「まずAIに聞く」習慣を定着させ、問い合わせ工数を80%削減しました。これは営業部門の社内連携や情報共有の効率化にも応用できる可能性があります。\n\nこれらの事例は、Agentforceが営業組織において、業務の効率化、顧客対応の迅速化、成約率の向上、そして最終的な売上最大化に大きく貢献していることを示しています。中小企業でも導入効果が報告されており、問い合わせ対応時間の10%短縮などの成果が出ています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHYqEU8ndblKEg_vF2BtKqMhAKipWeic26zOC-ELR7pxu7zCUq7aVJ2N131ve6_QL8PdIgPS1bnGDb4mWxMh4PnaXu7qMxoUYPk1SCifl2paa4ZEecOcWIOU8kN_ASUFXcUFG-7W7eZ4lSB8qj8OCcoQQV5Qx232MU8E1UxaMvflBWUCw9n3Ol1gpcntx-mWhXsDP0jHYcg2Hq1",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXlsFd4hUZFsewLH4qyQ7bYcl9DsOKRXlpRQKWgXjAYmrSti158-_7fssNO7pc2Fumzd7vN2wIzm9WvrSoYdZVMWbjIzxa5f3hoUNv4ujBp0TYxPykGV-YiNjqk4MOG6mOCpqTPwHoebaJ8HWk0fMt2TkDnyaZ_v3R-z_sEN2b",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHvkkSGX00tVFBwgBG0hkZC15y2dasJo-ni6DqSV9Si3L4rwQiltGQh4-XWJ1qv026zKIh6kJ3AJAmM9yBpjUCoq2cDaYVbk3reVsyXWYELVeYCHR4MLzYI-BIeDCr8eGx4u-bvA8LvshaDmSpMB1TPKKat7_DZ7tcALR6do7lULg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGATvBYYgGXlBBD145ssM225X_4FikHHl7Kkoxzys6Oj5L-oKS7GA8scfHCptDw8tI_iV5kYvvvGbdWw9YqLG3E3oluISBjRUbHOuWYPF-V_K2Y3aasoC39eF230UDjjF-v_M54jASwV3SRBN1usC1dRbpOU6NFTAwKKsM5IrF_NA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH4KymBSNKoiw3qSWjbb5M4FwUFTQ3_9AGBkQc0KhMf1LOuRHcROnm-y6AgYbV-5heP5QzErL9ez1qoj7S5YXirBC0OP2tAhbsLXAgr1N1qcMxT2r2x3bByp0C5FIryYO5W3aYvzx07jZnMEU4QMTwt82AJy_F5n04ikN_Dj7pQq5hWwZS3Em8_iHQrfO_75is=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHD7-DNRQ-sPsSqbvH7QID9unZ0C9p89kSnB6M1p3H7z_q0SOE54oTfxPQ3lEbBmozuvSOFGjjh4-gnhUliQ7xRRyGgp5ioOQdswTpet0vmQ_xYiaj8K1EiHe78hbXa5awOHVAklHU1h4J4Ng==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFPGWIKcln3JgIMkF5kl5jUggQoORfaMwhorMcDW3Lu2MaF5xNiMdbviWBf0bJ3hxJm0prPw0kNkBxHvnP0H7_x6QTDWvX13bphtG2A5CMHNJ5cRHyoGXZSvA5U",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEyLD4TXgsXiAN2mfZ5peIojpcbXqrpAFh-QrGhdrYCDuYv6HqhzHzhf5IPcvQbPObYe5TagPrxmI3L8QghYj_Y_GjDL9LcRV2ZG9uI_IZzFvQa068wOQZNk9E0lvohmu7d9p4AlqGzMc6DGB8J--RgcSvx8fdmM9nrpQ7qFHyo",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFto4Gcwz-fOqY3wIIZAbpl6SG2r9jc8whODARIWk7LWvaLMx8S1uOljQMrQfHogg7sGK1EaWwHXfebSSl8wBI3enOa4sFOAkZ9NS4kS2SgUQtAYuaQVm9hq51KdTIIqsh7-QUDWw1gTuA6IFU0oeJL3LMt"
+  ],
+  "error": null,
+  "experiment_id": "E20",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-use-cases/",
+  "answer_text": "Agentforceを活用して成果を上げている営業組織の事例は多岐にわたり、AIによる業務効率化、成約率向上、リード獲得・育成の最適化などに貢献しています。\n\n主な活用事例は以下の通りです。\n\n*   **営業支援AIによる成約率向上**：AIが最適な提案を行うことで、成約率が1.5倍に向上した事例があります。これにより、営業担当者はより効果的な顧客対応に集中できます。\n*   **リード創出と迅速な対応**：\n    *   Salesforceが自社利用でAgentforceを活用し、43,000件のリードから170万ドル（約2.5億円）の新規パイプラインを創出しました。\n    *   Siemensでは、週に2,800件以上のリードに即時対応し、月間12,000件のB2Bリードを獲得しています。\n*   **営業担当者の業務負担軽減と生産性向上**：\n    *   Agentforceは、営業担当者個人のAIアシスタントとして機能し、商談議事録の自動作成、Salesforceへのデータ入力支援、過去の対応履歴を参照したメール返信案の自動作成など、事務作業を効率化します。\n    *   これにより、定型業務から解放された営業担当者は、より戦略的な顧客提案や関係構築、新規商談の開拓といった付加価値の高い活動に集中できるようになり、営業チーム全体の生産性が飛躍的に向上します。\n*   **マーケティング戦略への応用**：\n    *   Agentforce for Marketingは、Salesforceの顧客データをAIで分析し、ターゲットリストを精密にセグメンテーションします。\n    *   顧客の興味やニーズに合わせたパーソナライズされたメッセージを自動生成し、最適なチャネルで配信することで、ターゲット精度が向上し、キャンペーンのROIを高め、リードの質と量を同時に改善できます。\n*   **特定の営業プロセス変革**：リード育成から見積もり作成までの営業プロセスをAgentforceが代行・最適化し、チーム全体の生産性と成果を高めている例が、ヘルスケア、テクノロジー、研究機関などの業界で見られます。\n*   **具体的なユースケース**：営業会議のサポート、会話分析による営業戦略の最適化、会議スケジューリングの自動化、個別化されたフォローアップメールの自動生成、直感的なCRMデータ管理など、多岐にわたる活用がされています。\n*   **ベルフェイスの事例**：リード対応の初動を自動化することで、受注工数を45%削減し、営業生産性を200%向上させました。また、営業活動の振り返りや育成プロセスにもAgentforceを活用しています。\n*   **中小企業の活用事例**：株式会社TAPPでは、急成長する顧客接点をAgentforceのマーケティングAI戦略で支え、ビジネス成果を実現しています。\n*   **社内問い合わせ工数の削減**：テラスカイ・テクノロジーズでは、AgentforceをSlackやData Cloud、ナレッジと連携させることで、社内規定やQ&Aの一元化を実現。「まずAIに聞く」習慣を定着させ、問い合わせ工数を80%削減しました。これは営業部門の社内連携や情報共有の効率化にも応用できる可能性があります。\n\nこれらの事例は、Agentforceが営業組織において、業務の効率化、顧客対応の迅速化、成約率の向上、そして最終的な売上最大化に大きく貢献していることを示しています。中小企業でも導入効果が報告されており、問い合わせ対応時間の10%短縮などの成果が出ています。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "persol-bd.co.jp",
+    "hatenabase.jp",
+    "service.digital.panasonic.co.jp",
+    "salesforce.com",
+    "frogwell.co.jp",
+    "bellface.co.jp",
+    "terrasky-tech.co.jp"
+  ],
+  "resolved_urls": [
+    "https://www.persol-bd.co.jp/service/salesmarketing/s-smkt/column/ai-agent/salesforce-agentforce/",
+    "https://hatenabase.jp/blog/salesforce-agentforce-global-case-studies/",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-3",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2",
+    "https://www.salesforce.com/jp/resources/",
+    "https://frogwell.co.jp/blogs/agentforce-usecases/",
+    "https://bellface.co.jp/news/7425/",
+    "https://www.salesforce.com/jp/news/stories/video/tapp-press-briefing/",
+    "https://www.terrasky-tech.co.jp/post/agentforce-casestudy"
+  ],
+  "unresolved_redirects": 0
+}
