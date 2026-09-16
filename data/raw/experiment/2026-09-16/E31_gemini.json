@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-16",
+  "prompt_id": "E31",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？",
+  "cep": null,
+  "timestamp": "2026-09-16T01:00:23.912836Z",
+  "answer": "Agentforce Employee Agentは、Salesforce上で動作する従業員向けのAIエージェントで、社内からの問い合わせ対応や業務申請フローを自動化するために設計されています。定型的な質問に即座に回答し、必要に応じて適切な部門へ自動でエスカレーションする機能を持ち、対応部門と利用者の双方の負担を大幅に軽減します。\n\nAgentforce Employee Agentが社内問い合わせにおいて任せられる範囲は以下の通りです。\n\n*   **定型的な質問への即時回答**：社内のよくあるFAQに対して、AIエージェントがすぐに回答できます。Salesforceのナレッジ記事や社内のポリシー文書、ヘルプ記事などを活用して情報を提供します。\n*   **適切な部門への自動エスカレーション**：問い合わせ内容に応じて、担当部門へ自動でエスカレーションすることが可能です。\n*   **業務の自動化**：パフォーマンス評価サイクルのマネージャーのガイダンス、コンプライアンス文書の収集の自動化、従業員エンゲージメント調査の配布と要約、パスワードのリセットやソフトウェアアクセスに関するITサポートの自動化など、多岐にわたる業務を支援できます。\n*   **24時間365日のサポート**：グローバルに展開する組織など、時間帯を問わず従業員がサポートを受けられるように、AIエージェントが即座にサポートを提供します。\n*   **パーソナライズされた支援**：AIエージェントは推論能力を持ち、複数のステップにわたるワークフローを計画し、様々なプラットフォームのリアルタイムデータにアクセスして、パーソナライズされた支援を提供します。\n*   **多様なチャネルからのアクセス**：Salesforce Lightning、モバイルデバイス、Slackなど、様々なプラットフォームから利用できます。\n*   **部署ごとの対応**：総務用、人事用といったように、部署や用途ごとに複数のEmployee Agentを作成し、アクセス権限を細かく制御することも可能です。\n\nただし、どこまでをAgentforce Employee Agentに任せるかは、導入前に慎重に検討し、範囲を決定することが重要です。 一般的に、Employee Agentは社内規定やナレッジ記事といった単一の文書から答えを検索する問い合わせを得意としています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFiipP9PROBReRn7sQFusD2ZcvNTPJ5be03r3ywtmTETDlZai8O0_R2KH8wJuMEuhRKadfLXCkTYZYBQfLHWY3YlaW-Zo5M5yUKD0T7CX-TrwqtT1SyHD7NnO4AypWvc9qEbePKFWjADrzxG7vODwMAFbx0AiE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHQGD-FzDGs_lmUzsY1C9qqsx_dF6E2XBZ0CVd28ygO3PLnCOHEBRjozoxib7qHJ0zcuP5OJKKv5_y73mhqKG75cGrQT_Cw1Or3Df4rpmUHdybbe7MkAPPZFdSHmQxO1icxvxa419_7Ite9L3mXtevAfgDnh50vc2rfFcfVY4D_AViQZQgJLp3Cldc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF5u7V_dpCcZwHYbF3Y-nm3g9Z2E_JC8wtqbxNAE1EE07UzISYt16NMFYpDS0SleAxPad0HP1tYmAWBDUruZNOLDSacMHtEn78B5diITWSRGJxS6Xm4LzaQo3X3W4KGGb33TEBJ25G3ZpJgK1Suf9hW_nOn",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFaobE5f73118fuMgTj8Fyy2e0ms41EuH434f_jNNqGEyerDlW0qVKQBfoG4eZkdEJVuLbSng1u06CVsmL49IPP705K2yrja4QqD4_ldJpvkrvmW2vyskqlWg1u66eYds03cJVhAenXhJMx",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHGRVhNEW-Rm3k_Z4e3s6T7Mc2coAlqtwYtQ6Rr7DFXD0KpCrGs4kCj_8uyKYUT6zdYkVU71lWyma9dnQYOGSd8hwz9XxXLZg6fxKme2J-zVnjaravn9ferdQKttbaceGQmVfj5IBiHAs1AEX6M5IvvFXJUh90m4Sy0RCkX0A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFPvhhBZWnb7NqdQyeGAEJCe7jGa4airPKHItdmxN8fyyKPdCVtz81IjhM73Njypl1WVdCun0xb9xrPHR4U949-qGumc5DpOsVbyJT3iHBOX9yILUH42tIwT9mtHrHp-rFiUXRECWQYs93ACv6F7PEdEIkBeDSkaeiFvMSSVbfSCLMKCyOHk21s2G6VJLVQmipkmftvw9PjFzf-ErHNyrLbIKnAVUTohnch7ZlBJO5I46PTKxRYh6cgVsIUrEmzH-fVZqU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF4YdCxQZe3oV396QcFE5UAR3Yl_3FPHhxi2OoxdgRdXuHHGXX6MW2yFw0OT8Sw0CR2SF_1Vc-VT35c62mSrz0nzSYBZmmQSUkJmFG9C5OwygVsATFIRpNjwWaybHUgGFlPHEpRHIX5gkwQQgSl7cmWvos9sWcVBHaaCvFQ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHQlzKSgS2LF-w6ElbqWx_8-l2CHS2nae2_nan_qUzyMBGa_WkDuNR9wY9Xja8TMIcrZAygXd94yE_b7uhakVJRQSVdWAS4viIDqivfc65hBY23fZ25VFilhUX7_C9kxgHo8lwP"
+  ],
+  "error": null,
+  "experiment_id": "E31",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-employee-agent/",
+  "answer_text": "Agentforce Employee Agentは、Salesforce上で動作する従業員向けのAIエージェントで、社内からの問い合わせ対応や業務申請フローを自動化するために設計されています。定型的な質問に即座に回答し、必要に応じて適切な部門へ自動でエスカレーションする機能を持ち、対応部門と利用者の双方の負担を大幅に軽減します。\n\nAgentforce Employee Agentが社内問い合わせにおいて任せられる範囲は以下の通りです。\n\n*   **定型的な質問への即時回答**：社内のよくあるFAQに対して、AIエージェントがすぐに回答できます。Salesforceのナレッジ記事や社内のポリシー文書、ヘルプ記事などを活用して情報を提供します。\n*   **適切な部門への自動エスカレーション**：問い合わせ内容に応じて、担当部門へ自動でエスカレーションすることが可能です。\n*   **業務の自動化**：パフォーマンス評価サイクルのマネージャーのガイダンス、コンプライアンス文書の収集の自動化、従業員エンゲージメント調査の配布と要約、パスワードのリセットやソフトウェアアクセスに関するITサポートの自動化など、多岐にわたる業務を支援できます。\n*   **24時間365日のサポート**：グローバルに展開する組織など、時間帯を問わず従業員がサポートを受けられるように、AIエージェントが即座にサポートを提供します。\n*   **パーソナライズされた支援**：AIエージェントは推論能力を持ち、複数のステップにわたるワークフローを計画し、様々なプラットフォームのリアルタイムデータにアクセスして、パーソナライズされた支援を提供します。\n*   **多様なチャネルからのアクセス**：Salesforce Lightning、モバイルデバイス、Slackなど、様々なプラットフォームから利用できます。\n*   **部署ごとの対応**：総務用、人事用といったように、部署や用途ごとに複数のEmployee Agentを作成し、アクセス権限を細かく制御することも可能です。\n\nただし、どこまでをAgentforce Employee Agentに任せるかは、導入前に慎重に検討し、範囲を決定することが重要です。 一般的に、Employee Agentは社内規定やナレッジ記事といった単一の文書から答えを検索する問い合わせを得意としています。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "cited_domains": [
+    "strh.co.jp",
+    "salesforce.com",
+    "eesel.ai",
+    "cross-com.jp",
+    "trailhead.salesforce.com",
+    "qiita.com"
+  ],
+  "resolved_urls": [
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://www.salesforce.com/agentforce/agentforce-for-employees/employee-agents/",
+    "https://www.eesel.ai/ja/blog/agentforce-employee-support",
+    "https://cross-com.jp/agentforce-employee-agent/",
+    "https://www.salesforce.com/jp/agentforce/agentforce-for-employees/",
+    "https://trailhead.salesforce.com/ja/content/learn/modules/agentforce-for-employees-quick-look/get-started-with-agentforce-for-employees",
+    "https://qiita.com/ubakichi_sr_mc_ai_06/items/217285d90df49a3d8493",
+    "https://cross-com.jp/agentforce-coworker/"
+  ],
+  "unresolved_redirects": 0
+}

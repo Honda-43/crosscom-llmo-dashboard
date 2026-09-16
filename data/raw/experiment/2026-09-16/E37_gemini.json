@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-16",
+  "prompt_id": "E37",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Coworkerとは何？営業がどんな場面で使える？",
+  "cep": null,
+  "timestamp": "2026-09-16T01:01:56.846311Z",
+  "answer": "Agentforce Coworkerは、Salesforceが発表したAIエージェントです。SalesforceのCRMデータや社内の関連データを活用し、ユーザーとの対話を通じて自律的に業務を遂行するAIチームメイトとして機能します。従来の検索機能を超え、単に情報を検索するだけでなく、ビジネスの文脈を理解し、要約、分析、次のアクションの提案まで会話形式で行います。\n\nAgentforce Coworkerは、以下の特徴を持っています。\n*   **ビジネスコンテキストの理解**：商談、ケース、取引先、パイプライン、顧客履歴など、企業のビジネスコンテキストを即座に把握します。\n*   **多様なデータソースとの連携**：SalesforceのCRMデータに加えて、Data 360 (旧Data Cloud) を通じてSlackやGoogleドライブなどの270以上のエンタープライズソースと接続し、横断的に情報を参照・分析します。\n*   **自然言語による対話**：自然言語での質問に対応し、必要な情報を引き出したり、アクションを実行したりできます。\n*   **アクションの実行**：質問に答えるだけでなく、商談の管理、ケースの解決、業務の推進といったアクションを実行できます。例えば、Salesforce CRMレコードの作成や更新を指示することも可能です。\n*   **多様なプラットフォームでの利用**：Salesforceだけでなく、Slack、Microsoft Teams、ChatGPT、Claudeなど、ユーザーが普段業務を行うあらゆる場所で利用できます。\n*   **統一されたエージェントの入り口**：複数のAIエージェント（営業、サービス、運用など）が存在する場合でも、Agentforce Coworkerがそれらを統一的に管理し、適切なエージェントにタスクを自動的にルーティングします。\n*   **容易な有効化**：数分で有効化して活用を開始できます。\n\n**営業がAgentforce Coworkerを使える場面**\n\n営業担当者は、Agentforce Coworkerを以下のような多様な場面で活用し、生産性を向上させることができます。\n\n*   **商談・訪問前の事前準備**：顧客との面談前に、「次回の取引先訪問前に知っておくべきことは？」と質問することで、直近の商談進捗、オープン中のサポートケース、活動履歴など、取引先に紐付く情報をまとめて要約して提示してもらえます。これにより、複数のレコードやチーム内の更新情報を個別に確認する手間を省き、顧客状況をより深く理解した上で商談に臨めます。\n*   **商談状況の把握と次のアクションの特定**：「過去30日間アプローチしていないTier 1アカウントは？」と尋ねれば、対応が必要な顧客リストを簡単に取得できます。また、「今四半期にクローズするGlobalTechの商談で起きたことを全部まとめて——ケース、メール、Slackのスレッド、前回の議事メモも」のように具体的な指示を出すことで、特定の商談に関するあらゆる情報を集約し、現状把握や次の戦略立案に役立てられます。さらに、「今週対応が必要な商談は？」と尋ねて、更新が滞っている商談や受注日が近い商談をピックアップしたり、「優先度が高い商談の対応方法を教えて」と尋ねて、商談ごとのアプローチ方法ややるべきことの示唆を得ることも可能です。\n*   **顧客コミュニケーションの効率化**：アポイント取得のためのメールドラフトを自動で作成させるなど、顧客とのコミュニケーション準備を迅速化できます。\n*   **過去の経緯や類似案件の調査**：「あの案件、前回どういう経緯で決まったんでしたっけ」や「Have we seen this issue before? (この問題は以前にも発生しましたか？)」といった質問により、過去の商談経緯や類似案件の進め方、過去の課題解決策（関連するJiraチケットや顧客へのメールテンプレートなど）を迅速に参照できます。これにより、経験の浅い営業担当者でも、自由記述のメモやCRM、Slackに散在する情報を効率的に活用し、スムーズに業務を進めることができます。\n*   **プロアクティブな情報取得とアクションの提案**：次に何をすべきかを先回りして通知を受け取ったり、特定の問題に対する解決策をAgentforce Coworkerに提案させることで、最適なアプローチを導き出す手助けとなります。\n*   **CRMレコードの更新と作成**：Agentforce Coworkerに直接、Salesforce CRMレコードの作成や更新を指示できます。権限を自動で評価し、修正する項目を特定し、ピッカーの入力を検証した上で、変更案を提示します。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHZN7iztTYDnbvF_Al7bpoNyfXVuQxMxGahN1TZb9bcw0viEJynx_-pF0sShTaZnFjBP_x8nQEdSh5WSP4pj35-8sKUFEUmxkb7htZEI-LwxwwPz7V29AZ_J774MT6YLjavm2s1XYEbsUJAPb1-uICGwU5X7hA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHaAjXpSfRm8HZRTLQDRKDLzUX6llqWgsCMPdcaFfGrpQq96wjWKRp7sGKHpu8vwH88VFZbRxp9vlSeG9ZJP9q_GhqfbcPpK2VIpAbgKtvSTFuJMbMs-da1sxSGYMneBQbmQFXEN0-TYTuTp9_HMtAENao=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE5KalY1JpO4yjYvXHgI6633GIa5UhB5x_hbfG8lYtsF_9lwJce8cwQxfXjWU_KvlXu_qY0yESQM_R8Png4v6S1kRStCTt9IHpqSP-i0gNoouBn_WWAE3KYj61RWWxxpMs-ISMIjFmhfF7Qd6bC6vxSTkE-9w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHbbDlOr9YXPn54wBHZlOaRp98V7JQzMD9Hwu7SaEisdU0vRza_10DbHr_l-ToSZupb2V-I_J1I6dCd7WBYsH1Eus80hnLnhHmgnQhXDuS93C12n5Bv3TMXi07BBhVbIWVVulatdvkiCn7cYNua4O3Sbdh0QQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfDOesEfklk99mvt2IQlKTvC9juHwphgjkYXq4aBMWzf2k9r8y0xEbR5jmkHMdr5klERMiudRP7nV5g6_eoSMWkEuoufX-HfvSVNFqvGwapDLjbJ0e-qinf9lG-gNd1l45THrl6QE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE5z0x23LY_MTMgqE4etbuYnW0inZLdDSsCkqYHU4U6L8iVI_Mu31IbRdo_5X6s1MLsSC5PGTUF7fL5btgg8iuPhwphiqZiYs2m_UPrh-THojMyS6liKccX5tftbOKlafAdCxD-WntBA8IP0iiy4A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHbONP6dxg9jEJTdxtybyW88TATft8mWNcHE25LBY3dI1ngjsN2wb5rOm0jOA-p2-W8A3PVUsFxOFOjZfyJKjxDK7gGPtqvPuJqFkg2r-arGfmhyNETeARRE7zO4KiFkXCr0FaFjzmEwai99CsRlpXJP_QMtXvYnmabX2nMkhlR6loQVsoWANOxEY0hc_BNPk--HTOL5FJDVjPRRPpFkUC0mrPdlNdpvoAT4u1FErrl",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFFKv8HmpleNlSTdhvRg3-525PKu5rtn66_yfHCkLi_fD1PMJLXbd-Fo2olpB7jlvQCx0liLQDA6L7VqswSUUm3FabHXEQDLNpB0aRo6byhu0FJnT69og_0lnCwby_sSXdE2yRm"
+  ],
+  "error": null,
+  "experiment_id": "E37",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-coworker/",
+  "answer_text": "Agentforce Coworkerは、Salesforceが発表したAIエージェントです。SalesforceのCRMデータや社内の関連データを活用し、ユーザーとの対話を通じて自律的に業務を遂行するAIチームメイトとして機能します。従来の検索機能を超え、単に情報を検索するだけでなく、ビジネスの文脈を理解し、要約、分析、次のアクションの提案まで会話形式で行います。\n\nAgentforce Coworkerは、以下の特徴を持っています。\n*   **ビジネスコンテキストの理解**：商談、ケース、取引先、パイプライン、顧客履歴など、企業のビジネスコンテキストを即座に把握します。\n*   **多様なデータソースとの連携**：SalesforceのCRMデータに加えて、Data 360 (旧Data Cloud) を通じてSlackやGoogleドライブなどの270以上のエンタープライズソースと接続し、横断的に情報を参照・分析します。\n*   **自然言語による対話**：自然言語での質問に対応し、必要な情報を引き出したり、アクションを実行したりできます。\n*   **アクションの実行**：質問に答えるだけでなく、商談の管理、ケースの解決、業務の推進といったアクションを実行できます。例えば、Salesforce CRMレコードの作成や更新を指示することも可能です。\n*   **多様なプラットフォームでの利用**：Salesforceだけでなく、Slack、Microsoft Teams、ChatGPT、Claudeなど、ユーザーが普段業務を行うあらゆる場所で利用できます。\n*   **統一されたエージェントの入り口**：複数のAIエージェント（営業、サービス、運用など）が存在する場合でも、Agentforce Coworkerがそれらを統一的に管理し、適切なエージェントにタスクを自動的にルーティングします。\n*   **容易な有効化**：数分で有効化して活用を開始できます。\n\n**営業がAgentforce Coworkerを使える場面**\n\n営業担当者は、Agentforce Coworkerを以下のような多様な場面で活用し、生産性を向上させることができます。\n\n*   **商談・訪問前の事前準備**：顧客との面談前に、「次回の取引先訪問前に知っておくべきことは？」と質問することで、直近の商談進捗、オープン中のサポートケース、活動履歴など、取引先に紐付く情報をまとめて要約して提示してもらえます。これにより、複数のレコードやチーム内の更新情報を個別に確認する手間を省き、顧客状況をより深く理解した上で商談に臨めます。\n*   **商談状況の把握と次のアクションの特定**：「過去30日間アプローチしていないTier 1アカウントは？」と尋ねれば、対応が必要な顧客リストを簡単に取得できます。また、「今四半期にクローズするGlobalTechの商談で起きたことを全部まとめて——ケース、メール、Slackのスレッド、前回の議事メモも」のように具体的な指示を出すことで、特定の商談に関するあらゆる情報を集約し、現状把握や次の戦略立案に役立てられます。さらに、「今週対応が必要な商談は？」と尋ねて、更新が滞っている商談や受注日が近い商談をピックアップしたり、「優先度が高い商談の対応方法を教えて」と尋ねて、商談ごとのアプローチ方法ややるべきことの示唆を得ることも可能です。\n*   **顧客コミュニケーションの効率化**：アポイント取得のためのメールドラフトを自動で作成させるなど、顧客とのコミュニケーション準備を迅速化できます。\n*   **過去の経緯や類似案件の調査**：「あの案件、前回どういう経緯で決まったんでしたっけ」や「Have we seen this issue before? (この問題は以前にも発生しましたか？)」といった質問により、過去の商談経緯や類似案件の進め方、過去の課題解決策（関連するJiraチケットや顧客へのメールテンプレートなど）を迅速に参照できます。これにより、経験の浅い営業担当者でも、自由記述のメモやCRM、Slackに散在する情報を効率的に活用し、スムーズに業務を進めることができます。\n*   **プロアクティブな情報取得とアクションの提案**：次に何をすべきかを先回りして通知を受け取ったり、特定の問題に対する解決策をAgentforce Coworkerに提案させることで、最適なアプローチを導き出す手助けとなります。\n*   **CRMレコードの更新と作成**：Agentforce Coworkerに直接、Salesforce CRMレコードの作成や更新を指示できます。権限を自動で評価し、修正する項目を特定し、ピッカーの入力を検証した上で、変更案を提示します。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "cited_domains": [
+    "prtimes.jp",
+    "midcai.com",
+    "vantagepoint.io",
+    "news.mynavi.jp",
+    "youtube.com",
+    "successjp.salesforce.com",
+    "developer.salesforce.com",
+    "cross-com.jp"
+  ],
+  "resolved_urls": [
+    "https://prtimes.jp/main/html/rd/p/000000378.000041550.html",
+    "https://www.midcai.com/post/what-is-agentforce-coworker",
+    "https://vantagepoint.io/blog/sf/agentforce-coworker-guide",
+    "https://news.mynavi.jp/techplus/article/20260716-4705168/",
+    "https://www.youtube.com/watch?v=RKAmQXw6ZlE",
+    "https://successjp.salesforce.com/article/NAI-001320",
+    "https://developer.salesforce.com/docs/data/agentforce-coworker/guide/agentforce-coworker-benefits-and-use-cases.html",
+    "https://cross-com.jp/agentforce-coworker/"
+  ],
+  "unresolved_redirects": 0
+}

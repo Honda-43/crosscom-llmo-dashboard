@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-16",
+  "prompt_id": "E30",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Einstein Trust Layerとは？AIに任せる範囲と人が承認すべき場面はどう分ける？",
+  "cep": null,
+  "timestamp": "2026-09-16T01:04:15.439729Z",
+  "answer": "Einstein Trust Layerは、Salesforceプラットフォームに組み込まれた、安全なAIアーキテクチャです。生成AIソリューションの利用時に、企業の安全性と信頼性を確保するための一連の契約、セキュリティ技術、データおよびプライバシーコントロールの集合体として機能します。\n\nその主な目的は、企業が機密性の高い顧客データや企業秘密を保護しつつ、生成AIのメリットを享受できるようにすることです。\n\nEinstein Trust Layerの主要な保護機能には以下のものがあります。\n*   **安全なデータ取得 (Secure Data Retrieval) を使用した動的グラウンディング**: Salesforceレコードからの関連情報がプロンプトに統合され、ユーザーの権限に基づいた安全なデータ取得が行われます。これにより、AIが参照するデータが適切に管理されます。\n*   **プロンプトの防御 (Prompt Defense)**: システムポリシーを通じて、AIの幻覚（ハルシネーション）を制限し、意図しない出力や有害な出力の可能性を減らします。\n*   **データマスキング (Data Masking)**: プロンプトが大規模言語モデル（LLM）に送信される前に、機密データが検出され、マスキングされます。\n*   **ゼロデータリテンション**: 第三者のLLM提供者にプロンプトや回答を保持させない仕組みです。\n\n### AIに任せる範囲と人が承認すべき場面の分け方\n\nEinstein Trust Layerを利用する上で、AIに任せる範囲と人が承認すべき場面の線引きは非常に重要です。この線引きは、情報システム部門や法務部門の承認を得る上で不可欠であり、以下の観点から整理できます。\n\n**AIエージェントに一任してよい業務の条件**:\n*   **誤った結果を取り消せること**: AIが誤った出力を行った場合でも、容易に取り消しや修正が可能な業務。\n*   **金銭と契約に影響しないこと**: 直接的に金銭的な損害や契約上の問題を引き起こす可能性が低い業務。\n*   **顧客ごとの値を回答に含まないこと**: 個々の顧客に特化した機密性の高い情報を含む回答を生成しない業務。\n\n**AIエージェントの実行前に人が承認を挟むべき場面**:\n*   **見積りの内容を顧客へ提示するとき**: 金銭的な影響が大きく、正確性が求められるため、人の確認が必要です。\n*   **顧客へメールを送信するとき**: 企業の対外的なコミュニケーションであり、内容や表現の適切さを人が判断する必要があります。\n*   **顧客のデータへ変更を加えるとき**: 顧客データは重要かつ機密性が高いため、AIによる変更の前に人の承認が不可欠です。\n\nこの役割分担は、導入前に「扱えるデータ区分」「利用できる職種」「記録の保存方針」「誤回答時の責任者」などを明確に定め、セキュリティ部門だけでなく、営業や顧客対応の現場が実際に使うデータや判断場面まで含めて設計することが不可欠です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFwBlH4j5LgFKZupdNxiDM_bggyvNapOrLbRkTE8BdRUaP6eFKW0UOmuHJRnOQU-u_Mp3sIymxI4j7zhwMEDOzAOABi9GXQ7aFJLKRrkEKqnfqDaJ6djGYqzQYoMgHJeYyVb05dCn6NlaSjoZyN4U9UL6VBVvjJOcG1JGI6_Xh2vJJsx5udR4R2Ipz1D4LIYk249ER-d3ppIzNE8w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRkEJ7Yy6gAq4e7grsnUFomoCR2rjd-jsO1_-QF1PNS-ISJZsz7X6nr8-2hWVukfqddqefIBIy6pvs4L207Y5njrTmOrsJvMZBmvbRSoXFHHfyi2nxPs_Ba4GuR2ZssdF59pjHmcHXGY0qnT9ATCFxKsMh1WUDRmCcDLMkpCT3I5LI1ADO1aonTFQU7wi0",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFCd31quwxc2BcxFF9i1Ekb0PvwKbCqvU5Z-pXyVuh2NHI9cnE2r9dlvyOw9R-7kOcXV9Al4-mHeHLY_I6QXUvqK9TJ1JrYG_12AUwA9syefeUD7cJpX2v9FXiUEDJdNpfkpU1AKSPc8S_BiqQrq7U3rvgkucc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFcl0u0WH_LuZs0QOXTQb4xC5KifdaaetaApEgmzIIDc6tgHfOjpwVYVy30rMiGeXze-DGCvZknFpC7PMMNcqTUnL1GAnUzSXYLhFDbUDKVCO6FTcdeIId7T4qzNqcla-q2N5rvl4d1Z2cH",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGTchXzh0f-AjaiH5AlLja04ti18rRTCBLFsNP1WRR9LaGJMsCASdn7BAMw9tXoZHCDTEM0cekDcsFTLhA9V3ohaamsqw7IOP6fqi4mVvHpshg-C_Zu3QKQCyLtTOKqEInM3yJkbnELl2PX3fM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE6gufyfy7Q2LNalJVLk6RDSR7LqHTqRLASivNuVPMv5S0eWKHstNcqHDrPpMX8yh2iGGqL3osSQB14Xk-b2PBMdMXjZvSYPIaoRFcdcUaMoESVvqPXt0-1COb4YsYGok2ziVXV-A=="
+  ],
+  "error": null,
+  "experiment_id": "E30",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/einstein-trust-layer/",
+  "answer_text": "Einstein Trust Layerは、Salesforceプラットフォームに組み込まれた、安全なAIアーキテクチャです。生成AIソリューションの利用時に、企業の安全性と信頼性を確保するための一連の契約、セキュリティ技術、データおよびプライバシーコントロールの集合体として機能します。\n\nその主な目的は、企業が機密性の高い顧客データや企業秘密を保護しつつ、生成AIのメリットを享受できるようにすることです。\n\nEinstein Trust Layerの主要な保護機能には以下のものがあります。\n*   **安全なデータ取得 (Secure Data Retrieval) を使用した動的グラウンディング**: Salesforceレコードからの関連情報がプロンプトに統合され、ユーザーの権限に基づいた安全なデータ取得が行われます。これにより、AIが参照するデータが適切に管理されます。\n*   **プロンプトの防御 (Prompt Defense)**: システムポリシーを通じて、AIの幻覚（ハルシネーション）を制限し、意図しない出力や有害な出力の可能性を減らします。\n*   **データマスキング (Data Masking)**: プロンプトが大規模言語モデル（LLM）に送信される前に、機密データが検出され、マスキングされます。\n*   **ゼロデータリテンション**: 第三者のLLM提供者にプロンプトや回答を保持させない仕組みです。\n\n### AIに任せる範囲と人が承認すべき場面の分け方\n\nEinstein Trust Layerを利用する上で、AIに任せる範囲と人が承認すべき場面の線引きは非常に重要です。この線引きは、情報システム部門や法務部門の承認を得る上で不可欠であり、以下の観点から整理できます。\n\n**AIエージェントに一任してよい業務の条件**:\n*   **誤った結果を取り消せること**: AIが誤った出力を行った場合でも、容易に取り消しや修正が可能な業務。\n*   **金銭と契約に影響しないこと**: 直接的に金銭的な損害や契約上の問題を引き起こす可能性が低い業務。\n*   **顧客ごとの値を回答に含まないこと**: 個々の顧客に特化した機密性の高い情報を含む回答を生成しない業務。\n\n**AIエージェントの実行前に人が承認を挟むべき場面**:\n*   **見積りの内容を顧客へ提示するとき**: 金銭的な影響が大きく、正確性が求められるため、人の確認が必要です。\n*   **顧客へメールを送信するとき**: 企業の対外的なコミュニケーションであり、内容や表現の適切さを人が判断する必要があります。\n*   **顧客のデータへ変更を加えるとき**: 顧客データは重要かつ機密性が高いため、AIによる変更の前に人の承認が不可欠です。\n\nこの役割分担は、導入前に「扱えるデータ区分」「利用できる職種」「記録の保存方針」「誤回答時の責任者」などを明確に定め、セキュリティ部門だけでなく、営業や顧客対応の現場が実際に使うデータや判断場面まで含めて設計することが不可欠です。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "cited_domains": [
+    "help.salesforce.com",
+    "help.tableau.com",
+    "gettectonic.com",
+    "unisrv.jp",
+    "keieiax.jp",
+    "cross-com.jp"
+  ],
+  "resolved_urls": [
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_trust_layer.htm&language=ja&type=5",
+    "https://help.tableau.com/current/tableau/ja-jp/tableau_gai_einstein_trust_layer.htm",
+    "https://gettectonic.com/einstein-ai-trust-layer-explained/",
+    "https://unisrv.jp/knowledge/article_crm_006.php",
+    "https://keieiax.jp/glossary/einstein-trust-layer/",
+    "https://cross-com.jp/einstein-trust-layer/"
+  ],
+  "unresolved_redirects": 0
+}
