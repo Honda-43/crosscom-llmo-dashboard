@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E43",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの設定は開発者なしで営業部門だけでできる？開発が必要になる範囲はどこから？",
+  "cep": null,
+  "timestamp": "2026-09-17T01:25:49.825302Z",
+  "answer": "Agentforceの設定範囲について、最新情報を確認しながらお答えします。\n# Agentforceは営業部門だけで設定できるか？\n\n## 結論：基本設定はノーコードで可能、ただし範囲による\n\n**営業部門（非開発者）だけで完結できる部分：**\n\n\n基本的なエージェントの設定は「Agent Builder」というノーコードツールで直感的に行えます\n。実際に、\n顧客からの問い合わせに対して状況を確認して回答するシンプルなAgentforceエージェントは、Salesforceのフロー（「Flow」）機能と連携し、Apexコードなしで動作します\n。\n\n具体的には以下がノーコードで可能です：\n- **トピック（Topic）の作成**：\n分類の説明を書き、自然言語でスコープを概説することで、エージェント用のカスタムトピックを作成できます\n\n- **標準アクションの利用**：\nAgentforceは標準アクションをすぐに使える形で提供しています\n\n- **Flowを使ったアクション構築**：Flow機能（画面フローやレコードトリガー等）を使えば、Apexなしでビジネスロジックを組み込めます\n- **既存テンプレートのカスタマイズ**：\nAgent Builderは既存エージェントをカスタマイズしたり、新しいエージェントを構築したりできる低コードツールです\n\n\nさらに、2026年のSpring '26リリースでは\n自然言語でフローの下書きを自動生成できるAI支援機能「Agentforce for Flow」が正式リリース\nされ、非開発者でも自然言語の指示だけで設定作業がしやすくなっています。\n\n---\n\n## 開発が必要になる境界線\n\n開発（Apexコーディング等）が必要になるのは、主に以下のケースです：\n\n### 1. **複雑なビジネスロジックが絡むアクション**\n\n開発者はFlow、Apex、プロンプトテンプレートを使ってカスタムアクションを作成でき、これらのカスタムアクションはエージェントが割り当てられたタスクを完了するために使用するツールとなります\n。Flowで対応しきれない複雑な条件分岐や大量データ処理が必要な場合、Apexが必要になります。\n\n### 2. **外部システム連携**\n複数システムからのデータ統合や、CRM外部のAPIと連携する場合は専門知識が必要です。\nAIが参照するための基盤作り（Data Cloudの整備、複数システムからのデータ統合）や、複雑なビジネス要件を反映したアクションフローの構築には、Salesforceの専門知識を持つ管理者や外部コンサルタントの支援が推奨されます\n。\n\n### 3. **パフォーマンス最適化が必要な処理**\n\nComposite actionでCPUタイムアウト制限に達した場合、複雑なアクションをより小さく管理しやすいアクションに分解することが推奨されます。このアプローチは処理負荷を分散させ、単一のアクションが過度なリソースを消費するのを防ぐのに役立ちます\n。\n\n### 4. **高負荷な計算処理**\n\n大きな計算能力を必要とするタスクには、Heroku Applinkの活用が検討されます。これによりカスタムコードを書かずにHerokuプラットフォームのコードをAgentforceアクションに統合できます\n（この場合も開発者的知識は必要）。\n\n### 5. **Apexアクションの設計品質管理**\nApexを使う場合、\nAtlas Reasoning EngineはAgentアクション設定に依存しており、これには呼び出し可能メソッドとその入出力パラメータのラベルと説明が組み込まれます。この情報はAtlasが効果的に計画・推論・実行するために極めて重要です\n。ラベルや説明文の設計にも一定の技術理解が必要です。\n\n---\n\n## 実務上の目安\n\n| 領域 | 担当 |\n|---|---|\n| トピック定義、自然言語指示、標準アクション組み合わせ | 営業部門・管理者（ノーコード） |\n| Flowによる中程度の自動化（承認プロセス、簡単なデータ更新等） | 管理者（ローコード、開発知識があると尚良） |\n| Apexアクション、外部API連携、Data Cloud統合、大規模データパイプライン | 開発者必須 |\n\nまとめると、**「エージェントに何をさせるか」の定義（トピック・指示・シンプルなFlow）は営業部門主導で十分可能**ですが、**「どうやって実現するか」の裏側（複雑な統合・パフォーマンス最適化・外部システム連携）**になると開発者の関与が必要になる、というのが実務上の境界線です。",
+  "cited_urls": [
+    "https://www.immedio.io/mag/what-is-agentforce/",
+    "https://atmarkit.itmedia.co.jp/ait/articles/2603/30/news035.html",
+    "https://developer.salesforce.com/blogs/2025/01/how-to-write-effective-natural-language-instructions-for-agentforce",
+    "https://www.apexhours.com/salesforce-agentforce/",
+    "https://www.fdc-inc.co.jp/sfsolution/blog/sfa-support/no-codedevelopment/",
+    "https://developer.salesforce.com/blogs/2025/07/best-practices-for-building-agentforce-apex-actions"
+  ],
+  "error": null,
+  "experiment_id": "E43",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-no-code-scope/",
+  "answer_text": "Agentforceの設定範囲について、最新情報を確認しながらお答えします。\n# Agentforceは営業部門だけで設定できるか？\n\n## 結論：基本設定はノーコードで可能、ただし範囲による\n\n**営業部門（非開発者）だけで完結できる部分：**\n\n\n基本的なエージェントの設定は「Agent Builder」というノーコードツールで直感的に行えます\n。実際に、\n顧客からの問い合わせに対して状況を確認して回答するシンプルなAgentforceエージェントは、Salesforceのフロー（「Flow」）機能と連携し、Apexコードなしで動作します\n。\n\n具体的には以下がノーコードで可能です：\n- **トピック（Topic）の作成**：\n分類の説明を書き、自然言語でスコープを概説することで、エージェント用のカスタムトピックを作成できます\n\n- **標準アクションの利用**：\nAgentforceは標準アクションをすぐに使える形で提供しています\n\n- **Flowを使ったアクション構築**：Flow機能（画面フローやレコードトリガー等）を使えば、Apexなしでビジネスロジックを組み込めます\n- **既存テンプレートのカスタマイズ**：\nAgent Builderは既存エージェントをカスタマイズしたり、新しいエージェントを構築したりできる低コードツールです\n\n\nさらに、2026年のSpring '26リリースでは\n自然言語でフローの下書きを自動生成できるAI支援機能「Agentforce for Flow」が正式リリース\nされ、非開発者でも自然言語の指示だけで設定作業がしやすくなっています。\n\n---\n\n## 開発が必要になる境界線\n\n開発（Apexコーディング等）が必要になるのは、主に以下のケースです：\n\n### 1. **複雑なビジネスロジックが絡むアクション**\n\n開発者はFlow、Apex、プロンプトテンプレートを使ってカスタムアクションを作成でき、これらのカスタムアクションはエージェントが割り当てられたタスクを完了するために使用するツールとなります\n。Flowで対応しきれない複雑な条件分岐や大量データ処理が必要な場合、Apexが必要になります。\n\n### 2. **外部システム連携**\n複数システムからのデータ統合や、CRM外部のAPIと連携する場合は専門知識が必要です。\nAIが参照するための基盤作り（Data Cloudの整備、複数システムからのデータ統合）や、複雑なビジネス要件を反映したアクションフローの構築には、Salesforceの専門知識を持つ管理者や外部コンサルタントの支援が推奨されます\n。\n\n### 3. **パフォーマンス最適化が必要な処理**\n\nComposite actionでCPUタイムアウト制限に達した場合、複雑なアクションをより小さく管理しやすいアクションに分解することが推奨されます。このアプローチは処理負荷を分散させ、単一のアクションが過度なリソースを消費するのを防ぐのに役立ちます\n。\n\n### 4. **高負荷な計算処理**\n\n大きな計算能力を必要とするタスクには、Heroku Applinkの活用が検討されます。これによりカスタムコードを書かずにHerokuプラットフォームのコードをAgentforceアクションに統合できます\n（この場合も開発者的知識は必要）。\n\n### 5. **Apexアクションの設計品質管理**\nApexを使う場合、\nAtlas Reasoning EngineはAgentアクション設定に依存しており、これには呼び出し可能メソッドとその入出力パラメータのラベルと説明が組み込まれます。この情報はAtlasが効果的に計画・推論・実行するために極めて重要です\n。ラベルや説明文の設計にも一定の技術理解が必要です。\n\n---\n\n## 実務上の目安\n\n| 領域 | 担当 |\n|---|---|\n| トピック定義、自然言語指示、標準アクション組み合わせ | 営業部門・管理者（ノーコード） |\n| Flowによる中程度の自動化（承認プロセス、簡単なデータ更新等） | 管理者（ローコード、開発知識があると尚良） |\n| Apexアクション、外部API連携、Data Cloud統合、大規模データパイプライン | 開発者必須 |\n\nまとめると、**「エージェントに何をさせるか」の定義（トピック・指示・シンプルなFlow）は営業部門主導で十分可能**ですが、**「どうやって実現するか」の裏側（複雑な統合・パフォーマンス最適化・外部システム連携）**になると開発者の関与が必要になる、というのが実務上の境界線です。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "immedio.io",
+    "atmarkit.itmedia.co.jp",
+    "developer.salesforce.com",
+    "apexhours.com",
+    "fdc-inc.co.jp"
+  ],
+  "resolved_urls": [
+    "https://www.immedio.io/mag/what-is-agentforce/",
+    "https://atmarkit.itmedia.co.jp/ait/articles/2603/30/news035.html",
+    "https://developer.salesforce.com/blogs/2025/01/how-to-write-effective-natural-language-instructions-for-agentforce",
+    "https://www.apexhours.com/salesforce-agentforce/",
+    "https://www.fdc-inc.co.jp/sfsolution/blog/sfa-support/no-codedevelopment/",
+    "https://developer.salesforce.com/blogs/2025/07/best-practices-for-building-agentforce-apex-actions"
+  ],
+  "unresolved_redirects": 0
+}

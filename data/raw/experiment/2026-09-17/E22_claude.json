@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E22",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの出力が毎回変わって安定しない。モデル選択と推論制御の設定は？",
+  "cep": null,
+  "timestamp": "2026-09-17T01:16:16.250466Z",
+  "answer": "十分な情報が集まりました。Agentforceの出力が不安定な問題について、モデル選択と推論制御の設定方法をまとめます。\n\n## 1. モデル選択の設定\n\n**設定場所**: Setup → クイック検索で「Audit, Analytics, and Monitoring」→ Einstein Audit, Analytics, and Monitoring Setup\n\n\nAgentforceのモデルオプションを選択するには、Setupのクイック検索ボックスでAudit, Analytics, and Monitoringと入力してEinstein Audit, Analytics, and Monitoring Setupを選択し、Select the Model for Agentforceセクションでオプションを選ぶ。この選択はすべてのAgentforceエージェントに適用される。\n\n\n選択肢は主に3つです。\n- \nSalesforceデフォルトモデルの使用が推奨されており、これによりSalesforceがエージェントの精度とパフォーマンスに最適なモデルの組み合わせを選択する。AWSホスト型またはGoogle Geminiモデルオプションを選ぶことも可能。\n\n- デフォルト（OpenAI）は\nGPT-4 Omniを使用\nし、Anthropicオプションは\nClaude Sonnet 4を使用\nします。\n- \n推論エンジンは選択したモデルオプションを使用するが、サブエージェントの分類や引用など特定のタスクではSalesforce独自のモデルが使われる場合がある。\n\n\n⚠️ 注意点：\n既存のプロンプトやカスタムアクション、サブエージェントがある場合は、モデルオプション切り替え後に必ずテストすること。\n\n\n## 2. 推論の\"揺れ\"を抑える（Temperature設定）\n\nAgentforce/プロンプトビルダーではLLMのTemperature（温度）パラメータを調整できます。\n\n\nTemperatureを下げる（例：0.3に設定）ことで、生成される応答のランダム性が変わる。\n\n\n一般論として：\n- 低い温度＝再現性・一貫性重視（毎回似た出力）\n- 高い温度＝多様性・創造性重視（出力がばらつく）\n\n\n低い温度設定では、モデルは高確率な出力に集中し、選択の多様性が限定される傾向がある。\n逆に温度を上げると多様性は増しますが予測可能性は下がります。\n\n## 3. そもそも「非決定論的」であることを理解する\n\nSalesforce公式ガイドでも明言されています。\n\n\n指示はLLMによって解釈されるものであり、LLMの理解にもとづいているため非決定論的であり、モデルの理解と解釈によって結果が変わる可能性がある。\n\n\nつまり、Temperatureを0にしても完全な再現性は保証されません（プラットフォーム側のモデル更新・ルーティング等の影響もあるため）。\n\n## 4. 出力を安定させる本質的な対策（Salesforce推奨アプローチ）\n\nTemperature調整だけに頼るのではなく、**Agentforce自体の設計思想**として以下が推奨されています。\n\n\nAgentforceは、より高い決定論的制御のためにAgentforce BuilderとAgent Scriptを導入し、プロンプト中心のアプローチからハイブリッド推論モデルへ移行、確率的な自然言語プロンプトよりも信頼性の高いロジックを重視するようになった。\n\n\n具体的には：\n\n- \nAgentforce Scriptは、長く複雑なシステムプロンプトをコードのような構造化されたロジックに置き換えることで完全な決定論的制御を提供し、LLM推論の前後に必ず発生すべき具体的なステップや「if-then」シーケンスを定義できる。\n\n- \n必須の実行順序、複雑な計算、機密性の高いビジネスルールの強制にはAgentforce Scriptを使い、トーンやペルソナ、一般的な会話パターンなど「振る舞い」の指示には自然言語のインストラクションを使う。\n\n\nまた、指示（インストラクション）自体の書き方も安定性に直結します。\n\n- \n機密性の高い、または決定論的であるべきビジネスルールは、トピックの指示ではなくアクション自体のロジックに組み込むべきである。\n\n- \n入力フォーマットなどのバリデーションは、主にアクション内（Flow/Apex）で処理すべきで、これはトピック指示のフォーマット制御に頼るより一貫性が高い。\n\n- 一方で\nエージェントの会話方法を過度にスクリプト化することは避けるべきで、過剰なスクリプト化はエージェントがラポールを築いたり、動的な状況にリアルタイムで応答したりする能力を阻害しうる。長すぎる指示はエージェントの応答を遅くし、推論エンジンを混乱させる可能性がある。\n\n- \n指示を通じて決定論性を強制することは推奨されるアプローチではない。\nむしろ決定論性が必要な部分はScript/アクション側に持たせるべき、というのがSalesforceの立場です。\n\n## まとめ（実務対応の優先順位）\n\n| 対策 | 効果範囲 |\n|---|",
+  "cited_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_setup_select_model_provider.htm&amp=&type=5",
+    "https://cloud.flect.co.jp/entry/2025/09/05/154825",
+    "https://trailhead.salesforce.com/content/learn/projects/customize-a-service-agent-with-prompts-flows-and-actions/get-agent-ready",
+    "https://arxiv.org/pdf/2402.01766",
+    "https://www.salesforce.com/jp/agentforce/guide/?bc=DB",
+    "https://www.salesforce.com/agentforce/guide/",
+    "https://developer.salesforce.com/blogs/2025/01/how-to-write-effective-natural-language-instructions-for-agentforce",
+    "https://www.salesforce.com/agentforce/levels-of-determinism/"
+  ],
+  "error": null,
+  "experiment_id": "E22",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-reasoning-control/",
+  "answer_text": "十分な情報が集まりました。Agentforceの出力が不安定な問題について、モデル選択と推論制御の設定方法をまとめます。\n\n## 1. モデル選択の設定\n\n**設定場所**: Setup → クイック検索で「Audit, Analytics, and Monitoring」→ Einstein Audit, Analytics, and Monitoring Setup\n\n\nAgentforceのモデルオプションを選択するには、Setupのクイック検索ボックスでAudit, Analytics, and Monitoringと入力してEinstein Audit, Analytics, and Monitoring Setupを選択し、Select the Model for Agentforceセクションでオプションを選ぶ。この選択はすべてのAgentforceエージェントに適用される。\n\n\n選択肢は主に3つです。\n- \nSalesforceデフォルトモデルの使用が推奨されており、これによりSalesforceがエージェントの精度とパフォーマンスに最適なモデルの組み合わせを選択する。AWSホスト型またはGoogle Geminiモデルオプションを選ぶことも可能。\n\n- デフォルト（OpenAI）は\nGPT-4 Omniを使用\nし、Anthropicオプションは\nClaude Sonnet 4を使用\nします。\n- \n推論エンジンは選択したモデルオプションを使用するが、サブエージェントの分類や引用など特定のタスクではSalesforce独自のモデルが使われる場合がある。\n\n\n⚠️ 注意点：\n既存のプロンプトやカスタムアクション、サブエージェントがある場合は、モデルオプション切り替え後に必ずテストすること。\n\n\n## 2. 推論の\"揺れ\"を抑える（Temperature設定）\n\nAgentforce/プロンプトビルダーではLLMのTemperature（温度）パラメータを調整できます。\n\n\nTemperatureを下げる（例：0.3に設定）ことで、生成される応答のランダム性が変わる。\n\n\n一般論として：\n- 低い温度＝再現性・一貫性重視（毎回似た出力）\n- 高い温度＝多様性・創造性重視（出力がばらつく）\n\n\n低い温度設定では、モデルは高確率な出力に集中し、選択の多様性が限定される傾向がある。\n逆に温度を上げると多様性は増しますが予測可能性は下がります。\n\n## 3. そもそも「非決定論的」であることを理解する\n\nSalesforce公式ガイドでも明言されています。\n\n\n指示はLLMによって解釈されるものであり、LLMの理解にもとづいているため非決定論的であり、モデルの理解と解釈によって結果が変わる可能性がある。\n\n\nつまり、Temperatureを0にしても完全な再現性は保証されません（プラットフォーム側のモデル更新・ルーティング等の影響もあるため）。\n\n## 4. 出力を安定させる本質的な対策（Salesforce推奨アプローチ）\n\nTemperature調整だけに頼るのではなく、**Agentforce自体の設計思想**として以下が推奨されています。\n\n\nAgentforceは、より高い決定論的制御のためにAgentforce BuilderとAgent Scriptを導入し、プロンプト中心のアプローチからハイブリッド推論モデルへ移行、確率的な自然言語プロンプトよりも信頼性の高いロジックを重視するようになった。\n\n\n具体的には：\n\n- \nAgentforce Scriptは、長く複雑なシステムプロンプトをコードのような構造化されたロジックに置き換えることで完全な決定論的制御を提供し、LLM推論の前後に必ず発生すべき具体的なステップや「if-then」シーケンスを定義できる。\n\n- \n必須の実行順序、複雑な計算、機密性の高いビジネスルールの強制にはAgentforce Scriptを使い、トーンやペルソナ、一般的な会話パターンなど「振る舞い」の指示には自然言語のインストラクションを使う。\n\n\nまた、指示（インストラクション）自体の書き方も安定性に直結します。\n\n- \n機密性の高い、または決定論的であるべきビジネスルールは、トピックの指示ではなくアクション自体のロジックに組み込むべきである。\n\n- \n入力フォーマットなどのバリデーションは、主にアクション内（Flow/Apex）で処理すべきで、これはトピック指示のフォーマット制御に頼るより一貫性が高い。\n\n- 一方で\nエージェントの会話方法を過度にスクリプト化することは避けるべきで、過剰なスクリプト化はエージェントがラポールを築いたり、動的な状況にリアルタイムで応答したりする能力を阻害しうる。長すぎる指示はエージェントの応答を遅くし、推論エンジンを混乱させる可能性がある。\n\n- \n指示を通じて決定論性を強制することは推奨されるアプローチではない。\nむしろ決定論性が必要な部分はScript/アクション側に持たせるべき、というのがSalesforceの立場です。\n\n## まとめ（実務対応の優先順位）\n\n| 対策 | 効果範囲 |\n|---|",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "help.salesforce.com",
+    "cloud.flect.co.jp",
+    "trailhead.salesforce.com",
+    "arxiv.org",
+    "salesforce.com",
+    "developer.salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_setup_select_model_provider.htm&amp=&type=5",
+    "https://cloud.flect.co.jp/entry/2025/09/05/154825",
+    "https://trailhead.salesforce.com/content/learn/projects/customize-a-service-agent-with-prompts-flows-and-actions/get-agent-ready",
+    "https://arxiv.org/pdf/2402.01766",
+    "https://www.salesforce.com/jp/agentforce/guide/?bc=DB",
+    "https://www.salesforce.com/agentforce/guide/",
+    "https://developer.salesforce.com/blogs/2025/01/how-to-write-effective-natural-language-instructions-for-agentforce",
+    "https://www.salesforce.com/agentforce/levels-of-determinism/"
+  ],
+  "unresolved_redirects": 0
+}

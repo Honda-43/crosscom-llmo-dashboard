@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E46",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの権限セットは何を設定する？AIエージェントにどこまでデータアクセスを渡していい？",
+  "cep": null,
+  "timestamp": "2026-09-17T01:27:21.736243Z",
+  "answer": "Agentforceの権限セットとデータアクセスの設計について、最新情報を確認して回答します。\n# Agentforceの権限セットが設定する内容\n\nAgentforceでは、AIエージェントも「非人間のユーザー（Agent User）」として動作し、通常のSalesforceユーザーと同様に**プロファイル／権限セット／権限セットグループ**によってアクセス範囲が決まります。具体的に権限セットが制御するのは以下の要素です。\n\n## 1. エージェントの基本アクセス権限セット\nService Agentを作成すると、自動的に専用の権限セットグループが割り当てられます。\nAgentforce Service AgentユーザーにはAgentforceServiceAgentUserPsg（Agentforce Service Agent User、Data Cloud User、Prompt Template Userの各権限セットを含む）と、Agentforce Service Agent Secure Baseおよび[エージェント名]_Permissionsという2つの権限セットが割り当てられます。\n このうち\n前者はCaseやContactなどのServiceオブジェクトへの基本的なアクセス権をエージェントに付与し、後者は空の状態になっており、そこに独自のカスタム権限を追加できます\n。\n\n重要なのは、\nこの標準搭載の権限範囲は意図的に最小限に設計されており、Salesforceが「セキュア・バイ・デフォルト」を体現する形で、ほぼ何もできない状態から始めて、実際に必要なものだけを段階的に追加していく設計になっている\nという点です。\n\n## 2. 権限セットが具体的に制御する項目\n- **オブジェクト／フィールドのCRUDアクセス**：\nカスタム権限セットでは、対象オブジェクトのすべてのフィールドへの読み取りアクセス権と、必要なオブジェクトの読み取り/作成/編集権限を付与する必要があります\n\n- **Apexクラスへのアクセス**：\nエージェントがApexクラスを使用する場合、エージェントが使用するApexクラスのセキュリティをエージェントユーザーのプロファイルに拡張する必要があります\n\n- **フローの実行権限**：\nフローを使用する場合は、必ずエージェントユーザーとしてフローを実行してデバッグし、見落としている可能性のある権限の問題がないか確認する必要があります\n\n- **トピック・アクション・サブエージェントへのアクセス制御**（Spring '26以降の新機能を含む）\n\n## 3. エージェントの権限モデルの本質\n\nAgentforceエージェントは割り当てられたユーザーIDの下で動作し、そのユーザーの権限セットがエージェントの「被害範囲（blast radius）」を決定します。呼び出した人間の権限ではありません\n。つまり、**誰が使うか」ではなく「エージェントが割り当てられたユーザーが何にアクセスできるか」がすべて**です。\n\n---\n\n# AIエージェントへのデータアクセス、どこまで渡すべきか\n\n## 基本原則：エージェントは「ある権限を必ず使い切る」\n人間のユーザーと違い、AIエージェントは与えられた権限を無駄にしません。\n人間のユーザーと違い、AIエージェントは過剰なアクセス権を未使用のまま放置しません。AIエージェントはアクセスできるすべてのデータを処理・分析します。AIエージェントが過剰に権限を与えられている場合、機密データの露出はほぼ確実に起こります\n。\n\nさらに、\nAgentforceエージェントはワークフローを自動的に実行します。Agentforceエージェントは、Salesforceの権限を回避することはありません。代わりに、既に存在するあらゆるアクセス権を積極的に使用します\n。つまり**「渡した権限＝実際に使われる権限」と考えるべき**です。\n\n## 推奨されるアクセス設計の考え方\n\n**① 最小権限の原則から始める**\n\nほぼ何もできない状態からスタートし、実際に必要な権限だけを段階的に追加していく\nのがSalesforce公式の設計思想です。「念のため広めに」は避けるべきです。\n\n**② 人間なら到達できないデータへの経路に注意**\n特に危険なのは、\nエージェントがOpportunityのような広範な読み取りアクセスを持つサービスユーザーとして動作し、それを直接アクセスできない従業員から呼び出されるケース\nです。エージェント経由で「本来アクセス権のない人が間接的にデータへ到達できてしまう」抜け道を作らないことが重要です。\n\n**③ 監視・監査を前提にした設計**\n\nエージェントと対話するユーザーおよび外部システムの両方に明確な役割と権限を割り当て、非人間IDを追跡し、各アクションが監査可能であることを確認する\n必要があります。ただし注意点として、\n標準のSalesforceログはエージェントが何をしたかを記録するだけで、何を許可されていたか、誰の代理として行動したかは記録しません。この相関のギャップこそが「マシンによるインサイダーリスク」の温床です\n。監査ログの補完",
+  "cited_urls": [
+    "https://www.salesforceben.com/agentforce-permissions-explained-agent-users-access-and-security/",
+    "https://qiita.com/Keiji_otsubo/items/fbb164ec1c9d14f2adeb",
+    "https://qiita.com/Keiji_otsubo/items/ede60fd4217ab5be57a8",
+    "https://www.obsidiansecurity.com/academy/securing-salesforce-agentforce",
+    "https://www.varonis.com/blog/varonis-identity-protection-salesforce",
+    "https://www.valencesecurity.com/saas-security-terms/salesforce-agentforce-security",
+    "https://www.salesforce.com/agentforce/ai-agents/security/"
+  ],
+  "error": null,
+  "experiment_id": "E46",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-permission-set/",
+  "answer_text": "Agentforceの権限セットとデータアクセスの設計について、最新情報を確認して回答します。\n# Agentforceの権限セットが設定する内容\n\nAgentforceでは、AIエージェントも「非人間のユーザー（Agent User）」として動作し、通常のSalesforceユーザーと同様に**プロファイル／権限セット／権限セットグループ**によってアクセス範囲が決まります。具体的に権限セットが制御するのは以下の要素です。\n\n## 1. エージェントの基本アクセス権限セット\nService Agentを作成すると、自動的に専用の権限セットグループが割り当てられます。\nAgentforce Service AgentユーザーにはAgentforceServiceAgentUserPsg（Agentforce Service Agent User、Data Cloud User、Prompt Template Userの各権限セットを含む）と、Agentforce Service Agent Secure Baseおよび[エージェント名]_Permissionsという2つの権限セットが割り当てられます。\n このうち\n前者はCaseやContactなどのServiceオブジェクトへの基本的なアクセス権をエージェントに付与し、後者は空の状態になっており、そこに独自のカスタム権限を追加できます\n。\n\n重要なのは、\nこの標準搭載の権限範囲は意図的に最小限に設計されており、Salesforceが「セキュア・バイ・デフォルト」を体現する形で、ほぼ何もできない状態から始めて、実際に必要なものだけを段階的に追加していく設計になっている\nという点です。\n\n## 2. 権限セットが具体的に制御する項目\n- **オブジェクト／フィールドのCRUDアクセス**：\nカスタム権限セットでは、対象オブジェクトのすべてのフィールドへの読み取りアクセス権と、必要なオブジェクトの読み取り/作成/編集権限を付与する必要があります\n\n- **Apexクラスへのアクセス**：\nエージェントがApexクラスを使用する場合、エージェントが使用するApexクラスのセキュリティをエージェントユーザーのプロファイルに拡張する必要があります\n\n- **フローの実行権限**：\nフローを使用する場合は、必ずエージェントユーザーとしてフローを実行してデバッグし、見落としている可能性のある権限の問題がないか確認する必要があります\n\n- **トピック・アクション・サブエージェントへのアクセス制御**（Spring '26以降の新機能を含む）\n\n## 3. エージェントの権限モデルの本質\n\nAgentforceエージェントは割り当てられたユーザーIDの下で動作し、そのユーザーの権限セットがエージェントの「被害範囲（blast radius）」を決定します。呼び出した人間の権限ではありません\n。つまり、**誰が使うか」ではなく「エージェントが割り当てられたユーザーが何にアクセスできるか」がすべて**です。\n\n---\n\n# AIエージェントへのデータアクセス、どこまで渡すべきか\n\n## 基本原則：エージェントは「ある権限を必ず使い切る」\n人間のユーザーと違い、AIエージェントは与えられた権限を無駄にしません。\n人間のユーザーと違い、AIエージェントは過剰なアクセス権を未使用のまま放置しません。AIエージェントはアクセスできるすべてのデータを処理・分析します。AIエージェントが過剰に権限を与えられている場合、機密データの露出はほぼ確実に起こります\n。\n\nさらに、\nAgentforceエージェントはワークフローを自動的に実行します。Agentforceエージェントは、Salesforceの権限を回避することはありません。代わりに、既に存在するあらゆるアクセス権を積極的に使用します\n。つまり**「渡した権限＝実際に使われる権限」と考えるべき**です。\n\n## 推奨されるアクセス設計の考え方\n\n**① 最小権限の原則から始める**\n\nほぼ何もできない状態からスタートし、実際に必要な権限だけを段階的に追加していく\nのがSalesforce公式の設計思想です。「念のため広めに」は避けるべきです。\n\n**② 人間なら到達できないデータへの経路に注意**\n特に危険なのは、\nエージェントがOpportunityのような広範な読み取りアクセスを持つサービスユーザーとして動作し、それを直接アクセスできない従業員から呼び出されるケース\nです。エージェント経由で「本来アクセス権のない人が間接的にデータへ到達できてしまう」抜け道を作らないことが重要です。\n\n**③ 監視・監査を前提にした設計**\n\nエージェントと対話するユーザーおよび外部システムの両方に明確な役割と権限を割り当て、非人間IDを追跡し、各アクションが監査可能であることを確認する\n必要があります。ただし注意点として、\n標準のSalesforceログはエージェントが何をしたかを記録するだけで、何を許可されていたか、誰の代理として行動したかは記録しません。この相関のギャップこそが「マシンによるインサイダーリスク」の温床です\n。監査ログの補完",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforceben.com",
+    "qiita.com",
+    "obsidiansecurity.com",
+    "varonis.com",
+    "valencesecurity.com",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforceben.com/agentforce-permissions-explained-agent-users-access-and-security/",
+    "https://qiita.com/Keiji_otsubo/items/fbb164ec1c9d14f2adeb",
+    "https://qiita.com/Keiji_otsubo/items/ede60fd4217ab5be57a8",
+    "https://www.obsidiansecurity.com/academy/securing-salesforce-agentforce",
+    "https://www.varonis.com/blog/varonis-identity-protection-salesforce",
+    "https://www.valencesecurity.com/saas-security-terms/salesforce-agentforce-security",
+    "https://www.salesforce.com/agentforce/ai-agents/security/"
+  ],
+  "unresolved_redirects": 0
+}

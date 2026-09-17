@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E31",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？",
+  "cep": null,
+  "timestamp": "2026-09-17T01:20:36.449757Z",
+  "answer": "# Agentforce Employee Agentとは\n\nAgentforce Employee Agentは、Salesforceが提供するAIエージェント構築プラットフォーム「Agentforce」の中で、社内従業員向けに設計されたエージェントテンプレートです。\nSalesforceのAgentforce Employee Agentはエージェントの一種で、社内従業員向けの問い合わせ対応や業務支援を自動化するために設計されたエージェントです。社内のよくある質問に対して即座に回答したり、申請業務をスムーズに開始できるようガイドしたりすることで、従業員の自己解決を促進し、部門間のコミュニケーション効率を高めます\n。\n\n## 特徴\n\n**1. ログインユーザーのコンテキストで動作**\n\nAgentforce Employee Agentは、従業員が情報を検索したり、ToDo を完了したり、チャネル間でパーソナライズされたサポートにアクセスしたりできるようにするもので、内部従業員向けに設計されていて、ログインユーザーコンテキストで実行されます\n。\n\n**2. 権限・セキュリティを厳守**\n\nEmployee agentsはユーザー固有のコンテキストを持ちます。つまり、支援対象の人としてログインし、同じ権限や組織のセキュリティ設定に従って、各ユーザーの役割に基づいてアクションを解放します。例えば、マネージャーは従業員と同じエージェントを使用できますが、それぞれ自分の役割で許可されたレベルのデータや組織の詳細のみが表示されます。これにより、エージェントがセキュリティと信頼の境界を侵害しないことが保証されます\n。\n\n**3. Salesforce/Slack/モバイルなど複数チャネルに対応**\n\nこれらのエージェントは、Salesforce、Slackのチャンネルやダイレクトメッセージ、またはモバイルデバイスなど、既に日常的に使っている場所に組み込まれています\n。\n\n**4. 部門別にカスタマイズ可能**\n\nemployee agentテンプレートを使うことで、特定のユースケースに合わせた複数のエージェントを展開できます。例えば、HRチームは休暇申請や経費精算を自動化する専用エージェントを構築し、カスタマーサクセスチームは製品に関する込み入った質問への回答や役員向けブリーフの作成にエージェントを調整できます\n。\n\n---\n\n## どこまでの社内問い合わせを任せられるか\n\n### ✅ 任せやすい領域（自己解決・自動応答向き）\n\n**HR関連**\n- \n新入社員のオンボーディング支援、福利厚生や会社ポリシーに関するよくある質問への回答、キャリア開発リソースへの案内など、HRプロセスのサポート\n\n- \n従業員が休暇を申請すると、エージェントが残高を確認し、ポリシーを検証し、マネージャーへ申請を提出する——それが数秒で完了します\n\n\n**IT関連**\n- \n一次対応レベルのITサポート、基本的なトラブルシューティング手順の支援、ヘルプデスクチケットの記録、初期のインシデント報告の管理\n\n- \n過去のインシデントを確認してパターンを要約し、IT担当者向けに次のステップを提案したり、デバイスや資産の記録をもとに交換対象や対応可否などの質問に回答したりする\n\n\n**ナレッジベースを使った一般的なFAQ**\n- \nGeneral FAQトピックと「ナレッジで質問に回答する」アクションを使って、ビジネスのナレッジベースやその他のデータから情報を引き出し、正確な回答を返します\n\n\n### 実績データ\n実際にSalesforce社内では大きな成果が出ています。\nSalesforceはAgentforceを使って約1,000万件のHR関連の検索を処理しており、そのうち96%が人の介入なしに解決されています\n。\n\n### ⚠️ 人へのエスカレーションが必要な領域\n\n- \n機密性の高い案件は、これまでのやり取り全体と関連コンテキストを添えて、人間の担当者へ引き継がれます\n\n- \nエージェントが答えを知らない場合もあるため、人によるフォールバック（対応窓口）を確立しておくことが重要です\n\n\n### 導入時の注意点\nSalesforceのガイドでは、いきなり広範囲を任せるのではなく、\nIT ヘルプデスクへの問い合わせやHRポリシーの検索といった摩擦の大きい領域を最初に特定し、特定のユースケースから始めることで、信頼できる社内ナレッジベースにエージェントを接続し、他部門へ展開する前に従業員に対してすぐ効果を示すことができる\nと推奨されています。\n\n---\n\n## まとめ：任せられる範囲の目安\n\n| 領域 | 任せられる度合い |\n|---|---|\n| よくある質問（FAQ）への回答 | ◎ ほぼ全自動化可能 |\n| 休暇申請・経費精算などの定型申請 | ◎ 自動化・自己解決に強い |\n| PC/アカウント関連の一次対応 | ○ 高い自動化率が期待できる |\n| ポリシー・規程の確認・案内 | ○ ナレッジベース整備が前提 ",
+  "cited_urls": [
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://note.com/samuraijuku_biz/n/n08b3a08e8d5d",
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-for-employees-quick-look/get-started-with-agentforce-for-employees",
+    "https://www.salesforce.com/blog/agentforce-for-employees/",
+    "https://admin.salesforce.com/blog/2025/employee-agents-foundations-the-admin-advantage-for-user-support",
+    "https://www.salesforce.com/service/hr-service-management/ai-agents-hr/",
+    "https://summittech360.com/agentforce-use-cases-by-department/",
+    "https://www.cxtoday.com/crm/salesforce-launches-agentforce-for-hr-service-confirms-move-into-itsm/",
+    "https://www.salesforce.com/agentforce/agentforce-for-employees/employee-agents/"
+  ],
+  "error": null,
+  "experiment_id": "E31",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-employee-agent/",
+  "answer_text": "# Agentforce Employee Agentとは\n\nAgentforce Employee Agentは、Salesforceが提供するAIエージェント構築プラットフォーム「Agentforce」の中で、社内従業員向けに設計されたエージェントテンプレートです。\nSalesforceのAgentforce Employee Agentはエージェントの一種で、社内従業員向けの問い合わせ対応や業務支援を自動化するために設計されたエージェントです。社内のよくある質問に対して即座に回答したり、申請業務をスムーズに開始できるようガイドしたりすることで、従業員の自己解決を促進し、部門間のコミュニケーション効率を高めます\n。\n\n## 特徴\n\n**1. ログインユーザーのコンテキストで動作**\n\nAgentforce Employee Agentは、従業員が情報を検索したり、ToDo を完了したり、チャネル間でパーソナライズされたサポートにアクセスしたりできるようにするもので、内部従業員向けに設計されていて、ログインユーザーコンテキストで実行されます\n。\n\n**2. 権限・セキュリティを厳守**\n\nEmployee agentsはユーザー固有のコンテキストを持ちます。つまり、支援対象の人としてログインし、同じ権限や組織のセキュリティ設定に従って、各ユーザーの役割に基づいてアクションを解放します。例えば、マネージャーは従業員と同じエージェントを使用できますが、それぞれ自分の役割で許可されたレベルのデータや組織の詳細のみが表示されます。これにより、エージェントがセキュリティと信頼の境界を侵害しないことが保証されます\n。\n\n**3. Salesforce/Slack/モバイルなど複数チャネルに対応**\n\nこれらのエージェントは、Salesforce、Slackのチャンネルやダイレクトメッセージ、またはモバイルデバイスなど、既に日常的に使っている場所に組み込まれています\n。\n\n**4. 部門別にカスタマイズ可能**\n\nemployee agentテンプレートを使うことで、特定のユースケースに合わせた複数のエージェントを展開できます。例えば、HRチームは休暇申請や経費精算を自動化する専用エージェントを構築し、カスタマーサクセスチームは製品に関する込み入った質問への回答や役員向けブリーフの作成にエージェントを調整できます\n。\n\n---\n\n## どこまでの社内問い合わせを任せられるか\n\n### ✅ 任せやすい領域（自己解決・自動応答向き）\n\n**HR関連**\n- \n新入社員のオンボーディング支援、福利厚生や会社ポリシーに関するよくある質問への回答、キャリア開発リソースへの案内など、HRプロセスのサポート\n\n- \n従業員が休暇を申請すると、エージェントが残高を確認し、ポリシーを検証し、マネージャーへ申請を提出する——それが数秒で完了します\n\n\n**IT関連**\n- \n一次対応レベルのITサポート、基本的なトラブルシューティング手順の支援、ヘルプデスクチケットの記録、初期のインシデント報告の管理\n\n- \n過去のインシデントを確認してパターンを要約し、IT担当者向けに次のステップを提案したり、デバイスや資産の記録をもとに交換対象や対応可否などの質問に回答したりする\n\n\n**ナレッジベースを使った一般的なFAQ**\n- \nGeneral FAQトピックと「ナレッジで質問に回答する」アクションを使って、ビジネスのナレッジベースやその他のデータから情報を引き出し、正確な回答を返します\n\n\n### 実績データ\n実際にSalesforce社内では大きな成果が出ています。\nSalesforceはAgentforceを使って約1,000万件のHR関連の検索を処理しており、そのうち96%が人の介入なしに解決されています\n。\n\n### ⚠️ 人へのエスカレーションが必要な領域\n\n- \n機密性の高い案件は、これまでのやり取り全体と関連コンテキストを添えて、人間の担当者へ引き継がれます\n\n- \nエージェントが答えを知らない場合もあるため、人によるフォールバック（対応窓口）を確立しておくことが重要です\n\n\n### 導入時の注意点\nSalesforceのガイドでは、いきなり広範囲を任せるのではなく、\nIT ヘルプデスクへの問い合わせやHRポリシーの検索といった摩擦の大きい領域を最初に特定し、特定のユースケースから始めることで、信頼できる社内ナレッジベースにエージェントを接続し、他部門へ展開する前に従業員に対してすぐ効果を示すことができる\nと推奨されています。\n\n---\n\n## まとめ：任せられる範囲の目安\n\n| 領域 | 任せられる度合い |\n|---|---|\n| よくある質問（FAQ）への回答 | ◎ ほぼ全自動化可能 |\n| 休暇申請・経費精算などの定型申請 | ◎ 自動化・自己解決に強い |\n| PC/アカウント関連の一次対応 | ○ 高い自動化率が期待できる |\n| ポリシー・規程の確認・案内 | ○ ナレッジベース整備が前提 ",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "strh.co.jp",
+    "note.com",
+    "trailhead.salesforce.com",
+    "salesforce.com",
+    "admin.salesforce.com",
+    "summittech360.com",
+    "cxtoday.com"
+  ],
+  "resolved_urls": [
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://note.com/samuraijuku_biz/n/n08b3a08e8d5d",
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-for-employees-quick-look/get-started-with-agentforce-for-employees",
+    "https://www.salesforce.com/blog/agentforce-for-employees/",
+    "https://admin.salesforce.com/blog/2025/employee-agents-foundations-the-admin-advantage-for-user-support",
+    "https://www.salesforce.com/service/hr-service-management/ai-agents-hr/",
+    "https://summittech360.com/agentforce-use-cases-by-department/",
+    "https://www.cxtoday.com/crm/salesforce-launches-agentforce-for-hr-service-confirms-move-into-itsm/",
+    "https://www.salesforce.com/agentforce/agentforce-for-employees/employee-agents/"
+  ],
+  "unresolved_redirects": 0
+}

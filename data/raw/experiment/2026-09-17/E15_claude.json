@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E15",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceスペシャリスト資格の試験内容と勉強法は？",
+  "cep": null,
+  "timestamp": "2026-09-17T01:12:53.523146Z",
+  "answer": "Salesforceの「Agentforceスペシャリスト」資格について、最新情報を調べてお答えします。\n# Agentforceスペシャリスト資格の試験内容と勉強法\n\n## 📋 試験の基本情報\n\n\n試験は60問の選択式（単一選択・複数選択）で構成され、制限時間は105分です。合格ラインは73%で、受験料は200ドル（再受験は100ドル）。オンラインまたはテストセンターで受験可能で、受験の前提条件はありません。\n\n\n対象者について、\n組織内でAgentforceを管理・実装する担当者を対象としており、AIエージェントを設計・設定・最適化して実際のビジネス価値を提供する能力を証明する資格\nです。\n\n## 📚 出題範囲（5つのセクション）\n\nUdemyの講座情報によると、出題比率は以下の通りです：\n\nAI Agents（35%）、Prompt Engineering（20%）、Data Cloud for Agentforce（20%）、Deployment Lifecycle（20%）、Multi-Agent Interoperability（5%）\n\n\n具体的な出題内容としては、以下のようなトピックが含まれます：\n\n- \nユースケースに基づき、フィルターや変数を使ってエージェントの決定論的な振る舞いを管理する方法、エージェントの仕組みと推論エンジンがAgentforceをどう動かしているかの理解\n\n- \nSalesforceツールを使った独自ソリューション・アクション・連携の構築、Prompt Builderの適切なユースケースの特定、プロンプトテンプレートの管理、グラウンディング技術の適用\n\n- \nビジネスニーズに応じたAIエージェントの作成・カスタマイズ、Agentforce Testing Centerを使ったエージェントの性能・信頼性の検証\n\n- \nAgentforce Data Libraryを活用した応答精度・パーソナライゼーションの向上、Data Cloudリトリーバーがグラウンディングされた応答をどう強化するかの理解\n\n- \n利用状況の監視、ユーザーセキュリティの管理、責任あるAI利用の確保、Agentforce導入における関係者との連携や課題解決\n\n\nまた、実務経験も重視されており、\n試験では、Agentforce を使う際のユースケースに基づく問題が多く出題され、Sales Cloud、Service Cloud、Data Cloud 等の各製品の基本的な機能についての理解も求められます\n。\n\n## 📖 効果的な勉強法\n\n### 1. Trailhead（公式学習プラットフォーム）を軸にする\n\nまずSalesforce公式のTrailheadモジュールと試験ガイドの活用が重要で、「Agentforce Champion」や「Prepare for the Salesforce Certified Agentforce Specialist Exam」など、試験範囲に沿ったカリキュラムが用意されており、基本概念からエージェントの設定手順、プロンプトエンジニアリング、クラウド連携やセキュリティ対策まで、体系的に学ぶことができます\n。\n\nAgentblazerステータスには3段階あり、\nCampion・Innovator・Legendと3つのレベルがありますが、試験対策としては「Campion」までやっておけばOK、InnovatorとLegendはハンズオンメインのモジュール\nという声もあります。\n\n### 2. ハンズオン（実際に手を動かす）が必須\n複数の合格者が共通して強調しているポイントです。\n実際に手を動かした経験を積んだことで、この試験に必要な内容の理解がずっと楽になった\nという声や、\nTrailheadではAgentforceの基本や考え方をしっかり学べますが、実際にAgentforce Builderなどを操作してみると、「こういうことか！」とつながる場面がたくさんある\nという実体験もあります。\n\n### 3. 模擬問題・過去問演習を繰り返す\n\n模擬問題や過去問を繰り返し解くことは非常に重要で、問題を何度も解くことで、出題パターンや出題されやすい分野、自身の苦手領域を効率よく把握でき、間違えた問題や解説を重点的に復習することで、知識の穴を塞ぎ確実な実力アップにつながります\n。\n\n### 4. 最新リリースノートのチェック\nAgentforceは進化が速い分野のため、\n最新のリリースノートを確認して試験に出る可能性のある新機能を理解し、Multi-Agent Interoperabilityに関する開発者ドキュメントも確認する\nことが推奨されています。\n\n## 💡 おすすめの学習ステップ\n\n1. **公式試験ガイドを熟読**（Salesforce Trailheadに掲載）\n2. **Trailheadの「Agentforce Champion」＋「Cert Prep」モジュールを完了**（ハンズオン重視）\n3. **Agent Builder・Prompt Builder・Data Cloudの実機操作**で理解を深める\n4. **模擬試験・過去問演習**で出題形式に慣れ、弱点を把握\n5. **直前期は模試の繰り返し**と苦手分野の総復習\n\nなお、AI分野は変化が非常に速いため、出題比率や試験ガイドの詳細は変更される可能性があります。受験前には必ずSalesforce公式サイトで最",
+  "cited_urls": [
+    "https://www.salesforceben.com/salesforce-agentforce-specialist-certification-guide-tips/",
+    "https://www.udemy.com/course/salesforce-agentforce/",
+    "https://www.sunbridge.com/blog/useful/salesforce-certified-agentforce-specialist-exam/",
+    "https://yield-marketing.co.jp/blog/sf-agent-study/",
+    "https://fukushi-itlabo.net/2025/11/02/11200/",
+    "https://yourcloudcoach.learnworlds.com/blog/salesforce-agentforce-specialist-certification",
+    "https://salesforcelaboratory.com/agentforce-specialist/",
+    "https://www.priscillahongsalesforce.com/pages/agentforce-exam-guide"
+  ],
+  "error": null,
+  "experiment_id": "E15",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-certification/",
+  "answer_text": "Salesforceの「Agentforceスペシャリスト」資格について、最新情報を調べてお答えします。\n# Agentforceスペシャリスト資格の試験内容と勉強法\n\n## 📋 試験の基本情報\n\n\n試験は60問の選択式（単一選択・複数選択）で構成され、制限時間は105分です。合格ラインは73%で、受験料は200ドル（再受験は100ドル）。オンラインまたはテストセンターで受験可能で、受験の前提条件はありません。\n\n\n対象者について、\n組織内でAgentforceを管理・実装する担当者を対象としており、AIエージェントを設計・設定・最適化して実際のビジネス価値を提供する能力を証明する資格\nです。\n\n## 📚 出題範囲（5つのセクション）\n\nUdemyの講座情報によると、出題比率は以下の通りです：\n\nAI Agents（35%）、Prompt Engineering（20%）、Data Cloud for Agentforce（20%）、Deployment Lifecycle（20%）、Multi-Agent Interoperability（5%）\n\n\n具体的な出題内容としては、以下のようなトピックが含まれます：\n\n- \nユースケースに基づき、フィルターや変数を使ってエージェントの決定論的な振る舞いを管理する方法、エージェントの仕組みと推論エンジンがAgentforceをどう動かしているかの理解\n\n- \nSalesforceツールを使った独自ソリューション・アクション・連携の構築、Prompt Builderの適切なユースケースの特定、プロンプトテンプレートの管理、グラウンディング技術の適用\n\n- \nビジネスニーズに応じたAIエージェントの作成・カスタマイズ、Agentforce Testing Centerを使ったエージェントの性能・信頼性の検証\n\n- \nAgentforce Data Libraryを活用した応答精度・パーソナライゼーションの向上、Data Cloudリトリーバーがグラウンディングされた応答をどう強化するかの理解\n\n- \n利用状況の監視、ユーザーセキュリティの管理、責任あるAI利用の確保、Agentforce導入における関係者との連携や課題解決\n\n\nまた、実務経験も重視されており、\n試験では、Agentforce を使う際のユースケースに基づく問題が多く出題され、Sales Cloud、Service Cloud、Data Cloud 等の各製品の基本的な機能についての理解も求められます\n。\n\n## 📖 効果的な勉強法\n\n### 1. Trailhead（公式学習プラットフォーム）を軸にする\n\nまずSalesforce公式のTrailheadモジュールと試験ガイドの活用が重要で、「Agentforce Champion」や「Prepare for the Salesforce Certified Agentforce Specialist Exam」など、試験範囲に沿ったカリキュラムが用意されており、基本概念からエージェントの設定手順、プロンプトエンジニアリング、クラウド連携やセキュリティ対策まで、体系的に学ぶことができます\n。\n\nAgentblazerステータスには3段階あり、\nCampion・Innovator・Legendと3つのレベルがありますが、試験対策としては「Campion」までやっておけばOK、InnovatorとLegendはハンズオンメインのモジュール\nという声もあります。\n\n### 2. ハンズオン（実際に手を動かす）が必須\n複数の合格者が共通して強調しているポイントです。\n実際に手を動かした経験を積んだことで、この試験に必要な内容の理解がずっと楽になった\nという声や、\nTrailheadではAgentforceの基本や考え方をしっかり学べますが、実際にAgentforce Builderなどを操作してみると、「こういうことか！」とつながる場面がたくさんある\nという実体験もあります。\n\n### 3. 模擬問題・過去問演習を繰り返す\n\n模擬問題や過去問を繰り返し解くことは非常に重要で、問題を何度も解くことで、出題パターンや出題されやすい分野、自身の苦手領域を効率よく把握でき、間違えた問題や解説を重点的に復習することで、知識の穴を塞ぎ確実な実力アップにつながります\n。\n\n### 4. 最新リリースノートのチェック\nAgentforceは進化が速い分野のため、\n最新のリリースノートを確認して試験に出る可能性のある新機能を理解し、Multi-Agent Interoperabilityに関する開発者ドキュメントも確認する\nことが推奨されています。\n\n## 💡 おすすめの学習ステップ\n\n1. **公式試験ガイドを熟読**（Salesforce Trailheadに掲載）\n2. **Trailheadの「Agentforce Champion」＋「Cert Prep」モジュールを完了**（ハンズオン重視）\n3. **Agent Builder・Prompt Builder・Data Cloudの実機操作**で理解を深める\n4. **模擬試験・過去問演習**で出題形式に慣れ、弱点を把握\n5. **直前期は模試の繰り返し**と苦手分野の総復習\n\nなお、AI分野は変化が非常に速いため、出題比率や試験ガイドの詳細は変更される可能性があります。受験前には必ずSalesforce公式サイトで最",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforceben.com",
+    "udemy.com",
+    "sunbridge.com",
+    "yield-marketing.co.jp",
+    "fukushi-itlabo.net",
+    "yourcloudcoach.learnworlds.com",
+    "salesforcelaboratory.com",
+    "priscillahongsalesforce.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforceben.com/salesforce-agentforce-specialist-certification-guide-tips/",
+    "https://www.udemy.com/course/salesforce-agentforce/",
+    "https://www.sunbridge.com/blog/useful/salesforce-certified-agentforce-specialist-exam/",
+    "https://yield-marketing.co.jp/blog/sf-agent-study/",
+    "https://fukushi-itlabo.net/2025/11/02/11200/",
+    "https://yourcloudcoach.learnworlds.com/blog/salesforce-agentforce-specialist-certification",
+    "https://salesforcelaboratory.com/agentforce-specialist/",
+    "https://www.priscillahongsalesforce.com/pages/agentforce-exam-guide"
+  ],
+  "unresolved_redirects": 0
+}

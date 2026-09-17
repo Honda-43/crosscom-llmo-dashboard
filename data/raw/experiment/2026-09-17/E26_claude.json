@@ -1,0 +1,43 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E26",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce Data 360（旧Data Cloud）はAgentforceに必要？導入すべきかの判断基準",
+  "cep": null,
+  "timestamp": "2026-09-17T01:18:12.327913Z",
+  "answer": "Salesforce Data 360（旧Data Cloud）とAgentforceの関係について、最新情報を確認してから回答します。\n# Salesforce Data 360（旧Data Cloud）はAgentforceに必要か？導入判断の基準\n\n## まず名称の整理\n\n\n2025年10月14日にData CloudはData 360にリブランドされました。移行期間中はアプリケーションやドキュメントにData Cloudという表記が残ることがありますが、名称は新しくなっても機能や内容は変わっていません。\n つまり「Data Cloud」と「Data 360」は同じ製品を指しています。\n\n\nSalesforceはDreamforceにおいて2025年10月にData CloudをSalesforce Data 360に改称しましたが、ライセンス、データモデル、統合機能、セグメンテーションツールは変わっていません。\n変わったのは位置づけで、\nData 360はAgentforce 360の傘下に位置づけられ、Salesforceは「統合顧客データプラットフォーム」から「AI・自動化・意思決定を支える生きたコンテキスト」へとポジショニングを移行しました。\n\n\n## 結論：「provisioned（提供）」と「implemented（実装）」を分けて考える\n\nSalesforce公式Trailheadでは、Agentforceとの関係を2層構造で説明しています。\n\n\nAgentforceに対するData 360には「有効化（enablement）」と「実装（implementation）」の2層があります。有効化とはorgでData 360をプロビジョニングし有効化すること、実装とはData 360を有効化した上でデータを接続し、データモデルへマッピングすることを意味し、さらにIDレゾリューションのルールセットでデータを統合するなどの作業も含まれます。\n\n\nそして重要な違いがこちらです：\n\n\n有効化と実装はそれぞれAgentforceの機能に影響します。Data 360は、あらゆるAgentforceの利用において必ずプロビジョニング・有効化されなければならず、Agentforce Data LibraryやEinstein Trust LayerといったAgentforceの機能はData 360なしでは動作しません。\n\n\n一方で、\nData 360を実装することで、多様なCustomer 360データ、強力なデータクレンジング・変換機能、完全にカスタマイズ可能なRAGといった恩恵を得られ、堅牢なエージェントワークフォースを構築し複雑な要件に対応するにはData 360の実装が必要になります。\n\n\nつまり「有効化（provisioning）」は自動的に行われる一方、「実装（本格導入）」は目的に応じて判断すべき別プロジェクトということです。\n\n## 実務的な切り分け：CRMレコード操作 vs 非構造化データからの回答\n\nより実践的な整理として、以下の切り分けが参考になります。\n\n\nCRMレコードを扱うエージェントであれば、Agentforceに有償のData Cloud構築は不要です。非構造化データのグラウンディングを行う場合は必要になります。\n\n\n具体的には：\n\n\nAgentforceを有効化するとorgにData Cloudがプロビジョニングされます。そのためセットアップ画面からは「必要」に見えますが、プロビジョニングされていることと実装されていることは別です。\n\n\n- **Data 360の本格実装が不要なケース**：\nエージェントがCRMレコードの読み書きのみを行う場合、Data 360のモデリングプロジェクトは不要で、Flowアクション・Apexアクション・レコードのマージフィールドを使ったプロンプトテンプレートで対応できます。\n\n\n- **Data 360の本格実装が必要なケース**：\nエージェントが非構造化コンテンツから回答する必要がある場合、または共通キーを持たない複数システムにまたがるID統合済みの単一プロファイルが必要な場合には、Data 360が本当に必要になります。\n\n\n- **見落としがちな前提条件**：\nエージェントの挙動を実際に左右するのは、両者より上流にある重複レコード、所有者の正確性、選択リストの一貫性、フィールドレベルの権限の整備状況です。\n\n\n## 導入すべきかの判断基準（まとめ）\n\n以上を踏まえ、以下の基準で判断することをおすすめします。\n\n### ① まずAgentforceで何をさせたいかを明確にする\n- CRM内のレコード検索・更新・簡単な問い合わせ対応が中心 → Data 360の本格実装は**必須ではない**\n- PDFマニュアル、通話録音、メール履歴などの**非構造化データ**を根拠に回答させたい → Data 360の実装が**必要**\n\n\nData 360は、RAGの文脈では特に非構造化データの蓄積基盤として機能し、PDFドキュメントや通話録音の文字起こし、メール、画像ファイルなどの非構造化データを処理し、AIが検索可能な形で蓄積できます。\n\n\n### ② 複数システムにまたがる顧客データの統合が必要か\n外部システム（基幹システム、ECサイトの購買履歴など）とSalesforce内のデータを紐づけて「一人の顧客」として扱う必要がある場合、Data 360のID解決（アイデンティティ・レゾリューション）機能が効いてきます。\nData 360は、内部・外部システムの顧客データを単一プロファイルへ統合し、そのプロファイルをSalesforceアプリケー",
+  "cited_urls": [
+    "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce",
+    "https://inceptasolutions.com/salesforce-data-360/",
+    "https://www.getclientell.com/salesforce-blogs/does-agentforce-require-data-cloud",
+    "https://successjp.salesforce.com/article/NAI-001148",
+    "https://www.xavor.com/blog/salesforce-data-360-implementation/"
+  ],
+  "error": null,
+  "experiment_id": "E26",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/salesforce-data-360/",
+  "answer_text": "Salesforce Data 360（旧Data Cloud）とAgentforceの関係について、最新情報を確認してから回答します。\n# Salesforce Data 360（旧Data Cloud）はAgentforceに必要か？導入判断の基準\n\n## まず名称の整理\n\n\n2025年10月14日にData CloudはData 360にリブランドされました。移行期間中はアプリケーションやドキュメントにData Cloudという表記が残ることがありますが、名称は新しくなっても機能や内容は変わっていません。\n つまり「Data Cloud」と「Data 360」は同じ製品を指しています。\n\n\nSalesforceはDreamforceにおいて2025年10月にData CloudをSalesforce Data 360に改称しましたが、ライセンス、データモデル、統合機能、セグメンテーションツールは変わっていません。\n変わったのは位置づけで、\nData 360はAgentforce 360の傘下に位置づけられ、Salesforceは「統合顧客データプラットフォーム」から「AI・自動化・意思決定を支える生きたコンテキスト」へとポジショニングを移行しました。\n\n\n## 結論：「provisioned（提供）」と「implemented（実装）」を分けて考える\n\nSalesforce公式Trailheadでは、Agentforceとの関係を2層構造で説明しています。\n\n\nAgentforceに対するData 360には「有効化（enablement）」と「実装（implementation）」の2層があります。有効化とはorgでData 360をプロビジョニングし有効化すること、実装とはData 360を有効化した上でデータを接続し、データモデルへマッピングすることを意味し、さらにIDレゾリューションのルールセットでデータを統合するなどの作業も含まれます。\n\n\nそして重要な違いがこちらです：\n\n\n有効化と実装はそれぞれAgentforceの機能に影響します。Data 360は、あらゆるAgentforceの利用において必ずプロビジョニング・有効化されなければならず、Agentforce Data LibraryやEinstein Trust LayerといったAgentforceの機能はData 360なしでは動作しません。\n\n\n一方で、\nData 360を実装することで、多様なCustomer 360データ、強力なデータクレンジング・変換機能、完全にカスタマイズ可能なRAGといった恩恵を得られ、堅牢なエージェントワークフォースを構築し複雑な要件に対応するにはData 360の実装が必要になります。\n\n\nつまり「有効化（provisioning）」は自動的に行われる一方、「実装（本格導入）」は目的に応じて判断すべき別プロジェクトということです。\n\n## 実務的な切り分け：CRMレコード操作 vs 非構造化データからの回答\n\nより実践的な整理として、以下の切り分けが参考になります。\n\n\nCRMレコードを扱うエージェントであれば、Agentforceに有償のData Cloud構築は不要です。非構造化データのグラウンディングを行う場合は必要になります。\n\n\n具体的には：\n\n\nAgentforceを有効化するとorgにData Cloudがプロビジョニングされます。そのためセットアップ画面からは「必要」に見えますが、プロビジョニングされていることと実装されていることは別です。\n\n\n- **Data 360の本格実装が不要なケース**：\nエージェントがCRMレコードの読み書きのみを行う場合、Data 360のモデリングプロジェクトは不要で、Flowアクション・Apexアクション・レコードのマージフィールドを使ったプロンプトテンプレートで対応できます。\n\n\n- **Data 360の本格実装が必要なケース**：\nエージェントが非構造化コンテンツから回答する必要がある場合、または共通キーを持たない複数システムにまたがるID統合済みの単一プロファイルが必要な場合には、Data 360が本当に必要になります。\n\n\n- **見落としがちな前提条件**：\nエージェントの挙動を実際に左右するのは、両者より上流にある重複レコード、所有者の正確性、選択リストの一貫性、フィールドレベルの権限の整備状況です。\n\n\n## 導入すべきかの判断基準（まとめ）\n\n以上を踏まえ、以下の基準で判断することをおすすめします。\n\n### ① まずAgentforceで何をさせたいかを明確にする\n- CRM内のレコード検索・更新・簡単な問い合わせ対応が中心 → Data 360の本格実装は**必須ではない**\n- PDFマニュアル、通話録音、メール履歴などの**非構造化データ**を根拠に回答させたい → Data 360の実装が**必要**\n\n\nData 360は、RAGの文脈では特に非構造化データの蓄積基盤として機能し、PDFドキュメントや通話録音の文字起こし、メール、画像ファイルなどの非構造化データを処理し、AIが検索可能な形で蓄積できます。\n\n\n### ② 複数システムにまたがる顧客データの統合が必要か\n外部システム（基幹システム、ECサイトの購買履歴など）とSalesforce内のデータを紐づけて「一人の顧客」として扱う必要がある場合、Data 360のID解決（アイデンティティ・レゾリューション）機能が効いてきます。\nData 360は、内部・外部システムの顧客データを単一プロファイルへ統合し、そのプロファイルをSalesforceアプリケー",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "trailhead.salesforce.com",
+    "inceptasolutions.com",
+    "getclientell.com",
+    "successjp.salesforce.com",
+    "xavor.com"
+  ],
+  "resolved_urls": [
+    "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce",
+    "https://inceptasolutions.com/salesforce-data-360/",
+    "https://www.getclientell.com/salesforce-blogs/does-agentforce-require-data-cloud",
+    "https://successjp.salesforce.com/article/NAI-001148",
+    "https://www.xavor.com/blog/salesforce-data-360-implementation/"
+  ],
+  "unresolved_redirects": 0
+}

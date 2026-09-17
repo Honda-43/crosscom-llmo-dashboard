@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E09",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce MCPとは？Agentforceと外部システムの接続方式と境界の設計",
+  "cep": null,
+  "timestamp": "2026-09-17T01:10:08.923541Z",
+  "answer": "Salesforce MCP（Model Context Protocol）とAgentforceの外部システム接続について、最新情報を調べます。\nさらに、セキュリティ境界・認証設計に関する詳細情報を補完します。\n# Salesforce MCPとAgentforceの外部システム接続設計\n\n## 1. MCP（Model Context Protocol）とは\n\n\nModel Context Protocol (MCP)はAI アプリやエージェントがツールやデータソースと接続しやすくするオープンソースのプロトコルで、これまでは各ツールごとに独自の統合コードが必要で、ツールやリソースの分断が生じていました\n。\nMCPを使えば、自分のツール用に1つのMCPサーバーを構築するだけで、MCPを理解するあらゆるAIアプリやエージェントに接続できます\n。\n\nもともとAnthropic社が策定したプロトコルで、\nAIアプリケーションや大規模言語モデル（LLM）が外部のデータソースやツールとどのように接続し利用するかを標準化するために設計されたオープン標準です\n。しばしば「AIのためのUSB-C」と例えられ、\n内部・外部のリソース、ツール、プロンプトを単一の明確なハンドシェイクで取得できるようにする標準です\n。\n\n## 2. Agentforceの中でのMCP位置づけ\n\n\nAgentforce 3の最も革新的な機能はネイティブMCPクライアントの搭載で、これによりAgentforceエージェントは構築元やホスト場所を問わず、あらゆるMCP準拠サーバーにカスタム統合コードなしで接続できるようになりました\n。\nこれはSalesforceの従来の「壁に囲まれた庭」的なエコシステムを開放し、エージェントがシステム境界を越えて連携し複雑な目標を達成できるようにするものです\n。\n\n管理面では、\n拡張されたAgentExchangeを通じて信頼できる新しいMCPサーバーを発見でき、審査済みサービスのカタログから統合作業をほとんどせずに利用可能で、選んだMCPサーバーはAgentBuilderでコード不要でデプロイできます\n。\n\n## 3. アーキテクチャ：3層モデル\n\n\nMCPの3層モデル（Host → Client → Server）はJSON-RPC 2.0上で動作し、Agentforceエージェントに外部ツールとのステートフルでコンテキストを保持したセッションを提供します\n。\n\n具体的な役割分担は以下の通りです。\n- **Host（ホスト）**：\nエージェント型プラットフォーム全体を指し、Salesforceの場合はAgentforce自体がこれに該当します\n\n- **Client（クライアント）**：\nホスト内で動作し、外部のMCPサーバーと通信する役割\n。\n特定の外部サーバーとの専用接続を維持し、AIモデルのニーズ（例：「顧客データが必要」）を、サーバーが理解できる構造化されたプロトコルリクエストに変換する責任を持ちます\n\n- **Server（サーバー）**：\nその機能をプロトコル経由で公開する外部システム\n\n\n処理フローは、\nまずMCPクライアントが登録済みMCPサーバーに問い合わせて利用可能なツールのマニフェストを取得（Discovery）、次にAtlas Reasoning Engineがどのツールを呼び出すか判断（Reasoning）、そしてクライアントがJSON-RPC 2.0リクエストを送信しサーバーが処理を実行（Invocation）、すべてのアクションはEinstein Trust Layerを通過してPIIマスキング・フィールドレベルセキュリティ・監査ログが適用され（Trust Enforcement）、最後に複数のツール呼び出し結果を統合して応答を生成します（Response）\n。\n\n## 4. 外部システムとの接続方式（3パターン）\n\nSalesforceの公式ブログでは、Agentforceエージェント（およびSlackbot）が外部システムに接続する方法として3つのパターンが整理されています。\n現在、外部MCPサーバーをSalesforceエージェントやSlackbotの前面に配置する方法は3通りあり、1つ目はAgentforceの外部MCPサーバーへの接続を通じて外部IDを解決する方法、2つ目はネイティブなSlack MCPクライアント経由の方法、3つ目はAgentforceから外部MCPサーバーへの接続を利用しつつ、そのサブエージェント（サブセット）をSlackbotに公開する方法です\n。\n\n重要な注意点として、",
+  "cited_urls": [
+    "https://developer.salesforce.com/blogs/2025/06/introducing-mcp-support-across-salesforce",
+    "https://devopslaunchpad.com/blog/model-context-protocol/",
+    "https://www.salesforce.com/agentforce/mcp-support/",
+    "https://vantagepoint.io/blog/sf/agentforce-mcp-connect-external-systems-guide",
+    "https://sptechusa.com/blog/mcp-salesforce-model-context-protocol-guide/",
+    "https://www.salesforce.com/agentforce/mcp-support/model-context-protocol/",
+    "https://www.salesforce.com/blog/connect-agentforce-external-mcp-servers/"
+  ],
+  "error": null,
+  "experiment_id": "E09",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-mcp/",
+  "answer_text": "Salesforce MCP（Model Context Protocol）とAgentforceの外部システム接続について、最新情報を調べます。\nさらに、セキュリティ境界・認証設計に関する詳細情報を補完します。\n# Salesforce MCPとAgentforceの外部システム接続設計\n\n## 1. MCP（Model Context Protocol）とは\n\n\nModel Context Protocol (MCP)はAI アプリやエージェントがツールやデータソースと接続しやすくするオープンソースのプロトコルで、これまでは各ツールごとに独自の統合コードが必要で、ツールやリソースの分断が生じていました\n。\nMCPを使えば、自分のツール用に1つのMCPサーバーを構築するだけで、MCPを理解するあらゆるAIアプリやエージェントに接続できます\n。\n\nもともとAnthropic社が策定したプロトコルで、\nAIアプリケーションや大規模言語モデル（LLM）が外部のデータソースやツールとどのように接続し利用するかを標準化するために設計されたオープン標準です\n。しばしば「AIのためのUSB-C」と例えられ、\n内部・外部のリソース、ツール、プロンプトを単一の明確なハンドシェイクで取得できるようにする標準です\n。\n\n## 2. Agentforceの中でのMCP位置づけ\n\n\nAgentforce 3の最も革新的な機能はネイティブMCPクライアントの搭載で、これによりAgentforceエージェントは構築元やホスト場所を問わず、あらゆるMCP準拠サーバーにカスタム統合コードなしで接続できるようになりました\n。\nこれはSalesforceの従来の「壁に囲まれた庭」的なエコシステムを開放し、エージェントがシステム境界を越えて連携し複雑な目標を達成できるようにするものです\n。\n\n管理面では、\n拡張されたAgentExchangeを通じて信頼できる新しいMCPサーバーを発見でき、審査済みサービスのカタログから統合作業をほとんどせずに利用可能で、選んだMCPサーバーはAgentBuilderでコード不要でデプロイできます\n。\n\n## 3. アーキテクチャ：3層モデル\n\n\nMCPの3層モデル（Host → Client → Server）はJSON-RPC 2.0上で動作し、Agentforceエージェントに外部ツールとのステートフルでコンテキストを保持したセッションを提供します\n。\n\n具体的な役割分担は以下の通りです。\n- **Host（ホスト）**：\nエージェント型プラットフォーム全体を指し、Salesforceの場合はAgentforce自体がこれに該当します\n\n- **Client（クライアント）**：\nホスト内で動作し、外部のMCPサーバーと通信する役割\n。\n特定の外部サーバーとの専用接続を維持し、AIモデルのニーズ（例：「顧客データが必要」）を、サーバーが理解できる構造化されたプロトコルリクエストに変換する責任を持ちます\n\n- **Server（サーバー）**：\nその機能をプロトコル経由で公開する外部システム\n\n\n処理フローは、\nまずMCPクライアントが登録済みMCPサーバーに問い合わせて利用可能なツールのマニフェストを取得（Discovery）、次にAtlas Reasoning Engineがどのツールを呼び出すか判断（Reasoning）、そしてクライアントがJSON-RPC 2.0リクエストを送信しサーバーが処理を実行（Invocation）、すべてのアクションはEinstein Trust Layerを通過してPIIマスキング・フィールドレベルセキュリティ・監査ログが適用され（Trust Enforcement）、最後に複数のツール呼び出し結果を統合して応答を生成します（Response）\n。\n\n## 4. 外部システムとの接続方式（3パターン）\n\nSalesforceの公式ブログでは、Agentforceエージェント（およびSlackbot）が外部システムに接続する方法として3つのパターンが整理されています。\n現在、外部MCPサーバーをSalesforceエージェントやSlackbotの前面に配置する方法は3通りあり、1つ目はAgentforceの外部MCPサーバーへの接続を通じて外部IDを解決する方法、2つ目はネイティブなSlack MCPクライアント経由の方法、3つ目はAgentforceから外部MCPサーバーへの接続を利用しつつ、そのサブエージェント（サブセット）をSlackbotに公開する方法です\n。\n\n重要な注意点として、",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "developer.salesforce.com",
+    "devopslaunchpad.com",
+    "salesforce.com",
+    "vantagepoint.io",
+    "sptechusa.com"
+  ],
+  "resolved_urls": [
+    "https://developer.salesforce.com/blogs/2025/06/introducing-mcp-support-across-salesforce",
+    "https://devopslaunchpad.com/blog/model-context-protocol/",
+    "https://www.salesforce.com/agentforce/mcp-support/",
+    "https://vantagepoint.io/blog/sf/agentforce-mcp-connect-external-systems-guide",
+    "https://sptechusa.com/blog/mcp-salesforce-model-context-protocol-guide/",
+    "https://www.salesforce.com/agentforce/mcp-support/model-context-protocol/",
+    "https://www.salesforce.com/blog/connect-agentforce-external-mcp-servers/"
+  ],
+  "unresolved_redirects": 0
+}

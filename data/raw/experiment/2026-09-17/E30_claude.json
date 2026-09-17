@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E30",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Einstein Trust Layerとは？AIに任せる範囲と人が承認すべき場面はどう分ける？",
+  "cep": null,
+  "timestamp": "2026-09-17T01:20:09.734006Z",
+  "answer": "# Einstein Trust Layerとは\n\n**Einstein Trust Layer**は、Salesforceプラットフォームに組み込まれた生成AI向けのセキュアなアーキテクチャです。\nSalesforceプラットフォームに組み込まれた安全なAIアーキテクチャであり、生成AIソリューションを探求する間、企業を安全に保つために使用される契約、セキュリティ技術、データとプライバシー管理の集合体です。\n\n\n別売りの製品ではなく、\n購入する製品ではなく、Salesforceから発信されるすべての生成AI呼び出しをラップする組み込みゲートウェイ\nという位置づけです。\nPrompt Builder、Agentforceのエージェントアクション、Einstein for Serviceの返信推奨、さらにはApexからConnectApi.EinsteinLLM名前空間を呼び出す処理まで、すべてがこれを経由します。\n\n\n## 主な仕組み・構成要素\n\nTrust Layerは大きく5つの機能で構成されています。\n\n**1. データマスキング**\n\n機密データを検出してマスキングするポリシーがあり、パターンベース（正規表現やコンテキストワードを使用）と、決まったパターンを持たない人名や会社名などを識別する機械学習モデルの2つの方法で機密データを特定します。\n \nShield Platform Encryptionやデータ分類で分類されたフィールドのメタデータも利用し、識別後はプレースホルダーテキストでマスキングして外部モデルへの露出を防ぎます。\n\n\n**2. ゼロデータ保持契約**\n\nモデルプロバイダーとの間でゼロデータ保持契約を強制しており、OpenAI、Azure OpenAI、Anthropic、Googleなどとの間で、プロンプトと生成結果がプロバイダー側に保存されず、モデレーション用にログされず、学習にも使用されない契約を締結しています。\n\n\n**3. グラウンディング（根拠付け）**\nAIの回答を実際の組織データに基づかせる仕組みです。\nAgentforceのエージェント回答は、組織自身のレコード、ナレッジ記事、Data Cloud情報、承認済みコンテンツソースなどのSalesforceデータに根拠付けられます。\n\n\n**4. 有害性検出と監査ログ**\n\nプロンプトやAI生成出力の有害・不適切なコンテンツを評価する有害性検出・監視の仕組みも統合されており、監督とガバナンスのための監査証跡作成を支援します。\n \nすべてのプロンプト、生成結果、マスキングされたエンティティ、有害性スコア、根拠情報、ユーザー、タイムスタンプがData Cloud内のEinstein監査ログに書き込まれ、コンプライアンスチームが将来求める記録となります。\n\n\n**5. アクセス制御・権限連携**\n\n自律的なAIエージェントのリスクの一つはユーザーが見るべき範囲外のデータにアクセス・露出させてしまうことですが、エージェントをSalesforceのセキュリティモデルに紐づけることで、既存の権限体系がそのまま適用され、新たなセキュリティモデルを学ぶ必要はありません。\n\n\n---\n\n# AIに任せる範囲と人が承認すべき場面の分け方\n\nSalesforceは、Trust Layer自体に加えて**ガードレール**という多層の安全機構でAIエージェント（Agentforce）の自律動作を制御しています。\nSalesforceはAgentforceに組み込まれたTrust Layerという技術・ポリシー制御を通じてAIガードレールを実装しており、LLMに届く前の機密情報保護のためのデータマスキング、モデルプロバイダーが顧客データを保存しないゼロデータ保持ポリシー、AI出力への有害性検出、すべてのエージェント動作の監査ログ、各エージェントが取得できるデータや実行できるアクションを定義するアクセス制御が含まれます。\n\n\n判断の分岐点は3段階のチェックとして設計されています。\n\n出力検証は、応答がユーザーに届く前や後続アクションを起動する前に実行され、アクション認可チェックはエージェントがツールを呼び出したりデータソースにアクセスしたりワークフローステップを実行する前に行われ、エスカレーションプロトコルは決定が定められた権限の閾値を超えた場合にエージェントを一時停止して人間に引き継ぎます。この多層アプローチにより、エージェントのループの各段階に独自の安全チェックが設けられます。\n\n\n## 実務上の切り分け方の目安\n\n**① 閾値（金額・影響度）による自動化ライン**\n\n一定金額以下の返金は自動処理し、それを超える場合は人が承認するというように、閾値ベースのゲートによりエージェントは一般的なケースを処理し、重大なケースのみをエスカレーションします。\n 実装例としても、\n50ドル未満の場合は自動承認ログとともに即座に実行される\n一方、",
+  "cited_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=sf.generative_ai_trust_layer.htm&amp=&type=5",
+    "https://salesforcedictionary.com/blogs/salesforce-einstein-trust-layer-complete-2026-guide",
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_trust_arch.htm&amp=&language=en_US",
+    "https://applikontech.com/einstein-trust-layer-the-foundation-of-agentforce/",
+    "https://oecd.ai/en/catalogue/tools/einstein-trust-layer",
+    "https://www.salesforce.com/welcome-to-the-agentic-enterprise/ai-guardrails/",
+    "https://www.arthur.ai/column/human-in-the-loop-governance-for-ai-agents",
+    "https://atalupadhyay.wordpress.com/2026/08/12/guardrails-human-in-the-loop-and-audit-logging-for-ai-agents/"
+  ],
+  "error": null,
+  "experiment_id": "E30",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/einstein-trust-layer/",
+  "answer_text": "# Einstein Trust Layerとは\n\n**Einstein Trust Layer**は、Salesforceプラットフォームに組み込まれた生成AI向けのセキュアなアーキテクチャです。\nSalesforceプラットフォームに組み込まれた安全なAIアーキテクチャであり、生成AIソリューションを探求する間、企業を安全に保つために使用される契約、セキュリティ技術、データとプライバシー管理の集合体です。\n\n\n別売りの製品ではなく、\n購入する製品ではなく、Salesforceから発信されるすべての生成AI呼び出しをラップする組み込みゲートウェイ\nという位置づけです。\nPrompt Builder、Agentforceのエージェントアクション、Einstein for Serviceの返信推奨、さらにはApexからConnectApi.EinsteinLLM名前空間を呼び出す処理まで、すべてがこれを経由します。\n\n\n## 主な仕組み・構成要素\n\nTrust Layerは大きく5つの機能で構成されています。\n\n**1. データマスキング**\n\n機密データを検出してマスキングするポリシーがあり、パターンベース（正規表現やコンテキストワードを使用）と、決まったパターンを持たない人名や会社名などを識別する機械学習モデルの2つの方法で機密データを特定します。\n \nShield Platform Encryptionやデータ分類で分類されたフィールドのメタデータも利用し、識別後はプレースホルダーテキストでマスキングして外部モデルへの露出を防ぎます。\n\n\n**2. ゼロデータ保持契約**\n\nモデルプロバイダーとの間でゼロデータ保持契約を強制しており、OpenAI、Azure OpenAI、Anthropic、Googleなどとの間で、プロンプトと生成結果がプロバイダー側に保存されず、モデレーション用にログされず、学習にも使用されない契約を締結しています。\n\n\n**3. グラウンディング（根拠付け）**\nAIの回答を実際の組織データに基づかせる仕組みです。\nAgentforceのエージェント回答は、組織自身のレコード、ナレッジ記事、Data Cloud情報、承認済みコンテンツソースなどのSalesforceデータに根拠付けられます。\n\n\n**4. 有害性検出と監査ログ**\n\nプロンプトやAI生成出力の有害・不適切なコンテンツを評価する有害性検出・監視の仕組みも統合されており、監督とガバナンスのための監査証跡作成を支援します。\n \nすべてのプロンプト、生成結果、マスキングされたエンティティ、有害性スコア、根拠情報、ユーザー、タイムスタンプがData Cloud内のEinstein監査ログに書き込まれ、コンプライアンスチームが将来求める記録となります。\n\n\n**5. アクセス制御・権限連携**\n\n自律的なAIエージェントのリスクの一つはユーザーが見るべき範囲外のデータにアクセス・露出させてしまうことですが、エージェントをSalesforceのセキュリティモデルに紐づけることで、既存の権限体系がそのまま適用され、新たなセキュリティモデルを学ぶ必要はありません。\n\n\n---\n\n# AIに任せる範囲と人が承認すべき場面の分け方\n\nSalesforceは、Trust Layer自体に加えて**ガードレール**という多層の安全機構でAIエージェント（Agentforce）の自律動作を制御しています。\nSalesforceはAgentforceに組み込まれたTrust Layerという技術・ポリシー制御を通じてAIガードレールを実装しており、LLMに届く前の機密情報保護のためのデータマスキング、モデルプロバイダーが顧客データを保存しないゼロデータ保持ポリシー、AI出力への有害性検出、すべてのエージェント動作の監査ログ、各エージェントが取得できるデータや実行できるアクションを定義するアクセス制御が含まれます。\n\n\n判断の分岐点は3段階のチェックとして設計されています。\n\n出力検証は、応答がユーザーに届く前や後続アクションを起動する前に実行され、アクション認可チェックはエージェントがツールを呼び出したりデータソースにアクセスしたりワークフローステップを実行する前に行われ、エスカレーションプロトコルは決定が定められた権限の閾値を超えた場合にエージェントを一時停止して人間に引き継ぎます。この多層アプローチにより、エージェントのループの各段階に独自の安全チェックが設けられます。\n\n\n## 実務上の切り分け方の目安\n\n**① 閾値（金額・影響度）による自動化ライン**\n\n一定金額以下の返金は自動処理し、それを超える場合は人が承認するというように、閾値ベースのゲートによりエージェントは一般的なケースを処理し、重大なケースのみをエスカレーションします。\n 実装例としても、\n50ドル未満の場合は自動承認ログとともに即座に実行される\n一方、",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "help.salesforce.com",
+    "salesforcedictionary.com",
+    "applikontech.com",
+    "oecd.ai",
+    "salesforce.com",
+    "arthur.ai",
+    "atalupadhyay.wordpress.com"
+  ],
+  "resolved_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=sf.generative_ai_trust_layer.htm&amp=&type=5",
+    "https://salesforcedictionary.com/blogs/salesforce-einstein-trust-layer-complete-2026-guide",
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_trust_arch.htm&amp=&language=en_US",
+    "https://applikontech.com/einstein-trust-layer-the-foundation-of-agentforce/",
+    "https://oecd.ai/en/catalogue/tools/einstein-trust-layer",
+    "https://www.salesforce.com/welcome-to-the-agentic-enterprise/ai-guardrails/",
+    "https://www.arthur.ai/column/human-in-the-loop-governance-for-ai-agents",
+    "https://atalupadhyay.wordpress.com/2026/08/12/guardrails-human-in-the-loop-and-audit-logging-for-ai-agents/"
+  ],
+  "unresolved_redirects": 0
+}

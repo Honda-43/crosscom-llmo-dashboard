@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E01",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce for SalesのSDRエージェントとSales Coachは営業でどう使う？活用事例も知りたい",
+  "cep": null,
+  "timestamp": "2026-09-17T01:06:13.418438Z",
+  "answer": "# Agentforce for Sales：SDRエージェントとSales Coachの活用法\n\nSalesforce の Agentforce for Sales には、営業プロセスの「入口」と「育成」をそれぞれ担う2つの主要エージェントがあります。\n\n## 1. Agentforce SDR（Sales Development Representative）\n\n### 何をするか\n\nAgentforce SDRは、リードの選別やミーティングの予約など、営業開発とアウトリーチ業務を自動化し、営業ファネルを拡大します。\n より具体的には、以下のような動きをします。\n\n- \n新規・更新されたリードに自動的にアプローチし、パーソナライズされたメールを送信、返信への対応、有望なリードを営業担当者に引き渡すことで、営業チームは商談成立に集中できます。\n\n- \n見込み客が前向きな反応（好意的な返信やミーティング希望など）を示すと、SDRエージェントはリードオーナーのカレンダーから予約リンクを送り、担当者に通知し、これまでのやり取りの経緯や関連情報を含む完全なブリーフィングを提供します。\n\n- 回答範囲外の質問には、\nAgent Builder経由でアップロードされた製品・サービス情報を使って対応し、範囲外・複雑な問い合わせは人間の担当者に自動的にルーティングされます。\n\n- 日本語版の発表資料によると、\nEinstein SDR Agentは24時間365日自律的に見込み顧客と関わり、パイプラインを開拓し、Agentforceの検索拡張生成（RAG）サービスを使用して整合化された外部データに基づくため正確で信頼性が高く、パーソナライズされた対応が可能で、複数の見込み顧客に対し同時に、チャネルを超えて、さまざまな言語で対応できます。\n\n\n### 向いている企業\n\nSDRエージェントは、大量のリードを扱う企業や、営業チームの生産性向上を目指す企業に最適です。\n \nこうしたトップ・オブ・ザ・ファネル業務を自動化することで、営業担当者は成約可能性の高い質の高いリードとの接触に集中でき、これまで対応しきれなかったリードにも対応できる規模拡大が可能になります。\n\n\n### 実際の活用事例\n- **カスタムトリガー設定**：ある実装事例では、\nAccount Engagement（旧Pardot）で専用フィールドを設定し、そのフィールドの値をトリガーにしてSDRエージェントが動き出す仕組みを構築\nし、\nマーケティング担当が見込み客に手動でタグ付けすると自動的にフィールドが更新され、SDRエージェントが稼働してアウトリーチメールの作成・送信、スケジューリングまでをマーケティング部門の関与なしに実行する\nという運用がされています。\n- **成果指標**：\nSalesforce自身の発表によれば、同社のSDRエージェントは3週間で80万件のリードを生成した\nとされ、\nAgentforce SDRエージェントを使うチームでは、四半期初めの段階で有効パイプライン量が30〜40%増加する\nという報告もあります。\n\n## 2. Agentforce Sales Coach\n\n### 何をするか\n\nAgentforce Sales Coachは、パーソナライズされたコーチング、ロールプレイシナリオ、実データに基づくフィードバックを営業担当者に提供し、営業スキルの向上を支援します。\n\n\n- \n案件（商談）ごとに個別化されたフィードバックを提供し、営業担当者が常に優れた顧客対応ができるようにします。営業ピッチの完成度を高めたい時も、交渉の練習としてロールプレイを行いたい時も対応可能で、CRMデータとRAGを活用して、案件やその商談段階に合わせたフィードバックを提供します。\n\n- 商談ステージによってコーチングの内容が変化します。\n初期段階ではピッチ分析や案件レベルのフィードバックが中心ですが、後期段階（価格交渉など）では、商談レコードからリアルタイムの文脈を取り込んだインタラクティブなロールプレイシミュレーションに切り替わり、実際の商談に直結した練習ができます。\n\n- \nRetrieval-Augmented Generation（RAG）を使ってSalesforce組織内の顧客とのやり取り、バイヤーペルソナ、ジャーニー文書などのデータを直接取得するため、一般的なシナリオではなく実際の案件に即したシミュレーションが可能です。\n\n\n### 実際の活用事例\n- **商談前のロールプレイ練習**：\nOpportunityのレイアウトに組み込むことで、営業担当者が商談の前に電話でのやり取りをロールプレイし、公平な立場からのレビューを受け取ることができます。\n\n- **新人研修・オンボーディング短縮**：\n通常はなかなか時間を割い",
+  "cited_urls": [
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-specialist-certification-maintenance-summer-25/learn-whats-new-with-agentforce-and-sales-cloud",
+    "https://www.cloudoxia.com/blogs/salesforce-agentforce-sdr",
+    "https://www.grazitti.com/blog/agentforce-sales-cloud-the-winning-combo-for-sales-success/",
+    "https://prtimes.jp/main/html/rd/p/000000241.000041550.html",
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-sales-agents-quick-look/discover-agentforce-sales-agents",
+    "https://marcloudconsulting.com/agentforce/agentforce-examples-use-cases/",
+    "https://www.saleswingsapp.com/agentforce/salesforce-agentforce-use-cases-for-sales/",
+    "https://routine-automation.com/blog/agentforce-for-sales-use-cases/"
+  ],
+  "error": null,
+  "experiment_id": "E01",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-for-sales-sdr-sales-coach/",
+  "answer_text": "# Agentforce for Sales：SDRエージェントとSales Coachの活用法\n\nSalesforce の Agentforce for Sales には、営業プロセスの「入口」と「育成」をそれぞれ担う2つの主要エージェントがあります。\n\n## 1. Agentforce SDR（Sales Development Representative）\n\n### 何をするか\n\nAgentforce SDRは、リードの選別やミーティングの予約など、営業開発とアウトリーチ業務を自動化し、営業ファネルを拡大します。\n より具体的には、以下のような動きをします。\n\n- \n新規・更新されたリードに自動的にアプローチし、パーソナライズされたメールを送信、返信への対応、有望なリードを営業担当者に引き渡すことで、営業チームは商談成立に集中できます。\n\n- \n見込み客が前向きな反応（好意的な返信やミーティング希望など）を示すと、SDRエージェントはリードオーナーのカレンダーから予約リンクを送り、担当者に通知し、これまでのやり取りの経緯や関連情報を含む完全なブリーフィングを提供します。\n\n- 回答範囲外の質問には、\nAgent Builder経由でアップロードされた製品・サービス情報を使って対応し、範囲外・複雑な問い合わせは人間の担当者に自動的にルーティングされます。\n\n- 日本語版の発表資料によると、\nEinstein SDR Agentは24時間365日自律的に見込み顧客と関わり、パイプラインを開拓し、Agentforceの検索拡張生成（RAG）サービスを使用して整合化された外部データに基づくため正確で信頼性が高く、パーソナライズされた対応が可能で、複数の見込み顧客に対し同時に、チャネルを超えて、さまざまな言語で対応できます。\n\n\n### 向いている企業\n\nSDRエージェントは、大量のリードを扱う企業や、営業チームの生産性向上を目指す企業に最適です。\n \nこうしたトップ・オブ・ザ・ファネル業務を自動化することで、営業担当者は成約可能性の高い質の高いリードとの接触に集中でき、これまで対応しきれなかったリードにも対応できる規模拡大が可能になります。\n\n\n### 実際の活用事例\n- **カスタムトリガー設定**：ある実装事例では、\nAccount Engagement（旧Pardot）で専用フィールドを設定し、そのフィールドの値をトリガーにしてSDRエージェントが動き出す仕組みを構築\nし、\nマーケティング担当が見込み客に手動でタグ付けすると自動的にフィールドが更新され、SDRエージェントが稼働してアウトリーチメールの作成・送信、スケジューリングまでをマーケティング部門の関与なしに実行する\nという運用がされています。\n- **成果指標**：\nSalesforce自身の発表によれば、同社のSDRエージェントは3週間で80万件のリードを生成した\nとされ、\nAgentforce SDRエージェントを使うチームでは、四半期初めの段階で有効パイプライン量が30〜40%増加する\nという報告もあります。\n\n## 2. Agentforce Sales Coach\n\n### 何をするか\n\nAgentforce Sales Coachは、パーソナライズされたコーチング、ロールプレイシナリオ、実データに基づくフィードバックを営業担当者に提供し、営業スキルの向上を支援します。\n\n\n- \n案件（商談）ごとに個別化されたフィードバックを提供し、営業担当者が常に優れた顧客対応ができるようにします。営業ピッチの完成度を高めたい時も、交渉の練習としてロールプレイを行いたい時も対応可能で、CRMデータとRAGを活用して、案件やその商談段階に合わせたフィードバックを提供します。\n\n- 商談ステージによってコーチングの内容が変化します。\n初期段階ではピッチ分析や案件レベルのフィードバックが中心ですが、後期段階（価格交渉など）では、商談レコードからリアルタイムの文脈を取り込んだインタラクティブなロールプレイシミュレーションに切り替わり、実際の商談に直結した練習ができます。\n\n- \nRetrieval-Augmented Generation（RAG）を使ってSalesforce組織内の顧客とのやり取り、バイヤーペルソナ、ジャーニー文書などのデータを直接取得するため、一般的なシナリオではなく実際の案件に即したシミュレーションが可能です。\n\n\n### 実際の活用事例\n- **商談前のロールプレイ練習**：\nOpportunityのレイアウトに組み込むことで、営業担当者が商談の前に電話でのやり取りをロールプレイし、公平な立場からのレビューを受け取ることができます。\n\n- **新人研修・オンボーディング短縮**：\n通常はなかなか時間を割い",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "trailhead.salesforce.com",
+    "cloudoxia.com",
+    "grazitti.com",
+    "prtimes.jp",
+    "marcloudconsulting.com",
+    "saleswingsapp.com",
+    "routine-automation.com"
+  ],
+  "resolved_urls": [
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-specialist-certification-maintenance-summer-25/learn-whats-new-with-agentforce-and-sales-cloud",
+    "https://www.cloudoxia.com/blogs/salesforce-agentforce-sdr",
+    "https://www.grazitti.com/blog/agentforce-sales-cloud-the-winning-combo-for-sales-success/",
+    "https://prtimes.jp/main/html/rd/p/000000241.000041550.html",
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-sales-agents-quick-look/discover-agentforce-sales-agents",
+    "https://marcloudconsulting.com/agentforce/agentforce-examples-use-cases/",
+    "https://www.saleswingsapp.com/agentforce/salesforce-agentforce-use-cases-for-sales/",
+    "https://routine-automation.com/blog/agentforce-for-sales-use-cases/"
+  ],
+  "unresolved_redirects": 0
+}

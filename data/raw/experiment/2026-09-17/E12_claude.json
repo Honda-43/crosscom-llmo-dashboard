@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E12",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの機能一覧を整理して教えて。360・Coworker・Voiceの違いも",
+  "cep": null,
+  "timestamp": "2026-09-17T01:11:34.245059Z",
+  "answer": "Salesforceの「Agentforce」について、最新情報を検索して整理します。\n# Agentforce 機能一覧と「360・Coworker・Voice」の違い\n\n## 1. 全体像:Agentforceとは\n\nAgentforceは、Salesforceの企業向けAIエージェントプラットフォームです。\n2024年10月に登場したAgentforceを起点に\n、その後複数回のアップデートを経て、現在は「Agentforce 360」という統合ブランドのもとに複数のコンポーネントが提供されています。\n\n---\n\n## 2. Agentforce 360(プラットフォーム全体)\n\n**Agentforce 360**は個別機能というより、**プラットフォーム全体を指す総称**です。2025年のDreamforceで発表され、次の4つの要素で構成されます。\n\n\nAgentforce 360 Platform（エージェント構築基盤）、Data 360（統合データ層）、Customer 360 Apps（業務プロセスを含むアプリ群）、そしてSlack（人とエージェントが対話するインターフェース）\nという4本柱で成り立っています。\n\n### 主な機能\n- **Agentforce Builder（会話型ビルダー）**：\n開発者でも自然言語で構築する人でも、単一の会話型ワークスペースでエージェントの作成・テスト・改善が可能\nで、\n「vibe-building」やドキュメント風/キャンバス/スクリプト表示での即時編集、ワンクリックのリアルタイムデバッグ・シミュレーションにより、より速く・安全に・協働的に反復できます\n。\n- **Hybrid Reasoning / Agent Script**：\n決定論的なワークフローと柔軟なLLM推論を組み合わせ、開発者はAgent Scriptを使ってガードレールやツール利用、ロジックを定義可能\nです。\n- **Data 360（旧Data Cloud）**：\nエージェントにコンテキストを与えるデータ層で、Intelligent ContextやTableau Semanticsといった機能により、非構造化データや分析データをAI向けの豊かなコンテキストへ変換\nできます。\n- **Customer 360 Apps（業務別エージェント）**：\n会話型エージェントを業務ワークフローに組み込み、Agentforce Salesは見込み客の発掘・選定・見積作成を自動化、Agentforce Marketingはキャンペーンの構築・実施とアセット作成、Agentforce Serviceはサービス向けコマンドセンターを運用して24時間体制のサポートオペレーションを提供\nします。さらに\nAgentforce IT Serviceは、Slackなどの会話型インターフェースを通じて従業員のIT関連問題を処理\nします。\n- **ジョブ特化型エージェント（Job-ready Agents）**：\n営業・サービス・コマース・従業員体験・バックオフィスなど高付加価値業務向けに設計された新しいエージェント群で、Customer 360と連携し、時間をかけて目標を追求したり、新しいスキルを学んだり、他のエージェントと協働・継続的に改善\nできます。例として\nカスタマーサービスの問題を音声・SMS・WhatsApp・Webチャット横断で解決するヘルプエージェント「Casey」\nがあります。\n\n---\n\n## 3. Agentforce Coworker(社内向けAIチームメイト)\n\n**Coworker**は、**社員が使う「AI同僚」**という位置づけの機能です。\n\n### 特徴・できること\n- **横断検索とオーケストレーション**：\n単一の会話から、AgentforceのAIエージェントからカスタムエージェント、CRMアクション、Flow、サードパーティAPI、外部システムまでを呼び出し、適切に指揮（オーケストレーション）\nします。\n- **Headless 360設計**：\n同じAIチームメイトが、SalesforceやSlackだけでなく、Microsoft TeamsやChatGPT、Claudeなど他社のツールでも顔を出し、どこからアクセスしても相手はいつも同じ「同僚」\nという設計思想です。\n- **270以上のデータソース横断**：\nCRM、Slack、270以上のエンタープライズデータソースを横断し、従業員が日本語を含む自然言語で質問するだけで、根拠に基づいた回答を即座に提供\nし、\n専門のAIエージェントを呼び出してアクションを実行したり、不在中に発生した変化を先回りして通知する機能\nも備えます。\n- **主な3機能**：\n「Find（横断検索）」「Catch up（変化検出）」「Plan & Act（実行）」の3種類\n。\n- **権限継承**：\nHeadless 360 platform上に構築されているため、組織がすでに信頼している権限、ガバナンス、およびセキュリティコントロ",
+  "cited_urls": [
+    "https://www.salesforceben.com/salesforce-unveils-agentforce-360-at-dreamforce-with-new-features-including-voice/",
+    "https://technologymagazine.com/news/salesforce-agentforce-360-connects-ai-agents-to-staff",
+    "https://www.salesforce.com/agentforce/what-is-new/",
+    "https://www.salesforce.com/news/stories/agentforce-job-ready-ai-agents/",
+    "https://www.salesforce.com/jp/blog/jp-how-to-agentforce-coworker/",
+    "https://www.salesforce.com/jp/news/press-releases/2026/08/05/agentforce-coworker-general-availability-japan/",
+    "https://zenn.dev/pacific_creator/articles/4163be6cd233da",
+    "https://www.salesforce.com/jp/news/press-releases/2026/07/15/agentforce-coworker-salesforce-ai-teammate/"
+  ],
+  "error": null,
+  "experiment_id": "E12",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-features/",
+  "answer_text": "Salesforceの「Agentforce」について、最新情報を検索して整理します。\n# Agentforce 機能一覧と「360・Coworker・Voice」の違い\n\n## 1. 全体像:Agentforceとは\n\nAgentforceは、Salesforceの企業向けAIエージェントプラットフォームです。\n2024年10月に登場したAgentforceを起点に\n、その後複数回のアップデートを経て、現在は「Agentforce 360」という統合ブランドのもとに複数のコンポーネントが提供されています。\n\n---\n\n## 2. Agentforce 360(プラットフォーム全体)\n\n**Agentforce 360**は個別機能というより、**プラットフォーム全体を指す総称**です。2025年のDreamforceで発表され、次の4つの要素で構成されます。\n\n\nAgentforce 360 Platform（エージェント構築基盤）、Data 360（統合データ層）、Customer 360 Apps（業務プロセスを含むアプリ群）、そしてSlack（人とエージェントが対話するインターフェース）\nという4本柱で成り立っています。\n\n### 主な機能\n- **Agentforce Builder（会話型ビルダー）**：\n開発者でも自然言語で構築する人でも、単一の会話型ワークスペースでエージェントの作成・テスト・改善が可能\nで、\n「vibe-building」やドキュメント風/キャンバス/スクリプト表示での即時編集、ワンクリックのリアルタイムデバッグ・シミュレーションにより、より速く・安全に・協働的に反復できます\n。\n- **Hybrid Reasoning / Agent Script**：\n決定論的なワークフローと柔軟なLLM推論を組み合わせ、開発者はAgent Scriptを使ってガードレールやツール利用、ロジックを定義可能\nです。\n- **Data 360（旧Data Cloud）**：\nエージェントにコンテキストを与えるデータ層で、Intelligent ContextやTableau Semanticsといった機能により、非構造化データや分析データをAI向けの豊かなコンテキストへ変換\nできます。\n- **Customer 360 Apps（業務別エージェント）**：\n会話型エージェントを業務ワークフローに組み込み、Agentforce Salesは見込み客の発掘・選定・見積作成を自動化、Agentforce Marketingはキャンペーンの構築・実施とアセット作成、Agentforce Serviceはサービス向けコマンドセンターを運用して24時間体制のサポートオペレーションを提供\nします。さらに\nAgentforce IT Serviceは、Slackなどの会話型インターフェースを通じて従業員のIT関連問題を処理\nします。\n- **ジョブ特化型エージェント（Job-ready Agents）**：\n営業・サービス・コマース・従業員体験・バックオフィスなど高付加価値業務向けに設計された新しいエージェント群で、Customer 360と連携し、時間をかけて目標を追求したり、新しいスキルを学んだり、他のエージェントと協働・継続的に改善\nできます。例として\nカスタマーサービスの問題を音声・SMS・WhatsApp・Webチャット横断で解決するヘルプエージェント「Casey」\nがあります。\n\n---\n\n## 3. Agentforce Coworker(社内向けAIチームメイト)\n\n**Coworker**は、**社員が使う「AI同僚」**という位置づけの機能です。\n\n### 特徴・できること\n- **横断検索とオーケストレーション**：\n単一の会話から、AgentforceのAIエージェントからカスタムエージェント、CRMアクション、Flow、サードパーティAPI、外部システムまでを呼び出し、適切に指揮（オーケストレーション）\nします。\n- **Headless 360設計**：\n同じAIチームメイトが、SalesforceやSlackだけでなく、Microsoft TeamsやChatGPT、Claudeなど他社のツールでも顔を出し、どこからアクセスしても相手はいつも同じ「同僚」\nという設計思想です。\n- **270以上のデータソース横断**：\nCRM、Slack、270以上のエンタープライズデータソースを横断し、従業員が日本語を含む自然言語で質問するだけで、根拠に基づいた回答を即座に提供\nし、\n専門のAIエージェントを呼び出してアクションを実行したり、不在中に発生した変化を先回りして通知する機能\nも備えます。\n- **主な3機能**：\n「Find（横断検索）」「Catch up（変化検出）」「Plan & Act（実行）」の3種類\n。\n- **権限継承**：\nHeadless 360 platform上に構築されているため、組織がすでに信頼している権限、ガバナンス、およびセキュリティコントロ",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforceben.com",
+    "technologymagazine.com",
+    "salesforce.com",
+    "zenn.dev"
+  ],
+  "resolved_urls": [
+    "https://www.salesforceben.com/salesforce-unveils-agentforce-360-at-dreamforce-with-new-features-including-voice/",
+    "https://technologymagazine.com/news/salesforce-agentforce-360-connects-ai-agents-to-staff",
+    "https://www.salesforce.com/agentforce/what-is-new/",
+    "https://www.salesforce.com/news/stories/agentforce-job-ready-ai-agents/",
+    "https://www.salesforce.com/jp/blog/jp-how-to-agentforce-coworker/",
+    "https://www.salesforce.com/jp/news/press-releases/2026/08/05/agentforce-coworker-general-availability-japan/",
+    "https://zenn.dev/pacific_creator/articles/4163be6cd233da",
+    "https://www.salesforce.com/jp/news/press-releases/2026/07/15/agentforce-coworker-salesforce-ai-teammate/"
+  ],
+  "unresolved_redirects": 0
+}

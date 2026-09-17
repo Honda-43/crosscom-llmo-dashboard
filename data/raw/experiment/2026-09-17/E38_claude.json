@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E38",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceのサブエージェントはどういう単位で分ければいい？指示文の書き分け方も",
+  "cep": null,
+  "timestamp": "2026-09-17T01:23:42.801703Z",
+  "answer": "Agentforceのサブエージェント設計について、最新の公式ガイダンスを確認しながらお答えします。\n# Agentforceのサブエージェント分割と指示文の書き分け方\n\n## 1. サブエージェント（旧トピック）はどう分けるべきか\n\n### 基本原則：「目的単位」で分割する\n\nサブエージェント（旧トピック）がズレるときは、目的単位で分けて説明を具体化する\nことが重要とされています。つまり「何をするための塊か」という業務目的でエージェントの境界を引きます。\n\n具体例として、\nAgentforceは事前構築済みのトピックを提供しており、トピックはアクションをカテゴリに整理し、エージェントの能力と意思決定の境界を定義する。例えば「注文管理」は、注文ステータスの更新や返品ラベル作成などのアクションのためのトピックである\nという形で、業務ドメインごとに分けるのが定石です。\n\n### 「単一責任」を守る\n\n明確にする：各トピックは単一の目的を果たすべきである。分類、スコープ、指示の間で目標を混在させないこと\nとされています。1つのサブエージェントに複数の業務目的を詰め込むと、意図しない分岐や誤動作の原因になります。\n\n### 命名も「タスクが一目でわかる」ように\n\nトピック名はタスクを素早く説明すべきである。悪い例：「サポート」良い例：「配送問題の追跡」理由：良い名前は正確な仕事を示す\nとされており、抽象的な名前ではなく具体的な業務名で分割・命名するのがポイントです。\n\n### 最初は小さく始める\n\n小さく始める：初日から完璧を目指さない。焦点を絞ったユースケースから始め、それを使って基本的な構成要素を理解する\nという考え方が推奨されています。実務ガイドでも\n絞り込まれたMVPは価値を早く証明し、社内の勢いを作り、担当者が実際に使うものを作り出せる。このステップはロードマップを実際の実行に変える——小さく始めるが、目的を持って。最初の2〜4個のユースケースを選ぶ方法\nを学ぶことが推奨されており、まず2〜4個の中核業務に絞ってサブエージェントを設計し、後から拡張していくアプローチが有効です。\n\n### 標準テンプレートをまず試す\nゼロから設計するのではなく、\nテンプレートには一般的なサブエージェント・ツール・変数があらかじめ組み込まれているため、ゼロから設計するより先にテンプレートを試すのがベストプラクティスとされています\n。既存の「注文管理」「エスカレーション」などの定型トピックをベースにカスタマイズする方が失敗が少ないです。\n\n---\n\n## 2. 指示文（Instructions）の書き分け方\n\n各サブエージェント（トピック）には主に3つのフィールドがあり、それぞれ役割が異なります。\n\n### ① Classification Description（分類の説明）\n**役割**：\nエージェントがいつこのトピックを使うべきかを伝える。Agentforceの推論エンジンはユーザーの意図を検出し、その意図に合致するトピックを呼び出せる\n\n\n→ ここには「ユーザーがどんな発言をしたらこのサブエージェントに振り分けるか」というトリガー条件を書きます。\n\n### ② Scope（スコープ）\n**役割**：\nこのトピックのパラメータ内でエージェントが何をできるかを定義する\n\n\n書き方のコツとして、「できること」と「できないこと」を明示するのが効果的です：\n\n良い例：「あなたの仕事は配送状況を説明し、配送苦情の申請を手伝うことです。住所変更や再送はできません。」\n\n\nこのように\n新入社員への指示のように書く。「あなたの仕事は～」「あなたは～できない」を使う\nという書き方が、境界を明確にする上で有効とされています。\n\n### ③ Instructions（指示）\n**役割**：\nエージェントが行う仕事の詳細を提供する。指示はエージェントが働く範囲のガードレールとしても機能する\n\n\n書き方のポイント：\n- \nスコープと指示の両方で、強い動詞を使う：エージェントを正確に導くために、命令的で行動志向の言葉を使う\n\n- \n指示は1か所にまとめ、明確な入力形式を指定する\nことで一貫性を保つ\n- 実例として、条件分岐やバリデーションを含む具体的な手順（例：日付フォーマットの検証→NGなら再入力を促す→アクション実行→結果を確認）を番号付きで書くと安定します\n\n### 段階的開示（Progressive Disclosure）を意識する\n\nトピックの説明・スコープ・指示に段階的開示の原則を適用する。これは最も重要なオプションのみを最初に",
+  "cited_urls": [
+    "https://www.strh.co.jp/knowledge/agentforce-subagent-action",
+    "https://developer.salesforce.com/blogs/2025/01/how-to-write-effective-natural-language-instructions-for-agentforce",
+    "https://www.grazitti.com/blog/want-smarter-ai-agents-it-all-starts-with-better-instructions-in-agentforce/",
+    "https://www.sfdc-lightning.com/2025/11/best-practices-building-agentforce-topics.html",
+    "https://www.salesforceblogger.com/2025/09/22/scope-and-plan-your-first-agent-build-agentforce-ai-agent-part-3/",
+    "https://zenn.dev/pacific_creator/articles/67d4e4710e2802",
+    "https://trailhead.salesforce.com/content/learn/modules/agent-builder-basics/customize-agent-topics",
+    "https://www.realfast.ai/blog/some-useful-best-practices-for-agentforce-implementations"
+  ],
+  "error": null,
+  "experiment_id": "E38",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-subagents/",
+  "answer_text": "Agentforceのサブエージェント設計について、最新の公式ガイダンスを確認しながらお答えします。\n# Agentforceのサブエージェント分割と指示文の書き分け方\n\n## 1. サブエージェント（旧トピック）はどう分けるべきか\n\n### 基本原則：「目的単位」で分割する\n\nサブエージェント（旧トピック）がズレるときは、目的単位で分けて説明を具体化する\nことが重要とされています。つまり「何をするための塊か」という業務目的でエージェントの境界を引きます。\n\n具体例として、\nAgentforceは事前構築済みのトピックを提供しており、トピックはアクションをカテゴリに整理し、エージェントの能力と意思決定の境界を定義する。例えば「注文管理」は、注文ステータスの更新や返品ラベル作成などのアクションのためのトピックである\nという形で、業務ドメインごとに分けるのが定石です。\n\n### 「単一責任」を守る\n\n明確にする：各トピックは単一の目的を果たすべきである。分類、スコープ、指示の間で目標を混在させないこと\nとされています。1つのサブエージェントに複数の業務目的を詰め込むと、意図しない分岐や誤動作の原因になります。\n\n### 命名も「タスクが一目でわかる」ように\n\nトピック名はタスクを素早く説明すべきである。悪い例：「サポート」良い例：「配送問題の追跡」理由：良い名前は正確な仕事を示す\nとされており、抽象的な名前ではなく具体的な業務名で分割・命名するのがポイントです。\n\n### 最初は小さく始める\n\n小さく始める：初日から完璧を目指さない。焦点を絞ったユースケースから始め、それを使って基本的な構成要素を理解する\nという考え方が推奨されています。実務ガイドでも\n絞り込まれたMVPは価値を早く証明し、社内の勢いを作り、担当者が実際に使うものを作り出せる。このステップはロードマップを実際の実行に変える——小さく始めるが、目的を持って。最初の2〜4個のユースケースを選ぶ方法\nを学ぶことが推奨されており、まず2〜4個の中核業務に絞ってサブエージェントを設計し、後から拡張していくアプローチが有効です。\n\n### 標準テンプレートをまず試す\nゼロから設計するのではなく、\nテンプレートには一般的なサブエージェント・ツール・変数があらかじめ組み込まれているため、ゼロから設計するより先にテンプレートを試すのがベストプラクティスとされています\n。既存の「注文管理」「エスカレーション」などの定型トピックをベースにカスタマイズする方が失敗が少ないです。\n\n---\n\n## 2. 指示文（Instructions）の書き分け方\n\n各サブエージェント（トピック）には主に3つのフィールドがあり、それぞれ役割が異なります。\n\n### ① Classification Description（分類の説明）\n**役割**：\nエージェントがいつこのトピックを使うべきかを伝える。Agentforceの推論エンジンはユーザーの意図を検出し、その意図に合致するトピックを呼び出せる\n\n\n→ ここには「ユーザーがどんな発言をしたらこのサブエージェントに振り分けるか」というトリガー条件を書きます。\n\n### ② Scope（スコープ）\n**役割**：\nこのトピックのパラメータ内でエージェントが何をできるかを定義する\n\n\n書き方のコツとして、「できること」と「できないこと」を明示するのが効果的です：\n\n良い例：「あなたの仕事は配送状況を説明し、配送苦情の申請を手伝うことです。住所変更や再送はできません。」\n\n\nこのように\n新入社員への指示のように書く。「あなたの仕事は～」「あなたは～できない」を使う\nという書き方が、境界を明確にする上で有効とされています。\n\n### ③ Instructions（指示）\n**役割**：\nエージェントが行う仕事の詳細を提供する。指示はエージェントが働く範囲のガードレールとしても機能する\n\n\n書き方のポイント：\n- \nスコープと指示の両方で、強い動詞を使う：エージェントを正確に導くために、命令的で行動志向の言葉を使う\n\n- \n指示は1か所にまとめ、明確な入力形式を指定する\nことで一貫性を保つ\n- 実例として、条件分岐やバリデーションを含む具体的な手順（例：日付フォーマットの検証→NGなら再入力を促す→アクション実行→結果を確認）を番号付きで書くと安定します\n\n### 段階的開示（Progressive Disclosure）を意識する\n\nトピックの説明・スコープ・指示に段階的開示の原則を適用する。これは最も重要なオプションのみを最初に",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "strh.co.jp",
+    "developer.salesforce.com",
+    "grazitti.com",
+    "sfdc-lightning.com",
+    "salesforceblogger.com",
+    "zenn.dev",
+    "trailhead.salesforce.com",
+    "realfast.ai"
+  ],
+  "resolved_urls": [
+    "https://www.strh.co.jp/knowledge/agentforce-subagent-action",
+    "https://developer.salesforce.com/blogs/2025/01/how-to-write-effective-natural-language-instructions-for-agentforce",
+    "https://www.grazitti.com/blog/want-smarter-ai-agents-it-all-starts-with-better-instructions-in-agentforce/",
+    "https://www.sfdc-lightning.com/2025/11/best-practices-building-agentforce-topics.html",
+    "https://www.salesforceblogger.com/2025/09/22/scope-and-plan-your-first-agent-build-agentforce-ai-agent-part-3/",
+    "https://zenn.dev/pacific_creator/articles/67d4e4710e2802",
+    "https://trailhead.salesforce.com/content/learn/modules/agent-builder-basics/customize-agent-topics",
+    "https://www.realfast.ai/blog/some-useful-best-practices-for-agentforce-implementations"
+  ],
+  "unresolved_redirects": 0
+}

@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E21",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agent Scriptとは？Agentforceの設定を画面ではなくコードで管理すべきケースは？",
+  "cep": null,
+  "timestamp": "2026-09-17T01:15:41.560984Z",
+  "answer": "# Agent Scriptとは\n\n**Agent Script**は、Salesforceが提供するAgentforce（AIエージェント）を構築するための新しいスクリプト言語です。\nAgent Scriptは、Agentforceエージェントを構築するための言語であり、ビジネスルールを処理するためのプログラム的な表現の信頼性と、自然言語命令の柔軟性を組み合わせています。\n\n\n## 主な特徴\n\n**ハイブリッド推論（Hybrid Reasoning）**\n\nAgent Scriptはハイブリッド推論という概念を導入しており、LLMが得意なこと（会話、解釈、柔軟性）を処理させつつ、ビジネスルールが求める箇所では厳密なプログラム的制御を強制することができます。\n\n\n**目的：予測可能性と信頼性の向上**\n\n主な利点は、重要なエンタープライズワークフローにおいて予測可能で信頼性の高いエージェントの動作を実現することです。LLMのランダム性を排除する決定論的なアンカーを提供します。これにより、企業はエージェントの行動を完全に制御でき、ビジネスポリシーが厳格に適用されるようになります。\n\n\n**技術的な仕組み**\n\nAgent Scriptはコンパイル言語で、Agent Graph（Salesforceの Atlas Reasoning Engineが消費する構造化された仕様）に変換されます。ランタイムで行単位で実行される従来のコードを書くわけではありません。代わりに、Agent Scriptはエージェントの設計図（何を知っているか、どう推論するか、どんなツールを使えるか、いつルールに従い、いつLLMに自由に考えさせるか）を定義します。\n\n\n**言語の記法**\n\nすべてがkey: valueのペアで、インデントによってネストされます。インデントにはスペース（最低2つ）またはタブ（1レベルにつき1つ）を使用できますが、1つのスクリプト内で混在させることはできません。混在させると解析エラーが発生します。コメントには#を使用します。\n YAMLのような読みやすい構文が特徴です。\n\n**3つの構築方法**\n\nエージェントを構築する方法は3つあります。AIアシスタンスを使う方法、キャンバス上で自然言語を使う方法、Agent Scriptを使う方法です。すべての方法は同じSalesforceメタデータ基盤を使用しています。\n\n\n**コストと利用場所**\n\nAgent Scriptは追加費用がかからず、Agentforceの購入に含まれています。Agentforce Builderで構築でき、これはApp LauncherのAgentforce Studio内にあります。\n\n\n---\n\n# コード（Agent Script）で管理すべきケース\n\n画面（UI/キャンバス）ではなくコードでAgentforceの設定を管理すべき主なケースは以下の通りです。\n\n## 1. 複雑な条件分岐やビジネスロジックが必要な場合\n\n\n従来のAgent Builder（ポイント＆クリック方式）には限界があります。動作はしますが、構造が硬直的で、条件ロジックが限定的、決定論的な振る舞いをエージェントの実行フローに注入する余地があまりありません。\n if/else条件や複数のサブエージェント間の遷移、アクションの実行順序制御（アクションチェイニング）など\nエージェントが1つのサブエージェントから別のサブエージェントに遷移するタイミングや、特定の順序でアクションが実行されるタイミングを制御する\nような複雑なワークフローには、コードでの管理が適しています。\n\n## 2. バージョン管理・CI/CDパイプラインを構築したい場合\n\n\nAgent ScriptのようなAiAuthoringBundleメタデータは、Apex やLWCと同様に扱うべきです。Agent ScriptをGitリポジトリにコミットすることで、変更履歴の追跡、ピアレビュー、CI/CDパイプラインの実現が可能になります。\n\n\n## 3. 開発者による本格的なプロコード開発を行いたい場合\n\n\n開発者が完全な制御を求める場合は、Agent Scriptを直接記述・編集できます。プロフェッショナルな開発者ワークフローには、Agentforce DXを使ってスクリプトファイルをローカルのSalesforce DXプロジェクトに取り込み、Agentforce DX Extension（構文ハイライト、エラー表示、アウトラインビューでのシンボルツリーを提供）付きのVS Codeで編集する方法があります。\n\n\n## 4. AIによる自動生成（Vibeコーディング）を活用したい場合\n\n\nVS Codeエディタで直接ファイルをコーディングするか、Agentforce Vibes Extensionを使って「vibeコーディング」することができます。Vibeコーディングとは、自然言語プロンプトを使い、Agentforce Vibesに実際のコードを生成させることを指します。\n\n\n## 5. モジュール化された、スケーラブルな設計にしたい場合\n\n\nモジュール型のエージェント設計を心がけ、モノリシックなエージェントの作成は避けるべきです。1つの巨大なエージェントですべてを行おうとするのではなく、明確なスコープを持つ小規模で専門",
+  "cited_urls": [
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-dx-nga-script.html",
+    "https://www.pantherschools.com/building-agentforce-agents-with-agent-script/",
+    "https://www.salesforce.com/agentforce/script/",
+    "https://medium.com/agentforce-simplified/what-is-agent-script-how-to-build-agents-with-it-in-agentforce-1f0ffc45803d",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-script.html",
+    "https://www.infallibletechie.com/2026/02/build-salesforce-agentforce-using-agent-script-in-visual-studio-code.html"
+  ],
+  "error": null,
+  "experiment_id": "E21",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-agent-script/",
+  "answer_text": "# Agent Scriptとは\n\n**Agent Script**は、Salesforceが提供するAgentforce（AIエージェント）を構築するための新しいスクリプト言語です。\nAgent Scriptは、Agentforceエージェントを構築するための言語であり、ビジネスルールを処理するためのプログラム的な表現の信頼性と、自然言語命令の柔軟性を組み合わせています。\n\n\n## 主な特徴\n\n**ハイブリッド推論（Hybrid Reasoning）**\n\nAgent Scriptはハイブリッド推論という概念を導入しており、LLMが得意なこと（会話、解釈、柔軟性）を処理させつつ、ビジネスルールが求める箇所では厳密なプログラム的制御を強制することができます。\n\n\n**目的：予測可能性と信頼性の向上**\n\n主な利点は、重要なエンタープライズワークフローにおいて予測可能で信頼性の高いエージェントの動作を実現することです。LLMのランダム性を排除する決定論的なアンカーを提供します。これにより、企業はエージェントの行動を完全に制御でき、ビジネスポリシーが厳格に適用されるようになります。\n\n\n**技術的な仕組み**\n\nAgent Scriptはコンパイル言語で、Agent Graph（Salesforceの Atlas Reasoning Engineが消費する構造化された仕様）に変換されます。ランタイムで行単位で実行される従来のコードを書くわけではありません。代わりに、Agent Scriptはエージェントの設計図（何を知っているか、どう推論するか、どんなツールを使えるか、いつルールに従い、いつLLMに自由に考えさせるか）を定義します。\n\n\n**言語の記法**\n\nすべてがkey: valueのペアで、インデントによってネストされます。インデントにはスペース（最低2つ）またはタブ（1レベルにつき1つ）を使用できますが、1つのスクリプト内で混在させることはできません。混在させると解析エラーが発生します。コメントには#を使用します。\n YAMLのような読みやすい構文が特徴です。\n\n**3つの構築方法**\n\nエージェントを構築する方法は3つあります。AIアシスタンスを使う方法、キャンバス上で自然言語を使う方法、Agent Scriptを使う方法です。すべての方法は同じSalesforceメタデータ基盤を使用しています。\n\n\n**コストと利用場所**\n\nAgent Scriptは追加費用がかからず、Agentforceの購入に含まれています。Agentforce Builderで構築でき、これはApp LauncherのAgentforce Studio内にあります。\n\n\n---\n\n# コード（Agent Script）で管理すべきケース\n\n画面（UI/キャンバス）ではなくコードでAgentforceの設定を管理すべき主なケースは以下の通りです。\n\n## 1. 複雑な条件分岐やビジネスロジックが必要な場合\n\n\n従来のAgent Builder（ポイント＆クリック方式）には限界があります。動作はしますが、構造が硬直的で、条件ロジックが限定的、決定論的な振る舞いをエージェントの実行フローに注入する余地があまりありません。\n if/else条件や複数のサブエージェント間の遷移、アクションの実行順序制御（アクションチェイニング）など\nエージェントが1つのサブエージェントから別のサブエージェントに遷移するタイミングや、特定の順序でアクションが実行されるタイミングを制御する\nような複雑なワークフローには、コードでの管理が適しています。\n\n## 2. バージョン管理・CI/CDパイプラインを構築したい場合\n\n\nAgent ScriptのようなAiAuthoringBundleメタデータは、Apex やLWCと同様に扱うべきです。Agent ScriptをGitリポジトリにコミットすることで、変更履歴の追跡、ピアレビュー、CI/CDパイプラインの実現が可能になります。\n\n\n## 3. 開発者による本格的なプロコード開発を行いたい場合\n\n\n開発者が完全な制御を求める場合は、Agent Scriptを直接記述・編集できます。プロフェッショナルな開発者ワークフローには、Agentforce DXを使ってスクリプトファイルをローカルのSalesforce DXプロジェクトに取り込み、Agentforce DX Extension（構文ハイライト、エラー表示、アウトラインビューでのシンボルツリーを提供）付きのVS Codeで編集する方法があります。\n\n\n## 4. AIによる自動生成（Vibeコーディング）を活用したい場合\n\n\nVS Codeエディタで直接ファイルをコーディングするか、Agentforce Vibes Extensionを使って「vibeコーディング」することができます。Vibeコーディングとは、自然言語プロンプトを使い、Agentforce Vibesに実際のコードを生成させることを指します。\n\n\n## 5. モジュール化された、スケーラブルな設計にしたい場合\n\n\nモジュール型のエージェント設計を心がけ、モノリシックなエージェントの作成は避けるべきです。1つの巨大なエージェントですべてを行おうとするのではなく、明確なスコープを持つ小規模で専門",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "developer.salesforce.com",
+    "pantherschools.com",
+    "salesforce.com",
+    "medium.com",
+    "infallibletechie.com"
+  ],
+  "resolved_urls": [
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-dx-nga-script.html",
+    "https://www.pantherschools.com/building-agentforce-agents-with-agent-script/",
+    "https://www.salesforce.com/agentforce/script/",
+    "https://medium.com/agentforce-simplified/what-is-agent-script-how-to-build-agents-with-it-in-agentforce-1f0ffc45803d",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-script.html",
+    "https://www.infallibletechie.com/2026/02/build-salesforce-agentforce-using-agent-script-in-visual-studio-code.html"
+  ],
+  "unresolved_redirects": 0
+}

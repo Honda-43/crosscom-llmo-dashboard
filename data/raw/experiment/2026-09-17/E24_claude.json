@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "E24",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce AIのEinstein・Agentforce・Data 360はどう関係している？使い分けは？",
+  "cep": null,
+  "timestamp": "2026-09-17T01:17:14.848172Z",
+  "answer": "# Salesforce AI三本柱の関係と使い分け\n\n## 全体像：3つは「階層構造」の関係\n\nこの3つは競合する製品ではなく、**それぞれ異なるレイヤーを担当する補完関係**にあります。\n\n\nEinsteinは、Agentforce上で動く具体的なエージェント例、Data 360は、AI活用全体を支えるデータ基盤という全体像\nで整理すると分かりやすいです。イメージとしては以下の3層構造です。\n\n```\nAgentforce（実行層）─自律的にアクションを実行するAIエージェント\n        ↑\nEinstein（知能層）─予測・分析・生成AIの機能群\n        ↑\nData 360（データ層）─全社データを統合する基盤（旧Data Cloud）\n```\n\n## それぞれの役割\n\n### 1. Einstein（知能・分析レイヤー）\n\nEinsteinは、Salesforceのより広範なAIブランドであり、Copilot、予測分析、レコメンドエンジンなどのAI機能を含みます\n。2016年から存在する古参で、\nEinsteinはデータを分析し、予測する・推奨する・スコアリングする役割を担いますが、自らアクションは実行しません\n。\n\nわかりやすい例えとして、ある業界関係者は\n「Einsteinは火災報知器で、エージェントは消防隊。報知器は役立つが、鳴った時には実際に駆けつけて対応する誰かが必要」\nと表現しています。\n\n### 2. Agentforce（実行・エージェントレイヤー）\n\nAgentforceは、自律型エージェントに特化したEinsteinポートフォリオ内の特定製品です\n。単なる分析にとどまらず、\nData Cloudを通じてSalesforceデータを読み取り、FlowやAPIを通じてアクションを実行し、ポリシーが必要な場合は人間にエスカレーションし、監査のためにすべてのステップを記録するAIエージェントを構築します\n。\n\n技術的には\n自律型エージェントはEinstein AI、Data 360、Salesforceの各クラウドの上に構築され、独立して動作します\n。つまりAgentforceはEinsteinの上に成り立つ「次の段階」の製品です。\n\n### 3. Data 360（データ基盤レイヤー、旧Data Cloud）\n2025年10月に名称変更されました。\n2025年10月14日付でData CloudはData 360にリブランドされました。移行期間中はアプリケーションやドキュメントでData Cloudの表記が残る場合がありますが、名称は新しくなっても機能や内容は変わりません\n。\n\n役割としては\nSalesforce製品の共通データハブであり、AgentforceにおいてData 360は最新の顧客情報を整備し、AIエージェントの意思決定やアクションの判断に利用されます\n。重要な点として、\nData 360はAgentforceの全利用において提供・有効化されている必要があり、Agentforce Data LibraryやEinstein Trust LayerなどのAgentforce機能はData 360なしでは動作しません\n。\n\n## 使い分けの目安\n\n| 目的 | 使うべきもの |\n|---|---|\n| 過去データから傾向・スコアを知りたい（予測・レコメンド） | **Einstein**（Lead Scoring、売上予測など） |\n| 人手を介さず自律的に判断・実行させたい（問い合わせ対応、メール送付、商談進行など） | **Agentforce** |\n| 複数システムに散らばる顧客データを統合し、AIが参照できる形にしたい | **Data 360** |\n\n実務上のポイントとして、\nData Cloud（Data 360）はCopilotの体験をより統合的でリアルタイムな顧客ビューによって強化しますが、Copilotにはオプションであり、Agentforceには必須です\n。つまり、単純なEinsteinの生成AI機能だけならData 360なしでも動きますが、**本格的な自律エージェント（Agentforce）を使うなら、Data 360の整備は避けて通れない**という関係になっています。\n\n## 補足：名称変遷による混乱に注意\n\n\nEinstein Copilotは2025年1月に機能的な変更なしにAgentforceへと静かに改名され混乱を招きましたが、2025年10月に一般提供開始されたAgentforce 360は、意味のある異なる能力を持つものです\n。また\nDreamforce 2025でSalesforceは自社スタック全体をブランド刷新し、Service CloudはAgentforce Serviceに、Data CloudはData 360に、Einstein 1PlatformはAgentforce 360 Platformになりました\n。古い記事やスライドを見る際は、この名称変更を念頭に置くと混乱を避けられます。\n\n**要するに**：Einsteinは「頭脳・分析」、Agentforceは「手足・実行エージェント」、Data 360は「血液・栄養となるデータ」という関係で、単体で使うというより**組み合わせて使うのが前提の設計**になっています。",
+  "cited_urls": [
+    "https://qiita.com/tdmk1oo6/items/2bb434c68d1ec5d52ab3",
+    "https://estarei.io/blog/agentforce-vs-einstein-copilot/",
+    "https://ve3.global/blog/agentforce-vs-einstein-ai-what-actually-changed-and-why-it-matters-for-your-business",
+    "https://thinklytics.com/insights/salesforce-agentforce-vs-einstein-2026",
+    "https://www.salesfive.com/en/insights/data-cloud-ai-combination/",
+    "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce",
+    "https://crm.dentsusoken.com/blog/agentforce-data360-vol138/",
+    "https://myaskai.com/blog/salesforce-agentforce-complete-guide-2026"
+  ],
+  "error": null,
+  "experiment_id": "E24",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/salesforce-ai/",
+  "answer_text": "# Salesforce AI三本柱の関係と使い分け\n\n## 全体像：3つは「階層構造」の関係\n\nこの3つは競合する製品ではなく、**それぞれ異なるレイヤーを担当する補完関係**にあります。\n\n\nEinsteinは、Agentforce上で動く具体的なエージェント例、Data 360は、AI活用全体を支えるデータ基盤という全体像\nで整理すると分かりやすいです。イメージとしては以下の3層構造です。\n\n```\nAgentforce（実行層）─自律的にアクションを実行するAIエージェント\n        ↑\nEinstein（知能層）─予測・分析・生成AIの機能群\n        ↑\nData 360（データ層）─全社データを統合する基盤（旧Data Cloud）\n```\n\n## それぞれの役割\n\n### 1. Einstein（知能・分析レイヤー）\n\nEinsteinは、Salesforceのより広範なAIブランドであり、Copilot、予測分析、レコメンドエンジンなどのAI機能を含みます\n。2016年から存在する古参で、\nEinsteinはデータを分析し、予測する・推奨する・スコアリングする役割を担いますが、自らアクションは実行しません\n。\n\nわかりやすい例えとして、ある業界関係者は\n「Einsteinは火災報知器で、エージェントは消防隊。報知器は役立つが、鳴った時には実際に駆けつけて対応する誰かが必要」\nと表現しています。\n\n### 2. Agentforce（実行・エージェントレイヤー）\n\nAgentforceは、自律型エージェントに特化したEinsteinポートフォリオ内の特定製品です\n。単なる分析にとどまらず、\nData Cloudを通じてSalesforceデータを読み取り、FlowやAPIを通じてアクションを実行し、ポリシーが必要な場合は人間にエスカレーションし、監査のためにすべてのステップを記録するAIエージェントを構築します\n。\n\n技術的には\n自律型エージェントはEinstein AI、Data 360、Salesforceの各クラウドの上に構築され、独立して動作します\n。つまりAgentforceはEinsteinの上に成り立つ「次の段階」の製品です。\n\n### 3. Data 360（データ基盤レイヤー、旧Data Cloud）\n2025年10月に名称変更されました。\n2025年10月14日付でData CloudはData 360にリブランドされました。移行期間中はアプリケーションやドキュメントでData Cloudの表記が残る場合がありますが、名称は新しくなっても機能や内容は変わりません\n。\n\n役割としては\nSalesforce製品の共通データハブであり、AgentforceにおいてData 360は最新の顧客情報を整備し、AIエージェントの意思決定やアクションの判断に利用されます\n。重要な点として、\nData 360はAgentforceの全利用において提供・有効化されている必要があり、Agentforce Data LibraryやEinstein Trust LayerなどのAgentforce機能はData 360なしでは動作しません\n。\n\n## 使い分けの目安\n\n| 目的 | 使うべきもの |\n|---|---|\n| 過去データから傾向・スコアを知りたい（予測・レコメンド） | **Einstein**（Lead Scoring、売上予測など） |\n| 人手を介さず自律的に判断・実行させたい（問い合わせ対応、メール送付、商談進行など） | **Agentforce** |\n| 複数システムに散らばる顧客データを統合し、AIが参照できる形にしたい | **Data 360** |\n\n実務上のポイントとして、\nData Cloud（Data 360）はCopilotの体験をより統合的でリアルタイムな顧客ビューによって強化しますが、Copilotにはオプションであり、Agentforceには必須です\n。つまり、単純なEinsteinの生成AI機能だけならData 360なしでも動きますが、**本格的な自律エージェント（Agentforce）を使うなら、Data 360の整備は避けて通れない**という関係になっています。\n\n## 補足：名称変遷による混乱に注意\n\n\nEinstein Copilotは2025年1月に機能的な変更なしにAgentforceへと静かに改名され混乱を招きましたが、2025年10月に一般提供開始されたAgentforce 360は、意味のある異なる能力を持つものです\n。また\nDreamforce 2025でSalesforceは自社スタック全体をブランド刷新し、Service CloudはAgentforce Serviceに、Data CloudはData 360に、Einstein 1PlatformはAgentforce 360 Platformになりました\n。古い記事やスライドを見る際は、この名称変更を念頭に置くと混乱を避けられます。\n\n**要するに**：Einsteinは「頭脳・分析」、Agentforceは「手足・実行エージェント」、Data 360は「血液・栄養となるデータ」という関係で、単体で使うというより**組み合わせて使うのが前提の設計**になっています。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "qiita.com",
+    "estarei.io",
+    "ve3.global",
+    "thinklytics.com",
+    "salesfive.com",
+    "trailhead.salesforce.com",
+    "crm.dentsusoken.com",
+    "myaskai.com"
+  ],
+  "resolved_urls": [
+    "https://qiita.com/tdmk1oo6/items/2bb434c68d1ec5d52ab3",
+    "https://estarei.io/blog/agentforce-vs-einstein-copilot/",
+    "https://ve3.global/blog/agentforce-vs-einstein-ai-what-actually-changed-and-why-it-matters-for-your-business",
+    "https://thinklytics.com/insights/salesforce-agentforce-vs-einstein-2026",
+    "https://www.salesfive.com/en/insights/data-cloud-ai-combination/",
+    "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce",
+    "https://crm.dentsusoken.com/blog/agentforce-data360-vol138/",
+    "https://myaskai.com/blog/salesforce-agentforce-complete-guide-2026"
+  ],
+  "unresolved_redirects": 0
+}
