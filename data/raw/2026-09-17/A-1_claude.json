@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-17",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-17T00:08:38.637442Z",
+  "answer": "## Agentforce導入支援のおすすめ会社\n\nSalesforceの自律型AIエージェント「Agentforce」の導入支援を行っている会社はいくつかタイプ別に存在します。代表的な会社と特徴をまとめました。\n\n### 総合系（大手・幅広い支援）\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルでご支援します\n。導入検討フェーズでの\n「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定\nを重視し、PoCで終わらせない着実な成果創出を支援しています。\n\n**メンバーズ（サースプラスカンパニー）**\n\nSalesforceが提供する自律型AIエージェントAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nしています。具体的には\n現状業務ヒアリングと業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果(ROI)の試算\nといった流れで支援を進めます。\n\n**ウフル**\n\nSalesforceのテクノロジーを活かした業務支援の現場経験をもとに、Agentforceの導入・活用を現実的かつ実践的に支援\nしており、\nAgentforce for Serviceを対象に、カスタマーサービス領域に特化した支援を提供、構築やシステム設定、動作確認、リリース準備、簡易レクチャーまでを含め、最短3カ月のスケジュールで導入を支援\nします。\n\n### 特化系（特定業務・業界特化）\n\n**フロッグウェル**\n\n各業界・業務の特性に合わせたAgentforceの導入支援を行っており、豊富な業界知識とSalesforce専門性を活かし、お客様の課題に最適化されたAIソリューションの設計から構築、運用まで一貫してサポート\nしています。住宅業界向けのマッチングシステム導入支援などの実績があります。\n\n**クロスコム**\n\nSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援\nを提供しており、\n1ユースケース×3ヶ月のスモールスタートプランから対応\n可能です。\n目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせてエージェントを組み込み、導入後はカスタマーサクセスチームが継続的にモニタリング\nする体制です。\n\n**enucolor**\n\n現状業務の深い理解及び業務課題の整理を行い、AIエージェントで解決すべき課題を概念検証し、実際に活用のサポートも行い、プロンプトの修正やSalesforceの設定修正などを行い、精度を高めていく\nという5ステップでの導入支援を行っています。\n\n---\n\n### 選定時のポイント\n\n会社選びで比較すべきポイントとして、\nAgentforceなどのAI機能への対応実績・知見があるか、AIが機能する前提となるデータ整備・データ活用の設計まで支援できるか、導入して終わりではなく、AI活用を見据えた定着・運用まで伴走できるか\nという観点が重要です。また\nAI機能はあくまでSalesforceの活用が定着していることが前提であり、「AI対応」を掲げていても基本的な導入・定着の実力が伴わなければ成果は出ない\nという点にも注意が必要です。\n\nなお、\n2026年時点で国内のSalesforceコンサルティングパートナーは約300社にのぼり\n、御社の業務領域（カスタマーサービス、営業支援、マーケティングなど）や企業規模、予算に応じて最適な会社は異なります。\n\n---\n\n**アドバイス**：まずは自社が解決したい業務課題（例：問い合わせ対応の自動化、営業活動の効率化など）を明確にした上で、複数社に無料相談・PoC提案を依頼し、実績や進め方を比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.members-saasplus.com/agentforce",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://cone-c-slide.com/liblog/salesforce-implementation/"
+  ],
+  "error": null
+}
