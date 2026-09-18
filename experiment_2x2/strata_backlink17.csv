@@ -1,0 +1,18 @@
+slug,url,post_id,appended_at,backlinks,parents
+agentforce-reasoning-control,https://cross-com.jp/agentforce-reasoning-control/,6648,2026-09-11 17:46:14,1,7124 https://cross-com.jp/agentforce-subagents/
+agentforce-rag,https://cross-com.jp/agentforce-rag/,6604,2026-09-11 17:46:35,1,7127 https://cross-com.jp/agentforce-data-library/
+einstein-trust-layer,https://cross-com.jp/einstein-trust-layer/,6816,2026-09-11 17:46:56,1,7130 https://cross-com.jp/agentforce-permission-set/
+agentforce-small-business,https://cross-com.jp/agentforce-small-business/,6554,2026-09-11 17:49:04,1,7186 https://cross-com.jp/agentforce-data-volume/
+agentforce-roi,https://cross-com.jp/agentforce-roi/,6647,2026-09-12 18:59:29,1,7153 https://cross-com.jp/agentforce-lost-deal-analysis/
+agentforce-usage,https://cross-com.jp/agentforce-usage/,6606,2026-09-14 21:06:14,1,7192 https://cross-com.jp/agentforce-no-code-scope/
+agentforce-for-sales-sdr-sales-coach,https://cross-com.jp/agentforce-for-sales-sdr-sales-coach/,6234,2026-09-14 21:07:36,1,7174 https://cross-com.jp/agentforce-sales-roleplay/
+agentforce-retention,https://cross-com.jp/agentforce-retention/,6260,2026-09-14 21:09:55,1,7067 https://cross-com.jp/sfa-teichaku/
+revops-guide,https://cross-com.jp/revops-guide/,6402,2026-09-15 16:56:54,2,7136 https://cross-com.jp/agentic-crm-churn-signal/ ★第1波 ; 7177 https://cross-com.jp/agentic-crm-role-design/ ★第1波
+agentforce-observability,https://cross-com.jp/agentforce-observability/,6644,2026-09-15 16:58:38,2,7139 https://cross-com.jp/agentic-crm-effect-measurement/ ★第1波 ; 7183 https://cross-com.jp/agentforce-sales-meeting/
+hyper-personalization,https://cross-com.jp/hyper-personalization/,6235,2026-09-15 17:02:20,3,7161 https://cross-com.jp/agentic-crm-behavior-data/ ★第1波 ; 7168 https://cross-com.jp/agentic-crm-cs-handback/ ★第1波 ; 7189 https://cross-com.jp/agentic-crm-lead-follow/ ★第1波
+salesforce-data-360,https://cross-com.jp/salesforce-data-360/,6829,2026-09-15 22:17:42,1,7156 https://cross-com.jp/agentic-crm-data-deduplication/
+buyer-enablement,https://cross-com.jp/buyer-enablement/,6724,2026-09-15 22:19:19,1,7163 https://cross-com.jp/agentic-crm-sales-enablement/
+agentforce-subagents,https://cross-com.jp/agentforce-subagents/,7124,2026-09-16 15:54:47,1,7984 https://cross-com.jp/multi-agent/
+agentforce-employee-agent,https://cross-com.jp/agentforce-employee-agent/,6815,2026-09-16 15:56:18,1,7209 https://cross-com.jp/agentforce-delivery-answer/
+agentforce-use-cases,https://cross-com.jp/agentforce-use-cases/,6603,2026-09-16 15:58:17,4,7133 https://cross-com.jp/agentforce-sales-dependency/ ; 7165 https://cross-com.jp/agentforce-proposal-review/ ; 7215 https://cross-com.jp/agentforce-deal-notes/ ; 7218 https://cross-com.jp/agentforce-similar-deals/
+agentforce-testing-center,https://cross-com.jp/agentforce-testing-center/,6643,2026-09-16 16:02:06,1,7221 https://cross-com.jp/agentforce-error-tolerance/

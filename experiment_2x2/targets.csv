@@ -1,0 +1,49 @@
+id,url,group,published,query
+1,https://cross-com.jp/agentforce-proposal-review/,④両方,2026-09-07,Agentforceで提案書のレビュー待ちを減らすにはどうすればいいですか？
+2,https://cross-com.jp/agentforce-permission-set/,④両方,2026-09-06,Agentforceの権限セットでは何を設定して、AIエージェントにどこまでデータアクセスを渡していいですか？
+3,https://cross-com.jp/agentforce-data-library/,①対照,2026-09-05,Agentforceのデータライブラリとは何で、どんな文書を入れればいいですか？
+4,https://cross-com.jp/agentforce-data-volume/,②FAQのみ,2026-09-04,CRMのデータ量が少ない会社でもAgentforceは使えますか？
+5,https://cross-com.jp/agentforce-no-code-scope/,③リードのみ,2026-09-03,Agentforceの設定は開発者なしで営業部門だけでできますか？
+6,https://cross-com.jp/agentforce-sales-meeting/,③リードのみ,2026-09-02,営業会議が数字の読み上げで長引くのを改善するにはどうすればいいですか？
+7,https://cross-com.jp/agentforce-sales-dependency/,②FAQのみ,2026-09-01,営業の属人化を解消するにはどうすればいいですか？
+8,https://cross-com.jp/agentforce-lost-deal-analysis/,①対照,2026-08-31,失注分析をしても次の受注につながらないのはなぜで、どう改善すればいいですか？
+9,https://cross-com.jp/sfa-teichaku/,③リードのみ,2026-08-30,Salesforceの定着化が進まないのはなぜで、どうすれば定着しますか？
+10,https://cross-com.jp/agentforce-subagents/,④両方,2026-08-27,Agentforceのサブエージェントはどういう単位で分ければいいですか？
+11,https://cross-com.jp/agentforce-coworker/,①対照,2026-08-26,Agentforce Coworkerとは何で、営業のどんな場面で使えますか？
+12,https://cross-com.jp/agentforce-voice/,④両方,2026-08-26,Agentforce Voiceとは何で、電話業務のどこまで任せられますか？
+13,https://cross-com.jp/agentforce-deal-notes/,②FAQのみ,2026-08-25,商談メモは何を書けば後から読まれるものになりますか？
+14,https://cross-com.jp/agentforce-sales-roleplay/,③リードのみ,2026-08-24,営業ロープレは意味がないと言われますが、効果を出すにはどうすればいいですか？
+15,https://cross-com.jp/tableau-ai/,③リードのみ,2026-08-23,Tableau AIとPulseでは何ができて、ダッシュボードが見られない問題は解決しますか？
+16,https://cross-com.jp/agentforce-employee-agent/,②FAQのみ,2026-08-22,Agentforce Employee Agentとは何で、社内問い合わせのどこまで任せられますか？
+17,https://cross-com.jp/einstein-trust-layer/,④両方,2026-08-21,Einstein Trust Layerとは何で、AIに任せる範囲と人が承認する場面はどう分けますか？
+18,https://cross-com.jp/salesforce-data-360/,④両方,2026-08-18,Salesforce Data 360（旧Data Cloud）とは何で、Agentforceを使うのに必要ですか？
+19,https://cross-com.jp/agentforce-marketing/,③リードのみ,2026-08-17,Agentforce for Marketingでは何を任せられて、営業への引き渡しはどう設計しますか？
+20,https://cross-com.jp/salesforce-ai/,①対照,2026-08-17,Salesforce AIにはどんな機能があり、Einstein・Agentforce・Data 360はどう使い分けますか？
+21,https://cross-com.jp/agentforce-reasoning-control/,③リードのみ,2026-08-15,Agentforceのモデル選択はどう決めて、出力を安定させるにはどうすればいいですか？
+22,https://cross-com.jp/agentforce-agent-script/,③リードのみ,2026-08-14,Agent Scriptとは何で、Agentforceの設定をコードで管理すべきなのはどんなときですか？
+23,https://cross-com.jp/agentforce-use-cases/,④両方,2026-08-14,Agentforceの導入事例にはどんなものがあり、成果が出た会社は何をしていますか？
+24,https://cross-com.jp/agentforce-usage/,④両方,2026-08-14,Agentforceの使い方を教えてください。最初のエージェントを作るまでの手順は？
+25,https://cross-com.jp/agentforce-usecase-selection/,②FAQのみ,2026-08-13,Agentforceのユースケースはどう選べばよく、どの業務から始めるべきですか？
+26,https://cross-com.jp/agentforce-security-risk-design/,②FAQのみ,2026-08-13,AIエージェントのセキュリティリスクにはどんなものがあり、どう対策すればいいですか？
+27,https://cross-com.jp/agentforce-chatgpt-copilot-comparison/,①対照,2026-08-12,AgentforceとChatGPT・Microsoft Copilotは何が違いますか？
+28,https://cross-com.jp/agentforce-certification/,③リードのみ,2026-08-11,Agentforceスペシャリスト資格の試験内容と勉強法を教えてください。
+29,https://cross-com.jp/agentforce-pricing/,①対照,2026-08-10,Agentforceの料金はいくらで、Flex Creditsと従量課金はどう違いますか？
+30,https://cross-com.jp/agentforce-in-slack/,④両方,2026-08-08,Agentforce in Slackでは何ができて、導入手順はどうなりますか？
+31,https://cross-com.jp/agentforce-testing-center/,③リードのみ,2026-08-06,Agentforceテストセンターとは何で、AIエージェントの品質保証はどう設計しますか？
+32,https://cross-com.jp/agentforce-features/,②FAQのみ,2026-08-06,Agentforceの機能一覧を教えてください。
+33,https://cross-com.jp/agentforce-vibes/,③リードのみ,2026-08-05,Agentforce Vibesとは何で、使い方や料金はどうなっていますか？
+34,https://cross-com.jp/agentforce-service-agent/,②FAQのみ,2026-08-04,Agentforce Service Agentとは何で、従来のチャットボットと何が違いますか？
+35,https://cross-com.jp/agentforce-mcp/,④両方,2026-08-02,Salesforce MCPとは何で、Agentforceと外部システムはどう接続しますか？
+36,https://cross-com.jp/agentforce-small-business/,①対照,2026-08-02,中小企業でもAgentforceは導入できますか？
+37,https://cross-com.jp/agentforce-einstein-difference/,①対照,2026-08-01,Salesforce EinsteinとAgentforceの違いは何で、どう使い分ければいいですか？
+38,https://cross-com.jp/agentforce-rag/,①対照,2026-07-29,Agentforce RAGの仕組みはどうなっていて、精度が上がらないときは何を見直せばいいですか？
+39,https://cross-com.jp/agentforce-roi/,②FAQのみ,2026-07-26,AgentforceのROIはどう測ればよく、稟議ではどう示せばいいですか？
+40,https://cross-com.jp/agentforce-observability/,③リードのみ,2026-07-24,Agentforce Observabilityとは何で、定着と精度はどう測ればいいですか？
+41,https://cross-com.jp/agentforce-retention/,②FAQのみ,2026-07-06,Agentforceを設定したのに現場で使われません。定着させるにはどうすればいいですか？
+42,https://cross-com.jp/agentforce-for-sales-sdr-sales-coach/,①対照,2026-07-03,Agentforce for Salesとは何で、SDRエージェントやSales Coachは営業でどう使いますか？
+43,https://cross-com.jp/agentic-crm-pipeline-stagnation-detection/,②FAQのみ,2026-08-25,CRMでパイプラインの停滞商談を自動で検知して営業に知らせる仕組みは作れますか？
+44,https://cross-com.jp/agentic-ai-guide/,①対照,2026-08-19,エージェンティックAIとは何で、AIエージェントとどう違いますか？
+45,https://cross-com.jp/revops-guide/,②FAQのみ,2026-08-19,RevOpsとは何で、部門ごとに数字が合わない問題をどう解消しますか？
+46,https://cross-com.jp/hyper-personalization/,④両方,2026-08-18,ハイパーパーソナライゼーションとは何で、BtoBではどう実装しますか？
+47,https://cross-com.jp/buyer-enablement/,①対照,2026-08-16,バイヤーイネーブルメントとは何で、BtoBの購買体験をどう変えますか？
+48,https://cross-com.jp/agentic-crm-pipeline-kpi-monitoring/,④両方,2026-07-19,Agentic CRMでパイプライン管理のKPIを自律的にモニタリングする設計はどう作りますか？
