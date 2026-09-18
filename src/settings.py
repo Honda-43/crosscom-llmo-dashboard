@@ -31,6 +31,9 @@ PROMPTS_MONTHLY_FILE = CONFIG_DIR / "prompts_monthly.yaml"
 PROMPTS_EXPERIMENT_FILE = CONFIG_DIR / "prompts_experiment.csv"
 # 実験の回答全文。日次・月次の日付ディレクトリと混ぜない。
 DATA_RAW_EXPERIMENT_DIR = ROOT_DIR / "data" / "raw" / "experiment"
+# 実験日誌。欠測を1行1件で残す(date, experiment_id, model, reason, detail, attempts)。
+# 「観測できなかった事実と、その理由」を後から数えられるようにするためのもの。
+EXPERIMENT_JOURNAL_FILE = ROOT_DIR / "data" / "experiment_journal.csv"
 # Entity alias table (Phase 1 §2-1) — appended to during operation, no code change.
 ENTITY_ALIASES_FILE = CONFIG_DIR / "entity_aliases.yaml"
 # Generic phrases that are not company names and must not be counted.
@@ -147,43 +150,48 @@ def load_monthly_prompts(active_only: bool = True,
 
 
 # --------------------------------------------------------------------------
-# 観測の曜日割り(2026-09-14 確定)
+# 観測の曜日割りと実験の巡回(2026-09-18 改訂)
 # --------------------------------------------------------------------------
 # 曜日は JST の date.weekday()(月=0 … 日=6)。
 #
-# Gemini 無料枠は1日20リクエスト。本田さんの判定(2026-09-14):
-#   - 日次7本は 火・木・土 だけ観測する(ワークフロー自体は毎日走る。
-#     GA4 / GSC は1回の実行で1日分しか取らないので、止めると欠ける)
-#   - 実験の Claude は 月・木 に47本
-#   - 実験の Gemini は**週2回**。47本を2周に割り、毎日少しずつ回す
-#       1周目 月E01-18 火E19-29 水E30-42 木E43-47
-#       2周目 金E01-18 土E19-29 日E30-47
-#     同じ質問の2回の観測は3〜4日あく。
+# Gemini 無料枠は1日20リクエスト。この枠を3つで分け合う:
+#   - 日次7本 … 火・木・土(ワークフロー自体は毎日走る。GA4 / GSC は1回の
+#     実行で1日分しか取らないので、止めると欠ける)
+#   - 月次6本 … 第1週の水(バッチA)・木(バッチB)
+#   - 実験    … 残り。ただし**取り直し用に予備を必ず残す**
 #
-# 曜日ごとの Gemini の計画本数(日次 + 月次 + 実験)。**第1週が最も厳しい**:
-#   月18 火18 水13(第1週19) 木12(第1週18) 金18 土18 日18
-# 週の実験94本 + 日次21本。第1週は月次12本も入り、枠の余りは週で13しかない。
-# どの日も余りは1〜2本で、通常のリトライ(1観測で最大3回追加)は収まらない。
-# そのため実験の Gemini は**リトライをその日の余りの範囲に限る**(run_experiment)。
+# 実験の割当は「曜日 -> ID の範囲」を手で書かない(2026-09-14 版はそうしていた)。
+# 開始日から1日ずつ、その日の本数だけ 47本の輪を進めるだけにする。
+# 日付を入れれば割当が決まるので、本数を変えても手で割り振り直す作業が出ない。
+#
+#   その日の本数 = min(14, 20 − 日次 − 月次)
+#     月・水・金・日 14本(余り6) / 火・木・土 13本(余り0)
+#     第1週の水 14本(余り0) / 第1週の木 7本(余り0)
+#   通常の週で95本。プロトコルが求める 47本×週2回 = 94本を満たす。
+#   47本を1周するのに約3.5日 = 同じ質問を週およそ2回観測する。
+#
+# **取り直しの枠は毎日固定で空けない**(2026-09-18 改訂)。余りは
+# 20 − その日の計画本数で、503 が出た日にだけ使う。出なければ使わない。
+# 月・水・金・日は6本ぶんの余りがあり、1本の混雑なら
+# 初回リトライ3回 + 掃き直し2回(計5回)が丸ごと収まる。
+# 余りを超える 503 は取り直しきれず欠測になる(run_experiment が打ち切る)。
+# 429(枠切れ)は取り直さないので、余りを使わない。
 #
 # Gemini の1日は太平洋時間で切り替わる(JST 16〜17時)。どのワークフローも
 # JST の朝に走るので、JST の1日と枠の1日は1対1に対応する。
 DAILY_LLM_WEEKDAYS = (1, 3, 5)                  # 火・木・土
-EXPERIMENT_CLAUDE_WEEKDAYS = (0, 3)             # 月・木
-# 曜日 -> 実験IDの番号の範囲(両端を含む)
-EXPERIMENT_GEMINI_GROUPS: Dict[int, tuple] = {
-    0: (1, 18),     # 月 E01〜E18(1周目)
-    1: (19, 29),    # 火 E19〜E29
-    2: (30, 42),    # 水 E30〜E42
-    3: (43, 47),    # 木 E43〜E47
-    4: (1, 18),     # 金 E01〜E18(2周目)
-    5: (19, 29),    # 土 E19〜E29
-    6: (30, 47),    # 日 E30〜E47
-}
+DAILY_LLM_COUNT = 7
 # 月次のバッチが走る曜日(第1週のみ)。monthly.yml の guard と同じ判定。
 MONTHLY_BATCH_WEEKDAYS = {"A": 2, "B": 3}
+MONTHLY_BATCH_SIZE = 6
 GEMINI_DAILY_REQUEST_LIMIT = 20
 WEEKDAY_LABELS = ("月", "火", "水", "木", "金", "土", "日")
+
+EXPERIMENT_CLAUDE_WEEKDAYS = (0, 3)             # 月・木(Claude は Gemini の枠と無関係)
+# 実験の巡回はこの日から始まる。ここを動かすと以降の割当が丸ごとずれるので、
+# 実験期間の途中では変えない。
+EXPERIMENT_CYCLE_START = os.getenv("EXPERIMENT_CYCLE_START", "2026-09-21")
+EXPERIMENT_DAILY_CAP = int(os.getenv("EXPERIMENT_DAILY_CAP", "14"))
 
 
 def _weekday(date: str) -> int:
@@ -193,6 +201,18 @@ def _weekday(date: str) -> int:
 def is_daily_llm_day(date: str) -> bool:
     """日次の7本を観測する日か(JST の日付)。"""
     return _weekday(date) in DAILY_LLM_WEEKDAYS
+
+
+def daily_llm_requests_on(date: str) -> int:
+    """その日の日次観測が使う Gemini リクエスト数。"""
+    return DAILY_LLM_COUNT if is_daily_llm_day(date) else 0
+
+
+def monthly_requests_on(date: str) -> int:
+    """その日の月次観測が使う Gemini リクエスト数(第1週の水・木だけ)。"""
+    day = dt.date.fromisoformat(str(date)[:10])
+    return (MONTHLY_BATCH_SIZE if day.day <= 7
+            and day.weekday() in MONTHLY_BATCH_WEEKDAYS.values() else 0)
 
 
 def load_experiment_prompts() -> List[Dict[str, Any]]:
@@ -206,47 +226,97 @@ def load_experiment_prompts() -> List[Dict[str, Any]]:
     return [dict(row, text=row["prompt"]) for row in rows]
 
 
+def experiment_prompt_count() -> int:
+    """実験プロンプトの本数(47)。巡回の輪の大きさ。"""
+    global _EXPERIMENT_PROMPT_COUNT
+    if _EXPERIMENT_PROMPT_COUNT is None:
+        _EXPERIMENT_PROMPT_COUNT = len(load_experiment_prompts())
+    return _EXPERIMENT_PROMPT_COUNT
+
+
+_EXPERIMENT_PROMPT_COUNT: Optional[int] = None
+
+
 def experiment_number(prompt_id: str) -> int:
     """"E07" -> 7"""
     return int(str(prompt_id).lstrip("E"))
 
 
+def experiment_daily_count(date: str) -> int:
+    """その日に回す実験プロンプトの本数。
+
+    上限は ``EXPERIMENT_DAILY_CAP``(14本)。同じ日に日次・月次が先に枠を
+    使うので、その残りとどちらか小さいほうを回す。**取り直し用の枠は
+    ここで固定的に空けない。** 余り(20 − 計画本数)は 503 が出た日にだけ
+    使い、出なければそのまま残る。
+    """
+    if str(date)[:10] < EXPERIMENT_CYCLE_START:
+        return 0
+    room = (GEMINI_DAILY_REQUEST_LIMIT - daily_llm_requests_on(date)
+            - monthly_requests_on(date))
+    return max(0, min(EXPERIMENT_DAILY_CAP, room))
+
+
+_EXPERIMENT_CURSOR: Dict[str, int] = {}
+
+
+def experiment_cursor(date: str) -> int:
+    """その日の先頭に来る実験プロンプトの位置(0始まり)。
+
+    開始日から1日ずつ、その日に回した本数だけ輪を進める。日付から機械的に
+    決まるので、曜日割りを手で直す余地が無い。途中の日も同時に覚えておく
+    (毎日の実行では1日ぶんしか進まないが、テストは連続した日を全部見る)。
+    """
+    day = dt.date.fromisoformat(str(date)[:10])
+    start = dt.date.fromisoformat(EXPERIMENT_CYCLE_START)
+    if day <= start:
+        return 0
+    cached = _EXPERIMENT_CURSOR.get(day.isoformat())
+    if cached is not None:
+        return cached
+    total = experiment_prompt_count()
+    cursor, cur = 0, start
+    while cur < day:
+        cursor = (cursor + experiment_daily_count(cur.isoformat())) % total
+        cur += dt.timedelta(days=1)
+        _EXPERIMENT_CURSOR[cur.isoformat()] = cursor
+    return cursor
+
+
 def experiment_plan(date: str) -> Dict[str, List[Dict[str, Any]]]:
     """その日に観測する実験プロンプトをモデルごとに返す。無いモデルは入れない。"""
-    weekday = _weekday(date)
     prompts = load_experiment_prompts()
     plan: Dict[str, List[Dict[str, Any]]] = {}
-    group = EXPERIMENT_GEMINI_GROUPS.get(weekday)
-    if group:
-        lo, hi = group
-        plan["gemini"] = [p for p in prompts if lo <= experiment_number(p["id"]) <= hi]
-    if weekday in EXPERIMENT_CLAUDE_WEEKDAYS:
+    count = experiment_daily_count(date)
+    if count:
+        start = experiment_cursor(date)
+        total = len(prompts)
+        plan["gemini"] = [prompts[(start + i) % total] for i in range(count)]
+    if (_weekday(date) in EXPERIMENT_CLAUDE_WEEKDAYS
+            and str(date)[:10] >= EXPERIMENT_CYCLE_START):
         plan["claude"] = list(prompts)
     return plan
 
 
-def gemini_requests_on(date: str, daily_count: int = 7,
-                       monthly_batch_size: int = 6) -> Dict[str, int]:
+def gemini_requests_on(date: str) -> Dict[str, int]:
     """その日(JST)の Gemini リクエスト数の見積もり。日次・月次・実験の合計。
 
-    ``retry_headroom`` は「何本まで最大リトライしても枠に収まるか」
-    (run_monthly.request_budget と同じ数え方)。
+    ``retry_budget`` は取り直しに使ってよい本数(= 枠の余り)。毎日空けて
+    おくのではなく、503 が出た日にその日の残りから使う。再試行と掃き直しは
+    run_experiment がこの範囲でしか投げない。
     """
-    day = dt.date.fromisoformat(str(date)[:10])
-    weekday = day.weekday()
-    daily = daily_count if weekday in DAILY_LLM_WEEKDAYS else 0
-    monthly = (monthly_batch_size
-               if day.day <= 7 and weekday in MONTHLY_BATCH_WEEKDAYS.values() else 0)
-    experiment = len(experiment_plan(date).get("gemini", []))
+    daily = daily_llm_requests_on(date)
+    monthly = monthly_requests_on(date)
+    experiment = experiment_daily_count(date)
     total = daily + monthly + experiment
     spare = GEMINI_DAILY_REQUEST_LIMIT - total
     return {
         "daily": daily, "monthly": monthly, "experiment": experiment,
-        # 日次・月次を引いたあとに実験が使える本数(計画 + リトライの上限)
-        "experiment_budget": GEMINI_DAILY_REQUEST_LIMIT - daily - monthly,
+        # 日次・月次を引いたあとに実験が使える本数(= 上限が効く前の残り)
+        "experiment_budget": max(0, GEMINI_DAILY_REQUEST_LIMIT - daily - monthly),
         "total": total, "limit": GEMINI_DAILY_REQUEST_LIMIT,
         "over": total > GEMINI_DAILY_REQUEST_LIMIT, "spare": spare,
-        "retry_headroom": max(0, spare // max(1, MAX_RETRIES - 1)),
+        "retry_budget": max(0, spare),
     }
 
 

@@ -8,11 +8,18 @@ native web-search tool enabled, then stores the full answer plus citations to
 Design notes:
 - Model enable/disable + model names live in settings.py.
 - Retry: exponential backoff。provider が retryDelay を返したらそちらを優先する。
-  一巡したあと、失敗した観測だけを1回だけ掃き直す(_sweep)。それでも取れなければ
+  一巡したあと、失敗した観測だけを掃き直す(_sweep)。それでも取れなければ
   その日の欠測として記録し、他のモデル・プロンプトは続行する。
-- 日次のリクエスト枠(gemini 無料枠は1日20回)を守るため、リトライ回数は
-  増やしすぎない。1日枠の 429 を踏んだモデルは、その実行中のリトライを止める
-  (基本の1回は投げる。枠は数十秒で戻ることがあるため)。
+- **503 と 429 を区別する**(2026-09-18)。
+    - 503 UNAVAILABLE は provider 側の一時的な混雑。観測した障害窓は20〜90秒で、
+      待てば戻る。再試行と掃き直しの対象はこれ。
+    - 429 はリクエスト枠切れ。待っても同じ日のうちは戻らないうえ、再試行が
+      枠をさらに食う。**取り直さずその場で欠測にする**(翌日には戻る)。
+  欠測の理由は ``miss_reason`` が quota / unavailable / permanent / error に
+  分ける。呼び出し側はこれを見て、終了コードと日誌の書き方を決める。
+- 日次のリクエスト枠(gemini 無料枠は1日20回)を守るため、取り直しの回数を
+  ``RetryBudget`` で上から抑えられる。枠の余りを渡せば、再試行・掃き直しの
+  合計がその範囲を超えない。
 - Perplexity stays disabled by default and a missing PERPLEXITY_API_KEY must
   never raise — activation is key + flag only.
 """
@@ -25,7 +32,7 @@ import os
 import re
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 from settings import (
     BACKOFF_BASE_SECONDS,
@@ -52,9 +59,19 @@ _PERMANENT_MARKERS = (
 )
 _PERMANENT_CODES = ("400", "401", "403", "404")
 
-# 「1日あたり」の枠を使い切ったことを示す quotaId。数秒〜数十秒のリトライで
-# 回復する種類ではないので、そのモデルのリトライを実行中は止める。
+# 枠切れ(429)と一時的な混雑(503)の目印。
+# 429 は「1分あたり」でも「1日あたり」でも、再試行がその枠をさらに食う。
+# 実験のプロトコルで「取り直さず欠測」にするのはこの 429 だけ。
+_QUOTA_CODE = "429"
 _DAILY_QUOTA_MARKER = "PerDay"
+_UNAVAILABLE_CODE = "503"
+_UNAVAILABLE_MARKER = "UNAVAILABLE"
+
+# 欠測の理由コード。実験日誌(data/experiment_journal.csv)に残す値でもある。
+REASON_QUOTA = "quota"              # 429。枠切れ。取り直さない
+REASON_UNAVAILABLE = "unavailable"  # 503。一時的な混雑。枠の余りの範囲で取り直す
+REASON_PERMANENT = "permanent"      # 鍵・権限・課金。人が直すまで変わらない
+REASON_OTHER = "error"              # それ以外(コードの例外を含む)
 
 # provider が返す再試行指示。gemini は RetryInfo.retryDelay、
 # メッセージ本文にも "Please retry in 14.44845715s." の形で入る。
@@ -71,10 +88,72 @@ def is_permanent(exc: Exception) -> bool:
     return any(code in head for code in _PERMANENT_CODES)
 
 
+def is_quota(exc: Exception) -> bool:
+    """リクエスト枠を使い切ったか(429)。
+
+    「1日あたり」か「1分あたり」かは区別しない。どちらも再試行がその枠を
+    さらに食うので、待たずに欠測にして次へ進む。課金切れ(insufficient_quota)は
+    ``is_permanent`` が先に拾うので、ここには来ない。
+    """
+    return _QUOTA_CODE in str(exc)[:40] and not is_permanent(exc)
+
+
 def is_daily_quota(exc: Exception) -> bool:
-    """1日あたりのリクエスト枠を使い切ったか。"""
+    """429 のうち「1日あたり」の枠切れか。枠が翌日まで戻らないことの判定。"""
+    return is_quota(exc) and _DAILY_QUOTA_MARKER in str(exc)
+
+
+def is_unavailable(exc: Exception) -> bool:
+    """provider 側の一時的な混雑(503 UNAVAILABLE)か。取り直す価値があるもの。"""
     text = str(exc)
-    return "429" in text[:40] and _DAILY_QUOTA_MARKER in text
+    transient = _UNAVAILABLE_CODE in text[:40] or _UNAVAILABLE_MARKER in text
+    return transient and not is_permanent(exc) and not is_quota(exc)
+
+
+def miss_reason(error: Any) -> str:
+    """欠測の理由コード。空文字は「欠測ではない」。
+
+    順番に意味がある。429 のうち課金切れ(insufficient_quota)は待っても
+    戻らないので permanent、枠切れは quota。503 は unavailable。
+    """
+    if error in (None, ""):
+        return ""
+    exc = error if isinstance(error, BaseException) else Exception(str(error))
+    if is_permanent(exc):
+        return REASON_PERMANENT
+    if is_quota(exc):
+        return REASON_QUOTA
+    if is_unavailable(exc):
+        return REASON_UNAVAILABLE
+    return REASON_OTHER
+
+
+def is_retriable(error: Any) -> bool:
+    """取り直す価値のある欠測か。503 だけが真。"""
+    return miss_reason(error) == REASON_UNAVAILABLE
+
+
+class RetryBudget:
+    """その日の枠の余り。取り直し1回につき1本減る。
+
+    実験の Gemini は、日次・月次と20回/日の枠を分け合っている。再試行と
+    掃き直しをそれぞれ独立に数えると合計が読めなくなるので、1つの財布から
+    引く。``spend`` が False を返したら、そこで取り直しをやめる。
+    """
+
+    def __init__(self, spare: int) -> None:
+        self.remaining = max(0, int(spare))
+        self.used = 0
+
+    def spend(self) -> bool:
+        if self.remaining <= 0:
+            return False
+        self.remaining -= 1
+        self.used += 1
+        return True
+
+    def __repr__(self) -> str:  # pragma: no cover - ログ用
+        return f"RetryBudget(remaining={self.remaining}, used={self.used})"
 
 
 def retry_delay(exc: Exception) -> Optional[float]:
@@ -95,14 +174,18 @@ def _wait_for(exc: Exception, attempt: int) -> float:
 
 
 def _with_retry(fn, *, label: str, attempts: int = MAX_RETRIES,
-                on_daily_quota=None):
+                on_quota=None, budget: Optional["RetryBudget"] = None):
     """Run ``fn`` with exponential backoff. Raises the last error after
     ``attempts`` failures so the caller can record the day as missing.
 
-    3つの理由で早く諦める:
+    4つの理由で早く諦める:
       - 待っても直らないエラー(鍵・権限・課金)は1回で止める
-      - 1日枠の 429 は、リトライがその枠をさらに食う。1回で止める
+      - 429(枠切れ)は、リトライがその枠をさらに食う。1回で止める
+      - ``budget`` を渡した場合、余りが尽きたらそこで止める
       - provider が retryDelay を返したら、固定のバックオフより優先する
+
+    503 の既定は「初回 + 3回」で、待ちは 5 / 10 / 20 秒(合計35秒)。
+    実測した障害窓20〜90秒のうち、短いほうを跨ぐことを狙っている。
     """
     last_exc: Optional[Exception] = None
     for attempt in range(1, attempts + 1):
@@ -114,13 +197,16 @@ def _with_retry(fn, *, label: str, attempts: int = MAX_RETRIES,
             if is_permanent(exc):
                 print(f"[warn] {label}: 再試行しても変わらないエラーのため中止")
                 break
-            if is_daily_quota(exc):
-                print(f"[warn] {label}: 1日あたりのリクエスト枠を超過。"
-                      f"このモデルの再試行を実行中は止める")
-                if on_daily_quota is not None:
-                    on_daily_quota()
+            if is_quota(exc):
+                print(f"[warn] {label}: リクエスト枠を超過(429)。"
+                      f"取り直さず欠測にする")
+                if on_quota is not None:
+                    on_quota()
                 break
             if attempt < attempts:
+                if budget is not None and not budget.spend():
+                    print(f"[warn] {label}: その日の枠の余りが尽きたため再試行しない")
+                    break
                 wait = _wait_for(exc, attempt)
                 print(f"[info] {label}: {wait:.0f}秒待って再試行します")
                 time.sleep(wait)
@@ -255,7 +341,8 @@ def collect(date: Optional[str] = None,
             out_dir: Optional[Path] = None,
             models: Optional[List[str]] = None,
             attempts: Optional[int] = None,
-            sweep: bool = True) -> List[Dict[str, Any]]:
+            sweep: bool = True,
+            budget: Optional[RetryBudget] = None) -> List[Dict[str, Any]]:
     """Run all enabled models across all prompts for ``date`` (YYYY-MM-DD,
     defaults to today UTC). Returns a list of record dicts (also written to
     disk). Records with ``"error"`` set represent missing observations.
@@ -267,9 +354,11 @@ def collect(date: Optional[str] = None,
     ``models`` を渡すとそのモデルだけを回す(実験は Gemini と Claude で
     観測する曜日と本数が違う)。有効でない・鍵が無いモデルは従来どおり飛ばす。
 
-    ``attempts`` / ``sweep`` はリトライの回数を呼び出し側で管理したいとき用
-    (実験の Gemini は、その日の枠の余りの範囲でしかリトライしない)。
-    既定は従来どおり MAX_RETRIES と掃き直しあり。
+    ``attempts`` / ``sweep`` はリトライの回数を呼び出し側で管理したいとき用。
+    既定は従来どおり MAX_RETRIES(初回 + 3回、5/10/20秒)と掃き直しあり。
+
+    ``budget`` を渡すと、再試行1回につき1本引く。0 になったらそれ以上
+    取り直さない(実験の Gemini は、その日の枠の余りをこれで渡す)。
     """
     date = date or dt.datetime.utcnow().strftime("%Y-%m-%d")
     out_dir = Path(out_dir) if out_dir is not None else DATA_RAW_DIR / date
@@ -306,15 +395,19 @@ def collect(date: Optional[str] = None,
                 "answer": None,
                 "cited_urls": [],
                 "error": None,
+                # 欠測の理由コード(quota / unavailable / permanent / error)と、
+                # この観測に投げたリクエスト数。実験日誌がこの2つを読む。
+                "miss_reason": "",
+                "attempts": 0,
             }
             _attempt(record, prompt["text"], attempts=(
                 1 if model_key in exhausted else (attempts or MAX_RETRIES)
-            ), on_daily_quota=lambda mk=model_key: exhausted.add(mk))
+            ), on_quota=lambda mk=model_key: exhausted.add(mk), budget=budget)
             _save(record, out_dir)
             records.append(record)
 
     if sweep:
-        _sweep(records, prompts, out_dir)
+        _sweep(records, prompts, out_dir, budget=budget)
     missing = missing_observations(records)
     print(f"[info] {date}: 観測 {len(records)}件中 欠測 {len(missing)}件"
           + (f" — {', '.join(missing)}" if missing else ""))
@@ -322,29 +415,44 @@ def collect(date: Optional[str] = None,
 
 
 def _attempt(record: Dict[str, Any], question: str, *, attempts: int,
-             on_daily_quota=None) -> bool:
+             on_quota=None, budget: Optional[RetryBudget] = None) -> bool:
     """1観測を取って ``record`` を埋める。成功したら True。
 
     失敗しても例外は投げない。1つのモデルの不調で他のプロンプトを
     落とさないため、欠測として記録して先へ進む(§3)。
+
+    ``attempts`` はこの呼び出しで投げる回数の上限。掃き直しで同じ record を
+    もう一度渡すことがあるので、``attempts`` 列は**足し込む**(その観測に
+    何本の枠を使ったかを日誌に残すため)。
     """
     label = f"{record['prompt_id']}/{record['model']}"
+    tries = 0
+
+    def call():
+        nonlocal tries
+        tries += 1
+        return _QUERY_FUNCS[record["model"]](question, record["model_name"])
+
     try:
         answer, native_cits = _with_retry(
-            lambda: _QUERY_FUNCS[record["model"]](question, record["model_name"]),
-            label=label, attempts=attempts, on_daily_quota=on_daily_quota,
+            call, label=label, attempts=attempts,
+            on_quota=on_quota, budget=budget,
         )
         record["answer"] = answer
         record["cited_urls"] = _merge_urls(answer, native_cits)
         record["error"] = None
+        record["miss_reason"] = ""
         record["timestamp"] = dt.datetime.utcnow().isoformat() + "Z"
         print(f"[ok] {label}: {len(answer)} chars, {len(record['cited_urls'])} urls")
         return True
     except Exception as exc:  # noqa: BLE001
         record["error"] = str(exc)
+        record["miss_reason"] = miss_reason(exc)
         record["timestamp"] = dt.datetime.utcnow().isoformat() + "Z"
-        print(f"[error] {label}: recorded as missing — {exc}")
+        print(f"[error] {label}: recorded as missing ({record['miss_reason']}) — {exc}")
         return False
+    finally:
+        record["attempts"] = (record.get("attempts") or 0) + tries
 
 
 def _save(record: Dict[str, Any], out_dir: Path) -> None:
@@ -362,34 +470,46 @@ def _save(record: Dict[str, Any], out_dir: Path) -> None:
 
 
 def _sweep(records: List[Dict[str, Any]], prompts: List[Dict[str, Any]],
-           out_dir: Path, cooldown: float = SWEEP_COOLDOWN_SECONDS) -> int:
+           out_dir: Path, cooldown: float = SWEEP_COOLDOWN_SECONDS,
+           delays: Optional[Sequence[float]] = None,
+           budget: Optional[RetryBudget] = None) -> int:
     """失敗した観測だけを、間を置いてもう一度取り直す。
 
     観測した provider 側の障害は20〜90秒で収まっており、一巡した頃には
     抜けていることが多い(08-27・08-30 の gemini は、失敗した次の
     プロンプトが35秒後に成功している)。回数を増やすのではなく
-    「時間をおいて1回」にするのは、gemini 無料枠の1日20リクエストを
+    「時間をおいて投げ直す」のは、gemini 無料枠の1日20リクエストを
     リトライで食い潰さないため。
 
-    待っても直らないエラーは掃き直さない。戻した件数を返す。
+    ``delays`` を渡すとその秒数ぶんだけ掃き直す(実験は60秒後・180秒後の
+    2回。1回目で戻らない障害窓は90秒近いことがあるため)。既定は従来どおり
+    ``cooldown`` 秒後に1回。
+
+    **掃き直すのは 503 だけ**。429(枠切れ)は取り直しても同じ日のうちは
+    戻らず、投げるだけ枠を食う。待っても直らないエラーも同じ。
+    ``budget`` を渡した場合、1回投げるごとに1本引き、尽きたらそこで止める。
+    戻した件数を返す。
     """
-    targets = [r for r in records
-               if r.get("error") and not is_permanent(Exception(r["error"]))]
-    if not targets:
-        return 0
-
+    rounds = list(delays) if delays else [cooldown]
     questions = {p["id"]: p["text"] for p in prompts}
-    labels = ", ".join(f"{r['prompt_id']}/{r['model']}" for r in targets)
-    print(f"[info] 掃き直し: {len(targets)}件を {cooldown:.0f}秒後に再取得します ({labels})")
-    time.sleep(cooldown)
-
     recovered = 0
-    for record in targets:
-        # 掃き直しは1回だけ。ここで回数を重ねると枠の消費が読めなくなる。
-        if _attempt(record, questions[record["prompt_id"]], attempts=1):
-            recovered += 1
-        _save(record, out_dir)
-    print(f"[info] 掃き直し: {recovered}/{len(targets)}件を回復しました")
+    for index, wait in enumerate(rounds, start=1):
+        targets = [r for r in records if is_retriable(r.get("error"))]
+        if not targets:
+            break
+        labels = ", ".join(f"{r['prompt_id']}/{r['model']}" for r in targets)
+        print(f"[info] 掃き直し{index}/{len(rounds)}: {len(targets)}件を "
+              f"{wait:.0f}秒後に再取得します ({labels})")
+        time.sleep(wait)
+        for record in targets:
+            if budget is not None and not budget.spend():
+                print("[warn] 掃き直し: その日の枠の余りが尽きたため打ち切ります")
+                return recovered
+            # 1周につき1回だけ。ここで回数を重ねると枠の消費が読めなくなる。
+            if _attempt(record, questions[record["prompt_id"]], attempts=1):
+                recovered += 1
+            _save(record, out_dir)
+    print(f"[info] 掃き直し: {recovered}件を回復しました")
     return recovered
 
 

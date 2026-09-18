@@ -4,13 +4,18 @@
 
 1. 47本の質問文が本田さんの貼った CSV から一文字も変わっていないこと。
    文言が変わるとビフォーとアフターが比較できない。
-2. 曜日割りで Gemini の1日20リクエストを超えないこと(日次・月次と合算)。
+2. 巡回の割当が開始日から機械的に決まり、Gemini の1日20リクエストを
+   超えないこと(日次・月次と合算)。週の観測本数が 47本×週2回 = 94本
+   以上になること。
 3. 判定(cited_domain / cited_article / mentioned)が URL の表記ゆれに強く、
    欠測を 0 と書かないこと。
 4. 日次・月次のタブやスキーマを汚さないこと。
+5. 503 は取り直し、429 は取り直さず欠測。終了コードがその理由で分かれること。
 """
+import csv
 import datetime as dt
 import hashlib
+import sys
 
 import pytest
 import yaml
@@ -56,27 +61,135 @@ def test_there_are_47_prompts_in_order_with_unique_articles():
     assert (layers.count("古"), layers.count("中"), layers.count("新")) == (14, 17, 16)
 
 
-# --- 2. 曜日割りと Gemini の枠 -------------------------------------------------
-WEEK = [dt.date(2026, 9, 14) + dt.timedelta(days=i) for i in range(7)]  # 月〜日
+# --- 2. 巡回の割当と Gemini の枠 -----------------------------------------------
+START = dt.date.fromisoformat(settings.EXPERIMENT_CYCLE_START)
+WEEK = [START + dt.timedelta(days=i) for i in range(7)]          # 月〜日
+THREE_WEEKS = [START + dt.timedelta(days=i) for i in range(21)]
 
 
-def test_gemini_observes_every_prompt_twice_a_week():
-    seen = []
+def _gemini_ids(day):
+    return [p["id"] for p in settings.experiment_plan(day.isoformat()).get("gemini", [])]
+
+
+def test_a_normal_week_covers_the_94_observations_the_protocol_needs():
+    """47本×週2回 = 94本。上限14本で回すと通常の週は95本になり、これを満たす。"""
+    counts = [settings.experiment_daily_count(d.isoformat()) for d in WEEK]
+    assert counts == [14, 13, 14, 13, 14, 13, 14], counts   # 月火水木金土日
+    assert sum(counts) == 95
+    assert sum(counts) >= 94
+
+
+@pytest.mark.parametrize("offset", range(120))
+def test_every_seven_day_window_covers_94_unless_a_monthly_batch_eats_into_it(offset):
+    """どこで7日を切っても95本。例外は第1木(日次7 + 月次6)を含む窓だけ。"""
+    days = [START + dt.timedelta(days=offset + i) for i in range(7)]
+    total = sum(settings.experiment_daily_count(d.isoformat()) for d in days)
+    # 第1木は日次7 + 月次6 で枠が13埋まり、実験は7本しか回せない(月に1度)。
+    squeezed = any(settings.daily_llm_requests_on(d.isoformat())
+                   and settings.monthly_requests_on(d.isoformat()) for d in days)
+    if squeezed:
+        assert total == 89, (total, days[0])
+    else:
+        assert total == 95, (total, days[0])
+
+
+def test_the_retry_budget_is_what_is_left_over_not_a_daily_set_aside():
+    """予備は毎日固定で空けない。20 − その日の計画本数が、503 が出た日に使える枠。"""
     for day in WEEK:
-        seen += [p["id"] for p in settings.experiment_plan(day.isoformat()).get("gemini", [])]
-    assert sorted(seen) == sorted([f"E{i:02d}" for i in range(1, 48)] * 2)
+        quota = settings.gemini_requests_on(day.isoformat())
+        assert quota["retry_budget"] == (settings.GEMINI_DAILY_REQUEST_LIMIT
+                                         - quota["total"]), quota
+    # 日次のない日は6本(= 20 − 14)、日次7本の日は0本
+    assert settings.gemini_requests_on(START.isoformat())["retry_budget"] == 6
+    assert settings.gemini_requests_on(
+        (START + dt.timedelta(days=1)).isoformat())["retry_budget"] == 0
 
 
-def test_the_two_gemini_observations_of_a_prompt_are_three_or_four_days_apart():
-    """同じ質問の2回が隣り合う日に寄ると、週の中の変動を拾えない。"""
-    weekdays = {}
-    for day in WEEK:
-        for p in settings.experiment_plan(day.isoformat()).get("gemini", []):
-            weekdays.setdefault(p["id"], []).append(day.weekday())
-    for pid, days in weekdays.items():
-        first, second = sorted(days)
-        gap = second - first
-        assert {gap, 7 - gap} == {3, 4}, (pid, days)
+def test_the_first_week_of_a_month_gives_way_to_the_monthly_batches():
+    # 第1木(2026-10-01): 日次7 + 月次B 6 -> 実験は7本
+    # 第1水(2026-10-07): 月次A 6 のみ -> 上限どおり14本
+    assert settings.experiment_daily_count("2026-10-01") == 7
+    assert settings.experiment_daily_count("2026-10-07") == 14
+
+
+def _days(start, end):
+    day = start
+    while day <= end:
+        yield day
+        day += dt.timedelta(days=1)
+
+
+@pytest.mark.parametrize("day", list(_days(dt.date(2026, 9, 21), dt.date(2026, 12, 31))),
+                         ids=str)
+def test_every_day_stays_under_the_limit(day):
+    """計画本数(日次 + 月次 + 実験)は毎日20以内。超えた分は 429 になって落ちる。"""
+    quota = settings.gemini_requests_on(day.isoformat())
+    assert quota["total"] <= settings.GEMINI_DAILY_REQUEST_LIMIT, quota
+    assert not quota["over"], quota
+    assert quota["spare"] >= 0, quota
+    assert quota["experiment"] <= settings.EXPERIMENT_DAILY_CAP, quota
+    assert quota["experiment"] <= quota["experiment_budget"], quota
+    assert quota["retry_budget"] == quota["spare"], quota
+
+
+def test_nothing_is_planned_before_the_cycle_starts():
+    before = (START - dt.timedelta(days=1)).isoformat()
+    assert settings.experiment_plan(before) == {}
+
+
+def test_the_assignment_follows_the_cycle_start_with_no_manual_table():
+    """開始日から、その日までに回した本数ぶんだけ輪が進む。それだけで決まる。"""
+    assert _gemini_ids(START)[0] == "E01"
+    running = 0
+    for day in THREE_WEEKS:
+        assert settings.experiment_cursor(day.isoformat()) == running % 47, day
+        ids = _gemini_ids(day)
+        assert ids == [f"E{(running + i) % 47 + 1:02d}" for i in range(len(ids))], day
+        running += settings.experiment_daily_count(day.isoformat())
+
+
+def test_moving_the_cycle_start_moves_the_whole_assignment(monkeypatch):
+    """割当は開始日だけで決まる。曜日ごとの表を手で直す余地が無いことの裏。"""
+    monkeypatch.setattr(settings, "EXPERIMENT_CYCLE_START", (START + dt.timedelta(days=1)).isoformat())
+    monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
+    assert _gemini_ids(START + dt.timedelta(days=1))[0] == "E01"
+
+
+def test_the_cycle_wraps_without_skipping_or_repeating_a_prompt():
+    """輪を1周する間に47本が漏れなく1回ずつ出る。"""
+    seen, day = [], START
+    while len(seen) < 47:
+        seen += _gemini_ids(day)
+        day += dt.timedelta(days=1)
+    assert sorted(seen[:47]) == [f"E{i:02d}" for i in range(1, 48)]
+
+
+def test_a_prompt_is_never_observed_twice_on_the_same_day():
+    for day in THREE_WEEKS:
+        ids = _gemini_ids(day)
+        assert len(ids) == len(set(ids)), day
+
+
+def test_every_prompt_is_observed_about_twice_a_week():
+    """週95本 / 47本 = 2.02回。どの質問も同じ回数(差は多くても1回)になる。"""
+    counts = {f"E{i:02d}": 0 for i in range(1, 48)}
+    for day in THREE_WEEKS:
+        for pid in _gemini_ids(day):
+            counts[pid] += 1
+    planned = sum(settings.experiment_daily_count(d.isoformat()) for d in THREE_WEEKS)
+    assert sum(counts.values()) == planned
+    assert max(counts.values()) - min(counts.values()) <= 1, counts
+    assert planned / 47 / 3 >= 1.9, "1本あたり週2回に届いていない"
+
+
+def test_the_two_observations_of_a_prompt_are_three_or_four_days_apart():
+    """同じ質問の観測が隣り合う日に寄ると、週の中の変動を拾えない。"""
+    days = {}
+    for index, day in enumerate(THREE_WEEKS):
+        for pid in _gemini_ids(day):
+            days.setdefault(pid, []).append(index)
+    gaps = {b - a for seen in days.values() for a, b in zip(seen, seen[1:])}
+    assert gaps <= {3, 4}, sorted(gaps)
 
 
 def test_claude_observes_all_47_on_monday_and_thursday_only():
@@ -90,57 +203,6 @@ def test_daily_llm_days_are_tuesday_thursday_saturday():
     assert [d.weekday() for d in WEEK if settings.is_daily_llm_day(d.isoformat())] == [1, 3, 5]
 
 
-def _days(start, end):
-    day = start
-    while day <= end:
-        yield day
-        day += dt.timedelta(days=1)
-
-
-@pytest.mark.parametrize("day", list(_days(dt.date(2026, 9, 1), dt.date(2026, 12, 31))),
-                         ids=str)
-def test_no_day_plans_more_than_the_gemini_limit(day):
-    """計画本数(日次 + 月次 + 実験)は毎日20以内で、最低1本は余りを残す。"""
-    budget = settings.gemini_requests_on(day.isoformat())
-    assert budget["total"] <= 20 and budget["spare"] >= 1, budget
-    assert budget["experiment"] <= budget["experiment_budget"], budget
-
-
-def test_the_tightest_days_are_the_first_week_wednesday_and_thursday():
-    # 第1水: 実験13 + 月次A 6 = 19 / 第1木: 実験5 + 日次7 + 月次B 6 = 18
-    assert settings.gemini_requests_on("2026-10-07")["total"] == 19
-    assert settings.gemini_requests_on("2026-10-01")["total"] == 18
-    # 通常の週はどの日も18以下
-    assert max(settings.gemini_requests_on(d.isoformat())["total"] for d in WEEK) == 18
-
-
-def test_gemini_retries_stay_within_the_days_spare(monkeypatch, tmp_path):
-    """余りが2本なら、失敗が5件あっても取り直しは2回まで。"""
-    calls = []
-
-    def still_failing(record, question, attempts, on_daily_quota=None):
-        calls.append(record["prompt_id"])
-        record["error"] = "503 UNAVAILABLE"
-        return False
-
-    monkeypatch.setattr(collect_llm, "_attempt", still_failing)
-    monkeypatch.setattr(collect_llm, "_save", lambda record, out_dir: None)
-    records = [_record(prompt_id=p["id"], model="gemini", error="503 UNAVAILABLE")
-               for p in PROMPTS[:5]]
-    by_id = {p["id"]: p for p in PROMPTS[:5]}
-    used = run_experiment.retry_within_budget(records, by_id, tmp_path, budget=2, cooldown=0)
-    assert used == 2 and len(calls) == 2
-
-
-def test_gemini_retries_stop_at_the_daily_quota(monkeypatch, tmp_path):
-    monkeypatch.setattr(collect_llm, "_save", lambda record, out_dir: None)
-    records = [_record(prompt_id="E01", model="gemini",
-                       error="429 RESOURCE_EXHAUSTED GenerateRequestsPerDayPerProjectPerModel")]
-    used = run_experiment.retry_within_budget(records, {"E01": PROMPTS[0]}, tmp_path,
-                                              budget=5, cooldown=0)
-    assert used == 0
-
-
 def test_collect_can_run_without_inline_retries_or_sweep(monkeypatch, tmp_path):
     monkeypatch.setenv("GEMINI_API_KEY", "x")
     calls = []
@@ -150,7 +212,7 @@ def test_collect_can_run_without_inline_retries_or_sweep(monkeypatch, tmp_path):
         raise RuntimeError("503 UNAVAILABLE")
 
     monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini", boom)
-    got = collect_llm.collect("2026-09-15", prompts=PROMPTS[:2], out_dir=tmp_path,
+    got = collect_llm.collect("2026-09-21", prompts=PROMPTS[:2], out_dir=tmp_path,
                               models=["gemini"], attempts=1, sweep=False)
     assert len(calls) == 2 and all(r["error"] for r in got)
 
@@ -226,8 +288,8 @@ def test_collect_runs_only_the_requested_model(monkeypatch, tmp_path):
 def test_observe_flags_a_model_that_could_not_run(monkeypatch, tmp_path):
     monkeypatch.setattr(collect_llm, "collect", lambda *a, **k: [])
     failures = []
-    plan = settings.experiment_plan("2026-09-14")          # 月曜: gemini 12 / claude 47
-    run_experiment.observe("2026-09-14", plan, tmp_path, failures)
+    plan = settings.experiment_plan(START.isoformat())    # 月曜: gemini 13 / claude 47
+    run_experiment.observe(START.isoformat(), plan, tmp_path, failures)
     assert len(failures) == 2
 
 
@@ -275,5 +337,244 @@ def test_the_experiment_workflow_runs_on_the_observation_weekdays():
     triggers = doc.get(True) or doc.get("on")
     # Gemini が毎日あるので毎日走らせる(23:00 UTC = 翌 08:00 JST)
     assert triggers["schedule"] == [{"cron": "0 23 * * *"}]
-    needed = set(settings.EXPERIMENT_GEMINI_GROUPS) | set(settings.EXPERIMENT_CLAUDE_WEEKDAYS)
-    assert needed == set(range(7))
+    # どの曜日にも観測がある(巡回は曜日ではなく開始日からの日数で決まる)
+    assert all(settings.experiment_daily_count(d.isoformat()) > 0 for d in WEEK)
+
+
+def test_the_workflow_commits_the_experiment_journal():
+    text = (settings.ROOT_DIR / ".github" / "workflows" / "experiment.yml").read_text(
+        encoding="utf-8")
+    assert "data/experiment_journal.csv" in text, "欠測の記録が commit されずに消える"
+
+
+# --- 5. 503 と 429 の分岐・終了コード・実験日誌 -----------------------------------
+# 実際に data/raw に記録されていたエラー文面。
+GEMINI_503 = ("503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is "
+              "currently experiencing high demand.', 'status': 'UNAVAILABLE'}}")
+GEMINI_429 = ("429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'details': [{'violations': "
+              "[{'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier'}]}]}}")
+AUTH_ERROR = "401 UNAUTHENTICATED: API key not valid"
+
+
+@pytest.fixture
+def no_sleeping(monkeypatch):
+    """待ち時間を記録するだけにして、テストを実時間で止めない。"""
+    slept = []
+    monkeypatch.setattr(collect_llm.time, "sleep", slept.append)
+    return slept
+
+
+def test_the_reason_codes_separate_503_from_429():
+    assert collect_llm.miss_reason(GEMINI_503) == "unavailable"
+    assert collect_llm.miss_reason(GEMINI_429) == "quota"
+    assert collect_llm.miss_reason(AUTH_ERROR) == "permanent"
+    assert collect_llm.miss_reason("something else") == "error"
+    assert collect_llm.miss_reason(None) == ""
+
+
+def test_a_503_is_retried_three_times_with_5_10_20_second_backoff(no_sleeping):
+    """一時的な混雑。初回 + 3回で、待ちの合計35秒。実測の障害窓20〜90秒を跨ぐため。"""
+    calls = []
+
+    def busy():
+        calls.append(1)
+        raise Exception(GEMINI_503)
+
+    with pytest.raises(Exception):
+        collect_llm._with_retry(busy, label="E01/gemini")
+    assert len(calls) == 4, "初回 + リトライ3回"
+    assert no_sleeping == [5, 10, 20]
+
+
+def test_a_429_is_not_retried_at_all(no_sleeping):
+    """枠切れ。取り直しても戻らず、投げるだけ枠を食う。プロトコルどおり欠測にする。"""
+    calls = []
+
+    def over():
+        calls.append(1)
+        raise Exception(GEMINI_429)
+
+    with pytest.raises(Exception):
+        collect_llm._with_retry(over, label="E01/gemini")
+    assert len(calls) == 1 and no_sleeping == []
+
+
+def _gemini_record(error):
+    return dict(_record(prompt_id="E01", model="gemini", error=error),
+                model_name="gemini-2.5-flash")
+
+
+def test_the_sweep_takes_two_more_runs_at_60_and_180_seconds(no_sleeping, tmp_path,
+                                                             monkeypatch):
+    calls = []
+
+    def busy(text, model):
+        calls.append(1)
+        raise Exception(GEMINI_503)
+
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini", busy)
+    collect_llm._sweep([_gemini_record(GEMINI_503)], PROMPTS[:1], tmp_path,
+                       delays=run_experiment.EXPERIMENT_SWEEP_DELAYS)
+    assert no_sleeping == [60.0, 180.0]
+    assert len(calls) == 2, "掃き直しは1周につき1回ずつ"
+
+
+def test_the_sweep_leaves_a_429_alone(no_sleeping, tmp_path, monkeypatch):
+    calls = []
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini",
+                        lambda text, model: calls.append(1) or ("x", []))
+    assert collect_llm._sweep([_gemini_record(GEMINI_429)], PROMPTS[:1], tmp_path,
+                              delays=(60.0, 180.0)) == 0
+    assert not calls, "枠切れは取り直さない"
+
+
+def test_the_retry_budget_stops_the_retries_when_the_spare_runs_out(no_sleeping):
+    """枠の残りを見て自動調整する。余り2本なら、503 でも追加は2回まで。"""
+    calls = []
+
+    def busy():
+        calls.append(1)
+        raise Exception(GEMINI_503)
+
+    budget = collect_llm.RetryBudget(2)
+    with pytest.raises(Exception):
+        collect_llm._with_retry(busy, label="E01/gemini", attempts=10, budget=budget)
+    assert len(calls) == 3, "初回 + 余りの2回"
+    assert budget.remaining == 0 and budget.used == 2
+
+
+@pytest.mark.parametrize("offset", [0, 1], ids=["月(余り6)", "火(余り0)"])
+def test_the_retries_never_push_the_day_past_the_gemini_limit(offset, monkeypatch,
+                                                              tmp_path, no_sleeping):
+    """全部 503 でも、投げる合計はその日の余りまで。20は超えない。"""
+    monkeypatch.setenv("GEMINI_API_KEY", "x")
+    calls = []
+
+    def busy(text, model):
+        calls.append(1)
+        raise Exception(GEMINI_503)
+
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini", busy)
+    date = (START + dt.timedelta(days=offset)).isoformat()
+    quota = settings.gemini_requests_on(date)
+    plan = {"gemini": settings.experiment_plan(date)["gemini"]}
+    run_experiment.observe(date, plan, tmp_path, [], delays=(0.0, 0.0))
+    assert len(calls) == quota["experiment"] + quota["retry_budget"]
+    assert quota["daily"] + quota["monthly"] + len(calls) == settings.GEMINI_DAILY_REQUEST_LIMIT
+
+
+def test_one_transient_failure_fits_in_the_spare_of_a_day_without_the_daily_run(
+        monkeypatch, tmp_path, no_sleeping):
+    """月曜は余り6本。1本の 503 なら リトライ3回 + 掃き直し2回 が丸ごと収まる。"""
+    monkeypatch.setenv("GEMINI_API_KEY", "x")
+    date = START.isoformat()
+    plan = {"gemini": settings.experiment_plan(date)["gemini"]}
+    dead = plan["gemini"][0]["text"]
+    calls = []
+
+    def flaky(text, model):
+        calls.append(text)
+        if text == dead:
+            raise Exception(GEMINI_503)
+        return ("答え", [])
+
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini", flaky)
+    budget = collect_llm.RetryBudget(settings.gemini_requests_on(date)["retry_budget"])
+    records = run_experiment.observe(date, plan, tmp_path, [], budget=budget,
+                                     delays=run_experiment.EXPERIMENT_SWEEP_DELAYS)
+    assert no_sleeping == [5, 10, 20, 60.0, 180.0]
+    assert budget.used == 5 and budget.remaining == 1
+    assert [r["prompt_id"] for r in records if r.get("error")] == [plan["gemini"][0]["id"]]
+
+
+def _exit_code(monkeypatch, tmp_path, records, raising=None):
+    """main() をその日の観測結果だけ差し替えて走らせ、終了コードを返す。"""
+    monkeypatch.setattr(run_experiment, "DATA_RAW_EXPERIMENT_DIR", tmp_path)
+    monkeypatch.setattr(run_experiment, "EXPERIMENT_JOURNAL_FILE", tmp_path / "journal.csv")
+
+    def fake_observe(date, plan, out_dir, failures, **kwargs):
+        if raising:
+            raise RuntimeError(raising)
+        return records
+
+    monkeypatch.setattr(run_experiment, "observe", fake_observe)
+    monkeypatch.setattr(sys, "argv",
+                        ["run_experiment.py", "--date", START.isoformat(), "--no-sheets"])
+    with pytest.raises(SystemExit) as exited:
+        run_experiment.main()
+    return exited.value.code
+
+
+def _missing(prompt_id, error, date=None):
+    return _record(prompt_id=prompt_id, model="gemini",
+                   date=date or START.isoformat(),
+                   error=error, miss_reason=collect_llm.miss_reason(error), attempts=1)
+
+
+def _observed(prompt_id):
+    """観測できた行。summary_lines が読む判定列まで入れておく。"""
+    rec = _record(prompt_id=prompt_id, model="gemini", date=START.isoformat())
+    rec.update(experiment.evaluate(rec, TARGET))
+    return rec
+
+
+def test_a_day_whose_misses_are_all_429_exits_zero(monkeypatch, tmp_path):
+    """枠切れだけなら警告に留める。毎回失敗通知が飛ぶと本当の異常が埋もれる。"""
+    assert _exit_code(monkeypatch, tmp_path,
+                      [_missing("E01", GEMINI_429), _missing("E02", GEMINI_429)]) == 0
+
+
+def test_a_day_with_no_misses_exits_zero(monkeypatch, tmp_path):
+    assert _exit_code(monkeypatch, tmp_path, [_observed("E01")]) == 0
+
+
+def test_a_503_miss_that_survived_the_retries_exits_one(monkeypatch, tmp_path):
+    assert _exit_code(monkeypatch, tmp_path, [_missing("E01", GEMINI_503)]) == 1
+
+
+def test_a_429_miss_next_to_a_503_miss_still_exits_one(monkeypatch, tmp_path):
+    assert _exit_code(monkeypatch, tmp_path,
+                      [_missing("E01", GEMINI_429), _missing("E02", GEMINI_503)]) == 1
+
+
+def test_an_auth_error_exits_one(monkeypatch, tmp_path):
+    assert _exit_code(monkeypatch, tmp_path, [_missing("E01", AUTH_ERROR)]) == 1
+
+
+def test_a_code_exception_exits_one(monkeypatch, tmp_path):
+    assert _exit_code(monkeypatch, tmp_path, [], raising="バグ") == 1
+
+
+def test_the_journal_records_each_miss_with_its_reason_code(tmp_path):
+    path = tmp_path / "journal.csv"
+    run_experiment.write_journal(START.isoformat(),
+                                 [_missing("E01", GEMINI_429),
+                                  _missing("E02", GEMINI_503),
+                                  _record(prompt_id="E03", model="gemini")],
+                                 path=path)
+    with open(path, encoding="utf-8", newline="") as fh:
+        rows = list(csv.DictReader(fh))
+    assert [(r["experiment_id"], r["reason"]) for r in rows] == [
+        ("E01", "quota"), ("E02", "unavailable")]
+    assert rows[0]["date"] == START.isoformat() and rows[0]["model"] == "gemini"
+    assert "429" in rows[0]["detail"] and "\n" not in rows[0]["detail"]
+    assert rows[0]["attempts"] == "1"
+
+
+def test_the_journal_replaces_the_rows_of_a_day_that_is_run_again(tmp_path):
+    """同じ日を取り直したとき、古い欠測が残ると件数が二重に数えられる。"""
+    path = tmp_path / "journal.csv"
+    run_experiment.write_journal("2026-09-21", [_missing("E01", GEMINI_503)], path=path)
+    run_experiment.write_journal("2026-09-22",
+                                 [_missing("E09", GEMINI_429, date="2026-09-22")],
+                                 path=path)
+    run_experiment.write_journal("2026-09-21", [], path=path)
+    with open(path, encoding="utf-8", newline="") as fh:
+        rows = list(csv.DictReader(fh))
+    assert [(r["date"], r["experiment_id"]) for r in rows] == [("2026-09-22", "E09")]
+
+
+def test_the_journal_columns_are_the_agreed_ones():
+    assert run_experiment.JOURNAL_HEADERS == [
+        "date", "experiment_id", "model", "reason", "detail", "attempts"]
+    assert settings.EXPERIMENT_JOURNAL_FILE.name == "experiment_journal.csv"

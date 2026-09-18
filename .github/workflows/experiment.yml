@@ -2,22 +2,25 @@ name: experiment
 
 on:
   schedule:
-    # LLMO効果測定実験(2026-09-14)。何を回すかは曜日から settings.experiment_plan が決める。
-    # Gemini は週2回(47本を2周に割って毎日)、Claude は 月・木 に47本。
-    #   月 E01〜E18 + Claude47 / 火 E19〜E29 / 水 E30〜E42 / 木 E43〜E47 + Claude47
-    #   金 E01〜E18 / 土 E19〜E29 / 日 E30〜E47
+    # LLMO効果測定実験。何を回すかは settings.experiment_plan が日付から決める。
+    # Gemini は47本を輪にして、開始日(EXPERIMENT_CYCLE_START)から毎日
+    # その日の本数だけ進める。本数は min(14, 20 − 日次 − 月次) で、
+    # 月水金日14本 / 火木土13本(通常の週95本、同じ質問は3〜4日おき)。
+    # 取り直しの枠は毎日空けず、余り(20 − 計画本数)を 503 が出た日に使う。
+    # 曜日ごとのID範囲は持たないので、ここに書き写す表も無い。
+    # Claude は 月・木 に47本(Gemini の枠と無関係)。
     # 08:00 JST = 前日 23:00 UTC。毎日走る。
     # 日次(07:00 JST)・月次(07:30 JST)のあとに走らせ、git push がぶつからないようにする。
     - cron: '0 23 * * *'
   workflow_dispatch:
     inputs:
       date:
-        description: '観測日 (YYYY-MM-DD、空なら当日JST)。曜日で観測する本数が決まる'
+        description: '観測日 (YYYY-MM-DD、空なら当日JST)。日付で観測する本数と割当が決まる'
         required: false
         default: ''
 
 permissions:
-  contents: write      # data/raw/experiment/ のcommitに必要
+  contents: write      # data/raw/experiment/ と実験日誌のcommitに必要
 
 concurrency:
   group: llmo-experiment
@@ -52,12 +55,13 @@ jobs:
           python run_experiment.py \
             ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
 
-      - name: Commit experiment raw answers
+      # 実験日誌(欠測の記録)は観測が失敗した日ほど必要なので always() で commit する。
+      - name: Commit experiment raw answers and journal
         if: always()
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/raw/experiment
+          git add data/raw/experiment data/experiment_journal.csv
           if git diff --cached --quiet; then
             echo "No new experiment answers to commit."
           else
@@ -71,7 +75,9 @@ jobs:
         if: failure() && env.SLACK_WEBHOOK_URL != ''
         run: |
           RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-          TEXT="*LLMO実験アラート*\n*❌ ワークフロー失敗*\n• experiment.yml が異常終了しました(観測の欠測を含む)\n<$RUN_URL|実行ログを開く>"
+          # 429(枠切れ)だけの欠測は run_experiment が exit 0 にするので、ここには来ない。
+          # 通知が飛ぶのは 503 の欠測が残った日・認証エラー・コード例外のいずれか。
+          TEXT="*LLMO実験アラート*\n*❌ ワークフロー失敗*\n• experiment.yml が異常終了しました(503の欠測・認証エラー・例外)\n<$RUN_URL|実行ログを開く>"
           printf '{"text":"%s"}' "$TEXT" > payload.json
           curl -sS -X POST -H 'Content-type: application/json' \
             --data @payload.json "$SLACK_WEBHOOK_URL" > /dev/null

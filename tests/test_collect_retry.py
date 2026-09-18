@@ -134,7 +134,7 @@ def test_the_daily_quota_stops_retrying_and_reports_it(no_sleeping):
 
     with pytest.raises(Exception):
         collect_llm._with_retry(over, label="t",
-                                on_daily_quota=lambda: flagged.append(True))
+                                on_quota=lambda: flagged.append(True))
     assert len(calls) == 1
     assert flagged == [True]
 
