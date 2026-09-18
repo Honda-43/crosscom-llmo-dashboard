@@ -63,8 +63,11 @@ def test_there_are_47_prompts_in_order_with_unique_articles():
 
 # --- 2. 巡回の割当と Gemini の枠 -----------------------------------------------
 START = dt.date.fromisoformat(settings.EXPERIMENT_CYCLE_START)
-WEEK = [START + dt.timedelta(days=i) for i in range(7)]          # 月〜日
 THREE_WEEKS = [START + dt.timedelta(days=i) for i in range(21)]
+# 巡回の開始日は曜日を選ばない(本数は日付から決まる)。曜日ごとの本数を見る
+# テストだけは、開始日以降の最初の月曜から7日を使う。
+MONDAY = START + dt.timedelta(days=(7 - START.weekday()) % 7)
+WEEK = [MONDAY + dt.timedelta(days=i) for i in range(7)]         # 月〜日
 
 
 def _gemini_ids(day):
@@ -100,9 +103,9 @@ def test_the_retry_budget_is_what_is_left_over_not_a_daily_set_aside():
         assert quota["retry_budget"] == (settings.GEMINI_DAILY_REQUEST_LIMIT
                                          - quota["total"]), quota
     # 日次のない日は6本(= 20 − 14)、日次7本の日は0本
-    assert settings.gemini_requests_on(START.isoformat())["retry_budget"] == 6
+    assert settings.gemini_requests_on(MONDAY.isoformat())["retry_budget"] == 6
     assert settings.gemini_requests_on(
-        (START + dt.timedelta(days=1)).isoformat())["retry_budget"] == 0
+        (MONDAY + dt.timedelta(days=1)).isoformat())["retry_budget"] == 0
 
 
 def test_the_first_week_of_a_month_gives_way_to_the_monthly_batches():
@@ -288,8 +291,8 @@ def test_collect_runs_only_the_requested_model(monkeypatch, tmp_path):
 def test_observe_flags_a_model_that_could_not_run(monkeypatch, tmp_path):
     monkeypatch.setattr(collect_llm, "collect", lambda *a, **k: [])
     failures = []
-    plan = settings.experiment_plan(START.isoformat())    # 月曜: gemini 13 / claude 47
-    run_experiment.observe(START.isoformat(), plan, tmp_path, failures)
+    plan = settings.experiment_plan(MONDAY.isoformat())   # 月曜: gemini 14 / claude 47
+    run_experiment.observe(MONDAY.isoformat(), plan, tmp_path, failures)
     assert len(failures) == 2
 
 
@@ -455,7 +458,7 @@ def test_the_retries_never_push_the_day_past_the_gemini_limit(offset, monkeypatc
         raise Exception(GEMINI_503)
 
     monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini", busy)
-    date = (START + dt.timedelta(days=offset)).isoformat()
+    date = (MONDAY + dt.timedelta(days=offset)).isoformat()
     quota = settings.gemini_requests_on(date)
     plan = {"gemini": settings.experiment_plan(date)["gemini"]}
     run_experiment.observe(date, plan, tmp_path, [], delays=(0.0, 0.0))
@@ -467,7 +470,7 @@ def test_one_transient_failure_fits_in_the_spare_of_a_day_without_the_daily_run(
         monkeypatch, tmp_path, no_sleeping):
     """月曜は余り6本。1本の 503 なら リトライ3回 + 掃き直し2回 が丸ごと収まる。"""
     monkeypatch.setenv("GEMINI_API_KEY", "x")
-    date = START.isoformat()
+    date = MONDAY.isoformat()
     plan = {"gemini": settings.experiment_plan(date)["gemini"]}
     dead = plan["gemini"][0]["text"]
     calls = []
@@ -564,17 +567,79 @@ def test_the_journal_records_each_miss_with_its_reason_code(tmp_path):
 def test_the_journal_replaces_the_rows_of_a_day_that_is_run_again(tmp_path):
     """同じ日を取り直したとき、古い欠測が残ると件数が二重に数えられる。"""
     path = tmp_path / "journal.csv"
-    run_experiment.write_journal("2026-09-21", [_missing("E01", GEMINI_503)], path=path)
-    run_experiment.write_journal("2026-09-22",
-                                 [_missing("E09", GEMINI_429, date="2026-09-22")],
-                                 path=path)
-    run_experiment.write_journal("2026-09-21", [], path=path)
+    first, second = START.isoformat(), (START + dt.timedelta(days=1)).isoformat()
+    run_experiment.write_journal(first, [_missing("E01", GEMINI_503, date=first)], path=path)
+    run_experiment.write_journal(second, [_missing("E09", GEMINI_429, date=second)], path=path)
+    run_experiment.write_journal(first, [], path=path)
     with open(path, encoding="utf-8", newline="") as fh:
         rows = list(csv.DictReader(fh))
-    assert [(r["date"], r["experiment_id"]) for r in rows] == [("2026-09-22", "E09")]
+    assert [(r["date"], r["experiment_id"]) for r in rows] == [(second, "E09")]
 
 
 def test_the_journal_columns_are_the_agreed_ones():
     assert run_experiment.JOURNAL_HEADERS == [
         "date", "experiment_id", "model", "reason", "detail", "attempts"]
     assert settings.EXPERIMENT_JOURNAL_FILE.name == "experiment_journal.csv"
+
+
+# --- 6. 503欠測の監視(週次サマリの1行) -----------------------------------------
+WATCH_END = "2026-10-11"          # 週次が走る日曜。直近週は 10-05〜10-11
+
+
+def _journal(tmp_path, rows):
+    """(日付, 理由) の並びから実験日誌を作る。"""
+    path = tmp_path / "journal.csv"
+    records = [_missing(f"E{i:02d}", GEMINI_503 if reason == "unavailable" else GEMINI_429,
+                        date=date)
+               for i, (date, reason) in enumerate(rows, start=1)]
+    run_experiment.write_journal("", records, path=path)
+    return path
+
+
+def test_the_watch_counts_only_503_misses_in_the_last_two_weeks(tmp_path):
+    path = _journal(tmp_path, [
+        ("2026-10-11", "unavailable"),      # 直近週
+        ("2026-10-05", "unavailable"),      # 直近週のはじめ
+        ("2026-10-05", "quota"),            # 429 は数えない
+        ("2026-10-04", "unavailable"),      # 前の週の終わり
+        ("2026-09-28", "unavailable"),      # 前の週のはじめ
+        ("2026-09-27", "unavailable"),      # 2週より前。数えない
+    ])
+    assert run_experiment.unavailable_by_week(WATCH_END, path=path) == [2, 2]
+
+
+def test_the_watch_warns_when_two_weeks_running_go_over_five(tmp_path):
+    path = _journal(tmp_path, [("2026-10-11", "unavailable")] * 6
+                    + [("2026-10-04", "unavailable")] * 7)
+    line = run_experiment.unavailable_watch_line(WATCH_END, path=path)
+    assert line.startswith("- ⚠️")
+    assert "7件 / 6件" in line, line
+    assert "2週続けて週5件" in line
+
+
+def test_one_bad_week_alone_is_not_a_warning(tmp_path):
+    """1週だけ多いのは provider 側の波。枠の配分の話と混ぜない。"""
+    path = _journal(tmp_path, [("2026-10-11", "unavailable")] * 9
+                    + [("2026-10-04", "unavailable")] * 2)
+    line = run_experiment.unavailable_watch_line(WATCH_END, path=path)
+    assert not line.startswith("- ⚠️")
+    assert "2件 / 9件" in line, line
+
+
+def test_exactly_five_is_not_over_the_threshold(tmp_path):
+    path = _journal(tmp_path, [("2026-10-11", "unavailable")] * 5
+                    + [("2026-10-04", "unavailable")] * 5)
+    assert not run_experiment.unavailable_watch_line(WATCH_END, path=path).startswith("- ⚠️")
+
+
+def test_the_watch_says_zero_when_the_journal_does_not_exist_yet(tmp_path):
+    line = run_experiment.unavailable_watch_line(WATCH_END, path=tmp_path / "none.csv")
+    assert "0件 / 0件" in line and not line.startswith("- ⚠️")
+
+
+def test_quota_misses_never_trigger_the_warning(tmp_path):
+    """429 は枠切れ。取り直しの枠が足りているかとは別の話。"""
+    path = _journal(tmp_path, [("2026-10-11", "quota")] * 20
+                   + [("2026-10-04", "quota")] * 20)
+    line = run_experiment.unavailable_watch_line(WATCH_END, path=path)
+    assert not line.startswith("- ⚠️") and "0件 / 0件" in line

@@ -33,6 +33,7 @@ import generate_insight
 import looker_tabs
 import notify_slack
 import rules_engine
+import run_experiment
 import sheets_writer
 from settings import DATA_REPORTS_DIR
 
@@ -182,6 +183,14 @@ def main() -> None:
             f"- Report source: {source}",
             f"- Report length: {len(report_md)} chars",
         ]
+
+    # 実験の503欠測の監視(2026-09-18)。取り直しの枠が足りているかは
+    # 1日では分からないので、週次で2週ぶんを並べて見る。警告どまりで
+    # 週次の成否は変えない — 週次の失敗は週次の仕事の失敗を指すべきなので。
+    watch = _run("unavailable_watch",
+                 lambda: run_experiment.unavailable_watch_line(date), failures)
+    if watch:
+        lines.append(watch)
 
     if failures:
         lines += ["", "### ⚠️ Failed phases"] + [f"- {f}" for f in failures]

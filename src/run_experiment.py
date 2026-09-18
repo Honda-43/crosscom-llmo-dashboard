@@ -59,6 +59,12 @@ WARN_ONLY_REASONS = (collect_llm.REASON_QUOTA,)
 
 JOURNAL_HEADERS = ["date", "experiment_id", "model", "reason", "detail", "attempts"]
 
+# 503由来の欠測の監視(2026-09-18)。火・木・土は日次7本と合わせて枠が
+# ちょうど20になり、取り直しの余りが0になる。1週だけなら provider 側の
+# 一過性だが、2週続けて週5件を超えるなら枠の配分そのものが足りていない。
+UNAVAILABLE_WEEKLY_THRESHOLD = 5
+UNAVAILABLE_ALERT_WEEKS = 2
+
 
 def _job_summary(lines: List[str]) -> None:
     print("\n".join(lines))
@@ -163,6 +169,52 @@ def write_journal(date: str, records: List[Dict[str, Any]],
             writer.writerow({k: row.get(k, "") for k in JOURNAL_HEADERS})
     print(f"[ok] 実験日誌: {date} の欠測 {len(rows)}件(累計 {len(everything)}件)")
     return len(rows)
+
+
+def read_journal(path: Optional[Path] = None) -> List[Dict[str, str]]:
+    """実験日誌を読む。まだ無ければ空(初回実行の前)。"""
+    path = Path(path if path is not None else EXPERIMENT_JOURNAL_FILE)
+    if not path.exists():
+        return []
+    with open(path, "r", encoding="utf-8", newline="") as fh:
+        return list(csv.DictReader(fh))
+
+
+def unavailable_by_week(date: str, weeks: int = UNAVAILABLE_ALERT_WEEKS,
+                        path: Optional[Path] = None) -> List[int]:
+    """``date`` で終わる直近 ``weeks`` 週の、503由来の欠測件数。古い週から並べる。
+
+    週は「``date`` を最終日とする7日」で切る。ISO週に合わせないのは、週次が
+    走る曜日が変わっても数え方が変わらないようにするため。
+    """
+    rows = [r for r in read_journal(path)
+            if (r.get("reason") or "") == collect_llm.REASON_UNAVAILABLE]
+    end = dt.date.fromisoformat(str(date)[:10])
+    counts = []
+    for index in range(weeks):
+        last = end - dt.timedelta(days=7 * index)
+        first = last - dt.timedelta(days=6)
+        counts.append(sum(1 for r in rows
+                          if first.isoformat() <= (r.get("date") or "") <= last.isoformat()))
+    return list(reversed(counts))
+
+
+def unavailable_watch_line(date: str, path: Optional[Path] = None,
+                           threshold: int = UNAVAILABLE_WEEKLY_THRESHOLD,
+                           weeks: int = UNAVAILABLE_ALERT_WEEKS) -> str:
+    """週次サマリに出す1行。件数は毎週出し、しきい値を超え続けたときだけ警告にする。
+
+    「今週だけ多い」は provider 側の波なので警告にしない。``weeks`` 週続けて
+    ``threshold`` 件を超えたら、取り直しの枠が足りていないと読む。
+    """
+    counts = unavailable_by_week(date, weeks, path)
+    shown = " / ".join(f"{c}件" for c in counts)
+    if all(c > threshold for c in counts):
+        return (f"- ⚠️ 実験の503欠測が{weeks}週続けて週{threshold}件を超えました"
+                f"(古い週から {shown})。火・木・土は Gemini の枠の余りが0で"
+                f"取り直せません。日次の観測日か1日の本数を見直してください")
+    return (f"- 実験の503欠測(直近{weeks}週・古い週から): {shown}"
+            f"(警告は週{threshold}件超が{weeks}週続いたとき)")
 
 
 def summary_lines(date: str, plan: Dict[str, List[Dict[str, Any]]],

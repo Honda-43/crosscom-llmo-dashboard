@@ -189,8 +189,10 @@ WEEKDAY_LABELS = ("月", "火", "水", "木", "金", "土", "日")
 
 EXPERIMENT_CLAUDE_WEEKDAYS = (0, 3)             # 月・木(Claude は Gemini の枠と無関係)
 # 実験の巡回はこの日から始まる。ここを動かすと以降の割当が丸ごとずれるので、
-# 実験期間の途中では変えない。
-EXPERIMENT_CYCLE_START = os.getenv("EXPERIMENT_CYCLE_START", "2026-09-21")
+# 実験期間の途中では変えない。2026-09-19 にしたのは、旧割当が 09-18 まで走って
+# おり、09-21 始まりだと 09-19・09-20 の Gemini 観測が0本になるため
+# (09-18 と質問が重なるが、同じ質問を複数回観測するのは設計どおり)。
+EXPERIMENT_CYCLE_START = os.getenv("EXPERIMENT_CYCLE_START", "2026-09-19")
 EXPERIMENT_DAILY_CAP = int(os.getenv("EXPERIMENT_DAILY_CAP", "14"))
 
 

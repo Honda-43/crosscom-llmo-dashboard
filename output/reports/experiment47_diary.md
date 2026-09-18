@@ -6,6 +6,7 @@
 - 対象：`config/prompts_experiment.csv` の47本
 - 観測：`llm_experiment` タブ（日次・claude / gemini）。ワークフローは `.github/workflows/experiment.yml`
 - 別系統の観測：`experiment_2x2/results/*.csv`（引用プローブ・claude のみ）
+- 欠測の理由別記録：`data/experiment_journal.csv`（quota=枠切れ / unavailable=503 の一時的な混雑。1行1件・自動追記）
 - 本文の変化の監視：`experiment_2x2/drift_check.py`（毎週月曜）
 
 各行の「確かめ方」は、書いた内容を何で裏取りしたか。裏が取れていないものはそう書く。

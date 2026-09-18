@@ -14,6 +14,7 @@ import collect_ahrefs
 import generate_insight
 import notify_slack
 import rules_engine
+import run_experiment
 import run_weekly
 import sheets_writer
 
@@ -68,6 +69,12 @@ def wired(monkeypatch, tmp_path):
     # Phase 6: citation_gap 更新後の lk_scatter 再集計
     monkeypatch.setattr(run_weekly, "_refresh_scatter",
                         lambda date: calls.__setitem__("scatter", date) or 0)
+    # 実験の503欠測の監視は、実験日誌を tmp に向けてから読ませる
+    monkeypatch.setattr(run_experiment, "EXPERIMENT_JOURNAL_FILE",
+                        tmp_path / "experiment_journal.csv")
+    calls["summary"] = []
+    monkeypatch.setattr(run_weekly, "_job_summary",
+                        lambda lines: calls["summary"].extend(lines))
     return calls, tmp_path
 
 
@@ -195,3 +202,52 @@ def test_no_slack_flag_builds_without_posting(wired, monkeypatch):
     run(["--date", "2026-08-17", "--no-slack"], monkeypatch)
     assert calls["sheet"], "保存はする"
     assert not calls["posted"], "投稿はしない"
+
+
+def _journal(tmp_path, dates):
+    """(日付, 理由) の並びから実験日誌を作る。"""
+    path = tmp_path / "experiment_journal.csv"
+    rows = [{"date": date, "experiment_id": f"E{i:02d}", "model": "gemini",
+             "reason": reason, "detail": "503", "attempts": 6}
+            for i, (date, reason) in enumerate(dates, start=1)]
+    run_experiment.write_journal("", [], path=path)
+    with open(path, "a", encoding="utf-8", newline="") as fh:
+        for row in rows:
+            print(",".join(str(row[k]) for k in run_experiment.JOURNAL_HEADERS),
+                  file=fh)
+    return path
+
+
+def test_the_weekly_summary_carries_the_experiment_503_watch(wired, monkeypatch):
+    """取り直しの枠が足りているかは1日では分からないので、週次で2週ぶんを見る。"""
+    calls, tmp_path = wired
+    monkeypatch.setattr(generate_insight, "generate",
+                        lambda stats, **kw: {"report_md": "本文", "source": "llm"})
+    _journal(tmp_path, [("2026-08-17", "unavailable")])
+
+    assert run(["--date", "2026-08-17", "--no-slack"], monkeypatch) == 0
+    watch = [line for line in calls["summary"] if "503欠測" in line]
+    assert len(watch) == 1, calls["summary"]
+    assert "0件 / 1件" in watch[0] and not watch[0].startswith("- ⚠️")
+
+
+def test_two_bad_weeks_turn_the_watch_line_into_a_warning(wired, monkeypatch):
+    calls, tmp_path = wired
+    monkeypatch.setattr(generate_insight, "generate",
+                        lambda stats, **kw: {"report_md": "本文", "source": "llm"})
+    _journal(tmp_path, [("2026-08-17", "unavailable")] * 6
+             + [("2026-08-10", "unavailable")] * 6)
+
+    assert run(["--date", "2026-08-17", "--no-slack"], monkeypatch) == 0, "警告どまり"
+    watch = [line for line in calls["summary"] if "503欠測" in line]
+    assert watch[0].startswith("- ⚠️"), watch
+    assert "6件 / 6件" in watch[0]
+
+
+def test_a_missing_journal_does_not_fail_the_weekly_run(wired, monkeypatch):
+    calls, _ = wired
+    monkeypatch.setattr(generate_insight, "generate",
+                        lambda stats, **kw: {"report_md": "本文", "source": "llm"})
+    assert run(["--date", "2026-08-17", "--no-slack"], monkeypatch) == 0
+    assert any("503欠測" in line for line in calls["summary"])
+
