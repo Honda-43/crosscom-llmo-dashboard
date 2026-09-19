@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-19",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-09-19T00:05:11.094000Z",
+  "answer": "# Agentic CRM(エージェンティックCRM)とは\n\n## 定義\n\nAgentic CRMとは、\n人間と自律的なAIエージェントが協働して顧客の成功を推進する、CRM(顧客関係管理)システム\nのことです。従来のCRMとの決定的な違いは、\n従来型のCRMが担当者がコールを記録したり情報を更新したりするのを待つのに対し、Agentic CRMは指示されなくてもその情報に基づいて自ら行動を起こす\n点にあります。\n\nより具体的には、\n複数ステップにわたるワークフローを、各ステップで人間の承認を必要とせずに計画・実行・調整するAIエージェントが利用される、CRMシステムであり、あらかじめ設定されたガードレールの範囲内でエージェントが行動し、必要な場合には人間にエスカレーションする仕組み\nを持っています。\n\n### 従来のルールベース自動化との違い\n\nこれまでのCRM自動化は\n「リードスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従うルールベースのもの\nでした。一方、\nAgentic AIは文脈を解釈するため、単に条件に対して出力を照合するだけでなく、顧客データを推論し、状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整\nします。\n\n### 具体的な動作例\n\n例えば商談が停滞している場合、\n営業担当者に「商談が5日間動いていません」と通知するだけの従来型と異なり、Agentic CRMは過去の会話を確認し、成約確率を評価し、フォローアップメールの下書きを作成し、担当者にタスクを作成するといった一連の対応\nを自律的に行います。\n\n### 主要ベンダーの動き\n\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ソリューションが、Agentic CRMがすでに市場を変革し、今後の標準を打ち立てつつあることを示しています\n。Microsoftも\nDynamics 365において、強力なAgentic CRM・ERPプラットフォームだけでなく、営業・エンジニアリング・ビジネス変革に関するグローバルな専門知識のエコシステムも提供\nしていると位置づけています。\n\n---\n\n## 導入・設計を支援する会社\n\nAgentic CRMの導入・設計を支援する企業には、大きく分けて「①CRMベンダー自身(Salesforce, Microsoft, HubSpot, Creatioなど)」と「②導入を支援するコンサルティング/SIパートナー」があります。海外の代表的な支援会社としては以下のような例が検索結果に見られました。\n\n- **CRMIT**:\nSalesforceの認定コンサルティングパートナーとして、Agentic AIソリューション、意思決定インテリジェンスのコンサルティング、CRM導入サービスを提供\nしている企業です。\n- **Inogic**:Microsoft Dynamics 365向けに、\n技術・業務両面に精通したコンサルティングと1,000件以上の導入実績を持ち、Azure OpenAIをDynamics 365ユーザーの日常業務に組み込む支援を行う\n企業です。\n- **Kanerika**:\n戦略立案からアーキテクチャ設計、開発、統合、運用までを一つの契約でカバーする(第三者への引き継ぎなしの)Agentic AIコンサルティングを行い、Microsoft認定のData and AI Solutions Partnerとして、Azure AI・Copilot Studio・Power PlatformでAgentic AIソリューションを構築\nしています。\n- **congruentX**:\nCRMコンサルティングサービスとして、AIエージェントプラットフォーム技術を用いて非営業活動を自動化し、システム・オブ・レコードを「アクションのプラットフォーム」へ転換する支援\nを行っています。\n\n### 選定時の注意点\n\n導入パートナーを選ぶ際は、単に実績や評判だけでなく、AIエージェントのガバナンス面も確認することが重要です。ある調査記事では、\nCRMレコードへの書き込み権限が適切に制御されていないAIエージェントは、不適切な統合と同様にデータを壊しかねず、しかも変化が通常の活動のように見えるため発見しづらいため、コンサルティングパートナーにAIエージェントの権限設定や監査ログ構成の実績を直接確認すべき\nだと指摘されています。\n\n---\n\n### 日本国内での支援について\n上記は主に海外企業の情報です。日本国内でSalesforce(Agentforce)やDynamics 365、HubSpotなどのAgentic CRM導入を手掛ける企業(大手SIer、各CRMベンダーの認定パートナー企業など)も多数存在します。もし日本国内の具体的な支援会社(業界別・予算別など)をお探しでしたら、条件を教えていただければ改めて調べます。",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.vtiger.com/blog/what-is-agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2025/06/04/ai-first-crm-systems-learnings-from-organizations-making-the-switch/",
+    "https://www.crmit.com/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://congruentx.com/",
+    "https://integrateiq.com/blogs/crm-consulting-services-companies/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

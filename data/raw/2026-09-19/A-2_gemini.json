@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-19",
+  "prompt_id": "A-2",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか",
+  "cep": "導入後の定着課題",
+  "timestamp": "2026-09-19T00:00:11.101423Z",
+  "answer": "Agentforceの現場への定着や活用にお困りの場合、専門的な支援を提供するコンサルティング会社がいくつか存在します。これらの企業は、Agentforceの導入から運用、そして現場での利活用を促進するための多様なサービスを提供しています。\n\n主な支援内容とサービスを提供している企業は以下の通りです。\n\n*   **株式会社メンバーズ**は、Agentforceの初期導入コンサルティングに加え、設計・実装・運用、内製化支援、社員育成、そして利活用・定着化支援までを一貫して提供しています。具体的には、現状業務のヒアリングや業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出し、投資対効果（ROI）の試算、利用状況の可視化と分析レポート提供、改善提案、トレーニングなどを行っています。\n*   **株式会社enucolor**は、Agentforceの導入支援として、初期導入コンサルティング、導入構築、活用および改善サポート、AIトレーニングを提供しています。\n*   **合同会社クロスコム**は、Agentforceの導入・定着支援に特化しており、貴社の目標から逆算して業務におけるAgentforceの役割を定義し、マーケティング、営業、サポートのユースケースに合わせて業務フローに組み込む支援を行います。導入後はカスタマーサクセスチームが利用状況と出力品質を継続的にモニタリングし、活用定着まで伴走します。\n*   **三菱総研DCS**は、Agentforce導入・活用支援サービスを提供しており、PoC（概念実証）を通じて効果を可視化しながら、Agentforceの活用範囲を段階的に拡大するアプローチを提案しています。\n*   **K2 Partnering Solutions**のAgentforceコンサルティングサービスでは、Agentforceのカスタマイズ、サードパーティシステムとの統合、Salesforce製品との連携、トレーニング、パフォーマンス分析、ガバナンスとコンプライアンスに関する支援を提供しています。\n*   **インフォテック・サービス**は、SalesforceおよびAgentforceの導入支援を行い、要件定義から構築・運用までをサポート。Agentforceに関する相談も認定資格者が受け付けています。\n*   **株式会社セラクCCC**は、Agentforceの導入、定着・活用支援に加えて、Salesforce製品全般の定着・活用、改善、運用、導入を人材常駐またはリモートで支援しています。\n*   **日立ソリューションズ**は、Salesforceの定着化支援サービスの一環として、Agentforceの導入・活用をトータルで支援しています。\n*   **バーチャレクス・コンサルティング株式会社**は、Agentforceの導入から定着化、活用促進までの包括的な支援サービスを提供しており、初期導入プラン、伴走支援プラン、構想策定支援プランがあります。\n\nこれらの企業は、Agentforceの導入効果を最大化し、現場に定着させるための専門知識とサービスを持っています。貴社の具体的な課題や求める支援内容に応じて、これらのコンサルティング会社に相談し、比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH3WqWr-XGlZhtY2iytgXSY4eRzM7CTZfimAhUvYIb6TDV1avfwf3zSpN-aNP4-Ey5R-z-XcCe_vbpSI_YiBHG9LfwYOf7lIA3UmSMsqS--ljY5gG9GX5R2r31Aay1cCVR9Rt762TIzgJUNVCyrbDUP",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHo9DGBEJPFK6Mf5hp2pUsHy8cXGq3PQJ-Me7RuOG0u7l4Vj5mECJwkzAjeM4BuyW4uwNhnc09Ql1ir0OLTBqFXRALttMBpYuJRx01USXVk4TZhTdIPArEYmvpcmoHV2MVRBEJnuw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcvMcaDLi1fQzeYoQ0FF3r2Nuxi8E7HEbuRGaL85Y3bq8dHhAJoZaCG9OQ9FMApDgu9tpOJDKfOVg_01VLsXiciCw6GW47k-Gko1ZV0a-Pa25bwTQUTMjkO4oZ-bw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGf1EGGH43ToDDBMnSj001KU2uv4HSYLGi9764Jbjm2OsDsoInFa-cPutc3tzGepmsxyAnvUFJBvaxEey2VlpWpcedvuSiSkZSksTK7irnA9ii0zTjNzqeuwm2qB6_gtNek2aACSeo7QdR0",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF7-iTICKQEAQdKJDH3ROTZobQvuSIe5OevrI52vC9lD-n1zrmFsqb4qIRRhffQXDm7wvbT7UByuJmROpX9Y_cHnnP6VRrWgddOGKEyByw0vbYF2ao_zFGr1NHll75WIvObLHjE1atMog==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGAS-Uev8DIhdWxbHSzUUK-boLCE-HiDeLNhYI1KYXxpzfIyQWIY-Xg0CZiqmY3GjCkD_ydtePATBpbr52KLtC1-MiFDJR7WkP-jyg2gELF-RlKPWraMTX3OWLEIN0bqUkh95XZgVDljZBm_6-WX8hSc4K5GRfFIOC-lLfW27mSQIxUrYsX9eoqysxnJytUCuS7o--Z07N9WyRwpl6QN0MBrwHuqlVKM5FScbPSBUE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHPk9P1KlfTbo71Rs1iN0FVar0N_xgDFeZu8jjpaCXlsRsktiz2fJ3YT0FiVlEFlQEAxm2xRqueWXl3WG3RDcXxl9RbNyoijWLO4ZQ38VHUJUf5zqiOX2KZo-PmYga6NxEzIvclCu-rLvlLJzBeyfR04C8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFqUuewtsTyFUpLU5d3Q8bz79ZYL4lJye76aL7qERaBcuaoHpXJR7av_NcKw_GWwSbWpuUPgjnJ91blIOOwqP3OUr-Eblz8_4XdpyK4IBzUXZDe1igpHvJ_SgbHlZJowg987HZtuGCm_9bu",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEiiO_FsFgtqKtmiO51HpiVhtYKKFnixfCBqU5OkaDnwgjEh3LaL940uLHoR8B-6D6HM0KQFUysskDfuGDuDxMx7qK0224-nlMHIXl02h_wf3y1fU_DjcoC6UcS-XWw_--QVV5y59dNl5PwRCBnTyMWlTOnpbfE2xC6lacS7Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHOdjrLz4GZDO_zXgV95gN9iAq-1azERm3b1P4FTYn0PTv6Tb12Npywla30QbkMrQvfOrHTo8C936PZa1dPbMGN2yWfJg9PGo-sTVZBF7x0Rrk--iRgXTzKZmhbfSbiIFYr9qjeXbHU_Mh4BP7Bm7sTItYb-Knm6YkovGJFOA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG-wBTyZ_KrCouekl_wPr0Pf3Zmivvx0co0CJoaFXciciWn4yC8sxtN2zkcpRahfBM-6a72J-qQtOL3bTVIMhEg5Nnm0vwYpwqQppTMJxvm7TQSMS4y1n9k9hCjujSqarXOAfHNDLf9Wq2HvlTPWSBYBtFcRkFzE3MTT9_pag=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 2
+}

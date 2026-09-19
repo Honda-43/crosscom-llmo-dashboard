@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-19",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-18T23:54:10.833868Z",
+  "answer": "Agentforce(Salesforceの AIエージェントプラットフォーム)導入支援を行っている企業について調べてみます。\n# Agentforce導入支援のおすすめ会社\n\nSalesforceの自律型AIエージェントプラットフォーム「Agentforce」の導入を支援する企業は複数あります。特徴別にまとめました。\n\n## 大手・総合型ベンダー\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援\nしており、\nビジネス価値の明確化と実現アプローチの策定を重視したサービスを提供\nしています。\n\n**富士ソフト**\n\nSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供開始しており、営業DX化に貢献する\nことを目指しています。自社内での試験導入・検証で得た知見を活かしているのが特徴です。\n\n**KPMGコンサルティング**\n\nビジネストランスフォーメーション、テクノロジートランスフォーメーション、リスク&コンプライアンスの3分野から企業を支援するコンサルティングファーム\nで、金融・製造・ヘルスケアなど幅広い業界へのAgentforce導入支援が可能です。\n\n## 伴走型・内製化支援に強い企業\n\n**メンバーズ（サースプラスカンパニー）**\n\nAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援\nするのが特徴です。\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有\nしています。\n\n**サークレイス**\n\nSalesforceの自律型AIエージェント「Agentforce」リリースを受けて、導入・構築を全面サポートする新サービスを提供開始\nしています。\n\n## 特化型・専門領域が強い企業\n\n**ウフル**\n\nまずはSalesforceが提供する「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供しており、Data 360の設定からAgentforceの構築、システム設定、動作確認、リリース準備までを含め、最短3カ月のスケジュールで導入を支援\nします。\n\n**フロッグウェル**\n\n各業界・業務の特性に合わせたAgentforceの導入支援を行っており、業界知識とSalesforce専門性を活かした設計から構築、運用まで一貫してサポート\nしています。住宅業界でのマッチングシステム導入実績などがあります。\n\n**クロスコム**\n\nSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っており、1ユースケース×3ヶ月のスモールスタートプランから対応\nしています。\n\n## 選び方のポイント\n\n\n2026年時点で、国内のSalesforceコンサルティングパートナーは約300社にのぼります\n。選定時は以下がポイントになります：\n\n1. **業界・業務への専門性** - 自社の業界特有の課題に強いか\n2. **支援範囲** - PoCのみか、導入後の内製化・運用まで伴走するか\n3. **スモールスタート対応** - まず小さく始めて検証できるか\n4. **公式パートナー資格** - Salesforce認定コンサルティングパートナーかどうか\n\n---\n\n**補足**：具体的にどの部門（営業・マーケティング・カスタマーサービスなど）でAgentforceを活用したいか、また企業規模や予算感を教えていただければ、より的確な会社選びのアドバイスができます。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://kpmg.com/jp/ja/media/press-releases/2025/10/kc-salesforce-agentforce.html",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://cross-com.jp/agentforce-support-company/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

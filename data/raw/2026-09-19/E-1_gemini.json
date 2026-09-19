@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-19",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-09-19T00:11:00.189374Z",
+  "answer": "合同会社クロスコムは、2023年5月に設立された東京都渋谷区に本社を置くBtoB特化のコンサルティング会社です。Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を主な事業としています。代表は本田正憲氏が務めており、「100社100通りの購買体験を当たり前にする」というビジョンを掲げています。また、Salesforceの公式コンサルティングパートナーでもあります。\n\n**強み**\n\n合同会社クロスコムの強みは以下の点が挙げられます。\n\n*   **業務設計からの支援:** ツールを導入する前の業務設計を起点とし、運用が定着するまで一貫して支援します。AIエージェントを業務に組み込む際に多くの企業がつまずく業務プロセス設計からサポートできる点が特徴です。\n*   **マーケティングと営業双方の視点:** BtoBセールス経験が長い代表の知見に基づき、マーケティングと営業の両方の視点を取り入れた戦略設計を得意としています。これにより、商談獲得の最大化を支援します。\n*   **戦略から実行までの一貫支援:** 戦略立案から施策実行までを一気通貫で支援することで、顧客エンゲージメントの深化を促進します。\n*   **独自の商談獲得メソッドと実績:** 商談数を高める独自のメソッドと、累計100社以上のプロモーション戦略支援で培った顧客導線設計力を有しています。\n*   **製品に依存しない設計支援:** 特定の製品に限定されず、CRMとAIをどのように組み合わせるかを設計段階から支援するAgentic CRM設計支援を提供しています。\n*   **柔軟な対応:** 小規模な案件や1つのユースケースからでも依頼が可能で、3ヶ月ほどのスモールスタートプランを推奨し、効果を検証しながら展開する支援スタイルです。設計レビューのみのスポット相談にも対応しています。\n\n**提供サービス**\n\n合同会社クロスコムが提供する主なサービスは以下の通りです。\n\n*   **Agentforce導入・定着支援:** Salesforce Agentforceの導入から定着までを支援します。エージェント設計、トピック構成、アクション配線といった構築作業に加え、導入に伴う業務設計も支援します。また、自社で構築を進める企業向けに設計アドバイザリーを提供し、Claude CodeとMCP連携によるAgent Script開発やAgentforce Coworkerの活用設計についても助言します。\n*   **Agentic CRM設計支援:** 特定の製品を前提とせず、CRMとAIの最適な組み合わせを設計段階から支援します。マーケティング、営業、カスタマーサクセスに分散したデータと業務を、AIエージェントが自律的に動くことを前提として再設計し、ツール選定前に設計を固めることを重視しています。\n*   **BtoB Salesforce導入・構築支援:** Sales CloudやAccount Engagement（旧Pardot）といったSalesforceのMA・CRMツールの導入と構築を支援します。パッケージ型とタイムチャージ型を組み合わせた柔軟な料金体系で、初期構築から運用支援までを提供しています。\n*   **BtoB MA導入・運用支援:** Salesforce Account Engagement、HubSpot、Zohoなどの主要MAツールに対応し、ツールの運用代行に留まらず、マーケティング戦略全体の中でMA施策をどう位置付け、商談数・受注数改善に繋げるかを目的とした戦略提案と実践を行います。リード獲得から育成、営業連携までの自動化をサポートし、ターゲットセグメント設計、マーケティングシナリオ構築、コンテンツ企画・制作、メール制作・配信、効果測定までを一貫して支援します。\n*   **BtoBマーケティング戦略コンサルティング支援:** ターゲット設定から提供価値の策定までを行い、施策実行への反映を支援します。\n*   **BtoBコンテンツ企画・制作代行支援:** MA・CRMツール導入企業の商談数・新規顧客数拡大のため、マーケティング戦略にフィットしたホワイトペーパー、ウェビナー、Web記事、Webページなどの高品質なコンテンツの企画から制作までを代行します。\n*   **BtoBメールマーケティング代行支援:** BtoB領域に特化したメールマーケティングの代行支援も行っています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGVDFghJNXWssIjv3Tl-vWLjxtFU8H0t0XLQT806tjVm0A0dzjECSVUWYC6dFaGSs8KlEU3mNQAb82-K2KnAn3EbXn7Zt7xDtHcvh3xBEoKJVvZe4vc",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFLx2ntFxEH7ivJ73mcHIlXMQNikEU6C4p9wB35T3muEdg6VKTnwWbK5aZW99aP58TDDcYh1eNPKTxCWZFFz3pZQgUTyK7Z1eWcNKFPCojN",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFbsoRIAG_r03ei6eAPGY4hDzZ2v1-dzPkvlcVHkHWN-amhhPrBxCSPOFSAYeml7pUpD2mS0yZ9-l-nLlwgEUcCT2ElHY0jHXPV4ppyBds6vwita07Bw5OQXijEPRte4l52tX1k4Bxs",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHmqEpgENmsvTGmlpfB_-ix2kUALSDapYsWiW7FwnZl-kMH35dB-t-CJ4ttn_n9e82Z_cEH8RkT5E5QExsQzTSLaVeAulpdJO9sVw13Bixsd_JhGsiPatVSYoAWSb1xwA1E2cFayb6FQD1U-_mDFplnJy0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHvYiO_FNqgfIqsGhLV4yDx2sZMpq8nqAZjxUYw4SRgXwqvzY1jw4noHeYZWOCfjAyy7DPCvSZuTYwoEDvo51AstlNWnD7mHwJfFMn2bfHn5ox1iTA89thZ-jiQ4g4beBo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEY8j8pSwFhBlkSYLWAQRe_wAibszqWo3ooHklFTo0rYUale8Tkbonxgk0Vi03Pj4Gml1tH0g2lqGVewT9eKLeYehQ2mMaIF3u4ZeCDyD7MtuP2MWWc8y3DWa-4sO_DiplAJJoIdswI",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHjWfOlxjE7XobjSN9mKkEbKJ-9I0ID-qCD-HioWNxuTV5qAaN9uX2hgcxR9Z3m_mgORbiyuG8_B3TUeU60TX586f_UWqSI_pzQGM_eYlgz3r2v4z98teQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRr-EAImhCVDymMQ_T4qEbLfeu1vksXbZ9VVg3Ln0DCAZgtaKKp5q31U6MFwZ93DUliRrep094c5FexdEJExvHpTl5qAY3zfJBrQ_FtyWnHvVGVcx4TzDT9jQYW9iRkg9c-LLDirxgVNwQXpXThy9FUJnftDit"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

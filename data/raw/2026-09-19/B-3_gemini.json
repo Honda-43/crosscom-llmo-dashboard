@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-19",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-09-19T00:09:41.603053Z",
+  "answer": "営業にAIエージェントの活用を検討されており、ツール選定の前にCRMのデータ設計から支援してくれるパートナーをお探しとのこと、承知いたしました。CRMデータ設計とAIエージェントの導入を包括的に支援するパートナーは複数存在します。\n\n以下に、CRMデータ設計、AIエージェント活用、および営業DX支援を提供している企業を挙げます。\n\n*   **PixPot株式会社**: 営業・マーケティング・CRMへのAI活用を支援しており、HubSpotなどのCRMの顧客・商談・行動データをAI活用につなげます。業務・データ整理からユースケース選定、AI設計、そして実行・運用改善まで一貫して支援しています。\n*   **ブリッジインターナショナルグループ**: Salesforceを基盤としたAIエージェント「Agentforce」の実装を通じて、営業プロセスのAI高度化を支援しています。データドリブンな営業戦略の実現に向けたSalesforce活用最適化も提供し、プロセス設計からAI実装、現場定着、継続的な改善まで一貫したサービスが強みです。\n*   **株式会社100**: HubSpotを共通基盤に、AIエージェントを組み込んだ顧客フロント業務（マーケティング・営業・CS）の再設計を行っています。HubSpotの導入・活用支援に加え、データ品質設計やAIエージェント組織構築、全社DX×AI推進のPMO伴走支援を提供しています。\n*   **日立コンサルティング**: 営業DX（CRM＆生成AI活用）コンサルティングを提供しており、CRM/SFAシステムの採用に加え、生成AIなどの先端技術を活用した営業プロセス改革を支援しています。データドリブン型意思決定の導入や、成約に至った商談プロセスから成功要因を導き出す「商談勝ちパターン」の提案も行っています。\n*   **ソニックス株式会社**: CRM・SFA（営業DX支援）において、システム導入だけでなく「営業手法の標準化」まで含めた提案を行っています。営業データの可視化・分析を通じて、誰でも成果を出しやすい営業の仕組みづくりを支援し、属人化を防ぎ、継続的に成果を生み出す組織づくりを後押ししています。\n*   **株式会社RECHANCE**: 営業DX支援として、属人化した営業プロセスを可視化し、AIを活用して再現性のある仕組みに変えることを目指しています。AIツールの開発・導入、データ基盤の構築、チーム育成・研修、そして内製化支援まで包括的にサポートしています。\n*   **株式会社Palomba**: SFA・CRM導入支援と営業DX支援を提供し、商談状況と顧客情報を見える化し、現場が使いこなせるSFA・CRM設計を重視しています。初期セットアップから運用定着、自社で改善を続けるための運用支援まで行っています。\n*   **メンバーズ**: BtoB企業に特化した営業DX支援を提供しており、BtoBマーケティングの専門性を持つデジタル人材が、Webサイト・MA・SFA・CRM・データ基盤などのデジタル領域を最適化し、営業活動のDXを立案・実行しています。\n*   **FLYO LLC**: データ・マーケティング・CRM/SFAの全領域にAIを掛け合わせ、業務の自動化・高度化を推進するAI活用コンサルティングを提供しています。AI活用戦略立案から生成AI導入支援、社内AI展開支援まで伴走型で支援しています。\n\nこれらのパートナーは、CRMのデータ設計の段階から関わり、AIエージェントの導入を見据えた基盤構築を支援することが可能です。各社の強みや実績、貴社のニーズに合わせて比較検討されることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEN7hU2cI65d00vto4leWo28gyvMddqVoBZJh2g7HCYOBOLPkPlT_fJyWYM1LMWCbvKNK0nbXh4DO0H1JIytDb0xSJD-e8qnkncyNgFW5LtB9x5ITDA8WBWfEgwZrk86X8CS_e7XzoU4lxSfRc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG5-qfBrgrbwXjqGRQ4dS1wq49pYqmBWCYGoZQLEKGZ7RW9zN_AAL8xLZcrPN0-NOsOKr2fXJR8Son0b2ZxUWy95vXgzcy0CL-nhG4fQmfRprr9KAGxAo_VfXaCyWjQVTRtiL2IXv3GeRbETl5M",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGM4rjf1rBM4AcQZLxxETkpT1fTIPA9zpLTvubY4R-B4QfLmqAjsqRzouWiZtNIzJQ6gg7DvP4MPoxNEk-tU5D7q-7_-ZmqxpfWUiBEUa5c9XwUaMOeAJyN6hd62XvBK1vZCav7oNbAiaBqwwO2S570mr6-oKKqdBaDbckBsz1SBNdm14NhXSmI7YKFC408cyN5ujp3ooGs0r2dfwQjQokaOeJ9qWvEgo2_naX1yKPP1dA22d3dpQhezJlQjIiPUhjdpdk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGraetg55v-2ee8S1d_hy--dYKiU6Cbbp0aPcUcBTcUF72Wkza_uEMW_DPe9mhnqBBk1Kyt79h3BopT2sBuD0NSV1y7mmOq5qw8omrugpyKrWlqCblgZa9XWTcUU55WXqbz23UkyahhM_3_Lkv6hP48COTSae6eOG7eFQA1kRVwIVpzHV8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHamtUTXWtp3gcNMH12cBRccvcZEh6hOi4SCa_w5CAxHuysUkJqXzlfUTMI0sxxAt_fBp3d8RmyzI6iI6kzreBhJbfPgGx2LZjakwNC1mCrN-vh499EQrwRUNiAAYg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHN-3RoJfuGVBSHfI0UoD9pPCCXZ7Gi8uCPFF4MU8silUyDqSy7cf-F4GcPqLxg2FTQbchrkpNhxGtR22G9DqRvFVKX50PIk03CMF6k0HA_ZsS9A74FvYl8sRVBCEB50JfvtQrJ6w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF4ZjUWLvffEELbNquz2JLY9FOfIYdE09PHZGgDjF1X0reP7dXthexBKjpG6YMn__iWypjlV3EWLtRwdrH63fvEboFPk24BiSAsSCguA7WC2UHJ97PQD_5BimHh-SjksUf5ZhVuq14aQQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGWvNeBmSHJlYnwXwi7ebFKRl7aTfiu0XL1YEnWCdH-cGJohwoRHaw_lIaLTCOh_7keO0Rt0mezKm9R5pjZ3Tgv0b0BEZ1ixmaNtaN-79UMJ62ymoR49M-e6fxq33X6d13mHn7fn3Mmz9iOIu_31Ng=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEuxRE6YkvXGxqLqulQW4aWurZ7pSKgH-h2dIzhlKmR8lKMtEUwqMsXVrfimo9cvyouzZTUdum4jmENSNjitGDKsbOw6Ov3W8cPFgKnzNuwZPg7bMTNZvAC"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 4
+}
