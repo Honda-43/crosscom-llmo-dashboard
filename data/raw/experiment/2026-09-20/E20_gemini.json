@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-20",
+  "prompt_id": "E20",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceで成果を出している営業組織の活用事例を知りたい",
+  "cep": null,
+  "timestamp": "2026-09-20T00:37:00.439132Z",
+  "answer": "Agentforceを導入した営業組織は、リード対応の効率化、営業生産性の向上、戦略的な営業活動の推進など、多岐にわたる成果を上げています。\n\n**具体的な活用事例と成果:**\n\n*   **ベルフェイス株式会社**は、イベントや施策直後の大量のリード発生に対応する課題を抱えていました。Agentforceを活用することで、リード対応の初動を自動化し、機会損失を防ぐ体制を構築しました。これにより、受注1件あたりの工数を50時間から28時間へと約44%削減し、組織全体の生産性を200%向上させることに成功しています。また、営業活動の振り返りや育成プロセスにもAgentforceを活用し、生産性向上を実現しています。\n*   **アビームコンサルティング株式会社**では、営業組織にAgentforceを導入し、トップ営業担当者の情報収集や判断の型をAIエージェントに組み込みました。これにより、報告業務やアカウントプランの更新を自動化しています。外部ニュースと連動して提案機会を自動で提示するなどの活用により、戦略アカウントの商談数を前年比120%、売上成長率を115%まで引き上げました。\n*   **株式会社リンクアンドモチベーション**は、Agentforce ServiceのAI要約機能を活用し、応対履歴の記入作業を1人あたり月50時間かかっていたものを約90%削減しました。これにより、応対後の事務作業を大幅に効率化しています。\n\n**Agentforceの営業組織における主な活用方法:**\n\nAgentforceは、営業担当者個人の生産性向上からチーム全体の戦略立案、マーケティング部門との連携まで、営業活動の多様な側面に貢献しています。具体的な機能と導入効果としては以下の点が挙げられます。\n\n*   **営業会議サポート機能:** 議事録作成や情報共有の効率化により、営業担当者が本来の業務に集中できる時間を増やします。\n*   **会話分析による営業戦略の最適化:** 営業担当者と顧客の会話データを分析し、データに基づいた営業アプローチの実現や、成功パターンの特定に役立てます。\n*   **会議スケジューリングの自動化:** 複雑な日程調整業務を自動化することで、営業効率を大幅に改善します。\n*   **個別化フォローアップメールの自動生成:** 顧客の状況に合わせたパーソナライズされたメールを自動で生成し、顧客満足度向上に貢献します。\n*   **直感的なCRMデータ管理:** 自然言語での操作により、SalesforceなどのCRMへのデータ入力負荷を軽減し、データ品質の向上にも繋がります。\n\nこれらの事例や活用方法から、Agentforceが営業組織のDXを推進し、持続的な成長を実現するための強力なツールであることがわかります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH2mX3jsSQqQinkrnvEEX_mP9eFatEaJneakTYgdNxIk6TJMc3zau5onINf_qxmYJT7KroAQRNuSANjSJQsrhB-GwvhRAysk59YJWW2rwYyXKENUHAQ2d2hjfm3gQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG1F9w9xI8xPwiCBDz0C7VDAfX84oEzRXh8kxcROF_TVTquWkP5aAVG_hs4Cm8h3AD0SFVdJ5dybkbt_XuWsUMCukmuv24kz2blDlIXZTcBLbdJl_Hx8NpmvgKAG5hIGEqL9WfnypnptxDcadY75T2afIhZ77ae_jMG7XlAb0Kt",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0C4yl-duOhqganRiQbJCivdOud6eCJzr1fBi40ibpJPuuGyzlPDIwq6v8EmDK6aaPmU_wra_y1uw1QOFywM28t2VQ85B1F3EShiKyz4s4o3YVxIMZ40DzrNLmlwrWwiROlkEV2v0Waf1ykRZALueG_o9Hi2U=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGihfwbQE0O0REi77btB9zQatA3pm62gyEA44CeJO-_ZzSrcPSqlrSkfl-CxJoBTdknlRNgmHBUI8IaJUk_61bae3egQGtmIbzvO22vx-iPwugAk7nBAA9UVlKHVuRMoGCR_J32uhGOtctqqjQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFynhBVuByHr4AX5nYmmD6601dEtPd05gM_CBCaDum_nIqepJC-uJkCR3Cyx2iyAz8svCmbKUzDBPp2gklmhelRekA2RMKW6DPA5ntXprhEZN35Sou0zcCIvzmScjigOscKlwfbajvcHn2-d6qivFs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8TXcs2Zuy7910mzrwL72qcpMK6U1_r4zkws4xiE52ph7WdMzJFx4CC0aIb4xX7y8ESJ70cCNYqD5nba-YF6tdupUsLipQoBnOZ4zNhCJq452Eu2IyCdfhcmT2HrrD4DaBzELUrCjksOg2okPzIOgFumeFARnpA0DruqR__vgYz8Deucg3-Pn8FAWrxdKm-Ez6"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E20",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-use-cases/",
+  "answer_text": "Agentforceを導入した営業組織は、リード対応の効率化、営業生産性の向上、戦略的な営業活動の推進など、多岐にわたる成果を上げています。\n\n**具体的な活用事例と成果:**\n\n*   **ベルフェイス株式会社**は、イベントや施策直後の大量のリード発生に対応する課題を抱えていました。Agentforceを活用することで、リード対応の初動を自動化し、機会損失を防ぐ体制を構築しました。これにより、受注1件あたりの工数を50時間から28時間へと約44%削減し、組織全体の生産性を200%向上させることに成功しています。また、営業活動の振り返りや育成プロセスにもAgentforceを活用し、生産性向上を実現しています。\n*   **アビームコンサルティング株式会社**では、営業組織にAgentforceを導入し、トップ営業担当者の情報収集や判断の型をAIエージェントに組み込みました。これにより、報告業務やアカウントプランの更新を自動化しています。外部ニュースと連動して提案機会を自動で提示するなどの活用により、戦略アカウントの商談数を前年比120%、売上成長率を115%まで引き上げました。\n*   **株式会社リンクアンドモチベーション**は、Agentforce ServiceのAI要約機能を活用し、応対履歴の記入作業を1人あたり月50時間かかっていたものを約90%削減しました。これにより、応対後の事務作業を大幅に効率化しています。\n\n**Agentforceの営業組織における主な活用方法:**\n\nAgentforceは、営業担当者個人の生産性向上からチーム全体の戦略立案、マーケティング部門との連携まで、営業活動の多様な側面に貢献しています。具体的な機能と導入効果としては以下の点が挙げられます。\n\n*   **営業会議サポート機能:** 議事録作成や情報共有の効率化により、営業担当者が本来の業務に集中できる時間を増やします。\n*   **会話分析による営業戦略の最適化:** 営業担当者と顧客の会話データを分析し、データに基づいた営業アプローチの実現や、成功パターンの特定に役立てます。\n*   **会議スケジューリングの自動化:** 複雑な日程調整業務を自動化することで、営業効率を大幅に改善します。\n*   **個別化フォローアップメールの自動生成:** 顧客の状況に合わせたパーソナライズされたメールを自動で生成し、顧客満足度向上に貢献します。\n*   **直感的なCRMデータ管理:** 自然言語での操作により、SalesforceなどのCRMへのデータ入力負荷を軽減し、データ品質の向上にも繋がります。\n\nこれらの事例や活用方法から、Agentforceが営業組織のDXを推進し、持続的な成長を実現するための強力なツールであることがわかります。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "bellface.co.jp",
+    "salesforce.com",
+    "prtimes.jp",
+    "frogwell.co.jp",
+    "aurant-technologies.com"
+  ],
+  "resolved_urls": [
+    "https://bellface.co.jp/news/7425/",
+    "https://www.salesforce.com/jp/blog/jp-small-business-ai-agent-facts/",
+    "https://prtimes.jp/main/html/rd/p/000000183.000033891.html",
+    "https://frogwell.co.jp/blogs/agentforce-usecases/",
+    "https://aurant-technologies.com/blog/agentforce-950/",
+    "https://www.salesforce.com/jp/resources/"
+  ],
+  "unresolved_redirects": 0
+}
