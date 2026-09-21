@@ -3,7 +3,7 @@ Salesforce AIとは？Einstein・Agentforceの関係と使い分け
 2026-09-11
 Agentforce
 読了時間
-15
+8
 分
 Salesforceを使っていると、Einstein、Agentforce、Data 360といったAI関連の名前が次々に出てきます。それぞれが何を指し、自社の契約でどれが使えるのかを社内に説明しようとして、手が止まった経験はないでしょうか。Salesforce AIとは、データを集める層・予測と生成を担う層・自律的に実行する層という3つの層の総称です。単一の製品を指す名前ではありません。
 Agentforce

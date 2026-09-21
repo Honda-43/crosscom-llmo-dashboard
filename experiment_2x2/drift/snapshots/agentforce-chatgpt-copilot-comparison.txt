@@ -3,7 +3,7 @@ AgentforceはChatGPT・Copilotと何が違う？機能と設計思想の比較
 2026-09-11
 Agentforce
 読了時間
-13
+7
 分
 AIエージェントの導入を検討していると、
 Agentforce

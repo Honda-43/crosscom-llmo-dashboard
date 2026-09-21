@@ -3,7 +3,7 @@ Salesforce Einsteinとは？Agentforceとの違いと使い分けの判断軸
 2026-09-15
 Agentforce
 読了時間
-12
+6
 分
 SalesforceのAIを調べると、
 Agentforce
