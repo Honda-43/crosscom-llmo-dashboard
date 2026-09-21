@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E26",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce Data 360（旧Data Cloud）はAgentforceに必要？導入すべきかの判断基準",
+  "cep": null,
+  "timestamp": "2026-09-21T01:05:43.283898Z",
+  "answer": "Salesforce Data 360とAgentforceの関係、および導入判断基準について調査します。\n# Salesforce Data 360（旧Data Cloud）はAgentforceに必要？\n\n## 結論：**「必須ではないが、ユースケースによって必要性が大きく変わる」**\n\nまず前提として、Salesforceの公式説明では\nSalesforce Data 360（旧称Data Cloud）はSalesforceプラットフォーム全体を支えるリアルタイムデータエンジンであり、外部データレイク、Webサイト、レガシーシステムなど、あらゆるソースからの断片化されたデータを統合するもの\nとされ、\nAIエージェントや自動化ワークフローが常に最も正確で最新の顧客コンテキストを持てるよう、Agentforceの本質的なデータ基盤として機能する\nと説明されています。\n\n一方で、実務的な観点では**フル実装は前提条件ではありません**。Salesforce Benの記事では\nData Cloudのフル実装はAgentforceの前提条件ではなく、会話そのものやSalesforceのレコード・メタデータ、CMSのファイルやドキュメント、ナレッジ記事でもエージェントにコンテキストを与えることができる\nと明記されています。Salesforce自身も\n「Salesforceに必要なデータとアセットがあれば、Data Cloudの有無にかかわらずエージェントを起動することは可能」\nと述べています。\n\n---\n\n## 導入すべきかの判断基準\n\n### ① 必要ない（最小構成でOK）ケース\n\n以下の条件に当てはまる場合、Data 360なしでもAgentforceは機能します。\n\n- **CRMレコードの読み書きが中心の場合**：\nレコードコンテキスト、プロンプトテンプレートのマージフィールド、Flowアクション、Apexアクションはすべて、Data Cloudのモデリングなしで直接CRMデータにアクセスできる\n\n- **エージェントの4大要素（トピック/アクション/トラストレイヤー等）だけで十分な場合**：\nトピックとアクション、トラストレイヤーの権限といった4つの要件はいずれもData Cloudを必須としない。Agentforceはナレッジ記事、Salesforceレコード、ファイル、APIを介した外部システムでグラウンディングでき、Data Cloudライセンスなしでも可能\n\n\nただし注意点として、\nAgentforceを有効化すると組織内にData Cloudが自動プロビジョニングされるため、セットアップ画面上では「有効」に見えるが、プロビジョニングと実装は別物\nという点は理解しておく必要があります。\n\n### ② 必要になる（導入すべき）ケース\n\n以下に当てはまる場合はData 360の実装を検討すべきです。\n\n**a. 非構造化データ（PDF、メール、通話記録など）を根拠にした回答が必要な場合**\n\nPDFファイルやメールなどの非構造化データはエージェントで利用できない。AgentforceはRAG（検索拡張生成）にData Cloudを使用するため\nです。電通総研の解説でも\nData 360はRAGの文脈では特に非構造化データの蓄積基盤として機能し、PDFドキュメントや通話録音の文字起こし、メール、画像ファイルなどの非構造化データを処理し、AIが検索可能な形で蓄積できる\nとされています。\n\n**b. システム間で統合された「顧客360度プロファイル」が必要な場合**\nキーが共有されていない複数システムを横断してID解決された単一プロファイルが必要な場合は、Data 360が必須になります（\nエージェントが非構造化コンテンツから回答する必要がある場合、またはキーを共有しないシステム間でID解決された1つのプロファイルが必要な場合、Data 360が本当に必要になる\n）。\n\n**c. 大規模・複雑なナレッジコーパスに対する本番運用レベルの検索が必要な場合**\n\n本番運用レベルの、実際のナレッジコーパス全体にわたる検索を行うにはData Cloudが必要。検索とインデックス作成のレイヤーはData Cloud上にある\nとされています（非常に小規模で安定したドキュメント集合であればプロンプトテンプレートで代替可能な場合もあります）。\n\n**d. リアルタイムのデータ統合・活性化が事業要件にある場合**\n\nリアルタイムデータ取り込み、計算済みインサイト、ベクトルデータベース、データモデルの統合といった要素は、複雑なマルチソースのデータ環境を持つ組織にとって投資として十分正当化される\n一方、\n多くのAgentforceのユースケースでは単純に不要\nとも指摘されています。\n\n---\n\n## 実務的な判断フロー\n\n1. **エージェントの用途を明確にする**：CRMレコードの操作が中心か、それとも社内文書・FAQ・マニュアルなど非構造化データへの回答が中心か\n2. **データソースの分散度を確認する**：単一システム（Salesforce内）で完結するか、複数システム（ERP、外部DB、Webサイト等）を横断する必要があるか\n3. **スケールと精度要求を確認する**：小規模なパイロット導入なら最小構成で十分だが、\n全社展開レベルでの複雑なデータ環境なら投資が正当化される",
+  "cited_urls": [
+    "https://www.salesforce.com/data/",
+    "https://www.salesforceben.com/5-common-misconceptions-about-agentforce/",
+    "https://www.getclientell.com/salesforce-blogs/does-agentforce-require-data-cloud",
+    "https://www.softsquare.biz/blogs/agentforce-vs-data-cloud",
+    "https://successjp.salesforce.com/article/NAI-001148"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E26",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/salesforce-data-360/",
+  "answer_text": "Salesforce Data 360とAgentforceの関係、および導入判断基準について調査します。\n# Salesforce Data 360（旧Data Cloud）はAgentforceに必要？\n\n## 結論：**「必須ではないが、ユースケースによって必要性が大きく変わる」**\n\nまず前提として、Salesforceの公式説明では\nSalesforce Data 360（旧称Data Cloud）はSalesforceプラットフォーム全体を支えるリアルタイムデータエンジンであり、外部データレイク、Webサイト、レガシーシステムなど、あらゆるソースからの断片化されたデータを統合するもの\nとされ、\nAIエージェントや自動化ワークフローが常に最も正確で最新の顧客コンテキストを持てるよう、Agentforceの本質的なデータ基盤として機能する\nと説明されています。\n\n一方で、実務的な観点では**フル実装は前提条件ではありません**。Salesforce Benの記事では\nData Cloudのフル実装はAgentforceの前提条件ではなく、会話そのものやSalesforceのレコード・メタデータ、CMSのファイルやドキュメント、ナレッジ記事でもエージェントにコンテキストを与えることができる\nと明記されています。Salesforce自身も\n「Salesforceに必要なデータとアセットがあれば、Data Cloudの有無にかかわらずエージェントを起動することは可能」\nと述べています。\n\n---\n\n## 導入すべきかの判断基準\n\n### ① 必要ない（最小構成でOK）ケース\n\n以下の条件に当てはまる場合、Data 360なしでもAgentforceは機能します。\n\n- **CRMレコードの読み書きが中心の場合**：\nレコードコンテキスト、プロンプトテンプレートのマージフィールド、Flowアクション、Apexアクションはすべて、Data Cloudのモデリングなしで直接CRMデータにアクセスできる\n\n- **エージェントの4大要素（トピック/アクション/トラストレイヤー等）だけで十分な場合**：\nトピックとアクション、トラストレイヤーの権限といった4つの要件はいずれもData Cloudを必須としない。Agentforceはナレッジ記事、Salesforceレコード、ファイル、APIを介した外部システムでグラウンディングでき、Data Cloudライセンスなしでも可能\n\n\nただし注意点として、\nAgentforceを有効化すると組織内にData Cloudが自動プロビジョニングされるため、セットアップ画面上では「有効」に見えるが、プロビジョニングと実装は別物\nという点は理解しておく必要があります。\n\n### ② 必要になる（導入すべき）ケース\n\n以下に当てはまる場合はData 360の実装を検討すべきです。\n\n**a. 非構造化データ（PDF、メール、通話記録など）を根拠にした回答が必要な場合**\n\nPDFファイルやメールなどの非構造化データはエージェントで利用できない。AgentforceはRAG（検索拡張生成）にData Cloudを使用するため\nです。電通総研の解説でも\nData 360はRAGの文脈では特に非構造化データの蓄積基盤として機能し、PDFドキュメントや通話録音の文字起こし、メール、画像ファイルなどの非構造化データを処理し、AIが検索可能な形で蓄積できる\nとされています。\n\n**b. システム間で統合された「顧客360度プロファイル」が必要な場合**\nキーが共有されていない複数システムを横断してID解決された単一プロファイルが必要な場合は、Data 360が必須になります（\nエージェントが非構造化コンテンツから回答する必要がある場合、またはキーを共有しないシステム間でID解決された1つのプロファイルが必要な場合、Data 360が本当に必要になる\n）。\n\n**c. 大規模・複雑なナレッジコーパスに対する本番運用レベルの検索が必要な場合**\n\n本番運用レベルの、実際のナレッジコーパス全体にわたる検索を行うにはData Cloudが必要。検索とインデックス作成のレイヤーはData Cloud上にある\nとされています（非常に小規模で安定したドキュメント集合であればプロンプトテンプレートで代替可能な場合もあります）。\n\n**d. リアルタイムのデータ統合・活性化が事業要件にある場合**\n\nリアルタイムデータ取り込み、計算済みインサイト、ベクトルデータベース、データモデルの統合といった要素は、複雑なマルチソースのデータ環境を持つ組織にとって投資として十分正当化される\n一方、\n多くのAgentforceのユースケースでは単純に不要\nとも指摘されています。\n\n---\n\n## 実務的な判断フロー\n\n1. **エージェントの用途を明確にする**：CRMレコードの操作が中心か、それとも社内文書・FAQ・マニュアルなど非構造化データへの回答が中心か\n2. **データソースの分散度を確認する**：単一システム（Salesforce内）で完結するか、複数システム（ERP、外部DB、Webサイト等）を横断する必要があるか\n3. **スケールと精度要求を確認する**：小規模なパイロット導入なら最小構成で十分だが、\n全社展開レベルでの複雑なデータ環境なら投資が正当化される",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "salesforceben.com",
+    "getclientell.com",
+    "softsquare.biz",
+    "successjp.salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/data/",
+    "https://www.salesforceben.com/5-common-misconceptions-about-agentforce/",
+    "https://www.getclientell.com/salesforce-blogs/does-agentforce-require-data-cloud",
+    "https://www.softsquare.biz/blogs/agentforce-vs-data-cloud",
+    "https://successjp.salesforce.com/article/NAI-001148"
+  ],
+  "unresolved_redirects": 0
+}

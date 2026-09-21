@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E12",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの機能一覧を整理して教えて。360・Coworker・Voiceの違いも",
+  "cep": null,
+  "timestamp": "2026-09-21T00:58:43.595021Z",
+  "answer": "Salesforceの「Agentforce」について、最新の機能構成と各製品の違いを調べて整理します。\nSalesforceのAgentforceは急速に進化しており、2025年のDreamforceで「Agentforce 360」への大型リブランドが行われました。最新情報を基に整理します。\n\n## 1. Agentforce全体像:「Agentforce 360」とは\n\n\n2025年10月、SalesforceはagenticなAIプラットフォームを「Agentforce」から「Agentforce 360」に改称し、Builder・Voice・Agent Script・Observabilityという4つの製品要素を一つの傘の下に統合すると同時に、エージェントをリブランドされたData Cloud（現Data 360）に直結させた\n。\n\nAgentforce 360は以下の4つの構成要素（\"ingredients\"）からなります。\n\n| 構成要素 | 内容 |\n|---|---|\n| **Agentforce 360 Platform** | \nAgentforceの基盤で、新しい会話型ビルダー、より高い制御と精度を実現するハイブリッド推論、音声機能を備える\n |\n| **Data 360（旧Data Cloud）** | \nエージェントに文脈を与えるデータ層で、Intelligent ContextやTableau Semanticsなどの技術により、非構造化データや分析結果を豊かな文脈・理解へと変換する\n |\n| **Customer 360 Apps** | \n企業ごとの販売・サービス・マーケティング・業務のやり方を捉えるビジネスロジックと組織の記憶を、顧客とプロセスを深く理解するAIエージェントを通じて実現するもの\n |\n| **Slack** | エージェントとの対話・コラボレーションのハブ（4つ目の柱として位置づけ） |\n\n### 主な機能一覧\n\n- **Agentforce Builder / Agent Script**：\n単一の会話型ワークスペースでエージェントを構築・テスト・改良でき、AIガイダンスで作成を始めた後、オートコンプリート付きのドキュメント風エディタ、ローコードキャンバス、プロコードのスクリプトビューで作業を仕上げられる\n\n- **Data 360の主要技術**：\nセマンティックデータモデルによりAIと人間が同じビジネス用語で動作し、Model Context ProtocolとDynamic Data Maskingで外部データへの安全な接続を実現し、Agent ScriptingとAgentic AI Governanceで自律エージェントの信頼できるガードレールを提供する\n\n- **RAG／ベクター検索**：\n検索拡張生成（RAG）とベクター検索に対応し、エージェントが回答生成前に適切な情報を取得できる\n\n- **Agent Health Monitoring**：\nサイレント障害を防ぎ運用管理を実現する機能で、エラー率・レイテンシ・エスカレーション率をほぼリアルタイムでアラートし、24時間365日の即時対応を可能にする\n\n- **Setup内AI（管理者向け）**：\nSetup画面から直接プロンプトバーと推奨事項を提示するAgentforce in Setup（ベータ）が登場し、管理者はorgの実行可能な指標を確認できる\n\n\n## 2. Agentforce Coworker（従業員向けAIコワーカー）\n\n**位置づけ**：社内向け・生産性向上に特化したAIアシスタント。「検索バーのどこにでもAIを」というコンセプト。\n\n- **できること**：\nチームが作るあらゆるエージェントへの単一の入口であり、CRMデータや進行中のサービスケースから最も深い業務フローまで、ビジネス全体を把握してどこで作業していてもより多くのことを片付ける手助けをする\n\n- **検索・洞察・実行の3機能**：\n300以上のエンタープライズソースを横断して検索・インデックス化し、ビジネス文脈を伴った的確な回答を提示\nし、",
+  "cited_urls": [
+    "https://salesforcedictionary.com/blogs/what-is-agentforce-360-complete-2026-guide",
+    "https://www.salesforceben.com/salesforce-unveils-agentforce-360-at-dreamforce-with-new-features-including-voice/",
+    "https://trailhead.salesforce.com/content/learn/modules/spring-26-release-highlights/see-whats-new-agentforce-data-360-agentforce-sales",
+    "https://www.techforceservices.com/blog/salesforce-data-360-guide/",
+    "https://www.xfilespro.com/agentforce-360-at-dreamforce-2026-everything-you-should-know/",
+    "https://salesforcemonday.com/2026/01/29/agentforce-january-2026-updates-features/",
+    "https://www.salesforce.com/agentforce/coworker/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E12",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-features/",
+  "answer_text": "Salesforceの「Agentforce」について、最新の機能構成と各製品の違いを調べて整理します。\nSalesforceのAgentforceは急速に進化しており、2025年のDreamforceで「Agentforce 360」への大型リブランドが行われました。最新情報を基に整理します。\n\n## 1. Agentforce全体像:「Agentforce 360」とは\n\n\n2025年10月、SalesforceはagenticなAIプラットフォームを「Agentforce」から「Agentforce 360」に改称し、Builder・Voice・Agent Script・Observabilityという4つの製品要素を一つの傘の下に統合すると同時に、エージェントをリブランドされたData Cloud（現Data 360）に直結させた\n。\n\nAgentforce 360は以下の4つの構成要素（\"ingredients\"）からなります。\n\n| 構成要素 | 内容 |\n|---|---|\n| **Agentforce 360 Platform** | \nAgentforceの基盤で、新しい会話型ビルダー、より高い制御と精度を実現するハイブリッド推論、音声機能を備える\n |\n| **Data 360（旧Data Cloud）** | \nエージェントに文脈を与えるデータ層で、Intelligent ContextやTableau Semanticsなどの技術により、非構造化データや分析結果を豊かな文脈・理解へと変換する\n |\n| **Customer 360 Apps** | \n企業ごとの販売・サービス・マーケティング・業務のやり方を捉えるビジネスロジックと組織の記憶を、顧客とプロセスを深く理解するAIエージェントを通じて実現するもの\n |\n| **Slack** | エージェントとの対話・コラボレーションのハブ（4つ目の柱として位置づけ） |\n\n### 主な機能一覧\n\n- **Agentforce Builder / Agent Script**：\n単一の会話型ワークスペースでエージェントを構築・テスト・改良でき、AIガイダンスで作成を始めた後、オートコンプリート付きのドキュメント風エディタ、ローコードキャンバス、プロコードのスクリプトビューで作業を仕上げられる\n\n- **Data 360の主要技術**：\nセマンティックデータモデルによりAIと人間が同じビジネス用語で動作し、Model Context ProtocolとDynamic Data Maskingで外部データへの安全な接続を実現し、Agent ScriptingとAgentic AI Governanceで自律エージェントの信頼できるガードレールを提供する\n\n- **RAG／ベクター検索**：\n検索拡張生成（RAG）とベクター検索に対応し、エージェントが回答生成前に適切な情報を取得できる\n\n- **Agent Health Monitoring**：\nサイレント障害を防ぎ運用管理を実現する機能で、エラー率・レイテンシ・エスカレーション率をほぼリアルタイムでアラートし、24時間365日の即時対応を可能にする\n\n- **Setup内AI（管理者向け）**：\nSetup画面から直接プロンプトバーと推奨事項を提示するAgentforce in Setup（ベータ）が登場し、管理者はorgの実行可能な指標を確認できる\n\n\n## 2. Agentforce Coworker（従業員向けAIコワーカー）\n\n**位置づけ**：社内向け・生産性向上に特化したAIアシスタント。「検索バーのどこにでもAIを」というコンセプト。\n\n- **できること**：\nチームが作るあらゆるエージェントへの単一の入口であり、CRMデータや進行中のサービスケースから最も深い業務フローまで、ビジネス全体を把握してどこで作業していてもより多くのことを片付ける手助けをする\n\n- **検索・洞察・実行の3機能**：\n300以上のエンタープライズソースを横断して検索・インデックス化し、ビジネス文脈を伴った的確な回答を提示\nし、",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforcedictionary.com",
+    "salesforceben.com",
+    "trailhead.salesforce.com",
+    "techforceservices.com",
+    "xfilespro.com",
+    "salesforcemonday.com",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://salesforcedictionary.com/blogs/what-is-agentforce-360-complete-2026-guide",
+    "https://www.salesforceben.com/salesforce-unveils-agentforce-360-at-dreamforce-with-new-features-including-voice/",
+    "https://trailhead.salesforce.com/content/learn/modules/spring-26-release-highlights/see-whats-new-agentforce-data-360-agentforce-sales",
+    "https://www.techforceservices.com/blog/salesforce-data-360-guide/",
+    "https://www.xfilespro.com/agentforce-360-at-dreamforce-2026-everything-you-should-know/",
+    "https://salesforcemonday.com/2026/01/29/agentforce-january-2026-updates-features/",
+    "https://www.salesforce.com/agentforce/coworker/"
+  ],
+  "unresolved_redirects": 0
+}

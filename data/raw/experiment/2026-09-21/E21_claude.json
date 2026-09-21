@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E21",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agent Scriptとは？Agentforceの設定を画面ではなくコードで管理すべきケースは？",
+  "cep": null,
+  "timestamp": "2026-09-21T01:03:18.778463Z",
+  "answer": "# Agent Scriptとは\n\n**Agent Script**は、Salesforceが提供するAgentforce（AIエージェント構築プラットフォーム）向けの新しいスクリプト言語です。\nAgentforce 360プラットフォーム上でAIエージェントを記述するための新しい、人間が読みやすいスクリプト言語で、プログラム的な精度でエージェントを強化するために設計された高レベルの宣言型ドメイン特化言語（DSL）\nです。\n\n## 主な特徴\n\n**1. ハイブリッド推論（Hybrid Reasoning）**\n\nAtlas Reasoning Engineが設定可能になり、LLM本来の創造性と構造化されたビジネスロジックの確実性をバランスさせることができ、エンタープライズワークフローの厳密さとAIの柔軟性を両立させるハイブリッド推論が実現\nされます。\n\n**2. 決定論的な制御**\n\nLLMのランダム性を排除する決定論的なアンカーを提供し、エンタープライズがエージェントの行動を完全に制御し、ビジネスポリシーを厳格に施行できるようにします\n。\n\n**3. 構文の特徴**\n\nエージェントがどのように考え、応答し、行動するかを正確に制御できる宣言型のスクリプト言語で、すべてをLLMに委ねる代わりに、明確なロジック、構造化されたワークフロー、トピック遷移を定義できます\n。具体的には\nif/else論理でルールや条件を設定したり、トピックの切り替えタイミングと方法を定義したり、アクションを順番に実行させたり、変数や出力を直感的な構文で参照したりできます\n。\n\n**4. コンパイル言語**\n\nAgent Scriptはコンパイル言語です。エージェントを記述しても直接実行されるわけではなく、Agent Graphという構造化された仕様を生成し、それをAtlas Reasoning Engineが消費します\n。\n\n**5. 3つの構築方法**\n\nエージェントを構築する方法は3つあります。AIアシスタンスを使う方法、キャンバス上で自然言語を使う方法、Agent Scriptを使う方法です。どの方法で構築してもSalesforceの同じメタデータ基盤を使用します\n。つまりUI（キャンバスビュー）で組んでも、裏側では常にAgent Scriptが生成されています。\n\n**6. オープンな仕様**\n\nAgent Scriptはオープンなエージェント仕様言語で、共通のビルディングブロックのセットを使ってエージェントを構成できます。Agentforce向けに開発されましたが、エージェント全般に適用できるよう意図されています\n。GitHub上でパーサーやリンターが公開されています。\n\n---\n\n# Agentforceの設定を「画面」ではなく「コード」で管理すべきケース\n\n## 1. バージョン管理・チーム開発が必要な場合\n\n\nAIをモダンなDevOpsパイプラインに組み込むには、ブラウザを超えてAgentforce Developer Experience（DX）のプロコードの世界に踏み込む必要があります。これにより、エージェントのロジックをソースコードとして扱い、リポジトリでバージョン管理し、ApexやLightningコンポーネントと一緒にデプロイできるようになります\n。\n\n## 2. コードレビューを重視する場合\n\n以前はXMLの複雑な差分比較が課題でしたが、Agent Scriptの登場で改善されました。\n人間が読みやすいスクリプトファイルを使うことでコードレビューを効率化できます。従来のAgentforce Builderでは、プルリクエストで複雑で散在したXMLファイルを比較する必要がありましたが、今は人間が読みやすい.agentスクリプトファイルを比較でき、ピアレビューが大幅に速く、理解しやすくなります\n。\n\n## 3. CI/CDパイプラインに組み込みたい場合\n\n\nAiAuthoringBundleを使うことでCI/CDを簡素化できます。ほとんどのパイプラインでは、ソース管理にAiAuthoringBundleだけを保持しておけばよく、新しい組織でエージェントが必要になったら、デプロイしてバージョンコミットしランタイムメタデータを生成し、最後にアクティブ化します\n。また\nTesting APIを使えば同じ評価をコードから呼び出せ、CIに単体テストのように組み込めます。Agentforce DXはCLI駆動のテスト実行とエージェントメタデータのバージョン管理を提供し、デプロイの現実として、エージェントはメタデータなので通常のALMでデプロイします\n。\n\n## 4. サンドボックス間・複数環境での一貫したデプロイが必要な場合\n\n\n組織内でUIまたはAgentforce DXを使ってエージェントを作成した後、メタデータを取得・デプロイすることで別の組織に移動できます。例えばサンドボックスから本番組織へエージェントを移動する場合、まずサンドボックスからローカルマシンにエージェントのメタデータを取得し、それを本番組織にデプロイします\n。\n\n## 5. Apex/Flowなど他の開発",
+  "cited_urls": [
+    "https://developer.salesforce.com/blogs/2025/10/introducing-hybrid-reasoning-with-agent-script",
+    "https://www.salesforce.com/agentforce/script/",
+    "https://ayaninsights.com/guestblogs/introduction-to-agent-script/",
+    "https://github.com/salesforce/agentscript",
+    "https://trailhead.salesforce.com/content/learn/projects/create-an-agent-using-pro-code-tools/get-started-with-agentforce-dx",
+    "https://developer.salesforce.com/blogs/2026/05/new-agentforce-metadata-and-development-lifecycle",
+    "https://www.sfdcfalcon.in/agentforce.php",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-dx-deploy-metadata.html"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E21",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-agent-script/",
+  "answer_text": "# Agent Scriptとは\n\n**Agent Script**は、Salesforceが提供するAgentforce（AIエージェント構築プラットフォーム）向けの新しいスクリプト言語です。\nAgentforce 360プラットフォーム上でAIエージェントを記述するための新しい、人間が読みやすいスクリプト言語で、プログラム的な精度でエージェントを強化するために設計された高レベルの宣言型ドメイン特化言語（DSL）\nです。\n\n## 主な特徴\n\n**1. ハイブリッド推論（Hybrid Reasoning）**\n\nAtlas Reasoning Engineが設定可能になり、LLM本来の創造性と構造化されたビジネスロジックの確実性をバランスさせることができ、エンタープライズワークフローの厳密さとAIの柔軟性を両立させるハイブリッド推論が実現\nされます。\n\n**2. 決定論的な制御**\n\nLLMのランダム性を排除する決定論的なアンカーを提供し、エンタープライズがエージェントの行動を完全に制御し、ビジネスポリシーを厳格に施行できるようにします\n。\n\n**3. 構文の特徴**\n\nエージェントがどのように考え、応答し、行動するかを正確に制御できる宣言型のスクリプト言語で、すべてをLLMに委ねる代わりに、明確なロジック、構造化されたワークフロー、トピック遷移を定義できます\n。具体的には\nif/else論理でルールや条件を設定したり、トピックの切り替えタイミングと方法を定義したり、アクションを順番に実行させたり、変数や出力を直感的な構文で参照したりできます\n。\n\n**4. コンパイル言語**\n\nAgent Scriptはコンパイル言語です。エージェントを記述しても直接実行されるわけではなく、Agent Graphという構造化された仕様を生成し、それをAtlas Reasoning Engineが消費します\n。\n\n**5. 3つの構築方法**\n\nエージェントを構築する方法は3つあります。AIアシスタンスを使う方法、キャンバス上で自然言語を使う方法、Agent Scriptを使う方法です。どの方法で構築してもSalesforceの同じメタデータ基盤を使用します\n。つまりUI（キャンバスビュー）で組んでも、裏側では常にAgent Scriptが生成されています。\n\n**6. オープンな仕様**\n\nAgent Scriptはオープンなエージェント仕様言語で、共通のビルディングブロックのセットを使ってエージェントを構成できます。Agentforce向けに開発されましたが、エージェント全般に適用できるよう意図されています\n。GitHub上でパーサーやリンターが公開されています。\n\n---\n\n# Agentforceの設定を「画面」ではなく「コード」で管理すべきケース\n\n## 1. バージョン管理・チーム開発が必要な場合\n\n\nAIをモダンなDevOpsパイプラインに組み込むには、ブラウザを超えてAgentforce Developer Experience（DX）のプロコードの世界に踏み込む必要があります。これにより、エージェントのロジックをソースコードとして扱い、リポジトリでバージョン管理し、ApexやLightningコンポーネントと一緒にデプロイできるようになります\n。\n\n## 2. コードレビューを重視する場合\n\n以前はXMLの複雑な差分比較が課題でしたが、Agent Scriptの登場で改善されました。\n人間が読みやすいスクリプトファイルを使うことでコードレビューを効率化できます。従来のAgentforce Builderでは、プルリクエストで複雑で散在したXMLファイルを比較する必要がありましたが、今は人間が読みやすい.agentスクリプトファイルを比較でき、ピアレビューが大幅に速く、理解しやすくなります\n。\n\n## 3. CI/CDパイプラインに組み込みたい場合\n\n\nAiAuthoringBundleを使うことでCI/CDを簡素化できます。ほとんどのパイプラインでは、ソース管理にAiAuthoringBundleだけを保持しておけばよく、新しい組織でエージェントが必要になったら、デプロイしてバージョンコミットしランタイムメタデータを生成し、最後にアクティブ化します\n。また\nTesting APIを使えば同じ評価をコードから呼び出せ、CIに単体テストのように組み込めます。Agentforce DXはCLI駆動のテスト実行とエージェントメタデータのバージョン管理を提供し、デプロイの現実として、エージェントはメタデータなので通常のALMでデプロイします\n。\n\n## 4. サンドボックス間・複数環境での一貫したデプロイが必要な場合\n\n\n組織内でUIまたはAgentforce DXを使ってエージェントを作成した後、メタデータを取得・デプロイすることで別の組織に移動できます。例えばサンドボックスから本番組織へエージェントを移動する場合、まずサンドボックスからローカルマシンにエージェントのメタデータを取得し、それを本番組織にデプロイします\n。\n\n## 5. Apex/Flowなど他の開発",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "developer.salesforce.com",
+    "salesforce.com",
+    "ayaninsights.com",
+    "github.com",
+    "trailhead.salesforce.com",
+    "sfdcfalcon.in"
+  ],
+  "resolved_urls": [
+    "https://developer.salesforce.com/blogs/2025/10/introducing-hybrid-reasoning-with-agent-script",
+    "https://www.salesforce.com/agentforce/script/",
+    "https://ayaninsights.com/guestblogs/introduction-to-agent-script/",
+    "https://github.com/salesforce/agentscript",
+    "https://trailhead.salesforce.com/content/learn/projects/create-an-agent-using-pro-code-tools/get-started-with-agentforce-dx",
+    "https://developer.salesforce.com/blogs/2026/05/new-agentforce-metadata-and-development-lifecycle",
+    "https://www.sfdcfalcon.in/agentforce.php",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-dx-deploy-metadata.html"
+  ],
+  "unresolved_redirects": 0
+}

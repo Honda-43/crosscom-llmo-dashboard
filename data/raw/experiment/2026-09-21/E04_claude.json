@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E04",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce Observabilityとは？定着と精度を測る指標はどう設計する？",
+  "cep": null,
+  "timestamp": "2026-09-21T00:55:02.592904Z",
+  "answer": "# Agentforce Observability とは\n\nAgentforce Observabilityは、\nAIエージェント専用に設計された監視・診断スイートで、個々のエージェントのパフォーマンスに関する深い可視性を提供します\n。Salesforceの表現を借りれば、\nすべてのAIエージェントを単一の「ミッションコントロール」から完全に可視化・制御し、ほぼリアルタイムでエージェントのパフォーマンスを監視・分析・最適化することで、より速い解決、より高い精度、より良い顧客体験を実現するもの\nです。\n\n2025年11月にGA（一般提供）となり、\nAgentforce Studioに直接組み込まれる形でAgent AnalyticsとAgent Optimizationという2つの主要機能がリリースされ、Agent Health Monitoring機能は2026年春に追加予定\nとされていました。背景には、\nAgentforceが持っていた「ブラックボックス」的な構造という弱点があり、組織はエージェントをデプロイして出力を観察できても、その結果を生み出した推論や意思決定プロセスへの可視性がほとんどなかった\nという課題があります。\n\n## 3つの機能領域\n\nSalesforceはこれを3つの機能に整理しています。\n\n1. **Agent Analytics（エージェント分析）**：\n実際の顧客対応において各エージェントがどのようにパフォーマンスを発揮しているかを包括的に把握し、KPIの推移を可視化する\n機能です。\n2. **Agent Optimization（エージェント最適化）**：\nエージェントの推論チェーンのステップを記録し、特定のエージェントがなぜ・どのように特定の行動をとったのかを学習できるようにする\n機能です。\n3. **Agent Health Monitoring（ヘルスモニタリング）**：\nエージェントの健全性へのリアルタイムな可視性を提供する\n機能です。\n\nこれらを支える技術基盤として、\nSession Tracing Data Model（STDM）があり、これはセッション内でログに記録されるすべてのイベントを、単一の会話ターン単位まで構造化し、ユーザー入力、プランナーの判断、プロンプトとアクションのフロー、ゲートウェイの入出力、エラー、最終出力などを捕捉します\n。これにより\n生のJSONデータをレポート用に変換する手間なく、構造化されたテーブルから直接分析やアラートを構築できます\n。\n\n## 対象範囲の注意点\n\nなお、対象はAgentforceエージェントに限られます。\nObservabilityが読み取るのはAgentforce自体のセッションデータ、プランナートレース、RAGコンポーネントであり、Apexから呼び出す独自のLLMサービスや、サードパーティ製エージェントには対応していません\n。また\nエージェントタイプによってカバー範囲が異なり、Agentforce Service AgentとEmployee AgentはAnalyticsとOptimizationの両方に対応、Default AgentはOptimizationのみ、SDRエージェントはAnalyticsのみ対応\nという制約もあります。\n\n---\n\n# 定着（アダプション）と精度を測る指標の設計\n\n## 1. なぜ従来のモニタリングでは不十分か\n\n\nエージェントは問題を振り返り、複数のツールから選択し、外部システムに問い合わせ、新しい情報に基づいて計画を調整することがあり、単一の事前プログラムされた実行パスは存在しません。そのため、決定論的な操作を追跡するために設計された従来のモニタリングでは、エージェントがなぜ予期しない行動をとったのか、なぜ推論ループが結論に至らなかったのかを説明できません\n。\n\nさらに、\n従来のソフトウェアが失敗する際は通常エラーコードや明確な失敗パスをログに出しますが、自律型AIエージェントは異なる挙動をします。流暢だが不正確な回答を生成したり、無限ループに陥ったり、予期しない方向に方針転換したりすることがあります\n。したがって指標設計では「稼働しているか」だけでなく「正しく判断しているか」を測る必要があります。\n\n## 2. 精度・パフォーマンス系の指標\n\nSalesforceが挙げる基本的なエージェント精度指標は次の通りです。\n\n\n主要な指標には、タスクごとの成功率、解決に至るまでの平均ステップ数、ツール呼び出しの精度、そして推論ループ全体のコスト対価値比が含まれます\n。\n\nさらに実務ガイドでは以下のような指標セットが推奨されています。\n\n- \nデフレクション率、エスカレーション頻度、CSATスコア、タスク成功率など、エージェントが資産か負債かを判断できる指標\n\n\nこれらを正しく評価するには、単純なログだけでなく文脈情報が必要です。\n実際の稼働状況を正確に把握するには、主要指標にセッション・会話データ、推論トレース、その他のシグナルやコンテキストを組み込む必要があります\n。\n\n## 3. 診断のための評価ループ（Eval）\n\n精度指標を継続的に改善するには、評価（",
+  "cited_urls": [
+    "https://www.mavlers.com/blog/salesforce-agentforce-analytics-observability-guide/",
+    "https://www.salesforce.com/agentforce/observability/",
+    "https://salesforcedevops.net/index.php/2025/11/20/salesforce-makes-agent-observability-ga-extending-the-agentic-sdlc/",
+    "https://salesforcebreak.com/2026/05/28/setting-up-agentforce-observability/",
+    "https://www.salesforce.com/blog/agentforce-observability/",
+    "https://salesforcedictionary.com/blogs/agentforce-observability-2026-guide",
+    "https://www.salesforce.com/agentforce/observability/agent-observability/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E04",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-observability/",
+  "answer_text": "# Agentforce Observability とは\n\nAgentforce Observabilityは、\nAIエージェント専用に設計された監視・診断スイートで、個々のエージェントのパフォーマンスに関する深い可視性を提供します\n。Salesforceの表現を借りれば、\nすべてのAIエージェントを単一の「ミッションコントロール」から完全に可視化・制御し、ほぼリアルタイムでエージェントのパフォーマンスを監視・分析・最適化することで、より速い解決、より高い精度、より良い顧客体験を実現するもの\nです。\n\n2025年11月にGA（一般提供）となり、\nAgentforce Studioに直接組み込まれる形でAgent AnalyticsとAgent Optimizationという2つの主要機能がリリースされ、Agent Health Monitoring機能は2026年春に追加予定\nとされていました。背景には、\nAgentforceが持っていた「ブラックボックス」的な構造という弱点があり、組織はエージェントをデプロイして出力を観察できても、その結果を生み出した推論や意思決定プロセスへの可視性がほとんどなかった\nという課題があります。\n\n## 3つの機能領域\n\nSalesforceはこれを3つの機能に整理しています。\n\n1. **Agent Analytics（エージェント分析）**：\n実際の顧客対応において各エージェントがどのようにパフォーマンスを発揮しているかを包括的に把握し、KPIの推移を可視化する\n機能です。\n2. **Agent Optimization（エージェント最適化）**：\nエージェントの推論チェーンのステップを記録し、特定のエージェントがなぜ・どのように特定の行動をとったのかを学習できるようにする\n機能です。\n3. **Agent Health Monitoring（ヘルスモニタリング）**：\nエージェントの健全性へのリアルタイムな可視性を提供する\n機能です。\n\nこれらを支える技術基盤として、\nSession Tracing Data Model（STDM）があり、これはセッション内でログに記録されるすべてのイベントを、単一の会話ターン単位まで構造化し、ユーザー入力、プランナーの判断、プロンプトとアクションのフロー、ゲートウェイの入出力、エラー、最終出力などを捕捉します\n。これにより\n生のJSONデータをレポート用に変換する手間なく、構造化されたテーブルから直接分析やアラートを構築できます\n。\n\n## 対象範囲の注意点\n\nなお、対象はAgentforceエージェントに限られます。\nObservabilityが読み取るのはAgentforce自体のセッションデータ、プランナートレース、RAGコンポーネントであり、Apexから呼び出す独自のLLMサービスや、サードパーティ製エージェントには対応していません\n。また\nエージェントタイプによってカバー範囲が異なり、Agentforce Service AgentとEmployee AgentはAnalyticsとOptimizationの両方に対応、Default AgentはOptimizationのみ、SDRエージェントはAnalyticsのみ対応\nという制約もあります。\n\n---\n\n# 定着（アダプション）と精度を測る指標の設計\n\n## 1. なぜ従来のモニタリングでは不十分か\n\n\nエージェントは問題を振り返り、複数のツールから選択し、外部システムに問い合わせ、新しい情報に基づいて計画を調整することがあり、単一の事前プログラムされた実行パスは存在しません。そのため、決定論的な操作を追跡するために設計された従来のモニタリングでは、エージェントがなぜ予期しない行動をとったのか、なぜ推論ループが結論に至らなかったのかを説明できません\n。\n\nさらに、\n従来のソフトウェアが失敗する際は通常エラーコードや明確な失敗パスをログに出しますが、自律型AIエージェントは異なる挙動をします。流暢だが不正確な回答を生成したり、無限ループに陥ったり、予期しない方向に方針転換したりすることがあります\n。したがって指標設計では「稼働しているか」だけでなく「正しく判断しているか」を測る必要があります。\n\n## 2. 精度・パフォーマンス系の指標\n\nSalesforceが挙げる基本的なエージェント精度指標は次の通りです。\n\n\n主要な指標には、タスクごとの成功率、解決に至るまでの平均ステップ数、ツール呼び出しの精度、そして推論ループ全体のコスト対価値比が含まれます\n。\n\nさらに実務ガイドでは以下のような指標セットが推奨されています。\n\n- \nデフレクション率、エスカレーション頻度、CSATスコア、タスク成功率など、エージェントが資産か負債かを判断できる指標\n\n\nこれらを正しく評価するには、単純なログだけでなく文脈情報が必要です。\n実際の稼働状況を正確に把握するには、主要指標にセッション・会話データ、推論トレース、その他のシグナルやコンテキストを組み込む必要があります\n。\n\n## 3. 診断のための評価ループ（Eval）\n\n精度指標を継続的に改善するには、評価（",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "mavlers.com",
+    "salesforce.com",
+    "salesforcedevops.net",
+    "salesforcebreak.com",
+    "salesforcedictionary.com"
+  ],
+  "resolved_urls": [
+    "https://www.mavlers.com/blog/salesforce-agentforce-analytics-observability-guide/",
+    "https://www.salesforce.com/agentforce/observability/",
+    "https://salesforcedevops.net/index.php/2025/11/20/salesforce-makes-agent-observability-ga-extending-the-agentic-sdlc/",
+    "https://salesforcebreak.com/2026/05/28/setting-up-agentforce-observability/",
+    "https://www.salesforce.com/blog/agentforce-observability/",
+    "https://salesforcedictionary.com/blogs/agentforce-observability-2026-guide",
+    "https://www.salesforce.com/agentforce/observability/agent-observability/"
+  ],
+  "unresolved_redirects": 0
+}

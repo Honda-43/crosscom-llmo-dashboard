@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E25",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce for Marketingで何を任せられる？営業への引き渡しはどう設計する？",
+  "cep": null,
+  "timestamp": "2026-09-21T01:05:13.235255Z",
+  "answer": "Agentforce for Marketingについて、最新情報を調べてお答えします。\n# Agentforce for Marketingで任せられること\n\n## 1. キャンペーンの企画・実行の自動化\n\nAgentforce for Marketingは、\nマーケター主導で開始し、Agentforceが実行するエンドツーエンドのキャンペーン体験に、生成AIと予測AIを組み合わせています\n。具体的には、\nマーケターが設定したキャンペーンゴールとブランドガイドラインに基づき、Agentforce Campaignsがキャンペーン全体の作成を支援します。ブリーフの生成、ターゲットオーディエンスセグメントの特定と作成、メールとランディングページの初稿生成、さらにはFlowでのカスタマージャーニー構築まで行います\n。\n\nさらに、\nキャンペーンパフォーマンスを継続的に分析し、目標KPIに基づいてターゲットオーディエンス、コンテンツ、チャネルの最適化方法を推奨します\n。\n\n## 2. リード管理・ナーチャリング\n\nAgentforceエージェントは\nリードジェネレーション、顧客セグメンテーション、キャンペーンのパーソナライズ、大規模データセットの処理など、幅広いマーケティング機能を処理できます\n。\n\n特に「Lead Nurturing Agent」（旧Agentforce SDR）は、\nSalesforce Marketing Cloudにおいてリードの適格性判定・アウトリーチ・フォローアップを自動化し、AI主導のワークフローで24時間体制でリードにエンゲージメント・適格性判定を行います\n。\n\nまた日常業務では、\nキャンペーンアセット作成、セグメント更新、パフォーマンスチェック、フォローアップ、レポート作成メモの作成を支援します\n。\n\n## 3. 顧客との一次対応・返信管理\n\n\nAIエージェントは簡単な返信の管理、基本的な質問への回答、会話の継続、そして複雑な案件を適切なチームへルーティングすることができます\n。例えば、\nイベントSMSに対して録画の有無を問う返信があった場合、エージェントが回答します\n。\n\n---\n\n# 営業への引き渡し（Sales Handoff）の設計方法\n\n## 1. 「適格（Qualified）」の定義を明確化する\n\nまず土台として、\n「適格」の意味を明確に定義することが重要です。マーケティング、営業、RevOpsの間でICP（理想的顧客像）、インテントの閾値、失格理由について合意し、必須項目・エンゲージメント最低条件・フィットスコア・ハンドオフSLAといった明確なルールとして落とし込みます\n。\n\n## 2. ルーティングルールの設計\n\n次に、\nルーティングルールと制約条件を設計します。テリトリー、セグメント、オーナーシップモデル、エスカレーションパスをマッピングし、新規顧客か既存顧客か、パートナー経由か直販か、大企業かSMBかといった条件ごとのロジックを文書化します\n。\n\nルーティングの実行面では、\n適格化されたリードは静的なキューを迂回し、動的なオムニチャネルルーティングエンジンに入ります。スキルベースルーティングでは必要なスキル（例：スペイン語対応、金融業界専門）に基づいてリードが担当者にマッチングされ、テリトリーマッピングで正しい地域担当者に割り当てられます。さらに担当者の現在の対応可能状況をリアルタイムで確認し、既に手一杯または対応不可の担当者にリードが割り振られることを防ぎます\n。\n\n## 3. Agentforceにロジックを実装する\n\n\nAgentforce Builderを使い、質問をし、データを検証し、適格化ルールを適用し、Salesforceフローを呼び出して割り当て・タスク作成・ミーティングスケジューリングを行うSDRスタイルのエージェントを作成します\n。\n\n## 4. ハンドオフの自動化とコンテキスト共有\n\n適格リードについては、\nハンドオフとフォローアップを自動化し、タスクを作成し、ケイデンスに追加し、カレンダーリンクを送信します。まだ準備が整っていないリードはナーチャージャーニーに登録し、後のルーティングのために理由（タイミング、予算、フィット）をタグ付けします\n。\n\n引き渡し時には、営業側が文脈を素早く理解できるようにすることが重要です。\n従来は営業チームがSales Cloud内のデータを手作業で探ってリード履歴を把握していましたが、Agentforceはリアルタイムのリードサマリー（予測インテント、過去のやり取り、推奨される次のアクションを含む）を生成し、担当者がより速くパーソナライズしたアウトリーチを行えるよう支援します\n。\n\nさらに高度な仕組みとして、\n購買インテントを検知してミーティングを予約し、フルコンテキストを持ったままリードを営業担当者に引き渡すシームレスなハンドオフ\nも可能です。実際の運用イメージとしては、\nオーディエンスの構築、メール・SMSの作成、営業向けのメモ作成、最もエンゲージ",
+  "cited_urls": [
+    "https://www.salesforce.com/news/stories/marketing-cloud-dreamforce-24/",
+    "https://marcloudconsulting.com/support/salesforce-agentforce-agents-marketing/",
+    "https://www.concret.io/blog/set-up-agentforce-lead-nurturing-marketing-cloud",
+    "https://routine-automation.com/blog/agentforce-marketing/",
+    "https://www.pedowitzgroup.com/agentforce-help-lead-qualification-routing",
+    "https://www.acldigital.com/blogs/autonomous-lead-routing-salesforce-agentforce",
+    "https://marcloudconsulting.com/agentforce/tips-for-better-salesforce-lead-management-with-agentforce/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E25",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-marketing/",
+  "answer_text": "Agentforce for Marketingについて、最新情報を調べてお答えします。\n# Agentforce for Marketingで任せられること\n\n## 1. キャンペーンの企画・実行の自動化\n\nAgentforce for Marketingは、\nマーケター主導で開始し、Agentforceが実行するエンドツーエンドのキャンペーン体験に、生成AIと予測AIを組み合わせています\n。具体的には、\nマーケターが設定したキャンペーンゴールとブランドガイドラインに基づき、Agentforce Campaignsがキャンペーン全体の作成を支援します。ブリーフの生成、ターゲットオーディエンスセグメントの特定と作成、メールとランディングページの初稿生成、さらにはFlowでのカスタマージャーニー構築まで行います\n。\n\nさらに、\nキャンペーンパフォーマンスを継続的に分析し、目標KPIに基づいてターゲットオーディエンス、コンテンツ、チャネルの最適化方法を推奨します\n。\n\n## 2. リード管理・ナーチャリング\n\nAgentforceエージェントは\nリードジェネレーション、顧客セグメンテーション、キャンペーンのパーソナライズ、大規模データセットの処理など、幅広いマーケティング機能を処理できます\n。\n\n特に「Lead Nurturing Agent」（旧Agentforce SDR）は、\nSalesforce Marketing Cloudにおいてリードの適格性判定・アウトリーチ・フォローアップを自動化し、AI主導のワークフローで24時間体制でリードにエンゲージメント・適格性判定を行います\n。\n\nまた日常業務では、\nキャンペーンアセット作成、セグメント更新、パフォーマンスチェック、フォローアップ、レポート作成メモの作成を支援します\n。\n\n## 3. 顧客との一次対応・返信管理\n\n\nAIエージェントは簡単な返信の管理、基本的な質問への回答、会話の継続、そして複雑な案件を適切なチームへルーティングすることができます\n。例えば、\nイベントSMSに対して録画の有無を問う返信があった場合、エージェントが回答します\n。\n\n---\n\n# 営業への引き渡し（Sales Handoff）の設計方法\n\n## 1. 「適格（Qualified）」の定義を明確化する\n\nまず土台として、\n「適格」の意味を明確に定義することが重要です。マーケティング、営業、RevOpsの間でICP（理想的顧客像）、インテントの閾値、失格理由について合意し、必須項目・エンゲージメント最低条件・フィットスコア・ハンドオフSLAといった明確なルールとして落とし込みます\n。\n\n## 2. ルーティングルールの設計\n\n次に、\nルーティングルールと制約条件を設計します。テリトリー、セグメント、オーナーシップモデル、エスカレーションパスをマッピングし、新規顧客か既存顧客か、パートナー経由か直販か、大企業かSMBかといった条件ごとのロジックを文書化します\n。\n\nルーティングの実行面では、\n適格化されたリードは静的なキューを迂回し、動的なオムニチャネルルーティングエンジンに入ります。スキルベースルーティングでは必要なスキル（例：スペイン語対応、金融業界専門）に基づいてリードが担当者にマッチングされ、テリトリーマッピングで正しい地域担当者に割り当てられます。さらに担当者の現在の対応可能状況をリアルタイムで確認し、既に手一杯または対応不可の担当者にリードが割り振られることを防ぎます\n。\n\n## 3. Agentforceにロジックを実装する\n\n\nAgentforce Builderを使い、質問をし、データを検証し、適格化ルールを適用し、Salesforceフローを呼び出して割り当て・タスク作成・ミーティングスケジューリングを行うSDRスタイルのエージェントを作成します\n。\n\n## 4. ハンドオフの自動化とコンテキスト共有\n\n適格リードについては、\nハンドオフとフォローアップを自動化し、タスクを作成し、ケイデンスに追加し、カレンダーリンクを送信します。まだ準備が整っていないリードはナーチャージャーニーに登録し、後のルーティングのために理由（タイミング、予算、フィット）をタグ付けします\n。\n\n引き渡し時には、営業側が文脈を素早く理解できるようにすることが重要です。\n従来は営業チームがSales Cloud内のデータを手作業で探ってリード履歴を把握していましたが、Agentforceはリアルタイムのリードサマリー（予測インテント、過去のやり取り、推奨される次のアクションを含む）を生成し、担当者がより速くパーソナライズしたアウトリーチを行えるよう支援します\n。\n\nさらに高度な仕組みとして、\n購買インテントを検知してミーティングを予約し、フルコンテキストを持ったままリードを営業担当者に引き渡すシームレスなハンドオフ\nも可能です。実際の運用イメージとしては、\nオーディエンスの構築、メール・SMSの作成、営業向けのメモ作成、最もエンゲージ",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "marcloudconsulting.com",
+    "concret.io",
+    "routine-automation.com",
+    "pedowitzgroup.com",
+    "acldigital.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/news/stories/marketing-cloud-dreamforce-24/",
+    "https://marcloudconsulting.com/support/salesforce-agentforce-agents-marketing/",
+    "https://www.concret.io/blog/set-up-agentforce-lead-nurturing-marketing-cloud",
+    "https://routine-automation.com/blog/agentforce-marketing/",
+    "https://www.pedowitzgroup.com/agentforce-help-lead-qualification-routing",
+    "https://www.acldigital.com/blogs/autonomous-lead-routing-salesforce-agentforce",
+    "https://marcloudconsulting.com/agentforce/tips-for-better-salesforce-lead-management-with-agentforce/"
+  ],
+  "unresolved_redirects": 0
+}

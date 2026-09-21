@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E38",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceのサブエージェントはどういう単位で分ければいい？指示文の書き分け方も",
+  "cep": null,
+  "timestamp": "2026-09-21T01:11:34.895309Z",
+  "answer": "Agentforceのサブエージェント設計について、最新の情報を調べてお答えします。\nAgentforceのサブエージェント（2026年4月に「トピック」から名称変更）の設計について、最新情報をもとに整理します。\n\n## 1. サブエージェントとは何か\n\nまず前提として、\nサブエージェントは、エージェントが実行できる1つの「仕事（ジョブ）」であり、エージェントの論理・推論・会話能力を定義するための構成要素\nです。\nサブエージェントは「やるべき仕事（jobs-to-be-done）」であり、分類説明（Classification）、スコープ（Scope）、指示（Instructions）といった属性を持ち、それぞれの仕事の内容と実行方法を定義\nします。\n\n構造的には、\nサブエージェントが最初に作成され、その後にアクションと指示がサブエージェントの下に紐づけて作成される。アクションと指示は必ずサブエージェントに連結されている必要がある\nという階層関係になっています。\n\n## 2. 分割の単位：「業務目的」で切る\n\n### 基本原則：1サブエージェント＝1目的\n最も重要な原則は**単一目的の原則**です。\n各トピック（サブエージェント）は単一の目的を持つべきであり、Classification・Scope・Instructionsの間で目的を混在させないこと\nが推奨されています。\n\n日本語のベストプラクティス記事でも同様に、\nサブエージェント（旧トピック）がズレるときは、目的単位で分けて説明を具体化することが対処法\nとされています。\n\n### 実務的な比喩：「専門部署」として考える\nSalesforce公式ガイドでは以下のように説明されています。\nサブエージェントは、特定の専門性と、エージェントが対応できる範囲の明確な境界を持つ「専門部署」のようなものであり、アクションはサブエージェントがタスク実行やデータ取得に使う具体的な手段（Apexコード、Flow、APIなど）\nです。\n\nつまり分割の単位は「**業務プロセス／ユースケースの単位**」であり、機能（アクション）単位ではありません。設計の順序として、\nユースケースを1つに絞り、最初から全領域をカバーしようとしないこと。高頻度・低複雑度のタスクから始めるのが定石\nとされ、その次に\nSubagentを切り分ける際は、1つのSubagentに複数領域を詰め込まず、業務単位で分割する\nことが推奨されています。\n\n### 分割しすぎ（肥大化）のリスクに注意\n一方で、1つのエージェントにトピックを詰め込みすぎることの問題も明確に指摘されています。\n最初は6トピックだったエージェントが22トピックまで増え、2つが同じ役割を持つようになるといった事態が起こり、1つのエージェントに多くを担わせるほど「クリーンな指示を書き、予測可能な動作をテストし、時間をかけて保守すること」が難しくなる\nとされています。\n\nこれは技術的な理由にも基づきます。\nAgentforceがサブエージェントを切り替える際、前のサブエージェントのプロンプト指示を破棄し、新しいサブエージェントの指示を最初から処理するため、最終的なプロンプトには新しいサブエージェントの指示のみが含まれる。この「分離」こそが最大の利点であり、22トピックを持つ単一エージェントにはこの分離がなく、すべての指示が毎ターンのプロンプトに存在し、注意を奪い合う\nことになります。つまり、**業務単位でしっかり分離すればこそ、指示の競合を防げる**というのがサブエージェント分割の本質的な価値です。\n\n### 分割の実務的な目安\nまとめると分割単位の考え方は以下の3点です。\n- **業務プロセス／ユースケース単位**で切る（例：「注文状況の確認」「返品処理」「アカウント情報の更新」など）\n- 1つのサブエージェントに複数の目的・業務領域を混在させない\n- 同じ役割が複数サブエージェントで重複しないよう、境界（スコープ）を明確に定義する\n\n## 3. 指示文（Instructions）の書き分け方：3層構造\n\nAgentforceの指示文は**3つの階層**に分けて書く設計になっています。\n最良の結果を得るには、トピック（サブエージェント）・アクション・入出力という異なる種類の指示を作り分ける必要があり、これらがエージェントの推論と、ユーザーに代わって意味のある行動を実行する能力とのギャップを埋める\n役割を果たします。\n\n具体的には次のように役",
+  "cited_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_topics.htm&type=5",
+    "https://www.salesforce.com/agentforce/levels-of-determinism/",
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-service-agent-quick-look/learn-the-building-blocks-of-agentforce-for-service",
+    "https://www.grazitti.com/blog/want-smarter-ai-agents-it-all-starts-with-better-instructions-in-agentforce/",
+    "https://www.strh.co.jp/knowledge/agentforce-subagent-action",
+    "https://www.salesforce.com/ap/agentforce/guide/",
+    "https://qiita.com/Tadataka_Takahashi/items/daa60e339f8e260d870f",
+    "https://sfdcdevelopers.com/2026/09/04/agentforce-subagents-split-and-route-an-overloaded-agent/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E38",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-subagents/",
+  "answer_text": "Agentforceのサブエージェント設計について、最新の情報を調べてお答えします。\nAgentforceのサブエージェント（2026年4月に「トピック」から名称変更）の設計について、最新情報をもとに整理します。\n\n## 1. サブエージェントとは何か\n\nまず前提として、\nサブエージェントは、エージェントが実行できる1つの「仕事（ジョブ）」であり、エージェントの論理・推論・会話能力を定義するための構成要素\nです。\nサブエージェントは「やるべき仕事（jobs-to-be-done）」であり、分類説明（Classification）、スコープ（Scope）、指示（Instructions）といった属性を持ち、それぞれの仕事の内容と実行方法を定義\nします。\n\n構造的には、\nサブエージェントが最初に作成され、その後にアクションと指示がサブエージェントの下に紐づけて作成される。アクションと指示は必ずサブエージェントに連結されている必要がある\nという階層関係になっています。\n\n## 2. 分割の単位：「業務目的」で切る\n\n### 基本原則：1サブエージェント＝1目的\n最も重要な原則は**単一目的の原則**です。\n各トピック（サブエージェント）は単一の目的を持つべきであり、Classification・Scope・Instructionsの間で目的を混在させないこと\nが推奨されています。\n\n日本語のベストプラクティス記事でも同様に、\nサブエージェント（旧トピック）がズレるときは、目的単位で分けて説明を具体化することが対処法\nとされています。\n\n### 実務的な比喩：「専門部署」として考える\nSalesforce公式ガイドでは以下のように説明されています。\nサブエージェントは、特定の専門性と、エージェントが対応できる範囲の明確な境界を持つ「専門部署」のようなものであり、アクションはサブエージェントがタスク実行やデータ取得に使う具体的な手段（Apexコード、Flow、APIなど）\nです。\n\nつまり分割の単位は「**業務プロセス／ユースケースの単位**」であり、機能（アクション）単位ではありません。設計の順序として、\nユースケースを1つに絞り、最初から全領域をカバーしようとしないこと。高頻度・低複雑度のタスクから始めるのが定石\nとされ、その次に\nSubagentを切り分ける際は、1つのSubagentに複数領域を詰め込まず、業務単位で分割する\nことが推奨されています。\n\n### 分割しすぎ（肥大化）のリスクに注意\n一方で、1つのエージェントにトピックを詰め込みすぎることの問題も明確に指摘されています。\n最初は6トピックだったエージェントが22トピックまで増え、2つが同じ役割を持つようになるといった事態が起こり、1つのエージェントに多くを担わせるほど「クリーンな指示を書き、予測可能な動作をテストし、時間をかけて保守すること」が難しくなる\nとされています。\n\nこれは技術的な理由にも基づきます。\nAgentforceがサブエージェントを切り替える際、前のサブエージェントのプロンプト指示を破棄し、新しいサブエージェントの指示を最初から処理するため、最終的なプロンプトには新しいサブエージェントの指示のみが含まれる。この「分離」こそが最大の利点であり、22トピックを持つ単一エージェントにはこの分離がなく、すべての指示が毎ターンのプロンプトに存在し、注意を奪い合う\nことになります。つまり、**業務単位でしっかり分離すればこそ、指示の競合を防げる**というのがサブエージェント分割の本質的な価値です。\n\n### 分割の実務的な目安\nまとめると分割単位の考え方は以下の3点です。\n- **業務プロセス／ユースケース単位**で切る（例：「注文状況の確認」「返品処理」「アカウント情報の更新」など）\n- 1つのサブエージェントに複数の目的・業務領域を混在させない\n- 同じ役割が複数サブエージェントで重複しないよう、境界（スコープ）を明確に定義する\n\n## 3. 指示文（Instructions）の書き分け方：3層構造\n\nAgentforceの指示文は**3つの階層**に分けて書く設計になっています。\n最良の結果を得るには、トピック（サブエージェント）・アクション・入出力という異なる種類の指示を作り分ける必要があり、これらがエージェントの推論と、ユーザーに代わって意味のある行動を実行する能力とのギャップを埋める\n役割を果たします。\n\n具体的には次のように役",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "help.salesforce.com",
+    "salesforce.com",
+    "trailhead.salesforce.com",
+    "grazitti.com",
+    "strh.co.jp",
+    "qiita.com",
+    "sfdcdevelopers.com"
+  ],
+  "resolved_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_topics.htm&type=5",
+    "https://www.salesforce.com/agentforce/levels-of-determinism/",
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-service-agent-quick-look/learn-the-building-blocks-of-agentforce-for-service",
+    "https://www.grazitti.com/blog/want-smarter-ai-agents-it-all-starts-with-better-instructions-in-agentforce/",
+    "https://www.strh.co.jp/knowledge/agentforce-subagent-action",
+    "https://www.salesforce.com/ap/agentforce/guide/",
+    "https://qiita.com/Tadataka_Takahashi/items/daa60e339f8e260d870f",
+    "https://sfdcdevelopers.com/2026/09/04/agentforce-subagents-split-and-route-an-overloaded-agent/"
+  ],
+  "unresolved_redirects": 0
+}

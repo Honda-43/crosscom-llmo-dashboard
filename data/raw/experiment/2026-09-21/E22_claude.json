@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E22",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの出力が毎回変わって安定しない。モデル選択と推論制御の設定は？",
+  "cep": null,
+  "timestamp": "2026-09-21T01:03:47.011647Z",
+  "answer": "Agentforceの出力の不安定性については、モデル選択と推論設定に関する最新情報を確認します。\n# Agentforceの出力が安定しない場合の対処法\n\n出力のばらつき（非決定性）は、Agentforceの**モデル選択**と**推論パラメータ（特にTemperature）**の両方が影響します。以下、設定箇所を整理します。\n\n## 1. モデル選択（デフォルトモデルオプション）\n\nAgentforce全体で使うベースモデルは、Setup画面から選択します。\n\n\nAgentforceのモデルオプションを選択するには、Setupのクイック検索で「Audit, Analytics, and Monitoring」と入力し、Einstein Audit, Analytics, and Monitoring Setupを選択します。そして「Select the Model for Agentforce」セクションでオプションを選びます。\n\n\n選択肢は主に以下の通りです：\n- **Salesforce Default**：\nSalesforceが正確性・信頼性・パフォーマンスのために最適化した、信頼できるモデルの管理されたミックス（現在はGPT-4oを含む）\n\n- **AWS-Hosted**：\nAmazon Bedrock上のAnthropic Claude Sonnet 4を使用\n\n- **Google Gemini**（新オプション）も選択可能\n\n\n通常はSalesforce Defaultモデルオプションの使用が推奨されており、これによりSalesforceがエージェントの正確性とパフォーマンスに最適なモデルの組み合わせを自動選択します。ただし、AWS-HostedやGoogle Geminiモデルオプションを選ぶことも可能\nです。\n\n注意点として、\nエージェントを設計する際、デフォルトのモデル選択を上書きして、エージェントやサブエージェントごとに異なるモデルを指定することができます\n。この点も出力のばらつきに影響する要因です（エージェント/サブエージェントごとに異なるモデルが動いていると、当然応答の傾向も変わります）。\n\n## 2. 推論制御 — Temperature（温度）設定 ★最重要\n\n出力の**再現性・安定性を直接左右するのがTemperature**です。設定場所は、EinsteinServiceAgentユーザーのモデル設定パネルです。\n\n\nSetupのクイックFindでUsersを検索・選択し、EinsteinServiceAgentユーザーの横のEdit操作を選択します。Model Configurationサイドパネルで「Create model」ラジオボタンを選択します。\n\n\nそこで温度スライダーを調整します：\n\n\nTemperature設定を変更すると、生成される応答のランダム性が変わります。低い温度値（0に近い）はモデルの出力をより決定論的かつ集中させ、より予測可能で再現性の高い応答を生成します。逆に、高い温度値（1に近い）は応答のランダム性と創造性を増加させ、より多様で予測しづらい応答になります。\n\n\nTrailheadの実例でも、安定性を求める場合は**Temperatureを0.3程度に下げる**設定が示されています。\nModel Configurationサイドパネルで「Create model」ラジオボタンを選択し、スライダーを動かしてTemperatureを0.3に変更、他の設定はそのままにします。\n\n\n**出力を最大限安定させたい（決定論的にしたい）場合は、Temperatureを0に近づけるのが基本です。**\n\n## 3. その他の調整可能なハイパーパラメータ\n\nモデルプレイグラウンド（プロンプトビルダー経由）では、Temperature以外にも調整項目があります。\n\n\nモデルプレイグラウンドでは、temperature、frequency penalty、presence penaltyのハイパーパラメータを調整して、モデルの出力の多様性や新規性を制御できます。\n\n\n- **Temperature**：ランダム性の制御（上記）\n- **Frequency Penalty**：同じ単語・表現の繰り返しを抑制\n- **Presence Penalty**：新規トピック・語彙の出現を促進/抑制\n\n実際の設定例として、\n「温度」と「プレゼンスペナルティ」の値を大きくし、創造的且つ多くの語彙を含めた応答になるよう調整\nする使い方も紹介されています（逆に安定性重視ならこれらを下げます）。\n\n## 4. アーキテクチャ的な安定化策（Hybrid Reasoning Model）\n\nそもそも自然言語プロンプトへの依存を減らすことで、確率的な挙動そのものを抑える方向性もSalesforceは示しています。\n\n\nAIエージェントは、大規模言語モデル（LLM）を活用して自然言語やインテントの処理を行う一方で、Agentforceは特定のビジネスロジックに従うためにAgentforce Scriptも使用します。このハイブリッド推論モデルにより、AIエージェントは従来の自動化よりも柔軟性が高く、ハードコーディングされたソフトウェアと同等の信頼性を維持します。\n\n\nさらに、\nより強力な決定論的制御を実現するために、Agentforceビルダーやエージェントスクリプトが導入されています\n。つまり、**Topic/Action設計をAgentforce Scriptでロジック化**し、LLMの自由生成に頼る部分を最小化することも、根本的な安定化策として有効です。\n\n---\n\n### まとめ（対処の優先順位）\n1. **EinsteinServiceAgentユーザーのModel Configuration**でTemperatureを0〜0.3",
+  "cited_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_setup_select_model_provider.htm&amp=&type=5",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/supported-models.html",
+    "https://trailhead.salesforce.com/content/learn/projects/customize-a-service-agent-with-prompts-flows-and-actions/get-agent-ready",
+    "https://low-code-media.com/agentforcespecialist-53/",
+    "https://base.terrasky.co.jp/articles/MdbGs",
+    "https://www.salesforce.com/jp/agentforce/guide/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E22",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-reasoning-control/",
+  "answer_text": "Agentforceの出力の不安定性については、モデル選択と推論設定に関する最新情報を確認します。\n# Agentforceの出力が安定しない場合の対処法\n\n出力のばらつき（非決定性）は、Agentforceの**モデル選択**と**推論パラメータ（特にTemperature）**の両方が影響します。以下、設定箇所を整理します。\n\n## 1. モデル選択（デフォルトモデルオプション）\n\nAgentforce全体で使うベースモデルは、Setup画面から選択します。\n\n\nAgentforceのモデルオプションを選択するには、Setupのクイック検索で「Audit, Analytics, and Monitoring」と入力し、Einstein Audit, Analytics, and Monitoring Setupを選択します。そして「Select the Model for Agentforce」セクションでオプションを選びます。\n\n\n選択肢は主に以下の通りです：\n- **Salesforce Default**：\nSalesforceが正確性・信頼性・パフォーマンスのために最適化した、信頼できるモデルの管理されたミックス（現在はGPT-4oを含む）\n\n- **AWS-Hosted**：\nAmazon Bedrock上のAnthropic Claude Sonnet 4を使用\n\n- **Google Gemini**（新オプション）も選択可能\n\n\n通常はSalesforce Defaultモデルオプションの使用が推奨されており、これによりSalesforceがエージェントの正確性とパフォーマンスに最適なモデルの組み合わせを自動選択します。ただし、AWS-HostedやGoogle Geminiモデルオプションを選ぶことも可能\nです。\n\n注意点として、\nエージェントを設計する際、デフォルトのモデル選択を上書きして、エージェントやサブエージェントごとに異なるモデルを指定することができます\n。この点も出力のばらつきに影響する要因です（エージェント/サブエージェントごとに異なるモデルが動いていると、当然応答の傾向も変わります）。\n\n## 2. 推論制御 — Temperature（温度）設定 ★最重要\n\n出力の**再現性・安定性を直接左右するのがTemperature**です。設定場所は、EinsteinServiceAgentユーザーのモデル設定パネルです。\n\n\nSetupのクイックFindでUsersを検索・選択し、EinsteinServiceAgentユーザーの横のEdit操作を選択します。Model Configurationサイドパネルで「Create model」ラジオボタンを選択します。\n\n\nそこで温度スライダーを調整します：\n\n\nTemperature設定を変更すると、生成される応答のランダム性が変わります。低い温度値（0に近い）はモデルの出力をより決定論的かつ集中させ、より予測可能で再現性の高い応答を生成します。逆に、高い温度値（1に近い）は応答のランダム性と創造性を増加させ、より多様で予測しづらい応答になります。\n\n\nTrailheadの実例でも、安定性を求める場合は**Temperatureを0.3程度に下げる**設定が示されています。\nModel Configurationサイドパネルで「Create model」ラジオボタンを選択し、スライダーを動かしてTemperatureを0.3に変更、他の設定はそのままにします。\n\n\n**出力を最大限安定させたい（決定論的にしたい）場合は、Temperatureを0に近づけるのが基本です。**\n\n## 3. その他の調整可能なハイパーパラメータ\n\nモデルプレイグラウンド（プロンプトビルダー経由）では、Temperature以外にも調整項目があります。\n\n\nモデルプレイグラウンドでは、temperature、frequency penalty、presence penaltyのハイパーパラメータを調整して、モデルの出力の多様性や新規性を制御できます。\n\n\n- **Temperature**：ランダム性の制御（上記）\n- **Frequency Penalty**：同じ単語・表現の繰り返しを抑制\n- **Presence Penalty**：新規トピック・語彙の出現を促進/抑制\n\n実際の設定例として、\n「温度」と「プレゼンスペナルティ」の値を大きくし、創造的且つ多くの語彙を含めた応答になるよう調整\nする使い方も紹介されています（逆に安定性重視ならこれらを下げます）。\n\n## 4. アーキテクチャ的な安定化策（Hybrid Reasoning Model）\n\nそもそも自然言語プロンプトへの依存を減らすことで、確率的な挙動そのものを抑える方向性もSalesforceは示しています。\n\n\nAIエージェントは、大規模言語モデル（LLM）を活用して自然言語やインテントの処理を行う一方で、Agentforceは特定のビジネスロジックに従うためにAgentforce Scriptも使用します。このハイブリッド推論モデルにより、AIエージェントは従来の自動化よりも柔軟性が高く、ハードコーディングされたソフトウェアと同等の信頼性を維持します。\n\n\nさらに、\nより強力な決定論的制御を実現するために、Agentforceビルダーやエージェントスクリプトが導入されています\n。つまり、**Topic/Action設計をAgentforce Scriptでロジック化**し、LLMの自由生成に頼る部分を最小化することも、根本的な安定化策として有効です。\n\n---\n\n### まとめ（対処の優先順位）\n1. **EinsteinServiceAgentユーザーのModel Configuration**でTemperatureを0〜0.3",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "help.salesforce.com",
+    "developer.salesforce.com",
+    "trailhead.salesforce.com",
+    "low-code-media.com",
+    "base.terrasky.co.jp",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_setup_select_model_provider.htm&amp=&type=5",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/supported-models.html",
+    "https://trailhead.salesforce.com/content/learn/projects/customize-a-service-agent-with-prompts-flows-and-actions/get-agent-ready",
+    "https://low-code-media.com/agentforcespecialist-53/",
+    "https://base.terrasky.co.jp/articles/MdbGs",
+    "https://www.salesforce.com/jp/agentforce/guide/"
+  ],
+  "unresolved_redirects": 0
+}

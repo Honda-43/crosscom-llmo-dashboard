@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E37",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce Coworkerとは何？営業がどんな場面で使える？",
+  "cep": null,
+  "timestamp": "2026-09-21T01:11:05.765117Z",
+  "answer": "# Agentforce Coworkerとは？\n\n**Agentforce Coworker**は、Salesforce内のあらゆる検索・分析・アクションを担うAIエージェントで、単なる「賢い検索バー」ではなく、\nあらゆる検索を答えに変え、その答えをアクションに変える、AIチームメイト（同僚）\nと位置づけられています。\n\n### 主な特徴\n\n1. **企業全体のデータに接続**\n\n企業内のあらゆるデータに接続し、必要なその瞬間に先回りしたインサイトを提示するとともに、ビジネスの進化に合わせてさらに賢くなります\n。\n\n2. **1つの会話で複数のエージェントを自動オーケストレーション**\n\n単一の会話から、AgentforceのAIエージェントからカスタムエージェント、CRMアクション、Flow、サードパーティAPI、外部システムまでを呼び出し、適切に指揮（オーケストレーション）する\nのが設計思想です。\n\n3. **導入が容易**\n\nData 360上にネイティブに構築されたAgentforce Coworkerは、トレーニングもチューニングも習熟期間も不要です。Salesforce設定を即座に継承し、カスタムワークフローとメタデータをマッピングすると同時に、ガバナンスと共有ルールを遵守します\n。\n\n4. **提供状況**\n2026年5月にベータ版が発表され、\nAgentforce Coworkerは、本日より日本市場でも提供開始しています\n（2026年8月に一般提供開始）。対応エディションは\nEnterprise、Unlimited、Agentforce1 エディションのAgentforceユーザー向け\nです。\n\n---\n\n# 営業がどんな場面で使えるか\n\n### 1. 商談の停滞理由をすぐに把握する\nSalesforceの公式ユースケースでは、商談が停滞した際、\nUrsa Major Solarという企業がEdge Communicationsとの商談で停滞している場面で、営業担当がAgentforce Coworkerに「Edge Communicationsで何が起きているか？」と質問すると、関連データから、新しい価格設定への懸念により商談がリスクにあることを示す\nという活用例が紹介されています。\n\n### 2. さらに深く原因を調査する\n続けて質問すると、\n「価格の懸念について詳しく教えて」と聞くと、Edge Communicationsが立ち上げコストやトレーニングコストを懸念し、1年契約を希望していることを詳しく説明し、インサイドセールスの担当者が来週早々にフォローアップの打ち合わせを予定していることも伝える\nなど、状況を深掘りできます。\n\n### 3. 対応策のコーチングを受ける\nその上で\n価格の懸念にどう対応すべきかコーチングを求める\nことができ、単なる情報提供から次の行動へとスムーズに繋がります。\n\n### 4. データ分析からフォローアップメール作成まで一気通貫\n実際の活用フローとして、\n「昨日落ちた案件は?」と打ち込むと、Agentforce Coworkerは単調なリストを返す代わりに、Tableauの分析エージェントを呼び込み、セグメント別に失われた売上を示すチャートを作ります。そして同じ会話の流れのまま、「この見込み客たちにフォローアップメールのドラフトを作って」と頼むと、Sales Coachエージェントを呼んで、書き上げてくれます\n。アプリやタブを切り替える必要がなく、1つの会話の中で完結します。\n\n### 5. 離席中の変化をキャッチアップ\n会議などで席を外していた場合、\n「今日、何か変わったことある？」と聞けば、離席中に更新された内容をまとめて返してくれます\n。さらに\n「先週から動きのあったキーアカウントは？」「Q2でマネージャーの承認が取れていない商談は？」こういった具体的な質問にも即答します\n。\n\n### 6. 引き継ぎ・過去案件の照会\n担当変更時の情報確認にも有効です。\n「A社の直近1年の商談の経緯を教えて」と聞けば、取引先・商談・ケースを横断した回答が、根拠になったレコードのリンクとあわせて返ってきます\n。これにより\n前任者に確認を入れるまでに平均で2営業日かかっていた\nような引き継ぎ待ちの時間を削減できます。\n\n### 7. レコードの作成・更新も代行\n\nAgentforce Coworkerに記録の作成や更新を依頼すると、権限を自動的に評価し、変更すべきフィールドを特定し、選択リストの項目を検証し、レコード作成・更新案を確認用に提示します\n。\n\n---\n\n## まとめ\nAgentforce Coworkerは、営業担当者が「誰かに聞かないと分からない情報」を自分で調べられるようにし、商談状況の把握、深掘り調査、コーチング、フォローアップメール作成、離席中の更新確認、引き継ぎ時の過去経緯確認など、**日々発生する“情報収集→判断→アクション”のサイクルを1つの会話の中で完結**させられる点が最大の価値です。",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/blog/jp-how-to-agentforce-coworker/",
+    "https://www.salesforce.com/jp/agentforce/coworker/",
+    "https://www.salesforce.com/jp/news/press-releases/2026/08/05/agentforce-coworker-general-availability-japan/",
+    "https://frogwell.co.jp/blogs/agentforce-coworker/",
+    "https://developer.salesforce.com/docs/data/agentforce-coworker/guide/agentforce-coworker-benefits-and-use-cases.html",
+    "https://www.salesforce.com/jp/news/press-releases/2026/07/15/agentforce-coworker-salesforce-ai-teammate/",
+    "https://zenn.dev/pacific_creator/articles/4163be6cd233da",
+    "https://cross-com.jp/agentforce-coworker/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E37",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-coworker/",
+  "answer_text": "# Agentforce Coworkerとは？\n\n**Agentforce Coworker**は、Salesforce内のあらゆる検索・分析・アクションを担うAIエージェントで、単なる「賢い検索バー」ではなく、\nあらゆる検索を答えに変え、その答えをアクションに変える、AIチームメイト（同僚）\nと位置づけられています。\n\n### 主な特徴\n\n1. **企業全体のデータに接続**\n\n企業内のあらゆるデータに接続し、必要なその瞬間に先回りしたインサイトを提示するとともに、ビジネスの進化に合わせてさらに賢くなります\n。\n\n2. **1つの会話で複数のエージェントを自動オーケストレーション**\n\n単一の会話から、AgentforceのAIエージェントからカスタムエージェント、CRMアクション、Flow、サードパーティAPI、外部システムまでを呼び出し、適切に指揮（オーケストレーション）する\nのが設計思想です。\n\n3. **導入が容易**\n\nData 360上にネイティブに構築されたAgentforce Coworkerは、トレーニングもチューニングも習熟期間も不要です。Salesforce設定を即座に継承し、カスタムワークフローとメタデータをマッピングすると同時に、ガバナンスと共有ルールを遵守します\n。\n\n4. **提供状況**\n2026年5月にベータ版が発表され、\nAgentforce Coworkerは、本日より日本市場でも提供開始しています\n（2026年8月に一般提供開始）。対応エディションは\nEnterprise、Unlimited、Agentforce1 エディションのAgentforceユーザー向け\nです。\n\n---\n\n# 営業がどんな場面で使えるか\n\n### 1. 商談の停滞理由をすぐに把握する\nSalesforceの公式ユースケースでは、商談が停滞した際、\nUrsa Major Solarという企業がEdge Communicationsとの商談で停滞している場面で、営業担当がAgentforce Coworkerに「Edge Communicationsで何が起きているか？」と質問すると、関連データから、新しい価格設定への懸念により商談がリスクにあることを示す\nという活用例が紹介されています。\n\n### 2. さらに深く原因を調査する\n続けて質問すると、\n「価格の懸念について詳しく教えて」と聞くと、Edge Communicationsが立ち上げコストやトレーニングコストを懸念し、1年契約を希望していることを詳しく説明し、インサイドセールスの担当者が来週早々にフォローアップの打ち合わせを予定していることも伝える\nなど、状況を深掘りできます。\n\n### 3. 対応策のコーチングを受ける\nその上で\n価格の懸念にどう対応すべきかコーチングを求める\nことができ、単なる情報提供から次の行動へとスムーズに繋がります。\n\n### 4. データ分析からフォローアップメール作成まで一気通貫\n実際の活用フローとして、\n「昨日落ちた案件は?」と打ち込むと、Agentforce Coworkerは単調なリストを返す代わりに、Tableauの分析エージェントを呼び込み、セグメント別に失われた売上を示すチャートを作ります。そして同じ会話の流れのまま、「この見込み客たちにフォローアップメールのドラフトを作って」と頼むと、Sales Coachエージェントを呼んで、書き上げてくれます\n。アプリやタブを切り替える必要がなく、1つの会話の中で完結します。\n\n### 5. 離席中の変化をキャッチアップ\n会議などで席を外していた場合、\n「今日、何か変わったことある？」と聞けば、離席中に更新された内容をまとめて返してくれます\n。さらに\n「先週から動きのあったキーアカウントは？」「Q2でマネージャーの承認が取れていない商談は？」こういった具体的な質問にも即答します\n。\n\n### 6. 引き継ぎ・過去案件の照会\n担当変更時の情報確認にも有効です。\n「A社の直近1年の商談の経緯を教えて」と聞けば、取引先・商談・ケースを横断した回答が、根拠になったレコードのリンクとあわせて返ってきます\n。これにより\n前任者に確認を入れるまでに平均で2営業日かかっていた\nような引き継ぎ待ちの時間を削減できます。\n\n### 7. レコードの作成・更新も代行\n\nAgentforce Coworkerに記録の作成や更新を依頼すると、権限を自動的に評価し、変更すべきフィールドを特定し、選択リストの項目を検証し、レコード作成・更新案を確認用に提示します\n。\n\n---\n\n## まとめ\nAgentforce Coworkerは、営業担当者が「誰かに聞かないと分からない情報」を自分で調べられるようにし、商談状況の把握、深掘り調査、コーチング、フォローアップメール作成、離席中の更新確認、引き継ぎ時の過去経緯確認など、**日々発生する“情報収集→判断→アクション”のサイクルを1つの会話の中で完結**させられる点が最大の価値です。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "frogwell.co.jp",
+    "developer.salesforce.com",
+    "zenn.dev",
+    "cross-com.jp"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/jp/blog/jp-how-to-agentforce-coworker/",
+    "https://www.salesforce.com/jp/agentforce/coworker/",
+    "https://www.salesforce.com/jp/news/press-releases/2026/08/05/agentforce-coworker-general-availability-japan/",
+    "https://frogwell.co.jp/blogs/agentforce-coworker/",
+    "https://developer.salesforce.com/docs/data/agentforce-coworker/guide/agentforce-coworker-benefits-and-use-cases.html",
+    "https://www.salesforce.com/jp/news/press-releases/2026/07/15/agentforce-coworker-salesforce-ai-teammate/",
+    "https://zenn.dev/pacific_creator/articles/4163be6cd233da",
+    "https://cross-com.jp/agentforce-coworker/"
+  ],
+  "unresolved_redirects": 0
+}

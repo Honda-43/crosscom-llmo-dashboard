@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E30",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Einstein Trust Layerとは？AIに任せる範囲と人が承認すべき場面はどう分ける？",
+  "cep": null,
+  "timestamp": "2026-09-21T01:07:43.494162Z",
+  "answer": "# Einstein Trust Layerとは\n\nEinstein Trust Layerは、Salesforceのプラットフォームに組み込まれた生成AIのセキュリティアーキテクチャです。\nEinstein Trust Layerは、Salesforceプラットフォームに組み込まれた安全なAIアーキテクチャであり、生成AIソリューションを検討する際に企業を安全に保つための契約・セキュリティ技術・データおよびプライバシー管理の集合体です。\n\n\nより広く言うと、\nデータプライバシーを保護し、AIの精度を高め、Salesforceエコシステム全体で責任あるAI利用を促進するために設計された機能・プロセス・ポリシーの集合体\nです。データはCRMアプリ→Trust Layer→LLMという流れ（プロンプトジャーニー）で送られ、\nLLMがプロンプトを使って応答を生成し、その生成された応答がTrust Layerを通じてCRMアプリに戻る（レスポンスジャーニー）という流れになっています。\n\n\n## 主な機能（5つのガードレール）\n\nAgentforceにおいては、Trust Layerは次のような役割を果たします。\n\n1. **データマスキング**：\n名前・メール・口座番号などの機密情報は、大規模言語モデル（LLM）に送信される前にマスキングされます。\nマスキングの識別には、\nパターンベース（正規表現やコンテキスト語）と、決まったパターンを持たない人名・企業名などを識別する機械学習モデルの両方\nが使われます。\n\n2. **グラウンディング**：\nエージェントがプロンプトに回答する前に、リアルタイムのSalesforceデータを取得して応答を根拠づけます。例えば顧客が注文状況を尋ねた場合、AIが生成した推測ではなく実際の注文レコードを参照します。\n\n\n3. **毒性・安全性チェック**：\nモデルからのすべての応答は、不適切または偏った言葉がないか自動コンテンツチェックを受けます。\n\n\n4. **監査ログ**：\nすべてのプロンプト、応答、マスクされたエンティティ、毒性スコア、グラウンディングソース、ユーザー、タイムスタンプがData Cloud内のEinstein監査ログに記録され、これはコンプライアンスチームが将来必要とする証跡となります。\n\n\n5. **アクション制限**：\nエージェントはAgent Builderで明示的に定義したアクションのみを実行できます。\n\n\nさらにゼロデータ保持契約により、\nモデルプロバイダー側でプロンプトや生成結果が保存・モデレーション用にログ記録・学習利用されない契約をOpenAI、Azure OpenAI、Anthropic、Googleなど複数のプロバイダーと結んでいます。\n\n\n## AIに任せる範囲と人が承認すべき場面の分け方\n\nSalesforce自身が示す「信頼できる生成AIの5原則」の中に、この線引きの考え方が明確に示されています。\n\n**基本方針（Accuracy原則）**：\nモデルの応答には可能な限り説明と出典を裏付けとして付与しますが、大半のユースケースにおいては、エンドユーザーに共有する前に人間が各モデル応答をチェックすることを推奨しています。\nこれがEinstein Trust Layer全体を貫く基本姿勢です。\n\n**AIに任せられる領域**：\n- 読み取り専用・低リスクの操作（グラウンディングされた事実照会、FAQ回答、社内ナレッジ検索など）\n- Agent Builderで明示的に許可・定義された、影響範囲の限定的なアクション（\nAgent Builderで明示的に定義されたアクションのみ\n）\n- ドラフト生成・要約・下書き作成など、そのまま外部に送信されない「案」の作成\n\n**人の承認が必要な場面**：\n- 顧客への送信・記録の更新など「不可逆」または対外的な影響を持つアクション。実際に\nSalesforceは、人間のユーザーが出力を承認するか拒否するかを、それが実行される前（例えばメールが受信者に送信される前）に選択できるようにすることで、ワークフローのあらゆる場面で「human in the loop」を維持しています。\n\n- 高リスク・センシティブなアクション全般：\n人間の監督は常に維持されており、エージェントは特定のアクションを実行する前に人間の承認を必要とするよう設定できます。\n\n- 規制業界（金融、医療、政府等）でのコンプライアンス上重要な判断：\nAIエージェントが何を行い、なぜ行い、どのデータにアクセスしたかを監査できるか、AIが意思決定に影響を与える際に規制順守をどう維持するか\nといった問いに答えられる形で、承認プロセスを組み込む必要があります。\n\n**実務上の切り分けの目安**：\n- **自動実行可**：情報取得・照会・要約など「読み取り」系で、誤りがあっても実害が小さいもの\n- **人の承認必須**：メール送信、レコードの作成・更新・削除、契約や金額に関わる操作、顧客に直接影響する",
+  "cited_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=sf.generative_ai_trust_layer.htm&amp=&type=5",
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_trust_arch.htm&amp=&language=en_US",
+    "https://blog.teamascend.com/blog/agentforce-einstein-trust-layer",
+    "https://salesforcedictionary.com/blogs/salesforce-einstein-trust-layer-complete-2026-guide",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/trust.html",
+    "https://www.salesforceben.com/einstein-trust-layer-whats-the-trust-gap-salesforce-keep-talking-about/",
+    "https://applikontech.com/einstein-trust-layer-the-foundation-of-agentforce/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E30",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/einstein-trust-layer/",
+  "answer_text": "# Einstein Trust Layerとは\n\nEinstein Trust Layerは、Salesforceのプラットフォームに組み込まれた生成AIのセキュリティアーキテクチャです。\nEinstein Trust Layerは、Salesforceプラットフォームに組み込まれた安全なAIアーキテクチャであり、生成AIソリューションを検討する際に企業を安全に保つための契約・セキュリティ技術・データおよびプライバシー管理の集合体です。\n\n\nより広く言うと、\nデータプライバシーを保護し、AIの精度を高め、Salesforceエコシステム全体で責任あるAI利用を促進するために設計された機能・プロセス・ポリシーの集合体\nです。データはCRMアプリ→Trust Layer→LLMという流れ（プロンプトジャーニー）で送られ、\nLLMがプロンプトを使って応答を生成し、その生成された応答がTrust Layerを通じてCRMアプリに戻る（レスポンスジャーニー）という流れになっています。\n\n\n## 主な機能（5つのガードレール）\n\nAgentforceにおいては、Trust Layerは次のような役割を果たします。\n\n1. **データマスキング**：\n名前・メール・口座番号などの機密情報は、大規模言語モデル（LLM）に送信される前にマスキングされます。\nマスキングの識別には、\nパターンベース（正規表現やコンテキスト語）と、決まったパターンを持たない人名・企業名などを識別する機械学習モデルの両方\nが使われます。\n\n2. **グラウンディング**：\nエージェントがプロンプトに回答する前に、リアルタイムのSalesforceデータを取得して応答を根拠づけます。例えば顧客が注文状況を尋ねた場合、AIが生成した推測ではなく実際の注文レコードを参照します。\n\n\n3. **毒性・安全性チェック**：\nモデルからのすべての応答は、不適切または偏った言葉がないか自動コンテンツチェックを受けます。\n\n\n4. **監査ログ**：\nすべてのプロンプト、応答、マスクされたエンティティ、毒性スコア、グラウンディングソース、ユーザー、タイムスタンプがData Cloud内のEinstein監査ログに記録され、これはコンプライアンスチームが将来必要とする証跡となります。\n\n\n5. **アクション制限**：\nエージェントはAgent Builderで明示的に定義したアクションのみを実行できます。\n\n\nさらにゼロデータ保持契約により、\nモデルプロバイダー側でプロンプトや生成結果が保存・モデレーション用にログ記録・学習利用されない契約をOpenAI、Azure OpenAI、Anthropic、Googleなど複数のプロバイダーと結んでいます。\n\n\n## AIに任せる範囲と人が承認すべき場面の分け方\n\nSalesforce自身が示す「信頼できる生成AIの5原則」の中に、この線引きの考え方が明確に示されています。\n\n**基本方針（Accuracy原則）**：\nモデルの応答には可能な限り説明と出典を裏付けとして付与しますが、大半のユースケースにおいては、エンドユーザーに共有する前に人間が各モデル応答をチェックすることを推奨しています。\nこれがEinstein Trust Layer全体を貫く基本姿勢です。\n\n**AIに任せられる領域**：\n- 読み取り専用・低リスクの操作（グラウンディングされた事実照会、FAQ回答、社内ナレッジ検索など）\n- Agent Builderで明示的に許可・定義された、影響範囲の限定的なアクション（\nAgent Builderで明示的に定義されたアクションのみ\n）\n- ドラフト生成・要約・下書き作成など、そのまま外部に送信されない「案」の作成\n\n**人の承認が必要な場面**：\n- 顧客への送信・記録の更新など「不可逆」または対外的な影響を持つアクション。実際に\nSalesforceは、人間のユーザーが出力を承認するか拒否するかを、それが実行される前（例えばメールが受信者に送信される前）に選択できるようにすることで、ワークフローのあらゆる場面で「human in the loop」を維持しています。\n\n- 高リスク・センシティブなアクション全般：\n人間の監督は常に維持されており、エージェントは特定のアクションを実行する前に人間の承認を必要とするよう設定できます。\n\n- 規制業界（金融、医療、政府等）でのコンプライアンス上重要な判断：\nAIエージェントが何を行い、なぜ行い、どのデータにアクセスしたかを監査できるか、AIが意思決定に影響を与える際に規制順守をどう維持するか\nといった問いに答えられる形で、承認プロセスを組み込む必要があります。\n\n**実務上の切り分けの目安**：\n- **自動実行可**：情報取得・照会・要約など「読み取り」系で、誤りがあっても実害が小さいもの\n- **人の承認必須**：メール送信、レコードの作成・更新・削除、契約や金額に関わる操作、顧客に直接影響する",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "help.salesforce.com",
+    "blog.teamascend.com",
+    "salesforcedictionary.com",
+    "developer.salesforce.com",
+    "salesforceben.com",
+    "applikontech.com"
+  ],
+  "resolved_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=sf.generative_ai_trust_layer.htm&amp=&type=5",
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_trust_arch.htm&amp=&language=en_US",
+    "https://blog.teamascend.com/blog/agentforce-einstein-trust-layer",
+    "https://salesforcedictionary.com/blogs/salesforce-einstein-trust-layer-complete-2026-guide",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/trust.html",
+    "https://www.salesforceben.com/einstein-trust-layer-whats-the-trust-gap-salesforce-keep-talking-about/",
+    "https://applikontech.com/einstein-trust-layer-the-foundation-of-agentforce/"
+  ],
+  "unresolved_redirects": 0
+}

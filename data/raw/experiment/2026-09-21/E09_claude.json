@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E09",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce MCPとは？Agentforceと外部システムの接続方式と境界の設計",
+  "cep": null,
+  "timestamp": "2026-09-21T00:57:25.603944Z",
+  "answer": "# Salesforce MCPとは\n\nMCP（Model Context Protocol）は、\nAIアプリやエージェントがツールやデータソースと接続しやすくするオープンソースのプロトコルで、MCP以前は各ツールごとに専用の統合コードが必要で、ツールやリソースの断片化が起きていました\n。\nMCPを使えば、自分のツール用に1つのMCPサーバーを構築するだけで、MCPを理解する任意のAIアプリやエージェントに接続できます\n。\n\nSalesforceの文脈では、\n「Salesforce MCP」はSalesforceのModel Context Protocolサーバー実装群を指し、これらのサーバーはSalesforceの機能・データ・開発者ツールを標準化されたインターフェースを通じてAIエージェントに公開します\n。\nMuleSoftやHerokuなど追加のドメインサーバーも用意されています\n。\n\n## アーキテクチャの3要素（Host / Client / Server）\n\n\nMCPスタックはホスト・クライアント・サーバーの3つで構成され、クライアントサーバー型アーキテクチャに従い、1つのホストアプリケーションが複数のサーバーに接続できます\n。\n\n- **Host（ホスト）**：\nSalesforce Agentforceのようなプラットフォームなど、ユーザーが直接やり取りする主要なAIアプリケーション。ホストは全体のワークフローを調整し、MCP対応AIシステムへのユーザーの入口となる\n。\n- **Client（クライアント）**：\nホストアプリケーション内に存在し、プロトコルの主要な通信処理を担う。特定の外部サーバーへの専用接続を維持し、AIモデルのニーズを構造化されたプロトコルリクエストに変換する\n。\n- **Server（サーバー）**：\n外部システムがプロトコルを通じて自らの機能を公開する部分。Actions（エージェントが呼び出せるタスク）、Resources（構造化データ）、Prompts（再利用可能なワークフローテンプレート）を提供する\n。\n\nこの分離により、\nAIモデルの推論と、実際のタスク実行・データ取得を明確に分離でき、スケーラブルかつ安全なAPI管理が可能になります\n。\n\n## Agentforceとの接続方式\n\nAgentforceは2025年7月以降、MCPをネイティブサポートしています。\nAgentforceはネイティブ MCPクライアントを備え、エージェントがカスタムコードなしで安全にMCP準拠の任意のサーバーに接続できます\n。接続方式は大きく3パターンあります。\n\n### ① Hosted MCP Servers（Salesforceホスト型）\n2026年4月にGA（一般提供）となった方式です。\nカスタムAPI統合をツールごとに構築する代わりに、Salesforce内で一度サーバーを設定すれば、任意のMCP互換クライアントが標準的なOAuthベースの認証を使って接続できます\n。\n外部AIエージェントは、Salesforceのセキュリティ境界とガバナンスポリシーの内側で安全にSalesforceのデータ・アセット・ロジックに接続できます\n。設定は\n30分程度で完了し、Setup画面のAPI CatalogでMCPサーバーを有効化し、mcp_apiとrefresh_tokenスコープを持つExternal Client Appを作成、Postmanでテスト後にClaudeやChatGPTなどのクライアントを接続する手順です\n。\n\n### ② MuleSoft経由での外部MCPサーバー構築\n\nMuleSoftのAnypoint Platformを使えば、既存のAPIやMuleアプリケーションをMCPサーバーに変換できます（GA機能）\n。これにより既存のシステム資産をAgentforceから呼び出せます。実例として、\nMCPサーバーはOAuth 2.0で保護でき、Salesforceがトークンの取得・更新を自動管理し、1つのMCPサーバーを複数のエージェント・組織・非Salesforce AIシステムから再利用できます\n。\n\n### ③ Heroku等でのセルフホスト・カスタム構築\n",
+  "cited_urls": [
+    "https://developer.salesforce.com/blogs/2025/06/introducing-mcp-support-across-salesforce",
+    "https://rtslabs.com/salesforce-mcp",
+    "https://www.salesforce.com/agentforce/mcp-support/model-context-protocol/",
+    "https://sptechusa.com/blog/mcp-salesforce-model-context-protocol-guide/",
+    "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/hosted-mcp-servers-overview.html",
+    "https://developer.salesforce.com/blogs/2026/04/salesforce-hosted-mcp-servers-are-now-generally-available",
+    "https://developer.salesforce.com/blogs/2026/08/extending-agentforce-with-external-mcp-tools-via-mulesoft"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E09",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-mcp/",
+  "answer_text": "# Salesforce MCPとは\n\nMCP（Model Context Protocol）は、\nAIアプリやエージェントがツールやデータソースと接続しやすくするオープンソースのプロトコルで、MCP以前は各ツールごとに専用の統合コードが必要で、ツールやリソースの断片化が起きていました\n。\nMCPを使えば、自分のツール用に1つのMCPサーバーを構築するだけで、MCPを理解する任意のAIアプリやエージェントに接続できます\n。\n\nSalesforceの文脈では、\n「Salesforce MCP」はSalesforceのModel Context Protocolサーバー実装群を指し、これらのサーバーはSalesforceの機能・データ・開発者ツールを標準化されたインターフェースを通じてAIエージェントに公開します\n。\nMuleSoftやHerokuなど追加のドメインサーバーも用意されています\n。\n\n## アーキテクチャの3要素（Host / Client / Server）\n\n\nMCPスタックはホスト・クライアント・サーバーの3つで構成され、クライアントサーバー型アーキテクチャに従い、1つのホストアプリケーションが複数のサーバーに接続できます\n。\n\n- **Host（ホスト）**：\nSalesforce Agentforceのようなプラットフォームなど、ユーザーが直接やり取りする主要なAIアプリケーション。ホストは全体のワークフローを調整し、MCP対応AIシステムへのユーザーの入口となる\n。\n- **Client（クライアント）**：\nホストアプリケーション内に存在し、プロトコルの主要な通信処理を担う。特定の外部サーバーへの専用接続を維持し、AIモデルのニーズを構造化されたプロトコルリクエストに変換する\n。\n- **Server（サーバー）**：\n外部システムがプロトコルを通じて自らの機能を公開する部分。Actions（エージェントが呼び出せるタスク）、Resources（構造化データ）、Prompts（再利用可能なワークフローテンプレート）を提供する\n。\n\nこの分離により、\nAIモデルの推論と、実際のタスク実行・データ取得を明確に分離でき、スケーラブルかつ安全なAPI管理が可能になります\n。\n\n## Agentforceとの接続方式\n\nAgentforceは2025年7月以降、MCPをネイティブサポートしています。\nAgentforceはネイティブ MCPクライアントを備え、エージェントがカスタムコードなしで安全にMCP準拠の任意のサーバーに接続できます\n。接続方式は大きく3パターンあります。\n\n### ① Hosted MCP Servers（Salesforceホスト型）\n2026年4月にGA（一般提供）となった方式です。\nカスタムAPI統合をツールごとに構築する代わりに、Salesforce内で一度サーバーを設定すれば、任意のMCP互換クライアントが標準的なOAuthベースの認証を使って接続できます\n。\n外部AIエージェントは、Salesforceのセキュリティ境界とガバナンスポリシーの内側で安全にSalesforceのデータ・アセット・ロジックに接続できます\n。設定は\n30分程度で完了し、Setup画面のAPI CatalogでMCPサーバーを有効化し、mcp_apiとrefresh_tokenスコープを持つExternal Client Appを作成、Postmanでテスト後にClaudeやChatGPTなどのクライアントを接続する手順です\n。\n\n### ② MuleSoft経由での外部MCPサーバー構築\n\nMuleSoftのAnypoint Platformを使えば、既存のAPIやMuleアプリケーションをMCPサーバーに変換できます（GA機能）\n。これにより既存のシステム資産をAgentforceから呼び出せます。実例として、\nMCPサーバーはOAuth 2.0で保護でき、Salesforceがトークンの取得・更新を自動管理し、1つのMCPサーバーを複数のエージェント・組織・非Salesforce AIシステムから再利用できます\n。\n\n### ③ Heroku等でのセルフホスト・カスタム構築\n",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "developer.salesforce.com",
+    "rtslabs.com",
+    "salesforce.com",
+    "sptechusa.com"
+  ],
+  "resolved_urls": [
+    "https://developer.salesforce.com/blogs/2025/06/introducing-mcp-support-across-salesforce",
+    "https://rtslabs.com/salesforce-mcp",
+    "https://www.salesforce.com/agentforce/mcp-support/model-context-protocol/",
+    "https://sptechusa.com/blog/mcp-salesforce-model-context-protocol-guide/",
+    "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/hosted-mcp-servers-overview.html",
+    "https://developer.salesforce.com/blogs/2026/04/salesforce-hosted-mcp-servers-are-now-generally-available",
+    "https://developer.salesforce.com/blogs/2026/08/extending-agentforce-with-external-mcp-tools-via-mulesoft"
+  ],
+  "unresolved_redirects": 0
+}

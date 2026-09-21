@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E01",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce for SalesのSDRエージェントとSales Coachは営業でどう使う？活用事例も知りたい",
+  "cep": null,
+  "timestamp": "2026-09-21T00:53:31.255111Z",
+  "answer": "# Agentforce for Sales：SDRエージェント と Sales Coach の使い方・活用事例\n\n## 概要：2つのAIエージェントの役割分担\n\n\nAgentforceには営業向けに設計された2つの中核ソリューションがあります。Agentforce SDRはインバウンドリードの対応やプロスペクティング業務（Webフォーム送信内容の要約、購買意欲の見極め、次のアクションの提案など）に特化し、Agentforce Sales Coachは商談の中盤〜終盤の戦略的な活動（商談準備、案件の質の向上、クロージング精度の向上）を支援するために作られています。\n\n\nつまり「**入口（リード獲得・育成）はSDR、出口（商談の質向上・クロージング）はSales Coach**」という住み分けです。\n\n---\n\n## 1. Agentforce SDR Agent（旧Einstein SDR）の使い方\n\n### 何をしてくれるか\n\nEinstein SDR Agentは24時間365日、見込み顧客と自律的に関わり、パイプラインを開拓します。\n単純なチャットボットとは異なり、\n望ましい結果につながるアクションを決定し、優先順位を付け、見込み顧客の質問を分析して、製品に関する質問への回答、お断りされた場合の切り返し、ミーティングの日程調整など、次に何をすべきかを自律的に決定します。\n\n\n回答の正確性についても、\n企業のCRMとAgentforceの検索拡張生成(RAG)サービスを使用して整合化された外部データに基づくため、正確で信頼性が高く、パーソナライズされています。\nまた\n見込み顧客を営業担当者にシームレスに引継ぎ、複数の見込み顧客に対し、一度に、チャネルを超えて、さまざまな言語で対応できます。\n\n\n### 具体的な業務フロー\nリードが興味を示した場合の動きとして、\n見込み顧客が前向きな返信をしたりミーティングを希望したりすると、SDR Agentはリード担当者のカレンダーから予約リンクを送信し、担当営業に通知し、これまでのやり取りの履歴と関連コンテキストの完全なブリーフィングを提供します。\n\n\n問い合わせ対応の限界を超える場合も安心設計になっており、\nSDR Agentが学習していない質問をプロスペクトがした場合、対応範囲内の質問はAgent Builder経由でアップロードされた製品・サービス情報を使って回答され、範囲外や複雑な問い合わせは適切な人間の担当者にフラグ付けされ引き継がれるため、対応漏れが起きません。\n\n\n### 向いている企業\n\nSDR Agentは、リード生成量が多く、営業チームの生産性向上を望む企業に最適です。\nこうしたファネル上部の業務を自動化することで、営業担当者は成約可能性の高い質の高いリードとのつながりに集中でき、対応が行き届かなかったであろうリードにも対応できる形で営業力をスケールさせ、パイプラインの拡大を加速できます。\n\n\n---\n\n## 2. Agentforce Sales Coach（旧Einstein Sales Coach）の使い方\n\n### 何をしてくれるか\n\nAgentforce Sales Coachは、営業担当者が常に優れた顧客対話に備えられるよう、案件ごとにパーソナライズされたフィードバックを提供します。営業ピッチを磨きたい場合でも、交渉を成功させるためのロールプレイを行いたい場合でも、テーラーメイドのフィードバックを得られます。CRMデータとRAGにアクセスし、案件やその商談ステージに合わせたピッチへのフィードバックを提供します。\n\n\n### 商談ステージによる使い分け\nSales Coachの面白い点は、商談の進捗段階でフィードバックの性質が変わることです。\n初期段階ではピッチ分析と案件レベルのフィードバックに焦点が当たり、後期段階（交渉・価格設定）ではインタラクティブなロールプレイシミュレーションに切り替わり、商談レコードからリアルタイムでコンテキストを取得することで、実際の商談に直結した練習が可能になります。\n\n\n### シミュレーションのリアルさ\n架空のシナリオではなく実データに基づく点が強みです。\nSalesforceの組織から顧客とのやり取り、バイヤーペルソナ、ジャーニードキュメントなどのデータを直接取得するRAG（検索拡張生成）を使用しており、シミュレーションは一般的なシナリオではなく実際の商談に特化しています。\n\n\n### 新人育成での活用\n現場導入の実例として、\nOpportunityのレイアウトに組み込むことで、営業担当者は事前に商談のロールプレイを行い、偏りのない客観的なレビューを受けることができます。\n\n\n---\n\n## 3. 実際の活用事例（導入効果）\n\n### 事例：SaaS企業でのSDR Agent導入\n\nあるハイテクSaaS企業はAgentforce SDR Agentを導入し、営業開発プロセスの効率化を図りました。リード資格判定を自動化することで、リード対応時間を50％削減し、SDRが質の高い見込み顧客に集中できるようにしました",
+  "cited_urls": [
+    "https://frontline1st.com/2025/08/08/agentforce-sales-coach-excellence/",
+    "https://prtimes.jp/main/html/rd/p/000000241.000041550.html",
+    "https://www.grazitti.com/blog/agentforce-sales-cloud-the-winning-combo-for-sales-success/",
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-sales-agents-quick-look/discover-agentforce-sales-agents",
+    "https://marcloudconsulting.com/agentforce/agentforce-examples-use-cases/",
+    "https://www.acxiom.com/salesforce/agentforce-supercharges-salesforce-sales-cloud-4-inspiring-real-world-stories/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E01",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-for-sales-sdr-sales-coach/",
+  "answer_text": "# Agentforce for Sales：SDRエージェント と Sales Coach の使い方・活用事例\n\n## 概要：2つのAIエージェントの役割分担\n\n\nAgentforceには営業向けに設計された2つの中核ソリューションがあります。Agentforce SDRはインバウンドリードの対応やプロスペクティング業務（Webフォーム送信内容の要約、購買意欲の見極め、次のアクションの提案など）に特化し、Agentforce Sales Coachは商談の中盤〜終盤の戦略的な活動（商談準備、案件の質の向上、クロージング精度の向上）を支援するために作られています。\n\n\nつまり「**入口（リード獲得・育成）はSDR、出口（商談の質向上・クロージング）はSales Coach**」という住み分けです。\n\n---\n\n## 1. Agentforce SDR Agent（旧Einstein SDR）の使い方\n\n### 何をしてくれるか\n\nEinstein SDR Agentは24時間365日、見込み顧客と自律的に関わり、パイプラインを開拓します。\n単純なチャットボットとは異なり、\n望ましい結果につながるアクションを決定し、優先順位を付け、見込み顧客の質問を分析して、製品に関する質問への回答、お断りされた場合の切り返し、ミーティングの日程調整など、次に何をすべきかを自律的に決定します。\n\n\n回答の正確性についても、\n企業のCRMとAgentforceの検索拡張生成(RAG)サービスを使用して整合化された外部データに基づくため、正確で信頼性が高く、パーソナライズされています。\nまた\n見込み顧客を営業担当者にシームレスに引継ぎ、複数の見込み顧客に対し、一度に、チャネルを超えて、さまざまな言語で対応できます。\n\n\n### 具体的な業務フロー\nリードが興味を示した場合の動きとして、\n見込み顧客が前向きな返信をしたりミーティングを希望したりすると、SDR Agentはリード担当者のカレンダーから予約リンクを送信し、担当営業に通知し、これまでのやり取りの履歴と関連コンテキストの完全なブリーフィングを提供します。\n\n\n問い合わせ対応の限界を超える場合も安心設計になっており、\nSDR Agentが学習していない質問をプロスペクトがした場合、対応範囲内の質問はAgent Builder経由でアップロードされた製品・サービス情報を使って回答され、範囲外や複雑な問い合わせは適切な人間の担当者にフラグ付けされ引き継がれるため、対応漏れが起きません。\n\n\n### 向いている企業\n\nSDR Agentは、リード生成量が多く、営業チームの生産性向上を望む企業に最適です。\nこうしたファネル上部の業務を自動化することで、営業担当者は成約可能性の高い質の高いリードとのつながりに集中でき、対応が行き届かなかったであろうリードにも対応できる形で営業力をスケールさせ、パイプラインの拡大を加速できます。\n\n\n---\n\n## 2. Agentforce Sales Coach（旧Einstein Sales Coach）の使い方\n\n### 何をしてくれるか\n\nAgentforce Sales Coachは、営業担当者が常に優れた顧客対話に備えられるよう、案件ごとにパーソナライズされたフィードバックを提供します。営業ピッチを磨きたい場合でも、交渉を成功させるためのロールプレイを行いたい場合でも、テーラーメイドのフィードバックを得られます。CRMデータとRAGにアクセスし、案件やその商談ステージに合わせたピッチへのフィードバックを提供します。\n\n\n### 商談ステージによる使い分け\nSales Coachの面白い点は、商談の進捗段階でフィードバックの性質が変わることです。\n初期段階ではピッチ分析と案件レベルのフィードバックに焦点が当たり、後期段階（交渉・価格設定）ではインタラクティブなロールプレイシミュレーションに切り替わり、商談レコードからリアルタイムでコンテキストを取得することで、実際の商談に直結した練習が可能になります。\n\n\n### シミュレーションのリアルさ\n架空のシナリオではなく実データに基づく点が強みです。\nSalesforceの組織から顧客とのやり取り、バイヤーペルソナ、ジャーニードキュメントなどのデータを直接取得するRAG（検索拡張生成）を使用しており、シミュレーションは一般的なシナリオではなく実際の商談に特化しています。\n\n\n### 新人育成での活用\n現場導入の実例として、\nOpportunityのレイアウトに組み込むことで、営業担当者は事前に商談のロールプレイを行い、偏りのない客観的なレビューを受けることができます。\n\n\n---\n\n## 3. 実際の活用事例（導入効果）\n\n### 事例：SaaS企業でのSDR Agent導入\n\nあるハイテクSaaS企業はAgentforce SDR Agentを導入し、営業開発プロセスの効率化を図りました。リード資格判定を自動化することで、リード対応時間を50％削減し、SDRが質の高い見込み顧客に集中できるようにしました",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "frontline1st.com",
+    "prtimes.jp",
+    "grazitti.com",
+    "trailhead.salesforce.com",
+    "marcloudconsulting.com",
+    "acxiom.com"
+  ],
+  "resolved_urls": [
+    "https://frontline1st.com/2025/08/08/agentforce-sales-coach-excellence/",
+    "https://prtimes.jp/main/html/rd/p/000000241.000041550.html",
+    "https://www.grazitti.com/blog/agentforce-sales-cloud-the-winning-combo-for-sales-success/",
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-sales-agents-quick-look/discover-agentforce-sales-agents",
+    "https://marcloudconsulting.com/agentforce/agentforce-examples-use-cases/",
+    "https://www.acxiom.com/salesforce/agentforce-supercharges-salesforce-sales-cloud-4-inspiring-real-world-stories/"
+  ],
+  "unresolved_redirects": 0
+}

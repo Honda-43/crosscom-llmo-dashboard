@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-21",
+  "prompt_id": "E20",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceで成果を出している営業組織の活用事例を知りたい",
+  "cep": null,
+  "timestamp": "2026-09-21T01:02:48.130946Z",
+  "answer": "Agentforceを活用して成果を出している営業組織の事例について調べます。\nさらに具体的な企業名・数値を確認します。\n十分な情報が集まりました。以下に、Agentforceを活用して具体的な成果を出している営業組織の事例をまとめます。\n\n## Agentforceで成果を出している営業組織の活用事例\n\n### 1. Salesforce Sales（旧Sales Cloud）導入で売上15%増を実現した企業\n訪問販売型の営業組織における事例では、\nAgentforce Salesの導入後、売上高は対前年比15%増となり、新規の訪問販売による顧客獲得数も対前年比20%増となった\nことが報告されています。現場でも\n「無駄な訪問や空振りが減った」という前向きな意見が寄せられています\n。特筆すべきは、この効果が導入初年度から得られている点です。\n\n### 2. チャットボット活用で月間300万円の売上増を実現した企業\nWebサイトからのリード獲得にAgentforceを活用した事例では、\nSalesforceに蓄積してきたナレッジや情報を基に回答を生成できる点や、チャットボット上でのやり取りから自動で見積もりや商談レコードが作成される機能が重視されました\n。結果として月3〜5件のホットリードを自動創出し、約300万円の売上増を実現しています。\n\n### 3. NTTデータの全社営業変革プロジェクト\nNTTデータ自身が「クライアントゼロ」として自社にAgentforceを導入した大規模事例です。\nNTTデータでは、全社横断の営業変革を実現すべく「Agentforce Sales」を中核に据えた営業プラットフォームを導入し、Data 360、Tableau Nextといった最新テクノロジーを実運用で検証・活用することで、営業生産性の向上と変革の内製化に継続的に取り組んでいます\n。従来、\n官公庁・金融機関・法人企業といった幅広い分野で顧客ごとに最適化された組織体制を構築してきた強みを維持しながら、組織間連携の強化とアセット再利用を促進する狙い\nがあります。\n\n### 4. Agentforce SDR（インサイドセールス）による営業生産性向上\nAgentforce SDRを導入した営業組織では、\n24時間365日のリード対応による機会損失の防止、適切なタイミングでのフォローによる商談化率の向上、人的リソースの最適配分による営業生産性の改善\nといった効果が得られています。特徴的なのは、\n多くのAI SDRツールが営業活動の一部を効率化する支援ツールであるのに対し、Agentforce SDRはリード対応から商談設定までを一気通貫で実行する\n点です。\n\nこれにより、人間のSDRは温度感の高い有望なリードへの対応に集中できるようになるという効果も報告されています。\n\n### 5. Agentforce Sales Coachによる営業スキル育成\n商談スキルの底上げに活用されている事例では、\nAgentforce Sales Coachは商談の練習相手となりフィードバックまで返す育成向けエージェントで、AIが顧客役を演じるロールプレイを通じて営業担当者がスキルを磨ける\n仕組みです。上司が多忙で指導時間を確保しにくいという組織課題の解決に活用されています。\n\n### 6. グローバル事例に見る成果指標\nSalesforce公式発表による世界規模のデータでは、\n2024年10月のGA以降約1年半で世界12,000社以上がAgentforceを導入し、合計で年間$100M（約150億円）を超えるコスト削減効果\nが報告されています。また導入スピードについても、\n自前でAIエージェントを構築すると平均75.5ヶ月かかるところ、Agentforceなら4.8ヶ月で本番稼働に至っている\nとの実績があります。\n\n---\n\n**成果を出すための共通ポイント**として、複数の情報源から以下が挙げられています：\n- \n導入前にリード対応から商談化までの流れを整理し、AIが判断しやすい状態にしておくこと\nが重要\n- \nPoC（概念実証）を特定の営業プロセスに適用し、業務効率化や成約率への影響を具体的な数値で測定する\nアプローチが有効\n- \n一部の営業担当者だけでなく、チーム全体での活用が重要で、導入初期のトレーニングとサポート体制の構築が成功の鍵\n\n\nより詳しい業界別・企業別の最新事例は、Salesforce公式の「Agentforce導入事例」ページ（salesforce.com/jp/agentforce/customer-stories/）で随時更新されているので、そちらも参考にされることをおすすめします。",
+  "cited_urls": [
+    "https://boxil.jp/mag/a11311/",
+    "https://boxil.jp/mag/a11431/",
+    "https://www.nttdata.com/jp/ja/trends/data-insight/2026/030201/",
+    "https://tobem.jp/pardot_blog/agentforce-sdr-salesforce-ai",
+    "https://cross-com.jp/agentforce-for-sales-sdr-sales-coach/",
+    "https://hatenabase.jp/blog/salesforce-agentforce-global-case-studies/",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2",
+    "https://frogwell.co.jp/blogs/agentforce-usecases/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E20",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-use-cases/",
+  "answer_text": "Agentforceを活用して成果を出している営業組織の事例について調べます。\nさらに具体的な企業名・数値を確認します。\n十分な情報が集まりました。以下に、Agentforceを活用して具体的な成果を出している営業組織の事例をまとめます。\n\n## Agentforceで成果を出している営業組織の活用事例\n\n### 1. Salesforce Sales（旧Sales Cloud）導入で売上15%増を実現した企業\n訪問販売型の営業組織における事例では、\nAgentforce Salesの導入後、売上高は対前年比15%増となり、新規の訪問販売による顧客獲得数も対前年比20%増となった\nことが報告されています。現場でも\n「無駄な訪問や空振りが減った」という前向きな意見が寄せられています\n。特筆すべきは、この効果が導入初年度から得られている点です。\n\n### 2. チャットボット活用で月間300万円の売上増を実現した企業\nWebサイトからのリード獲得にAgentforceを活用した事例では、\nSalesforceに蓄積してきたナレッジや情報を基に回答を生成できる点や、チャットボット上でのやり取りから自動で見積もりや商談レコードが作成される機能が重視されました\n。結果として月3〜5件のホットリードを自動創出し、約300万円の売上増を実現しています。\n\n### 3. NTTデータの全社営業変革プロジェクト\nNTTデータ自身が「クライアントゼロ」として自社にAgentforceを導入した大規模事例です。\nNTTデータでは、全社横断の営業変革を実現すべく「Agentforce Sales」を中核に据えた営業プラットフォームを導入し、Data 360、Tableau Nextといった最新テクノロジーを実運用で検証・活用することで、営業生産性の向上と変革の内製化に継続的に取り組んでいます\n。従来、\n官公庁・金融機関・法人企業といった幅広い分野で顧客ごとに最適化された組織体制を構築してきた強みを維持しながら、組織間連携の強化とアセット再利用を促進する狙い\nがあります。\n\n### 4. Agentforce SDR（インサイドセールス）による営業生産性向上\nAgentforce SDRを導入した営業組織では、\n24時間365日のリード対応による機会損失の防止、適切なタイミングでのフォローによる商談化率の向上、人的リソースの最適配分による営業生産性の改善\nといった効果が得られています。特徴的なのは、\n多くのAI SDRツールが営業活動の一部を効率化する支援ツールであるのに対し、Agentforce SDRはリード対応から商談設定までを一気通貫で実行する\n点です。\n\nこれにより、人間のSDRは温度感の高い有望なリードへの対応に集中できるようになるという効果も報告されています。\n\n### 5. Agentforce Sales Coachによる営業スキル育成\n商談スキルの底上げに活用されている事例では、\nAgentforce Sales Coachは商談の練習相手となりフィードバックまで返す育成向けエージェントで、AIが顧客役を演じるロールプレイを通じて営業担当者がスキルを磨ける\n仕組みです。上司が多忙で指導時間を確保しにくいという組織課題の解決に活用されています。\n\n### 6. グローバル事例に見る成果指標\nSalesforce公式発表による世界規模のデータでは、\n2024年10月のGA以降約1年半で世界12,000社以上がAgentforceを導入し、合計で年間$100M（約150億円）を超えるコスト削減効果\nが報告されています。また導入スピードについても、\n自前でAIエージェントを構築すると平均75.5ヶ月かかるところ、Agentforceなら4.8ヶ月で本番稼働に至っている\nとの実績があります。\n\n---\n\n**成果を出すための共通ポイント**として、複数の情報源から以下が挙げられています：\n- \n導入前にリード対応から商談化までの流れを整理し、AIが判断しやすい状態にしておくこと\nが重要\n- \nPoC（概念実証）を特定の営業プロセスに適用し、業務効率化や成約率への影響を具体的な数値で測定する\nアプローチが有効\n- \n一部の営業担当者だけでなく、チーム全体での活用が重要で、導入初期のトレーニングとサポート体制の構築が成功の鍵\n\n\nより詳しい業界別・企業別の最新事例は、Salesforce公式の「Agentforce導入事例」ページ（salesforce.com/jp/agentforce/customer-stories/）で随時更新されているので、そちらも参考にされることをおすすめします。",
+  "cited_domain": 1,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "boxil.jp",
+    "nttdata.com",
+    "tobem.jp",
+    "cross-com.jp",
+    "hatenabase.jp",
+    "service.digital.panasonic.co.jp",
+    "frogwell.co.jp"
+  ],
+  "resolved_urls": [
+    "https://boxil.jp/mag/a11311/",
+    "https://boxil.jp/mag/a11431/",
+    "https://www.nttdata.com/jp/ja/trends/data-insight/2026/030201/",
+    "https://tobem.jp/pardot_blog/agentforce-sdr-salesforce-ai",
+    "https://cross-com.jp/agentforce-for-sales-sdr-sales-coach/",
+    "https://hatenabase.jp/blog/salesforce-agentforce-global-case-studies/",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2",
+    "https://frogwell.co.jp/blogs/agentforce-usecases/"
+  ],
+  "unresolved_redirects": 0
+}
