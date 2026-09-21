@@ -13,12 +13,14 @@
 - Gemini を先に回す。Claude の47本は時間がかかるので、後ろに置いても
   Gemini の枠の日付(太平洋時間)には影響しない。
 
-日次との順序と枠(2026-09-21):
-  - 日次のある日(火・木・土)は、日次の Gemini の raw が揃うまで待ってから走る
-    (cron の遅れで順序が入れ替わることがある)。待っても揃わなければ、その日の
-    実験の Gemini は投げずに reason=skipped の欠測として記録する。
-  - 本数は「20 − 日次の実消費(attempts。再試行込み)− 月次 − 予備2」。
+日次・月次との順序と枠(2026-09-21):
+  - 日次のある日(火・木・土)と月次のある日(第1水・第1木)は、その Gemini の
+    raw が揃うまで待ってから走る(cron の遅れで順序が入れ替わることがある)。
+    待っても揃わなければ、その日の実験の Gemini は投げずに reason=skipped の
+    欠測として記録する。
+  - 本数は「20 − 日次・月次の実消費(attempts。再試行込み)− 予備2」。
     名目の割当より少なければ末尾から削り、削った分も skipped として残す。
+    月・水・金・日(先に走る観測が無い日)は上限16本。
   - 429 の欠測が1日3件以上、または日次待ちで Gemini を飛ばした日は、
     exit 0 のまま Slack に1行出す(9/19 は10件落ちて通知ゼロだった)。
 
@@ -57,11 +59,12 @@ import collect_llm
 import experiment
 import notify_slack
 import sheets_writer
-from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, EXPERIMENT_JOURNAL_FILE,
-                      EXPERIMENT_WEEKLY_TARGET, GEMINI_DAILY_REQUEST_LIMIT, ROOT_DIR,
-                      WEEKDAY_LABELS, experiment_gemini_allowance, experiment_plan,
-                      gemini_requests_on, is_daily_llm_day, load_prompts,
-                      monthly_requests_on)
+from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DIR,
+                      EXPERIMENT_JOURNAL_FILE, EXPERIMENT_WEEKLY_TARGET,
+                      GEMINI_DAILY_REQUEST_LIMIT, ROOT_DIR, WEEKDAY_LABELS,
+                      experiment_gemini_allowance, experiment_plan, gemini_requests_on,
+                      has_prior_gemini_run, is_daily_llm_day, load_monthly_prompts,
+                      load_prompts, monthly_batch_on)
 
 MODEL_ORDER = ("gemini", "claude")
 
@@ -136,23 +139,23 @@ def observe(date: str, plan: Dict[str, List[Dict[str, Any]]], out_dir,
 
 
 # --------------------------------------------------------------------------
-# 日次との順序と、日次の実消費
+# 日次・月次との順序と、その実消費
 # --------------------------------------------------------------------------
 def _git(*args: str) -> subprocess.CompletedProcess:
     return subprocess.run(["git", *args], cwd=ROOT_DIR, capture_output=True,
                           text=True, encoding="utf-8", timeout=120)
 
 
-def _daily_gemini_from_origin(date: str) -> List[Dict[str, Any]]:
-    """origin/main にある、その日の日次の Gemini raw。
+def _gemini_raw_from_origin(rel_dir: str) -> List[Dict[str, Any]]:
+    """origin/main の ``rel_dir``(例: data/raw/2026-09-22)にある Gemini raw。
 
-    実験のワークフローは始まった時点の main を checkout している。日次がその
-    あとに commit した raw は手元に無いので、取り直して読む。作業ツリーと
-    index には触らない(このあとの commit に日次の raw を混ぜないため)。
+    実験のワークフローは始まった時点の main を checkout している。日次・月次が
+    そのあとに commit した raw は手元に無いので、取り直して読む。作業ツリーと
+    index には触らない(このあとの commit に他のワークフローの raw を混ぜないため)。
     """
     try:
         _git("fetch", "--quiet", "origin", "main")
-        listed = _git("ls-tree", "--name-only", "origin/main", f"data/raw/{date}/")
+        listed = _git("ls-tree", "--name-only", "origin/main", f"{rel_dir}/")
     except (OSError, subprocess.SubprocessError):
         return []
     if listed.returncode != 0:
@@ -166,20 +169,37 @@ def _daily_gemini_from_origin(date: str) -> List[Dict[str, Any]]:
     return out
 
 
-def _daily_gemini_local(date: str) -> List[Dict[str, Any]]:
-    folder = DATA_RAW_DIR / date
+def _gemini_raw_local(folder: Path) -> List[Dict[str, Any]]:
     return [json.loads(f.read_text(encoding="utf-8"))
             for f in sorted(folder.glob("*_gemini.json"))] if folder.exists() else []
 
 
-def daily_gemini_records(date: str) -> List[Dict[str, Any]]:
-    """その日の日次の Gemini raw。origin と手元で多いほうを使う。"""
-    remote, local = _daily_gemini_from_origin(date), _daily_gemini_local(date)
+def _daily_gemini_local(date: str) -> List[Dict[str, Any]]:
+    return _gemini_raw_local(DATA_RAW_DIR / date)
+
+
+def _monthly_gemini_local(date: str) -> List[Dict[str, Any]]:
+    return _gemini_raw_local(DATA_RAW_MONTHLY_DIR / date)
+
+
+def _prefer_more(remote: List[Dict[str, Any]],
+                 local: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     return remote if len(remote) >= len(local) else local
 
 
+def daily_gemini_records(date: str) -> List[Dict[str, Any]]:
+    """その日の日次の Gemini raw。origin と手元で多いほうを使う。"""
+    return _prefer_more(_gemini_raw_from_origin(f"data/raw/{date}"), _daily_gemini_local(date))
+
+
+def monthly_gemini_records(date: str) -> List[Dict[str, Any]]:
+    """その日の月次の Gemini raw(data/raw/monthly/<日付>)。"""
+    return _prefer_more(_gemini_raw_from_origin(f"data/raw/monthly/{date}"),
+                        _monthly_gemini_local(date))
+
+
 def daily_gemini_used(records: List[Dict[str, Any]]) -> int:
-    """日次が Gemini に投げた回数(再試行・掃き直し込み)。
+    """Gemini に投げた回数(再試行・掃き直し込み)。日次・月次のどちらにも使う。
 
     attempts が無い古い raw は1回と数える(2026-09-18 より前の形式)。
     """
@@ -187,9 +207,53 @@ def daily_gemini_used(records: List[Dict[str, Any]]) -> int:
 
 
 def daily_is_done(records: List[Dict[str, Any]], expected: Optional[int] = None) -> bool:
-    """日次の Gemini が全プロンプトぶん揃ったか(成否は問わない)。"""
+    """Gemini の raw が全プロンプトぶん揃ったか(成否は問わない)。"""
     expected = len(load_prompts()) if expected is None else expected
     return len({r.get("prompt_id") for r in records}) >= expected
+
+
+PriorRun = Tuple[str, Callable[[str], List[Dict[str, Any]]], int]
+
+
+def prior_runs(date: str) -> List[PriorRun]:
+    """その日、実験より先に Gemini を使う観測。(名前, raw の取り方, プロンプト数)。"""
+    runs: List[PriorRun] = []
+    if is_daily_llm_day(date):
+        runs.append(("日次", daily_gemini_records, len(load_prompts())))
+    batch = monthly_batch_on(date)
+    if batch:
+        runs.append((f"月次(バッチ{batch})", monthly_gemini_records,
+                     len(load_monthly_prompts(batch=batch))))
+    return runs
+
+
+def wait_for_prior_runs(date: str, runs: Optional[List[PriorRun]] = None,
+                        sleep: Callable[[float], None] = time.sleep,
+                        timeout_minutes: float = DAILY_WAIT_MINUTES,
+                        poll_seconds: float = DAILY_POLL_SECONDS) -> Optional[int]:
+    """日次・月次の Gemini がすべて揃うまで待ち、実消費の合計を返す。揃わなければ None。
+
+    月次(第1水・第1木)も日次と同じく、計画値ではなく実消費(再試行込み)を引く。
+    cron の遅れで、実験が月次より先に始まることがあるため待つ。
+    """
+    runs = prior_runs(date) if runs is None else runs
+    waited = 0.0
+    while True:
+        status = [(label, fetch(date), expected) for label, fetch, expected in runs]
+        pending = [(label, len(recs), expected) for label, recs, expected in status
+                   if not daily_is_done(recs, expected)]
+        if not pending:
+            used = {label: daily_gemini_used(recs) for label, recs, _ in status}
+            print("[info] 先に走る観測の Gemini は完了済み("
+                  + "、".join(f"{k} {v}回" for k, v in used.items()) + ")")
+            return sum(used.values())
+        shown = "、".join(f"{label} {n}/{expected}件" for label, n, expected in pending)
+        if waited >= timeout_minutes * 60:
+            print(f"[warn] {timeout_minutes:.0f}分待っても揃わない: {shown}")
+            return None
+        print(f"[info] 待っています: {shown}({poll_seconds:.0f}秒後に再確認)")
+        sleep(poll_seconds)
+        waited += poll_seconds
 
 
 def wait_for_daily(date: str,
@@ -197,22 +261,21 @@ def wait_for_daily(date: str,
                    sleep: Callable[[float], None] = time.sleep,
                    timeout_minutes: float = DAILY_WAIT_MINUTES,
                    poll_seconds: float = DAILY_POLL_SECONDS) -> Optional[int]:
-    """日次の Gemini が揃うまで待ち、日次の実消費(回数)を返す。揃わなければ None。"""
-    waited = 0.0
-    while True:
-        records = fetch(date)
-        if daily_is_done(records):
-            used = daily_gemini_used(records)
-            print(f"[info] 日次の Gemini は完了済み(実消費 {used}回)")
-            return used
-        if waited >= timeout_minutes * 60:
-            print(f"[warn] 日次の Gemini が {timeout_minutes:.0f}分待っても揃わない"
-                  f"({len(records)}件)")
+    """日次だけを待つ(wait_for_prior_runs の日次版)。"""
+    return wait_for_prior_runs(date, [("日次", fetch, len(load_prompts()))],
+                               sleep, timeout_minutes, poll_seconds)
+
+
+def prior_runs_used_locally(date: str) -> Optional[int]:
+    """--no-wait 用。手元の raw だけで実消費を数える。揃っていなければ None。"""
+    total = 0
+    for _, fetch, expected in prior_runs(date):
+        local = (_daily_gemini_local(date) if fetch is daily_gemini_records
+                 else _monthly_gemini_local(date))
+        if not daily_is_done(local, expected):
             return None
-        print(f"[info] 日次の Gemini を待っています({len(records)}件。"
-              f"{poll_seconds:.0f}秒後に再確認)")
-        sleep(poll_seconds)
-        waited += poll_seconds
+        total += daily_gemini_used(local)
+    return total
 
 
 def _skipped_record(date: str, prompt: Dict[str, Any], detail: str) -> Dict[str, Any]:
@@ -231,30 +294,29 @@ def _skipped_record(date: str, prompt: Dict[str, Any], detail: str) -> Dict[str,
 
 
 def size_gemini_plan(date: str, plan: Dict[str, List[Dict[str, Any]]],
-                     daily_used: Optional[int],
+                     prior_used: Optional[int],
                      wait_note: str = "") -> Tuple[Dict[str, List[Dict[str, Any]]],
                                                    List[Dict[str, Any]], int, List[str]]:
-    """日次の実消費から、その日に実際に投げる Gemini の本数を決める。
+    """日次・月次の実消費から、その日に実際に投げる Gemini の本数を決める。
 
     返り値は (実行する計画, 投げなかった欠測行, 取り直しの枠, 警告)。
-    ``daily_used`` が None は「日次が終わらなかった」— Gemini は投げない。
+    ``prior_used`` が None は「日次・月次が終わらなかった」— Gemini は投げない。
     """
     gemini = list(plan.get("gemini") or [])
     rest = {k: v for k, v in plan.items() if k != "gemini"}
     if not gemini:
         return plan, [], 0, []
     warnings: List[str] = []
-    if daily_used is None:
-        detail = f"日次の観測が終わらないため実行せず{wait_note}"
-        warnings.append(f"日次(火・木・土)の Gemini が揃わなかったため、実験の Gemini "
-                        f"{len(gemini)}本を投げずに欠測として記録しました{wait_note}")
+    if prior_used is None:
+        detail = f"日次・月次の観測が終わらないため実行せず{wait_note}"
+        warnings.append(f"先に走る観測(日次・月次)の Gemini が揃わなかったため、実験の "
+                        f"Gemini {len(gemini)}本を投げずに欠測として記録しました{wait_note}")
         return rest, [_skipped_record(date, p, detail) for p in gemini], 0, warnings
-    allowance = experiment_gemini_allowance(date, daily_used)
+    allowance = experiment_gemini_allowance(date, prior_used)
     keep, cut = gemini[:allowance], gemini[allowance:]
-    skipped = [_skipped_record(date, p, f"日次の実消費{daily_used}回で枠が足りず実行せず")
+    skipped = [_skipped_record(date, p, f"日次・月次の実消費{prior_used}回で枠が足りず実行せず")
                for p in cut]
-    budget = max(0, GEMINI_DAILY_REQUEST_LIMIT - daily_used - monthly_requests_on(date)
-                 - len(keep))
+    budget = max(0, GEMINI_DAILY_REQUEST_LIMIT - prior_used - len(keep))
     sized = dict(rest, gemini=keep) if keep else rest
     return sized, skipped, budget, warnings
 
@@ -393,8 +455,12 @@ def weekly_count_line(date: str, raw_dir: Optional[Path] = None,
     """週次サマリの1行。47本×週2回(94本)を下回った週は警告にする。"""
     count = weekly_observation_count(date, raw_dir)
     if count < target:
+        end = dt.date.fromisoformat(str(date)[:10])
+        monthly_week = any(monthly_batch_on((end - dt.timedelta(days=i)).isoformat())
+                           for i in range(7))
+        reason = "(月次観測週のため)" if monthly_week else ""
         return (f"- ⚠️ 実験の Gemini 観測が週{count}本で、目標{target}本"
-                f"(47本×週2回)を下回りました")
+                f"(47本×週2回)を下回りました{reason}")
     return f"- 実験の Gemini 観測: 週{count}本(目標{target}本)"
 
 
@@ -436,7 +502,7 @@ def main() -> None:
     ap.add_argument("--dry-run", action="store_true",
                     help="観測せず、その日の計画と Gemini の見積もりだけ表示する")
     ap.add_argument("--no-wait", action="store_true",
-                    help="日次の完了を待たない(手元の data/raw だけで実消費を数える)")
+                    help="日次・月次の完了を待たない(手元の data/raw だけで実消費を数える)")
     args = ap.parse_args()
 
     date = args.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
@@ -456,19 +522,18 @@ def main() -> None:
     out_dir = DATA_RAW_EXPERIMENT_DIR / date
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # 日次のある日は、日次の Gemini が揃ってから本数を決める。
-    daily_used: Optional[int] = 0
+    # 日次・月次のある日は、その Gemini が揃ってから実消費で本数を決める。
+    prior_used: Optional[int] = 0
     wait_note = ""
-    if plan.get("gemini") and is_daily_llm_day(date):
+    if plan.get("gemini") and has_prior_gemini_run(date):
         if args.no_wait:
-            local = _daily_gemini_local(date)
-            daily_used = daily_gemini_used(local) if daily_is_done(local) else None
+            prior_used = prior_runs_used_locally(date)
             wait_note = "(--no-wait)"
         else:
-            daily_used = wait_for_daily(date)
+            prior_used = wait_for_prior_runs(date)
             wait_note = f"({DAILY_WAIT_MINUTES:.0f}分待機)"
     sized, skipped, retry_budget, sizing_warnings = size_gemini_plan(
-        date, plan, daily_used, wait_note)
+        date, plan, prior_used, wait_note)
     slack += sizing_warnings
     for record in skipped:
         collect_llm._save(record, out_dir)
@@ -496,7 +561,8 @@ def main() -> None:
     lines = summary_lines(date, plan, records, budget)
     if plan.get("gemini"):
         lines.append(
-            f"- 日次の Gemini 実消費: {'未完了' if daily_used is None else f'{daily_used}回'}"
+            f"- 日次・月次の Gemini 実消費: "
+            f"{'未完了' if prior_used is None else f'{prior_used}回'}"
             f" / 実験の Gemini: 名目{len(plan['gemini'])}本 → 実行"
             f"{len(sized.get('gemini') or [])}本(投げずに欠測 {len(skipped)}本)"
             f" / 取り直しの枠 {retry_budget}本")

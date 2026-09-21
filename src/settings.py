@@ -164,8 +164,13 @@ def load_monthly_prompts(active_only: bool = True,
 # 開始日から1日ずつ、その日の本数だけ 47本の輪を進めるだけにする。
 # 日付を入れれば割当が決まるので、本数を変えても手で割り振り直す作業が出ない。
 #
-#   日次の無い日(月・水・金・日): min(14, 20 − 月次)
-#   日次のある日(火・木・土):     20 − 日次の実消費 − 月次 − 予備2
+#   先に走る観測の無い日(月・水・金・日): 16本(余り4)
+#   日次・月次のある日:  20 − 日次の実消費 − 月次の実消費 − 予備2
+#     火・木・土 11本 / 第1水(月次A) 12本 / 第1木(日次+月次B) 5本
+#
+# 2026-09-21 改訂2。月・水・金・日の上限を14→16にした(週97本 ≥ 94本)。
+# 月次観測(第1水・第1木)の日も日次と同じく、月次の完了を待ってから
+# 月次の**実消費**(data/raw/monthly の attempts、再試行込み)を引く。
 #
 # 2026-09-21 改訂。9/19(土)に日次の Gemini が 503 の再試行で17回投げ、
 # 実験に3本しか残らず10本が 429 で落ちた(通知も出なかった)。日次の再試行は
@@ -177,8 +182,13 @@ def load_monthly_prompts(active_only: bool = True,
 # 末尾から削り、削った分は reason=skipped の欠測として実験日誌に残す。
 # 名目の本数を日付だけで決めるので、割当は今までどおり開始日から機械的に決まる。
 #
-#   通常の週: 14×4 + 11×3 = 89本(47本×週2回 = 94本に届かない)
-#   → 週次サマリが「94本未満」の警告を出す(run_experiment.weekly_count_line)
+#   通常の週: 16×4 + 11×3 = 97本(47本×週2回 = 94本を満たす)
+#   月次のある週: 第1水 −4本・第1木 −6本で94本を割る。週次サマリの警告に
+#   「月次観測週のため」と理由を添える(run_experiment.weekly_count_line)
+#
+# 名目の本数(割当の順番を決める値)は日付だけで決める必要があるので、日次7回・
+# 月次6回で済んだと仮定した値を使う。実行時の本数は実消費から決め直し、
+# 名目より少ない分は末尾から skipped として記録する。
 #
 # 429(枠切れ)は取り直さない。503 は余り(20 − 実消費 − 計画本数)の範囲で
 # 取り直し、余りを超えた分は欠測になる(run_experiment が打ち切る)。
@@ -199,8 +209,10 @@ EXPERIMENT_CLAUDE_WEEKDAYS = (0, 3)             # 月・木(Claude は Gemini �
 # おり、09-21 始まりだと 09-19・09-20 の Gemini 観測が0本になるため
 # (09-18 と質問が重なるが、同じ質問を複数回観測するのは設計どおり)。
 EXPERIMENT_CYCLE_START = os.getenv("EXPERIMENT_CYCLE_START", "2026-09-19")
-EXPERIMENT_DAILY_CAP = int(os.getenv("EXPERIMENT_DAILY_CAP", "14"))
-# 日次のある日(火・木・土)に、日次の実消費を引いたあとさらに残す取り直し用の枠。
+# 1日の実験本数の上限。日次・月次のある日は実消費と予備で先に頭打ちになる(11本以下)ので、
+# 実際に効くのは月・水・金・日(余り4本)。
+EXPERIMENT_DAILY_CAP = int(os.getenv("EXPERIMENT_DAILY_CAP", "16"))
+# 日次・月次のある日に、その実消費を引いたあとさらに残す取り直し用の枠。
 EXPERIMENT_DAILY_DAY_RESERVE = int(os.getenv("EXPERIMENT_DAILY_DAY_RESERVE", "2"))
 # プロトコルが求める週の実験観測本数(47本 × 週2回)。下回った週は週次で警告する。
 EXPERIMENT_WEEKLY_TARGET = int(os.getenv("EXPERIMENT_WEEKLY_TARGET", "94"))
@@ -225,6 +237,17 @@ def monthly_requests_on(date: str) -> int:
     day = dt.date.fromisoformat(str(date)[:10])
     return (MONTHLY_BATCH_SIZE if day.day <= 7
             and day.weekday() in MONTHLY_BATCH_WEEKDAYS.values() else 0)
+
+
+def monthly_batch_on(date: str) -> Optional[str]:
+    """その日に走る月次のバッチ("A" / "B")。無ければ None。monthly.yml と同じ判定。"""
+    day = dt.date.fromisoformat(str(date)[:10])
+    if day.day > 7:
+        return None
+    for batch, weekday in MONTHLY_BATCH_WEEKDAYS.items():
+        if day.weekday() == weekday:
+            return batch
+    return None
 
 
 def load_experiment_prompts() -> List[Dict[str, Any]]:
@@ -257,24 +280,30 @@ def experiment_number(prompt_id: str) -> int:
 def experiment_daily_count(date: str) -> int:
     """その日に回す実験プロンプトの**名目の**本数(割当を決める本数)。
 
-    日次の無い日は ``min(14, 20 − 月次)``。日次のある日は、日次が7回ちょうどで
-    済んだと仮定して ``20 − 7 − 月次 − 予備2``。日次が再試行した日の実際の
-    本数は ``experiment_gemini_allowance`` が実行時に決める(これより増えない)。
+    日次・月次が計画どおり(日次7回・月次6回)で済んだと仮定した値。割当を
+    日付だけで決めるための数で、実際の本数は ``experiment_gemini_allowance`` が
+    実消費から決め直す(これより増えない)。
     """
     if str(date)[:10] < EXPERIMENT_CYCLE_START:
         return 0
-    return experiment_gemini_allowance(date, daily_llm_requests_on(date))
+    return experiment_gemini_allowance(
+        date, daily_llm_requests_on(date) + monthly_requests_on(date))
 
 
-def experiment_gemini_allowance(date: str, daily_used: int) -> int:
-    """日次が ``daily_used`` 回 Gemini を投げたあとで、実験が回してよい本数。
+def has_prior_gemini_run(date: str) -> bool:
+    """実験より先に Gemini を使う観測(日次・月次)がある日か。"""
+    return is_daily_llm_day(date) or monthly_batch_on(date) is not None
 
-    日次のある日は ``20 − daily_used − 月次 − 予備2``、無い日は
-    ``20 − 月次``。どちらも上限 ``EXPERIMENT_DAILY_CAP``(14本)。
+
+def experiment_gemini_allowance(date: str, prior_used: int) -> int:
+    """日次・月次が合わせて ``prior_used`` 回 Gemini を投げたあとで、実験が回してよい本数。
+
+    日次・月次のある日は ``20 − prior_used − 予備2``、無い日は ``20``。
+    どちらも上限 ``EXPERIMENT_DAILY_CAP``(16本)。``prior_used`` は再試行込みの
+    実消費(名目の計算では計画値)。
     """
-    reserve = EXPERIMENT_DAILY_DAY_RESERVE if is_daily_llm_day(date) else 0
-    room = (GEMINI_DAILY_REQUEST_LIMIT - int(daily_used)
-            - monthly_requests_on(date) - reserve)
+    reserve = EXPERIMENT_DAILY_DAY_RESERVE if has_prior_gemini_run(date) else 0
+    room = GEMINI_DAILY_REQUEST_LIMIT - int(prior_used) - reserve
     return max(0, min(EXPERIMENT_DAILY_CAP, room))
 
 
