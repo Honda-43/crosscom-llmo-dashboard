@@ -72,6 +72,8 @@ REASON_QUOTA = "quota"              # 429。枠切れ。取り直さない
 REASON_UNAVAILABLE = "unavailable"  # 503。一時的な混雑。枠の余りの範囲で取り直す
 REASON_PERMANENT = "permanent"      # 鍵・権限・課金。人が直すまで変わらない
 REASON_OTHER = "error"              # それ以外(コードの例外を含む)
+# 投げずに終わった観測(実験のみ)。日次が枠を使い切っていた・日次が終わらなかった。
+REASON_SKIPPED = "skipped"
 
 # provider が返す再試行指示。gemini は RetryInfo.retryDelay、
 # メッセージ本文にも "Please retry in 14.44845715s." の形で入る。
@@ -513,9 +515,28 @@ def _sweep(records: List[Dict[str, Any]], prompts: List[Dict[str, Any]],
     return recovered
 
 
-def missing_observations(records: List[Dict[str, Any]]) -> List[str]:
-    """欠測になった観測のラベル。run_daily がこれを見て失敗として積む(§4)。"""
-    return [f"{r['prompt_id']}/{r['model']}" for r in records if r.get("error")]
+def expected_labels(prompts: Optional[List[Dict[str, Any]]] = None) -> List[str]:
+    """観測するはずだった「プロンプト/モデル」の一覧(有効なモデルすべて)。
+
+    鍵が無いモデルは collect が record を作らずに飛ばすので、records だけを
+    数えると欠測が0件に見える。有効なのに鍵が無いのは欠測として数える。
+    """
+    prompts = load_prompts() if prompts is None else prompts
+    return [f"{p['id']}/{m}" for p in prompts for m in enabled_models()]
+
+
+def missing_observations(records: List[Dict[str, Any]],
+                         expected: Optional[Sequence[str]] = None) -> List[str]:
+    """欠測になった観測のラベル。run_daily がこれを見て失敗として積む(§4)。
+
+    ``expected`` を渡すと、成功した record が無いラベルもすべて欠測に数える
+    (モデルが丸ごと飛ばされた日・collect 自体が落ちて records が空の日)。
+    """
+    missing = [f"{r['prompt_id']}/{r['model']}" for r in records if r.get("error")]
+    if expected is not None:
+        seen = {f"{r['prompt_id']}/{r['model']}" for r in records}
+        missing += [label for label in expected if label not in seen]
+    return missing
 
 
 def main() -> None:

@@ -353,6 +353,11 @@ def read_llm_observations() -> List[Dict[str, str]]:
     return _read_tab(TAB_LLM)
 
 
+def read_daily_summary() -> List[Dict[str, str]]:
+    """daily_summary(前日の実行漏れの検知に使う。2026-09-21)。"""
+    return _read_tab(TAB_SUMMARY)
+
+
 def read_sov_daily() -> List[Dict[str, str]]:
     """All rows of the sov_daily tab (used by the backfill)."""
     return _read_tab(TAB_SOV)

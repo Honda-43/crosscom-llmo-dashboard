@@ -4,9 +4,11 @@ on:
   schedule:
     # LLMO効果測定実験。何を回すかは settings.experiment_plan が日付から決める。
     # Gemini は47本を輪にして、開始日(EXPERIMENT_CYCLE_START)から毎日
-    # その日の本数だけ進める。本数は min(14, 20 − 日次 − 月次) で、
-    # 月水金日14本 / 火木土13本(通常の週95本、同じ質問は3〜4日おき)。
-    # 取り直しの枠は毎日空けず、余り(20 − 計画本数)を 503 が出た日に使う。
+    # その日の本数だけ進める。月水金日は min(14, 20 − 月次)。
+    # 火木土は **日次の完了を待ってから**、20 − 日次の実消費(再試行込み)− 月次 − 予備2。
+    # cron は2時間近く遅れることがあり、08:00 の実験が 07:00 の日次より先に始まりうる。
+    # run_experiment が origin の data/raw/<日付> を最大90分ポーリングし、揃わなければ
+    # その日の Gemini は投げずに欠測(skipped)として記録する。
     # 曜日ごとのID範囲は持たないので、ここに書き写す表も無い。
     # Claude は 月・木 に47本(Gemini の枠と無関係)。
     # 08:00 JST = 前日 23:00 UTC。毎日走る。
@@ -29,7 +31,7 @@ concurrency:
 jobs:
   experiment:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 240   # 日次待ち(最大90分)+ Claude 47本
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}

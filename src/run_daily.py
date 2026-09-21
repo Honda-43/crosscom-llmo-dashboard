@@ -60,6 +60,30 @@ def _run(name: str, fn: Callable[[], Any], failures: List[str]) -> Any:
         return None
 
 
+def previous_day_gaps(date: str, summary_rows: List[Dict[str, Any]],
+                      observations: List[Dict[str, Any]],
+                      expected_observations: int) -> List[str]:
+    """前日の日次が走ったかを、シートに残った行で確かめる(2026-09-21)。
+
+    cron が飛ぶ・ワークフローが無効になる、はワークフロー自身が気づけない
+    (失敗通知は「走って落ちた」ときにしか出ない)。翌日の実行で前日の痕跡を
+    見に行く。daily_summary は毎日書く。llm_observations は観測日(火・木・土)
+    だけ、7本×有効モデルぶん書く。
+    """
+    prev = (dt.date.fromisoformat(date) - dt.timedelta(days=1)).isoformat()
+    weekday = WEEKDAY_LABELS[dt.date.fromisoformat(prev).weekday()]
+    gaps: List[str] = []
+    if not any(str(r.get("date", ""))[:10] == prev for r in summary_rows):
+        gaps.append(f"前日({prev}・{weekday})の daily_summary 行がありません。"
+                    "日次ワークフローが実行されなかった可能性があります")
+    if is_daily_llm_day(prev):
+        count = sum(1 for o in observations if str(o.get("date", ""))[:10] == prev)
+        if count < expected_observations:
+            gaps.append(f"前日({prev}・{weekday})の llm_observations が{count}件です"
+                        f"(期待{expected_observations}件)")
+    return gaps
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Daily LLMO pipeline")
     ap.add_argument("--date", help="YYYY-MM-DD for LLM observations (default: today JST)")
@@ -90,7 +114,12 @@ def main() -> None:
     # そのため collect_llm 自体は例外を投げず、欠測は _run では拾えない。
     # ここで数え直して failures に積む。積まないと、3件欠測した日と
     # 無傷の日が日次Slackで見分けられない。
-    missing = collect_llm.missing_observations(records)
+    # 数える母数は「観測するはずだった 7本×有効モデル」。records だけを数えると、
+    # 鍵が無くて飛ばされたモデルや collect 自体が落ちた日(records が空)が
+    # 欠測0件に見える(2026-09-21)。
+    missing = (collect_llm.missing_observations(records,
+                                                expected=collect_llm.expected_labels())
+               if llm_day else [])
     if missing:
         failures.append(f"collect_llm(欠測 {len(missing)}件): {', '.join(missing)}")
         summary_lines.append(f"- ⚠️ 観測の欠測 {len(missing)}件: {', '.join(missing)}")
@@ -110,6 +139,15 @@ def main() -> None:
     observations = _run(
         "read_llm_observations", lambda: sheets_writer.read_llm_observations(), failures
     ) or []
+    # 前日の実行漏れ(ワークフロー未実行)の検知。読めなければ見送る(失敗にはしない)。
+    warnings: List[str] = []
+    summary_history_rows = _run(
+        "read_daily_summary", lambda: sheets_writer.read_daily_summary(), failures)
+    observations_read = not any(f.startswith("read_llm_observations") for f in failures)
+    if summary_history_rows is not None and observations_read:
+        warnings = previous_day_gaps(date, summary_history_rows, observations,
+                                     len(collect_llm.expected_labels()))
+        summary_lines += [f"- ⚠️ {w}" for w in warnings]
     sov_rows = _run("analyze_sov", lambda: analyze_sov.analyze(extractions, date), failures) or []
     changes = _run(
         "analyze_diff",
@@ -255,15 +293,15 @@ def main() -> None:
     )
 
     # Slack alert last, so it can report failures from every preceding phase.
-    # 観測しない日は、失敗があったときだけ投稿する(「言及率 —」だけの通知を毎日出さない)。
+    # 観測しない日は、失敗か警告があったときだけ投稿する(「言及率 —」だけの通知を毎日出さない)。
     notified = _run(
         "notify_slack",
         lambda: notify_slack.notify(
             date, extractions, changes, list(failures),
-            sov_rows=sov_rows, observations=observations,
+            sov_rows=sov_rows, observations=observations, warnings=warnings,
         ),
         failures,
-    ) if (llm_day or failures) else None
+    ) if (llm_day or failures or warnings) else None
 
     # Counts for the job summary
     ok_obs = sum(1 for r in extractions if not r.get("error"))

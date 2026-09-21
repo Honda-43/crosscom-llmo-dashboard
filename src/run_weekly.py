@@ -191,6 +191,10 @@ def main() -> None:
                  lambda: run_experiment.unavailable_watch_line(date), failures)
     if watch:
         lines.append(watch)
+    weekly_count = _run("experiment_weekly_count",
+                        lambda: run_experiment.weekly_count_line(date), failures)
+    if weekly_count:
+        lines.append(weekly_count)
 
     if failures:
         lines += ["", "### ⚠️ Failed phases"] + [f"- {f}" for f in failures]

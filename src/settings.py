@@ -164,18 +164,24 @@ def load_monthly_prompts(active_only: bool = True,
 # 開始日から1日ずつ、その日の本数だけ 47本の輪を進めるだけにする。
 # 日付を入れれば割当が決まるので、本数を変えても手で割り振り直す作業が出ない。
 #
-#   その日の本数 = min(14, 20 − 日次 − 月次)
-#     月・水・金・日 14本(余り6) / 火・木・土 13本(余り0)
-#     第1週の水 14本(余り0) / 第1週の木 7本(余り0)
-#   通常の週で95本。プロトコルが求める 47本×週2回 = 94本を満たす。
-#   47本を1周するのに約3.5日 = 同じ質問を週およそ2回観測する。
+#   日次の無い日(月・水・金・日): min(14, 20 − 月次)
+#   日次のある日(火・木・土):     20 − 日次の実消費 − 月次 − 予備2
 #
-# **取り直しの枠は毎日固定で空けない**(2026-09-18 改訂)。余りは
-# 20 − その日の計画本数で、503 が出た日にだけ使う。出なければ使わない。
-# 月・水・金・日は6本ぶんの余りがあり、1本の混雑なら
-# 初回リトライ3回 + 掃き直し2回(計5回)が丸ごと収まる。
-# 余りを超える 503 は取り直しきれず欠測になる(run_experiment が打ち切る)。
-# 429(枠切れ)は取り直さないので、余りを使わない。
+# 2026-09-21 改訂。9/19(土)に日次の Gemini が 503 の再試行で17回投げ、
+# 実験に3本しか残らず10本が 429 で落ちた(通知も出なかった)。日次の再試行は
+# 日次の観測を守るために上限を付けない。そのかわり実験は、日次が**実際に**
+# 投げた回数(data/raw の attempts、再試行込み)を見てから本数を決める。
+#
+# 割当(どのIDから何本)を決める名目の本数は、日次が7回ちょうどで済んだ場合の
+# 値を使う(火・木・土 11本、第1週の木 5本)。日次が再試行した日は、実行時に
+# 末尾から削り、削った分は reason=skipped の欠測として実験日誌に残す。
+# 名目の本数を日付だけで決めるので、割当は今までどおり開始日から機械的に決まる。
+#
+#   通常の週: 14×4 + 11×3 = 89本(47本×週2回 = 94本に届かない)
+#   → 週次サマリが「94本未満」の警告を出す(run_experiment.weekly_count_line)
+#
+# 429(枠切れ)は取り直さない。503 は余り(20 − 実消費 − 計画本数)の範囲で
+# 取り直し、余りを超えた分は欠測になる(run_experiment が打ち切る)。
 #
 # Gemini の1日は太平洋時間で切り替わる(JST 16〜17時)。どのワークフローも
 # JST の朝に走るので、JST の1日と枠の1日は1対1に対応する。
@@ -194,6 +200,10 @@ EXPERIMENT_CLAUDE_WEEKDAYS = (0, 3)             # 月・木(Claude は Gemini �
 # (09-18 と質問が重なるが、同じ質問を複数回観測するのは設計どおり)。
 EXPERIMENT_CYCLE_START = os.getenv("EXPERIMENT_CYCLE_START", "2026-09-19")
 EXPERIMENT_DAILY_CAP = int(os.getenv("EXPERIMENT_DAILY_CAP", "14"))
+# 日次のある日(火・木・土)に、日次の実消費を引いたあとさらに残す取り直し用の枠。
+EXPERIMENT_DAILY_DAY_RESERVE = int(os.getenv("EXPERIMENT_DAILY_DAY_RESERVE", "2"))
+# プロトコルが求める週の実験観測本数(47本 × 週2回)。下回った週は週次で警告する。
+EXPERIMENT_WEEKLY_TARGET = int(os.getenv("EXPERIMENT_WEEKLY_TARGET", "94"))
 
 
 def _weekday(date: str) -> int:
@@ -245,17 +255,26 @@ def experiment_number(prompt_id: str) -> int:
 
 
 def experiment_daily_count(date: str) -> int:
-    """その日に回す実験プロンプトの本数。
+    """その日に回す実験プロンプトの**名目の**本数(割当を決める本数)。
 
-    上限は ``EXPERIMENT_DAILY_CAP``(14本)。同じ日に日次・月次が先に枠を
-    使うので、その残りとどちらか小さいほうを回す。**取り直し用の枠は
-    ここで固定的に空けない。** 余り(20 − 計画本数)は 503 が出た日にだけ
-    使い、出なければそのまま残る。
+    日次の無い日は ``min(14, 20 − 月次)``。日次のある日は、日次が7回ちょうどで
+    済んだと仮定して ``20 − 7 − 月次 − 予備2``。日次が再試行した日の実際の
+    本数は ``experiment_gemini_allowance`` が実行時に決める(これより増えない)。
     """
     if str(date)[:10] < EXPERIMENT_CYCLE_START:
         return 0
-    room = (GEMINI_DAILY_REQUEST_LIMIT - daily_llm_requests_on(date)
-            - monthly_requests_on(date))
+    return experiment_gemini_allowance(date, daily_llm_requests_on(date))
+
+
+def experiment_gemini_allowance(date: str, daily_used: int) -> int:
+    """日次が ``daily_used`` 回 Gemini を投げたあとで、実験が回してよい本数。
+
+    日次のある日は ``20 − daily_used − 月次 − 予備2``、無い日は
+    ``20 − 月次``。どちらも上限 ``EXPERIMENT_DAILY_CAP``(14本)。
+    """
+    reserve = EXPERIMENT_DAILY_DAY_RESERVE if is_daily_llm_day(date) else 0
+    room = (GEMINI_DAILY_REQUEST_LIMIT - int(daily_used)
+            - monthly_requests_on(date) - reserve)
     return max(0, min(EXPERIMENT_DAILY_CAP, room))
 
 

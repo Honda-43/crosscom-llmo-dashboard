@@ -653,6 +653,53 @@ def rule_drop(sov: Dict[str, Any], cfg: Dict[str, Any]) -> Dict[str, Any]:
 
 
 # --------------------------------------------------------------------------
+# 観測日数の期待値と、前週比の比較可否(2026-09-21)
+# --------------------------------------------------------------------------
+SCHEDULE_CHANGE_NOTE = "観測方式の変更週のため前週比は参考値"
+
+
+def _schedule_of(window: Tuple[str, str], cfg: Dict[str, Any]) -> str:
+    """その週の観測方式。"weekly3"(火・木・土)/ "daily"(毎日)/ "mixed"。"""
+    start_from = str(cfg.get("new_schedule_from") or "")
+    if not start_from:
+        return "weekly3"
+    start, end = window
+    if start >= start_from:
+        return "weekly3"
+    if end < start_from:
+        return "daily"
+    return "mixed"
+
+
+def observation_quality(date: str, days_this: int, days_prev: int,
+                        cfg: Dict[str, Any], days: int = 7) -> Dict[str, Any]:
+    """観測日数の期待値・不足・前週と比べてよいか。
+
+    日次LLM観測は火・木・土の週3日が正常(2026-09-14 から)。3日を不足と
+    書かせない。前週比は、観測方式と観測日数が同じ週どうしでだけ比べる。
+    """
+    this_w, prev_w = week_window(date, 0, days), week_window(date, 1, days)
+    this_s, prev_s = _schedule_of(this_w, cfg), _schedule_of(prev_w, cfg)
+    expected = {
+        "weekly3": int(cfg.get("expected_days_per_week", 3)),
+        "daily": int(cfg.get("legacy_days_per_week", 7)),
+    }
+    expected_this = expected.get(this_s, int(cfg.get("expected_days_per_week", 3)))
+    if this_s != prev_s or "mixed" in (this_s, prev_s):
+        note = SCHEDULE_CHANGE_NOTE
+    elif days_this != days_prev:
+        note = f"観測日数が前週と異なる(今週{days_this}日・前週{days_prev}日)ため前週比は参考値"
+    else:
+        note = ""
+    return {
+        "expected_days_per_week": expected_this,
+        "observation_days_short": days_this < expected_this,
+        "comparable_with_prev_week": not note,
+        "comparison_note": note,
+    }
+
+
+# --------------------------------------------------------------------------
 # Assembly
 # --------------------------------------------------------------------------
 def build_stats(date: str, tabs: Dict[str, List[Dict[str, Any]]],
@@ -706,6 +753,10 @@ def build_stats(date: str, tabs: Dict[str, List[Dict[str, Any]]],
             ),
         },
     }
+    quality = stats["data_quality"]
+    quality.update(observation_quality(
+        date, quality["observation_days_this_week"], quality["observation_days_prev_week"],
+        thresholds.get("observation") or {}, days))
 
     stats["rules"] = [
         rule_p7(observations, date, rules_cfg.get("R-P7") or {}, days),

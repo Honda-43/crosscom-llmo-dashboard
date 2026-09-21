@@ -106,6 +106,17 @@ _SYSTEM_TEMPLATE = """あなたはLLMO(LLM最適化)の週次レポートを書�
    統合したことは見出しの並び(R-P2・R-P15)で示せば足りる。
    推奨アクションは1行にまとめ、「①競合の引用ページ調査、②自社ページ更新」の
    順に固定する。
+10. **観測日数の読み方。** 日次のLLM観測は火・木・土の週3日が正常である
+   (期待日数は data_quality.expected_days_per_week)。
+   **data_quality.observation_days_short が true のときだけ**「観測日数不足」と書く。
+   週3日の観測を「少ない」「不足」と書かない。
+11. **前週比の比べ方。** 前週比は、観測の方式と日数が同じ週どうしでだけ比べる。
+   **data_quality.comparable_with_prev_week が false の週は**、
+   「1. 今週のサマリ」に data_quality.comparison_note をそのまま1文で書き、
+   言及率・言及シェアの前週比には「(参考値)」を付ける
+   (例:「39%(前週46%、前週比-8ポイント(参考値))」)。
+   前週比の大きさを根拠に「改善」「悪化」「主因」と書かない。
+   成果指標(KGI)は観測日数の影響を受けないので、この扱いの対象外。
 
 # 出力フォーマット(この5セクション構成に固定。見出しは変更しない)
 ## 1. 今週のサマリ
@@ -129,7 +140,8 @@ _SYSTEM_TEMPLATE = """あなたはLLMO(LLM最適化)の週次レポートを書�
 発火はしていないが変化の兆しがあるもの。最大3件。無ければ「なし」。
 
 ## 5. 判定不能・データ不足
-insufficient_data のルールと、観測日数が不足している項目を明示する。無ければ「なし」。
+insufficient_data のルールを明示する。data_quality.observation_days_short が true なら
+観測日数不足も書く(週3日は正常なので書かない)。無ければ「なし」。
 **このセクションの末尾に、次の1行を必ずそのまま入れる(観測範囲の注記):**
 「日次観測は検討段階(MOFU)中心であり、購買直前(社名指名・競合比較)の面は月次観測を参照」
 
@@ -210,7 +222,13 @@ def _formatted_numbers(stats: Dict[str, Any], flat: int) -> str:
     写すことがある。写す先の文字列を渡しておけば迷わない。
     """
     rate = stats.get("mention_rate") or {}
+    quality = stats.get("data_quality") or {}
+    # 観測方式・日数が前週と違う週は、観測由来の前週比を参考値として扱う(記述ルール11)
+    ref = "" if quality.get("comparable_with_prev_week", True) else "(参考値)"
     lines = []
+    if ref:
+        lines.append(f"- 前週比の扱い: {quality.get('comparison_note')}"
+                     "(言及率・言及シェアの前週比に「(参考値)」を付ける)")
     for key, label in (("all", "言及率(全体)"),
                        ("pillar_a", "言及率(Agentforce系(A))"),
                        ("pillar_b", "言及率(Agentic CRM系(B))")):
@@ -218,14 +236,14 @@ def _formatted_numbers(stats: Dict[str, Any], flat: int) -> str:
         lines.append(
             f"- {label}: {insight_style.rate_text(series.get('this_week'))}"
             f"(前週 {insight_style.rate_text(series.get('prev_week'))}、"
-            f"{insight_style.points_text(series.get('delta'), flat)})"
+            f"{insight_style.points_text(series.get('delta'), flat)}{ref})"
         )
     for entity in ((stats.get("sov") or {}).get("all") or {}).get("entities", [])[:3]:
         lines.append(
             f"- 言及シェア {entity.get('entity')}: "
             f"{insight_style.rate_text(entity.get('share'))}"
             f"({insight_style.count_text(entity.get('mention_count'))}、"
-            f"{insight_style.count_delta_text(entity.get('delta'))})"
+            f"{insight_style.count_delta_text(entity.get('delta'))}{ref})"
         )
     kgi = stats.get("kgi") or {}
     for key, label, unit in (("ai_sessions", "AI経由セッション", "セッション"),
@@ -404,10 +422,15 @@ def fallback_report(stats: Dict[str, Any],
     else:
         lines.append("なし")
     quality = stats.get("data_quality", {})
+    expected = quality.get("expected_days_per_week")
+    short = "(観測日数不足)" if quality.get("observation_days_short") else ""
     lines.append(
         f"- 観測日数: 今週 {quality.get('observation_days_this_week', 0)}日 / "
         f"前週 {quality.get('observation_days_prev_week', 0)}日"
+        + (f"(週{expected}日が正常){short}" if expected else "")
     )
+    if quality.get("comparison_note"):
+        lines.append(f"- {quality['comparison_note']}")
     lines.append(
         "- 日次観測は検討段階(MOFU)中心であり、"
         "購買直前(社名指名・競合比較)の面は月次観測を参照"

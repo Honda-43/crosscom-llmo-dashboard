@@ -22,6 +22,7 @@ import yaml
 
 import collect_llm
 import experiment
+import notify_slack
 import run_experiment
 import settings
 import sheets_writer
@@ -74,44 +75,48 @@ def _gemini_ids(day):
     return [p["id"] for p in settings.experiment_plan(day.isoformat()).get("gemini", [])]
 
 
-def test_a_normal_week_covers_the_94_observations_the_protocol_needs():
-    """47本×週2回 = 94本。上限14本で回すと通常の週は95本になり、これを満たす。"""
+def test_a_normal_week_plans_89_so_the_weekly_warning_fires():
+    """日次のある日は 20 − 7 − 予備2 = 11本。通常の週は 14×4 + 11×3 = 89本。
+
+    47本×週2回 = 94本には届かない。この設定のままだと週次サマリの
+    「94本未満」の警告は毎週出る(2026-09-21 の判断で予備2を採用した結果)。
+    """
     counts = [settings.experiment_daily_count(d.isoformat()) for d in WEEK]
-    assert counts == [14, 13, 14, 13, 14, 13, 14], counts   # 月火水木金土日
-    assert sum(counts) == 95
-    assert sum(counts) >= 94
+    assert counts == [14, 11, 14, 11, 14, 11, 14], counts   # 月火水木金土日
+    assert sum(counts) == 89
+    assert sum(counts) < settings.EXPERIMENT_WEEKLY_TARGET
 
 
 @pytest.mark.parametrize("offset", range(120))
 def test_every_seven_day_window_covers_94_unless_a_monthly_batch_eats_into_it(offset):
-    """どこで7日を切っても95本。例外は第1木(日次7 + 月次6)を含む窓だけ。"""
+    """どこで7日を切っても89本。例外は第1木(日次7 + 月次6)を含む窓だけ。"""
     days = [START + dt.timedelta(days=offset + i) for i in range(7)]
     total = sum(settings.experiment_daily_count(d.isoformat()) for d in days)
-    # 第1木は日次7 + 月次6 で枠が13埋まり、実験は7本しか回せない(月に1度)。
+    # 第1木は日次7 + 月次6 + 予備2 で、実験は5本しか回せない(月に1度)。
     squeezed = any(settings.daily_llm_requests_on(d.isoformat())
                    and settings.monthly_requests_on(d.isoformat()) for d in days)
     if squeezed:
-        assert total == 89, (total, days[0])
+        assert total == 83, (total, days[0])
     else:
-        assert total == 95, (total, days[0])
+        assert total == 89, (total, days[0])
 
 
 def test_the_retry_budget_is_what_is_left_over_not_a_daily_set_aside():
-    """予備は毎日固定で空けない。20 − その日の計画本数が、503 が出た日に使える枠。"""
+    """余り = 20 − その日の計画本数。日次のある日は予備2本だけ残す。"""
     for day in WEEK:
         quota = settings.gemini_requests_on(day.isoformat())
         assert quota["retry_budget"] == (settings.GEMINI_DAILY_REQUEST_LIMIT
                                          - quota["total"]), quota
-    # 日次のない日は6本(= 20 − 14)、日次7本の日は0本
+    # 日次のない日は6本(= 20 − 14)、日次のある日は予備の2本
     assert settings.gemini_requests_on(MONDAY.isoformat())["retry_budget"] == 6
     assert settings.gemini_requests_on(
-        (MONDAY + dt.timedelta(days=1)).isoformat())["retry_budget"] == 0
+        (MONDAY + dt.timedelta(days=1)).isoformat())["retry_budget"] == 2
 
 
 def test_the_first_week_of_a_month_gives_way_to_the_monthly_batches():
-    # 第1木(2026-10-01): 日次7 + 月次B 6 -> 実験は7本
+    # 第1木(2026-10-01): 日次7 + 月次B 6 + 予備2 -> 実験は5本
     # 第1水(2026-10-07): 月次A 6 のみ -> 上限どおり14本
-    assert settings.experiment_daily_count("2026-10-01") == 7
+    assert settings.experiment_daily_count("2026-10-01") == 5
     assert settings.experiment_daily_count("2026-10-07") == 14
 
 
@@ -174,7 +179,7 @@ def test_a_prompt_is_never_observed_twice_on_the_same_day():
 
 
 def test_every_prompt_is_observed_about_twice_a_week():
-    """週95本 / 47本 = 2.02回。どの質問も同じ回数(差は多くても1回)になる。"""
+    """週89本 / 47本 = 1.89回。どの質問も同じ回数(差は多くても1回)になる。"""
     counts = {f"E{i:02d}": 0 for i in range(1, 48)}
     for day in THREE_WEEKS:
         for pid in _gemini_ids(day):
@@ -182,17 +187,17 @@ def test_every_prompt_is_observed_about_twice_a_week():
     planned = sum(settings.experiment_daily_count(d.isoformat()) for d in THREE_WEEKS)
     assert sum(counts.values()) == planned
     assert max(counts.values()) - min(counts.values()) <= 1, counts
-    assert planned / 47 / 3 >= 1.9, "1本あたり週2回に届いていない"
+    assert planned / 47 / 3 >= 1.8, "1本あたり週1.8回を下回った"
 
 
-def test_the_two_observations_of_a_prompt_are_three_or_four_days_apart():
+def test_the_two_observations_of_a_prompt_are_three_to_five_days_apart():
     """同じ質問の観測が隣り合う日に寄ると、週の中の変動を拾えない。"""
     days = {}
     for index, day in enumerate(THREE_WEEKS):
         for pid in _gemini_ids(day):
             days.setdefault(pid, []).append(index)
     gaps = {b - a for seen in days.values() for a, b in zip(seen, seen[1:])}
-    assert gaps <= {3, 4}, sorted(gaps)
+    assert gaps <= {3, 4, 5}, sorted(gaps)
 
 
 def test_claude_observes_all_47_on_monday_and_thursday_only():
@@ -490,6 +495,9 @@ def test_one_transient_failure_fits_in_the_spare_of_a_day_without_the_daily_run(
     assert [r["prompt_id"] for r in records if r.get("error")] == [plan["gemini"][0]["id"]]
 
 
+SLACK = []
+
+
 def _exit_code(monkeypatch, tmp_path, records, raising=None):
     """main() をその日の観測結果だけ差し替えて走らせ、終了コードを返す。"""
     monkeypatch.setattr(run_experiment, "DATA_RAW_EXPERIMENT_DIR", tmp_path)
@@ -501,6 +509,9 @@ def _exit_code(monkeypatch, tmp_path, records, raising=None):
         return records
 
     monkeypatch.setattr(run_experiment, "observe", fake_observe)
+    monkeypatch.setattr(run_experiment, "wait_for_daily", lambda date: 7)
+    monkeypatch.setattr(notify_slack, "notify_experiment_warnings",
+                        lambda date, lines: SLACK.extend(lines) or True)
     monkeypatch.setattr(sys, "argv",
                         ["run_experiment.py", "--date", START.isoformat(), "--no-sheets"])
     with pytest.raises(SystemExit) as exited:
@@ -643,3 +654,141 @@ def test_quota_misses_never_trigger_the_warning(tmp_path):
                    + [("2026-10-04", "quota")] * 20)
     line = run_experiment.unavailable_watch_line(WATCH_END, path=path)
     assert not line.startswith("- ⚠️") and "0件 / 0件" in line
+
+
+# --- 7. 日次の実消費からの本数決定・実行順・警告(2026-09-21) ------------------------
+TUESDAY = (MONDAY + dt.timedelta(days=1)).isoformat()
+
+
+def _daily_raw(used_per_prompt):
+    """日次の Gemini raw(prompt_id ごとの attempts)。"""
+    return [{"prompt_id": pid, "model": "gemini", "attempts": n, "error": None}
+            for pid, n in used_per_prompt.items()]
+
+
+def test_9_19_would_have_left_the_experiment_one_request_not_thirteen():
+    """9/19: 日次が17回投げた。20 − 17 − 予備2 = 1本だけ回す。"""
+    assert settings.experiment_gemini_allowance("2026-09-19", 17) == 1
+    assert settings.experiment_gemini_allowance("2026-09-19", 7) == 11
+    assert settings.experiment_gemini_allowance("2026-09-19", 30) == 0
+
+
+def test_days_without_the_daily_run_keep_the_cap_of_14():
+    assert settings.experiment_gemini_allowance(MONDAY.isoformat(), 0) == 14
+
+
+def test_the_daily_consumption_counts_retries():
+    records = _daily_raw({"A-1": 1, "A-2": 2, "A-3": 5, "B-1": 1, "B-2": 3, "B-3": 4, "E-1": 1})
+    assert run_experiment.daily_gemini_used(records) == 17      # 9/19 の実測
+    assert run_experiment.daily_is_done(records, expected=7)
+    assert not run_experiment.daily_is_done(records[:6], expected=7)
+
+
+def test_a_busy_daily_run_trims_the_tail_and_records_it_as_skipped():
+    plan = settings.experiment_plan(TUESDAY)                     # 名目11本
+    sized, skipped, budget, warnings = run_experiment.size_gemini_plan(TUESDAY, plan, 10)
+    assert len(sized["gemini"]) == 8                             # 20 − 10 − 2
+    assert [r["prompt_id"] for r in skipped] == [p["id"] for p in plan["gemini"][8:]]
+    assert all(r["miss_reason"] == "skipped" and r["attempts"] == 0 for r in skipped)
+    assert all(r["cited_domain"] == "" for r in skipped), "欠測を0と書かない"
+    assert budget == 2 and not warnings
+    assert 10 + len(sized["gemini"]) + budget == settings.GEMINI_DAILY_REQUEST_LIMIT
+
+
+def test_a_daily_run_that_never_finished_skips_the_gemini_part_only():
+    plan = settings.experiment_plan("2026-09-24")                # 木: gemini + claude
+    sized, skipped, budget, warnings = run_experiment.size_gemini_plan(
+        "2026-09-24", plan, None, "(90分待機)")
+    assert "gemini" not in sized and len(sized["claude"]) == 47
+    assert len(skipped) == len(plan["gemini"]) and budget == 0
+    assert warnings and "揃わなかった" in warnings[0]
+
+
+def test_the_experiment_waits_until_the_daily_gemini_is_complete():
+    polls = [_daily_raw({"A-1": 1}), _daily_raw({f"P{i}": 2 for i in range(7)})]
+    slept = []
+    used = run_experiment.wait_for_daily(
+        TUESDAY, fetch=lambda d: polls.pop(0), sleep=slept.append,
+        timeout_minutes=90, poll_seconds=300)
+    assert used == 14 and slept == [300]
+
+
+def test_the_wait_gives_up_after_the_timeout():
+    slept = []
+    used = run_experiment.wait_for_daily(
+        TUESDAY, fetch=lambda d: [], sleep=slept.append, timeout_minutes=10, poll_seconds=300)
+    assert used is None and sum(slept) == 600
+
+
+def test_three_quota_misses_raise_a_slack_line_but_two_do_not():
+    two = [_missing("E01", GEMINI_429), _missing("E02", GEMINI_429)]
+    assert run_experiment.quota_alert_line(two) is None
+    line = run_experiment.quota_alert_line(two + [_missing("E03", GEMINI_429)])
+    assert line and "3件" in line and "E03/gemini" in line
+
+
+def test_three_quota_misses_post_to_slack_and_still_exit_zero(monkeypatch, tmp_path):
+    SLACK.clear()
+    code = _exit_code(monkeypatch, tmp_path,
+                      [_missing(f"E0{i}", GEMINI_429) for i in range(1, 4)])
+    assert code == 0
+    assert any("429" in s and "3件" in s for s in SLACK), SLACK
+
+
+def test_skipped_prompts_do_not_fail_the_run(monkeypatch, tmp_path):
+    SLACK.clear()
+    monkeypatch.setattr(run_experiment, "DATA_RAW_EXPERIMENT_DIR", tmp_path)
+    monkeypatch.setattr(run_experiment, "EXPERIMENT_JOURNAL_FILE", tmp_path / "journal.csv")
+    monkeypatch.setattr(run_experiment, "observe", lambda *a, **k: [])
+    monkeypatch.setattr(run_experiment, "wait_for_daily", lambda date: None)
+    monkeypatch.setattr(notify_slack, "notify_experiment_warnings",
+                        lambda date, lines: SLACK.extend(lines) or True)
+    monkeypatch.setattr(sys, "argv", ["run_experiment.py", "--date", TUESDAY, "--no-sheets"])
+    with pytest.raises(SystemExit) as exited:
+        run_experiment.main()
+    assert exited.value.code == 0
+    assert any("揃わなかった" in s for s in SLACK)
+    with open(tmp_path / "journal.csv", encoding="utf-8", newline="") as fh:
+        reasons = {r["reason"] for r in csv.DictReader(fh)}
+    assert reasons == {"skipped"}
+
+
+def test_the_experiment_does_not_wait_on_days_without_the_daily_run(monkeypatch, tmp_path):
+    waited = []
+    monkeypatch.setattr(run_experiment, "DATA_RAW_EXPERIMENT_DIR", tmp_path)
+    monkeypatch.setattr(run_experiment, "EXPERIMENT_JOURNAL_FILE", tmp_path / "journal.csv")
+    monkeypatch.setattr(run_experiment, "observe", lambda *a, **k: [])
+    monkeypatch.setattr(run_experiment, "wait_for_daily", lambda date: waited.append(date))
+    monkeypatch.setattr(sys, "argv",
+                        ["run_experiment.py", "--date", MONDAY.isoformat(), "--no-sheets"])
+    with pytest.raises(SystemExit):
+        run_experiment.main()
+    assert waited == []
+
+
+def _experiment_raw(tmp_path, per_day):
+    for date, (ok, missing) in per_day.items():
+        folder = tmp_path / date
+        folder.mkdir(parents=True, exist_ok=True)
+        for i in range(ok + missing):
+            rec = {"prompt_id": f"E{i + 1:02d}", "model": "gemini",
+                   "error": None if i < ok else "429 RESOURCE_EXHAUSTED"}
+            (folder / f"E{i + 1:02d}_gemini.json").write_text(
+                __import__("json").dumps(rec), encoding="utf-8")
+
+
+def test_the_weekly_count_warns_below_94(tmp_path):
+    days = {(MONDAY + dt.timedelta(days=i)).isoformat(): (13, 1) for i in range(7)}
+    _experiment_raw(tmp_path, days)                               # 13 × 7 = 91
+    end = (MONDAY + dt.timedelta(days=6)).isoformat()
+    assert run_experiment.weekly_observation_count(end, tmp_path) == 91
+    line = run_experiment.weekly_count_line(end, tmp_path)
+    assert line.startswith("- ⚠️") and "週91本" in line and "94本" in line
+
+
+def test_the_weekly_count_is_quiet_at_94_or_more(tmp_path):
+    days = {(MONDAY + dt.timedelta(days=i)).isoformat(): (14, 0) for i in range(7)}
+    _experiment_raw(tmp_path, days)                               # 98
+    line = run_experiment.weekly_count_line((MONDAY + dt.timedelta(days=6)).isoformat(),
+                                            tmp_path)
+    assert not line.startswith("- ⚠️") and "週98本" in line

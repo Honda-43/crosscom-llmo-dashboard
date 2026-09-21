@@ -231,8 +231,13 @@ def build_message(
     failures: Sequence[str] = (),
     sov_rows: Sequence[Dict[str, Any]] = (),
     observations: Sequence[Dict[str, Any]] = (),
+    warnings: Sequence[str] = (),
 ) -> str:
-    """日次メッセージ。変化がない日も状態を示すため必ず本文を返す。"""
+    """日次メッセージ。変化がない日も状態を示すため必ず本文を返す。
+
+    ``warnings`` は失敗ではないが知っておくべきこと(前日の実行漏れなど)。
+    本文をそのまま1行ずつ出す。
+    """
     lines = [
         f"📊 *LLMO日次* | {date}",
         build_summary_line(date, extractions, sov_rows, observations),
@@ -246,6 +251,8 @@ def build_message(
     lost = _enumerate(changes, analyze_diff.MENTION_LOST)
     if lost:
         events.append(f"📉 言及消失: {_join(lost)}")
+    for warning in warnings:
+        events.append(f"⚠️ {warning}")
     if failures:
         # 変化イベントではないが、落ちたことは当日中に知る必要がある。
         events.append(f"❌ パイプライン一部失敗: "
@@ -277,9 +284,11 @@ def notify(
     sov_rows: Sequence[Dict[str, Any]] = (),
     observations: Sequence[Dict[str, Any]] = (),
     webhook: Optional[str] = None,
+    warnings: Sequence[str] = (),
 ) -> bool:
     """Send the daily alert. Returns True when a message was actually posted."""
-    text = build_message(date, extractions, changes, failures, sov_rows, observations)
+    text = build_message(date, extractions, changes, failures, sov_rows, observations,
+                         warnings)
 
     webhook = webhook if webhook is not None else SLACK_WEBHOOK_URL
     if not webhook:
@@ -289,6 +298,27 @@ def notify(
 
     _post(text, webhook)
     print(f"[ok] notify_slack {date}: alert sent")
+    return True
+
+
+def notify_experiment_warnings(date: str, warnings: Sequence[str],
+                               webhook: Optional[str] = None) -> bool:
+    """実験の警告を Slack に出す。ワークフローの成否(exit code)とは独立。
+
+    9/19 に実験の Gemini が 429 で10本落ちたが、429 だけの欠測は exit 0 に
+    しているため、通知が1つも出なかった(2026-09-21)。exit 0 のまま、
+    知っておくべきことだけを1行ずつ出す。
+    """
+    if not warnings:
+        return False
+    text = "\n".join([f"🧪 *LLMO実験* | {date}"] + [f"⚠️ {w}" for w in warnings])
+    webhook = webhook if webhook is not None else SLACK_WEBHOOK_URL
+    if not webhook:
+        print("[warn] SLACK_WEBHOOK_URL is not set — experiment warning skipped:")
+        print(text)
+        return False
+    _post(text, webhook)
+    print(f"[ok] notify_experiment_warnings {date}: {len(warnings)} line(s)")
     return True
 
 
