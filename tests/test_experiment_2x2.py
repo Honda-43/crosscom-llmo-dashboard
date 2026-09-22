@@ -164,3 +164,60 @@ def test_the_probe_workflow_is_not_scheduled_during_the_experiment():
 def test_the_readme_says_the_probe_is_unused():
     text = (ROOT / "experiment_2x2" / "README.md").read_text(encoding="utf-8")
     assert "プローブは実験期間中は不使用。判定は llm_experiment のみ。" in text
+
+
+# --- 5. summarize.py(判定は llm_experiment のみ・2026-09-23) -----------------------
+import summarize  # noqa: E402
+
+EXP_HEAD = ["date", "experiment_id", "model", "target_url", "cited_article", "error",
+            "experiment_flag"]
+
+
+def _exp_csv(path, rows):
+    with io.open(path, "w", encoding="utf-8", newline="") as f:
+        w = csv.writer(f)
+        w.writerow(EXP_HEAD)
+        w.writerows(rows)
+
+
+def test_condition_f_covers_vibes_and_features():
+    assert pool.CORRECTION_SLUGS == ("agentforce-vibes", "agentforce-features")
+
+
+def test_summarize_reads_llm_experiment_and_drops_watch_rows(monkeypatch, tmp_path, capsys):
+    rag = "https://cross-com.jp/agentforce-rag/"
+    vibes = "https://cross-com.jp/agentforce-vibes/"
+    cowork = "https://cross-com.jp/agentforce-coworker/"
+    monkeypatch.setattr(summarize, "load_allocation",
+                        lambda: {"agentforce-rag": "③リードのみ", "agentforce-vibes": "①対照",
+                                 "agentforce-coworker": "④両方"})
+    path = tmp_path / "llm_experiment.csv"
+    _exp_csv(path, [
+        ["2026-09-20", "E06", "gemini", rag, "0", "", "pool"],
+        ["2026-10-10", "E06", "gemini", rag, "1", "", "pool"],
+        ["2026-10-10", "E11", "gemini", vibes, "1", "", "pool"],
+        ["2026-10-10", "E37", "gemini", cowork, "1", "", "watch"],       # watch は数えない
+        ["2026-10-11", "E06", "gemini", rag, "", "503 UNAVAILABLE", "pool"],  # 欠測は数えない
+    ])
+    assert summarize.main(["--before", "2026-09-15:2026-09-28", "--after", "2026-10-08:2026-10-27",
+                           "--csv", str(path), "--model", "gemini"]) == 0
+    out = capsys.readouterr().out
+    assert "watch 1行" in out
+    assert "gemini 2本込み（agentforce-vibes・agentforce-features を含む）（2本）" in out
+    assert "gemini 2本抜き（agentforce-vibes・agentforce-features を除く）（1本）" in out
+    assert "④両方" not in out, "watch の E37 が組に入っている"
+    assert "③リードのみ: 1/1 = 100%   Δ平均 +1.00" in out
+
+
+def test_summarize_refuses_to_judge_before_the_allocation(monkeypatch, tmp_path):
+    monkeypatch.setattr(summarize, "load_allocation", lambda: {})
+    path = tmp_path / "e.csv"
+    _exp_csv(path, [])
+    with pytest.raises(SystemExit):
+        summarize.main(["--before", "2026-09-15:2026-09-28", "--after", "2026-10-08:2026-10-27",
+                        "--csv", str(path)])
+
+
+def test_summarize_still_refuses_the_old_probe_baseline(tmp_path):
+    with pytest.raises(SystemExit):
+        summarize.main(["--probe", str(tmp_path / "2026-10-06.csv"), str(tmp_path / "2026-09-17.csv")])

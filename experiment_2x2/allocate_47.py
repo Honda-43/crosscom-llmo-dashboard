@@ -17,10 +17,10 @@
 　d. 2026-09 公開・2026-07 公開それぞれの本数が組間で最大差1
 　　（d-1・d-2 の2つ。a〜d-2 の5つが当初の条件 a〜e にあたる）
 　f. 鮮度更新の誤り訂正の対象（pool.CORRECTION_SLUGS）は各組に最大1本
-　　2026-09-22 に3本で追加し、同日 agentforce-vibes のみに更新した
-　　（coworker はプールから除外、features は引用実績なしのため訂正見送り）。
-　　対象が1本なので常に満たすが、対象が増えたときのために条件として残す。
-　　判定時は「vibes込み／vibes抜き」の両方を出す（summarize.py）。
+　　2026-09-22 に3本で追加し、同日 agentforce-vibes のみに、2026-09-23 に
+　　agentforce-vibes・agentforce-features の2本に更新した（coworker はプールから除外し
+　　watch で観測継続。features は本文1文の訂正を 9/29〜30 に入れることを了承）。
+　　判定時は「2本込み／2本抜き」の両方を出す（summarize.py）。
 
 **既定はドライラン（画面に出すだけ）**（2026-09-22）。--write を付けたときだけ
 allocation_v1.csv と output/reports/experiment47_allocation_v1_20260928.md を書く。
@@ -178,16 +178,20 @@ def report(arts, assign, cited, cited_src, seed, seed_start, tried, res, a):
                      f'{"あり" if x["slug"] in cited else "—"} | '
                      f'{"対象" if x["correction"] else "—"} | {assign[x["slug"]]} |')
     names = '・'.join(CORRECTION_SLUGS)
-    lines += ['', f'## 判定時の集計（{names} 込み／抜き）', '',
+    k = len(CORRECTION_SLUGS)
+    lines += ['', f'## 判定時の集計（{k}本込み／{k}本抜き）', '',
+              '判定は llm_experiment のみで行う（引用プローブは実験期間中は不使用）。',
               '訂正対象はアフター期間の本文に「処置」と「訂正」の両方が乗る。',
               '判定は次の2通りを必ず並べて出し、結論が食い違えば訂正の影響として扱う。', '',
-              f'- **込み**：{len(arts)}本すべて',
-              f'- **抜き**：{names} を除いた{len(arts) - len(CORRECTION_SLUGS)}本',
-              '  （訂正を見送った場合も、事前に決めたとおり抜いた集計も出す）', '',
+              f'- **{k}本込み**：{len(arts)}本すべて',
+              f'- **{k}本抜き**：{names} を除いた{len(arts) - k}本',
+              '  （訂正を見送った場合も、事前に決めたとおり抜いた集計も出す）',
+              '- llm_experiment の experiment_flag=watch の行（E37）は数えない', '',
               FENCE,
-              'python experiment_2x2/summarize.py results/<アフター>.csv results/<ビフォー>.csv',
+              'python experiment_2x2/summarize.py --before <ビフォー開始>:<ビフォー終了> '
+              '--after <アフター開始>:<アフター終了>',
               FENCE,
-              '（summarize.py が両方を出す。対象は pool.CORRECTION_SLUGS）', '',
+              '（summarize.py がモデルごとに両方を出す。対象は pool.CORRECTION_SLUGS）', '',
               '## 再現方法', '', FENCE,
               f'python experiment_2x2/allocate_47.py --seed-start {seed} '
               f'--cited-from {a.cited_from} --cited-to {a.cited_to}',

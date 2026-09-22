@@ -17,6 +17,7 @@ POOL_CSV = os.path.join(ROOT, 'config', 'prompts_experiment.csv')
 ALLOCATION_CSV = os.path.join(HERE, 'allocation_v1.csv')
 
 # プールから外した記事と理由。統計・割付・判定のすべてから除く。
+# E37 は観測だけ続ける(config/prompts_watch.csv・llm_experiment の experiment_flag=watch)。
 EXCLUDED = {
     'agentforce-coworker': 'E37。見出し・FAQに及ぶ誤り訂正のため 2026-09-22 に除外',
 }
@@ -28,7 +29,8 @@ PROBE_BASELINE_EXCLUDED = ('2026-09-17',)
 
 # 鮮度更新の誤り訂正の対象(処置と同じ日に本文の数文が差し替わる)。
 # 訂正が確定していなくても、条件 f と「込み／抜き」の集計には含める。
-CORRECTION_SLUGS = ('agentforce-vibes',)
+# 2026-09-23: features の本文1文の訂正(9/29〜30)を了承したため2本に戻した。
+CORRECTION_SLUGS = ('agentforce-vibes', 'agentforce-features')
 
 
 def slug(u):

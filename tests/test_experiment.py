@@ -45,6 +45,8 @@ def never_wait_for_real(monkeypatch):
 # 47本のときの値は 4f7b306cbf7a947f3f6cc6e0b7ca8d7d9a27b15358e28307e26b215e9c63ea2c。
 PROMPTS_SHA256 = "a44fe5f23b5eac02800a833b4aada25d23fac37f1bace0fba6d226adfece1495"
 POOL_IDS = [f"E{i:02d}" for i in range(1, 48) if i != 37]
+# 実際に観測する記事(プール + watch の E37)。巡回の輪と Claude の観測はこれ。
+OBS_IDS = [f"E{i:02d}" for i in range(1, 48)]
 
 
 # --- 1. 質問文 ----------------------------------------------------------------
@@ -169,9 +171,9 @@ def test_the_assignment_follows_the_cycle_start_with_no_manual_table():
     assert _gemini_ids(START)[0] == "E01"
     running = 0
     for day in THREE_WEEKS:
-        assert settings.experiment_cursor(day.isoformat()) == running % len(POOL_IDS), day
+        assert settings.experiment_cursor(day.isoformat()) == running % len(OBS_IDS), day
         ids = _gemini_ids(day)
-        assert ids == [POOL_IDS[(running + i) % len(POOL_IDS)] for i in range(len(ids))], day
+        assert ids == [OBS_IDS[(running + i) % len(OBS_IDS)] for i in range(len(ids))], day
         running += settings.experiment_daily_count(day.isoformat())
 
 
@@ -183,12 +185,12 @@ def test_moving_the_cycle_start_moves_the_whole_assignment(monkeypatch):
 
 
 def test_the_cycle_wraps_without_skipping_or_repeating_a_prompt():
-    """輪を1周する間に46本が漏れなく1回ずつ出る。"""
+    """輪を1周する間に、観測する47本(プール46 + watch1)が漏れなく1回ずつ出る。"""
     seen, day = [], START
-    while len(seen) < len(POOL_IDS):
+    while len(seen) < len(OBS_IDS):
         seen += _gemini_ids(day)
         day += dt.timedelta(days=1)
-    assert sorted(seen[:len(POOL_IDS)]) == POOL_IDS
+    assert sorted(seen[:len(OBS_IDS)]) == OBS_IDS
 
 
 def test_a_prompt_is_never_observed_twice_on_the_same_day():
@@ -198,15 +200,18 @@ def test_a_prompt_is_never_observed_twice_on_the_same_day():
 
 
 def test_every_prompt_is_observed_about_twice_a_week():
-    """週97本 / 46本 = 2.11回。どの質問も同じ回数(差は多くても1回)になる。"""
-    counts = {pid: 0 for pid in POOL_IDS}
+    """週97本 / 47本 = 2.06回。どの質問も同じ回数(差は多くても1回)になる。"""
+    counts = {pid: 0 for pid in OBS_IDS}
     for day in THREE_WEEKS:
         for pid in _gemini_ids(day):
             counts[pid] += 1
     planned = sum(settings.experiment_daily_count(d.isoformat()) for d in THREE_WEEKS)
     assert sum(counts.values()) == planned
     assert max(counts.values()) - min(counts.values()) <= 1, counts
-    assert planned / len(POOL_IDS) / 3 >= 2.0, "1本あたり週2回を下回った"
+    # 3週間には月次の日(10/1・10/7)が入るので平均は 1.99。通常の週だけなら 97/47 = 2.06
+    assert planned / len(OBS_IDS) / 3 >= 1.9, "1本あたり週1.9回を下回った"
+    normal_week = sum(settings.experiment_daily_count(d.isoformat()) for d in WEEK)
+    assert normal_week / len(OBS_IDS) >= 2.0, "通常の週で1本あたり週2回を下回った"
 
 
 def test_the_two_observations_of_a_prompt_are_three_or_four_days_apart():
@@ -219,10 +224,10 @@ def test_the_two_observations_of_a_prompt_are_three_or_four_days_apart():
     assert gaps <= {3, 4}, sorted(gaps)
 
 
-def test_claude_observes_the_whole_pool_on_monday_and_thursday_only():
+def test_claude_observes_the_pool_and_watch_on_monday_and_thursday_only():
     for day in WEEK:
         claude = settings.experiment_plan(day.isoformat()).get("claude", [])
-        expected = 46 if day.weekday() in (0, 3) else 0
+        expected = 47 if day.weekday() in (0, 3) else 0
         assert len(claude) == expected, day
 
 
@@ -720,7 +725,7 @@ def test_a_daily_run_that_never_finished_skips_the_gemini_part_only():
     plan = settings.experiment_plan("2026-09-24")                # 木: gemini + claude
     sized, skipped, budget, warnings = run_experiment.size_gemini_plan(
         "2026-09-24", plan, None, "(90分待機)")
-    assert "gemini" not in sized and len(sized["claude"]) == 46
+    assert "gemini" not in sized and len(sized["claude"]) == 47
     assert len(skipped) == len(plan["gemini"]) and budget == 0
     assert warnings and "揃わなかった" in warnings[0]
 
@@ -907,4 +912,67 @@ def test_a_normal_short_week_has_no_monthly_reason(tmp_path):
     line = run_experiment.weekly_count_line((MONDAY + dt.timedelta(days=6)).isoformat(),
                                             tmp_path)
     assert line.startswith("- ⚠️") and "月次観測週" not in line
+
+
+# --- 9. watch(E37)と生の引用元URL(2026-09-23) --------------------------------------
+def test_e37_is_watched_with_its_original_question():
+    """E37 はプールから外したが、同じ質問文のまま観測を続ける。"""
+    watch = settings.load_watch_prompts()
+    assert [p["id"] for p in watch] == ["E37"]
+    assert watch[0]["experiment_flag"] == "watch"
+    assert watch[0]["url"] == "https://cross-com.jp/agentforce-coworker/"
+    joined = "\n".join(f"{p['id']}\t{p['prompt']}" for p in settings.load_observation_prompts())
+    # 47本時代の CSV と同じ文面(PROMPTS_SHA256 のコメントにある元の値)
+    assert hashlib.sha256(joined.encode("utf-8")).hexdigest() == (
+        "4f7b306cbf7a947f3f6cc6e0b7ca8d7d9a27b15358e28307e26b215e9c63ea2c")
+
+
+def test_the_pool_and_the_weekly_target_stay_at_46():
+    assert len(settings.load_experiment_prompts()) == 46
+    assert settings.experiment_weekly_target() == 92
+    assert all(p["experiment_flag"] == "pool" for p in settings.load_experiment_prompts())
+
+
+def test_every_row_carries_its_flag():
+    watch = settings.load_watch_prompts()[0]
+    rec = _record(prompt_id="E37", cited_urls=["https://cross-com.jp/agentforce-coworker/"])
+    assert experiment.evaluate(rec, watch)["experiment_flag"] == "watch"
+    assert experiment.evaluate(_record(), TARGET)["experiment_flag"] == "pool"
+
+
+def test_the_sheet_keeps_raw_and_resolved_urls_and_the_flag():
+    redirect = "https://vertexaisearch.cloud.google.com/grounding-api-redirect/abc"
+    rec = _record(model="gemini", cited_urls=[redirect])
+    rec.update(experiment.evaluate(rec, dict(TARGET, experiment_flag="pool"),
+                                   resolver={redirect: "https://cross-com.jp/agentforce-rag/"}.get))
+    row = sheets_writer._experiment_row(dict(rec, date="2026-09-23", question="Q"))
+    assert row["raw_cited_urls"] == [redirect]
+    assert row["cited_urls"] == ["https://cross-com.jp/agentforce-rag/"]
+    assert row["experiment_flag"] == "pool"
+    # 新しい列は既存の列の後ろ(既存の行の位置を動かさない)
+    assert sheets_writer.HEADERS_EXPERIMENT[-2:] == ["raw_cited_urls", "experiment_flag"]
+    assert sheets_writer.HEADERS_EXPERIMENT[:3] == sheets_writer.KEYS_EXPERIMENT
+
+
+def test_a_redirect_whose_target_has_broken_tls_is_read_from_location(monkeypatch):
+    """9/15〜9/22 の未解決6件のうち5件は、転送先サイトの TLS エラーだった。"""
+    import requests
+    import retired_urls
+
+    class Resp:
+        headers = {"Location": "https://trendemon.jp/blog/btob-ai-report/"}
+
+    def get(self, url, allow_redirects=True, timeout=None):
+        if allow_redirects:
+            raise requests.exceptions.SSLError("bad cert")
+        return Resp()
+
+    def head(self, url, allow_redirects=True, timeout=None):
+        raise requests.exceptions.SSLError("bad cert")
+
+    monkeypatch.setattr(requests.Session, "get", get)
+    monkeypatch.setattr(requests.Session, "head", head)
+    url = "https://vertexaisearch.cloud.google.com/grounding-api-redirect/tls-broken"
+    retired_urls._RESOLVED.pop(url, None)
+    assert retired_urls.resolve_redirect(url) == "https://trendemon.jp/blog/btob-ai-report/"
 

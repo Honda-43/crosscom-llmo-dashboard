@@ -30,6 +30,12 @@ PROMPTS_MONTHLY_FILE = CONFIG_DIR / "prompts_monthly.yaml"
 # E37 agentforce-coworker は見出し・FAQに及ぶ誤り訂正が入るためプールから除外)。本田さんが貼った CSV を
 # **加工せずそのまま**置いている(YAML にするとクォートの付け方で文字が変わりうる)。
 PROMPTS_EXPERIMENT_FILE = CONFIG_DIR / "prompts_experiment.csv"
+# 観測は続けるが統計に入れない記事(2026-09-23)。E37 agentforce-coworker は
+# 見出し・FAQに及ぶ訂正でプールから外したが、訂正後の引用の動きは見たいので観測を続ける。
+# llm_experiment では experiment_flag=watch。割付・判定・週次集計の母数には入らない。
+PROMPTS_WATCH_FILE = CONFIG_DIR / "prompts_watch.csv"
+EXPERIMENT_FLAG_POOL = "pool"
+EXPERIMENT_FLAG_WATCH = "watch"
 # 実験の回答全文。日次・月次の日付ディレクトリと混ぜない。
 DATA_RAW_EXPERIMENT_DIR = ROOT_DIR / "data" / "raw" / "experiment"
 # 実験日誌。欠測を1行1件で残す(date, experiment_id, model, reason, detail, attempts)。
@@ -260,19 +266,47 @@ def monthly_batch_on(date: str) -> Optional[str]:
     return None
 
 
+def _load_prompt_csv(path: Path, flag: str) -> List[Dict[str, Any]]:
+    if not path.exists():
+        return []
+    with open(path, "r", encoding="utf-8", newline="") as fh:
+        rows = list(csv.DictReader(fh))
+    return [dict(row, text=row["prompt"], experiment_flag=flag) for row in rows]
+
+
 def load_experiment_prompts() -> List[Dict[str, Any]]:
-    """実験の47本。CSV の値は**strip も含めて一切加工しない**。
+    """実験のプール(統計の対象。2026-09-22 から46本)。CSV の値は**strip も含めて一切加工しない**。
 
     collect_llm が読むキー(``id`` / ``text``)に合わせて ``prompt`` 列を
-    ``text`` として渡す。元の列名も残す。
+    ``text`` として渡す。元の列名も残す。``experiment_flag`` は "pool"。
     """
-    with open(PROMPTS_EXPERIMENT_FILE, "r", encoding="utf-8", newline="") as fh:
-        rows = list(csv.DictReader(fh))
-    return [dict(row, text=row["prompt"]) for row in rows]
+    return _load_prompt_csv(PROMPTS_EXPERIMENT_FILE, EXPERIMENT_FLAG_POOL)
+
+
+def load_watch_prompts() -> List[Dict[str, Any]]:
+    """観測だけ続ける記事(experiment_flag="watch")。統計には入れない。"""
+    return _load_prompt_csv(PROMPTS_WATCH_FILE, EXPERIMENT_FLAG_WATCH)
+
+
+def load_observation_prompts() -> List[Dict[str, Any]]:
+    """実際に観測する記事(プール + watch)。ID の番号順。巡回の輪と Claude の観測はこれ。"""
+    return sorted(load_experiment_prompts() + load_watch_prompts(),
+                  key=lambda p: experiment_number(p["id"]))
+
+
+def observation_prompt_count() -> int:
+    """巡回の輪の大きさ(プール46 + watch1 = 47)。"""
+    global _OBSERVATION_PROMPT_COUNT
+    if _OBSERVATION_PROMPT_COUNT is None:
+        _OBSERVATION_PROMPT_COUNT = len(load_observation_prompts())
+    return _OBSERVATION_PROMPT_COUNT
+
+
+_OBSERVATION_PROMPT_COUNT: Optional[int] = None
 
 
 def experiment_prompt_count() -> int:
-    """実験プロンプトの本数(47)。巡回の輪の大きさ。"""
+    """プールの本数(46)。週の観測目標(プール×週2回)の母数。"""
     global _EXPERIMENT_PROMPT_COUNT
     if _EXPERIMENT_PROMPT_COUNT is None:
         _EXPERIMENT_PROMPT_COUNT = len(load_experiment_prompts())
@@ -334,7 +368,7 @@ def experiment_cursor(date: str) -> int:
     cached = _EXPERIMENT_CURSOR.get(day.isoformat())
     if cached is not None:
         return cached
-    total = experiment_prompt_count()
+    total = observation_prompt_count()
     cursor, cur = 0, start
     while cur < day:
         cursor = (cursor + experiment_daily_count(cur.isoformat())) % total
@@ -344,8 +378,12 @@ def experiment_cursor(date: str) -> int:
 
 
 def experiment_plan(date: str) -> Dict[str, List[Dict[str, Any]]]:
-    """その日に観測する実験プロンプトをモデルごとに返す。無いモデルは入れない。"""
-    prompts = load_experiment_prompts()
+    """その日に観測する実験プロンプトをモデルごとに返す。無いモデルは入れない。
+
+    観測するのはプール + watch(``load_observation_prompts``)。watch の記事も
+    Gemini の巡回と Claude の観測に入るが、統計では experiment_flag で外す。
+    """
+    prompts = load_observation_prompts()
     plan: Dict[str, List[Dict[str, Any]]] = {}
     count = experiment_daily_count(date)
     if count:

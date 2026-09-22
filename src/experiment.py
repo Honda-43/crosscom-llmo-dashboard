@@ -82,6 +82,8 @@ def evaluate(record: Dict[str, Any], prompt: Dict[str, Any],
     """collect_llm のレコードに足す実験の列を返す。"""
     fields: Dict[str, Any] = {
         "experiment_id": prompt["id"],
+        # pool=統計の対象 / watch=観測だけ続ける(2026-09-23。E37)
+        "experiment_flag": prompt.get("experiment_flag") or "pool",
         "layer": prompt.get("layer", ""),
         "target_url": prompt["url"],
         "answer_text": record.get("answer") or "",

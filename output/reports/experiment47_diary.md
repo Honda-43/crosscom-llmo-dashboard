@@ -278,3 +278,29 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 - 質問（E37）：「Agentforce Coworkerとは何？営業がどんな場面で使える？」
 - Gemini 9/16・9/21、Claude 9/17・9/21 の4回すべて cited_article=1（記事URLごと引用）
 - ★E37 は prompts_experiment.csv から外れたため、このままでは訂正後の引用を追えない（提案は記事制作の便II 報告 §3）
+
+---
+
+## 2026-09-23／E37 は watch で観測継続・features の訂正を了承・転送URLの確認
+
+**2026-09-22 15:38 E37（agentforce-coworker）の完全訂正（実験外）**
+- 詳細は上の「2026-09-22 15:38」の項。見出し・FAQに及ぶ訂正で、処置ではない
+- E37 はプール（統計の46本）から外したまま、**観測は続ける**（`config/prompts_watch.csv`）。
+  llm_experiment では `experiment_flag=watch`。割付・判定（`summarize.py`）・週次集計・週の観測目標には入らない
+- 観測の巡回は プール46本 + watch1本 = 47本になった（9/24 以降の割当から）。Claude は 月・木 に47本
+
+**2026-09-23 features（E12）の本文1文の訂正を了承（適用は 9/29〜30・処置反映と同日）**
+- 条件 f（訂正対象を各組に最大1本）の対象を **agentforce-vibes と agentforce-features の2本** にした
+- 判定は「2本込み／2本抜き」の両方を出す（`experiment_2x2/summarize.py`）
+- **要確認（seo-agent 側）**：9/29〜30 の apply_gate の例外は「処置群（②③④）と vibes」だけを通す。
+  9/28 の割付で features が①対照になると、了承した訂正が例外で通らない。
+  `publish_followup.py` の `EXPERIMENT_WINDOWS` に features を足す必要がある
+
+**Gemini の転送URLの解決を確認（`output/reports/experiment47_redirect_check_20260923.md`）**
+- 9/15〜9/22 の Gemini 99行（引用のある84行）、転送URL 1,169件のうち、解決に失敗したのは **6件（6行）**。
+  タイムアウトは0件。5件は転送先サイトの TLS エラー、1件は当時の一時的な失敗（9/23 は解決できた）
+- 失敗6件の行き先はすべて外部サイト。**cited_article・cited_domain の判定への影響は0件**。
+  記録された cited_article と、解決後URLから計算し直した値の不一致も0件
+- 9/23 から、転送をたどれないときは `Location` ヘッダーで行き先を読む（TLS エラーの5件はこれで解決できる）
+- 9/23 から llm_experiment に `raw_cited_urls`（生の引用元URL）と `experiment_flag` の列を足した。
+  それより前の行の生URLは `raw_file` の JSON にある

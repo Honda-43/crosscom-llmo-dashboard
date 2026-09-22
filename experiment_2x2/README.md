@@ -35,10 +35,16 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
 - `--write` は **9/28 の本番実行の1回だけ**。9/28 より前は `--write` を付けても止まる。
   割付表は seo-agent の apply_gate が 9/29〜30 の処置の通し判定に読むので、本番前に書かない
 
-## 判定の手順の記録（summarize.py）
-- `python3 summarize.py results/<アフター>.csv results/<ビフォー>.csv` は、2×2 の主効果の
-  計算手順を残すためのもの。上のとおり、このプローブの結果で判定はしない
-- agentforce-vibes 込み／抜きの両方を出す。E37 とプール外の行は数えない
+## 判定（summarize.py）
+- 判定は **llm_experiment のみ**。既定でシートの llm_experiment を読む：
+  ```
+  python3 experiment_2x2/summarize.py --before 2026-09-15:2026-09-28 --after <開始>:<終了>
+  ```
+  （`--csv` でシートの書き出しを使える。`--model gemini|claude` で1モデルだけ）
+- `experiment_flag=watch` の行（E37）・プール外・欠測の行は自動で数えない
+- 鮮度更新の訂正対象2本（agentforce-vibes・agentforce-features）の **2本込み／2本抜き** を
+  モデルごとに出す。組は `allocation_v1.csv` から引く（割付前は止まる）
+- `--probe results/<アフター>.csv [results/<ビフォー>.csv]` はプローブの結果での集計（参考。実験期間中は不使用）
 
 ## 指標
 - cited：その記事URLが引用されたか（1/0）

@@ -651,6 +651,11 @@ HEADERS_EXPERIMENT = [
     "cited_domain", "cited_article", "mentioned", "cited_domains",
     "unresolved_redirects", "cited_urls", "error",
     "question", "answer_text", "raw_file",
+    # 2026-09-23 追加(既存の列の後ろに足す。既存の行はこの2列が空)
+    # raw_cited_urls … モデルが返した引用元URLそのもの(Gemini は転送URL)。
+    #   cited_urls は解決後で、解決できなかった転送URLは落ちる。判定の検算に生も残す
+    # experiment_flag … pool(統計の対象)/ watch(観測だけ続ける。E37)
+    "raw_cited_urls", "experiment_flag",
 ]
 KEYS_EXPERIMENT = ["date", "experiment_id", "model"]
 # USER_ENTERED では、この文字で始まる文字列が数式として解釈されてセルが壊れる。
@@ -690,6 +695,8 @@ def _experiment_row(rec: Dict[str, Any]) -> Dict[str, Any]:
         "question": _as_text(rec.get("question") or ""),
         "answer_text": _as_text(answer),
         "raw_file": rec.get("raw_file", ""),
+        "raw_cited_urls": rec.get("cited_urls", []),
+        "experiment_flag": rec.get("experiment_flag", ""),
     }
 
 

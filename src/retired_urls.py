@@ -113,6 +113,17 @@ def resolve_redirect(url: str) -> Optional[str]:
                     return resolved
             except Exception:  # noqa: BLE001 - 次の方法を試す
                 continue
+        # 転送先のサイト側の TLS が壊れていると、転送をたどる方法はどちらも落ちる
+        # (2026-09-23 の確認で未解決6件のうち5件がこれ。行き先は全部外部サイト)。
+        # 転送URLそのものは応答するので、Location ヘッダーから行き先だけ読む。
+        try:
+            location = session.get(url, allow_redirects=False,
+                                   timeout=RESOLVE_TIMEOUT_SECONDS).headers.get("Location")
+            if location and REDIRECT_MARKER not in location:
+                _RESOLVED[url] = location
+                return location
+        except Exception:  # noqa: BLE001 - 解決できなかったとして数える
+            pass
     except Exception:  # noqa: BLE001 - requests が無い等。数えられないだけ
         pass
     _RESOLVED[url] = None
