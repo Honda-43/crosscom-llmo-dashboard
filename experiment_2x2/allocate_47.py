@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-"""allocate_47.py｜47本を4組へ「制約付きくじ引き」で割り付ける（2026-09-28 実施）。
+"""allocate_47.py｜46本を4組へ「制約付きくじ引き」で割り付ける（2026-09-28 実施）。
+
+2026-09-22：プールは46本（E37 agentforce-coworker を除外。pool.py）。
+ファイル名は47本時代のまま（experiment47_* の記録と揃えるため）。
 
 なぜくじ引きに制約を付けるか
 　単純な無作為だと、偏ったときに「処置の効果」と「もともとの差」を切り分けられない。
@@ -8,10 +11,16 @@
 　だから「偏っていないくじを引くまで引き直す」。引き直した事実と採用シードを残す。
 
 条件（全部満たす最初のシードを採用する）
-　a. 各組 11〜12本
+　a. 各組 11〜12本（46本なので 12/12/11/11）
 　b. 逆リンク追記あり17本が各組 4〜5本
 　c. 引用あり（--cited-from 〜 --cited-to の観測で cited_article=1 が1回以上）が組間で最大差1
 　d. 2026-09 公開・2026-07 公開それぞれの本数が組間で最大差1
+　　（d-1・d-2 の2つ。a〜d-2 の5つが当初の条件 a〜e にあたる）
+　f. 鮮度更新の誤り訂正の対象（pool.CORRECTION_SLUGS）は各組に最大1本
+　　2026-09-22 に3本で追加し、同日 agentforce-vibes のみに更新した
+　　（coworker はプールから除外、features は引用実績なしのため訂正見送り）。
+　　対象が1本なので常に満たすが、対象が増えたときのために条件として残す。
+　　判定時は「vibes込み／vibes抜き」の両方を出す（summarize.py）。
 
 usage:
   python experiment_2x2/allocate_47.py --seed-start 20260928 \
@@ -28,34 +37,36 @@ import random
 import sys
 from collections import Counter
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from pool import (ALLOCATION_CSV, CORRECTION_SLUGS, EXCLUDED, load_pool,  # noqa: E402
+                  read_csv, slug)
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 GROUPS = ['①対照', '②FAQのみ', '③リードのみ', '④両方']
-SIZES = [12, 12, 12, 11]          # 47 = 12+12+12+11
+SIZES = [12, 12, 11, 11]          # 46 = 12+12+11+11
+POOL_SIZE = sum(SIZES)
 FENCE = '`' * 3
 
 
-def slug(u):
-    return u.strip().rstrip('/').split('/')[-1].lower()
-
-
 def load_articles():
-    """47本（config/prompts_experiment.csv）に、公開日と層の印を足して返す。"""
-    pub = {}
-    with io.open(os.path.join(ROOT, 'experiment_2x2', 'targets.csv'), encoding='utf-8') as f:
-        for r in csv.DictReader(f):
-            pub[slug(r['url'])] = r.get('published', '')
+    """プール46本（pool.load_pool）に、公開日と層の印を足して返す。
+
+    公開日（条件 d）だけは targets.csv の published 列から引く。targets.csv は
+    観測には使わない（編集禁止リスト）。
+    """
+    pub = {slug(r['url']): r.get('published', '')
+           for r in read_csv(os.path.join(ROOT, 'experiment_2x2', 'targets.csv'))}
     back = set()
     p = os.path.join(ROOT, 'experiment_2x2', 'strata_backlink17.csv')
     if os.path.exists(p):
-        with io.open(p, encoding='utf-8') as f:
-            back = {r['slug'].lower() for r in csv.DictReader(f)}
+        back = {r['slug'].lower() for r in read_csv(p)} - set(EXCLUDED)
     arts = []
-    with io.open(os.path.join(ROOT, 'config', 'prompts_experiment.csv'), encoding='utf-8') as f:
-        for r in csv.DictReader(f):
-            s = slug(r['url'])
-            arts.append({'id': r['id'], 'url': r['url'], 'slug': s,
-                         'layer': r.get('layer', ''), 'published': pub.get(s, ''),
-                         'month': pub.get(s, '')[:7], 'backlink': s in back})
+    for r in load_pool():
+        s = r['slug']
+        arts.append({'id': r['id'], 'url': r['url'], 'slug': s,
+                     'layer': r.get('layer', ''), 'published': pub.get(s, ''),
+                     'month': pub.get(s, '')[:7], 'backlink': s in back,
+                     'correction': s in CORRECTION_SLUGS})
     return arts, back
 
 
@@ -65,7 +76,7 @@ def load_cited(a):
         with io.open(a.cited_csv, encoding='utf-8') as f:
             rows = list(csv.DictReader(f))
         got = {slug(r['target_url']) for r in rows
-               if str(r.get('cited_article', '')).strip() == '1'}
+               if str(r.get('cited_article', '')).strip() == '1'} - set(EXCLUDED)
         return got, f'{a.cited_csv}（{len(rows)} 行）'
     from google.oauth2.service_account import Credentials
     from googleapiclient.discovery import build
@@ -87,7 +98,8 @@ def load_cited(a):
         n += 1
         if str(r[idx['cited_article']]).strip() == '1':
             got.add(slug(r[idx['target_url']]))
-    return got, f'llm_experiment タブ（{a.cited_from}〜{a.cited_to} の {n} 行）'
+    # 除外した記事（E37）の観測行は条件 c に数えない
+    return got - set(EXCLUDED), f'llm_experiment タブ（{a.cited_from}〜{a.cited_to} の {n} 行）'
 
 
 def allocate(arts, seed):
@@ -121,18 +133,24 @@ def check(arts, assign, cited):
     res.append((f'd-1 2026-09公開が最大差1（実差 {max(v) - min(v)}）', max(v) - min(v) <= 1, v))
     v = vals(by(lambda a: a['month'] == '2026-07'))
     res.append((f'd-2 2026-07公開が最大差1（実差 {max(v) - min(v)}）', max(v) - min(v) <= 1, v))
+    v = vals(by(lambda a: a['correction']))
+    res.append((f'f 鮮度更新の訂正対象（{"・".join(CORRECTION_SLUGS)}）が各組に最大1本',
+                all(x <= 1 for x in v), v))
     return all(r[1] for r in res), res
 
 
 def report(arts, assign, cited, cited_src, seed, seed_start, tried, res, a):
-    lines = [f'# 47本の割付 v1（{datetime.date.today().isoformat()}）', '',
+    lines = [f'# {len(arts)}本の割付 v1（{datetime.date.today().isoformat()}）', '',
              '「制約付きくじ引き」で作った。単純な無作為だと、偏ったときに処置の効果と',
              'もともとの差を切り分けられない。条件を満たすくじが出るまで引き直している。',
              '引き直した回数と採用シードを残すのは、後から同じ割付を再現するため。', '',
              f'- 採用シード：**{seed}**（開始 {seed_start} から {tried} 個目）',
              f'- 引用の判定：{cited_src}',
              '- 逆リンク追記あり17本：便GL の記録'
-             '（crosscom-seo-agent / bunGL_experiment48_append_record_20260917.md）',
+             '（crosscom-seo-agent/output/reports/bunGL_experiment48_append_record_20260917.md）',
+             '- 鮮度更新の訂正対象：' + '・'.join(CORRECTION_SLUGS)
+             + '（訂正が未確定でも条件 f と判定の込み／抜きに含める）',
+             '- プールから除外：' + '、'.join(f'{k}（{v}）' for k, v in EXCLUDED.items()),
              f'- 対象：config/prompts_experiment.csv の {len(arts)} 本', '',
              '## チェック結果', '',
              '| 条件 | 判定 | ①対照 | ②FAQのみ | ③リードのみ | ④両方 |',
@@ -141,14 +159,26 @@ def report(arts, assign, cited, cited_src, seed, seed_start, tried, res, a):
         lines.append(f'| {name} | {"OK" if ok else "★NG"} | '
                      + ' | '.join(str(x) for x in v) + ' |')
     lines += ['', '## 割付表', '',
-              '| # | id | url | 層 | 公開日 | 逆リンク追記 | 引用あり | 組 |',
-              '|---|---|---|---|---|---|---|---|']
+              '| # | id | url | 層 | 公開日 | 逆リンク追記 | 引用あり | 訂正対象 | 組 |',
+              '|---|---|---|---|---|---|---|---|---|']
     ordered = sorted(arts, key=lambda y: (GROUPS.index(assign[y['slug']]), y['id']))
     for i, x in enumerate(ordered, 1):
         lines.append(f'| {i} | {x["id"]} | {x["url"]} | {x["layer"]} | {x["published"]} | '
                      f'{"あり" if x["backlink"] else "—"} | '
-                     f'{"あり" if x["slug"] in cited else "—"} | {assign[x["slug"]]} |')
-    lines += ['', '## 再現方法', '', FENCE,
+                     f'{"あり" if x["slug"] in cited else "—"} | '
+                     f'{"対象" if x["correction"] else "—"} | {assign[x["slug"]]} |')
+    names = '・'.join(CORRECTION_SLUGS)
+    lines += ['', f'## 判定時の集計（{names} 込み／抜き）', '',
+              '訂正対象はアフター期間の本文に「処置」と「訂正」の両方が乗る。',
+              '判定は次の2通りを必ず並べて出し、結論が食い違えば訂正の影響として扱う。', '',
+              f'- **込み**：{len(arts)}本すべて',
+              f'- **抜き**：{names} を除いた{len(arts) - len(CORRECTION_SLUGS)}本',
+              '  （訂正を見送った場合も、事前に決めたとおり抜いた集計も出す）', '',
+              FENCE,
+              'python experiment_2x2/summarize.py results/<アフター>.csv results/<ビフォー>.csv',
+              FENCE,
+              '（summarize.py が両方を出す。対象は pool.CORRECTION_SLUGS）', '',
+              '## 再現方法', '', FENCE,
               f'python experiment_2x2/allocate_47.py --seed-start {seed} '
               f'--cited-from {a.cited_from} --cited-to {a.cited_to}',
               FENCE, '',
@@ -166,11 +196,13 @@ def main():
     ap.add_argument('--cited-csv', default='')
     ap.add_argument('--out', default=os.path.join(
         ROOT, 'output', 'reports', 'experiment47_allocation_v1_20260928.md'))
+    ap.add_argument('--out-csv', default=ALLOCATION_CSV,
+                    help='観測・判定が読む割付の表（id,url,group,seed）')
     ap.add_argument('--dry', action='store_true', help='ファイルを書かず結果だけ出す')
     a = ap.parse_args()
 
     arts, _ = load_articles()
-    assert len(arts) == 47, f'47本のはずが {len(arts)} 本'
+    assert len(arts) == POOL_SIZE, f'{POOL_SIZE}本のはずが {len(arts)} 本'
     cited, cited_src = load_cited(a)
     n_back = sum(x['backlink'] for x in arts)
     n_cit = sum(1 for x in arts if x['slug'] in cited)
@@ -205,6 +237,13 @@ def main():
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
     io.open(a.out, 'w', encoding='utf-8').write('\n'.join(lines))
     print('wrote', a.out)
+    # 観測（llmo_probe の group 列）と判定が読む機械用の表
+    with io.open(a.out_csv, 'w', encoding='utf-8', newline='') as f:
+        w = csv.writer(f)
+        w.writerow(['id', 'url', 'group', 'seed'])
+        for x in sorted(arts, key=lambda y: y['id']):
+            w.writerow([x['id'], x['url'], assign[x['slug']], seed])
+    print('wrote', a.out_csv)
     return 0
 
 

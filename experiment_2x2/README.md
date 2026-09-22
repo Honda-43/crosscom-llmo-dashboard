@@ -4,8 +4,9 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
 自前で「同じクエリを毎週同じモデルに投げ、引用URLを記録する」観測を行う。
 
 ## セットアップ
-1. `targets.csv` の `query` 列に、各記事の主キーワードを自然文の質問にして記入する
-   （例: 「Agentforceの料金はいくらですか」）。KWマスターの主KWを使う。全48行を埋める。
+1. 対象と質問文は `config/prompts_experiment.csv`（プール46本。2026-09-22 に E37 を除外）の
+   `prompt` 列。組は 9/28 の割付の結果 `allocation_v1.csv`（`allocate_47.py` が書く）から引く。
+   `targets.csv` は編集禁止リスト（49本）で、**観測には使わない**。プールの定義は `pool.py`。
 2. 環境変数を設定（使うものだけ）
    ```
    export ANTHROPIC_API_KEY=...
@@ -22,6 +23,7 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
 - 毎週月曜、同じコマンドを実行する（同じクエリ・同じモデル・同じ回数）。
 - 処置反映日と反映後1週間の結果は判定に使わない（反映ラグ）。
 - 判定：`python3 summarize.py results/<アフター最終日>.csv results/<ビフォー>.csv`
+  （agentforce-vibes 込み／抜きの両方を出す。E37 とプール外の行は数えない）
 
 ## 指標
 - cited：その記事URLが引用されたか（1/0）

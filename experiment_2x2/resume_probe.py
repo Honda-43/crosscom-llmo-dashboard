@@ -5,14 +5,14 @@ llmo_probe.py は results/YYYY-MM-DD.csv を 'w' で開くため、
 そのまま再実行すると**取れている行を消してしまう**。
 ここは (id, model, run) の欠けだけを取り、同じファイルへ追記する。
 run_date は元の観測日のまま（ビフォー観測は1点として扱うため）。
+対象は llmo_probe.load_targets()（プール46本。2026-09-22 から targets.csv は使わない）。
 """
 import argparse, csv, io, os, sys, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from llmo_probe import MODELS, norm, SITE_DOMAIN
+from llmo_probe import MODELS, norm, SITE_DOMAIN, load_targets
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--date", required=True, help="続きを足す results/<date>.csv")
-ap.add_argument("--targets", default="targets.csv")
 ap.add_argument("--runs", type=int, default=3)
 ap.add_argument("--models", default="claude")
 ap.add_argument("--sleep", type=float, default=1.0)
@@ -20,7 +20,7 @@ ap.add_argument("--retries", type=int, default=3, help="タイムアウト時の
 a = ap.parse_args()
 
 out = f"results/{a.date}.csv"
-rows = list(csv.DictReader(io.open(a.targets, encoding="utf-8")))
+rows = load_targets()
 have = set()
 if os.path.exists(out):
     for r in csv.DictReader(io.open(out, encoding="utf-8")):

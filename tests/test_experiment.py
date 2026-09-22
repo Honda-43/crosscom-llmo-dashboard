@@ -2,11 +2,12 @@
 
 固定したいのは4つ:
 
-1. 47本の質問文が本田さんの貼った CSV から一文字も変わっていないこと。
+1. 質問文が本田さんの貼った CSV から一文字も変わっていないこと
+   (2026-09-22 に E37 の行だけを除いて46本。残りの行は元のまま)。
    文言が変わるとビフォーとアフターが比較できない。
 2. 巡回の割当が開始日から機械的に決まり、Gemini の1日20リクエストを
-   超えないこと(日次・月次と合算)。週の観測本数が 47本×週2回 = 94本
-   以上になること。
+   超えないこと(日次・月次と合算)。週の観測本数がプール×週2回
+   (46本なら92本)以上になること。
 3. 判定(cited_domain / cited_article / mentioned)が URL の表記ゆれに強く、
    欠測を 0 と書かないこと。
 4. 日次・月次のタブやスキーマを汚さないこと。
@@ -38,9 +39,12 @@ def never_wait_for_real(monkeypatch):
     monkeypatch.setattr(run_experiment.time, "sleep", boom)
     monkeypatch.setattr(run_experiment, "_gemini_raw_from_origin", lambda rel_dir: [])
 
-# 2026-09-14 に貼られた CSV の「id\t質問文」を改行でつないだ SHA-256。
-# CSV を1文字でも書き換えるとここで落ちる(意図しない編集の検知)。
-PROMPTS_SHA256 = "4f7b306cbf7a947f3f6cc6e0b7ca8d7d9a27b15358e28307e26b215e9c63ea2c"
+# 「id\t質問文」を改行でつないだ SHA-256。CSV を1文字でも書き換えるとここで落ちる
+# (意図しない編集の検知)。2026-09-14 に貼られた47本から、2026-09-22 に E37
+# (agentforce-coworker。見出し・FAQに及ぶ誤り訂正のため)の行だけを除いた46本の値。
+# 47本のときの値は 4f7b306cbf7a947f3f6cc6e0b7ca8d7d9a27b15358e28307e26b215e9c63ea2c。
+PROMPTS_SHA256 = "a44fe5f23b5eac02800a833b4aada25d23fac37f1bace0fba6d226adfece1495"
+POOL_IDS = [f"E{i:02d}" for i in range(1, 48) if i != 37]
 
 
 # --- 1. 質問文 ----------------------------------------------------------------
@@ -62,13 +66,15 @@ def test_the_loader_passes_the_prompt_through_untouched():
     assert all(p["text"] == p["prompt"] for p in PROMPTS)
 
 
-def test_there_are_47_prompts_in_order_with_unique_articles():
-    assert [p["id"] for p in PROMPTS] == [f"E{i:02d}" for i in range(1, 48)]
+def test_there_are_46_prompts_in_order_with_unique_articles():
+    """E37 を除いた46本。番号は振り直さない(E38 は E38 のまま)。"""
+    assert [p["id"] for p in PROMPTS] == POOL_IDS
+    assert not any("agentforce-coworker" in p["url"] for p in PROMPTS)
     urls = [p["url"] for p in PROMPTS]
-    assert len(set(urls)) == 47
+    assert len(set(urls)) == 46
     assert all(u.startswith("https://cross-com.jp/") and u.endswith("/") for u in urls)
     layers = [p["layer"] for p in PROMPTS]
-    assert (layers.count("古"), layers.count("中"), layers.count("新")) == (14, 17, 16)
+    assert (layers.count("古"), layers.count("中"), layers.count("新")) == (14, 17, 15)
 
 
 # --- 2. 巡回の割当と Gemini の枠 -----------------------------------------------
@@ -84,20 +90,24 @@ def _gemini_ids(day):
     return [p["id"] for p in settings.experiment_plan(day.isoformat()).get("gemini", [])]
 
 
-def test_a_normal_week_covers_the_94_observations_the_protocol_needs():
+def test_a_normal_week_covers_the_observations_the_protocol_needs():
     """月・水・金・日は16本(余り4)、日次のある日は 20 − 7 − 予備2 = 11本。
 
-    通常の週は 16×4 + 11×3 = 97本で、47本×週2回 = 94本を満たす。
+    通常の週は 16×4 + 11×3 = 97本で、46本×週2回 = 92本を満たす。
     """
     counts = [settings.experiment_daily_count(d.isoformat()) for d in WEEK]
     assert counts == [16, 11, 16, 11, 16, 11, 16], counts   # 月火水木金土日
     assert sum(counts) == 97
-    assert sum(counts) >= settings.EXPERIMENT_WEEKLY_TARGET
+    assert settings.experiment_weekly_target() == 92
+    assert sum(counts) >= settings.experiment_weekly_target()
 
 
 @pytest.mark.parametrize("offset", range(120))
 def test_every_seven_day_window_covers_94_unless_a_monthly_batch_eats_into_it(offset):
-    """どこで7日を切っても97本。月次観測(第1水・第1木)を含む窓だけ94を割る。
+    """どこで7日を切っても97本。月次観測(第1水・第1木)を含む窓だけ減る。
+
+    46本×週2回 = 92本に対し、第1水だけの窓は93本で足りる。第1木を含む窓
+    (91本・87本)は92を割り、週次の警告に「月次観測週のため」が付く。
 
     第1水は月次6 + 予備2 で12本(−4)、第1木は日次7 + 月次6 + 予備2 で5本(−6)。
     その週は週次サマリの警告に「月次観測週のため」と理由が付く。
@@ -107,7 +117,7 @@ def test_every_seven_day_window_covers_94_unless_a_monthly_batch_eats_into_it(of
     batches = {settings.monthly_batch_on(d.isoformat()) for d in days} - {None}
     expected = 97 - (4 if "A" in batches else 0) - (6 if "B" in batches else 0)
     assert total == expected, (total, days[0], batches)
-    assert (total >= 94) == (not batches), (total, batches)
+    assert (total >= settings.experiment_weekly_target()) == ("B" not in batches), (total, batches)
 
 
 def test_the_retry_budget_is_what_is_left_over_not_a_daily_set_aside():
@@ -159,9 +169,9 @@ def test_the_assignment_follows_the_cycle_start_with_no_manual_table():
     assert _gemini_ids(START)[0] == "E01"
     running = 0
     for day in THREE_WEEKS:
-        assert settings.experiment_cursor(day.isoformat()) == running % 47, day
+        assert settings.experiment_cursor(day.isoformat()) == running % len(POOL_IDS), day
         ids = _gemini_ids(day)
-        assert ids == [f"E{(running + i) % 47 + 1:02d}" for i in range(len(ids))], day
+        assert ids == [POOL_IDS[(running + i) % len(POOL_IDS)] for i in range(len(ids))], day
         running += settings.experiment_daily_count(day.isoformat())
 
 
@@ -173,12 +183,12 @@ def test_moving_the_cycle_start_moves_the_whole_assignment(monkeypatch):
 
 
 def test_the_cycle_wraps_without_skipping_or_repeating_a_prompt():
-    """輪を1周する間に47本が漏れなく1回ずつ出る。"""
+    """輪を1周する間に46本が漏れなく1回ずつ出る。"""
     seen, day = [], START
-    while len(seen) < 47:
+    while len(seen) < len(POOL_IDS):
         seen += _gemini_ids(day)
         day += dt.timedelta(days=1)
-    assert sorted(seen[:47]) == [f"E{i:02d}" for i in range(1, 48)]
+    assert sorted(seen[:len(POOL_IDS)]) == POOL_IDS
 
 
 def test_a_prompt_is_never_observed_twice_on_the_same_day():
@@ -188,15 +198,15 @@ def test_a_prompt_is_never_observed_twice_on_the_same_day():
 
 
 def test_every_prompt_is_observed_about_twice_a_week():
-    """週97本 / 47本 = 2.06回。どの質問も同じ回数(差は多くても1回)になる。"""
-    counts = {f"E{i:02d}": 0 for i in range(1, 48)}
+    """週97本 / 46本 = 2.11回。どの質問も同じ回数(差は多くても1回)になる。"""
+    counts = {pid: 0 for pid in POOL_IDS}
     for day in THREE_WEEKS:
         for pid in _gemini_ids(day):
             counts[pid] += 1
     planned = sum(settings.experiment_daily_count(d.isoformat()) for d in THREE_WEEKS)
     assert sum(counts.values()) == planned
     assert max(counts.values()) - min(counts.values()) <= 1, counts
-    assert planned / 47 / 3 >= 1.9, "1本あたり週1.9回を下回った"
+    assert planned / len(POOL_IDS) / 3 >= 2.0, "1本あたり週2回を下回った"
 
 
 def test_the_two_observations_of_a_prompt_are_three_or_four_days_apart():
@@ -209,10 +219,10 @@ def test_the_two_observations_of_a_prompt_are_three_or_four_days_apart():
     assert gaps <= {3, 4}, sorted(gaps)
 
 
-def test_claude_observes_all_47_on_monday_and_thursday_only():
+def test_claude_observes_the_whole_pool_on_monday_and_thursday_only():
     for day in WEEK:
         claude = settings.experiment_plan(day.isoformat()).get("claude", [])
-        expected = 47 if day.weekday() in (0, 3) else 0
+        expected = 46 if day.weekday() in (0, 3) else 0
         assert len(claude) == expected, day
 
 
@@ -710,7 +720,7 @@ def test_a_daily_run_that_never_finished_skips_the_gemini_part_only():
     plan = settings.experiment_plan("2026-09-24")                # 木: gemini + claude
     sized, skipped, budget, warnings = run_experiment.size_gemini_plan(
         "2026-09-24", plan, None, "(90分待機)")
-    assert "gemini" not in sized and len(sized["claude"]) == 47
+    assert "gemini" not in sized and len(sized["claude"]) == 46
     assert len(skipped) == len(plan["gemini"]) and budget == 0
     assert warnings and "揃わなかった" in warnings[0]
 
@@ -789,13 +799,25 @@ def _experiment_raw(tmp_path, per_day):
                 __import__("json").dumps(rec), encoding="utf-8")
 
 
-def test_the_weekly_count_warns_below_94(tmp_path):
+def test_the_weekly_count_warns_below_the_target(tmp_path):
     days = {(MONDAY + dt.timedelta(days=i)).isoformat(): (13, 1) for i in range(7)}
     _experiment_raw(tmp_path, days)                               # 13 × 7 = 91
     end = (MONDAY + dt.timedelta(days=6)).isoformat()
     assert run_experiment.weekly_observation_count(end, tmp_path) == 91
     line = run_experiment.weekly_count_line(end, tmp_path)
-    assert line.startswith("- ⚠️") and "週91本" in line and "94本" in line
+    assert line.startswith("- ⚠️") and "週91本" in line and "目標92本" in line
+    assert "46本×週2回" in line
+
+
+def test_a_removed_prompt_is_not_counted_in_the_week(tmp_path):
+    """9/22 に除外した E37 の raw が残っていても、週の本数には数えない。"""
+    folder = tmp_path / MONDAY.isoformat()
+    folder.mkdir(parents=True)
+    for pid in ("E36", "E37", "E38"):
+        (folder / f"{pid}_gemini.json").write_text(
+            __import__("json").dumps({"prompt_id": pid, "model": "gemini", "error": None}),
+            encoding="utf-8")
+    assert run_experiment.weekly_observation_count(MONDAY.isoformat(), tmp_path) == 2
 
 
 def test_the_weekly_count_is_quiet_at_94_or_more(tmp_path):

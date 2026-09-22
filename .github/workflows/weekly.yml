@@ -60,6 +60,17 @@ jobs:
         continue-on-error: true
         run: python experiment_2x2/drift_check.py
 
+      # LLMO効果測定の週次集計。前の週(月〜日)の llm_experiment を
+      # output/reports/experiment47_weekN_YYYYMMDD.md に書く(下の commit に含まれる)。
+      # 失敗しても週次パイプライン本体は落とさない。
+      - name: Build experiment weekly summary
+        if: always()
+        continue-on-error: true
+        working-directory: src
+        run: |
+          python experiment_weekly.py \
+            ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
+
       - name: Commit weekly stats.json
         if: always()
         run: |

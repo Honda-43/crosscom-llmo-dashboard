@@ -5,6 +5,8 @@
 割付は**この手元のファイルだけで再現できる**必要があるため、csv に落として持つ。
 """
 import csv, io, os, re, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from pool import EXCLUDED, pool_slugs  # noqa: E402
 
 SRC = os.environ.get(
     "BUNGL_RECORD",
@@ -31,6 +33,12 @@ for line in text.splitlines():
         'parents': c[6].replace('<br>', ' ; '),
     })
 assert rows, '記録の表を読めていない'
+# プール（46本）に無い記事は層に入れない（9/22 に E37 を除外。17本には元々含まれない）
+pool = pool_slugs()
+dropped = [r['slug'] for r in rows if r['slug'] in EXCLUDED or r['slug'] not in pool]
+rows = [r for r in rows if r['slug'] not in dropped]
+if dropped:
+    print('プール外のため除いた:', ', '.join(dropped))
 with io.open(OUT, 'w', encoding='utf-8', newline='') as f:
     w = csv.DictWriter(f, fieldnames=['slug', 'url', 'post_id', 'appended_at', 'backlinks', 'parents'])
     w.writeheader(); w.writerows(rows)

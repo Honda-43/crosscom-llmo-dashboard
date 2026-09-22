@@ -60,7 +60,8 @@ import experiment
 import notify_slack
 import sheets_writer
 from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DIR,
-                      EXPERIMENT_JOURNAL_FILE, EXPERIMENT_WEEKLY_TARGET,
+                      EXPERIMENT_JOURNAL_FILE, experiment_weekly_target,
+                      load_experiment_prompts,
                       GEMINI_DAILY_REQUEST_LIMIT, ROOT_DIR, WEEKDAY_LABELS,
                       experiment_gemini_allowance, experiment_plan, gemini_requests_on,
                       has_prior_gemini_run, is_daily_llm_day, load_monthly_prompts,
@@ -438,21 +439,29 @@ def unavailable_watch_line(date: str, path: Optional[Path] = None,
 
 
 def weekly_observation_count(date: str, raw_dir: Optional[Path] = None) -> int:
-    """``date`` を最終日とする7日に取れた実験の Gemini 観測の本数(欠測を除く)。"""
+    """``date`` を最終日とする7日に取れた実験の Gemini 観測の本数(欠測を除く)。
+
+    いまのプール(config/prompts_experiment.csv)に無い記事は数えない
+    (9/22 に除外した E37 の raw が残っていても数えない)。
+    """
     raw_dir = Path(raw_dir if raw_dir is not None else DATA_RAW_EXPERIMENT_DIR)
+    pool = {p["id"] for p in load_experiment_prompts()}
     end = dt.date.fromisoformat(str(date)[:10])
     total = 0
     for offset in range(7):
         folder = raw_dir / (end - dt.timedelta(days=offset)).isoformat()
         for f in folder.glob("*_gemini.json") if folder.exists() else []:
-            if not json.loads(f.read_text(encoding="utf-8")).get("error"):
+            rec = json.loads(f.read_text(encoding="utf-8"))
+            if rec.get("prompt_id", f.name.split("_")[0]) in pool and not rec.get("error"):
                 total += 1
     return total
 
 
 def weekly_count_line(date: str, raw_dir: Optional[Path] = None,
-                      target: int = EXPERIMENT_WEEKLY_TARGET) -> str:
-    """週次サマリの1行。47本×週2回(94本)を下回った週は警告にする。"""
+                      target: Optional[int] = None) -> str:
+    """週次サマリの1行。プールの本数×週2回(46本なら92本)を下回った週は警告にする。"""
+    target = experiment_weekly_target() if target is None else target
+    pool_size = target // 2
     count = weekly_observation_count(date, raw_dir)
     if count < target:
         end = dt.date.fromisoformat(str(date)[:10])
@@ -460,7 +469,7 @@ def weekly_count_line(date: str, raw_dir: Optional[Path] = None,
                            for i in range(7))
         reason = "(月次観測週のため)" if monthly_week else ""
         return (f"- ⚠️ 実験の Gemini 観測が週{count}本で、目標{target}本"
-                f"(47本×週2回)を下回りました{reason}")
+                f"({pool_size}本×週2回)を下回りました{reason}")
     return f"- 実験の Gemini 観測: 週{count}本(目標{target}本)"
 
 

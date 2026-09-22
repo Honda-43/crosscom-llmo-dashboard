@@ -26,7 +26,8 @@ DATA_RAW_MONTHLY_DIR = ROOT_DIR / "data" / "raw" / "monthly"
 PROMPTS_FILE = CONFIG_DIR / "prompts.yaml"
 # Phase 3 — 月次観測(BOFU:社名指名・競合比較)。日次とはファイルを分ける。
 PROMPTS_MONTHLY_FILE = CONFIG_DIR / "prompts_monthly.yaml"
-# LLMO効果測定実験(2026-09-14)。47記事に対応する質問文。本田さんが貼った CSV を
+# LLMO効果測定実験(2026-09-14)。記事に対応する質問文(2026-09-22 から46本。
+# E37 agentforce-coworker は見出し・FAQに及ぶ誤り訂正が入るためプールから除外)。本田さんが貼った CSV を
 # **加工せずそのまま**置いている(YAML にするとクォートの付け方で文字が変わりうる)。
 PROMPTS_EXPERIMENT_FILE = CONFIG_DIR / "prompts_experiment.csv"
 # 実験の回答全文。日次・月次の日付ディレクトリと混ぜない。
@@ -182,8 +183,8 @@ def load_monthly_prompts(active_only: bool = True,
 # 末尾から削り、削った分は reason=skipped の欠測として実験日誌に残す。
 # 名目の本数を日付だけで決めるので、割当は今までどおり開始日から機械的に決まる。
 #
-#   通常の週: 16×4 + 11×3 = 97本(47本×週2回 = 94本を満たす)
-#   月次のある週: 第1水 −4本・第1木 −6本で94本を割る。週次サマリの警告に
+#   通常の週: 16×4 + 11×3 = 97本(46本×週2回 = 92本を満たす。9/22 まで47本・94本)
+#   月次のある週: 第1水 −4本・第1木 −6本で92本を割りうる。週次サマリの警告に
 #   「月次観測週のため」と理由を添える(run_experiment.weekly_count_line)
 #
 # 名目の本数(割当の順番を決める値)は日付だけで決める必要があるので、日次7回・
@@ -214,8 +215,17 @@ EXPERIMENT_CYCLE_START = os.getenv("EXPERIMENT_CYCLE_START", "2026-09-19")
 EXPERIMENT_DAILY_CAP = int(os.getenv("EXPERIMENT_DAILY_CAP", "16"))
 # 日次・月次のある日に、その実消費を引いたあとさらに残す取り直し用の枠。
 EXPERIMENT_DAILY_DAY_RESERVE = int(os.getenv("EXPERIMENT_DAILY_DAY_RESERVE", "2"))
-# プロトコルが求める週の実験観測本数(47本 × 週2回)。下回った週は週次で警告する。
-EXPERIMENT_WEEKLY_TARGET = int(os.getenv("EXPERIMENT_WEEKLY_TARGET", "94"))
+# プロトコルが求める週の実験観測本数(プールの本数 × 週2回)。下回った週は週次で警告する。
+# 固定値にしない — プールは 2026-09-22 に47本から46本になった(E37 除外)。
+EXPERIMENT_OBSERVATIONS_PER_WEEK = 2
+
+
+def experiment_weekly_target() -> int:
+    """週の実験観測本数の目標。環境変数 EXPERIMENT_WEEKLY_TARGET があればそれを使う。"""
+    override = os.getenv("EXPERIMENT_WEEKLY_TARGET")
+    if override:
+        return int(override)
+    return EXPERIMENT_OBSERVATIONS_PER_WEEK * experiment_prompt_count()
 
 
 def _weekday(date: str) -> int:

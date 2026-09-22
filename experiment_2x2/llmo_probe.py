@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """
 LLMO 引用観測プローブ（自前計測）
-- 入力: targets.csv （列: id,url,group,query）
-- 各記事のターゲットクエリを AI（Claude / Perplexity / Gemini）に投げ、
+- 入力: config/prompts_experiment.csv（プール46本。列: id,layer,url,prompt）
+         組は experiment_2x2/allocation_v1.csv（9/28 の割付。無ければ空欄）
+  2026-09-22 から targets.csv（編集禁止リスト50本）は観測に使わない。
+  質問文は prompts_experiment.csv の prompt 列（dashboard の実験と同じ文）。
+- 各記事の質問を AI（Claude / Perplexity / Gemini）に投げ、
   回答の引用URLに当該記事URLが含まれるかを記録する
 - 出力: results/YYYY-MM-DD.csv （列: run_date,id,url,group,model,run,cited,cited_urls）
 
@@ -13,6 +16,9 @@ LLMO 引用観測プローブ（自前計測）
 実行:  python3 llmo_probe.py --runs 3
 """
 import argparse, csv, datetime, json, os, re, sys, time, urllib.parse, urllib.request
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from pool import load_allocation, load_pool  # noqa: E402
 
 CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5")
 PPLX_MODEL   = os.environ.get("PPLX_MODEL", "sonar")
@@ -71,9 +77,15 @@ def ask_gemini(q):
 
 MODELS = {"claude": ask_claude, "perplexity": ask_perplexity, "gemini": ask_gemini}
 
+def load_targets():
+    """観測の対象。プール46本に、割付の組を足す（割付前は空欄）。"""
+    groups = load_allocation()
+    return [{"id": a["id"], "url": a["url"], "group": groups.get(a["slug"], ""),
+             "query": a["prompt"]} for a in load_pool()]
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--targets", default="targets.csv")
     ap.add_argument("--runs", type=int, default=3, help="同一クエリの反復回数（揺れを均す）")
     ap.add_argument("--models", default="claude,perplexity,gemini")
     ap.add_argument("--sleep", type=float, default=1.0)
@@ -81,7 +93,7 @@ def main():
     today = datetime.date.today().isoformat()
     os.makedirs("results", exist_ok=True)
     out = f"results/{today}.csv"
-    rows = list(csv.DictReader(open(a.targets, encoding="utf-8")))
+    rows = load_targets()
     models = [m.strip() for m in a.models.split(",")]
     with open(out, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f); w.writerow(["run_date","id","url","group","model","run","cited","site_cited","cited_urls"])

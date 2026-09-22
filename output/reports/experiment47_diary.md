@@ -129,3 +129,126 @@ WP の `modified` で確認済み（0本）。ここから先は自動の追記�
 基準値を日単位で見るぶんには影響しないが、時刻まで遡って読むときは 10:10 を使う。
 
 確かめ方：ワークフローの cron 定義と、`llm_experiment` の `timestamp` 列の最小値。
+
+---
+
+## 2026-09-22／鮮度更新の裁定：3本に誤り訂正が入る予定（9/29〜30・処置反映と同日）
+
+月次の鮮度更新（管BK）の裁定により、47本のうち次の3本へ**誤り訂正**を入れる。
+入れる日は **9/29〜30、2x2の処置反映と同じ日**。
+
+| url | 47本の番号 | 条件 |
+|---|---|---|
+| https://cross-com.jp/agentforce-coworker/ | E37 | 確定 |
+| https://cross-com.jp/agentforce-features/ | E12 | 確定 |
+| https://cross-com.jp/agentforce-vibes/ | E11 | **価格の食い違いが確定したときのみ** |
+
+- 訂正の範囲：**本文の数文の差し替えのみ**。リード文とFAQは変えない
+  （リード文・FAQは処置そのものなので、訂正で触ると処置と区別がつかなくなる）
+- 処置反映と同じ日に入れるのは、変化の時点を1点にまとめるため。
+  別の日に入れると、アフター観測の途中でもう一段の変化が入る
+
+**なぜ残すか**：この3本はアフター期間の本文に「処置」と「訂正」の両方が乗る。
+訂正が引用に効いた分を処置の効果として読まないよう、所属組と差し替え文を残す。
+
+### 9/28 追記予定：3本の所属組
+
+振り分け確定後、dashboard 側の `allocation_v1` から転記する。
+（参考：`experiment_2x2/targets.csv` は 9/17 の48本版で、coworker＝①対照、
+features＝②FAQのみ、vibes＝③リードのみ。9/28 の割付で変わりうるので、これは使わない）
+
+| url | 所属組（allocation_v1） |
+|---|---|
+| agentforce-coworker | （9/28 記入） |
+| agentforce-features | （9/28 記入） |
+| agentforce-vibes | （9/28 記入） |
+
+### 9/29〜30 追記予定：差し替え前後の文
+
+| url | 差し替え前 | 差し替え後 | 適用日時(JST) |
+|---|---|---|---|
+| （記入） | | | |
+
+vibes を見送った場合は、見送ったことと理由をここに書く。
+
+### 週次ドリフト検知での読み方
+
+`drift_check.py` でこの3本が「変化あり」と出た場合は、上の差し替え前後の文と照合し、
+一致すれば drift レポートに「**想定内の変更（9/22 裁定の誤り訂正）**」と明記する。
+記録にない差分が混じっていれば、想定外として別に扱う。
+
+確かめ方：裁定の内容は依頼文（9/22）による。3本が47本に含まれることは
+`config/prompts_experiment.csv`（E11・E12・E37）で確認した。所属組・差し替え文は未記入。
+
+---
+
+## 2026-09-22（続き）／agentforce-coworker を実験から外し、編集禁止を49本へ。9/29〜30 に日付付きの例外
+
+上の項の裁定を受けて、編集禁止リストと適用の経路を次のとおり変えた。
+
+**1. coworker（post 7003）を実験から外した**
+- `experiment_2x2/targets.csv` から coworker の行を削除。**49本**になった
+  （統計の対象46本＋`agentforce-pricing`＋ピラー2本）。ファイル先頭の # 注記も49本に更新
+- coworker は「**実験除外・編集可**」。publish_followup では `EXPERIMENT_RELEASED` に明示し、
+  `prompts_experiment.csv` に残っていても突き合わせで落とさない
+  （黙って消えたのか、裁定で外したのかを区別するため）
+- 上の項の表・「3本込み／3本抜き」のうち、coworker の訂正は**実験の外の編集**になる。
+  適用日を 9/29〜30 に合わせる必要は無くなった
+
+**2. publish_followup の除外も49本**
+- targets.csv を読むので自動で49本になる。ドライランで確認：
+  「統計の対象 46本 ⊂ 編集禁止 49本（整合）／実験除外：agentforce-coworker」
+- 逆リンクの追記は、下の例外の対象に**しない**（処置ではないため。従来どおり 2027-01-01 以降）
+
+**3. 9/29〜30 の日付付きの例外（apply_gate）**
+- 期間：**2026-09-29 〜 2026-09-30**（JST・日付で判定）
+- 通すもの：allocation_v1 の**処置群（②③④）**と `agentforce-vibes`
+- 処置群は `output/reports/experiment47_allocation_v1_20260928.md` の割付表から読む。
+  **読めなければ処置群は通さない**（fail-closed。vibes だけが通る）
+- 10/1 以降は再び全面禁止
+- 定義は seo-agent の `publish_followup.py` の `EXPERIMENT_WINDOWS`（apply_gate はそれを読むだけ）
+
+確かめ方：apply_gate のセルフテスト 28ケース NG0、publish_followup のセルフテスト NG0、
+検出器テスト 54件 NG0。実際の一覧での判定（2026-09-22 時点・割付表はまだ無い）：
+coworker 9/22 通る／vibes 9/22 落ちる／vibes 9/29 通る／features 9/29 落ちる（割付表が無いため）／
+vibes 10/1 落ちる／agentforce-guide 9/29 落ちる。
+
+**未決（効果測定チャットで決める）**
+- `config/prompts_experiment.csv` と `allocate_47.py`（`assert len(arts) == 47`・SIZES 12/12/12/11・
+  CORRECTION_SLUGS）はまだ47本のまま。46本で割り付けるなら 9/28 までに直す必要がある
+- features が割付で①対照になった場合、例外では通らない（処置群と vibes だけが対象）
+
+---
+
+## 2026-09-22／プールを46本に更新（E37 除外）・E12 は残留・1週目の集計
+
+**E37（agentforce-coworker）をプールから除外。統計は46本**
+- 理由：鮮度更新の訂正が**見出し・FAQに及ぶ**ため。FAQ は処置そのもので、訂正と処置を切り分けられない
+- `config/prompts_experiment.csv` から E37 の行だけを削除（他の46行は元のまま。番号は振り直さない）
+- 9/23 以降の実験観測（dashboard の Gemini・Claude）は46本。Gemini の巡回の輪も46本になる
+- 9/15〜9/22 の llm_experiment に残る E37 の行は消さない。週次集計・割付・判定では数えない
+- 週の観測本数の目標は 46本×週2回 = **92本**（47本のときは94本）
+
+**E12（agentforce-features）はプールに残留・訂正は見送り**
+- 理由：引用実績が無い（1週目の集計で Gemini・Claude とも cited_article=0）
+- 残留するので、9/28 の割付の対象に入る。条件 f（訂正対象の分散）の対象からは外した
+
+**条件 f の対象は agentforce-vibes のみ**
+- 判定は「vibes込み／vibes抜き」の両方を出す（`experiment_2x2/summarize.py`）
+- 割付は 46本・4組 12/12/11/11（`experiment_2x2/allocate_47.py`）。9/22 時点のデータでの
+  ドライランは条件 a〜f をすべて満たすシードが見つかることを確認済み（本番は 9/28 に 9/15〜9/27 で引く）
+
+**1週目（9/15〜9/21）の集計**（`output/reports/experiment47_week1_20260922.md`。E37 を含む47本で集計）
+- cited_article の率：**Gemini 17.8%（13/73）／Claude 3.2%（3/94）**
+- 記事URLが1回でも出た記事：**8本**（E37 を含む。E37 を除くと7本）
+- 枠切れ（PerDay）の欠測：10件（すべて 9/19。日次の再試行が枠を使ったため。f6c2a0b で修正済み）
+
+**観測・判定のスクリプトは targets.csv を読まない**
+- `llmo_probe.py`・`resume_probe.py` は `config/prompts_experiment.csv`（46本）を読む。
+  組は割付の結果 `experiment_2x2/allocation_v1.csv`（9/28 に `allocate_47.py` が書く）から引く
+- **質問文が変わる**：targets.csv の `query`（KWマスターの主KWから作った質問）から、
+  prompts_experiment.csv の `prompt`（dashboard の実験と同じ文）になる。46本すべてで文が異なる。
+  9/17 の引用プローブ（144行）は旧い質問文で取ったもので、新しい質問文のアフターとは比べられない
+- 週次集計は毎週月曜に自動生成（`src/experiment_weekly.py`・weekly.yml。
+  `output/reports/experiment47_weekN_YYYYMMDD.md`。前の週の月〜日。cited_domain の率を追加し、
+  mentioned は参考欄）
