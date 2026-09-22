@@ -1,20 +1,27 @@
-# このファイルは【編集禁止リスト（50本）】です。実験中は本文を編集しません。
-#   内訳：統計の対象47本（config/prompts_experiment.csv）
+# このファイルは【編集禁止リスト（49本）】です。実験中は本文を編集しません。
+#   内訳：統計の対象46本（config/prompts_experiment.csv・2026-09-22 に E37 coworker を除外）
 #        ＋ agentforce-pricing（観測対象から外れたが、編集すると48本を母集団とした
 #          比較の前提が崩れるため残置）
 #        ＋ ピラー2本（agentforce-guide／agentic-crm）
 #          クラスターへの処置がピラーの引用へ波及していないか（漏れ）を見るため、
 #          ピラーの本文も実験中は変えない
-# 実験の正本（統計）は config/prompts_experiment.csv の【47本】です。
-# 47本 ⊂ 50本 なので、50本で止めれば47本も必ず止まります（安全側）。
+# 実験の正本（統計）は config/prompts_experiment.csv です（46本 ⊂ 49本）。
+# 49本で止めれば46本も必ず止まります（安全側）。
 #
-# ★「この50本へリンクを張る」ことは編集にあたりません。
+# ★agentforce-coworker（post 7003）は 2026-09-22 に**実験から除外・編集可**とした
+#   （鮮度更新の裁定。publish_followup.py の EXPERIMENT_RELEASED）。この一覧には入れない。
+#
+# ★「この49本へリンクを張る」ことは編集にあたりません。
 #   リンクを張るのは**張り元の記事の編集**で、張り先の本文は変わらないためです。
-#   止めるのは、50本の**本文を書き換える**操作（逆リンクの追記を含む）です。
+#   止めるのは、49本の**本文を書き換える**操作（逆リンクの追記を含む）です。
 #
 # 除外の期限：2026-12-31（publish_followup.py の EXPERIMENT_END）
+# 日付付きの例外：2026-09-29〜09-30 に限り、allocation_v1 の処置群（②③④）と
+#   agentforce-vibes への適用を apply_gate が通す（publish_followup.py の EXPERIMENT_WINDOWS）。
+#   10/1 以降は再び全面禁止。publish_followup の逆リンク追記はこの例外の対象外。
 # 読む側（publish_followup.py の _read_slugs）は # で始まる行を読み飛ばします。
 # 記録：2026-09-18（便GS §2 で注記を新設／便GT §1 で50本へ拡張）
+#       2026-09-22（coworker を外して49本へ・9/29〜30 の例外を追記）
 id,url,group,published,query
 1,https://cross-com.jp/agentforce-proposal-review/,④両方,2026-09-07,Agentforceで提案書のレビュー待ちを減らすにはどうすればいいですか？
 2,https://cross-com.jp/agentforce-permission-set/,④両方,2026-09-06,Agentforceの権限セットでは何を設定して、AIエージェントにどこまでデータアクセスを渡していいですか？
@@ -26,7 +33,6 @@ id,url,group,published,query
 8,https://cross-com.jp/agentforce-lost-deal-analysis/,①対照,2026-08-31,失注分析をしても次の受注につながらないのはなぜで、どう改善すればいいですか？
 9,https://cross-com.jp/sfa-teichaku/,③リードのみ,2026-08-30,Salesforceの定着化が進まないのはなぜで、どうすれば定着しますか？
 10,https://cross-com.jp/agentforce-subagents/,④両方,2026-08-27,Agentforceのサブエージェントはどういう単位で分ければいいですか？
-11,https://cross-com.jp/agentforce-coworker/,①対照,2026-08-26,Agentforce Coworkerとは何で、営業のどんな場面で使えますか？
 12,https://cross-com.jp/agentforce-voice/,④両方,2026-08-26,Agentforce Voiceとは何で、電話業務のどこまで任せられますか？
 13,https://cross-com.jp/agentforce-deal-notes/,②FAQのみ,2026-08-25,商談メモは何を書けば後から読まれるものになりますか？
 14,https://cross-com.jp/agentforce-sales-roleplay/,③リードのみ,2026-08-24,営業ロープレは意味がないと言われますが、効果を出すにはどうすればいいですか？

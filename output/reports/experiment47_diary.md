@@ -252,3 +252,10 @@ vibes 10/1 落ちる／agentforce-guide 9/29 落ちる。
 - 週次集計は毎週月曜に自動生成（`src/experiment_weekly.py`・weekly.yml。
   `output/reports/experiment47_weekN_YYYYMMDD.md`。前の週の月〜日。cited_domain の率を追加し、
   mentioned は参考欄）
+
+**追記（同日）**：上の「未決」1点目は解消済み。`eab2dd0` で `prompts_experiment.csv` から E37 を外して46本、
+`allocate_47.py` も46本前提（12/12/11/11・訂正対象は vibes のみ）になった。
+apply_gate が読む割付表の書式・場所（`output/reports/experiment47_allocation_v1_20260928.md`）は変わっていない。
+試しに割付表を scratchpad へ出して読ませたところ、46行・処置群34本・対照12本を読み、
+9/29 に処置群と vibes を通し、対照群とピラーを落とし、10/1 はすべて落とした。
+2点目（features が①対照なら通らない）は、訂正対象から features が外れたため問題でなくなった。
