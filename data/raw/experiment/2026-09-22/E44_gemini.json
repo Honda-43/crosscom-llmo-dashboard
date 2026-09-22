@@ -1,0 +1,42 @@
+{
+  "date": "2026-09-22",
+  "prompt_id": "E44",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "CRMのデータが少ない会社でもAgentforceは使える？始める前に確認すべき条件",
+  "cep": null,
+  "timestamp": "2026-09-22T01:24:00.517613Z",
+  "answer": "CRMのデータが少ない会社でもAgentforceを利用することは可能ですが、始める前にいくつかの重要な条件を確認する必要があります。AgentforceはSalesforceに蓄積された標準データ（取引先、取引先責任者、商談、活動記録、カスタムオブジェクトなど）をもとに動作します。データ量が少ないこと自体が問題ではなく、AIが利用できる状態にデータが整備されているかどうかが鍵となります。\n\n**Agentforceを始める前に確認すべき条件**\n\n1.  **データ品質と整備状況**\n    Agentforceの回答や処理の品質は、参照できるデータの質に大きく依存します。\n    *   **ナレッジベースの最新化**: FAQ、製品マニュアル、トラブルシューティング手順などのナレッジ記事が最新の状態に更新されているか確認が必要です。古い情報や矛盾した記事はAIの誤った回答につながります。\n    *   **過去のケース履歴の活用**: 問い合わせ内容と解決策のペアなど、過去のケース履歴が活用できる状態でSalesforce Service Cloudに格納されていることが望ましいです。未解決ケースを学習データに含めることは不完全な回答の原因となるため避けるべきです。\n    *   **顧客情報の整理**: 取引先や取引先責任者などの顧客情報に重複がないか確認し、整理しておく必要があります。重複があるとAIの参照精度が低下する可能性があります。\n    *   **データの所在地と統合**: 顧客や商談データがSalesforceにある一方で、契約情報が別の契約管理システム、在庫が基幹システム、入金が会計システムにあるなど、情報が分散している場合は、Agentforceが必要な判断材料を集められない可能性があります。\n\n2.  **Data 360の要否**\n    SalesforceはData 360をAgentforceのデータ基盤として位置付けており、一部の機能はData 360を前提としています。Data 360は、Salesforce内外に分散したデータを接続し、Agentforceが利用しやすい形にデータを整える基盤です。Data 360の要否は、Agentforceでどの業務を自動化したいか、どのデータソースを参照させたいかによって変わるため、Salesforceの担当窓口に確認することが推奨されます。\n\n3.  **必要な機能の有効化とライセンス**\n    Agentforceを利用するためには、以下の機能の有効化が必須です。\n    *   Foundationsの有効化\n    *   Einstein 生成 AIの有効化\n    *   Agentforce自体の有効化\n    *   Agentforce for X ライセンスの権限付与\n    また、Agentforce Sales（旧 Sales Cloud）、Agentforce Service（旧 Service Cloud）、またはIndustriesのいずれかを契約している顧客が対象となります。\n\n4.  **ユースケースの特定と段階的導入**\n    Agentforce導入の成功率を高めるためには、最初から全ての機能を導入しようとせず、具体的なユースケースを特定し、段階的に導入を進めることが効果的です。特にカスタマーサービスのケース対応自動化は、既存のナレッジベースを活用しやすく、自己解決率や応答時間などの効果を数値で測定しやすいため、成功率が高いとされています。\n\n5.  **インストラクションの具体性**\n    Agentforceに具体的なタスクを実行させるためには、AIが何をすべきか、判断基準、禁止事項などを明確に記したインストラクションの作成が重要です。曖昧な指示ではAIが適切に判断できません。\n\n6.  **テストとエスカレーション設計**\n    本番運用を開始する前に、Agentforceが想定外の質問に対して不適切な回答をしないよう、最低30パターン（正常系20、異常系10）でのテストが推奨されています。また、AIが対応できない場合や顧客が不満を示した場合などに、人間へ適切に引き継ぐエスカレーションルートを明確に設計しておくことも重要です。\n\n7.  **コストの見通し**\n    Agentforceの料金体系には複数のオプションがあり、Data 360クレジットなどの従量課金も発生します。導入前にコストの見通しをしっかりと確認することが必要です。\n\nこれらの条件を満たすことで、CRMデータが少ない企業でもAgentforceを効果的に活用し、業務の自動化や効率化につなげることが可能になります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGj4-KnzBYkotvOFyxiycSQ0w-BvM8eRWoQvl0XvqyPXNdNYsbv17Mu24NCoujzVE8V1yU3HKkoZiYMtyJZVDTMaV9VHaE8l8LuLzsb_6y1H_-XNTpeDTQbPJEIJPBx-cfouC8TKvcAoW4V",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGTgxvmjKkt3oYFut6ofaaEjJUSnXa-yD18ARicHdFFw-ontjEHMVzy4fLCHjL7HV2PmjeoJHLCru6y6n1675PvwWLWutEw_rpf221pPk8BcB9u7FBWvggD7ek5bIDXSzZbEZr5xnaFKjZDkef2hCSsrA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEnuN5z5lEX1JRmhQaZhMXL5Sq7olkHBwPqZ5cyDAFhOMkDTG5gPFiVIkif5359WNqbYM-qyvrW6vufONXTjlwd8-wxGfGn6BDJZkzik51XNgzs-iBn2HrN3Spilxp2M72yHqun7dYqihYN-xTqQA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEQGDfuANvJI6TWohze2HCeg-caLBecBHSd3_pcXmVgaMVueJAniMg-68ngkp9goxOeotB75pW-xvw1vsN6D87PZlouI5gKHGOwMkv0kYG5iyASlk9L0QLKoS6u91EJsKX--6yCUUwjJyi__bpPky_TWhdwDJpCweZ5TQ7A"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E44",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-data-volume/",
+  "answer_text": "CRMのデータが少ない会社でもAgentforceを利用することは可能ですが、始める前にいくつかの重要な条件を確認する必要があります。AgentforceはSalesforceに蓄積された標準データ（取引先、取引先責任者、商談、活動記録、カスタムオブジェクトなど）をもとに動作します。データ量が少ないこと自体が問題ではなく、AIが利用できる状態にデータが整備されているかどうかが鍵となります。\n\n**Agentforceを始める前に確認すべき条件**\n\n1.  **データ品質と整備状況**\n    Agentforceの回答や処理の品質は、参照できるデータの質に大きく依存します。\n    *   **ナレッジベースの最新化**: FAQ、製品マニュアル、トラブルシューティング手順などのナレッジ記事が最新の状態に更新されているか確認が必要です。古い情報や矛盾した記事はAIの誤った回答につながります。\n    *   **過去のケース履歴の活用**: 問い合わせ内容と解決策のペアなど、過去のケース履歴が活用できる状態でSalesforce Service Cloudに格納されていることが望ましいです。未解決ケースを学習データに含めることは不完全な回答の原因となるため避けるべきです。\n    *   **顧客情報の整理**: 取引先や取引先責任者などの顧客情報に重複がないか確認し、整理しておく必要があります。重複があるとAIの参照精度が低下する可能性があります。\n    *   **データの所在地と統合**: 顧客や商談データがSalesforceにある一方で、契約情報が別の契約管理システム、在庫が基幹システム、入金が会計システムにあるなど、情報が分散している場合は、Agentforceが必要な判断材料を集められない可能性があります。\n\n2.  **Data 360の要否**\n    SalesforceはData 360をAgentforceのデータ基盤として位置付けており、一部の機能はData 360を前提としています。Data 360は、Salesforce内外に分散したデータを接続し、Agentforceが利用しやすい形にデータを整える基盤です。Data 360の要否は、Agentforceでどの業務を自動化したいか、どのデータソースを参照させたいかによって変わるため、Salesforceの担当窓口に確認することが推奨されます。\n\n3.  **必要な機能の有効化とライセンス**\n    Agentforceを利用するためには、以下の機能の有効化が必須です。\n    *   Foundationsの有効化\n    *   Einstein 生成 AIの有効化\n    *   Agentforce自体の有効化\n    *   Agentforce for X ライセンスの権限付与\n    また、Agentforce Sales（旧 Sales Cloud）、Agentforce Service（旧 Service Cloud）、またはIndustriesのいずれかを契約している顧客が対象となります。\n\n4.  **ユースケースの特定と段階的導入**\n    Agentforce導入の成功率を高めるためには、最初から全ての機能を導入しようとせず、具体的なユースケースを特定し、段階的に導入を進めることが効果的です。特にカスタマーサービスのケース対応自動化は、既存のナレッジベースを活用しやすく、自己解決率や応答時間などの効果を数値で測定しやすいため、成功率が高いとされています。\n\n5.  **インストラクションの具体性**\n    Agentforceに具体的なタスクを実行させるためには、AIが何をすべきか、判断基準、禁止事項などを明確に記したインストラクションの作成が重要です。曖昧な指示ではAIが適切に判断できません。\n\n6.  **テストとエスカレーション設計**\n    本番運用を開始する前に、Agentforceが想定外の質問に対して不適切な回答をしないよう、最低30パターン（正常系20、異常系10）でのテストが推奨されています。また、AIが対応できない場合や顧客が不満を示した場合などに、人間へ適切に引き継ぐエスカレーションルートを明確に設計しておくことも重要です。\n\n7.  **コストの見通し**\n    Agentforceの料金体系には複数のオプションがあり、Data 360クレジットなどの従量課金も発生します。導入前にコストの見通しをしっかりと確認することが必要です。\n\nこれらの条件を満たすことで、CRMデータが少ない企業でもAgentforceを効果的に活用し、業務の自動化や効率化につなげることが可能になります。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "upward.jp",
+    "qiita.com",
+    "successjp.salesforce.com",
+    "hatenabase.jp"
+  ],
+  "resolved_urls": [
+    "https://upward.jp/weblog/salesforce-agentforce/",
+    "https://qiita.com/orange006/items/6dd4fff90ec2ed7c1137",
+    "https://successjp.salesforce.com/article/NAI-001213",
+    "https://hatenabase.jp/blog/salesforce-agentforce-getting-started/"
+  ],
+  "unresolved_redirects": 0
+}
