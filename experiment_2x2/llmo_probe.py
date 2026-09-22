@@ -76,6 +76,22 @@ def ask_gemini(q):
     return urls
 
 MODELS = {"claude": ask_claude, "perplexity": ask_perplexity, "gemini": ask_gemini}
+KEY_ENV = {"claude": "ANTHROPIC_API_KEY", "perplexity": "PERPLEXITY_API_KEY",
+           "gemini": "GEMINI_API_KEY"}
+RESULTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results")
+
+
+def runnable_models(requested):
+    """鍵のあるモデルだけを返す。鍵が無いモデルは黙って空の行を作らないよう、先に外す。"""
+    out = []
+    for m in requested:
+        if m not in MODELS:
+            print(f"[skip] 未知のモデル {m}", file=sys.stderr)
+        elif not os.environ.get(KEY_ENV[m]):
+            print(f"[skip] {m}: {KEY_ENV[m]} が未設定のため観測しない", file=sys.stderr)
+        else:
+            out.append(m)
+    return out
 
 def load_targets():
     """観測の対象。プール46本に、割付の組を足す（割付前は空欄）。"""
@@ -94,10 +110,14 @@ def main():
     ap.add_argument("--sleep", type=float, default=1.0)
     a = ap.parse_args()
     today = datetime.date.today().isoformat()
-    os.makedirs("results", exist_ok=True)
-    out = f"results/{today}.csv"
     rows = load_targets()
-    models = [m.strip() for m in a.models.split(",")]
+    models = runnable_models([m.strip() for m in a.models.split(",") if m.strip()])
+    if not models:
+        # 鍵が1つも無い日は何も書かない(空の結果CSVを「観測した日」と誤読させない)
+        print("[skip] 観測できるモデルが無い(APIキー未設定)。結果ファイルは作らない")
+        return 0
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    out = os.path.join(RESULTS_DIR, f"{today}.csv")
     if "gemini" in models:
         print("[warn] gemini は dashboard と同じ GEMINI_API_KEY の無料枠(20回/日)を使います。"
               f"{len(rows)}本×{a.runs}回で枠が尽き、同じ日の日次・実験の観測が 429 になります",
@@ -110,8 +130,7 @@ def main():
                 print(f"[skip] {r['id']} query 未設定", file=sys.stderr); continue
             target = norm(r["url"])
             for m in models:
-                fn = MODELS.get(m)
-                if not fn: continue
+                fn = MODELS[m]
                 for k in range(1, a.runs+1):
                     try:
                         urls = fn(q)
@@ -124,6 +143,7 @@ def main():
                     w.writerow([today, r["id"], r["url"], r.get("group",""), m, k, cited, site, " ".join(sorted(u for u in urls if SITE_DOMAIN in u))])
                     f.flush(); time.sleep(a.sleep)
     print("wrote", out)
+    return 0
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

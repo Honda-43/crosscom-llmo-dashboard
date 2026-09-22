@@ -22,11 +22,19 @@
 　　対象が1本なので常に満たすが、対象が増えたときのために条件として残す。
 　　判定時は「vibes込み／vibes抜き」の両方を出す（summarize.py）。
 
+**既定はドライラン（画面に出すだけ）**（2026-09-22）。--write を付けたときだけ
+allocation_v1.csv と output/reports/experiment47_allocation_v1_20260928.md を書く。
+--write を使うのは 9/28 の本番実行の1回だけ。割付表は seo-agent の apply_gate が
+9/29〜30 の処置の通し判定に読むので、試しに書くと本番前に処置群が確定してしまう。
+
 usage:
+  # 9/28 の本番（この1回だけ --write）
   python experiment_2x2/allocate_47.py --seed-start 20260928 \
-      --cited-from 2026-09-15 --cited-to 2026-09-27
+      --cited-from 2026-09-15 --cited-to 2026-09-27 --write
+  # 確認（書かない。既定）
+  python experiment_2x2/allocate_47.py --cited-to 2026-09-22
   # 観測を取りに行かず、手元のCSVで試すとき（列: target_url,cited_article）
-  python experiment_2x2/allocate_47.py --cited-csv <path> --dry
+  python experiment_2x2/allocate_47.py --cited-csv <path>
 """
 import argparse
 import csv
@@ -45,6 +53,8 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), 
 GROUPS = ['①対照', '②FAQのみ', '③リードのみ', '④両方']
 SIZES = [12, 12, 11, 11]          # 46 = 12+12+11+11
 POOL_SIZE = sum(SIZES)
+# 本番の割付を書いてよい最初の日(--write はこの日より前は止まる)
+ALLOCATION_DAY = datetime.date(2026, 9, 28)
 FENCE = '`' * 3
 
 
@@ -198,8 +208,17 @@ def main():
         ROOT, 'output', 'reports', 'experiment47_allocation_v1_20260928.md'))
     ap.add_argument('--out-csv', default=ALLOCATION_CSV,
                     help='観測・判定が読む割付の表（id,url,group,seed）')
-    ap.add_argument('--dry', action='store_true', help='ファイルを書かず結果だけ出す')
+    ap.add_argument('--write', action='store_true',
+                    help='割付表（md・csv）を書く。9/28 の本番実行のときだけ付ける')
     a = ap.parse_args()
+
+    # 本番(9/28)より前に --write で書くと、apply_gate が読む処置群が本番前に決まってしまう。
+    # 引用ありの判定(条件 c)も 9/27 までの観測がそろう前の値になる。
+    if a.write and datetime.date.today() < ALLOCATION_DAY:
+        print(f'★--write は {ALLOCATION_DAY.isoformat()} 以降だけ使える'
+              f'（今日は {datetime.date.today().isoformat()}）。ドライランで確認すること',
+              file=sys.stderr)
+        return 2
 
     arts, _ = load_articles()
     assert len(arts) == POOL_SIZE, f'{POOL_SIZE}本のはずが {len(arts)} 本'
@@ -229,10 +248,10 @@ def main():
         print(f'  {"OK " if k else "★NG"} {name}：{dict(zip(GROUPS, v))}')
 
     lines = report(arts, assign, cited, cited_src, seed, a.seed_start, tried, res, a)
-    if a.dry:
+    if not a.write:
         print()
         print('\n'.join(lines[:22]))
-        print('...（--dry のため書き出していない）')
+        print('...（ドライラン。--write を付けていないので書き出していない）')
         return 0
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
     io.open(a.out, 'w', encoding='utf-8').write('\n'.join(lines))

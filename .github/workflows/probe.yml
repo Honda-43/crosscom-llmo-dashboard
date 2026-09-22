@@ -1,0 +1,75 @@
+name: probe
+
+# 引用プローブ(experiment_2x2/llmo_probe.py)。
+# **実験期間中(〜2026-12-31)は不使用。判定は llm_experiment のみ。**(2026-09-22 決定)
+# Perplexity は使わない。自動実行(schedule)は外してあり、手動で起動しても
+# 実験期間中は観測せずに終わる。実験後に使うときは、下の期間の判定を見直すこと。
+on:
+  workflow_dispatch:
+    inputs:
+      runs:
+        description: '同じ質問の反復回数(実験期間中は観測しない)'
+        required: false
+        default: '3'
+
+permissions:
+  contents: write      # experiment_2x2/results の commit に必要
+
+concurrency:
+  group: llmo-probe
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      PERPLEXITY_API_KEY: ${{ secrets.PERPLEXITY_API_KEY }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 実験期間中(2026-12-31 まで)は、手動で起動しても観測しない。
+      - name: Check the observation window
+        id: window
+        run: |
+          TODAY=$(TZ=Asia/Tokyo date +%F)
+          if [[ "$TODAY" < "2027-01-01" ]]; then
+            echo "run=false" >> "$GITHUB_OUTPUT"
+            echo "実験期間中($TODAY)はプローブを使わない。判定は llm_experiment のみ"
+          else
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run probe (Perplexity only)
+        if: steps.window.outputs.run == 'true'
+        run: |
+          python experiment_2x2/llmo_probe.py --models perplexity \
+            --runs ${{ inputs.runs || '3' }}
+
+      - name: Summarize by group (reference only)
+        if: steps.window.outputs.run == 'true'
+        run: |
+          F="experiment_2x2/results/$(date -u +%F).csv"
+          if [ -f "$F" ]; then
+            python experiment_2x2/probe_summary.py "$F" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Commit probe results
+        if: steps.window.outputs.run == 'true'
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add experiment_2x2/results
+          if git diff --cached --quiet; then
+            echo "No new probe results to commit."
+          else
+            git commit -m "data: probe results $(TZ=Asia/Tokyo date +%F)"
+            git pull --rebase
+            git push
+          fi
