@@ -259,3 +259,22 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 試しに割付表を scratchpad へ出して読ませたところ、46行・処置群34本・対照12本を読み、
 9/29 に処置群と vibes を通し、対照群とピラーを落とし、10/1 はすべて落とした。
 2点目（features が①対照なら通らない）は、訂正対象から features が外れたため問題でなくなった。
+
+## 2026-09-22 15:38／E37（agentforce-coworker・post 7003）の誤り訂正を適用（管BO・管BP）
+
+**処置ではない**（E37 は同日プールから除外済み）。鮮度更新の裁定による誤り訂正。記事制作の便II で適用。
+- 変えたのは4か所だけ（WP の本文差分を機械で確認：4か所の範囲の外の変化 0）
+  1. H3：「チャネル③順次拡大が予定される外部チャットから呼び出す」→「チャネル③TeamsやClaudeなど外部のチャットから呼び出す」
+  2. 同H3の本文 第1段落：Teams・ChatGPT・Claude・デスクトップアプリへの対応は「順次予定」→ Salesforce の製品ページで Teams・Claude・ChatGPT・モバイルの中でも使えると案内（2026年9月時点）＋出典行1本
+  3. 同H3の本文 第2段落：「対応時期が明示されていない…すでに使える2つのチャネルで組み立てる」→ 接続が自社の組織で有効かを確かめてから広げる
+  4. FAQ 質問③の回答の後半2文：「順次予定・時期は示されていない」→「製品ページで案内（2026年9月時点）」
+- 目次は見出しから自動生成のため追従（表示ページで旧見出し0回・新見出し3回＝目次2＋H3）。7003 は FAQ ブロック化されておらず FAQPage は無い
+- していないこと：リード文の追加・FAQブロック化（型A化）・残り46本への内部リンク追加・publish_followup の逆リンク追記（7003 は個別に止めてある）
+- 一次情報：https://www.salesforce.com/agentforce/coworker/（09-22 取得）「Agentforce Coworker lives within the apps your employees use every day, like Salesforce, Slack, Microsoft Teams, Claude, ChatGPT, and mobile.」
+- 差し替え文の全文（変更前後）：crosscom-seo-agent/output/reports/bunII_7003_applied_20260922.md
+- 完了報告 CSV：crosscom-seo-agent/output/reports/experiment47_completion_report.csv（group=除外・treatment 0/0）
+
+**訂正前の引用（ビフォー観測・判定には使わない）**
+- 質問（E37）：「Agentforce Coworkerとは何？営業がどんな場面で使える？」
+- Gemini 9/16・9/21、Claude 9/17・9/21 の4回すべて cited_article=1（記事URLごと引用）
+- ★E37 は prompts_experiment.csv から外れたため、このままでは訂正後の引用を追えない（提案は記事制作の便II 報告 §3）
