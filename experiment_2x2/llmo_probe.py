@@ -87,7 +87,10 @@ def load_targets():
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--runs", type=int, default=3, help="同一クエリの反復回数（揺れを均す）")
-    ap.add_argument("--models", default="claude,perplexity,gemini")
+    # 既定に gemini を入れない(2026-09-22)。dashboard の日次・月次・実験と同じ
+    # GEMINI_API_KEY(無料枠 20回/日)を読むので、46本×3回=138回で1日の枠が尽きる。
+    # これまでの観測(results/2026-09-17.csv)は claude のみで、枠は消費していない。
+    ap.add_argument("--models", default="claude,perplexity")
     ap.add_argument("--sleep", type=float, default=1.0)
     a = ap.parse_args()
     today = datetime.date.today().isoformat()
@@ -95,6 +98,10 @@ def main():
     out = f"results/{today}.csv"
     rows = load_targets()
     models = [m.strip() for m in a.models.split(",")]
+    if "gemini" in models:
+        print("[warn] gemini は dashboard と同じ GEMINI_API_KEY の無料枠(20回/日)を使います。"
+              f"{len(rows)}本×{a.runs}回で枠が尽き、同じ日の日次・実験の観測が 429 になります",
+              file=sys.stderr)
     with open(out, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f); w.writerow(["run_date","id","url","group","model","run","cited","site_cited","cited_urls"])
         for r in rows:

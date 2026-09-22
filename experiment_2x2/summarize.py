@@ -14,7 +14,7 @@ import csv, os, sys, collections
 from math import comb
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pool import CORRECTION_SLUGS, EXCLUDED, pool_slugs, slug  # noqa: E402
+from pool import CORRECTION_SLUGS, EXCLUDED, PROBE_BASELINE_EXCLUDED, pool_slugs, slug  # noqa: E402
 
 
 def fisher_one_sided(a,b,c,d):
@@ -60,6 +60,11 @@ def summarize(after, before, exclude=(), label=""):
     print()
 
 if __name__ == "__main__":
+    if len(sys.argv) > 2:
+        stem = os.path.splitext(os.path.basename(sys.argv[2]))[0]
+        if stem in PROBE_BASELINE_EXCLUDED:
+            sys.exit(f"{sys.argv[2]} はビフォーに使わない(質問文が旧い。pool.PROBE_BASELINE_EXCLUDED)。"
+                     "新しい質問文で取り直したビフォーを指定すること")
     after=load(sys.argv[1]); before=load(sys.argv[2]) if len(sys.argv)>2 else None
     names = "・".join(CORRECTION_SLUGS)
     summarize(after, before, (), f"{names} 込み")

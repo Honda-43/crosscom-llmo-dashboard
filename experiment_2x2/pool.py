@@ -20,6 +20,12 @@ ALLOCATION_CSV = os.path.join(HERE, 'allocation_v1.csv')
 EXCLUDED = {
     'agentforce-coworker': 'E37。見出し・FAQに及ぶ誤り訂正のため 2026-09-22 に除外',
 }
+# 引用プローブ(llmo_probe.py)の 2026-09-17 の観測(results/2026-09-17.csv・144行)は、
+# 判定のビフォー(基準値)に使わない。9/22 に質問文を targets.csv の query から
+# prompts_experiment.csv の prompt に切り替えたため、46本すべてで質問が異なる。
+# 判定に使うビフォーは、新しい質問文で処置反映(9/29〜30)より前に取り直した回だけ。
+PROBE_BASELINE_EXCLUDED = ('2026-09-17',)
+
 # 鮮度更新の誤り訂正の対象(処置と同じ日に本文の数文が差し替わる)。
 # 訂正が確定していなくても、条件 f と「込み／抜き」の集計には含める。
 CORRECTION_SLUGS = ('agentforce-vibes',)
