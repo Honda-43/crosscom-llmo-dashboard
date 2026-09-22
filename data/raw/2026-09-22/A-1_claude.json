@@ -1,0 +1,29 @@
+{
+  "date": "2026-09-22",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-22T00:36:53.471833Z",
+  "answer": "Agentforce(Salesforceの AI エージェントプラットフォーム)の導入支援を行っている会社について、最新情報を調べてみます。\n# Agentforce導入支援のおすすめ会社\n\nSalesforceの自律型AIエージェントプラットフォーム「Agentforce」の導入支援を行っている会社をいくつかご紹介します。前提として、\nSalesforceのSIパートナーエコシステムは日本市場でこれまでに数百のAgentforceの導入を支援し、国内で累積4,300のAgentforce、Data 360関連資格が取得されています\n。その中でも特徴的な会社を紹介します。\n\n## 1. 日立ソリューションズ\n大手SIerとしての実績があり、\n「導入・活用支援サービス for Agentforce」では自律型AIエージェント「Agentforce」の導入・活用をトータルで支援しています。導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定だとしています\n。\n\n## 2. メンバーズ（サースプラスカンパニー）\n\nSalesforceコンサルティングパートナーに認定されており、130名以上の社員が認定資格を保有しています\n。\n導入前のコンサルティングからPoC実施、カスタムエージェントの設計・実装（プロンプト、ナレッジ連携、API接続）、利用環境・セキュリティ体制の構築支援まで、伴走型で対応しています\n。\n\n## 3. ウフル（Uhuru）\n\nSalesforceのテクノロジーを活かした業務支援の経験をもとに、まずは「Agentforce for Service」を対象にカスタマーサービス領域に特化した支援を提供し、最短3カ月のスケジュールで導入を支援します\n。\nデータ活用とIoTに強みを持ち、マーケティングとカスタマーサービスの両領域に対応でき、スモールスタートで素早く効果検証を行いたい企業に選ばれています\n。\n\n## 4. サークレイス（Circlace）\n\nAgentforce導入により労働生産性の向上、イノベーション促進、パーソナライズドサービスの提供、データドリブン型意思決定の強化など、企業価値向上を支援するサービスを展開しています\n。\n\n## 5. クロスコム\n中小・BtoB企業向けに強みがあり、\n実務で活用できるまでの定着支援に重点を置き、目標から逆算した業務設計を行い、導入後はカスタマーサクセスチームが継続的にモニタリングし、1ユースケース×3ヶ月のスモールスタートから対応しています\n。\n\n## 6. enucolor\n\nCRMや外部データを自動分析し、タスク実行やワークフロー起動を自律処理する形で、業務効率化と意思決定を支援するPoC（概念検証）から導入までを行っています\n。\n\n## 7. フロッグウェル\n中小企業向けの導入実績があり、\n住宅業界向けコンサルティング企業へのAIエージェントによるマッチング業務自動化支援や、Einstein Conversation Insightsの活用による会話サマリー自動化支援などの実績があります\n。\n\n---\n\n## 選び方のポイント\n\n会社選定にあたっては、以下の観点で比較検討すると良いでしょう：\n\n- **Salesforce公式パートナーの区分を確認する**：\nコンサルティングパートナーは、要件の整理から設計、現場トレーニング、導入後の改善まで一貫して任せられる区分で、2026年時点で国内のSalesforceコンサルティングパートナーは約300社にのぼります\n\n- **データ整備状況への対応力**：\nAgentforceは導入すれば自動で成果が出るものではなく、AIが正しく機能するには土台となるSalesforce内のデータが整備されていることが前提になるため、データ整備・運用設計まで踏まえた支援ができるかを確認することが重要です\n\n- **自社の業界・ユースケースとの親和性**（カスタマーサービス特化型、営業DX特化型など、会社ごとに強みが異なります）\n- **スモールスタートが可能か**（PoCから始めて段階的に拡大できる体制があるか）\n\n貴社の業種・目的（カスタマーサポート自動化、営業支援、マーケティング等）に応じて、適した会社は変わってきます。具体的な業界や課題感があれば、より絞り込んだ提案も可能ですので教えてください。",
+  "cited_urls": [
+    "https://prtimes.jp/main/html/rd/p/000000329.000041550.html",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://www.members-saasplus.com/agentforce",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://enucolor.com/service/sfa-AI",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://cone-c-slide.com/liblog/salesforce-implementation/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

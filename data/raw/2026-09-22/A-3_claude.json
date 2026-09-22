@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-22",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-09-22T00:38:16.595660Z",
+  "answer": "Agentforceの導入費用相場と費用対効果を出すための進め方について、最新情報を調査してお答えします。\n十分な情報が集まりました。以下にまとめます。\n\n# Agentforce導入費用の相場と費用対効果を出すための進め方\n\n## 1. Agentforceの費用構造（2026年時点）\n\nAgentforceの料金は複数のモデルが並行して存在し、非常に分かりにくい構造になっています。\n\n### 料金モデルの種類\n\n\n$2/会話、または$0.10/アクション、あるいは1ユーザーあたり月額$125からの使い放題プランがあり、無料のSalesforce Foundationsティアや、月額$550/ユーザーからのAgentforce 1 Editionsもあります。\n\n\n具体的には以下の4つの購入方法があります。\n\n- **会話課金**：\n2024年のAgentforce発売時から提供されている、1会話あたり定額$2の課金モデル\n\n- **Flex Credits（従量課金）**：\n1アクションあたり$0.10（10万クレジットで$500）で課金される、現在Salesforceが標準として推している従量課金モデル\n\n- **ユーザーライセンス**：\n従業員アクセス向けに月額$5/ユーザーを追加する形式ですが、これでもFlex Creditsを消費します\n\n- **定額アドオン**：\nSales・Service・Field Serviceで月額$125/ユーザー、Industries向けは$150/ユーザーの使い放題プラン\n\n- **Agentforce 1 Editions**：\n月額$550/ユーザーから、組織あたり年間250万Flex Credits込みですべてをバンドルしたプラン\n\n\nさらに、\n2026年後半にはAgentforceの利用量のベースラインにコミットする「事前コミットメント」モデルも公開予定\nとなっています。\n\n### 隠れたコスト：Data Cloudが最大の予算項目に\n\n多くの企業が見落としがちなのが前提条件です。\nAgentforceは1会話あたり約$2、または10万Flex Creditsで$500という価格が目立ちますが、実際の予算を左右するのはData Cloud（Data 360）で、そのスタータープランだけで年間約$60,000から始まります\n。\n\n中堅企業（500ユーザー規模）の場合の目安として、\nライセンス自体は年間$15,000〜$50,000程度ですが、Data Cloud・導入・保守を含む初年度のTCOは$150,000〜$425,000に達する\nという試算もあります。別の調査でも\n初期表示価格は$2/会話からですが、中堅企業の実質的な初年度コストは$150,000〜$600,000に及び、これはData Cloudの必須契約（年間$108,000以上）や導入サービス、ナレッジベース整備が前提条件となるため\nと報告されています。\n\n### 日本国内での留意点\n\n日本企業向けには、\nAgentforceの利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要がある\nと指摘されています。一方で朗報として、\n2026年から中小企業向けSalesforceスイート（Free・Starter・Pro全プラン）にAgentforceの基本機能が統合され、追加費用なしで試せる道が開かれる\n予定です。\n\n---\n\n## 2. 費用対効果を出すための進め方\n\n### ステップ1：ビジネス価値の明確化（PoCで終わらせない）\n\n多くの導入支援会社が共通して指摘するのは、\n導入検討フェーズにおける最大のハードルは技術検証ではなく「ビジネス価値の明確化」と「実現性と難易度に基づく実現アプローチ」の策定である\nという点です。\n\n定性的な成果だけで終わらせないことが重要です。\n「議事録が楽になった」「検索が早くなった」という現場の定性的な成果を、「売上xx%向上」や「何人月の工数削減」といった定量的な指標に変換することで、ROIが明確になり本番導入への道が開かれます\n。\n\n### ステップ2：ユースケースの優先順位付け（適合性×難易度マトリクス）\n\nすべてのユースケースを同時に実装するのではなく、\nユースケースに対しSalesforce上での実装が適しているか（適合性）、実装にどの程度の工数・技術が必要か（難易度）をマトリクスで評価し、「効果が高く、かつ実現しやすい」AIエージェントから導入する\nアプローチが推奨されます。\n\n### ステップ3：段階的な投資フェーズ\n\n戦略的なフレームワークとして、以下の3段階アプローチが有効です。\n\n\nフェーズ1（PoC）として限定部署での3〜6か月の実証実験（投資額は総予算の10%程度）を実施し、フェーズ2（パイロット）として複数部門での半年〜1年の試験運用（投資額は総予算の30%程度）に進み、フェーズ3（本格展開）として全社展開と継続的改善サイクル確立（残りの60%を投資）を行います。各フェーズ終了時には「KPI達成率80%以上」などの明確な進捗基準を設け、次フェーズへの移行判断を行うことで、初期PoC失敗時の損失を総予算の10%に抑制できます。\n\n\n### ステップ",
+  "cited_urls": [
+    "https://www.eesel.ai/blog/agentforce-pricing",
+    "https://techtouch.jp/media/salesforce/salesforce-price",
+    "https://enterprisedreamin.org/articles/agentforce-pricing-explained-2026/",
+    "https://www.getclientell.com/guides/agentforce-pricing-explained",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://aslead.nri.co.jp/ownedmedia/knowledge/post-4541/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}
