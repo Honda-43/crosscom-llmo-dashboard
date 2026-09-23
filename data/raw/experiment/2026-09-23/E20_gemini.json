@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-23",
+  "prompt_id": "E20",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceで成果を出している営業組織の活用事例を知りたい",
+  "cep": null,
+  "timestamp": "2026-09-23T01:16:10.454809Z",
+  "answer": "Agentforceを導入し、成果を出している営業組織の活用事例は多岐にわたります。SalesforceのAIエージェントであるAgentforceは、リード管理から顧客とのエンゲージメント、社内業務の効率化まで、営業活動の様々な側面で貢献しています。\n\n以下に具体的な活用事例を挙げます。\n\n**1. リード獲得・育成と初期対応の効率化**\nAgentforceは、見込み客（リード）への迅速な対応と育成において大きな成果を上げています。\n\n*   **Equipter社:** インバウンドリードへの接続時間を約1日から数時間へと大幅に短縮し、営業担当者はより価値の高い会話に集中できるようになりました。\n*   **Salesforce（自社利用）:** 43,000件のリードから170万ドル（約2.5億円）の新規パイプラインを創出しています。\n*   **Siemens社:** 週に2,800件以上のリードに即座に反応し、月に12,000件のB2Bリードを自動で選別しています。\n*   **ベルフェイス株式会社:** イベント後のリード急増に対するインサイドセールスの初動対応の遅れや、Salesforceへのデータ入力遅延によるデータ品質の低下といった課題を抱えていました。Agentforceを活用し、動画視聴などの顧客行動を起点とした自動メール配信と次のアクションへの連携を実現した結果、受注1件あたりの工数を約44％削減し、組織全体の生産性を200%向上させました。\n*   **Precina Health社:** 「Sales Coach」という自動エージェントを活用し、プロバイダーへのアプローチ、製品認知の向上、アポイントメントの予約などを自動化し、セールス開発担当者の役割を担っています。\n\n**2. パーソナライズされた顧客体験と提案**\n顧客の行動履歴や購買データに基づいた、パーソナライズされたレコメンデーションやサポートを提供することで、売上向上に貢献しています。\n\n*   **Pandora社（ジュエリー）:** ショッピングアシスタント「Gemma」を通じて、会話内で商品の提案から購入までを完結させています。\n*   **Williams-Sonoma社（キッチン用品）:** 「AI Sous Chef」がメニュー提案、レシピ提供、そして関連商品の購入までを一気通貫で提供しています。\n*   **小売・Eコマース業界:** 顧客の閲覧履歴や購買データ、チャット内容を分析し、パーソナライズされた製品レコメンデーションにより、アップセル・クロスセルを最大化し、売上向上と顧客体験の向上に貢献しています。\n*   **AAA Washington社:** ロードサイドサービスに関する更新情報や、安全運転スクールといったパーソナライズされた製品推奨を事前に顧客に提供しています。\n\n**3. 営業活動と社内業務の効率化**\n定型業務の自動化やデータ管理の最適化により、営業担当者がより戦略的な業務に集中できる環境を構築します。\n\n*   **Saks社（高級百貨店）:** 定型業務を自動化することで、スタッフはより付加価値の高い業務にシフトできるようになりました。\n*   **アビームコンサルティング株式会社:** トップ営業担当者の情報収集や判断の型をAIエージェントに落とし込み、報告業務やアカウントプランの更新を自動化しています。外部ニュースと連動して提案機会を自動で提示する活用により、戦略アカウントの商談数を前年比120%、売上成長率を115%まで引き上げました。\n*   **営業会議サポート機能:** 営業会議の準備や議事録作成、データ収集などを効率化し、営業担当者の負担を軽減します。\n*   **会議スケジューリングの自動化:** 営業効率を大幅に改善し、複雑なスケジューリングも簡単な操作で可能にします。\n*   **個別化フォローアップメールの自動生成:** 顧客満足度向上に直接的に寄与し、高度なパーソナライゼーションを実現します。\n*   **直感的なCRMデータ管理:** データ入力の負担を大幅に軽減し、自然言語でのシンプルな操作でデータ品質向上にも貢献します。\n\nこれらの事例から、Agentforceが営業組織においてリードジェネレーション、顧客エンゲージメントの強化、業務効率化、そして最終的な売上向上に大きく貢献していることがわかります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEYvZN7j4iJNlE3ek75daYu9Ngdd-NfKPNrvE_jtpIvybxqOGplfZmVR5mnG4umYdi6mkcisdFw8VhmQTPEc6SR3io902tbi_TTHA890UOHjww17Hz_Cxp49gamB8YodlJ4EVncGocLC196B4Xcd6lTHNON5-MNoye5XUPN4GLf-VAfAkVAG80=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFelawBjYpiQYW5tzGq79-nP6K8bk3C-ChAVZ0-6BYIImgdE-WKTkUF7TtBaPDpGxSA26W8rnQdiCkFrmZQcV8DtUhWIQsTrISNvj8dk-yJQ7QoSiKcrKCcitLamg2576czdAQvHoWk9xwBKIXGwe9MFqNrVhMW0nAu1cEm-7y89Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-5_Ijsg8awe1o8quX5Kxf3uZlFF3bzaJKwe_Mqr2rnut9UWSs05MYfnZcAfx2jBpVLEZqgfMcJAlCU71EFxwYatpGsfCMHFWn8IKyQ7sh5bRkUMlBrG7zCA55britLQnx38BHxrwP2Sl5IqwxFsCago18U_DxkuI0G0Nkzl87",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGzgJmtgRhjMlEwCK-5jbfS2vaAOxSEUIZWweBhj4pS8e50zAc4-hifJjbJJ7m43cLRQK01U-SzQO-RMlUcoM_VUpGxhua20ZI-o46RitzdVLczZbMmUvnbSiNbCOWX4iyG9iXqUzi3HX173Fpki81GiOgtFHQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGtBer57QTr5KrnC8gD4ipt9Gw-P0k91vnSFR90genckaeo1xVtf8nOq9Oj5Eln1BjARZtmnXgN_7uuffGToNf1eUxve-fHVgXP98JUGwrpFoIHi-LOsVJ0X9wbFQJxW6Qhy6IX4qsKAHWAoOsrjAw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGVoHct4hro0Cx_j6zJXzXGndyA8fSsiUjjN4W1PVaMYiG1l8H0BrHx5ExnUf5yci6xOwMujLgGgzzeCtcIuqfiCbfyNP51XyoTnoBkx3_5cL1h0gvhoDvDE-H5MY4w6DWNr8kyTjGlPT1TipGrbZDSf0b_k7uCuDP5VmQc8rZSTuM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG5BCkN6QAW7RRX8de5JCgToKTFqDuL-pYoWdTOLGX6scYxVrHpf_6e-lcL_nHdKCYKsWlu4mT2PLUKUjRudxyjA324uLqTD1t0dPJdpIfy3Ko9LMDTZCEo28Q2gUXBqqdi3T9ylptc5vTVNM8="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E20",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-use-cases/",
+  "answer_text": "Agentforceを導入し、成果を出している営業組織の活用事例は多岐にわたります。SalesforceのAIエージェントであるAgentforceは、リード管理から顧客とのエンゲージメント、社内業務の効率化まで、営業活動の様々な側面で貢献しています。\n\n以下に具体的な活用事例を挙げます。\n\n**1. リード獲得・育成と初期対応の効率化**\nAgentforceは、見込み客（リード）への迅速な対応と育成において大きな成果を上げています。\n\n*   **Equipter社:** インバウンドリードへの接続時間を約1日から数時間へと大幅に短縮し、営業担当者はより価値の高い会話に集中できるようになりました。\n*   **Salesforce（自社利用）:** 43,000件のリードから170万ドル（約2.5億円）の新規パイプラインを創出しています。\n*   **Siemens社:** 週に2,800件以上のリードに即座に反応し、月に12,000件のB2Bリードを自動で選別しています。\n*   **ベルフェイス株式会社:** イベント後のリード急増に対するインサイドセールスの初動対応の遅れや、Salesforceへのデータ入力遅延によるデータ品質の低下といった課題を抱えていました。Agentforceを活用し、動画視聴などの顧客行動を起点とした自動メール配信と次のアクションへの連携を実現した結果、受注1件あたりの工数を約44％削減し、組織全体の生産性を200%向上させました。\n*   **Precina Health社:** 「Sales Coach」という自動エージェントを活用し、プロバイダーへのアプローチ、製品認知の向上、アポイントメントの予約などを自動化し、セールス開発担当者の役割を担っています。\n\n**2. パーソナライズされた顧客体験と提案**\n顧客の行動履歴や購買データに基づいた、パーソナライズされたレコメンデーションやサポートを提供することで、売上向上に貢献しています。\n\n*   **Pandora社（ジュエリー）:** ショッピングアシスタント「Gemma」を通じて、会話内で商品の提案から購入までを完結させています。\n*   **Williams-Sonoma社（キッチン用品）:** 「AI Sous Chef」がメニュー提案、レシピ提供、そして関連商品の購入までを一気通貫で提供しています。\n*   **小売・Eコマース業界:** 顧客の閲覧履歴や購買データ、チャット内容を分析し、パーソナライズされた製品レコメンデーションにより、アップセル・クロスセルを最大化し、売上向上と顧客体験の向上に貢献しています。\n*   **AAA Washington社:** ロードサイドサービスに関する更新情報や、安全運転スクールといったパーソナライズされた製品推奨を事前に顧客に提供しています。\n\n**3. 営業活動と社内業務の効率化**\n定型業務の自動化やデータ管理の最適化により、営業担当者がより戦略的な業務に集中できる環境を構築します。\n\n*   **Saks社（高級百貨店）:** 定型業務を自動化することで、スタッフはより付加価値の高い業務にシフトできるようになりました。\n*   **アビームコンサルティング株式会社:** トップ営業担当者の情報収集や判断の型をAIエージェントに落とし込み、報告業務やアカウントプランの更新を自動化しています。外部ニュースと連動して提案機会を自動で提示する活用により、戦略アカウントの商談数を前年比120%、売上成長率を115%まで引き上げました。\n*   **営業会議サポート機能:** 営業会議の準備や議事録作成、データ収集などを効率化し、営業担当者の負担を軽減します。\n*   **会議スケジューリングの自動化:** 営業効率を大幅に改善し、複雑なスケジューリングも簡単な操作で可能にします。\n*   **個別化フォローアップメールの自動生成:** 顧客満足度向上に直接的に寄与し、高度なパーソナライゼーションを実現します。\n*   **直感的なCRMデータ管理:** データ入力の負担を大幅に軽減し、自然言語でのシンプルな操作でデータ品質向上にも貢献します。\n\nこれらの事例から、Agentforceが営業組織においてリードジェネレーション、顧客エンゲージメントの強化、業務効率化、そして最終的な売上向上に大きく貢献していることがわかります。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "hatenabase.jp",
+    "prtimes.jp",
+    "cxtoday.com",
+    "service.digital.panasonic.co.jp",
+    "frogwell.co.jp"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/news/stories/agentforce-customer-success-stories/",
+    "https://hatenabase.jp/blog/salesforce-agentforce-global-case-studies/",
+    "https://www.salesforce.com/jp/blog/jp-small-business-ai-agent-facts/",
+    "https://prtimes.jp/main/html/rd/p/000000183.000033891.html",
+    "https://www.cxtoday.com/crm/agentforce-case-studies/",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-3",
+    "https://frogwell.co.jp/blogs/agentforce-usecases/"
+  ],
+  "unresolved_redirects": 0
+}

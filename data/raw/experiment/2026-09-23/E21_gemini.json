@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-23",
+  "prompt_id": "E21",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agent Scriptとは？Agentforceの設定を画面ではなくコードで管理すべきケースは？",
+  "cep": null,
+  "timestamp": "2026-09-23T01:16:21.222111Z",
+  "answer": "Agent Scriptは、Salesforceが提供するAIエージェントを構築するための言語で、Agentforceをはじめとするエージェントオーケストレーションシステムを構成するために開発されました。これは、決定論的なコードと自然言語のプロンプトを同じ命令ブロック内で組み合わせる「ハイブリッド推論」を導入している点が特徴です。Agent Scriptは、会話の流れを「ステップ」として明示的に定義でき、開発者が「何を確認するか」「次にどこへ進むか」を事前に定義することで、エージェントの動きを細かく制御することを可能にします。これにより、従来のAIエージェントにおける非決定論的な動作の課題を解決し、変数、条件文、アクションの連鎖、逐次実行制御を通じて、信頼性と制御性をもたらします。日本国内では2026年2月からベータ提供が開始されました。\n\nAgentforceの設定を画面ではなくコードで管理すべきケースは以下の通りです。\n\n*   **決定論的で予測可能な動作が求められる場合:** Agent Builderのような画面ベースの設定では、AI（Einstein）がユーザーの発言をリアルタイムで判断して適切なアクションを選択するため、柔軟性がある一方で会話の流れが非予測的になることがあります。Agent Scriptでは、会話の構造をステップとして可視化し、各ステップでエージェントの動きを開発者がコントロールできるため、より決定論的で予測可能なエージェントの動作を実現したい場合にコード管理が適しています。これは、特に医療、保険、銀行などの重要な業界で、信頼性の高いビジネスフローが不可欠な場合に重要となります。\n*   **複雑なビジネスワークフローやロジックを実装する場合:** Agent Scriptは、if文を活用した条件分岐や変数への値の代入が可能であり、これまで自然言語で指示していたエージェントの動きをスクリプトで定義することで、より明確にエージェントの挙動を制御できます。これにより、画面上の操作では難しい複雑なロジックや多段階の処理を伴うワークフローを、より正確かつ効率的に構築することができます。\n*   **開発ライフサイクル全体で管理する場合:** Agent Scriptは、Salesforceのさまざまな開発者ツールと統合され、エージェント開発ライフサイクルの管理を容易にします。コードで管理することで、バージョン管理システムの利用やCI/CDパイプラインへの組み込みなど、より体系的な開発プロセスを適用でき、大規模なプロジェクトやチーム開発に適しています。\n*   **既存の画面ベース設定の限界に直面した場合:** 従来のAgentforce Builderが自然言語による指示では非決定論的な振る舞いの課題を抱えていたように、画面ベースの柔軟性が逆に予測不能な結果を生む場合があります。このような場合、Agent Scriptによるコードでの明示的な定義が解決策となります。\n*   **Apexアクションや外部システムとの連携を詳細に制御する場合:** AgentforceはApexアクションを呼び出すことができますが、Agent Scriptを用いることで、これらのアクションの実行順序や条件分岐を会話フローの中に組み込み、より複雑な連携処理を堅牢に設計できます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFUNAnCtRZ0mBRGzaOwmOaYPjVTkaRePy2HB_8dl0HAMFxbtTH-VD0w0l83pvM6Yl-nI-XwsW3CJdb8R_7g7Svm8m_GqSHJ0AuLA_Hr7wkMRKiSqbWKqJU7xjZjsdOUMI9zUw0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGdUmQJZr8CHS3ge9JZoGsgVU6y8ZB7UgdGGoId54mF2Ppoza9xz5rx4qqSHvj-ze9TMDkdS8Y_VHaXLmRJmFR_xQYBwZCRAJi348ismMrfW416iHSuevB3eY99z7qZsL99aUbzXw1Q8mSmC8gqKmQ16gtbXZAs0Lq-q6xncYg_4IYScI7JJeNIjiK1Hmd2f8Dq4ZD5tZruwpn2vTXzVtjSyOLmXOj6CICBdDfbL0A=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHOf55vDJlF_wgpDYM4lX3pn4cNR8x-o3Yr7lJ1-GT6DtJuZbBLeQTJIhD32ZxBTSXkDvuvfWPaYBlZCFVtBRQw8JAjR3g8yuQspVSsCTXnBJY12pB8XHFLtyu7PNVGhnCQP6hA8MNxIPW5m2mBIhnOXm6f9JGxzrONQCvbd4TEIL11",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGJnTjgBeD8w1z8UVi50WUXp_tVetPzDUxakwHIopncmmeHIAQWDfYpqfxWwySUkc_zrMAZor3hnCHTGJL_8yY7FQmrIwbR951mRAEtXfwseDpQq2wbWvm_86vAth0J-d6fk19sIuPge1aZFIbMKDWzFwBOX3YF_3Gt",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQESIYyrB9tKmAjn81QUUlV1Wq_eeKUo8I8IDUH_QDQfQYtr68MtypsRdNg44zBn5RTj5LSQDJGUna7a9gVHmfo_es1qLhy6ikX7ZD89mCBb9y60MsgnBZNRoDrsOoYwduxqsgC5CA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGKOR0TvQn68yCwJbPpRNsIfwhkFwRzNecgaBbDa2P9DFIwRW3mpvHNerHxdMtf2gy7reNr9viM2YaKe6eAaLMCD0s37N9petlMzo-Wut6DZbIquOpczkC3f6TKg4RBQEx9dBCNH_eY5POz"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E21",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-agent-script/",
+  "answer_text": "Agent Scriptは、Salesforceが提供するAIエージェントを構築するための言語で、Agentforceをはじめとするエージェントオーケストレーションシステムを構成するために開発されました。これは、決定論的なコードと自然言語のプロンプトを同じ命令ブロック内で組み合わせる「ハイブリッド推論」を導入している点が特徴です。Agent Scriptは、会話の流れを「ステップ」として明示的に定義でき、開発者が「何を確認するか」「次にどこへ進むか」を事前に定義することで、エージェントの動きを細かく制御することを可能にします。これにより、従来のAIエージェントにおける非決定論的な動作の課題を解決し、変数、条件文、アクションの連鎖、逐次実行制御を通じて、信頼性と制御性をもたらします。日本国内では2026年2月からベータ提供が開始されました。\n\nAgentforceの設定を画面ではなくコードで管理すべきケースは以下の通りです。\n\n*   **決定論的で予測可能な動作が求められる場合:** Agent Builderのような画面ベースの設定では、AI（Einstein）がユーザーの発言をリアルタイムで判断して適切なアクションを選択するため、柔軟性がある一方で会話の流れが非予測的になることがあります。Agent Scriptでは、会話の構造をステップとして可視化し、各ステップでエージェントの動きを開発者がコントロールできるため、より決定論的で予測可能なエージェントの動作を実現したい場合にコード管理が適しています。これは、特に医療、保険、銀行などの重要な業界で、信頼性の高いビジネスフローが不可欠な場合に重要となります。\n*   **複雑なビジネスワークフローやロジックを実装する場合:** Agent Scriptは、if文を活用した条件分岐や変数への値の代入が可能であり、これまで自然言語で指示していたエージェントの動きをスクリプトで定義することで、より明確にエージェントの挙動を制御できます。これにより、画面上の操作では難しい複雑なロジックや多段階の処理を伴うワークフローを、より正確かつ効率的に構築することができます。\n*   **開発ライフサイクル全体で管理する場合:** Agent Scriptは、Salesforceのさまざまな開発者ツールと統合され、エージェント開発ライフサイクルの管理を容易にします。コードで管理することで、バージョン管理システムの利用やCI/CDパイプラインへの組み込みなど、より体系的な開発プロセスを適用でき、大規模なプロジェクトやチーム開発に適しています。\n*   **既存の画面ベース設定の限界に直面した場合:** 従来のAgentforce Builderが自然言語による指示では非決定論的な振る舞いの課題を抱えていたように、画面ベースの柔軟性が逆に予測不能な結果を生む場合があります。このような場合、Agent Scriptによるコードでの明示的な定義が解決策となります。\n*   **Apexアクションや外部システムとの連携を詳細に制御する場合:** AgentforceはApexアクションを呼び出すことができますが、Agent Scriptを用いることで、これらのアクションの実行順序や条件分岐を会話フローの中に組み込み、より複雑な連携処理を堅牢に設計できます。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "github.com",
+    "developer.salesforce.com",
+    "tech.feature-branch.co.jp",
+    "tech-waves.hakuhodody-one.co.jp",
+    "youtube.com",
+    "note.com"
+  ],
+  "resolved_urls": [
+    "https://github.com/salesforce/agentscript",
+    "https://developer.salesforce.com/jpblogs/2026/03/agent-script-decoded-intro-to-agent-script-language-fundamentals-jp",
+    "https://tech.feature-branch.co.jp/posts/2026/03/agentforce-agent-script/",
+    "https://tech-waves.hakuhodody-one.co.jp/entry/agent-script-tips",
+    "https://www.youtube.com/watch?v=vNkYskZ0F4E",
+    "https://note.com/samuraijuku_biz/n/n8f1910ad5993"
+  ],
+  "unresolved_redirects": 0
+}
