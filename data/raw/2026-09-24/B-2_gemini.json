@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-09-24T00:17:41.753351Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社をお探しとのこと、承知いたしました。そのようなニーズに応えるCRMコンサルティング会社は複数存在します。\n\n以下に、特定のベンダーに偏らず、中立的な立場からCRMの設計・導入支援を行う会社の特徴と、具体的な企業名を挙げます。\n\n**中立的なCRM設計支援を行う会社の特徴**\n\n*   **複数ツールの比較・提案**：Salesforce、HubSpot、Zohoなど、特定の製品に限定せず、顧客企業の業務や組織体制に最適なCRMツールを比較検討し、提案します。これにより、ベンダーロックインのリスクを避けられます。\n*   **戦略立案から運用定着まで一貫支援**：単なるシステム導入に留まらず、CRM戦略の立案、要件定義、RFP作成、ベンダー選定、設計・構築、導入後の運用定着、効果測定、改善提案までを総合的にサポートします。\n*   **業務プロセス設計とデータ活用重視**：顧客データを単なる管理情報としてではなく、分析や施策設計を通じて企業の持続的な資産へと転換することを目的とし、顧客データに基づいた再現性のあるCRM戦略を構築します。 また、営業、マーケティング、カスタマーサービスといった部門横断での業務プロセス設計と連動した顧客データ活用基盤の設計を重視します。\n*   **客観的な視点と専門知識**：CRM/MA/SFAに関する専門知識と客観的な視点を提供し、自社内だけでは見落としがちな課題や改善点を明確にします。\n*   **自社運用力の向上支援**：マニュアル整備や研修を通じて運用ノウハウを組織内に定着させ、特定の担当者に依存しない仕組み化を支援します。\n\n**具体的な支援会社**\n\n*   **ECマーケティング株式会社**：ECサイトやマーケティングサイトに特化したWebコンサルティング会社で、中小・中堅規模から大手企業まで対応し、CRMの成果改善を支援しています。\n*   **合同会社クロスコム**：特定のCRM製品を前提とせず、AIが読み書きする前提のCRMを業務設計から企業専用に設計する「Agentic CRM設計支援」を提供しています。\n*   **Finner株式会社**：CRM/SFAの導入・構築支援から伴走支援までを行い、売上向上に向けた最適な組織構築を提案しています。Salesforceで培ったナレッジを基に、事業目標達成に則ったCRM/SFAの初期構築（項目設計、ダッシュボード設計）を支援しています。\n*   **テクノデジタルコンサルティング**：CRM専門20年の豊富な実績を持ち、戦略検討から施策、システムデザイン、効果検証まで、CRM/顧客データ活用に関する全てをサポートしています。\n*   **株式会社クラウドネイティブ**：情報システムコンサルティングにおいて、特定のベンダーに縛られない「ベンダーフリー」の立場で、ゼロトラスト設計からクラウド環境の最適化、IT戦略策定まで伴走支援しています。\n*   **株式会社ripla**：業務設計からシステム構築・運用まで一気通貫で支援するDX/開発支援会社で、CRM開発において、単なる顧客情報管理に留まらず、営業/マーケティング/サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応できます。 特に、標準CRMパッケージでは不足する要件や自社特有の業務プロセスを反映したCRMが必要な中堅〜大企業に適しています。\n\nこれらの企業は、貴社のような中堅企業が特定のベンダーに縛られることなく、本当に自社に合ったCRMを構築・運用できるよう、多角的な視点から支援を提供してくれるでしょう。まずは複数の会社に相談し、自社の課題や目的に最も合致するパートナーを見つけることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGxGHGuQk_vy1QJZThr3silEo5QQ1h_eENHf7KiCUBhmuZsMTwJIqC8cK_x_FSs0WAwcILTfkwKLgiazUpmoS-UaoNgaIoLMhpo3qZuHrMbiwslE-VHWKd2RZby-a5kJ3WFgiKMnR9b",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG9N7CpPN0zV4X6PmD4JrDv66QnuX-be1LgkxbQtby3rtczCXX6G875S5l-DFXwoqztMFkKtPZsi9ERiJGZvKuRPIzD9tt1TMtBXBDBscLDTxVuZgy_C4svCP5dRqP9CkPlqFtTMyqNFA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFkIpEVYGLHB1KEmrXI2IcMYPI6KP8SwlvZ6mbLRrfFdAotiT_UGdhV-PXeD5VRxcniAj64fdvC3NB1S8dy6aubrQRs2QnmbEQBVoENCEqs5tlhk2R3GSYxe_mD",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQET4xlhUTngYsFXOVy_Te6Rg53ul7KTORS-qvSk6L6dUoUbf6M6Zw-3DNSqHYe3a6-E7Wv3SgU7WuCc5Ue7oRMeEgh_sUqlZsVF6Woo5xgm0oRXhdv5n_Y125WPCBIALXpibHk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGqZkYkOmq7kIMmJCd2Km-FaFRGZeOlVjeT-r1mDM7S7wolWm07J3i0-p-ScCwktuxFVh4uPH2MEFlCVH7Szvhfq0m2UxjBABFxz4wiq7TlSTwpwXi8iK9n9x1ssc7XAL7L00WESov9X7I5",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXh67nxs68V61WIhVMLQkrYaadRnHd_8_YFJhnsHbOw4ETpHeBScPPsNIbVYWjPE_ujKHeAaAZtea34ZmnsxW7-FlU3Y5JKTJqsLUvbXYw6Ku_SnwXb0wv7mzPXpt82T_VPu_3xTpu083wMQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEGjWcY1srtR7az5gvSAdSc5tXJ7kb9H-ng_6NsY1cM56G-urVkLagoEe1zcUeu6LzzGB1u6IqUijQaN1IUh_m-ZK2gU-pbpSeTL7PhWqsXT0WaVvf6khJrN5kbgE-qGi2IbjUgFeHZhTYelA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQeuee7YXtdu2Kg03e5ZlcsTM6cfzw_p36qjIQGLCSrgagSaMGjGfdQjoevMUTiuu_y-PIKtSvmAhKe2jyW9O8Tsl5LDL_DQzaitsMLEbSJQMy8j-bmzvU0SKNYOY4VdbSiAFR6UfR",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEiLmyZ8NLE9GA1z80hvv-WFrsZmFQeMc3xjXrdj2_O5aBR1OeqMbgXzFpPNZPXFgZPisxtuO2rVGzZJGwIdJrWmOruVcFku3H0hDgyc6VU8cJzzjwooErhP5d9_ukaCA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFr-mvzxsGdLtu45LxU1Armzlnq-1hCpmX3GVzn8kNolKkV-cEiFXhuxfAFuz6Oo9TRJhMa6ffA9WKISvfwxgvKPUt9gmeyiihz0Gftj2a4aXTb29vkGWiR8RMn3OZZ0rblJKyj6DdzchA="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

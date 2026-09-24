@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-24T00:15:39.557671Z",
+  "answer": "# Agentforce導入支援のおすすめ会社\n\nSalesforceの自律型AIエージェントプラットフォーム「Agentforce」の導入支援を行っている会社は複数あり、それぞれ強みが異なります。以下、特徴別にご紹介します。\n\n## 大手SIer・コンサルティング系\n\n**日立ソリューションズ**\n\n「導入・活用支援サービス for Agentforce」では、自律型AIエージェント「Agentforce」の導入・活用をトータルでご支援します\n。\n営業・サービス・マーケティング・コマースなど幅広い業務領域に対応し、長年の実績をもとに導入支援コンサルティングを手がけています。金融や医療など、高いセキュリティが求められる業界での支援にも対応します\n。\n\n**富士ソフト**\n\nSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供しており、営業・マーケティングなどフロントオフィス業務全般を支援するAIエージェントを、自然言語での対話型操作で作成できる\n点が特徴です。\nPoC（概念実証）支援を中心にサービスを組み立てており、ユースケースの整理や導入データの質のチェックから始め、要件定義、技術検証、効果測定、本番移行計画までを反復的に支援します\n。\n\n**バーチャレクス・コンサルティング**\n\n「Agentforce」の導入から定着化、活用促進までの包括的な支援を提供するサービスを展開しています\n。顧客接点業務の高度化を得意としています。\n\n**KPMGコンサルティング**\n大手監査法人系コンサルとして、大規模企業向けのSalesforce導入・AI活用構想の支援実績があります。\n\n## DX支援・伴走型\n\n**メンバーズ**\n\nSalesforceが提供する自律型AIエージェントAgentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成支援まで伴走しながら支援します\n。内製化支援に強みがあります。\n\n## 専門特化型・中小企業向け\n\n**ウフル**\n\nまずはSalesforceが提供する「Agentforce for Service」を対象に、カスタマーサービス領域に特化した支援を提供しており、最短3カ月のスケジュールで導入を支援します\n。スピード導入を重視する企業向けです。\n\n**フロッグウェル**\n中小規模の企業向けに、商社・卸売業や住宅業界など業界特化型の導入実績があります。問い合わせ対応の自動化などの事例があります。\n\n**クロスコム**\n\nソリューション営業に特化したAgentforce導入・定着支援を行っており、1ユースケース×3ヶ月のスモールスタートプランから対応しています\n。スモールスタートで始めたい企業向けです。\n\n---\n\n## 選び方のポイント\n\n- **国内のSalesforceコンサルティングパートナーは約300社**にのぼるとされ、選定に迷う企業が多いのが実情です。\n- 大規模・複数部門導入なら日立ソリューションズやKPMGなど大手SIer系\n- スピード重視・特定領域（サービス/営業）に絞るならウフルやクロスコムのようなスモールスタート型\n- 内製化・社員育成まで見据えるならメンバーズのような伴走型\n\n貴社の企業規模、予算、対象業務（営業/サービス/マーケティングなど）によって最適な会社が異なりますので、具体的な条件があれば、より絞り込んだ提案が可能です。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://www.virtualex.co.jp/news/2025/05/salesforce-agentforce.html",
+    "https://www.members.co.jp/services/customer/agentforce",
+    "https://uhuru.co.jp/service/agentforce_service/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}
