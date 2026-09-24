@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E07",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce EinsteinとAgentforceの違いは？どちらを使うべきかの判断軸",
+  "cep": null,
+  "timestamp": "2026-09-24T01:12:09.626747Z",
+  "answer": "# Salesforce EinsteinとAgentforceの違い\n\n## 基本的な位置づけ\n\n両者は対立する製品ではなく、**階層構造の関係**にあります。\nEinsteinは、SalesforceのAI機能群全体を指す包括的なブランドで、予測分析、生成AI、自然言語処理、レコメンデーションなど多岐にわたるAI機能を提供し、CRMデータに基づいて深い洞察を提供する「インテリジェンス層」として位置づけられます。Agentforceは、Einsteinの基盤の上に構築された、自律的にタスクを実行する「AIエージェント」に特化したプラットフォームです。\n\n\n\nEinsteinが「何をすべきか」という知能を提供し、Agentforceがその知能に基づいて「どのように行動するか」を実行する構造です。\n\n\n## 具体的な違い\n\n| 観点 | Einstein | Agentforce |\n|---|---|---|\n| **技術基盤** | \n従来の機械学習と統計的手法を基盤としており、大量のデータから価値ある情報を抽出することに長けている\n | \n生成AIと自然言語処理を活用し、人間のような思考プロセスで業務を実行する\n |\n| **自律性** | \nスマートアシスタントとして機能し、データを分析し、傾向を予測し、業務を簡素化するための提案を行う\n（\n最終的な行動判断は人間に委ねる「コーチ」的な役割\n） | \n独立したワーカーとして機能するよう設計されており、行動を提案するだけでなく、レコード更新や顧客対応などのタスクを実際に実行し、複雑なワークフローを自動化する\n |\n| **得意分野** | \nリードスコアリング、案件スコアリング、ケース分類、解約予測、ネクストベストアクションなどの予測レイヤーを担い、これらは生成的ではなく履歴CRMデータで学習されたモデルベース\n | \nData Cloudを通じてSalesforceデータを読み取り、Flow・APIを通じてアクションを実行し、ポリシーが必要な場合は人間にエスカレーションし、全ステップを監査ログとして記録する\n |\n| **マルチエージェント性** | 単体の予測・生成機能 | \n複数エージェント間、および人間との間でオーケストレーションに基づき作業を引き継げる\n |\n| **導入コスト・期間** | \n多くのEnterprise+版でData Cloud標準搭載により含まれ、基本機能は数時間で有効化可能\n | \n会話課金2ドル〜またはユーザー課金月125〜650ドル程度で、本番導入までに2〜6週間程度かかる\n |\n| **必要インフラ** | \nData Cloudを必要とせず、多くの既存Salesforceライセンスに含まれているため、既に保有している組織ではコア機能の追加コストがゼロ\n | Data Cloudが前提条件になることが多い |\n\n## 経緯・ブランドの変遷\n\nもともと\nEinstein GPTは生成AIの機能を指し、以前Einstein Copilotと呼ばれていたものは、現在ではSales AgentやService Agentといった特定のツールを含むAgentforceファミリーの一部となっています\n。\nこの混乱の背景には、Salesforceが2025年1月にEinstein CopilotをAgentforceへ名称変更した経緯があり、機能自体はほとんど変わっていません。\n2026年現在も\nEinsteinは廃止されていませんが、Salesforceのロードマップ投資はAgentforceに向かっています。\n\n\n## どちらを使うべきかの判断軸\n\n**① 「判断・分析」で十分か、「実行・自動化」まで必要か**\n- 過去データからの予測・スコアリング・レコメンドで十分 → **Einstein**\n- 実際にタスク（返信送信、レコード更新、ケース対応など）を人手を介さず実行させたい → **Agentforce**\n\n**② 既存インフラ・予算**\nData Cloudをすでに保有し追加投資を抑えたい場合はEinsteinが有利ですが、\n2026年のValoirの分析によると、B2BのAgentforce導入の77%がデータ品質の問題で失敗し、6カ月後も稼働し続けている構築は31%にとどまる\nため、データ整備状況が導入成否を大きく左右します。\n\n**③ 導入スピード**\nすぐに始めたいなら\n基本的なEinstein機能は数時間で有効化できる一方、Agentforceエージェントは本番導入まで2〜6週間かかります\n。\n\n**④ ユースケースの性質**\n\nテリトリープランニングや地理ベース分析はEinsteinの強みで、統計的な問題であるため向いています。\n一方で\nサービス対応の自動化・営業リサーチとアウトリーチ準備・リードルーティングや強化・アカウントプランニング・バックオフィスのワークフロー自動化",
+  "cited_urls": [
+    "https://base.terrasky.co.jp/articles/8pSGd",
+    "https://www.fsi.co.jp/Salesforce/column/column18.html",
+    "https://differenzforce.com/blog/agentforce-vs-einstein/",
+    "https://thinklytics.com/insights/salesforce-agentforce-vs-einstein-2026",
+    "https://vantagepoint.io/blog/sf/how-to-use-agentforce-einstein-ai-salesforce-2026-guide",
+    "https://www.getclientell.com/salesforce-blogs/salesforce-agentforce-vs-einstein-the-definitive-2025-comparison-guide",
+    "https://www.eesel.ai/ja/blog/what-is-salesforce-ai-called"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E07",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-einstein-difference/",
+  "answer_text": "# Salesforce EinsteinとAgentforceの違い\n\n## 基本的な位置づけ\n\n両者は対立する製品ではなく、**階層構造の関係**にあります。\nEinsteinは、SalesforceのAI機能群全体を指す包括的なブランドで、予測分析、生成AI、自然言語処理、レコメンデーションなど多岐にわたるAI機能を提供し、CRMデータに基づいて深い洞察を提供する「インテリジェンス層」として位置づけられます。Agentforceは、Einsteinの基盤の上に構築された、自律的にタスクを実行する「AIエージェント」に特化したプラットフォームです。\n\n\n\nEinsteinが「何をすべきか」という知能を提供し、Agentforceがその知能に基づいて「どのように行動するか」を実行する構造です。\n\n\n## 具体的な違い\n\n| 観点 | Einstein | Agentforce |\n|---|---|---|\n| **技術基盤** | \n従来の機械学習と統計的手法を基盤としており、大量のデータから価値ある情報を抽出することに長けている\n | \n生成AIと自然言語処理を活用し、人間のような思考プロセスで業務を実行する\n |\n| **自律性** | \nスマートアシスタントとして機能し、データを分析し、傾向を予測し、業務を簡素化するための提案を行う\n（\n最終的な行動判断は人間に委ねる「コーチ」的な役割\n） | \n独立したワーカーとして機能するよう設計されており、行動を提案するだけでなく、レコード更新や顧客対応などのタスクを実際に実行し、複雑なワークフローを自動化する\n |\n| **得意分野** | \nリードスコアリング、案件スコアリング、ケース分類、解約予測、ネクストベストアクションなどの予測レイヤーを担い、これらは生成的ではなく履歴CRMデータで学習されたモデルベース\n | \nData Cloudを通じてSalesforceデータを読み取り、Flow・APIを通じてアクションを実行し、ポリシーが必要な場合は人間にエスカレーションし、全ステップを監査ログとして記録する\n |\n| **マルチエージェント性** | 単体の予測・生成機能 | \n複数エージェント間、および人間との間でオーケストレーションに基づき作業を引き継げる\n |\n| **導入コスト・期間** | \n多くのEnterprise+版でData Cloud標準搭載により含まれ、基本機能は数時間で有効化可能\n | \n会話課金2ドル〜またはユーザー課金月125〜650ドル程度で、本番導入までに2〜6週間程度かかる\n |\n| **必要インフラ** | \nData Cloudを必要とせず、多くの既存Salesforceライセンスに含まれているため、既に保有している組織ではコア機能の追加コストがゼロ\n | Data Cloudが前提条件になることが多い |\n\n## 経緯・ブランドの変遷\n\nもともと\nEinstein GPTは生成AIの機能を指し、以前Einstein Copilotと呼ばれていたものは、現在ではSales AgentやService Agentといった特定のツールを含むAgentforceファミリーの一部となっています\n。\nこの混乱の背景には、Salesforceが2025年1月にEinstein CopilotをAgentforceへ名称変更した経緯があり、機能自体はほとんど変わっていません。\n2026年現在も\nEinsteinは廃止されていませんが、Salesforceのロードマップ投資はAgentforceに向かっています。\n\n\n## どちらを使うべきかの判断軸\n\n**① 「判断・分析」で十分か、「実行・自動化」まで必要か**\n- 過去データからの予測・スコアリング・レコメンドで十分 → **Einstein**\n- 実際にタスク（返信送信、レコード更新、ケース対応など）を人手を介さず実行させたい → **Agentforce**\n\n**② 既存インフラ・予算**\nData Cloudをすでに保有し追加投資を抑えたい場合はEinsteinが有利ですが、\n2026年のValoirの分析によると、B2BのAgentforce導入の77%がデータ品質の問題で失敗し、6カ月後も稼働し続けている構築は31%にとどまる\nため、データ整備状況が導入成否を大きく左右します。\n\n**③ 導入スピード**\nすぐに始めたいなら\n基本的なEinstein機能は数時間で有効化できる一方、Agentforceエージェントは本番導入まで2〜6週間かかります\n。\n\n**④ ユースケースの性質**\n\nテリトリープランニングや地理ベース分析はEinsteinの強みで、統計的な問題であるため向いています。\n一方で\nサービス対応の自動化・営業リサーチとアウトリーチ準備・リードルーティングや強化・アカウントプランニング・バックオフィスのワークフロー自動化",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "base.terrasky.co.jp",
+    "fsi.co.jp",
+    "differenzforce.com",
+    "thinklytics.com",
+    "vantagepoint.io",
+    "getclientell.com",
+    "eesel.ai"
+  ],
+  "resolved_urls": [
+    "https://base.terrasky.co.jp/articles/8pSGd",
+    "https://www.fsi.co.jp/Salesforce/column/column18.html",
+    "https://differenzforce.com/blog/agentforce-vs-einstein/",
+    "https://thinklytics.com/insights/salesforce-agentforce-vs-einstein-2026",
+    "https://vantagepoint.io/blog/sf/how-to-use-agentforce-einstein-ai-salesforce-2026-guide",
+    "https://www.getclientell.com/salesforce-blogs/salesforce-agentforce-vs-einstein-the-definitive-2025-comparison-guide",
+    "https://www.eesel.ai/ja/blog/what-is-salesforce-ai-called"
+  ],
+  "unresolved_redirects": 0
+}

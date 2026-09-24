@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E12",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの機能一覧を整理して教えて。360・Coworker・Voiceの違いも",
+  "cep": null,
+  "timestamp": "2026-09-24T01:14:24.077209Z",
+  "answer": "# Agentforce 機能一覧と「360」「Coworker」「Voice」の違い\n\n## 1. 全体像：Agentforceとは\n\nAgentforceは、Salesforceが提供するエンタープライズ向けAIエージェント基盤です。この1年で急速に進化しており、その歴史は\nAgentforce（2024年10月）の登場、Atlas Reasoning Engineを強化したAgentforce 2（2024年12月）、クロスファンクショナルなAgentforce 2dx（2025年3月）、ガバナンスと相互運用性を強化したAgentforce 3（2025年6月）を経て、これらすべてを単一のエンドツーエンドのプラットフォームに統合したAgentforce 360（2025年10月）\nという流れです。\n\n「360」「Coworker」「Voice」はそれぞれ**階層が異なる概念**です。ざっくり言うと、**360＝基盤（プラットフォーム全体）**、**Coworker＝その上で動くAIチームメイト（アプリ・インターフェース）**、**Voice＝音声チャネル向けの機能レイヤー**という関係になります。\n\n---\n\n## 2. Agentforce 360（プラットフォーム全体）\n\n### 構成する4つの要素\nSalesforceは、Agentforce 360を次の4つの「材料」の組み合わせと説明しています。\n\n- \nAgentforce 360 Platform：Agentforceの基盤で、新しい会話型ビルダー、より高い制御性と精度を実現するハイブリッド推論、音声機能を備える\n\n- \nData 360（旧Data Cloud）：エージェントにコンテキストを与えるデータレイヤー。Intelligent ContextやTableau Semanticsなどの技術により、非構造化データや分析結果をAIのためのリッチな文脈情報に変換できる\n\n- \nCustomer 360 Apps：企業のビジネスロジックと組織の知見（販売・サービス・マーケティング・業務運営の方法）を、あらゆる顧客とプロセスを深く理解するAIエージェントとして具現化するもの\n\n- \nSlack：人とエージェントが協働するための会話インターフェースで、ナレッジ・アクション・データをリアルタイムに接続する\n\n\n### 主要機能\n- **Agentforce Builder**：\n自然言語でエージェントを設計・テスト・デプロイできる、手動設定不要の新しい会話型開発スタジオ\n。\nコード実装（Agent Script）でもノーコード（Canvasインターフェース）でも構築可能\n\n- **ハイブリッド推論 / Agent Script**：\n決定論的なワークフローと柔軟なLLM推論を組み合わせる仕組み。開発者はAgent Scriptを使い、設定可能なAtlas Reasoning Engineによってガードレール・ツール利用・ロジックを定義できる\n\n- **Agentforce Voice**：\nIVRシステムを、低遅延の文字起こし・リアルな音声合成・Salesforceとの深い統合を備えた自然でリアルタイムな会話へと変革するネイティブ音声レイヤー\n（詳細は後述）\n- **Observability（監視）**：\nAgent Health Monitoringにより運用上の制御を実現し、サイレントな失敗を防止。エージェントのエラー率・レイテンシー・エスカレーション率をほぼリアルタイムのアラートで24時間365日監視し、即座に的確な介入を可能にする\n\n- **Agentforce Tableau**：\n複雑なデータを明確で信頼できるインサイトに変換し、リアルタイムで状況を把握し、影響を測定し、データドリブンな意思決定を迅速化する\n\n- **セキュリティ・ガバナンス**：\nSalesforceの安全でコンプライアンスに準拠した基盤の上に構築され、すべてのエージェントの行動がガバナンスされ、可観測性があり、企業ポリシーと整合するよう保証される。組み込みの暗号化・ポリシー適用・アクセス制御でデータが保護される\n\n\nつまり**Agentforce 360＝「土台となるプラットフォーム＋データ＋業務アプリ＋Slack」を統合した全体構想**であり、その中にVoiceやCoworkerといった個別機能・製品が含まれる位置づけです。\n\n---\n\n## 3. Agentforce Coworker（AIチームメイト／横断検索・実行エージェント）\n\nCoworkerは、**人と同じように様々なツールを横断して働く「AIの同僚」**というコンセプトの製品です。\n\n- **設計思想**：\n単一の会話から、AgentforceのAIエージェントからカスタムエージェント、CRMアクション、Flow",
+  "cited_urls": [
+    "https://www.sweep.io/blog/a-360-degree-guide-to-agentforce-360",
+    "https://www.salesforceben.com/salesforce-unveils-agentforce-360-at-dreamforce-with-new-features-including-voice/",
+    "https://developer.salesforce.com/blogs/2025/10/build-and-optimize-agents-with-new-agentforce-360-features",
+    "https://trailhead.salesforce.com/content/learn/modules/spring-26-release-highlights/see-whats-new-agentforce-data-360-agentforce-sales",
+    "https://www.salesforce.com/platform/agentforce-platform/",
+    "https://www.salesforce.com/jp/blog/jp-how-to-agentforce-coworker/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E12",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-features/",
+  "answer_text": "# Agentforce 機能一覧と「360」「Coworker」「Voice」の違い\n\n## 1. 全体像：Agentforceとは\n\nAgentforceは、Salesforceが提供するエンタープライズ向けAIエージェント基盤です。この1年で急速に進化しており、その歴史は\nAgentforce（2024年10月）の登場、Atlas Reasoning Engineを強化したAgentforce 2（2024年12月）、クロスファンクショナルなAgentforce 2dx（2025年3月）、ガバナンスと相互運用性を強化したAgentforce 3（2025年6月）を経て、これらすべてを単一のエンドツーエンドのプラットフォームに統合したAgentforce 360（2025年10月）\nという流れです。\n\n「360」「Coworker」「Voice」はそれぞれ**階層が異なる概念**です。ざっくり言うと、**360＝基盤（プラットフォーム全体）**、**Coworker＝その上で動くAIチームメイト（アプリ・インターフェース）**、**Voice＝音声チャネル向けの機能レイヤー**という関係になります。\n\n---\n\n## 2. Agentforce 360（プラットフォーム全体）\n\n### 構成する4つの要素\nSalesforceは、Agentforce 360を次の4つの「材料」の組み合わせと説明しています。\n\n- \nAgentforce 360 Platform：Agentforceの基盤で、新しい会話型ビルダー、より高い制御性と精度を実現するハイブリッド推論、音声機能を備える\n\n- \nData 360（旧Data Cloud）：エージェントにコンテキストを与えるデータレイヤー。Intelligent ContextやTableau Semanticsなどの技術により、非構造化データや分析結果をAIのためのリッチな文脈情報に変換できる\n\n- \nCustomer 360 Apps：企業のビジネスロジックと組織の知見（販売・サービス・マーケティング・業務運営の方法）を、あらゆる顧客とプロセスを深く理解するAIエージェントとして具現化するもの\n\n- \nSlack：人とエージェントが協働するための会話インターフェースで、ナレッジ・アクション・データをリアルタイムに接続する\n\n\n### 主要機能\n- **Agentforce Builder**：\n自然言語でエージェントを設計・テスト・デプロイできる、手動設定不要の新しい会話型開発スタジオ\n。\nコード実装（Agent Script）でもノーコード（Canvasインターフェース）でも構築可能\n\n- **ハイブリッド推論 / Agent Script**：\n決定論的なワークフローと柔軟なLLM推論を組み合わせる仕組み。開発者はAgent Scriptを使い、設定可能なAtlas Reasoning Engineによってガードレール・ツール利用・ロジックを定義できる\n\n- **Agentforce Voice**：\nIVRシステムを、低遅延の文字起こし・リアルな音声合成・Salesforceとの深い統合を備えた自然でリアルタイムな会話へと変革するネイティブ音声レイヤー\n（詳細は後述）\n- **Observability（監視）**：\nAgent Health Monitoringにより運用上の制御を実現し、サイレントな失敗を防止。エージェントのエラー率・レイテンシー・エスカレーション率をほぼリアルタイムのアラートで24時間365日監視し、即座に的確な介入を可能にする\n\n- **Agentforce Tableau**：\n複雑なデータを明確で信頼できるインサイトに変換し、リアルタイムで状況を把握し、影響を測定し、データドリブンな意思決定を迅速化する\n\n- **セキュリティ・ガバナンス**：\nSalesforceの安全でコンプライアンスに準拠した基盤の上に構築され、すべてのエージェントの行動がガバナンスされ、可観測性があり、企業ポリシーと整合するよう保証される。組み込みの暗号化・ポリシー適用・アクセス制御でデータが保護される\n\n\nつまり**Agentforce 360＝「土台となるプラットフォーム＋データ＋業務アプリ＋Slack」を統合した全体構想**であり、その中にVoiceやCoworkerといった個別機能・製品が含まれる位置づけです。\n\n---\n\n## 3. Agentforce Coworker（AIチームメイト／横断検索・実行エージェント）\n\nCoworkerは、**人と同じように様々なツールを横断して働く「AIの同僚」**というコンセプトの製品です。\n\n- **設計思想**：\n単一の会話から、AgentforceのAIエージェントからカスタムエージェント、CRMアクション、Flow",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "sweep.io",
+    "salesforceben.com",
+    "developer.salesforce.com",
+    "trailhead.salesforce.com",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://www.sweep.io/blog/a-360-degree-guide-to-agentforce-360",
+    "https://www.salesforceben.com/salesforce-unveils-agentforce-360-at-dreamforce-with-new-features-including-voice/",
+    "https://developer.salesforce.com/blogs/2025/10/build-and-optimize-agents-with-new-agentforce-360-features",
+    "https://trailhead.salesforce.com/content/learn/modules/spring-26-release-highlights/see-whats-new-agentforce-data-360-agentforce-sales",
+    "https://www.salesforce.com/platform/agentforce-platform/",
+    "https://www.salesforce.com/jp/blog/jp-how-to-agentforce-coworker/"
+  ],
+  "unresolved_redirects": 0
+}

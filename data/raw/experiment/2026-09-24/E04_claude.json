@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E04",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce Observabilityとは？定着と精度を測る指標はどう設計する？",
+  "cep": null,
+  "timestamp": "2026-09-24T01:10:37.685295Z",
+  "answer": "# Agentforce Observabilityとは\n\nAgentforce Observabilityは、Salesforceが提供するAIエージェント専用の監視・分析ツール群です。\n単一のミッションコントロールから、すべてのAIエージェントに対する完全な可視性とコントロールを実現し、ほぼリアルタイムでエージェントのパフォーマンスを監視・分析・最適化することで、より速い解決とより高い精度、優れた顧客体験を実現できます。\n\n\n背景として、\nAgentforceには「ブラックボックス」的な構造という弱点があり、組織はエージェントをデプロイしてその出力を観察できても、その結果を生み出した推論や意思決定プロセスへの可視性がほとんどなかった\nという課題がありました。\n\n## 主要な3つの機能領域\n\nSalesforceはこのツールを3つの機能エリアに整理しています。\n\n**1. Agent Analytics(分析)**\n\nすべてのエージェントがどのようにパフォーマンスを発揮しているかを包括的に把握し、パフォーマンスを意味のあるデータ・トレンド・インサイトに変換します。実際の顧客対応における使用状況と効果指標を監視し、KPIトレンドを時系列で表面化させ、非効果的なトピック・アクション・フローに対処できるようにします。\n\n\n**2. Agent Optimization(最適化)**\n\nすべてのユーザーインタラクションにわたるセッションレベルの詳細なトレーシングにより、エージェント成功の秘訣を解き明かします。粒度の高いログデータでセッションを分析・クラスタリングし、非効率なサブエージェントやアクションに関連する問題を迅速に特定・分離・解決できます。エージェント構成をミクロレベルで検査することで継続的な最適化ループが生まれ、精度向上とスケールでのパフォーマンス最大化に直結します。\n\n\n**3. Agent Health Monitoring(健全性モニタリング)**\n\nエージェントの健全性へのリアルタイムな可視性を提供します。パフォーマンストレンドを即座に可視化し、「サイレント障害」が発生した際にアラートを受け取ることができ、任意のコアメトリクスにカスタム閾値を設定できます。\n\n\n## 技術的な基盤\n\n\nこの深い可観測性は、Session Tracing Data Modelという2つの基盤ブロックによって実現されています。このデータモデルは、ユーザー入力、エージェントの応答、推論ステップ、LLM呼び出し、ガードレールチェックを含むすべてのインタラクションを記録し、Data 360に安全に保存します。これにより統合的な可視性とセッションレベルの詳細なインサイトが提供され、エージェントが意図通りに動作し適切に応答していることを確認できます。\n\n\nまた\nOpenTelemetry(OTEL)互換のデータモデルを採用しており、セッショントレースとテレメトリのエクスポートが可能\nです。\n\n---\n\n# 定着(アダプション)と精度を測る指標の設計\n\n## 1. 定着(アダプション)を測る指標\n\nSalesforce VPのGary Lerhauptが指摘するように、\nAgentforce Observabilityはミッションコントロールシステムとして機能するだけでなく、ビジネス固有のメトリクスを提供する点が従来の監視ツールとの違いです。\n業界別の具体例として:\n\n- \nサービス領域では「エンゲージメント率」や「デフレクション率(自己解決率)」、セールス領域では「割り当てられたリード数、コンバージョンしたリード数、返信率」\nなどが指標になります。\n\n実際の事例として、あるSNSプラットフォームでは\n広告主サポート向けAgentforce導入以降、サポートケースの46%をデフレクション(自己解決)できた\nという成果が報告されています。\n\n定着度を測る具体的な指標設計としては以下が推奨されます:\n\n- **利用状況指標**:\n全エージェントの集計パフォーマンス指標を取得しつつ、エージェント単位でAgentforceの各インタラクションに深く入り込む\n形でトラッキング\n- **消費・コスト指標**:\n各エージェントが消費したクレジットを明確に監視・報告することで財務的な透明性を確立し、エージェント単位で消費インサイトと利用トレンドを掘り下げることで、AIエージェントの活動を具体的なビジネス成果に直結させ、組織目標への貢献を定量化できます。\n\n- **業務プロセスへの浸透度**:\n深い可観測性、ライブ健全性モニタリング、豊富なアダプション分析、消費トラッキングに加え、サービスリーダーなど業務部門ユーザーの業務フローにエージェントシグナルを組み込む新機能\nを活用し、現場での実利用度を可視化\n\n## 2. 精度を測る指標\n\n精度測定の核心は**セッションレベルのトレーシング**にあります。\n\n- **タスク成功率・ツール呼び出し精度**:\nタスクごとの成功率、解決に到達するまでの平均ステップ数、ツール呼び出しの精度、推論ループ全体のコスト対価値比率\nが主要指標として挙",
+  "cited_urls": [
+    "https://www.salesforce.com/agentforce/observability/",
+    "https://salesforcebreak.com/2026/05/28/setting-up-agentforce-observability/",
+    "https://www.salesforce.com/news/stories/agentforce-studio-observability-tools-announcement/",
+    "https://www.mavlers.com/blog/salesforce-agentforce-analytics-observability-guide/",
+    "https://venturebeat.com/ai/salesforce-agentforce-observability-lets-you-watch-your-ai-agents-think-in",
+    "https://www.salesforce.com/ap/agentforce/observability/",
+    "https://www.salesforce.com/agentforce/observability/agent-observability/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E04",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-observability/",
+  "answer_text": "# Agentforce Observabilityとは\n\nAgentforce Observabilityは、Salesforceが提供するAIエージェント専用の監視・分析ツール群です。\n単一のミッションコントロールから、すべてのAIエージェントに対する完全な可視性とコントロールを実現し、ほぼリアルタイムでエージェントのパフォーマンスを監視・分析・最適化することで、より速い解決とより高い精度、優れた顧客体験を実現できます。\n\n\n背景として、\nAgentforceには「ブラックボックス」的な構造という弱点があり、組織はエージェントをデプロイしてその出力を観察できても、その結果を生み出した推論や意思決定プロセスへの可視性がほとんどなかった\nという課題がありました。\n\n## 主要な3つの機能領域\n\nSalesforceはこのツールを3つの機能エリアに整理しています。\n\n**1. Agent Analytics(分析)**\n\nすべてのエージェントがどのようにパフォーマンスを発揮しているかを包括的に把握し、パフォーマンスを意味のあるデータ・トレンド・インサイトに変換します。実際の顧客対応における使用状況と効果指標を監視し、KPIトレンドを時系列で表面化させ、非効果的なトピック・アクション・フローに対処できるようにします。\n\n\n**2. Agent Optimization(最適化)**\n\nすべてのユーザーインタラクションにわたるセッションレベルの詳細なトレーシングにより、エージェント成功の秘訣を解き明かします。粒度の高いログデータでセッションを分析・クラスタリングし、非効率なサブエージェントやアクションに関連する問題を迅速に特定・分離・解決できます。エージェント構成をミクロレベルで検査することで継続的な最適化ループが生まれ、精度向上とスケールでのパフォーマンス最大化に直結します。\n\n\n**3. Agent Health Monitoring(健全性モニタリング)**\n\nエージェントの健全性へのリアルタイムな可視性を提供します。パフォーマンストレンドを即座に可視化し、「サイレント障害」が発生した際にアラートを受け取ることができ、任意のコアメトリクスにカスタム閾値を設定できます。\n\n\n## 技術的な基盤\n\n\nこの深い可観測性は、Session Tracing Data Modelという2つの基盤ブロックによって実現されています。このデータモデルは、ユーザー入力、エージェントの応答、推論ステップ、LLM呼び出し、ガードレールチェックを含むすべてのインタラクションを記録し、Data 360に安全に保存します。これにより統合的な可視性とセッションレベルの詳細なインサイトが提供され、エージェントが意図通りに動作し適切に応答していることを確認できます。\n\n\nまた\nOpenTelemetry(OTEL)互換のデータモデルを採用しており、セッショントレースとテレメトリのエクスポートが可能\nです。\n\n---\n\n# 定着(アダプション)と精度を測る指標の設計\n\n## 1. 定着(アダプション)を測る指標\n\nSalesforce VPのGary Lerhauptが指摘するように、\nAgentforce Observabilityはミッションコントロールシステムとして機能するだけでなく、ビジネス固有のメトリクスを提供する点が従来の監視ツールとの違いです。\n業界別の具体例として:\n\n- \nサービス領域では「エンゲージメント率」や「デフレクション率(自己解決率)」、セールス領域では「割り当てられたリード数、コンバージョンしたリード数、返信率」\nなどが指標になります。\n\n実際の事例として、あるSNSプラットフォームでは\n広告主サポート向けAgentforce導入以降、サポートケースの46%をデフレクション(自己解決)できた\nという成果が報告されています。\n\n定着度を測る具体的な指標設計としては以下が推奨されます:\n\n- **利用状況指標**:\n全エージェントの集計パフォーマンス指標を取得しつつ、エージェント単位でAgentforceの各インタラクションに深く入り込む\n形でトラッキング\n- **消費・コスト指標**:\n各エージェントが消費したクレジットを明確に監視・報告することで財務的な透明性を確立し、エージェント単位で消費インサイトと利用トレンドを掘り下げることで、AIエージェントの活動を具体的なビジネス成果に直結させ、組織目標への貢献を定量化できます。\n\n- **業務プロセスへの浸透度**:\n深い可観測性、ライブ健全性モニタリング、豊富なアダプション分析、消費トラッキングに加え、サービスリーダーなど業務部門ユーザーの業務フローにエージェントシグナルを組み込む新機能\nを活用し、現場での実利用度を可視化\n\n## 2. 精度を測る指標\n\n精度測定の核心は**セッションレベルのトレーシング**にあります。\n\n- **タスク成功率・ツール呼び出し精度**:\nタスクごとの成功率、解決に到達するまでの平均ステップ数、ツール呼び出しの精度、推論ループ全体のコスト対価値比率\nが主要指標として挙",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "salesforcebreak.com",
+    "mavlers.com",
+    "venturebeat.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/agentforce/observability/",
+    "https://salesforcebreak.com/2026/05/28/setting-up-agentforce-observability/",
+    "https://www.salesforce.com/news/stories/agentforce-studio-observability-tools-announcement/",
+    "https://www.mavlers.com/blog/salesforce-agentforce-analytics-observability-guide/",
+    "https://venturebeat.com/ai/salesforce-agentforce-observability-lets-you-watch-your-ai-agents-think-in",
+    "https://www.salesforce.com/ap/agentforce/observability/",
+    "https://www.salesforce.com/agentforce/observability/agent-observability/"
+  ],
+  "unresolved_redirects": 0
+}

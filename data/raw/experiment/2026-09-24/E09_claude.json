@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E09",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce MCPとは？Agentforceと外部システムの接続方式と境界の設計",
+  "cep": null,
+  "timestamp": "2026-09-24T01:13:04.678801Z",
+  "answer": "Salesforce MCPとAgentforceの外部システム連携について、最新情報を調査します。\n# Salesforce MCPとは\n\n**MCP（Model Context Protocol）**は、Anthropic社が開発した\nAIモデルが外部ツール、システム、データと接続する方法を規定するオープンスタンダード\nです。Salesforceの説明では\nAIエージェントが単一の明確に定義されたハンドシェイクを通じて、内部・外部のソースからリソース、ツール、プロンプトを取得できるようにするオープンスタンダード\nとされ、\"\nUSB-C for AI\n\"（AIのためのUSB-C）とも表現されています。\n\n## アーキテクチャの3要素\n\nMCPは\nAIモデルの推論と実際のタスク実行・データ取得を明確に分離するクライアント・サーバー構造に基づいており、これによりスケーラブルかつセキュアなAPI管理が可能\nになります。\n\n- **Host**：\nユーザーが直接やり取りするAIアプリケーション（チャットボット、IDE、Salesforce Agentforceなど）。ワークフロー全体を統括し、MCP対応AIシステムへのユーザーの入口となる\n\n- **Client**：\nHostアプリケーション内に存在し、プロトコルの主要な通信処理を担当。特定の外部Serverとの専用接続を維持し、AIモデルのニーズを構造化されたプロトコルリクエストに変換する\n\n- **Server**：\n外部システムで、プロトコルを通じて自らの機能を公開する\n存在（Actions/Resources/Promptsを提供）\n\n# SalesforceにおけるMCP対応の経緯\n\nSalesforceは2025年6月にMCPサポートを発表し、\n2025年7月リリースでAgentforceにネイティブMCPクライアントをPilotとして搭載し、エージェントがコードなしで安全にMCP準拠サーバーへ接続できるようにするとともに、セキュリティポリシーとIDを強制するエンタープライズグレードのMCPサーバーレジストリを提供\nしました。当初は\nAgentforceの内部AIエージェントフレームワーク内での制限された利用にとどまっていましたが、Agentforce 3.0（2025年7月）ではネイティブMCPクライアントがPilotとなりました\n。\n\n# Agentforceと外部システムの接続方式\n\n## 1. Agentforce as MCP Client（外部MCPサーバーへの接続）\n\n\nSalesforce Agentforceはネイティブなmcpクライアントとして機能し、AIエージェントがデータベース、API、SaaSツール、データウェアハウスなど任意のMCP準拠外部システムをコードなしで発見・接続できる\nようになっています。接続時の流れは以下の通りです。\n\n1. **Discovery**：\nMCPクライアントが登録済みMCPサーバーに問い合わせ、利用可能なツールとその入出力スキーマ、使用方法の説明を含むマニフェストを受け取る\n\n2. **Reasoning**：\nAtlas Reasoning Engineがユーザーのリクエストを評価し、どのMCPツールをネイティブなSalesforceアクションと組み合わせて呼び出すかを決定する\n\n3. **Invocation**：\nMCPクライアントがJSON-RPC 2.0リクエストをMCPサーバーに送信し、サーバーが操作を実行して構造化された結果を返す\n\n4. **Trust Enforcement**：\nすべてのアクションはEinstein Trust Layerを通過し、PIIマスキング、フィールドレベルのセキュリティ強制、包括的な監査ログが行われる\n\n\n外部MCPサーバーの供給元としては、MuleSoft・Heroku・サードパーティなど複数の経路があります。\nAgentforceは MuleSoft MCP Servers（標準統合パターンでAPIと通信）、Heroku MCP Servers（カスタムロジックや外部ツール・データソース向け）、さらにサードパーティの",
+  "cited_urls": [
+    "https://www.salesforce.com/agentforce/mcp-support/",
+    "https://www.salesforce.com/agentforce/mcp-support/model-context-protocol/",
+    "https://sptechusa.com/blog/mcp-salesforce-model-context-protocol-guide/",
+    "https://developer.salesforce.com/blogs/2025/06/introducing-mcp-support-across-salesforce",
+    "https://www.salesforceben.com/salesforce-model-context-protocol-explained-how-mcp-bridges-ai-and-your-crm/",
+    "https://vantagepoint.io/blog/sf/agentforce-mcp-connect-external-systems-guide",
+    "https://medium.com/@gauravkheterpal/multi-agent-madness-demystifying-the-architecture-of-salesforce-agentforce-a2a-mcp-76581b91bc61"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E09",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-mcp/",
+  "answer_text": "Salesforce MCPとAgentforceの外部システム連携について、最新情報を調査します。\n# Salesforce MCPとは\n\n**MCP（Model Context Protocol）**は、Anthropic社が開発した\nAIモデルが外部ツール、システム、データと接続する方法を規定するオープンスタンダード\nです。Salesforceの説明では\nAIエージェントが単一の明確に定義されたハンドシェイクを通じて、内部・外部のソースからリソース、ツール、プロンプトを取得できるようにするオープンスタンダード\nとされ、\"\nUSB-C for AI\n\"（AIのためのUSB-C）とも表現されています。\n\n## アーキテクチャの3要素\n\nMCPは\nAIモデルの推論と実際のタスク実行・データ取得を明確に分離するクライアント・サーバー構造に基づいており、これによりスケーラブルかつセキュアなAPI管理が可能\nになります。\n\n- **Host**：\nユーザーが直接やり取りするAIアプリケーション（チャットボット、IDE、Salesforce Agentforceなど）。ワークフロー全体を統括し、MCP対応AIシステムへのユーザーの入口となる\n\n- **Client**：\nHostアプリケーション内に存在し、プロトコルの主要な通信処理を担当。特定の外部Serverとの専用接続を維持し、AIモデルのニーズを構造化されたプロトコルリクエストに変換する\n\n- **Server**：\n外部システムで、プロトコルを通じて自らの機能を公開する\n存在（Actions/Resources/Promptsを提供）\n\n# SalesforceにおけるMCP対応の経緯\n\nSalesforceは2025年6月にMCPサポートを発表し、\n2025年7月リリースでAgentforceにネイティブMCPクライアントをPilotとして搭載し、エージェントがコードなしで安全にMCP準拠サーバーへ接続できるようにするとともに、セキュリティポリシーとIDを強制するエンタープライズグレードのMCPサーバーレジストリを提供\nしました。当初は\nAgentforceの内部AIエージェントフレームワーク内での制限された利用にとどまっていましたが、Agentforce 3.0（2025年7月）ではネイティブMCPクライアントがPilotとなりました\n。\n\n# Agentforceと外部システムの接続方式\n\n## 1. Agentforce as MCP Client（外部MCPサーバーへの接続）\n\n\nSalesforce Agentforceはネイティブなmcpクライアントとして機能し、AIエージェントがデータベース、API、SaaSツール、データウェアハウスなど任意のMCP準拠外部システムをコードなしで発見・接続できる\nようになっています。接続時の流れは以下の通りです。\n\n1. **Discovery**：\nMCPクライアントが登録済みMCPサーバーに問い合わせ、利用可能なツールとその入出力スキーマ、使用方法の説明を含むマニフェストを受け取る\n\n2. **Reasoning**：\nAtlas Reasoning Engineがユーザーのリクエストを評価し、どのMCPツールをネイティブなSalesforceアクションと組み合わせて呼び出すかを決定する\n\n3. **Invocation**：\nMCPクライアントがJSON-RPC 2.0リクエストをMCPサーバーに送信し、サーバーが操作を実行して構造化された結果を返す\n\n4. **Trust Enforcement**：\nすべてのアクションはEinstein Trust Layerを通過し、PIIマスキング、フィールドレベルのセキュリティ強制、包括的な監査ログが行われる\n\n\n外部MCPサーバーの供給元としては、MuleSoft・Heroku・サードパーティなど複数の経路があります。\nAgentforceは MuleSoft MCP Servers（標準統合パターンでAPIと通信）、Heroku MCP Servers（カスタムロジックや外部ツール・データソース向け）、さらにサードパーティの",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "sptechusa.com",
+    "developer.salesforce.com",
+    "salesforceben.com",
+    "vantagepoint.io",
+    "medium.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/agentforce/mcp-support/",
+    "https://www.salesforce.com/agentforce/mcp-support/model-context-protocol/",
+    "https://sptechusa.com/blog/mcp-salesforce-model-context-protocol-guide/",
+    "https://developer.salesforce.com/blogs/2025/06/introducing-mcp-support-across-salesforce",
+    "https://www.salesforceben.com/salesforce-model-context-protocol-explained-how-mcp-bridges-ai-and-your-crm/",
+    "https://vantagepoint.io/blog/sf/agentforce-mcp-connect-external-systems-guide",
+    "https://medium.com/@gauravkheterpal/multi-agent-madness-demystifying-the-architecture-of-salesforce-agentforce-a2a-mcp-76581b91bc61"
+  ],
+  "unresolved_redirects": 0
+}

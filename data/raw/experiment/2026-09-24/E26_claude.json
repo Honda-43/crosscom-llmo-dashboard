@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E26",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce Data 360（旧Data Cloud）はAgentforceに必要？導入すべきかの判断基準",
+  "cep": null,
+  "timestamp": "2026-09-24T01:21:05.760711Z",
+  "answer": "Salesforce Data 360とAgentforceの関係、および導入判断基準について調査します。\n# Salesforce Data 360（旧Data Cloud）はAgentforceに必須か？\n\n結論から言うと、**「完全な導入が必須というわけではないが、多くの本格的なユースケースでは事実上必要になる」**というのが実態です。以下、詳しく解説します。\n\n## 1. 技術的な位置づけ：「有効化」と「実装」は別物\n\nAgentforceを有効化すると、組織にData Cloudが自動的にプロビジョニングされます。ただし、これは「使える状態になる」だけで、実際にデータモデリングや統合を行う「実装」とは異なります。\n\n\nAgentforceを有効化するとお使いの組織にData Cloudがプロビジョニングされます。そのため、セットアップ画面上では「はい」という答えに見えます。しかしプロビジョニングされていることと実装されていることは違います。\n \nエージェントがCRMレコードを読み書きするだけであれば、Data 360のモデリングプロジェクトは不要です。Flowアクション、Apexアクション、レコードのマージフィールドを使ったプロンプトテンプレートで対応できます。\n\n\n## 2. Data 360が「必須」になるケース\n\n一方で、Salesforce自身のガイドでは非常に強い表現を使っています。\n\n\nAgentforceにData 360が必要かどうかについて説明します。\nSalesforce公式の回答は明確です。\nAgentforceのさまざまな機能を強化する上でData 360も重要です。\n特に\nAIエージェント分析やDigital WalletなどのAgentforceの特定の機能にData 360アーキテクチャが活用されています。そのため、Data 360は、Agentforceにとって不可欠な要素と言えます。\nさらに\nData 360のインフラは、非構造化データのインデックス作成と検索、フィードバックのログ記録と監査証跡を強化します。\n\n\n具体的に必要になる場面は次の2つです。\n\n- **非構造化データからの回答が必要な場合**：\nエージェントが非構造化コンテンツから回答する必要がある場合、または共有キーを持たないシステム間で名寄せされた単一プロファイルが必要な場合に、本当にData 360が必要になります。顧客向けエージェントがサポート対応件数を削減する際は、一般的な知識ではなく実際の自社ドキュメントを引用する必要があります。\n\n- **RAG（検索拡張生成）による回答精度向上**：\nData 360は、RAGの文脈では特に非構造化データの蓄積基盤として機能します。PDFドキュメントや通話録音の文字起こし、メール、画像ファイルなどの非構造化データを処理し、AIが検索可能な形で蓄積できます。\n\n\n## 3. Data 360が「不要」なケース\n\n一方、シンプルなユースケースでは不要という指摘も多くあります。\n\n\nData Cloudの完全な実装はAgentforceの前提条件ではありません。会話自体、Salesforceのレコードとメタデータ、CMSファイルやドキュメント、ナレッジ記事だけでもエージェントにコンテキストを提供できます。\n\n\n具体的な例として：\n\n- \nAgentforce Service AgentはSalesforceナレッジ記事から回答を取得して階層1・2の顧客問い合わせに対応し、未解決のケースを人間のエージェントにエスカレーションできます。この場合、ナレッジベースがグラウンディングのソースとなるためData Cloudは不要です。\n\n- \nAgentforce Sales Agentは、Opportunity・Account・Contactオブジェクトを直接SOQLでクエリすることで、パイプラインの健全性を監視し、停滞した商談をフォローアップし、メールを起草し、レコードのステージを更新できます。このアーキテクチャにはData Cloudは含まれません。\n\n\n## 4. 導入すべきかの判断基準\n\n以下の3つの軸で判断すると整理しやすくなります。\n\n### ① データの分散度・統合の必要性\n複数のシステム（CRM、ERP、MA、外部DBなど）に顧客データが分散しており、それらを横断して「1人の顧客」として扱う必要がある場合はData 360が有効です。\nAgentforceがどれだけ優れた推論エンジン（Atlas）を持っていても、参照するデータがバラバラでは正しい判断はできません。ここで不可欠になるのが、Salesforceのデータ基盤である「Data360(Data Cloud)」です。\n\n\n### ② 非構造化データ活用の要否\nPDF仕様書、通話録音、メール履歴などの非構造化データをAIエージェントに参照させたいかどうかが大きな分岐点です。構造化データ（オブジェクトのレコード）だけで完結するなら不要な場合が多いです。\n\n### ③ 投資対効果とガバナンス体制\nData Cloud導入は軽くない投資です。\nData Cloudは本格的なプラットフォーム投資であり、データモデリングの専門知識、ガ",
+  "cited_urls": [
+    "https://www.getclientell.com/salesforce-blogs/does-agentforce-require-data-cloud",
+    "https://www.salesforce.com/jp/agentforce/guide/?bc=DB",
+    "https://successjp.salesforce.com/article/NAI-001148",
+    "https://www.salesforceben.com/5-common-misconceptions-about-agentforce/",
+    "https://www.softsquare.biz/blogs/agentforce-vs-data-cloud",
+    "https://tobem.jp/pardot_blog/agentforce/202411111518.html"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E26",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/salesforce-data-360/",
+  "answer_text": "Salesforce Data 360とAgentforceの関係、および導入判断基準について調査します。\n# Salesforce Data 360（旧Data Cloud）はAgentforceに必須か？\n\n結論から言うと、**「完全な導入が必須というわけではないが、多くの本格的なユースケースでは事実上必要になる」**というのが実態です。以下、詳しく解説します。\n\n## 1. 技術的な位置づけ：「有効化」と「実装」は別物\n\nAgentforceを有効化すると、組織にData Cloudが自動的にプロビジョニングされます。ただし、これは「使える状態になる」だけで、実際にデータモデリングや統合を行う「実装」とは異なります。\n\n\nAgentforceを有効化するとお使いの組織にData Cloudがプロビジョニングされます。そのため、セットアップ画面上では「はい」という答えに見えます。しかしプロビジョニングされていることと実装されていることは違います。\n \nエージェントがCRMレコードを読み書きするだけであれば、Data 360のモデリングプロジェクトは不要です。Flowアクション、Apexアクション、レコードのマージフィールドを使ったプロンプトテンプレートで対応できます。\n\n\n## 2. Data 360が「必須」になるケース\n\n一方で、Salesforce自身のガイドでは非常に強い表現を使っています。\n\n\nAgentforceにData 360が必要かどうかについて説明します。\nSalesforce公式の回答は明確です。\nAgentforceのさまざまな機能を強化する上でData 360も重要です。\n特に\nAIエージェント分析やDigital WalletなどのAgentforceの特定の機能にData 360アーキテクチャが活用されています。そのため、Data 360は、Agentforceにとって不可欠な要素と言えます。\nさらに\nData 360のインフラは、非構造化データのインデックス作成と検索、フィードバックのログ記録と監査証跡を強化します。\n\n\n具体的に必要になる場面は次の2つです。\n\n- **非構造化データからの回答が必要な場合**：\nエージェントが非構造化コンテンツから回答する必要がある場合、または共有キーを持たないシステム間で名寄せされた単一プロファイルが必要な場合に、本当にData 360が必要になります。顧客向けエージェントがサポート対応件数を削減する際は、一般的な知識ではなく実際の自社ドキュメントを引用する必要があります。\n\n- **RAG（検索拡張生成）による回答精度向上**：\nData 360は、RAGの文脈では特に非構造化データの蓄積基盤として機能します。PDFドキュメントや通話録音の文字起こし、メール、画像ファイルなどの非構造化データを処理し、AIが検索可能な形で蓄積できます。\n\n\n## 3. Data 360が「不要」なケース\n\n一方、シンプルなユースケースでは不要という指摘も多くあります。\n\n\nData Cloudの完全な実装はAgentforceの前提条件ではありません。会話自体、Salesforceのレコードとメタデータ、CMSファイルやドキュメント、ナレッジ記事だけでもエージェントにコンテキストを提供できます。\n\n\n具体的な例として：\n\n- \nAgentforce Service AgentはSalesforceナレッジ記事から回答を取得して階層1・2の顧客問い合わせに対応し、未解決のケースを人間のエージェントにエスカレーションできます。この場合、ナレッジベースがグラウンディングのソースとなるためData Cloudは不要です。\n\n- \nAgentforce Sales Agentは、Opportunity・Account・Contactオブジェクトを直接SOQLでクエリすることで、パイプラインの健全性を監視し、停滞した商談をフォローアップし、メールを起草し、レコードのステージを更新できます。このアーキテクチャにはData Cloudは含まれません。\n\n\n## 4. 導入すべきかの判断基準\n\n以下の3つの軸で判断すると整理しやすくなります。\n\n### ① データの分散度・統合の必要性\n複数のシステム（CRM、ERP、MA、外部DBなど）に顧客データが分散しており、それらを横断して「1人の顧客」として扱う必要がある場合はData 360が有効です。\nAgentforceがどれだけ優れた推論エンジン（Atlas）を持っていても、参照するデータがバラバラでは正しい判断はできません。ここで不可欠になるのが、Salesforceのデータ基盤である「Data360(Data Cloud)」です。\n\n\n### ② 非構造化データ活用の要否\nPDF仕様書、通話録音、メール履歴などの非構造化データをAIエージェントに参照させたいかどうかが大きな分岐点です。構造化データ（オブジェクトのレコード）だけで完結するなら不要な場合が多いです。\n\n### ③ 投資対効果とガバナンス体制\nData Cloud導入は軽くない投資です。\nData Cloudは本格的なプラットフォーム投資であり、データモデリングの専門知識、ガ",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "getclientell.com",
+    "salesforce.com",
+    "successjp.salesforce.com",
+    "salesforceben.com",
+    "softsquare.biz",
+    "tobem.jp"
+  ],
+  "resolved_urls": [
+    "https://www.getclientell.com/salesforce-blogs/does-agentforce-require-data-cloud",
+    "https://www.salesforce.com/jp/agentforce/guide/?bc=DB",
+    "https://successjp.salesforce.com/article/NAI-001148",
+    "https://www.salesforceben.com/5-common-misconceptions-about-agentforce/",
+    "https://www.softsquare.biz/blogs/agentforce-vs-data-cloud",
+    "https://tobem.jp/pardot_blog/agentforce/202411111518.html"
+  ],
+  "unresolved_redirects": 0
+}

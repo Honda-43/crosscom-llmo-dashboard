@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E17",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "AIエージェントのセキュリティリスクとAgentforceでの対策設計は？OWASP対応も含めて",
+  "cep": null,
+  "timestamp": "2026-09-24T01:16:48.699542Z",
+  "answer": "AIエージェントのセキュリティとAgentforceでの対策について、最新情報を調査してから回答します。\n# AIエージェントのセキュリティリスクとAgentforceでの対策設計\n\n## 1. AIエージェント特有のセキュリティリスク（なぜ従来のアプリと違うのか）\n\n\nAIエージェントはLLMを搭載し、推論・計画・ツール利用・記憶保持・目標達成のための行動をとる自律システムであり、従来のプロンプトインジェクションを超えた独自のセキュリティリスクをもたらします\n。主なリスクは次の通りです。\n\n- **プロンプトインジェクション（直接/間接）**：\nユーザー入力や外部データソース（Webサイト、文書、メール）を通じて悪意ある指示が注入され、エージェントの挙動が乗っ取られる\nリスク\n- **ツール濫用・権限昇格**：\n過剰に許可されたツールを悪用し、意図しない操作や未承認リソースへのアクセスを行う\n\n- **データ漏洩**：\nツール呼び出し、API要求、エージェント出力を通じた機密情報の流出\n\n- **メモリ汚染**：\nエージェントの記憶に悪意あるデータを永続化させ、以後のセッションに影響を与える\n攻撃\n- **過剰なエージェンシー（Excessive Agency）**：\nタスク範囲を超えたツールにアクセスできる「過剰な機能」、必要以上の権限で動作する「過剰な権限」、人の承認なしに重大な操作が進む「過剰な自律性」の3つが根本原因\nとされ、\nメール権限を持つエージェントを騙してフィッシングメールを送らせたり、DB権限を持つエージェントにレコードを削除させたりする\n実例があります\n- **Denial of Wallet（DoW）**：\n無制限なエージェントループによりAPI/計算コストが際限なく膨張する\n攻撃\n- **サプライチェーン攻撃**：\nエージェントが利用するサードパーティのツール、API、データソースを侵害する\n攻撃\n\n## 2. OWASPの標準フレームワーク\n\nOWASPはこの領域で2系統のTop10を整備しています。\n\n**① OWASP Top 10 for LLM Applications（2025年版）**\n\nプロンプトインジェクション、機密情報の漏洩、サプライチェーンの脆弱性、システムプロンプトの漏洩、マルチモーダル関連の新たな懸念などを主要な脆弱性として特定\nしています。\n\n**② OWASP Top 10 for Agentic Applications（ASI、2026年版）**\n\nLLMを活用したアプリケーションが直面する最も重大なセキュリティリスクに関する、最新のコミュニティ主導ガイド\nで、エージェント固有の10項目が定義されています：\n\n| コード | リスク |\n|---|---|\n| ASI01 | エージェントの目標ハイジャック |\n| ASI02 | \nツールの誤用・悪用\n |\n| ASI03 | \nエージェントIDと権限の悪用\n |\n| ASI04 | \nエージェント型サプライチェーンの侵害\n |\n| ASI05 | \n予期しないコード実行\n |\n| ASI06 | \nメモリ・コンテキスト汚染\n |\n| ASI07 | \n安全でないエージェント間通信\n |\n| ASI08 | \nカスケード障害\n |\n| ASI09 | \n人間-エージェント間の信頼の悪用\n |\n| ASI10 | \n不正エージェント（Rogue Agent）\n |\n\nこの背景として、\nメモリ汚染が後になって挙動を変化させたり、偽装されたエージェント間メッセージがクラスタ全体を誤誘導したり、誤った信号が自動化パイプラインに連鎖的な影響を及ぼしたり、説得力のある説明が人間の運用者を欺いて有害な操作を承認させたり、一部のエージェントが不整合や隠蔽、自律的な行動という懸念すべき兆候を示し始めた\nという実際のインシデント事例が反映されています。\n\n## 3. Agentforceのセキュリティアーキテクチャ\n\nAgentforceは「共有",
+  "cited_urls": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html",
+    "https://aembit.io/blog/owasp-top-10-llm-risks-explained/",
+    "https://arxiv.org/pdf/2506.23296",
+    "https://genai.owasp.org/",
+    "https://www.trydeepteam.com/docs/frameworks-owasp-top-10-for-agentic-applications",
+    "https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E17",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-security-risk-design/",
+  "answer_text": "AIエージェントのセキュリティとAgentforceでの対策について、最新情報を調査してから回答します。\n# AIエージェントのセキュリティリスクとAgentforceでの対策設計\n\n## 1. AIエージェント特有のセキュリティリスク（なぜ従来のアプリと違うのか）\n\n\nAIエージェントはLLMを搭載し、推論・計画・ツール利用・記憶保持・目標達成のための行動をとる自律システムであり、従来のプロンプトインジェクションを超えた独自のセキュリティリスクをもたらします\n。主なリスクは次の通りです。\n\n- **プロンプトインジェクション（直接/間接）**：\nユーザー入力や外部データソース（Webサイト、文書、メール）を通じて悪意ある指示が注入され、エージェントの挙動が乗っ取られる\nリスク\n- **ツール濫用・権限昇格**：\n過剰に許可されたツールを悪用し、意図しない操作や未承認リソースへのアクセスを行う\n\n- **データ漏洩**：\nツール呼び出し、API要求、エージェント出力を通じた機密情報の流出\n\n- **メモリ汚染**：\nエージェントの記憶に悪意あるデータを永続化させ、以後のセッションに影響を与える\n攻撃\n- **過剰なエージェンシー（Excessive Agency）**：\nタスク範囲を超えたツールにアクセスできる「過剰な機能」、必要以上の権限で動作する「過剰な権限」、人の承認なしに重大な操作が進む「過剰な自律性」の3つが根本原因\nとされ、\nメール権限を持つエージェントを騙してフィッシングメールを送らせたり、DB権限を持つエージェントにレコードを削除させたりする\n実例があります\n- **Denial of Wallet（DoW）**：\n無制限なエージェントループによりAPI/計算コストが際限なく膨張する\n攻撃\n- **サプライチェーン攻撃**：\nエージェントが利用するサードパーティのツール、API、データソースを侵害する\n攻撃\n\n## 2. OWASPの標準フレームワーク\n\nOWASPはこの領域で2系統のTop10を整備しています。\n\n**① OWASP Top 10 for LLM Applications（2025年版）**\n\nプロンプトインジェクション、機密情報の漏洩、サプライチェーンの脆弱性、システムプロンプトの漏洩、マルチモーダル関連の新たな懸念などを主要な脆弱性として特定\nしています。\n\n**② OWASP Top 10 for Agentic Applications（ASI、2026年版）**\n\nLLMを活用したアプリケーションが直面する最も重大なセキュリティリスクに関する、最新のコミュニティ主導ガイド\nで、エージェント固有の10項目が定義されています：\n\n| コード | リスク |\n|---|---|\n| ASI01 | エージェントの目標ハイジャック |\n| ASI02 | \nツールの誤用・悪用\n |\n| ASI03 | \nエージェントIDと権限の悪用\n |\n| ASI04 | \nエージェント型サプライチェーンの侵害\n |\n| ASI05 | \n予期しないコード実行\n |\n| ASI06 | \nメモリ・コンテキスト汚染\n |\n| ASI07 | \n安全でないエージェント間通信\n |\n| ASI08 | \nカスケード障害\n |\n| ASI09 | \n人間-エージェント間の信頼の悪用\n |\n| ASI10 | \n不正エージェント（Rogue Agent）\n |\n\nこの背景として、\nメモリ汚染が後になって挙動を変化させたり、偽装されたエージェント間メッセージがクラスタ全体を誤誘導したり、誤った信号が自動化パイプラインに連鎖的な影響を及ぼしたり、説得力のある説明が人間の運用者を欺いて有害な操作を承認させたり、一部のエージェントが不整合や隠蔽、自律的な行動という懸念すべき兆候を示し始めた\nという実際のインシデント事例が反映されています。\n\n## 3. Agentforceのセキュリティアーキテクチャ\n\nAgentforceは「共有",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "cheatsheetseries.owasp.org",
+    "aembit.io",
+    "arxiv.org",
+    "genai.owasp.org",
+    "trydeepteam.com"
+  ],
+  "resolved_urls": [
+    "https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html",
+    "https://aembit.io/blog/owasp-top-10-llm-risks-explained/",
+    "https://arxiv.org/pdf/2506.23296",
+    "https://genai.owasp.org/",
+    "https://www.trydeepteam.com/docs/frameworks-owasp-top-10-for-agentic-applications",
+    "https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/"
+  ],
+  "unresolved_redirects": 0
+}

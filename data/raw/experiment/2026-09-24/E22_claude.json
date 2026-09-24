@@ -1,0 +1,45 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E22",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの出力が毎回変わって安定しない。モデル選択と推論制御の設定は？",
+  "cep": null,
+  "timestamp": "2026-09-24T01:19:10.282449Z",
+  "answer": "# Agentforceの出力の不安定さと対策\n\n## 1. まず理解しておくべき構造\n\nAgentforceは\nLLM（大規模言語モデル）を活用して自然言語やインテントの処理を行う一方で、特定のビジネスロジックに従うためにAgentforce Scriptも使用するハイブリッド推論モデル\nで動いています。つまり「LLM側の確率的なゆらぎ」と「トピック選択・アクション選択のロジック」の両方が出力のブレに影響します。\n\n## 2. モデル選択（プロバイダ）の設定\n\nAgentforceは標準で複数のLLMプロバイダから選択できます。\n\n- **OpenAI**：\nAgentforceは創業以来OpenAIを使用しており、その有効性・速度・信頼性が実証されています\n。\nAgentforce with OpenAIはGPT 4 Omniを使用します\n。\n- **Anthropic（Amazon Bedrock経由）**：\nAgentforce with AnthropicはClaude Sonnet 4を使用します\n。\n\n設定場所は、設定のクイック検索で「Agentforce Agents」を検索し、デフォルトモデルのプロバイダを切り替える形になります。モデルによって指示への追従性や文体の癖が異なるため、「出力が安定しない」場合はまずプロバイダ／モデルを固定し、両方で比較検証することをお勧めします。\n\n## 3. 推論制御（ハイパーパラメータ）の設定\n\nモデルプレイグラウンド（またはプロンプトテンプレートのモデル設定）では、以下のハイパーパラメータを調整できます。\n\n\ntemperature、frequency penalty、presence penalty\nを調整して、\nモデルの出力の多様性や新規性を制御\nできます（top-kサンプリングは直接調整対象ではありません）。\n\n特に重要なのが **Temperature** です。\n\n- \nTemperature設定を変更すると生成される応答のランダム性に影響し、値が低い（0に近い）ほどモデルの出力はより決定論的で焦点が絞られ、予測可能で反復的な応答になります\n。\n- \n逆に温度が高い（1に近い）ほど応答のランダム性と創造性が増し、多様で予測しにくい応答になります\n。\n\n**実践的な設定手順**（Trailheadの公式チュートリアルより）：\n1. ユーザー（EinsteinServiceAgent User）の編集画面で「Model Configuration」パネルを開く\n2. \n「Create model」ラジオボタンを選択\n\n3. \nTemperatureスライダーを0.3程度に下げる\n（出力の安定性を求める場合の目安）\n4. \n他の設定はそのままにする\n\n\n出力の一貫性・再現性を重視する用途（FAQ回答、定型的な要約、業務ロジックに近いタスクなど）では **Temperatureを0〜0.3程度の低めに設定** するのが基本です。逆に自由な文章生成やアイデア出しをさせたい場合は0.7〜1.0など高めに設定します。\n\n## 4. Temperatureだけでは解決しない場合の追加対策\n\n- **プロンプト／指示文の具体性を上げる**：曖昧な指示はモデルの解釈の幅を広げ、出力のブレの原因になります。トピックの「指示」欄で出力フォーマットや条件分岐を明確に記述してください。\n- **決定論的なロジックへの寄せ替え**：\nより強力な決定論的制御を実現するために、Agentforceビルダーやエージェントスクリプトが導入されており、確率的な自然言語プロンプトよりも信頼性の高いロジックを重視する\n方向に設計を見直すのも有効です。厳密に同じ動作をさせたい部分はAgentforce Script／Flow／Apexアクションに落とし込み、LLMには「意図理解・要約・文章生成」など本来ゆらぎが許容される部分だけを任せる構成にすると安定性が上がります。\n- **モニタリング・デバッグの活用**：\nAgentforceにはパフォーマンスをモニタリングして最適化するためのアナリティクスツールがあり、個々のインタラクションをデバッグするための詳細なセッションデータを視覚化・分析できます\n。これを使ってどのトピック／アクションでブレが発生しているかを特定すると、対策箇所を絞り込めます。\n- **完全な決定論は期待しすぎない**：一般論として、Temperatureを0にしても、モデル提供側の実装（MoEアーキテクチャなど）によっては完全な再現性が保証されないケースがある点は留意してください。\n\n## まとめ\n\n| 対策 | 効果 |\n|---|---|\n| LLMプロバイダ（OpenAI/Anthropic）の固定・比較 | モデル特性の違いによるブレを排除 |\n| Temperatureを低め（0〜0.3）に設定 | 出力をより決定論的・予測可能に |\n| frequency/presence penaltyの調整 | 表現の多様性・繰り返しの制御 |\n| 指示文の具体化、Flow/Apex/Scriptへのロジック移管 | 確率的ゆらぎが許容されない処理を安定化 |\n| セッションデータでのデバッグ | ブレの発生箇所を特定して個別対処 |\n\nまずは対象エージェントのModel ConfigurationでTemperature",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/agentforce/guide/",
+    "https://cloud.flect.co.jp/entry/2025/09/05/154825",
+    "https://low-code-media.com/agentforcespecialist-53/",
+    "https://trailhead.salesforce.com/content/learn/projects/customize-a-service-agent-with-prompts-flows-and-actions/get-agent-ready",
+    "https://www.salesforce.com/jp/agentforce/how-it-works/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E22",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-reasoning-control/",
+  "answer_text": "# Agentforceの出力の不安定さと対策\n\n## 1. まず理解しておくべき構造\n\nAgentforceは\nLLM（大規模言語モデル）を活用して自然言語やインテントの処理を行う一方で、特定のビジネスロジックに従うためにAgentforce Scriptも使用するハイブリッド推論モデル\nで動いています。つまり「LLM側の確率的なゆらぎ」と「トピック選択・アクション選択のロジック」の両方が出力のブレに影響します。\n\n## 2. モデル選択（プロバイダ）の設定\n\nAgentforceは標準で複数のLLMプロバイダから選択できます。\n\n- **OpenAI**：\nAgentforceは創業以来OpenAIを使用しており、その有効性・速度・信頼性が実証されています\n。\nAgentforce with OpenAIはGPT 4 Omniを使用します\n。\n- **Anthropic（Amazon Bedrock経由）**：\nAgentforce with AnthropicはClaude Sonnet 4を使用します\n。\n\n設定場所は、設定のクイック検索で「Agentforce Agents」を検索し、デフォルトモデルのプロバイダを切り替える形になります。モデルによって指示への追従性や文体の癖が異なるため、「出力が安定しない」場合はまずプロバイダ／モデルを固定し、両方で比較検証することをお勧めします。\n\n## 3. 推論制御（ハイパーパラメータ）の設定\n\nモデルプレイグラウンド（またはプロンプトテンプレートのモデル設定）では、以下のハイパーパラメータを調整できます。\n\n\ntemperature、frequency penalty、presence penalty\nを調整して、\nモデルの出力の多様性や新規性を制御\nできます（top-kサンプリングは直接調整対象ではありません）。\n\n特に重要なのが **Temperature** です。\n\n- \nTemperature設定を変更すると生成される応答のランダム性に影響し、値が低い（0に近い）ほどモデルの出力はより決定論的で焦点が絞られ、予測可能で反復的な応答になります\n。\n- \n逆に温度が高い（1に近い）ほど応答のランダム性と創造性が増し、多様で予測しにくい応答になります\n。\n\n**実践的な設定手順**（Trailheadの公式チュートリアルより）：\n1. ユーザー（EinsteinServiceAgent User）の編集画面で「Model Configuration」パネルを開く\n2. \n「Create model」ラジオボタンを選択\n\n3. \nTemperatureスライダーを0.3程度に下げる\n（出力の安定性を求める場合の目安）\n4. \n他の設定はそのままにする\n\n\n出力の一貫性・再現性を重視する用途（FAQ回答、定型的な要約、業務ロジックに近いタスクなど）では **Temperatureを0〜0.3程度の低めに設定** するのが基本です。逆に自由な文章生成やアイデア出しをさせたい場合は0.7〜1.0など高めに設定します。\n\n## 4. Temperatureだけでは解決しない場合の追加対策\n\n- **プロンプト／指示文の具体性を上げる**：曖昧な指示はモデルの解釈の幅を広げ、出力のブレの原因になります。トピックの「指示」欄で出力フォーマットや条件分岐を明確に記述してください。\n- **決定論的なロジックへの寄せ替え**：\nより強力な決定論的制御を実現するために、Agentforceビルダーやエージェントスクリプトが導入されており、確率的な自然言語プロンプトよりも信頼性の高いロジックを重視する\n方向に設計を見直すのも有効です。厳密に同じ動作をさせたい部分はAgentforce Script／Flow／Apexアクションに落とし込み、LLMには「意図理解・要約・文章生成」など本来ゆらぎが許容される部分だけを任せる構成にすると安定性が上がります。\n- **モニタリング・デバッグの活用**：\nAgentforceにはパフォーマンスをモニタリングして最適化するためのアナリティクスツールがあり、個々のインタラクションをデバッグするための詳細なセッションデータを視覚化・分析できます\n。これを使ってどのトピック／アクションでブレが発生しているかを特定すると、対策箇所を絞り込めます。\n- **完全な決定論は期待しすぎない**：一般論として、Temperatureを0にしても、モデル提供側の実装（MoEアーキテクチャなど）によっては完全な再現性が保証されないケースがある点は留意してください。\n\n## まとめ\n\n| 対策 | 効果 |\n|---|---|\n| LLMプロバイダ（OpenAI/Anthropic）の固定・比較 | モデル特性の違いによるブレを排除 |\n| Temperatureを低め（0〜0.3）に設定 | 出力をより決定論的・予測可能に |\n| frequency/presence penaltyの調整 | 表現の多様性・繰り返しの制御 |\n| 指示文の具体化、Flow/Apex/Scriptへのロジック移管 | 確率的ゆらぎが許容されない処理を安定化 |\n| セッションデータでのデバッグ | ブレの発生箇所を特定して個別対処 |\n\nまずは対象エージェントのModel ConfigurationでTemperature",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "cloud.flect.co.jp",
+    "low-code-media.com",
+    "trailhead.salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/jp/agentforce/guide/",
+    "https://cloud.flect.co.jp/entry/2025/09/05/154825",
+    "https://low-code-media.com/agentforcespecialist-53/",
+    "https://trailhead.salesforce.com/content/learn/projects/customize-a-service-agent-with-prompts-flows-and-actions/get-agent-ready",
+    "https://www.salesforce.com/jp/agentforce/how-it-works/"
+  ],
+  "unresolved_redirects": 0
+}

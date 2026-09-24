@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E46",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの権限セットは何を設定する？AIエージェントにどこまでデータアクセスを渡していい？",
+  "cep": null,
+  "timestamp": "2026-09-24T01:30:34.247872Z",
+  "answer": "# Agentforceの権限セット設計とデータアクセス範囲\n\n## 1. 権限セットが設定するもの\n\nAgentforceでは大きく分けて **①ユーザー側の「エージェント利用権限」** と **②エージェント自身の「データアクセス権限（エージェントユーザー）」** の2種類を設定する必要があります。\n\n### ① エージェントを「使う」ための権限（人間ユーザー向け）\n社員がAgentforceの会話UIを使えるようにするための権限です。\nAgentforce for employeesでは、権限セットを1つ以上作成するか、プロファイル内でアクセスを設定することで、どのユーザーがどのエージェントにアクセスできるかをコントロールできます。\n \nアクセスを付与しないと、システム管理者であってもエージェントを使用できません。\n\n\nデフォルトエージェントの場合は、\n権限セットで権限を管理したい場合は、「Access Agentforce Default Agent」と「Prompt Template User」の権限セットを割り当てます。\n\n\n### ② エージェント自身がデータにアクセスするための権限（エージェントユーザー）\nこれがより重要な設定で、**AIエージェント専用の「エージェントユーザー」というSalesforceユーザーレコード**にCRUD権限やApex/フロー実行権限などを付与する仕組みです。\n\n\nServiceエージェントがエンドユーザーのユーザーレコードでアクセス制御を行えない場合、専用のユーザーレコード（エージェントユーザー）がどの種類のデータを読み書きできるかを決定します。Agentforce Serviceエージェントが在庫や予約カレンダーを閲覧する権限を持っていなければ、それに関する質問には答えられません。\n\n\n具体的に権限セットで設定する項目には以下が含まれます（Qiitaの実例より）：\n- **オブジェクトのCRUD権限**（標準/カスタムオブジェクトの参照・作成・編集・削除）\n- \nApexクラスを使う場合はエージェントが使用するApexクラスのセキュリティをエージェントユーザーのプロファイルに拡張する\n必要がある\n- \nフローを使う場合は、エージェントユーザーとしてフローを実行してデバッグし、権限の見落としがないか確認する\n\n\n実際にService Agentを作成すると、自動的に以下の権限セット（グループ）が割り当てられます：\n\nAgentforceServiceAgentUserPsg（Agentforce Service Agent User、Data Cloud User、Prompt Template Userの各権限セットを含む）に加え、Agentforce Service Agent Secure Baseと[エージェント名]_Permissionsという2つの個別の権限セットが割り当てられる。前者はCaseやContactなどのService関連オブジェクトへの基本アクセスを付与し、後者は完全に空で、独自のカスタム権限を追加できる。\n\n\n## 2. AIエージェントにどこまでデータアクセスを渡すべきか\n\n### 原則：セキュア・バイ・デフォルト＋最小権限\nSalesforceは明確に「最小権限の原則」を推奨しています。\n\n\nエージェントユーザーは最小限のアクセス権で作成され、デフォルトで安全な状態になっています。ユースケースに対応するために、最小権限の原則に基づいてエージェントユーザーのアクセス権を拡張していきます。\n\n\n\nこの初期状態のフットプリントは意図的に最小限に抑えられており、Salesforceが「デフォルトで安全」であることを示す方法として、ほぼ何もできない状態から始めて、実際に必要なものに基づいて権限を拡張していく設計になっています。\n\n\n### 判断基準：「必要十分」かつ「過剰厳禁」\n権限設計で最も重要なのは、**足りなさすぎても、多すぎてもダメ**という点です。\n\n\nエージェントが商品在庫や予約カレンダーを閲覧する権限を持っていなければ、それに関する質問に答えられない。逆に、エージェントが不要なデータへのアクセス権を持っていると、顧客に機密情報を漏らしてしまう可能性がある。エージェントユーザーが必要な業務に必要なデータへのアクセス権を持ちつつ、それ以外へのアクセスを制限するよう設定することは、安全で信頼性が高く、役立つエージェントを構築する上で不可欠な要素です。\n\n\n### 実務上のアクセス権設計の考え方\n1. **オブジェクト単位で絞る**：エージェントに担当させるタスク（例：ケース作成、問い合わせ対応）に必要な項目のみCRUD権限を付与する。例えばService AgentでCase対応をさせる場合、\nカスタム権限セットではContactオブジェクトの全項目に参照権限を、Caseオブジェクトには参照・作成・編集権限を付与し、Caseの全項目に編集アクセスを付与する\n、といった形で必要範囲だけを個別に設計します。\n\n2. **フィールドレベルセキュリティも考慮**：オブジェクト単位だけでなく、機密性の高いフィールド（個人情報、契約金額など）は項目レベルで除外する。\n\n3. **Apex/フローの実行権限は個別精査**：業務ロジックをApexやフローで実装している場合、そのクラス・フローへのアクセスもエージェントユーザーのプロファイ",
+  "cited_urls": [
+    "https://trailhead.salesforce.com/content/learn/projects/quick-start-create-employee-agents-in-agentforce/grant-access-and-use-the-agents",
+    "https://help.salesforce.com/s/articleView?id=ai.copilot_setup_user_access.htm&language=en_US&type=5",
+    "https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_user.htm&type=5",
+    "https://qiita.com/Keiji_otsubo/items/ede60fd4217ab5be57a8",
+    "https://www.salesforceben.com/agentforce-permissions-explained-agent-users-access-and-security/",
+    "https://twistellar.com/blog/how-to-create-salesforce-agentforce-service-agent"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E46",
+  "experiment_flag": "pool",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-permission-set/",
+  "answer_text": "# Agentforceの権限セット設計とデータアクセス範囲\n\n## 1. 権限セットが設定するもの\n\nAgentforceでは大きく分けて **①ユーザー側の「エージェント利用権限」** と **②エージェント自身の「データアクセス権限（エージェントユーザー）」** の2種類を設定する必要があります。\n\n### ① エージェントを「使う」ための権限（人間ユーザー向け）\n社員がAgentforceの会話UIを使えるようにするための権限です。\nAgentforce for employeesでは、権限セットを1つ以上作成するか、プロファイル内でアクセスを設定することで、どのユーザーがどのエージェントにアクセスできるかをコントロールできます。\n \nアクセスを付与しないと、システム管理者であってもエージェントを使用できません。\n\n\nデフォルトエージェントの場合は、\n権限セットで権限を管理したい場合は、「Access Agentforce Default Agent」と「Prompt Template User」の権限セットを割り当てます。\n\n\n### ② エージェント自身がデータにアクセスするための権限（エージェントユーザー）\nこれがより重要な設定で、**AIエージェント専用の「エージェントユーザー」というSalesforceユーザーレコード**にCRUD権限やApex/フロー実行権限などを付与する仕組みです。\n\n\nServiceエージェントがエンドユーザーのユーザーレコードでアクセス制御を行えない場合、専用のユーザーレコード（エージェントユーザー）がどの種類のデータを読み書きできるかを決定します。Agentforce Serviceエージェントが在庫や予約カレンダーを閲覧する権限を持っていなければ、それに関する質問には答えられません。\n\n\n具体的に権限セットで設定する項目には以下が含まれます（Qiitaの実例より）：\n- **オブジェクトのCRUD権限**（標準/カスタムオブジェクトの参照・作成・編集・削除）\n- \nApexクラスを使う場合はエージェントが使用するApexクラスのセキュリティをエージェントユーザーのプロファイルに拡張する\n必要がある\n- \nフローを使う場合は、エージェントユーザーとしてフローを実行してデバッグし、権限の見落としがないか確認する\n\n\n実際にService Agentを作成すると、自動的に以下の権限セット（グループ）が割り当てられます：\n\nAgentforceServiceAgentUserPsg（Agentforce Service Agent User、Data Cloud User、Prompt Template Userの各権限セットを含む）に加え、Agentforce Service Agent Secure Baseと[エージェント名]_Permissionsという2つの個別の権限セットが割り当てられる。前者はCaseやContactなどのService関連オブジェクトへの基本アクセスを付与し、後者は完全に空で、独自のカスタム権限を追加できる。\n\n\n## 2. AIエージェントにどこまでデータアクセスを渡すべきか\n\n### 原則：セキュア・バイ・デフォルト＋最小権限\nSalesforceは明確に「最小権限の原則」を推奨しています。\n\n\nエージェントユーザーは最小限のアクセス権で作成され、デフォルトで安全な状態になっています。ユースケースに対応するために、最小権限の原則に基づいてエージェントユーザーのアクセス権を拡張していきます。\n\n\n\nこの初期状態のフットプリントは意図的に最小限に抑えられており、Salesforceが「デフォルトで安全」であることを示す方法として、ほぼ何もできない状態から始めて、実際に必要なものに基づいて権限を拡張していく設計になっています。\n\n\n### 判断基準：「必要十分」かつ「過剰厳禁」\n権限設計で最も重要なのは、**足りなさすぎても、多すぎてもダメ**という点です。\n\n\nエージェントが商品在庫や予約カレンダーを閲覧する権限を持っていなければ、それに関する質問に答えられない。逆に、エージェントが不要なデータへのアクセス権を持っていると、顧客に機密情報を漏らしてしまう可能性がある。エージェントユーザーが必要な業務に必要なデータへのアクセス権を持ちつつ、それ以外へのアクセスを制限するよう設定することは、安全で信頼性が高く、役立つエージェントを構築する上で不可欠な要素です。\n\n\n### 実務上のアクセス権設計の考え方\n1. **オブジェクト単位で絞る**：エージェントに担当させるタスク（例：ケース作成、問い合わせ対応）に必要な項目のみCRUD権限を付与する。例えばService AgentでCase対応をさせる場合、\nカスタム権限セットではContactオブジェクトの全項目に参照権限を、Caseオブジェクトには参照・作成・編集権限を付与し、Caseの全項目に編集アクセスを付与する\n、といった形で必要範囲だけを個別に設計します。\n\n2. **フィールドレベルセキュリティも考慮**：オブジェクト単位だけでなく、機密性の高いフィールド（個人情報、契約金額など）は項目レベルで除外する。\n\n3. **Apex/フローの実行権限は個別精査**：業務ロジックをApexやフローで実装している場合、そのクラス・フローへのアクセスもエージェントユーザーのプロファイ",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "trailhead.salesforce.com",
+    "help.salesforce.com",
+    "qiita.com",
+    "salesforceben.com",
+    "twistellar.com"
+  ],
+  "resolved_urls": [
+    "https://trailhead.salesforce.com/content/learn/projects/quick-start-create-employee-agents-in-agentforce/grant-access-and-use-the-agents",
+    "https://help.salesforce.com/s/articleView?id=ai.copilot_setup_user_access.htm&language=en_US&type=5",
+    "https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_user.htm&type=5",
+    "https://qiita.com/Keiji_otsubo/items/ede60fd4217ab5be57a8",
+    "https://www.salesforceben.com/agentforce-permissions-explained-agent-users-access-and-security/",
+    "https://twistellar.com/blog/how-to-create-salesforce-agentforce-service-agent"
+  ],
+  "unresolved_redirects": 0
+}

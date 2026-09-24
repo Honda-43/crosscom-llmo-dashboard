@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E31",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？",
+  "cep": null,
+  "timestamp": "2026-09-24T01:03:33.110954Z",
+  "answer": "Agentforce Employee Agentは、Salesforceが提供する従業員向けのAIエージェントです。社内の問い合わせ対応や業務申請フローを自動化し、従業員が日常業務で情報を検索したり、手続きを行ったりする際の負担を軽減することを目的としています。利用者本人の権限のまま社内文書やナレッジを参照し、質問に回答することができます。\n\nAgentforce Employee Agentが任せられる社内問い合わせの範囲は以下の通りです。\n\n**1. 定型的な問い合わせへの自動応答**\n人事、総務、情報システム部門などに寄せられる、毎月繰り返し届くような定型的な質問に対して、即座に自動で回答を提供できます。これにより、担当部門の工数を大幅に削減し、従業員の自己解決を促進します。\n\n**2. 幅広い業務領域でのサポート**\n多岐にわたる社内業務に関する問い合わせに対応可能です。具体的には以下の分野が挙げられます。\n*   **人事関連**: 勤怠や経費精算などの申請フロー、社内ルールの確認、福利厚生に関する質問（有給休暇、育児休暇、401kプランなど）、入社・異動手続き、オンボーディングタスク、人事ポリシーに関する質問。\n*   **情報システム関連**: 社内システムの使い方、パスワードリセット、ソフトウェアアクセス、一般的なハードウェアトラブルシューティング、複雑な技術的チケットの適切な担当者への振り分け。\n*   **経理・財務関連**: 経費精算に関する質問、予算の確認、承認ワークフロー。\n*   **その他業務運用**: 拠点間の連絡、標準作業手順書（SOP）に関する情報提供、備品要求。\n\n**3. 質問を超えたアクションの実行**\n単に情報を提供するだけでなく、必要なアクションを実行することも可能です。例えば、HRケースの作成や更新、承認ワークフローの自動化、申請手続きの開始、会議設定や部屋の予約といったタスクを実行できます。\n\n**4. 複数チャネルからの利用**\nSlackやSalesforceモバイルアプリなど、従業員が日常的に利用するツールからアクセスできるため、場所や時間を問わずに必要な情報にアクセスし、手続きを進めることが可能です。\n\n**任せる範囲を決定する上でのポイント**\nAgentforce Employee Agentに任せる範囲を決める際は、答えが社内文書に書かれていて、かつ人が毎回読み替えて説明しているような場面が特に適しています。また、従業員ごとに異なる権限を引き継ぎ、社内文書から回答を生成する仕組みが備わっています。 導入企業の中には、従業員向けAIエージェントの導入1年で30万件超の会話を処理し、97.7%の自己解決率を達成した事例も報告されています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFTo1MW4BUt5InQEbJFzSU60LtsgGaLs3GWpkcUtCUgzuEx5IYKeyfmwZw4ONDCjS5vK36g4DxoxU92uhmKxwKQ4nG5S2tSEbM_j0zHb9GJSGiHmaGDj0C98ND06qrRFcen5vtAXYd_kVV5",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEBAJyMIcpsyd_FU6hhFi_ZjL4SzpRKB6s-tKbpN8B-zuTkwT1yge7m9e1USDDMe-GanEhvGjaUAlxL_O4ytrzcH4f7iUjrKhYJr5fDe-8fblCaTs_d7G1pl8csDtydZ6M2DI_Rl0LuMeA0zZDoG9qh06llqJE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFaxIg7Nj8h-JZA053V9RHCcaejHONMfG7Si3gmhfg_Zr2cDy59lQ_IMMnh9g9nOWYHJsaTHNsWlFCDzqgbfQxK_ky0BJBzQyg7m790065YbRWAbHe7lhxRlH0mNQTsikSBP47XRZlHkh3UOw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGvJ0m3RbaRrRpIB716xqHTGfiajBMq4DTKXK_rR5t4kUp0JUbauJrAWv5IqtqX32D4j16qVtVhlBzJDBteQDYsKsKTSEbDUcIcD4XKshKSV_joaR7TfasNs5KSEM6wV6ZJ409xxvXegbO_jLvGaXX5E-9nCkW3caKAdhFMyJWN5i8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHRc-stL5fQIbVb42PttwLzwBuEUTw9b-qD1B_HlqIgp7Ae9HP1HMOeMhZave3KUuANDFlSlIbSJkVW7N-IBvS99_vh-7Pcr0E2JuzBteF_WqfLpz9Hdf-lPRyQGAhKN_Lrko-QZYE-umUtAZDSwHozIcfU3G0HdMm22zueeDZFtwVRyWz6q2PXQoA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEEnQ2KvW9EmozKarrGjsF00NnqOpdl37NyR1ea21S1agqOw2_LbwrBWeQWm4Gxmiry_cLh3Ol1K_6Lq_9Bh_p6QOD-C0f7LNGRrMvZdF8Mcfweydu_PMPf4HDYnTpQewRg7iSK5Tyz",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGQwRmoZIyWe9IsHCX9Gd0qeEYuuEpV5AOOEbRTzpT3eqemo67UuJx_31yjMG72nsrXApqhCJb6x6gB5swspDaIdnAS_FM2MoNzwn-zRnaIJpRcDNvBdsMU3CnlUgkOX0dA4nEbQ7LB0PuDVbvZKXxEQehyqcDvbVLKgA=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E31",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-employee-agent/",
+  "answer_text": "Agentforce Employee Agentは、Salesforceが提供する従業員向けのAIエージェントです。社内の問い合わせ対応や業務申請フローを自動化し、従業員が日常業務で情報を検索したり、手続きを行ったりする際の負担を軽減することを目的としています。利用者本人の権限のまま社内文書やナレッジを参照し、質問に回答することができます。\n\nAgentforce Employee Agentが任せられる社内問い合わせの範囲は以下の通りです。\n\n**1. 定型的な問い合わせへの自動応答**\n人事、総務、情報システム部門などに寄せられる、毎月繰り返し届くような定型的な質問に対して、即座に自動で回答を提供できます。これにより、担当部門の工数を大幅に削減し、従業員の自己解決を促進します。\n\n**2. 幅広い業務領域でのサポート**\n多岐にわたる社内業務に関する問い合わせに対応可能です。具体的には以下の分野が挙げられます。\n*   **人事関連**: 勤怠や経費精算などの申請フロー、社内ルールの確認、福利厚生に関する質問（有給休暇、育児休暇、401kプランなど）、入社・異動手続き、オンボーディングタスク、人事ポリシーに関する質問。\n*   **情報システム関連**: 社内システムの使い方、パスワードリセット、ソフトウェアアクセス、一般的なハードウェアトラブルシューティング、複雑な技術的チケットの適切な担当者への振り分け。\n*   **経理・財務関連**: 経費精算に関する質問、予算の確認、承認ワークフロー。\n*   **その他業務運用**: 拠点間の連絡、標準作業手順書（SOP）に関する情報提供、備品要求。\n\n**3. 質問を超えたアクションの実行**\n単に情報を提供するだけでなく、必要なアクションを実行することも可能です。例えば、HRケースの作成や更新、承認ワークフローの自動化、申請手続きの開始、会議設定や部屋の予約といったタスクを実行できます。\n\n**4. 複数チャネルからの利用**\nSlackやSalesforceモバイルアプリなど、従業員が日常的に利用するツールからアクセスできるため、場所や時間を問わずに必要な情報にアクセスし、手続きを進めることが可能です。\n\n**任せる範囲を決定する上でのポイント**\nAgentforce Employee Agentに任せる範囲を決める際は、答えが社内文書に書かれていて、かつ人が毎回読み替えて説明しているような場面が特に適しています。また、従業員ごとに異なる権限を引き継ぎ、社内文書から回答を生成する仕組みが備わっています。 導入企業の中には、従業員向けAIエージェントの導入1年で30万件超の会話を処理し、97.7%の自己解決率を達成した事例も報告されています。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "cited_domains": [
+    "cross-com.jp",
+    "strh.co.jp",
+    "note.com",
+    "pedowitzgroup.com",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/agentforce-employee-agent/",
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://note.com/samuraijuku_biz/n/n08b3a08e8d5d",
+    "https://www.pedowitzgroup.com/agentforce-help-employees-internal-tasks",
+    "https://www.salesforce.com/agentforce/agentforce-for-employees/employee-agents/",
+    "https://note.com/aiworkwatch/n/nf99b3defb9c6",
+    "https://www.salesforce.com/agentforce/agentforce-for-employees/"
+  ],
+  "unresolved_redirects": 0
+}

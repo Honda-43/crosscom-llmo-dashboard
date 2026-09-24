@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E32",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Tableau AIとPulseで何が変わる？ダッシュボードを誰も見ない問題は解決する？",
+  "cep": null,
+  "timestamp": "2026-09-24T01:24:02.781986Z",
+  "answer": "Tableau AI（Tableau Agent／旧Einstein Copilot）とTableau Pulseによって、Tableauの体験は「作って待つ」から「押し出して伝える」へと大きく変わりつつあります。ただし「ダッシュボードを誰も見ない問題」を完全に解決するというより、**問題への対処法自体を変える**、というのが実態に近いです。\n\n## 何が変わるのか\n\n### 1. Tableau AI（Tableau Agent）で\"作る\"が変わる\n\n2026年にはAIがTableauの脇役ではなく中核エンジンとなり、Tableau Agentは旧Einstein Copilotから完全にリブランドされ、Tableau DesktopやPrepに組み込まれた会話型アシスタントとして、自然言語での質問から複雑な計算やピボットテーブル作成、最適な可視化タイプの提案まで行えるようになりました\n。さらに\n「Semantic Learning」という新しい層が導入され、AIが組織固有のビジネス文脈を学習することで、回答が数学的に正確なだけでなくビジネス的にも妥当なものになります\n。\n\n2026年8月時点では、\nMCP（Model Context Protocol）統合により、会話形式のAIコマンドで複数ページのダッシュボードを構築・修正できるようになっています\n。つまり「ダッシュボードを作る」こと自体のハードルは劇的に下がっています。\n\n### 2. Tableau Pulseで\"見る\"が変わる（プル型→プッシュ型）\nここが本質的な変化です。\nPulseはビジネスユーザーがダッシュボードを構築したり操作したりすることなく、AI生成のインサイトを届けるTableau Cloud内の機能です\n。仕組みとしては\nアナリストが「総収益」のような指標を定義し、ユーザーはLinkedInで誰かをフォローする感覚でその指標をフォローするだけで、あとはPulseがデータのあらゆる次元を調べ、統計モデルを実行し、最も重要な発見を自然言語の文章としてホーム画面・メールダイジェスト・Slack・Teamsに届けてくれるため、誰もチェックすることを覚えておく必要がなくなります\n。\n\n2026年版では機能がさらに強化されています：\n- \n役職ごとにキュレーションされたKPIの「ニュースフィード」のようなパーソナライズドメトリクスホームページにより、10ページのダッシュボードから自分の担当地域の数字を探す必要がなくなりました\n\n- \n「目標達成ペース」機能が「順調（緑）」「遅延（赤）」を自動表示し、Root Cause AIが指標変動の「主要因」や「外れ値」を自動特定して原因を説明してくれます\n\n- \n強化されたQ&A（Discover）機能により、データソースや定義、期間でグループ化された指標群を統計的アルゴリズムで分析し、関連する洞察・可視化・出典・追加質問の提案を自然言語で得られるようになりました\n\n\nさらに2026年版では\nPulseが完全にメインのワークフローに統合され、作成者はPulseの指標を任意のダッシュボードに角丸デザインや適応レイアウト込みで追加できるようになり、KPIが常に目立つ形で「何が変わって、なぜ変わったか」を伝えるニュースフィード形式のMISが実現しています\n。\n\n## 「誰も見ない問題」は解決するのか\n\n**部分的にはイエス、しかし万能薬ではありません。**\n\n肯定的な材料として、ある事例が象徴的です。\nあるクライアント企業のあるVP of Salesは「毎週チェックすべきダッシュボードが6つあるが、実際に見るのはせいぜい2つで、しかも何かがおかしいと感じた時だけだ」と語っています\n。従来のBIが抱えていた根本課題も指摘されています：\nBIは長らく「ダッシュボードを作り、誰かが見るのを待ち、行動してくれることを願う」という受け身のループに陥っていましたが、Pulseはガバナンスの効いた指標と生成AI、文脈に応じた配信チャネルを組み合わせることで、アナリティクスをプル型からプッシュ型へと転換し、常時稼働の早期警告システムへと変えています\n。\n\n実際にPulseを導入したチームには行動変容が見られるという報告もあります。\nPulseを導入したチームは数週間以内に「何が起きたか」ではなく「なぜこの指標が動いたのか、何をすべきか」と問うよう",
+  "cited_urls": [
+    "https://onlineitguru.com/blog/tableau-2026-vs-previous-versions-whats-changed-and-why-it-matters",
+    "https://www.tableau.com/products/new-features",
+    "https://consulting.sva.com/insights/tableau-pulse-let-the-data-come-to-you",
+    "https://www.aitools-directory.com/tools/tableau-pulse-ai-insights/",
+    "https://help.tableau.com/current/online/en-us/pulse_intro.htm",
+    "https://b-eye.com/blog/tableau-pulse-real-time-personalized-analytics/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E32",
+  "experiment_flag": "pool",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/tableau-ai/",
+  "answer_text": "Tableau AI（Tableau Agent／旧Einstein Copilot）とTableau Pulseによって、Tableauの体験は「作って待つ」から「押し出して伝える」へと大きく変わりつつあります。ただし「ダッシュボードを誰も見ない問題」を完全に解決するというより、**問題への対処法自体を変える**、というのが実態に近いです。\n\n## 何が変わるのか\n\n### 1. Tableau AI（Tableau Agent）で\"作る\"が変わる\n\n2026年にはAIがTableauの脇役ではなく中核エンジンとなり、Tableau Agentは旧Einstein Copilotから完全にリブランドされ、Tableau DesktopやPrepに組み込まれた会話型アシスタントとして、自然言語での質問から複雑な計算やピボットテーブル作成、最適な可視化タイプの提案まで行えるようになりました\n。さらに\n「Semantic Learning」という新しい層が導入され、AIが組織固有のビジネス文脈を学習することで、回答が数学的に正確なだけでなくビジネス的にも妥当なものになります\n。\n\n2026年8月時点では、\nMCP（Model Context Protocol）統合により、会話形式のAIコマンドで複数ページのダッシュボードを構築・修正できるようになっています\n。つまり「ダッシュボードを作る」こと自体のハードルは劇的に下がっています。\n\n### 2. Tableau Pulseで\"見る\"が変わる（プル型→プッシュ型）\nここが本質的な変化です。\nPulseはビジネスユーザーがダッシュボードを構築したり操作したりすることなく、AI生成のインサイトを届けるTableau Cloud内の機能です\n。仕組みとしては\nアナリストが「総収益」のような指標を定義し、ユーザーはLinkedInで誰かをフォローする感覚でその指標をフォローするだけで、あとはPulseがデータのあらゆる次元を調べ、統計モデルを実行し、最も重要な発見を自然言語の文章としてホーム画面・メールダイジェスト・Slack・Teamsに届けてくれるため、誰もチェックすることを覚えておく必要がなくなります\n。\n\n2026年版では機能がさらに強化されています：\n- \n役職ごとにキュレーションされたKPIの「ニュースフィード」のようなパーソナライズドメトリクスホームページにより、10ページのダッシュボードから自分の担当地域の数字を探す必要がなくなりました\n\n- \n「目標達成ペース」機能が「順調（緑）」「遅延（赤）」を自動表示し、Root Cause AIが指標変動の「主要因」や「外れ値」を自動特定して原因を説明してくれます\n\n- \n強化されたQ&A（Discover）機能により、データソースや定義、期間でグループ化された指標群を統計的アルゴリズムで分析し、関連する洞察・可視化・出典・追加質問の提案を自然言語で得られるようになりました\n\n\nさらに2026年版では\nPulseが完全にメインのワークフローに統合され、作成者はPulseの指標を任意のダッシュボードに角丸デザインや適応レイアウト込みで追加できるようになり、KPIが常に目立つ形で「何が変わって、なぜ変わったか」を伝えるニュースフィード形式のMISが実現しています\n。\n\n## 「誰も見ない問題」は解決するのか\n\n**部分的にはイエス、しかし万能薬ではありません。**\n\n肯定的な材料として、ある事例が象徴的です。\nあるクライアント企業のあるVP of Salesは「毎週チェックすべきダッシュボードが6つあるが、実際に見るのはせいぜい2つで、しかも何かがおかしいと感じた時だけだ」と語っています\n。従来のBIが抱えていた根本課題も指摘されています：\nBIは長らく「ダッシュボードを作り、誰かが見るのを待ち、行動してくれることを願う」という受け身のループに陥っていましたが、Pulseはガバナンスの効いた指標と生成AI、文脈に応じた配信チャネルを組み合わせることで、アナリティクスをプル型からプッシュ型へと転換し、常時稼働の早期警告システムへと変えています\n。\n\n実際にPulseを導入したチームには行動変容が見られるという報告もあります。\nPulseを導入したチームは数週間以内に「何が起きたか」ではなく「なぜこの指標が動いたのか、何をすべきか」と問うよう",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "onlineitguru.com",
+    "tableau.com",
+    "consulting.sva.com",
+    "aitools-directory.com",
+    "help.tableau.com",
+    "b-eye.com"
+  ],
+  "resolved_urls": [
+    "https://onlineitguru.com/blog/tableau-2026-vs-previous-versions-whats-changed-and-why-it-matters",
+    "https://www.tableau.com/products/new-features",
+    "https://consulting.sva.com/insights/tableau-pulse-let-the-data-come-to-you",
+    "https://www.aitools-directory.com/tools/tableau-pulse-ai-insights/",
+    "https://help.tableau.com/current/online/en-us/pulse_intro.htm",
+    "https://b-eye.com/blog/tableau-pulse-real-time-personalized-analytics/"
+  ],
+  "unresolved_redirects": 0
+}

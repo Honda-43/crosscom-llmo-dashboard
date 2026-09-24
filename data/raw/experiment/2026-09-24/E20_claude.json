@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E20",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceで成果を出している営業組織の活用事例を知りたい",
+  "cep": null,
+  "timestamp": "2026-09-24T01:18:12.092844Z",
+  "answer": "Agentforceを活用して成果を出している営業組織の事例について検索します。\nAgentforceを活用して成果を出している営業組織の事例をいくつかご紹介します。\n\n## 国内事例\n\n**訪問販売系企業（BOXIL掲載事例）**\n業務効率化が進んだ営業部門で明確な成果が出ています。\nAgentforce Salesの導入後、売上高は対前年比15%増となり、新規の訪問販売による顧客獲得数も対前年比20%増となりました。現場からも「無駄な訪問や空振りが減った」という前向きな意見が寄せられています。\n費用対効果についても、\n導入1年目で顧客データの蓄積は初期段階にもかかわらず、すでに売上15%増などの成果が明らかになっており、データが蓄積されるほど今後も効果が改善し続けると見込まれています。\n\n\n**株式会社FUJI（製造業・自社内製）**\n\n電子部品実装機で世界トップクラスのシェアを持つ株式会社FUJIは、外部ベンダーに頼らず自社でAIエージェントを内製した企業で、「2035年に売上高3,000億円」という目標に対し、一人あたりの生産性を1.5倍に高める必要があるという課題を背景にAIエージェントの活用に踏み出しました。\n\n\n## 海外事例\n\n**Salesforce SDR Agent（自社事例）**\n\nSalesforce自身のSDR Agentは3週間で80万件のリードを生成しており、強力なデータと明確な運用ルールを組み合わせることで、アジェンティックAIカテゴリーが実質的なトップファネル規模を生み出せることを示しています。\n\n\n**Lennar（住宅販売）**\n\nLennarは従来の営業時間の制約を超え、デジタルに精通した顧客に24時間365日対応するためAgentforceを活用しており、より多くのリードを獲得し、効率的に選別し、野心的な売上成長目標の達成に向けてシームレスな体験を提供できるようになる見込みです。\n\n\n**匿名企業（見積・受注プロセス）**\nある企業では、Agentforce導入により\n見積作成時間を60%短縮し、価格設定のミスをなくし、リピートビジネスを20%増加させ、追加人員なしで販売量の30%増加に対応できるようになりました。\n\n\n**匿名の大企業（ターゲティング営業）**\n\nAgentforceは既存のワークフローを妨げることなく、ターゲットを絞ったエンゲージメントを427%拡大させ、より質の高い商談機会の創出、効率の改善、急成長の中でも強い顧客体験の維持を実現しています。\n\n\n**Jade Global支援企業（デジタルSDR導入）**\n\nこの事例では、営業前段階のプロセスを刷新し、データ品質を向上させ、営業チームが価値の高い商談に集中できるようにしました。\nデータサイロや地域・言語をまたいだ問い合わせのルーティング課題を解決するために、自律的なデジタルSDRエージェントが導入されました。\n\n## 共通する成功パターン\n\nこれらの事例に共通するのは、以下のような特徴です：\n\n1. **反復的・時間依存性の高い業務への適用** — \n最も強力なAgentforceの営業活用事例は、反復的で時間的制約があり、測定可能なほどルールベースの業務であり、現状では見込み客開拓、リード育成、アカウントリサーチ、商談準備、見積作成、マネージャーコーチングなどが該当します。\n\n\n2. **データ基盤の整備が前提** — 成果を出している組織はCRMデータの整理や業務フロー分析など、導入前の準備を重視しています。\n\n3. **段階的な導入（PoC活用）** — \nPoC（概念実証）の実施や既存のSalesforce環境のデータ整理、業務フローの綿密な分析など、本格導入前に踏むべき重要なステップを経ることが成功のポイントとされています。\n\n\nより詳しい事例や自社の業種に近いケースを知りたい場合は、業界（製造業・小売・金融など）を教えていただければ、さらに絞り込んで調査します。",
+  "cited_urls": [
+    "https://boxil.jp/mag/a11311/",
+    "https://www.salesforce.com/jp/blog/jp-small-business-ai-agent-facts/",
+    "https://www.saleswingsapp.com/agentforce/salesforce-agentforce-use-cases-for-sales/",
+    "https://www.salesforce.com/news/stories/agentforce-customer-success-stories/",
+    "https://www.acxiom.com/salesforce/agentforce-supercharges-salesforce-sales-cloud-4-inspiring-real-world-stories/",
+    "https://www.jadeglobal.com/resources/case-study/salesforce-agentforce-lead-engagement-transformation",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E20",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-use-cases/",
+  "answer_text": "Agentforceを活用して成果を出している営業組織の事例について検索します。\nAgentforceを活用して成果を出している営業組織の事例をいくつかご紹介します。\n\n## 国内事例\n\n**訪問販売系企業（BOXIL掲載事例）**\n業務効率化が進んだ営業部門で明確な成果が出ています。\nAgentforce Salesの導入後、売上高は対前年比15%増となり、新規の訪問販売による顧客獲得数も対前年比20%増となりました。現場からも「無駄な訪問や空振りが減った」という前向きな意見が寄せられています。\n費用対効果についても、\n導入1年目で顧客データの蓄積は初期段階にもかかわらず、すでに売上15%増などの成果が明らかになっており、データが蓄積されるほど今後も効果が改善し続けると見込まれています。\n\n\n**株式会社FUJI（製造業・自社内製）**\n\n電子部品実装機で世界トップクラスのシェアを持つ株式会社FUJIは、外部ベンダーに頼らず自社でAIエージェントを内製した企業で、「2035年に売上高3,000億円」という目標に対し、一人あたりの生産性を1.5倍に高める必要があるという課題を背景にAIエージェントの活用に踏み出しました。\n\n\n## 海外事例\n\n**Salesforce SDR Agent（自社事例）**\n\nSalesforce自身のSDR Agentは3週間で80万件のリードを生成しており、強力なデータと明確な運用ルールを組み合わせることで、アジェンティックAIカテゴリーが実質的なトップファネル規模を生み出せることを示しています。\n\n\n**Lennar（住宅販売）**\n\nLennarは従来の営業時間の制約を超え、デジタルに精通した顧客に24時間365日対応するためAgentforceを活用しており、より多くのリードを獲得し、効率的に選別し、野心的な売上成長目標の達成に向けてシームレスな体験を提供できるようになる見込みです。\n\n\n**匿名企業（見積・受注プロセス）**\nある企業では、Agentforce導入により\n見積作成時間を60%短縮し、価格設定のミスをなくし、リピートビジネスを20%増加させ、追加人員なしで販売量の30%増加に対応できるようになりました。\n\n\n**匿名の大企業（ターゲティング営業）**\n\nAgentforceは既存のワークフローを妨げることなく、ターゲットを絞ったエンゲージメントを427%拡大させ、より質の高い商談機会の創出、効率の改善、急成長の中でも強い顧客体験の維持を実現しています。\n\n\n**Jade Global支援企業（デジタルSDR導入）**\n\nこの事例では、営業前段階のプロセスを刷新し、データ品質を向上させ、営業チームが価値の高い商談に集中できるようにしました。\nデータサイロや地域・言語をまたいだ問い合わせのルーティング課題を解決するために、自律的なデジタルSDRエージェントが導入されました。\n\n## 共通する成功パターン\n\nこれらの事例に共通するのは、以下のような特徴です：\n\n1. **反復的・時間依存性の高い業務への適用** — \n最も強力なAgentforceの営業活用事例は、反復的で時間的制約があり、測定可能なほどルールベースの業務であり、現状では見込み客開拓、リード育成、アカウントリサーチ、商談準備、見積作成、マネージャーコーチングなどが該当します。\n\n\n2. **データ基盤の整備が前提** — 成果を出している組織はCRMデータの整理や業務フロー分析など、導入前の準備を重視しています。\n\n3. **段階的な導入（PoC活用）** — \nPoC（概念実証）の実施や既存のSalesforce環境のデータ整理、業務フローの綿密な分析など、本格導入前に踏むべき重要なステップを経ることが成功のポイントとされています。\n\n\nより詳しい事例や自社の業種に近いケースを知りたい場合は、業界（製造業・小売・金融など）を教えていただければ、さらに絞り込んで調査します。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "boxil.jp",
+    "salesforce.com",
+    "saleswingsapp.com",
+    "acxiom.com",
+    "jadeglobal.com",
+    "service.digital.panasonic.co.jp"
+  ],
+  "resolved_urls": [
+    "https://boxil.jp/mag/a11311/",
+    "https://www.salesforce.com/jp/blog/jp-small-business-ai-agent-facts/",
+    "https://www.saleswingsapp.com/agentforce/salesforce-agentforce-use-cases-for-sales/",
+    "https://www.salesforce.com/news/stories/agentforce-customer-success-stories/",
+    "https://www.acxiom.com/salesforce/agentforce-supercharges-salesforce-sales-cloud-4-inspiring-real-world-stories/",
+    "https://www.jadeglobal.com/resources/case-study/salesforce-agentforce-lead-engagement-transformation",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2"
+  ],
+  "unresolved_redirects": 0
+}

@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E24",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce AIのEinstein・Agentforce・Data 360はどう関係している？使い分けは？",
+  "cep": null,
+  "timestamp": "2026-09-24T01:20:10.888350Z",
+  "answer": "Salesforceの現在のAI製品構成について検索して、正確な情報をお伝えします。\n# Salesforce AI三本柱：Einstein・Agentforce・Data 360の関係と使い分け\n\n## 全体像：3層構造として理解する\n\nこの3つは競合する製品ではなく、**役割の異なる3層**として機能しています。\n\n| 層 | 製品 | 役割 |\n|---|---|---|\n| **知能層** | Einstein | 「何をすべきか」を提案する |\n| **実行層** | Agentforce | 提案に基づき「自律的に行動する」 |\n| **データ基盤層** | Data 360 | 上記2つを支える「信頼できるデータ基盤」 |\n\n\nEinsteinは、SalesforceのAI機能群全体を指す包括的なブランドで、予測分析、生成AI、自然言語処理、レコメンデーションなど多岐にわたるAI機能を提供し、CRMデータに基づいて深い洞察を提供する「インテリジェンス層」として位置づけられます\n。\n\n一方で\nAgentforceは、Einsteinの基盤の上に構築された、自律的にタスクを実行する「AIエージェント」に特化したプラットフォームで、人間のような推論能力を持ち、プロアクティブにアクションを起こす「デジタルレイバー」として機能する「アクション層」です\n。\n\n重要なのは、\nこの2つのソリューションは独立した製品ではなく補完的な関係にあり、Einsteinが「何をすべきか」という知能を提供し、Agentforceがその知能に基づいて「どのように行動するか」を実行する構造だという点です\n。\n\n## Data 360の位置づけ：AIを支える「土台」\n\n2025年10月にData CloudがData 360へと名称変更されました。\n2025年10月14日付でData CloudはData 360にリブランドされ、名称は新しくなったものの機能や内容は変わっていません\n。\n\nData 360の重要性は非常に大きく、\nData 360はAgentforceの利用に際して必ずプロビジョニング・有効化する必要があり、Agentforce Data LibraryやEinstein Trust LayerといったAgentforce機能はData 360なしでは動作しません\n。\n\nData 360の本質的な役割について、\nSalesforce Data 360はSalesforceプラットフォームの中核となるデータ基盤であり、他のSalesforceクラウドやAWS・Google Cloud・Azureなどの外部システム、社内データベースなど様々なソースからの顧客データを、単一の統合された顧客プロファイルへと集約します\n。\n\nさらに\n単なる従来型のデータウェアハウスとは概念的に異なり、統合データモデル（UDM）を用いて異なるシステム間のレコードを意味的に紐付けます\n。\n\nRAG（検索拡張生成）の観点でも重要で、\nData 360はRAGの文脈で特に非構造化データの蓄積基盤として機能し、PDFドキュメントや通話録音の文字起こし、メール、画像ファイルなどを処理してAIが検索可能な形で蓄積でき、企業のナレッジ記事や製品マニュアルを取り込むことで意味検索が可能になります\n。\n\n## Agentforceの動作の仕組み\n\nAgentforceがData 360とEinsteinを実際にどう使うかというと、\n従来のAIはルール（ワークフロー）を組む必要がありましたが、Atlas推論エンジンを持つAgentforceは、状況把握・データ参照・計画立案・実行という4つのステップを自律的かつ高速に回転させて行動します\n。特にデータ参照の段階では\nData360(Data Cloud)に蓄積された最新の顧客データや社内ナレッジを自ら取りに行きます\n。\n\n## 歴史的経緯：なぜ分かりにくいのか\n\n名称の変遷が混乱を招いている面があります。\n従来「Einstein AI」と呼ばれていた予測分析・リードスコアリング・自動レコメンデーションは、現在ではより広範なAgentforceアーキテクチャの中に位置づけられており、Agentforceは自律型AIエージェントのためのSalesforceプラットフォームです\n。\n\nただしEinsteinという名称・機能自体が消えたわけではなく、\nEinstein AIは分析的基盤として引き続き稼働しており、Agentforceアーキテクチャの中でリードスコアリング、商談インサイト、アカウントインサイトを提供しています\n。\n\n## 実務上の使い分けガイド\n\n現場でのシンプルな整理として、次のような考え方が提唱されています。\nたとえばリードの画面を開いたときに「このリードの成約確率は85点」と表示されるのがEinstein Lead Scoringで、商談画面で「この案件は停滞リスクあり」と出るのがDeal Insightsです\n。\n共通しているのは、Einsteinは「こうした方がいい」と教えてくれるが、実際に手を動かすのは人間という点です\n。\n\n導入のステップとしては、\nまずはEinstein機能で自社データの分析精度を確認し、効果が見えたところでAgentforceの導入を検討するのが現実的なステップです\n。つまり：\n\n- **「教えるAI」＝Einstein**：予測・提案・インサイトを人間に提供 → 実行は人間\n- **「",
+  "cited_urls": [
+    "https://base.terrasky.co.jp/articles/8pSGd",
+    "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce",
+    "https://www.salesfive.com/en/insights/data-cloud-ai-combination/",
+    "https://successjp.salesforce.com/article/NAI-001148",
+    "https://tobem.jp/pardot_blog/agentforce/202411111518.html",
+    "https://hatenabase.jp/blog/salesforce-agentforce-vs-einstein/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E24",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/salesforce-ai/",
+  "answer_text": "Salesforceの現在のAI製品構成について検索して、正確な情報をお伝えします。\n# Salesforce AI三本柱：Einstein・Agentforce・Data 360の関係と使い分け\n\n## 全体像：3層構造として理解する\n\nこの3つは競合する製品ではなく、**役割の異なる3層**として機能しています。\n\n| 層 | 製品 | 役割 |\n|---|---|---|\n| **知能層** | Einstein | 「何をすべきか」を提案する |\n| **実行層** | Agentforce | 提案に基づき「自律的に行動する」 |\n| **データ基盤層** | Data 360 | 上記2つを支える「信頼できるデータ基盤」 |\n\n\nEinsteinは、SalesforceのAI機能群全体を指す包括的なブランドで、予測分析、生成AI、自然言語処理、レコメンデーションなど多岐にわたるAI機能を提供し、CRMデータに基づいて深い洞察を提供する「インテリジェンス層」として位置づけられます\n。\n\n一方で\nAgentforceは、Einsteinの基盤の上に構築された、自律的にタスクを実行する「AIエージェント」に特化したプラットフォームで、人間のような推論能力を持ち、プロアクティブにアクションを起こす「デジタルレイバー」として機能する「アクション層」です\n。\n\n重要なのは、\nこの2つのソリューションは独立した製品ではなく補完的な関係にあり、Einsteinが「何をすべきか」という知能を提供し、Agentforceがその知能に基づいて「どのように行動するか」を実行する構造だという点です\n。\n\n## Data 360の位置づけ：AIを支える「土台」\n\n2025年10月にData CloudがData 360へと名称変更されました。\n2025年10月14日付でData CloudはData 360にリブランドされ、名称は新しくなったものの機能や内容は変わっていません\n。\n\nData 360の重要性は非常に大きく、\nData 360はAgentforceの利用に際して必ずプロビジョニング・有効化する必要があり、Agentforce Data LibraryやEinstein Trust LayerといったAgentforce機能はData 360なしでは動作しません\n。\n\nData 360の本質的な役割について、\nSalesforce Data 360はSalesforceプラットフォームの中核となるデータ基盤であり、他のSalesforceクラウドやAWS・Google Cloud・Azureなどの外部システム、社内データベースなど様々なソースからの顧客データを、単一の統合された顧客プロファイルへと集約します\n。\n\nさらに\n単なる従来型のデータウェアハウスとは概念的に異なり、統合データモデル（UDM）を用いて異なるシステム間のレコードを意味的に紐付けます\n。\n\nRAG（検索拡張生成）の観点でも重要で、\nData 360はRAGの文脈で特に非構造化データの蓄積基盤として機能し、PDFドキュメントや通話録音の文字起こし、メール、画像ファイルなどを処理してAIが検索可能な形で蓄積でき、企業のナレッジ記事や製品マニュアルを取り込むことで意味検索が可能になります\n。\n\n## Agentforceの動作の仕組み\n\nAgentforceがData 360とEinsteinを実際にどう使うかというと、\n従来のAIはルール（ワークフロー）を組む必要がありましたが、Atlas推論エンジンを持つAgentforceは、状況把握・データ参照・計画立案・実行という4つのステップを自律的かつ高速に回転させて行動します\n。特にデータ参照の段階では\nData360(Data Cloud)に蓄積された最新の顧客データや社内ナレッジを自ら取りに行きます\n。\n\n## 歴史的経緯：なぜ分かりにくいのか\n\n名称の変遷が混乱を招いている面があります。\n従来「Einstein AI」と呼ばれていた予測分析・リードスコアリング・自動レコメンデーションは、現在ではより広範なAgentforceアーキテクチャの中に位置づけられており、Agentforceは自律型AIエージェントのためのSalesforceプラットフォームです\n。\n\nただしEinsteinという名称・機能自体が消えたわけではなく、\nEinstein AIは分析的基盤として引き続き稼働しており、Agentforceアーキテクチャの中でリードスコアリング、商談インサイト、アカウントインサイトを提供しています\n。\n\n## 実務上の使い分けガイド\n\n現場でのシンプルな整理として、次のような考え方が提唱されています。\nたとえばリードの画面を開いたときに「このリードの成約確率は85点」と表示されるのがEinstein Lead Scoringで、商談画面で「この案件は停滞リスクあり」と出るのがDeal Insightsです\n。\n共通しているのは、Einsteinは「こうした方がいい」と教えてくれるが、実際に手を動かすのは人間という点です\n。\n\n導入のステップとしては、\nまずはEinstein機能で自社データの分析精度を確認し、効果が見えたところでAgentforceの導入を検討するのが現実的なステップです\n。つまり：\n\n- **「教えるAI」＝Einstein**：予測・提案・インサイトを人間に提供 → 実行は人間\n- **「",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "base.terrasky.co.jp",
+    "trailhead.salesforce.com",
+    "salesfive.com",
+    "successjp.salesforce.com",
+    "tobem.jp",
+    "hatenabase.jp"
+  ],
+  "resolved_urls": [
+    "https://base.terrasky.co.jp/articles/8pSGd",
+    "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce",
+    "https://www.salesfive.com/en/insights/data-cloud-ai-combination/",
+    "https://successjp.salesforce.com/article/NAI-001148",
+    "https://tobem.jp/pardot_blog/agentforce/202411111518.html",
+    "https://hatenabase.jp/blog/salesforce-agentforce-vs-einstein/"
+  ],
+  "unresolved_redirects": 0
+}

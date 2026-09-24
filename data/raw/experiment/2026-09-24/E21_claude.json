@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-24",
+  "prompt_id": "E21",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agent Scriptとは？Agentforceの設定を画面ではなくコードで管理すべきケースは？",
+  "cep": null,
+  "timestamp": "2026-09-24T01:18:40.194911Z",
+  "answer": "Agentforceの「Agent Script」について、最新情報を調べてから回答します。\n# Agent Scriptとは\n\n**Agent Script**は、\ndeterministic（決定的）なルールとagentic reasoningを組み合わせることで、ビルダーに正確な制御を提供するAIエージェント向けのスクリプト言語\nです。\nAIエージェント向けの初のスクリプト言語\nとSalesforceは位置付けています。\n\n## 主な特徴\n\n**1. コンパイル型の宣言的言語**\n\nAgent Scriptは、Agentforceエージェントを構築するためのコンパイル型・宣言的言語です。エージェントのバージョンを保存すると、スクリプトはAgentforce推論エンジンが消費する低レベルのメタデータにコンパイルされます\n。\n\n**2. 自然言語とプログラム的表現のハイブリッド**\n\n会話タスクを処理するための自然言語命令の柔軟性と、ビジネスルールを処理するためのプログラム的表現の信頼性を組み合わせています。スクリプトでは、if/else条件、遷移、その他のロジックを定義するために式を使用し、変数の設定・変更・比較を行い、サブエージェントやアクションを選択します\n。\n\n**3. 構文の特徴**\n\nAgent Scriptは空白（インデント）に敏感で、Pythonやよくにインデントを使って構造を示します\n。\n言語は非開発者でも読めるように設計されており、構造化されたブロックとインデントで関係性を示します。読みやすく追いやすい、インデントベースの構造を採用しています\n。\n\n**4. 3つの記述方法が存在するが、実体は同じ**\n\nエージェントを構築する方法は3つあります。AIアシスタンスを使う方法、キャンバス上で自然言語を使う方法、そしてAgent Scriptを使う方法です。すべての構築方法は同じSalesforceメタデータ基盤を使用します\n。つまり、**画面（Canvas）でGUI操作をしても、裏では常にAgent Scriptが書かれている**というのがポイントです。\nどちらの方法でも好きなタイミングで構築できます。ローコードのキャンバスビューでも、開発者向けのスクリプトビューでも、どちらを選んでも常にAgent Scriptを書いていることになります\n。\n\n**5. 開発ツールでの利用**\n\n開発者はAgentforce DXを使ってスクリプトファイルをローカルのSalesforce DXプロジェクトに生成・取得し、Visual Studio Codeで作業することもできます。Agentforce DX VS Code拡張機能は、標準的なコード編集機能でAgent Script言語を完全にサポートしています\n。\n\n---\n\n# コードで管理すべきケース\n\nAgent Scriptの登場背景自体が「画面操作の限界」への対応です。以下のようなケースでコード（Agent Script）管理が推奨されます。\n\n## 1. 複雑な条件分岐・決定論的制御が必要な場合\n\n\n従来のAgent Builder（ポイント＆クリック）には限界があります。硬直した構造、限定的な条件ロジック、そしてエージェントの実行フローに決定論的な振る舞いを組み込む余地があまりありません\n。\nキャンバスビューは複雑さを抽象化するのに優れていますが、複雑なエンタープライズユースケースでは、実際のコードによる精度・予測可能性・バージョン管理が必要になる場面があります\n。\n\n具体的には以下のような制御が必要な場合です：\n- \nネイティブなif/elseロジックを推論命令に組み込む、トピック間の明確な引き継ぎ（トピック遷移）、複数アクションをデータ受け渡ししながら連鎖させる（ツールチェイニング）、LLMが推論する前後にロジックを実行する決定論的フック\n\n\n## 2. バージョン管理・レビューが必要な場合\n\n\nスクリプトは平易なYAML風の構文で、レビュー可能かつバージョン管理可能です\n。複数人の開発チームでエージェント定義をGit等で管理し、差分レビューやロールバックを行いたい場合はコード管理が適しています。\n\n## 3. Infrastructure-as-Codeの一環として扱いたい場合\n\n\nこれはエージェント版のInfrastructure-as-Codeと考えることができます\n。CI/CDパイプラインに組み込んだり、複数環境（Sandbox→本番）へのデプロイを自動化したい場合、コードベースの管理が向いています。\n\n## 4. ローカル開発環境・AIコーディング支援を活用したい場合\n\n\nVS Codeエディタで直接ファイルをコーディングするか、Agentforce Vibes拡張機能を使って自然言語プロンプトで実際のコードを生成させる（バイブコーディング）こともできます\n。\n\n## 5. 厳格なビジネスポリシー適用が求められる場合\n\n\n重要なエンタープライズワークフローにおいて予測可能で信頼性の高いエージェントの振る舞いを実現することが主なメリットです。LLMのランダム性を排除する決定論的なアンカーを提供し、エンタープライズがエージェントの動",
+  "cited_urls": [
+    "https://www.salesforce.com/agentforce/script/",
+    "https://medium.com/agentforce-simplified/what-is-agent-script-how-to-build-agents-with-it-in-agentforce-1f0ffc45803d",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-script.html",
+    "https://atrium.ai/resources/deterministic-ai-deep-dive-into-agentforce-script/",
+    "https://ayaninsights.com/guestblogs/introduction-to-agent-script/",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-dx-nga-script.html"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E21",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-agent-script/",
+  "answer_text": "Agentforceの「Agent Script」について、最新情報を調べてから回答します。\n# Agent Scriptとは\n\n**Agent Script**は、\ndeterministic（決定的）なルールとagentic reasoningを組み合わせることで、ビルダーに正確な制御を提供するAIエージェント向けのスクリプト言語\nです。\nAIエージェント向けの初のスクリプト言語\nとSalesforceは位置付けています。\n\n## 主な特徴\n\n**1. コンパイル型の宣言的言語**\n\nAgent Scriptは、Agentforceエージェントを構築するためのコンパイル型・宣言的言語です。エージェントのバージョンを保存すると、スクリプトはAgentforce推論エンジンが消費する低レベルのメタデータにコンパイルされます\n。\n\n**2. 自然言語とプログラム的表現のハイブリッド**\n\n会話タスクを処理するための自然言語命令の柔軟性と、ビジネスルールを処理するためのプログラム的表現の信頼性を組み合わせています。スクリプトでは、if/else条件、遷移、その他のロジックを定義するために式を使用し、変数の設定・変更・比較を行い、サブエージェントやアクションを選択します\n。\n\n**3. 構文の特徴**\n\nAgent Scriptは空白（インデント）に敏感で、Pythonやよくにインデントを使って構造を示します\n。\n言語は非開発者でも読めるように設計されており、構造化されたブロックとインデントで関係性を示します。読みやすく追いやすい、インデントベースの構造を採用しています\n。\n\n**4. 3つの記述方法が存在するが、実体は同じ**\n\nエージェントを構築する方法は3つあります。AIアシスタンスを使う方法、キャンバス上で自然言語を使う方法、そしてAgent Scriptを使う方法です。すべての構築方法は同じSalesforceメタデータ基盤を使用します\n。つまり、**画面（Canvas）でGUI操作をしても、裏では常にAgent Scriptが書かれている**というのがポイントです。\nどちらの方法でも好きなタイミングで構築できます。ローコードのキャンバスビューでも、開発者向けのスクリプトビューでも、どちらを選んでも常にAgent Scriptを書いていることになります\n。\n\n**5. 開発ツールでの利用**\n\n開発者はAgentforce DXを使ってスクリプトファイルをローカルのSalesforce DXプロジェクトに生成・取得し、Visual Studio Codeで作業することもできます。Agentforce DX VS Code拡張機能は、標準的なコード編集機能でAgent Script言語を完全にサポートしています\n。\n\n---\n\n# コードで管理すべきケース\n\nAgent Scriptの登場背景自体が「画面操作の限界」への対応です。以下のようなケースでコード（Agent Script）管理が推奨されます。\n\n## 1. 複雑な条件分岐・決定論的制御が必要な場合\n\n\n従来のAgent Builder（ポイント＆クリック）には限界があります。硬直した構造、限定的な条件ロジック、そしてエージェントの実行フローに決定論的な振る舞いを組み込む余地があまりありません\n。\nキャンバスビューは複雑さを抽象化するのに優れていますが、複雑なエンタープライズユースケースでは、実際のコードによる精度・予測可能性・バージョン管理が必要になる場面があります\n。\n\n具体的には以下のような制御が必要な場合です：\n- \nネイティブなif/elseロジックを推論命令に組み込む、トピック間の明確な引き継ぎ（トピック遷移）、複数アクションをデータ受け渡ししながら連鎖させる（ツールチェイニング）、LLMが推論する前後にロジックを実行する決定論的フック\n\n\n## 2. バージョン管理・レビューが必要な場合\n\n\nスクリプトは平易なYAML風の構文で、レビュー可能かつバージョン管理可能です\n。複数人の開発チームでエージェント定義をGit等で管理し、差分レビューやロールバックを行いたい場合はコード管理が適しています。\n\n## 3. Infrastructure-as-Codeの一環として扱いたい場合\n\n\nこれはエージェント版のInfrastructure-as-Codeと考えることができます\n。CI/CDパイプラインに組み込んだり、複数環境（Sandbox→本番）へのデプロイを自動化したい場合、コードベースの管理が向いています。\n\n## 4. ローカル開発環境・AIコーディング支援を活用したい場合\n\n\nVS Codeエディタで直接ファイルをコーディングするか、Agentforce Vibes拡張機能を使って自然言語プロンプトで実際のコードを生成させる（バイブコーディング）こともできます\n。\n\n## 5. 厳格なビジネスポリシー適用が求められる場合\n\n\n重要なエンタープライズワークフローにおいて予測可能で信頼性の高いエージェントの振る舞いを実現することが主なメリットです。LLMのランダム性を排除する決定論的なアンカーを提供し、エンタープライズがエージェントの動",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "medium.com",
+    "developer.salesforce.com",
+    "atrium.ai",
+    "ayaninsights.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/agentforce/script/",
+    "https://medium.com/agentforce-simplified/what-is-agent-script-how-to-build-agents-with-it-in-agentforce-1f0ffc45803d",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-script.html",
+    "https://atrium.ai/resources/deterministic-ai-deep-dive-into-agentforce-script/",
+    "https://ayaninsights.com/guestblogs/introduction-to-agent-script/",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-dx-nga-script.html"
+  ],
+  "unresolved_redirects": 0
+}
