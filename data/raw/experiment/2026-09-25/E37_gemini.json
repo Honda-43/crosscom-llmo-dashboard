@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-25",
+  "prompt_id": "E37",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Coworkerとは何？営業がどんな場面で使える？",
+  "cep": null,
+  "timestamp": "2026-09-25T01:07:16.148611Z",
+  "answer": "Agentforce Coworkerは、Salesforceが提供する自律型AIチームメイトです。SalesforceのCRMデータやSlackなど、社内外に分散したあらゆる情報を横断的に分析し、ユーザーに代わって提案書の作成からアクションの実行までを行うことができます。簡単な設定で導入でき、既存のSalesforceの設定やガバナンス、セキュリティコントロールを継承するため、安心して利用できるのが特徴です。\n\n**営業がAgentforce Coworkerを利用できる主な場面:**\n\n営業担当者はAgentforce Coworkerを活用することで、日常業務の効率化と顧客対応の質の向上を図ることができます。\n\n*   **顧客情報の素早い把握と提案準備**\n    *   特定の顧客のケース履歴、アカウントデータ、利用状況などを踏まえたカスタム更新提案のドラフト作成を依頼できます。これにより、過去のケースメモや散在する資料を探す手間を省き、短時間で提案書を準備することが可能です。\n    *   商談前の準備として、過去の取引経緯やお客様の活動履歴を整理・分析させ、次に取るべきアクションを検討する際に役立てることができます。\n    *   引き継ぎを受けた顧客の過去の活動を整理したり、レポートの情報を読みやすくまとめたりすることで、理解促進と時間短縮に繋がります。\n\n*   **商談状況の確認と次のアクションの特定**\n    *   「昨日どの商談が動いたか」「あの案件が前回どういう経緯で決まったのか」といった質問に対し、分析エージェントがチャートを作成したり、関連情報を提示したりします。\n    *   顧客との会話記録や過去の商談履歴から、割引の約束がなかったかなどの重要な情報を確認し、次の商談に活かすことができます。\n    *   次にやるべきことを先回りして通知として受け取ることも可能です。\n\n*   **コミュニケーションと連携の強化**\n    *   Slackなどのコミュニケーションツール上でも稼働し、パイプラインのサマリーを自動で作成・共有することで、朝の進捗確認ミーティングなどを効率化できます。\n    *   Salesforce内外に分散している顧客に関する情報を一元的に検索・分析できるため、チームメンバーとの情報共有がスムーズになります。\n\n*   **新規顧客開拓とマーケティングへの応用**\n    *   特定の課題を持つ顧客や業界の傾向を分析させ、新たなビジネスチャンスを発見するための情報収集に活用できます。\n\nこのようにAgentforce Coworkerは、情報収集、分析、文書作成、タスク実行といった幅広い業務をAIが支援することで、営業担当者がより戦略的かつ効率的に業務を進められるようになります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGm6zt6C-0fcLyz6zUH8Mr7mxommdEldAa4yLnanN3PFMHeAut_rBrCQxzgsJKGnVXL85aF0GMyEYCbHUnum5Om91xUSvxMgwpZvW8pAwI5OOX9CGkXQLfq2zhYEU4mo0ifxqqKVQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGmjMQlfGCVn9DzU52466tUQaCM15seAZwmeF7ExSQLMw9XeTHXzsD22RM-AViib4osHDVNQ2Q5_ObiMuptAuCqP4nH3bUraDm6quO8XepNRWq64KR5B00reJxT6--zkjHGyps_TOQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFZjNDJ6YoFOwyVb1bsk41yn9fsNrlu0-PHiqD_ZP9P2_6yXJQUNcN1M6XutHCe-rO_rpFSynClKg4fOJ95KX5mENHtLAy3gIiUmTYuazPBKHgKbivHwGi5jTEtHy7EHvdNdtAnUkoM-Dk0gjKhhWO1ZYqmgl0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFefpV_LChH2pZq8efuY3HkzuodcN4Qu_3ZNyEt2Lc_g0LUGcx54eHMd0MQrklsQRYSvcvjaTRWBRsGVa_6wcmUFiVkXZjA423FiRZEyjRQBolgGb4wFX250JpOLzu3qIKrYPN06jl8af5E7FlnIYy5LG7dnyWYbak-fw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF5ygcL0KxhYSgr8WZNpeRkRx2DDRS6wz2VpL524k6dzjo5ot8zUycvYcZz8rMs3P3BD6iO7wDsI-y-yxHcYUaQQ0Yr4bZ3KEIUA4IxRTRkPEhKrcKorl0l65xHkc21EyRCc5wj",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHK7rR5yRjcIDv9YJ0HwLQiQbtjgRWVNWlPG-5jqiTqHrMtnZzlmlu3wjYeEZwM_d5xanw-2j0fxa5E2Gy4DTYWTE8qAPemhUdCOD-57lL0XkqExwq7I6fUXeEBbh8-xtN547sfwBg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXa8F-ZbU1Jlvt52Gg5qZs6sV-3UP0apoMPMbJxaU-2YkukwrSMKHw3r6CkmrgL2vlLNuOwSxie2dn80SB4uGCV2x9v02kYfo_ud3RfGkU3hfi9EvcCD2aoY_QW248kJ_wiaY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFv9JO-cnLEdtU1jpPCWQfQ1VrMIiP1kEG0C7DmBoKmRhDnAalwemQDSX7CQMHUIZWO6PFzh6IqpqCIZboRKqBUvGBvRs7ofXxlBOY_oHMfifgAfBoIcMbea1w_82pdyRj9dtE3L2WJgIxrH33txdzNiKHpjwQ="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E37",
+  "experiment_flag": "watch",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-coworker/",
+  "answer_text": "Agentforce Coworkerは、Salesforceが提供する自律型AIチームメイトです。SalesforceのCRMデータやSlackなど、社内外に分散したあらゆる情報を横断的に分析し、ユーザーに代わって提案書の作成からアクションの実行までを行うことができます。簡単な設定で導入でき、既存のSalesforceの設定やガバナンス、セキュリティコントロールを継承するため、安心して利用できるのが特徴です。\n\n**営業がAgentforce Coworkerを利用できる主な場面:**\n\n営業担当者はAgentforce Coworkerを活用することで、日常業務の効率化と顧客対応の質の向上を図ることができます。\n\n*   **顧客情報の素早い把握と提案準備**\n    *   特定の顧客のケース履歴、アカウントデータ、利用状況などを踏まえたカスタム更新提案のドラフト作成を依頼できます。これにより、過去のケースメモや散在する資料を探す手間を省き、短時間で提案書を準備することが可能です。\n    *   商談前の準備として、過去の取引経緯やお客様の活動履歴を整理・分析させ、次に取るべきアクションを検討する際に役立てることができます。\n    *   引き継ぎを受けた顧客の過去の活動を整理したり、レポートの情報を読みやすくまとめたりすることで、理解促進と時間短縮に繋がります。\n\n*   **商談状況の確認と次のアクションの特定**\n    *   「昨日どの商談が動いたか」「あの案件が前回どういう経緯で決まったのか」といった質問に対し、分析エージェントがチャートを作成したり、関連情報を提示したりします。\n    *   顧客との会話記録や過去の商談履歴から、割引の約束がなかったかなどの重要な情報を確認し、次の商談に活かすことができます。\n    *   次にやるべきことを先回りして通知として受け取ることも可能です。\n\n*   **コミュニケーションと連携の強化**\n    *   Slackなどのコミュニケーションツール上でも稼働し、パイプラインのサマリーを自動で作成・共有することで、朝の進捗確認ミーティングなどを効率化できます。\n    *   Salesforce内外に分散している顧客に関する情報を一元的に検索・分析できるため、チームメンバーとの情報共有がスムーズになります。\n\n*   **新規顧客開拓とマーケティングへの応用**\n    *   特定の課題を持つ顧客や業界の傾向を分析させ、新たなビジネスチャンスを発見するための情報収集に活用できます。\n\nこのようにAgentforce Coworkerは、情報収集、分析、文書作成、タスク実行といった幅広い業務をAIが支援することで、営業担当者がより戦略的かつ効率的に業務を進められるようになります。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "cited_domains": [
+    "youtube.com",
+    "prtimes.jp",
+    "qiita.com",
+    "cross-com.jp",
+    "note.com",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://www.youtube.com/shorts/pUcd4FlvuQM",
+    "https://www.youtube.com/watch?v=RKAmQXw6ZlE",
+    "https://prtimes.jp/main/html/rd/p/000000378.000041550.html",
+    "https://qiita.com/Tadataka_Takahashi/items/c87e82c62bbb17b3b53f",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://www.youtube.com/watch?v=U9FQgeA3MpE",
+    "https://note.com/shin_85/n/n6b1aef036948",
+    "https://www.salesforce.com/jp/blog/jp-coworker-first-step/"
+  ],
+  "unresolved_redirects": 0
+}
