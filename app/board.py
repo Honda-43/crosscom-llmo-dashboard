@@ -14,6 +14,7 @@ import streamlit as st
 
 import common
 import data_source
+import interventions
 import verdicts
 from settings import (
     SELF_ENTITY, TAB_ACTION_LOG, TAB_CHANGES, TAB_GA4, TAB_GSC, TAB_LLM,
@@ -123,6 +124,48 @@ def action_annotations(figure: go.Figure, actions: Sequence[Dict[str, Any]]) -> 
         )
         for action in same_day:
             legend.append(f"{action['action_id']} {action['label']}({date:%m/%d})")
+    return " / ".join(legend)
+
+
+def intervention_rows() -> List[Dict[str, Any]]:
+    """介入ログ(output/interventions.csv)。読めなくても面は出す。"""
+    try:
+        return interventions.load()
+    except Exception:  # noqa: BLE001 - 介入ログは付随情報。面を落とさない
+        return []
+
+
+def intervention_annotations(figure: go.Figure,
+                             rows: Optional[Sequence[Dict[str, Any]]] = None) -> str:
+    """介入(interventions.csv)を縦線注釈として描き、凡例用の対応表を返す(2026-09-25)。
+
+    施策(action_log)の破線とは別の線にする。施策は「この指標を動かすために打った手」で、
+    介入は「観測の外で起きた・打った手」。同じ線で描くと、効果の帰属を取り違える。
+    日付が未確定の行は線にしない(位置が事実と違ってしまう)。凡例の末尾で知らせる。
+    """
+    rows = intervention_rows() if rows is None else list(rows)
+    by_date: Dict[Any, List[Dict[str, Any]]] = {}
+    for row in interventions.dated(rows):
+        by_date.setdefault(row["date"], []).append(row)
+
+    legend = []
+    for date, same_day in sorted(by_date.items()):
+        ids = ", ".join(interventions.label(r) for r in same_day)
+        figure.add_vline(
+            x=pd.Timestamp(date),
+            line=dict(color=common.INK_MUTED, width=1, dash="dot"),
+            annotation_text=ids,
+            annotation_position="bottom left",
+            annotation_font=dict(color=common.INK_MUTED, size=10),
+        )
+        for row in same_day:
+            mark = "・プール46本に触れる" if str(row.get("touches_pool46")) == "yes" else ""
+            legend.append(f"{interventions.label(row)} {row['description']}"
+                          f"({date:%m/%d}{mark})")
+    pending = interventions.undated(rows)
+    if pending:
+        legend.append("日付が未確定(縦線なし): "
+                      + "、".join(f"{r['intervention_id']} {r['description']}" for r in pending))
     return " / ".join(legend)
 
 

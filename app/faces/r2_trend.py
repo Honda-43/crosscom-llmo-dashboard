@@ -44,6 +44,7 @@ for column, label, color in series:
 
 actions = verdicts.implemented_actions(board.action_rows())
 legend = board.action_annotations(figure, actions)
+intervention_legend = board.intervention_annotations(figure)
 
 figure.update_layout(
     height=460, hovermode="x unified",
@@ -55,9 +56,11 @@ figure.update_layout(
 st.plotly_chart(figure, width="stretch")
 st.caption(
     f"太線は{common.MA_WINDOW}日移動平均、薄い線は日次の生データ。"
-    f"破線は実施済みの施策({len(actions)}件)。"
+    f"破線は実施済みの施策({len(actions)}件)、点線は介入の記録。"
 )
 if legend:
     st.caption(legend)
+if intervention_legend:
+    st.caption(f"介入: {intervention_legend}")
 
 board.verdict_panel("R2", board.build_context("R2"))

@@ -55,7 +55,7 @@ def test_mentioned_is_only_in_the_reference_section(tmp_path):
     text = _build(rows, tmp_path)
     overall = text.split("## 2.")[0]
     assert "mentioned" not in overall and "言及" not in overall
-    reference = text.split("## 4. 参考")[1]
+    reference = text.split("## 5. 参考")[1]
     assert "Gemini: 1 / 2(50.0%) — E01" in reference
 
 

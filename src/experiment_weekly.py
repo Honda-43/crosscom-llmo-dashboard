@@ -32,6 +32,7 @@ try:
 except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exact.
     JST = dt.timezone(dt.timedelta(hours=9), name="JST")
 
+import interventions
 from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DIR, ROOT_DIR,
                       TAB_EXPERIMENT, WEEKDAY_LABELS, load_experiment_prompts)
 
@@ -95,7 +96,8 @@ def _phase(start: dt.date, end: dt.date) -> str:
 def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
           pool: Optional[List[Dict[str, Any]]] = None,
           raw_dir: Path = DATA_RAW_DIR, experiment_dir: Path = DATA_RAW_EXPERIMENT_DIR,
-          monthly_dir: Path = DATA_RAW_MONTHLY_DIR) -> str:
+          monthly_dir: Path = DATA_RAW_MONTHLY_DIR,
+          intervention_rows: Optional[List[Dict[str, Any]]] = None) -> str:
     """週次集計の Markdown を返す。"""
     pool = pool if pool is not None else load_experiment_prompts()
     pool_ids = [p["id"] for p in pool]
@@ -208,8 +210,32 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
                  f"{c['claude_dom']} | {c['claude_miss']} |")
     L.append("")
 
-    # ---- 4. 参考: mentioned -------------------------------------------------
-    L += ["## 4. 参考:回答本文の社名言及(mentioned)", "",
+    # ---- 4. 介入 -------------------------------------------------------------
+    # 数字の増減を「処置の効果」と読む前に、その週に何をしたかを並べる。
+    # 日付が未確定の介入は、いつの週に効いたか分からないので毎回末尾に出す。
+    known = interventions.load() if intervention_rows is None else list(intervention_rows)
+    this_week = interventions.in_window(start, end, known)
+    pending = interventions.undated(known)
+    L += ["## 4. この週の介入(output/interventions.csv)", ""]
+    if this_week:
+        L += ["| 日付 | ID | 内容 | 範囲 | プール46本に触れる |", "|---|---|---|---|---|"]
+        for row in this_week:
+            L.append(f"| {row['raw_date']} | {row['intervention_id']} | {row['description']} | "
+                     f"{row['scope']} | {row['touches_pool46']} |")
+        if any(str(r.get("touches_pool46")) == "yes" for r in this_week):
+            L.append("")
+            L.append("- **プール46本に触れる介入がこの週にある。** 引用率の変化を 2x2 の処置だけの"
+                     "効果として読まない")
+    else:
+        L.append("この週に実施した介入はない(日付の分かっているもの)。")
+    if pending:
+        L += ["", "日付が未確定の介入(どの週に効いたか分からない):"]
+        L += [f"- {r['intervention_id']} {r['description']}({r['scope']}・{r['executor']})"
+              for r in pending]
+    L.append("")
+
+    # ---- 5. 参考: mentioned -------------------------------------------------
+    L += ["## 5. 参考:回答本文の社名言及(mentioned)", "",
           "社名は記事が引用されなくても出るため、処置の効果の判定には使わない。"
           "ブランド想起の目安として並べる。", ""]
     for model in ("gemini", "claude"):
