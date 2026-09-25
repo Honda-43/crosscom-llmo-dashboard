@@ -15,3 +15,4 @@ date,intervention_id,description,scope,executor,touches_pool46
 ,I-05,meta 改修(日付・対象ともに要確認),サイト(メタ),要確認,要確認
 2026-09-25〜,I-06,Claudeforce 記事に D-39 等を適用(以後継続),サイト(記事),要確認,要確認
 2026-09-29,I-07,2x2 の処置反映(リード・FAQ)と鮮度更新の訂正2件(agentforce-vibes・agentforce-features),プール46本,seo-agent(publish_followup),yes
+2026-09-25,I-10,D-39 結論要約ブロックを横展開の1本目(sales-back-office)へ適用(残り37本は9/29以降),サイト(記事),seo-agent,no
