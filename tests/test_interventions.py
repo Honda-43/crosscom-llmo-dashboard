@@ -56,6 +56,14 @@ def test_the_label_marks_an_ongoing_intervention(log):
     assert interventions.label(by_id["I-01"]) == "I-01"
 
 
+def test_the_log_is_written_by_the_dashboard_side_only():
+    """I-10 は seo-agent 側が足したもの。以後は dashboard 側だけが書く。"""
+    text = (interventions.INTERVENTIONS_FILE).read_text(encoding="utf-8")
+    head = [ln for ln in text.splitlines() if ln.startswith("#")]
+    assert any("dashboard 側だけが書く" in ln for ln in head)
+    assert any("I-10" in ln for ln in head)
+
+
 def test_the_real_log_parses_and_keeps_the_agreed_columns():
     rows = interventions.load()
     assert rows, "output/interventions.csv が読めない"
@@ -66,8 +74,9 @@ def test_the_real_log_parses_and_keeps_the_agreed_columns():
     ids = [r["intervention_id"] for r in rows]
     assert len(set(ids)) == len(ids), "intervention_id が重複している"
     pool = [r for r in rows if r["touches_pool46"] == "yes"]
-    # 9/15〜16 の逆リンク追記(ビフォー期間中)と 9/29 の処置反映がプール46本に触れる
-    assert [r["intervention_id"] for r in pool] == ["I-09", "I-07"]
+    # ビフォー期間中の編集(9/11 の一括反映・9/11〜14 のリンク増・9/15〜16 の追記)と
+    # 9/29 の処置反映がプール46本に触れる
+    assert [r["intervention_id"] for r in pool] == ["I-11", "I-12", "I-09", "I-07"]
     by_id = {r["intervention_id"]: r for r in rows}
     # 9/29 に入れる訂正は2本(E37 は 9/22 に実験外で適用済み)
     assert "訂正2件" in by_id["I-07"]["description"]

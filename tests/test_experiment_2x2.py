@@ -257,7 +257,7 @@ def test_the_allocation_checks_b_and_e(monkeypatch, tmp_path, cited_csv):
     text = out.read_text(encoding="utf-8")
     assert "b 逆リンク追記17本が組間で均等" in text
     assert "e 9/15〜16 の追記9本が各組2〜3本" in text
-    assert "| 9/15〜16 の追記 |" in text, "割付表に列がある"
+    assert "| 9/15〜16 の変更 |" in text, "割付表に列がある(追記＋タイトル変更)"
     rows = [ln for ln in text.splitlines() if ln.startswith("| ") and "cross-com.jp" in ln]
     late = [ln for ln in rows if ln.split("|")[7].strip() == "あり"]
     assert len(late) == 9
@@ -326,3 +326,37 @@ def test_the_judgement_prints_one_table_with_four_rows(monkeypatch, tmp_path, ca
     assert [r[1] for r in table] == ["3", "2", "2", "1"], table
     assert "感度分析（gemini）" in out, "見出しに余分な空白を入れない"
     assert out.count("=== gemini ") == 4, "4通りそれぞれの内訳も出す"
+
+
+# --- 8. 条件 g: タイトル変更3本(2026-09-25) ----------------------------------------
+def test_the_three_title_changes_are_in_the_pool():
+    titles = pool.title_changed_slugs()
+    assert titles == {"agentforce-for-sales-sdr-sales-coach", "agentic-ai-guide",
+                      "agentic-crm-pipeline-stagnation-detection"}
+    assert titles <= pool.pool_slugs()
+
+
+def test_condition_g_keeps_the_title_changes_apart(monkeypatch, tmp_path, cited_csv):
+    monkeypatch.setattr(allocate_47, "ALLOCATION_DAY", datetime.date.today())
+    code, out, out_csv = _allocate(monkeypatch, tmp_path, cited_csv, "--write")
+    assert code == 0
+    text = out.read_text(encoding="utf-8")
+    assert "g タイトル変更3本が各組に最大1本" in text
+    groups = {r["url"].rstrip("/").rsplit("/", 1)[-1]: r["group"]
+              for r in csv.DictReader(io.open(out_csv, encoding="utf-8"))}
+    assigned = [groups[s] for s in pool.title_changed_slugs()]
+    assert len(set(assigned)) == 3, f"3本が別々の組に入っていない: {assigned}"
+    assert "| タイトル変更 |" in text
+
+
+def test_a_title_change_dated_9_15_joins_the_late_list(monkeypatch):
+    """タイトル変更の日時が 9/15〜16 と分かったら、9/17 以降のみ使用の対象に入る。"""
+    before = pool.late_appended_slugs()
+    assert "agentic-ai-guide" not in before, "日付が分かるまでは入れない"
+    monkeypatch.setattr(pool, "TITLE_CHANGE_DATES",
+                        {"agentic-ai-guide": "2026-09-16", "agentic-crm-pipeline-stagnation-detection": "2026-09-12"})
+    after = pool.late_appended_slugs()
+    assert "agentic-ai-guide" in after, "9/16 の変更は対象"
+    assert "agentic-crm-pipeline-stagnation-detection" not in after, "9/12 の変更は対象外"
+    assert before < after and len(after) == len(before) + 1
+    assert pool.baseline_start("agentic-ai-guide") == pool.LATE_BASELINE_FROM

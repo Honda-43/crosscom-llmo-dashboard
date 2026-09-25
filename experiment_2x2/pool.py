@@ -44,6 +44,18 @@ STRATA_LEGACY = os.path.join(HERE, 'strata_backlink17.csv')
 LATE_APPEND_FROM = '2026-09-15'
 LATE_BASELINE_FROM = '2026-09-17'
 
+# タイトル変更を受けた記事(2026-09-25 判明。条件 g で各組最大1本にする)。
+# タイトルは引用のされ方を直接動かすので、組に固まると処置と分けられない。
+TITLE_CHANGED_SLUGS = (
+    'agentforce-for-sales-sdr-sales-coach',
+    'agentic-ai-guide',
+    'agentic-crm-pipeline-stagnation-detection',
+)
+# タイトル変更の日付。制作管制の全編集一覧(edits_20260911_0916.csv)で分かったら埋める。
+# 9/15 以降と分かった記事は、そのまま late_appended_slugs()(9/17 以降の観測だけを
+# 基準値に使う記事)に入る。空のままなら基準値の扱いは変えない。
+TITLE_CHANGE_DATES = {}
+
 
 def strata_path():
     """逆リンク追記の層のファイル。strata_backlink_YYYYMMDD.csv があれば新しいほうを使う。"""
@@ -66,10 +78,23 @@ def appended_slugs(path=None):
     return {r['slug'].lower() for r in load_strata(path)}
 
 
+def title_changed_slugs():
+    """タイトル変更を受けた記事(条件 g)。プールに無い記事は外す。"""
+    return {s for s in TITLE_CHANGED_SLUGS if s in pool_slugs()}
+
+
 def late_appended_slugs(path=None):
-    """ビフォー期間の途中(9/15〜16)に追記を受けた記事(条件 e)。"""
-    return {r['slug'].lower() for r in load_strata(path)
+    """ビフォー期間の途中(9/15〜16)に本文・タイトルが変わった記事。
+
+    条件 e の母数であり、ビフォー基準値を 9/17 以降に切る対象でもある。
+    逆リンク追記(層の表の appended_at)に加えて、9/15 以降と分かった
+    タイトル変更(TITLE_CHANGE_DATES)も入れる。
+    """
+    late = {r['slug'].lower() for r in load_strata(path)
             if str(r.get('appended_at', ''))[:10] >= LATE_APPEND_FROM}
+    late |= {s for s, d in TITLE_CHANGE_DATES.items()
+             if s in pool_slugs() and str(d)[:10] >= LATE_APPEND_FROM}
+    return late
 
 
 def baseline_start(slug_name, path=None):
