@@ -15,7 +15,9 @@
 #   リンクを張るのは**張り元の記事の編集**で、張り先の本文は変わらないためです。
 #   止めるのは、49本の**本文を書き換える**操作（逆リンクの追記を含む）です。
 #
-# 除外の期限：2026-12-31（publish_followup.py の EXPERIMENT_END）
+# 除外の期間：2026-09-15 〜 2026-12-31（両端を含む）／解放：2027-01-01 00:00 JST から編集・リンク可
+#   （publish_followup.py の EXPERIMENT_START／EXPERIMENT_END）
+#   期限の変更は効果測定チャットからの明示の通知のみ（管CH 2026-09-25）
 # 日付付きの例外：2026-09-29〜09-30 に限り、allocation_v1 の処置群（②③④）と
 #   agentforce-vibes への適用を apply_gate が通す（publish_followup.py の EXPERIMENT_WINDOWS）。
 #   10/1 以降は再び全面禁止。publish_followup の逆リンク追記はこの例外の対象外。
