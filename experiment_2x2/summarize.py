@@ -114,39 +114,105 @@ def load_probe(path):
 # --------------------------------------------------------------------------
 # 集計と検定（共通）
 # --------------------------------------------------------------------------
-def summarize(after, before, exclude=(), label=""):
+def tally(after, before, exclude=()):
+    """{組: [(アフターの値, 変化), ...]} を作る。``exclude`` の記事は数えない。"""
     groups = collections.defaultdict(list)
     for s, (g, v) in after.items():
         if s in exclude:
             continue
         delta = v - before.get(s, (None, 0))[1] if before else v
         groups[g].append((v, delta))
+    return groups
+
+
+def cells(groups, g):
+    vs = [v for v, _ in groups.get(g, [])]
+    return sum(vs), len(vs) - sum(vs)
+
+
+def effect(groups, on_groups, off_groups):
+    """主効果。(あり引用, あり本数, なし引用, なし本数, 差, 片側p)。"""
+    a = sum(cells(groups, g)[0] for g in on_groups)
+    b = sum(cells(groups, g)[1] for g in on_groups)
+    c = sum(cells(groups, g)[0] for g in off_groups)
+    d = sum(cells(groups, g)[1] for g in off_groups)
+    pa = a / (a + b) if a + b else 0
+    pc = c / (c + d) if c + d else 0
+    return a, a + b, c, c + d, pa - pc, fisher_one_sided(a, b, c, d)
+
+
+LEAD_ON, LEAD_OFF = ("③リードのみ", "④両方"), ("①対照", "②FAQのみ")
+FAQ_ON, FAQ_OFF = ("②FAQのみ", "④両方"), ("①対照", "③リードのみ")
+
+
+def summarize(after, before, exclude=(), label=""):
+    groups = tally(after, before, exclude)
     n = sum(len(x) for x in groups.values())
     print(f"=== {label}（{n}本） ===")
     print("組別 引用率（アフター） / 平均変化（差の差用）")
     for g in sorted(groups):
         vs = [v for v, _ in groups[g]]; ds = [d for _, d in groups[g]]
         print(f"  {g}: {sum(vs)}/{len(vs)} = {sum(vs)/len(vs):.0%}   Δ平均 {sum(ds)/len(ds):+.2f}")
-    def cell(g):
-        vs = [v for v, _ in groups.get(g, [])]; return sum(vs), len(vs) - sum(vs)
-    lead_on = [cell("③リードのみ"), cell("④両方")]; lead_off = [cell("①対照"), cell("②FAQのみ")]
-    faq_on = [cell("②FAQのみ"), cell("④両方")];   faq_off = [cell("①対照"), cell("③リードのみ")]
-    def main_effect(name, on, off):
-        a = on[0][0] + on[1][0]; b = on[0][1] + on[1][1]; c = off[0][0] + off[1][0]; d = off[0][1] + off[1][1]
-        pa = a / (a + b) if a + b else 0; pc = c / (c + d) if c + d else 0
-        print(f"{name}: あり {a}/{a+b}={pa:.0%}  なし {c}/{c+d}={pc:.0%}  差 {pa-pc:+.0%}  片側p={fisher_one_sided(a,b,c,d):.3f}")
+    def line(name, on, off):
+        a, an, c, cn, diff, p = effect(groups, on, off)
+        print(f"{name}: あり {a}/{an}={a/an if an else 0:.0%}  なし {c}/{cn}={c/cn if cn else 0:.0%}"
+              f"  差 {diff:+.0%}  片側p={p:.3f}")
     print("主効果")
-    main_effect("結論要約リード", lead_on, lead_off)
-    main_effect("FAQブロック化", faq_on, faq_off)
+    line("結論要約リード", LEAD_ON, LEAD_OFF)
+    line("FAQブロック化", FAQ_ON, FAQ_OFF)
+    print()
+
+
+def variants():
+    """感度分析の4通り。(見出し, 除く記事) を返す。
+
+    9/15〜16 に逆リンク追記が入った9本と、鮮度更新の訂正2本は、どちらも
+    処置以外の理由で本文が変わっている。片方だけ抜いた結果も並べないと、
+    結論がどちらの影響で動いたのか分からない。
+    """
+    late = late_appended_slugs()
+    corr = set(CORRECTION_SLUGS)
+    return [
+        ("両方込み", set()),
+        (f"9本抜き（9/15〜16 追記）", set(late)),
+        (f"{len(corr)}本抜き（訂正対象）", corr),
+        ("両方抜き", set(late) | corr),
+    ]
+
+
+def sensitivity_table(after, before, title=""):
+    """4通り（両方込み／9本抜き／2本抜き／両方抜き）を1つの表にする。"""
+    rows = []
+    for label, exclude in variants():
+        groups = tally(after, before, exclude)
+        n = sum(len(x) for x in groups.values())
+        rates = []
+        for g in ("①対照", "②FAQのみ", "③リードのみ", "④両方"):
+            hit, miss = cells(groups, g)
+            rates.append(f"{hit}/{hit + miss}" if hit + miss else "—")
+        _, _, _, _, lead_diff, lead_p = effect(groups, LEAD_ON, LEAD_OFF)
+        _, _, _, _, faq_diff, faq_p = effect(groups, FAQ_ON, FAQ_OFF)
+        rows.append([label, str(n)] + rates
+                    + [f"{lead_diff:+.0%}", f"{lead_p:.3f}",
+                       f"{faq_diff:+.0%}", f"{faq_p:.3f}"])
+    head = ["感度分析" + (f"（{title.strip()}）" if title.strip() else ""), "本数",
+            "①対照", "②FAQのみ", "③リードのみ", "④両方",
+            "リード差", "p", "FAQ差", "p"]
+    width = [max(len(r[i]) for r in [head] + rows) for i in range(len(head))]
+    def row(cells_):
+        return "  ".join(c.ljust(w) for c, w in zip(cells_, width)).rstrip()
+    print(row(head))
+    print("  ".join("-" * w for w in width))
+    for r in rows:
+        print(row(r))
     print()
 
 
 def both_ways(after, before, title=""):
-    """訂正対象（CORRECTION_SLUGS）込み／抜きの両方を出す。"""
-    k = len(CORRECTION_SLUGS)
-    names = "・".join(CORRECTION_SLUGS)
-    summarize(after, before, (), f"{title}{k}本込み（{names} を含む）")
-    summarize(after, before, set(CORRECTION_SLUGS), f"{title}{k}本抜き（{names} を除く）")
+    """感度分析の表と、4通りそれぞれの組別の内訳を出す。"""
+    sensitivity_table(after, before, title)
+    for label, exclude in variants():
+        summarize(after, before, exclude, f"{title}{label}")
 
 
 def _span(text):
@@ -195,8 +261,8 @@ def main(argv=None):
                 print(f"ビフォーに観測の無い記事 {len(missing)}本（ビフォーは0として扱う）: {', '.join(missing)}")
             both_ways(after, before, f"{model} ")
     print("判定: 差が +25pt 以上 かつ p<0.10 で「効いた」。どちらか欠ければ「この本数では判断できない」。")
-    print(f"{len(CORRECTION_SLUGS)}本込みと{len(CORRECTION_SLUGS)}本抜きで結論が食い違う場合は、"
-          "鮮度更新の訂正の影響として扱う。")
+    print("感度分析の4通りで結論が食い違う場合は、処置ではなく"
+          "「9/15〜16 の追記」か「鮮度更新の訂正」の影響として扱う。")
     return 0
 
 
