@@ -66,7 +66,8 @@ def test_the_real_log_parses_and_keeps_the_agreed_columns():
     ids = [r["intervention_id"] for r in rows]
     assert len(set(ids)) == len(ids), "intervention_id が重複している"
     pool = [r for r in rows if r["touches_pool46"] == "yes"]
-    assert [r["intervention_id"] for r in pool] == ["I-07"], "9/29 の処置反映だけがプール46本に触れる"
+    # 9/15〜16 の逆リンク追記(ビフォー期間中)と 9/29 の処置反映がプール46本に触れる
+    assert [r["intervention_id"] for r in pool] == ["I-09", "I-07"]
     by_id = {r["intervention_id"]: r for r in rows}
     # 9/29 に入れる訂正は2本(E37 は 9/22 に実験外で適用済み)
     assert "訂正2件" in by_id["I-07"]["description"]
@@ -75,8 +76,13 @@ def test_the_real_log_parses_and_keeps_the_agreed_columns():
     e37 = by_id["I-08"]
     assert e37["date"] == dt.date(2026, 9, 22) and e37["touches_pool46"] == "no"
     assert "watch" in e37["scope"], "E37 は実験外(watch)"
-    # 照会中の2件は日付を埋めない(未確定のまま縦線にしない)
-    assert [r["intervention_id"] for r in interventions.undated(rows)] == ["I-04", "I-05"]
+    # I-05 は「2026-09-15より前」で1日に定まらない。縦線にはしない
+    assert [r["intervention_id"] for r in interventions.undated(rows)] == ["I-05"]
+    # 終わりのある範囲("2026-09-20〜22")は開始日で読み、継続(ongoing)にはしない。
+    # 継続は末尾が印で終わるもの("2026-09-25〜")だけ
+    assert by_id["I-04"]["date"] == dt.date(2026, 9, 20) and not by_id["I-04"]["ongoing"]
+    assert by_id["I-09"]["date"] == dt.date(2026, 9, 15) and not by_id["I-09"]["ongoing"]
+    assert by_id["I-06"]["ongoing"], "2026-09-25〜 は継続"
 
 
 # --- 折れ線(R2)の縦線 ---------------------------------------------------------
@@ -88,7 +94,7 @@ def test_the_chart_gets_one_dotted_line_per_dated_intervention(log):
     assert {s.line.dash for s in lines} == {"dot"}, "施策の破線(dash)と区別する"
     assert "I-06〜" in legend and "I-01" in legend
     assert "プール46本に触れる" in legend, "混ざる介入は凡例で知らせる"
-    assert "日付が未確定(縦線なし): I-05" in legend
+    assert "日付が1日に定まらない(縦線なし): I-05" in legend
 
 
 def test_a_missing_log_does_not_break_the_chart(monkeypatch):
@@ -115,7 +121,7 @@ def test_the_weekly_report_lists_this_weeks_interventions(log, tmp_path):
     assert "I-07" in section and "2x2 の処置反映" in section
     assert "I-01" not in section, "前の週の介入は出さない"
     assert "プール46本に触れる介入がこの週にある" in section
-    assert "日付が未確定" in section and "I-05" in section
+    assert "日付が1日に定まらない" in section and "I-05" in section
 
 
 def test_a_week_without_interventions_says_so(log, tmp_path):

@@ -229,7 +229,7 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
     else:
         L.append("この週に実施した介入はない(日付の分かっているもの)。")
     if pending:
-        L += ["", "日付が未確定の介入(どの週に効いたか分からない):"]
+        L += ["", "日付が1日に定まらない介入(どの週に効いたか分からない):"]
         L += [f"- {r['intervention_id']} {r['description']}({r['scope']}・{r['executor']})"
               for r in pending]
     L.append("")

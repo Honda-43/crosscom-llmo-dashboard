@@ -221,3 +221,60 @@ def test_summarize_refuses_to_judge_before_the_allocation(monkeypatch, tmp_path)
 def test_summarize_still_refuses_the_old_probe_baseline(tmp_path):
     with pytest.raises(SystemExit):
         summarize.main(["--probe", str(tmp_path / "2026-10-06.csv"), str(tmp_path / "2026-09-17.csv")])
+
+
+# --- 6. 9/15〜16 の追記9本(条件 b・e とビフォー基準値。2026-09-25) --------------------
+def test_the_strata_splits_all_appends_from_the_late_nine():
+    assert len(pool.appended_slugs()) == 17, "9/11〜9/16 の追記(条件 b)"
+    late = pool.late_appended_slugs()
+    assert len(late) == 9, "9/15〜16 の追記(条件 e)"
+    assert late <= pool.appended_slugs() and late <= pool.pool_slugs()
+    assert "revops-guide" in late and "agentforce-rag" not in late
+
+
+def test_the_newer_strata_file_wins(tmp_path, monkeypatch):
+    """制作管制の表で作り直したら strata_backlink_YYYYMMDD.csv に置き換える。"""
+    monkeypatch.setattr(pool, "STRATA_GLOB", str(tmp_path / "strata_backlink_*.csv"))
+    monkeypatch.setattr(pool, "STRATA_LEGACY", str(tmp_path / "strata_backlink17.csv"))
+    (tmp_path / "strata_backlink17.csv").write_text("slug,appended_at\n", encoding="utf-8")
+    assert pool.strata_path().endswith("strata_backlink17.csv")
+    (tmp_path / "strata_backlink_20260925.csv").write_text("slug,appended_at\n", encoding="utf-8")
+    assert pool.strata_path().endswith("strata_backlink_20260925.csv")
+    (tmp_path / "strata_backlink_20261002.csv").write_text("slug,appended_at\n", encoding="utf-8")
+    assert pool.strata_path().endswith("strata_backlink_20261002.csv"), "日付の新しいほうを使う"
+
+
+def test_the_allocation_checks_b_and_e(monkeypatch, tmp_path, cited_csv):
+    monkeypatch.setattr(allocate_47, "ALLOCATION_DAY", datetime.date.today())
+    code, out, _ = _allocate(monkeypatch, tmp_path, cited_csv, "--write")
+    assert code == 0
+    text = out.read_text(encoding="utf-8")
+    assert "b 逆リンク追記17本が組間で均等" in text
+    assert "e 9/15〜16 の追記9本が各組2〜3本" in text
+    assert "| 9/15〜16 の追記 |" in text, "割付表に列がある"
+    rows = [ln for ln in text.splitlines() if ln.startswith("| ") and "cross-com.jp" in ln]
+    late = [ln for ln in rows if ln.split("|")[7].strip() == "あり"]
+    assert len(late) == 9
+
+
+def test_the_baseline_skips_observations_before_the_append(monkeypatch, tmp_path, capsys):
+    """revops-guide は 9/15 に追記。9/16 までの観測は基準値に使わない。"""
+    revops = "https://cross-com.jp/revops-guide/"
+    rag = "https://cross-com.jp/agentforce-rag/"
+    monkeypatch.setattr(summarize, "load_allocation",
+                        lambda: {"revops-guide": "①対照", "agentforce-rag": "②FAQのみ"})
+    path = tmp_path / "e.csv"
+    _exp_csv(path, [
+        ["2026-09-16", "E28", "gemini", revops, "1", "", "pool"],   # 追記前。使わない
+        ["2026-09-18", "E28", "gemini", revops, "0", "", "pool"],
+        ["2026-09-16", "E06", "gemini", rag, "1", "", "pool"],      # 追記なし。使う
+        ["2026-10-10", "E28", "gemini", revops, "1", "", "pool"],
+        ["2026-10-10", "E06", "gemini", rag, "1", "", "pool"],
+    ])
+    summarize.main(["--before", "2026-09-15:2026-09-28", "--after", "2026-10-08:2026-10-27",
+                    "--csv", str(path), "--model", "gemini"])
+    out = capsys.readouterr().out
+    assert "9本は 2026-09-17 以降の観測だけを使う" in out
+    # revops のビフォーは 9/18 の 0 だけ → Δ+1.00、rag は 9/16 の 1 が残る → Δ0.00
+    assert "①対照: 1/1 = 100%   Δ平均 +1.00" in out
+    assert "②FAQのみ: 1/1 = 100%   Δ平均 +0.00" in out

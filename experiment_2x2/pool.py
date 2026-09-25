@@ -7,6 +7,7 @@ experiment_2x2/targets.csv は「編集禁止リスト(50本)」で、観測・�
 すべてここを通して同じ46本を見る。スクリプトごとに本数がずれるのを防ぐため。
 """
 import csv
+import glob
 import io
 import os
 
@@ -31,6 +32,49 @@ PROBE_BASELINE_EXCLUDED = ('2026-09-17',)
 # 訂正が確定していなくても、条件 f と「込み／抜き」の集計には含める。
 # 2026-09-23: features の本文1文の訂正(9/29〜30)を了承したため2本に戻した。
 CORRECTION_SLUGS = ('agentforce-vibes', 'agentforce-features')
+
+
+# 逆リンク追記の層(くじ引きの条件 b・e とビフォー基準値に使う)。
+# 制作管制の表で作り直したら strata_backlink_YYYYMMDD.csv に置き換える。
+# 新しい名前があればそちらを使う(日付の新しいものが正)。
+STRATA_GLOB = os.path.join(HERE, 'strata_backlink_*.csv')
+STRATA_LEGACY = os.path.join(HERE, 'strata_backlink17.csv')
+# ビフォー期間の途中(9/15〜16)に追記が入った記事は、追記より後の観測だけを基準値に使う。
+# 追記そのものが引用されやすさを動かすので、追記前後を混ぜると基準値が実際とずれる。
+LATE_APPEND_FROM = '2026-09-15'
+LATE_BASELINE_FROM = '2026-09-17'
+
+
+def strata_path():
+    """逆リンク追記の層のファイル。strata_backlink_YYYYMMDD.csv があれば新しいほうを使う。"""
+    dated = sorted(glob.glob(STRATA_GLOB))
+    return dated[-1] if dated else STRATA_LEGACY
+
+
+def load_strata(path=None):
+    """逆リンク追記を受けた記事。プールに無い記事(E37 など)は外す。"""
+    path = path or strata_path()
+    if not os.path.exists(path):
+        return []
+    pool = pool_slugs()
+    return [r for r in read_csv(path)
+            if r['slug'].lower() in pool and r['slug'].lower() not in EXCLUDED]
+
+
+def appended_slugs(path=None):
+    """9/11〜9/16 に逆リンク追記を受けた記事(条件 b)。"""
+    return {r['slug'].lower() for r in load_strata(path)}
+
+
+def late_appended_slugs(path=None):
+    """ビフォー期間の途中(9/15〜16)に追記を受けた記事(条件 e)。"""
+    return {r['slug'].lower() for r in load_strata(path)
+            if str(r.get('appended_at', ''))[:10] >= LATE_APPEND_FROM}
+
+
+def baseline_start(slug_name, path=None):
+    """その記事のビフォー基準値に使える最初の日。制限が無ければ None。"""
+    return LATE_BASELINE_FROM if slug_name in late_appended_slugs(path) else None
 
 
 def slug(u):

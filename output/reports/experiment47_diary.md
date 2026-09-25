@@ -304,3 +304,42 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 - 9/23 から、転送をたどれないときは `Location` ヘッダーで行き先を読む（TLS エラーの5件はこれで解決できる）
 - 9/23 から llm_experiment に `raw_cited_urls`（生の引用元URL）と `experiment_flag` の列を足した。
   それより前の行の生URLは `raw_file` の JSON にある
+
+---
+
+## 2026-09-25／ビフォー期間中の追記9本を受けて、くじ引きの条件と基準値を更新
+
+**何が起きていたか**
+- 9/15〜9/16 に `publish_followup` が、統計46本のうち**9本**へ逆リンクを追記した
+  （リンク1本＋約100字。ほかにピラー `agentic-crm` にも入った）。
+  **ビフォー観測の途中で本文が変わった9本**で、9/11〜9/14 の8本と合わせて17本が追記を受けている
+- 9本：revops-guide / agentforce-observability / hyper-personalization / salesforce-data-360 /
+  buyer-enablement（9/15）、agentforce-subagents / agentforce-employee-agent /
+  agentforce-use-cases / agentforce-testing-center（9/16）
+
+**くじ引きの条件（9/28 実行）**
+| 条件 | 内容 | 変更 |
+|---|---|---|
+| a | 各組 11〜12本（46本なので 12/12/11/11） | そのまま |
+| b | 9/11〜9/16 に追記を受けた記事（層の表の全件・現在17本）が組間で均等（最大差1） | 「17本が各組4〜5本」から一般化 |
+| c | 引用あり（9/15〜9/27 に cited_article=1 が1回以上）が組間で最大差1 | そのまま |
+| d | 2026-09 公開・2026-07 公開がそれぞれ組間で最大差1（d-1・d-2） | そのまま |
+| e | **9/15〜9/16 に追記を受けた9本が各組 2〜3本（最大差1）** | 新設 |
+| f | agentforce-vibes・agentforce-features が各組に最大1本 | そのまま |
+
+- b・e の母数は `experiment_2x2/strata_backlink17.csv` の `appended_at` から自動で決まる。
+  制作管制の「9/11〜9/16 の全追記の表」で作り直せば、条件の中身もそのまま追従する
+
+**ビフォー基準値**
+- 9/15〜16 に追記を受けた**9本は 9/17 以降の観測だけ**を基準値に使う
+  （`pool.LATE_BASELINE_FROM`。`summarize.py` が自動で切る）。
+  9/15 の3本に適用していたルールを9本へ広げた
+
+**介入ログ（`output/interventions.csv`）**
+- I-09 を追加：9/15〜16 の逆リンク追記（touches_pool46=**yes**）
+- I-04（sameAs 6→7・Yoast 組織設定・全ページ共通・9/20〜22・本田さん）を記入。プール46本の本文には触れない
+- I-05（タイトル・メタディスクリプション改修。9/15 より前に完了、9/15 以降の変更0件）を記録のみで記入
+
+**待ち**
+- 制作管制の「9/11〜9/16 の全追記の表」。受け取り次第 `strata_backlink_YYYYMMDD.csv` に作り直し、
+  前回の17本との差分（増えた記事・消えた記事）を報告する。`pool.strata_path()` が新しいファイルを自動で使う

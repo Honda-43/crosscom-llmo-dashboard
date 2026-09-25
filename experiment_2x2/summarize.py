@@ -31,7 +31,8 @@ import sys
 from math import comb
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pool import (CORRECTION_SLUGS, EXCLUDED, PROBE_BASELINE_EXCLUDED,  # noqa: E402
+from pool import (CORRECTION_SLUGS, EXCLUDED, LATE_BASELINE_FROM,  # noqa: E402
+                  PROBE_BASELINE_EXCLUDED, baseline_start, late_appended_slugs,
                   load_allocation, pool_slugs, slug)
 
 WATCH_FLAG = "watch"
@@ -75,7 +76,12 @@ def counted(row, pool):
 
 
 def period(rows, span, model, groups, pool):
-    """{slug: (組, 期間中に1回でも cited_article=1 なら1)}"""
+    """{slug: (組, 期間中に1回でも cited_article=1 なら1)}
+
+    9/15〜16 に逆リンク追記が入った9本は、追記より前(9/16 まで)の観測を使わない
+    (pool.baseline_start)。追記そのものが引用されやすさを動かすので、追記前後を
+    混ぜるとビフォーの基準値が実際とずれる。
+    """
     start, end = span
     cited = collections.defaultdict(list)
     for r in rows:
@@ -83,7 +89,11 @@ def period(rows, span, model, groups, pool):
             continue
         if not counted(r, pool):
             continue
-        cited[slug(r["target_url"])].append(str(r.get("cited_article", "")).strip() == "1")
+        s = slug(r["target_url"])
+        limit = baseline_start(s)
+        if limit and str(r.get("date", ""))[:10] < limit:
+            continue
+        cited[s].append(str(r.get("cited_article", "")).strip() == "1")
     return {s: (groups.get(s, "（割付なし）"), int(any(v))) for s, v in cited.items()}
 
 
@@ -171,6 +181,9 @@ def main(argv=None):
             sys.exit("allocation_v1.csv が無い（9/28 の割付の前）。組が決まってから判定する")
         rows = read_llm_experiment(a.csv)
         pool = pool_slugs()
+        late = late_appended_slugs()
+        if late:
+            print(f"9/15〜16 に追記の入った{len(late)}本は {LATE_BASELINE_FROM} 以降の観測だけを使う")
         watch = sum(1 for r in rows if str(r.get("experiment_flag", "")).strip() == WATCH_FLAG)
         print(f"llm_experiment {len(rows)}行（watch {watch}行とプール外・欠測は数えない）\n")
         for model in ([a.model] if a.model else MODELS):

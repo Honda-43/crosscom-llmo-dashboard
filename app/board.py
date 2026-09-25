@@ -164,7 +164,7 @@ def intervention_annotations(figure: go.Figure,
                           f"({date:%m/%d}{mark})")
     pending = interventions.undated(rows)
     if pending:
-        legend.append("日付が未確定(縦線なし): "
+        legend.append("日付が1日に定まらない(縦線なし): "
                       + "、".join(f"{r['intervention_id']} {r['description']}" for r in pending))
     return " / ".join(legend)
 

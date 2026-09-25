@@ -12,10 +12,13 @@
 
 条件（全部満たす最初のシードを採用する）
 　a. 各組 11〜12本（46本なので 12/12/11/11）
-　b. 逆リンク追記あり17本が各組 4〜5本
+　b. 9/11〜9/16 に逆リンク追記を受けた記事（層の表の全件）が組間で均等（最大差1）
 　c. 引用あり（--cited-from 〜 --cited-to の観測で cited_article=1 が1回以上）が組間で最大差1
-　d. 2026-09 公開・2026-07 公開それぞれの本数が組間で最大差1
-　　（d-1・d-2 の2つ。a〜d-2 の5つが当初の条件 a〜e にあたる）
+　d. 2026-09 公開・2026-07 公開それぞれの本数が組間で最大差1（d-1・d-2 の2つ）
+　e. **9/15〜9/16 に追記を受けた9本が各組 2〜3本（最大差1）**（2026-09-25 追加）
+　　この9本はビフォー観測の途中で本文が変わっている。組に固まると、処置の効果と
+　　追記の効果が分けられない。基準値もこの9本だけ 9/17 以降の観測を使う
+　　（pool.LATE_BASELINE_FROM。summarize.py が自動で切る）
 　f. 鮮度更新の誤り訂正の対象（pool.CORRECTION_SLUGS）は各組に最大1本
 　　2026-09-22 に3本で追加し、同日 agentforce-vibes のみに、2026-09-23 に
 　　agentforce-vibes・agentforce-features の2本に更新した（coworker はプールから除外し
@@ -46,8 +49,9 @@ import sys
 from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pool import (ALLOCATION_CSV, CORRECTION_SLUGS, EXCLUDED, load_pool,  # noqa: E402
-                  read_csv, slug)
+from pool import (ALLOCATION_CSV, CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
+                  appended_slugs, late_appended_slugs, load_pool, read_csv, slug,
+                  strata_path)
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 GROUPS = ['①対照', '②FAQのみ', '③リードのみ', '④両方']
@@ -66,16 +70,15 @@ def load_articles():
     """
     pub = {slug(r['url']): r.get('published', '')
            for r in read_csv(os.path.join(ROOT, 'experiment_2x2', 'targets.csv'))}
-    back = set()
-    p = os.path.join(ROOT, 'experiment_2x2', 'strata_backlink17.csv')
-    if os.path.exists(p):
-        back = {r['slug'].lower() for r in read_csv(p)} - set(EXCLUDED)
+    back = appended_slugs()
+    late = late_appended_slugs()
     arts = []
     for r in load_pool():
         s = r['slug']
         arts.append({'id': r['id'], 'url': r['url'], 'slug': s,
                      'layer': r.get('layer', ''), 'published': pub.get(s, ''),
                      'month': pub.get(s, '')[:7], 'backlink': s in back,
+                     'late_backlink': s in late,
                      'correction': s in CORRECTION_SLUGS})
     return arts, back
 
@@ -136,13 +139,17 @@ def check(arts, assign, cited):
     v = vals(by(lambda a: True))
     res.append(('a 各組11〜12本', all(11 <= x <= 12 for x in v), v))
     v = vals(by(lambda a: a['backlink']))
-    res.append(('b 逆リンク追記17本が各組4〜5本', all(4 <= x <= 5 for x in v), v))
+    res.append((f'b 逆リンク追記{sum(v)}本が組間で均等（実差 {max(v) - min(v)}）',
+                max(v) - min(v) <= 1, v))
     v = vals(by(lambda a: a['slug'] in cited))
     res.append((f'c 引用ありが最大差1（実差 {max(v) - min(v)}）', max(v) - min(v) <= 1, v))
     v = vals(by(lambda a: a['month'] == '2026-09'))
     res.append((f'd-1 2026-09公開が最大差1（実差 {max(v) - min(v)}）', max(v) - min(v) <= 1, v))
     v = vals(by(lambda a: a['month'] == '2026-07'))
     res.append((f'd-2 2026-07公開が最大差1（実差 {max(v) - min(v)}）', max(v) - min(v) <= 1, v))
+    v = vals(by(lambda a: a['late_backlink']))
+    res.append((f'e 9/15〜16 の追記{sum(v)}本が各組2〜3本（実差 {max(v) - min(v)}）',
+                all(2 <= x <= 3 for x in v) and max(v) - min(v) <= 1, v))
     v = vals(by(lambda a: a['correction']))
     res.append((f'f 鮮度更新の訂正対象（{"・".join(CORRECTION_SLUGS)}）が各組に最大1本',
                 all(x <= 1 for x in v), v))
@@ -156,8 +163,9 @@ def report(arts, assign, cited, cited_src, seed, seed_start, tried, res, a):
              '引き直した回数と採用シードを残すのは、後から同じ割付を再現するため。', '',
              f'- 採用シード：**{seed}**（開始 {seed_start} から {tried} 個目）',
              f'- 引用の判定：{cited_src}',
-             '- 逆リンク追記あり17本：便GL の記録'
-             '（crosscom-seo-agent/output/reports/bunGL_experiment48_append_record_20260917.md）',
+             f'- 逆リンク追記の層：{os.path.basename(strata_path())}'
+             f'（9/11〜9/16 の追記 {sum(1 for x in arts if x["backlink"])}本。'
+             f'うち 9/15〜16 が {sum(1 for x in arts if x["late_backlink"])}本）',
              '- 鮮度更新の訂正対象：' + '・'.join(CORRECTION_SLUGS)
              + '（訂正が未確定でも条件 f と判定の込み／抜きに含める）',
              '- プールから除外：' + '、'.join(f'{k}（{v}）' for k, v in EXCLUDED.items()),
@@ -169,12 +177,13 @@ def report(arts, assign, cited, cited_src, seed, seed_start, tried, res, a):
         lines.append(f'| {name} | {"OK" if ok else "★NG"} | '
                      + ' | '.join(str(x) for x in v) + ' |')
     lines += ['', '## 割付表', '',
-              '| # | id | url | 層 | 公開日 | 逆リンク追記 | 引用あり | 訂正対象 | 組 |',
-              '|---|---|---|---|---|---|---|---|---|']
+              '| # | id | url | 層 | 公開日 | 逆リンク追記 | 9/15〜16 の追記 | 引用あり | 訂正対象 | 組 |',
+              '|---|---|---|---|---|---|---|---|---|---|']
     ordered = sorted(arts, key=lambda y: (GROUPS.index(assign[y['slug']]), y['id']))
     for i, x in enumerate(ordered, 1):
         lines.append(f'| {i} | {x["id"]} | {x["url"]} | {x["layer"]} | {x["published"]} | '
                      f'{"あり" if x["backlink"] else "—"} | '
+                     f'{"あり" if x["late_backlink"] else "—"} | '
                      f'{"あり" if x["slug"] in cited else "—"} | '
                      f'{"対象" if x["correction"] else "—"} | {assign[x["slug"]]} |')
     names = '・'.join(CORRECTION_SLUGS)

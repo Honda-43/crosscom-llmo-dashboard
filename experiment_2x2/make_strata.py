@@ -13,7 +13,12 @@ SRC = os.environ.get(
     os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..',
                  'crosscom-seo-agent', 'output', 'reports',
                  'bunGL_experiment48_append_record_20260917.md'))
-OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'strata_backlink17.csv')
+# 出力先。制作管制の「9/11〜9/16 の全追記の表」で作り直したら、本数に依らない
+# strata_backlink_YYYYMMDD.csv にする(pool.strata_path が新しいほうを自動で使う)。
+#   BUNGL_RECORD=<表> python make_strata.py --out strata_backlink_20260925.csv
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                   sys.argv[sys.argv.index('--out') + 1] if '--out' in sys.argv
+                   else 'strata_backlink17.csv')
 
 text = io.open(SRC, encoding='utf-8').read()
 rows = []
