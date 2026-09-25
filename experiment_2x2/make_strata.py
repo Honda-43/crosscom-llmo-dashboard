@@ -32,22 +32,40 @@ BUNGL_RECORD = os.environ.get(
     os.path.join(HERE, '..', '..', 'crosscom-seo-agent', 'output', 'reports',
                  'bunGL_experiment48_append_record_20260917.md'))
 
-# 制作管制の全編集一覧の仕様（この順・この名前でなければ止める）
+# 制作管制の全編集一覧の仕様（この順・この名前でなければ止める。2026-09-25 に17列へ）
 EDIT_COLUMNS = ['slug', 'post_id', 'edited_at_jst', 'pool_class', 'edit_type', 'source',
                 'chars_delta', 'links_before', 'links_after', 'added_link_targets',
-                'removed_link_targets', 'title_changed', 'title_before', 'title_after']
+                'removed_link_targets', 'title_changed', 'title_before', 'title_after',
+                'links_before_all', 'links_after_all', 'note']
+INT_COLUMNS = ('post_id', 'chars_delta', 'links_before', 'links_after',
+               'links_before_all', 'links_after_all')
 POOL_CLASS = '統計46'
 STRATA_COLUMNS = ['slug', 'url', 'post_id', 'appended_at', 'backlinks', 'parents']
-DATE_FORMATS = ('%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M', '%Y-%m-%dT%H:%M:%S', '%Y-%m-%d')
+DATE_FORMATS = ('%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M', '%Y-%m-%d')
+JST = datetime.timezone(datetime.timedelta(hours=9))
+# 観測開始の時刻。ビフォー期間の「途中で変わった記事」はこの時刻で切る。
+# 日付(JST・GMT)の境目で切ると、9/15 01:34 の編集まで巻き込んでしまう。
+# あの2本は観測が始まる前の編集で、ビフォーの1回目から新しい本文を見ている。
+OBSERVATION_START = datetime.datetime(2026, 9, 15, 8, 0, 0, tzinfo=JST)
+LATE_WINDOW_END = datetime.datetime(2026, 9, 16, 23, 59, 59, tzinfo=JST)
 
 
 def _parse_dt(text):
-    for fmt in DATE_FORMATS:
-        try:
-            return datetime.datetime.strptime(str(text).strip(), fmt)
-        except ValueError:
-            continue
-    return None
+    """ISO-8601(+09:00 付き)も、素の "YYYY-MM-DD HH:MM:SS" も読む。JST に揃える。"""
+    raw = str(text).strip()
+    try:
+        got = datetime.datetime.fromisoformat(raw)
+    except ValueError:
+        got = None
+        for fmt in DATE_FORMATS:
+            try:
+                got = datetime.datetime.strptime(raw, fmt)
+                break
+            except ValueError:
+                continue
+    if got is None:
+        return None
+    return got.astimezone(JST) if got.tzinfo else got.replace(tzinfo=JST)
 
 
 def validate_edits(rows, header):
@@ -64,7 +82,7 @@ def validate_edits(rows, header):
     for i, r in enumerate(rows, start=2):    # 2行目からがデータ
         if not str(r.get('slug', '')).strip():
             problems.append(f'{i}行目: slug が空')
-        for col in ('post_id', 'chars_delta', 'links_before', 'links_after'):
+        for col in INT_COLUMNS:
             value = str(r.get(col, '')).strip()
             try:
                 int(value)
@@ -76,6 +94,8 @@ def validate_edits(rows, header):
         if str(r.get('title_changed', '')).strip() not in ('0', '1'):
             problems.append(f'{i}行目: title_changed が 0/1 でない'
                             f'（{str(r.get("title_changed"))!r}）')
+        if not str(r.get('note', '')).strip():
+            problems.append(f'{i}行目: note が空')
     return problems
 
 
@@ -100,6 +120,25 @@ def link_increases(rows):
     return got
 
 
+def late_changes(rows):
+    """観測開始(9/15 08:00 JST)〜9/16 23:59:59 に変わった記事。{slug: 最初の編集時刻}。
+
+    条件 e の母数であり、ビフォー基準値を 9/17 以降に切る対象でもある。
+    編集の種類は問わない(本文・リンク・タイトルのどれでも、観測の途中で変われば同じ)。
+    """
+    got = {}
+    for r in rows:
+        if str(r['pool_class']).strip() != POOL_CLASS:
+            continue
+        when = _parse_dt(r['edited_at_jst'])
+        if when is None or not (OBSERVATION_START <= when <= LATE_WINDOW_END):
+            continue
+        slug = str(r['slug']).strip().lower()
+        if slug not in got or when < got[slug]:
+            got[slug] = when
+    return got
+
+
 def title_changes(rows):
     """{slug: 最初にタイトルが変わった日時}。pool_class は問わない（統計46は後で絞る）。"""
     got = {}
@@ -113,7 +152,7 @@ def title_changes(rows):
     return got
 
 
-def from_edits(path, out_name, title_out_name):
+def from_edits(path, out_name, title_out_name, late_out_name):
     rows, header = read_edits(path)
     problems = validate_edits(rows, header)
     if problems:
@@ -149,6 +188,15 @@ def from_edits(path, out_name, title_out_name):
         w = csv.DictWriter(f, fieldnames=STRATA_COLUMNS)
         w.writeheader(); w.writerows(strata)
 
+    # 観測開始(9/15 08:00 JST)以降に変わった記事 — 条件 e と「9/17 以降のみ」の母数
+    late = {s: w for s, w in late_changes(rows).items() if s in pool}
+    late_out = os.path.join(HERE, late_out_name)
+    with io.open(late_out, 'w', encoding='utf-8', newline='') as f:
+        w = csv.writer(f)
+        w.writerow(['slug', 'changed_at'])
+        for slug in sorted(late):
+            w.writerow([slug, late[slug].strftime('%Y-%m-%d %H:%M:%S%z')])
+
     titles = {s: w for s, w in title_changes(rows).items() if s in pool}
     title_out = os.path.join(HERE, title_out_name)
     with io.open(title_out, 'w', encoding='utf-8', newline='') as f:
@@ -164,6 +212,17 @@ def from_edits(path, out_name, title_out_name):
     print(f'差分（前 {len(before)}本 → 今 {len(now)}本）')
     print('  増えた記事: ' + ('、'.join(sorted(now - before)) or 'なし'))
     print('  消えた記事: ' + ('、'.join(sorted(before - now)) or 'なし'))
+    print(f'条件 e(観測開始 {OBSERVATION_START:%Y-%m-%d %H:%M} 〜 '
+          f'{LATE_WINDOW_END:%m-%d %H:%M} に変わった記事) {len(late)}本 → {late_out}')
+    for slug in sorted(late):
+        print(f'  {slug} {late[slug]:%Y-%m-%d %H:%M}')
+    others = [r for r in rows
+              if str(r['pool_class']).strip() == POOL_CLASS
+              and str(r['edit_type']).strip() == 'その他'
+              and (_parse_dt(r['edited_at_jst']) or OBSERVATION_START) >= OBSERVATION_START]
+    print(f'edit_type=その他 かつ 統計46 かつ 観測開始以降: {len(others)}行')
+    for r in others:
+        print(f'  {r["slug"]} {r["edited_at_jst"]} {r["note"]}')
     print(f'タイトル変更 {len(titles)}本 → {title_out}')
     for slug in sorted(titles):
         mark = '（9/15 以降。条件 e と「9/17 以降のみ」の対象）' \
@@ -218,6 +277,7 @@ def main(argv=None):
     ap.add_argument('--from-bungl', action='store_true', help='旧: 便GL の記録から17本')
     ap.add_argument('--out', help='層の表の名前（既定: strata_backlink_YYYYMMDD.csv）')
     ap.add_argument('--title-out', help='タイトル変更の表（既定: title_changes_YYYYMMDD.csv）')
+    ap.add_argument('--late-out', help='観測開始以降に変わった記事（既定: late_changes_YYYYMMDD.csv）')
     a = ap.parse_args(argv)
 
     if a.from_bungl:
@@ -248,7 +308,8 @@ def main(argv=None):
               f'（{os.path.basename(strata_path())}）', file=sys.stderr)
         return 2
     _, _, code = from_edits(src, a.out or f'strata_backlink_{today}.csv',
-                            a.title_out or f'title_changes_{today}.csv')
+                            a.title_out or f'title_changes_{today}.csv',
+                            a.late_out or f'late_changes_{today}.csv')
     if code == 0:
         print('次: python experiment_2x2/allocate_47.py --cited-to <日付> で条件 a〜g を確認')
     return code

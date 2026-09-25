@@ -379,3 +379,20 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
   条件 b が偏ったまま通ってしまうため
 - **9/27 23:59 までに届かなかった場合**：条件 b は便GL の17本（`strata_backlink17.csv`）のまま
   9/28 のくじ引きを実行し、その旨をこの日誌に記録する
+
+**edits CSV を取り込み（2026-09-25・17列）**
+- **境目は観測開始時刻 2026-09-15 08:00 JST で判定する（JST・GMT の日付の境目は使わない）。**
+  日付で切ると 9/15 01:34 の編集（agentforce-einstein-difference・agentforce-service-agent）まで
+  巻き込むが、あの2本は観測が始まる前の編集で、ビフォーの1回目から新しい本文を見ている
+- **リンクの判定は内部リンク**（`links_before` / `links_after`）。`links_*_all`（外部込み）は使わない
+- 条件 b・e をこの基準で更新した：
+  - 条件 b（リンクが増えた記事）: **17本 → 23本**。増えた6本は agentforce-agent-script /
+    agentforce-einstein-difference / agentforce-mcp / agentforce-security-risk-design /
+    agentforce-service-agent / agentforce-usecase-selection。消えた記事はなし
+  - 条件 e（観測開始〜9/16 に変わった記事）: **9本（顔ぶれは変わらず）**。
+    9/15 01:34 の2本は観測開始前なので入らない
+  - タイトル変更3本はすべて 9/12〜9/14 で、**「9/17 以降のみ」の対象には入らない**
+  - `edit_type=その他` かつ 統計46 かつ観測開始以降の行は **0行**
+    （スキーマ追加・メタ変更は観測開始後に入っていない）
+- 取り込んだファイル: `edits_20260911_0916.csv`（136行・49本）、生成物は
+  `strata_backlink_20260925.csv` / `late_changes_20260925.csv` / `title_changes_20260925.csv`

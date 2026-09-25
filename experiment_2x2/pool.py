@@ -41,6 +41,10 @@ STRATA_GLOB = os.path.join(HERE, 'strata_backlink_*.csv')
 STRATA_LEGACY = os.path.join(HERE, 'strata_backlink17.csv')
 # タイトル変更の日付(make_strata.py が全編集一覧から作る)。無ければ下の定数を使う。
 TITLE_CHANGE_GLOB = os.path.join(HERE, 'title_changes_*.csv')
+# 観測開始(2026-09-15 08:00 JST)以降に変わった記事(make_strata.py が全編集一覧から作る)。
+# 条件 e と「9/17 以降の観測だけを基準値に使う」記事の母数。これがあれば層の
+# appended_at からの推定より優先する(編集の種類を問わず、時刻で切れるため)。
+LATE_CHANGE_GLOB = os.path.join(HERE, 'late_changes_*.csv')
 # ビフォー期間の途中(9/15〜16)に追記が入った記事は、追記より後の観測だけを基準値に使う。
 # 追記そのものが引用されやすさを動かすので、追記前後を混ぜると基準値が実際とずれる。
 LATE_APPEND_FROM = '2026-09-15'
@@ -100,6 +104,12 @@ def title_changed_slugs():
     return {s for s in TITLE_CHANGED_SLUGS if s in pool_slugs()}
 
 
+def late_change_path():
+    """観測開始以降に変わった記事の表。無ければ None。"""
+    dated = sorted(glob.glob(LATE_CHANGE_GLOB))
+    return dated[-1] if dated else None
+
+
 def late_appended_slugs(path=None):
     """ビフォー期間の途中(9/15〜16)に本文・タイトルが変わった記事。
 
@@ -107,10 +117,16 @@ def late_appended_slugs(path=None):
     逆リンク追記(層の表の appended_at)に加えて、9/15 以降と分かった
     タイトル変更(TITLE_CHANGE_DATES)も入れる。
     """
+    pool = pool_slugs()
+    table = late_change_path()
+    if table:
+        # 全編集一覧から時刻で切った表がある。編集の種類を問わずこれが正
+        return {r['slug'].strip().lower() for r in read_csv(table)
+                if r.get('slug') and r['slug'].strip().lower() in pool}
     late = {r['slug'].lower() for r in load_strata(path)
             if str(r.get('appended_at', ''))[:10] >= LATE_APPEND_FROM}
     late |= {s for s, d in title_change_dates().items()
-             if s in pool_slugs() and str(d)[:10] >= LATE_APPEND_FROM}
+             if s in pool and str(d)[:10] >= LATE_APPEND_FROM}
     return late
 
 
