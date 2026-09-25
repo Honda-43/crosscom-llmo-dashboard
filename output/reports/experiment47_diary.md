@@ -359,8 +359,23 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 - 介入ログに I-11（9/11 の一括反映）・I-12（9/11〜14 のリンク増）を追加。
   I-10 は seo-agent 側が足したものとしてそのまま残し、以後このファイルは dashboard 側だけが書く
 
-**待ち**
-- 制作管制の `experiment_2x2/edits_20260911_0916.csv`（9/11〜9/16 の全編集一覧）。
-  受け取り次第、統計46本のうちリンクが増えた記事を抽出して `strata_backlink_YYYYMMDD.csv` を作り、
-  17本との差分（増えた記事・消えた記事）と条件 a〜g のドライランを報告する。
-  `pool.strata_path()` が新しいファイルを自動で使う
+**全編集一覧の取り込み仕様（2026-09-25 確定）**
+- 制作管制が `crosscom-seo-agent/output/reports/edits_20260911_0916.csv` を作る（**期限 9/27 23:59**）。
+  14列：slug / post_id / edited_at_jst / pool_class / edit_type / source / chars_delta /
+  links_before / links_after / added_link_targets / removed_link_targets /
+  title_changed / title_before / title_after
+- 手順（`make_strata.py` が1コマンドで行う）:
+  ```
+  python experiment_2x2/make_strata.py --copy-from ../crosscom-seo-agent/output/reports/edits_20260911_0916.csv
+  ```
+  1. seo-agent 側のファイルは読むだけ。`experiment_2x2/edits_20260911_0916.csv` にコピーする
+  2. 列名・列数・並び・型を検査し、**1つでも合わなければ何も書かずに止めて報告する**（推測で読まない）
+  3. 「pool_class=統計46 かつ links_after > links_before の行を1行以上持つ記事」を抽出して
+     `strata_backlink_YYYYMMDD.csv` を作り、17本との差分（増えた記事・消えた記事）を出す
+  4. `title_changed=1` の `edited_at_jst` から `title_changes_YYYYMMDD.csv` を作る。
+     9/15 以降の記事は条件 e と「9/17 以降のみ」の対象に自動で入る
+  5. 条件 a〜g でドライランして結果を報告する
+- 検査で止めるのは、列がずれたまま読むと層に入るはずの記事が静かに抜け落ち、
+  条件 b が偏ったまま通ってしまうため
+- **9/27 23:59 までに届かなかった場合**：条件 b は便GL の17本（`strata_backlink17.csv`）のまま
+  9/28 のくじ引きを実行し、その旨をこの日誌に記録する

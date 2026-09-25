@@ -39,6 +39,8 @@ CORRECTION_SLUGS = ('agentforce-vibes', 'agentforce-features')
 # 新しい名前があればそちらを使う(日付の新しいものが正)。
 STRATA_GLOB = os.path.join(HERE, 'strata_backlink_*.csv')
 STRATA_LEGACY = os.path.join(HERE, 'strata_backlink17.csv')
+# タイトル変更の日付(make_strata.py が全編集一覧から作る)。無ければ下の定数を使う。
+TITLE_CHANGE_GLOB = os.path.join(HERE, 'title_changes_*.csv')
 # ビフォー期間の途中(9/15〜16)に追記が入った記事は、追記より後の観測だけを基準値に使う。
 # 追記そのものが引用されやすさを動かすので、追記前後を混ぜると基準値が実際とずれる。
 LATE_APPEND_FROM = '2026-09-15'
@@ -51,7 +53,8 @@ TITLE_CHANGED_SLUGS = (
     'agentic-ai-guide',
     'agentic-crm-pipeline-stagnation-detection',
 )
-# タイトル変更の日付。制作管制の全編集一覧(edits_20260911_0916.csv)で分かったら埋める。
+# タイトル変更の日付。全編集一覧が届く前の手当て(既定は空)。届いたら
+# make_strata.py が title_changes_YYYYMMDD.csv を書き、そちらが優先される。
 # 9/15 以降と分かった記事は、そのまま late_appended_slugs()(9/17 以降の観測だけを
 # 基準値に使う記事)に入る。空のままなら基準値の扱いは変えない。
 TITLE_CHANGE_DATES = {}
@@ -78,6 +81,20 @@ def appended_slugs(path=None):
     return {r['slug'].lower() for r in load_strata(path)}
 
 
+def title_change_path():
+    """タイトル変更の表。title_changes_YYYYMMDD.csv があれば新しいほうを使う。"""
+    dated = sorted(glob.glob(TITLE_CHANGE_GLOB))
+    return dated[-1] if dated else None
+
+
+def title_change_dates():
+    """{slug: 変更日時}。表があればそれを、無ければ TITLE_CHANGE_DATES を使う。"""
+    path = title_change_path()
+    if not path:
+        return dict(TITLE_CHANGE_DATES)
+    return {r['slug'].strip().lower(): r['changed_at'] for r in read_csv(path) if r.get('slug')}
+
+
 def title_changed_slugs():
     """タイトル変更を受けた記事(条件 g)。プールに無い記事は外す。"""
     return {s for s in TITLE_CHANGED_SLUGS if s in pool_slugs()}
@@ -92,7 +109,7 @@ def late_appended_slugs(path=None):
     """
     late = {r['slug'].lower() for r in load_strata(path)
             if str(r.get('appended_at', ''))[:10] >= LATE_APPEND_FROM}
-    late |= {s for s, d in TITLE_CHANGE_DATES.items()
+    late |= {s for s, d in title_change_dates().items()
              if s in pool_slugs() and str(d)[:10] >= LATE_APPEND_FROM}
     return late
 
