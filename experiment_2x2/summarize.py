@@ -31,6 +31,7 @@ import sys
 from math import comb
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import rerandomize  # noqa: E402
 from pool import (CORRECTION_SLUGS, EXCLUDED, LATE_BASELINE_FROM,  # noqa: E402
                   PROBE_BASELINE_EXCLUDED, baseline_start, late_appended_slugs,
                   load_allocation, pool_slugs, slug)
@@ -160,7 +161,35 @@ def summarize(after, before, exclude=(), label=""):
     print("主効果")
     line("結論要約リード", LEAD_ON, LEAD_OFF)
     line("FAQブロック化", FAQ_ON, FAQ_OFF)
+    rr = randomization(after, exclude)
+    if rr:
+        print(f"再ランダム化検定（同じ条件を満たす割付 {rr['n']:,}通りの中で。**判定の本線**）"
+              f": リード 片側p={rr['lead_p']:.3f}／FAQ 片側p={rr['faq_p']:.3f}")
+    else:
+        print("再ランダム化検定: プール未作成"
+              "（experiment_2x2/rerandomize.py --build で作る）")
     print()
+
+
+def randomization(after, exclude=()):
+    """再ランダム化検定。同じ条件 a〜g を満たす割付の中で、実際の差以上が出る割合。
+
+    プール(results/rerandomization_pool.csv)が無ければ None。条件の合格率が
+    約 1/9,200 なので、取りうる割付すべてを前提にしたフィッシャー検定より、
+    こちらを判定の本線にする。
+    """
+    pool_rows = rerandomize.load()
+    if not pool_rows:
+        return None
+    import allocate_47
+    arts, _ = allocate_47.load_articles()
+    groups = load_allocation()
+    if not groups:
+        return None
+    actual = [rerandomize.GROUPS.index(groups[a['slug']]) for a in arts]
+    cited_any = {s: v for s, (_, v) in after.items()}
+    outcomes = rerandomize.outcomes_for(arts, cited_any, exclude)
+    return rerandomize.p_values(pool_rows, actual, outcomes)
 
 
 def variants():
@@ -192,12 +221,16 @@ def sensitivity_table(after, before, title=""):
             rates.append(f"{hit}/{hit + miss}" if hit + miss else "—")
         _, _, _, _, lead_diff, lead_p = effect(groups, LEAD_ON, LEAD_OFF)
         _, _, _, _, faq_diff, faq_p = effect(groups, FAQ_ON, FAQ_OFF)
+        rr = randomization(after, exclude)
         rows.append([label, str(n)] + rates
-                    + [f"{lead_diff:+.0%}", f"{lead_p:.3f}",
-                       f"{faq_diff:+.0%}", f"{faq_p:.3f}"])
+                    + [f"{lead_diff:+.0%}",
+                       f"{rr['lead_p']:.3f}" if rr else "—", f"{lead_p:.3f}",
+                       f"{faq_diff:+.0%}",
+                       f"{rr['faq_p']:.3f}" if rr else "—", f"{faq_p:.3f}"])
     head = ["感度分析" + (f"（{title.strip()}）" if title.strip() else ""), "本数",
             "①対照", "②FAQのみ", "③リードのみ", "④両方",
-            "リード差", "p", "FAQ差", "p"]
+            "リード差", "p(再ランダム化)", "p(フィッシャー)",
+            "FAQ差", "p(再ランダム化)", "p(フィッシャー)"]
     width = [max(len(r[i]) for r in [head] + rows) for i in range(len(head))]
     def row(cells_):
         return "  ".join(c.ljust(w) for c, w in zip(cells_, width)).rstrip()
@@ -261,6 +294,8 @@ def main(argv=None):
                 print(f"ビフォーに観測の無い記事 {len(missing)}本（ビフォーは0として扱う）: {', '.join(missing)}")
             both_ways(after, before, f"{model} ")
     print("判定: 差が +25pt 以上 かつ p<0.10 で「効いた」。どちらか欠ければ「この本数では判断できない」。")
+    print("p は**再ランダム化検定**を本線にする（条件 a〜g の合格率が約 1/9,200 のため、"
+          "同じ条件を満たす割付の中で数える）。フィッシャー正確検定は参考。")
     print("感度分析の4通りで結論が食い違う場合は、処置ではなく"
           "「9/15〜16 の追記」か「鮮度更新の訂正」の影響として扱う。")
     return 0
