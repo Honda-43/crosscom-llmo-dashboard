@@ -231,11 +231,16 @@ def test_summarize_still_refuses_the_old_probe_baseline(tmp_path):
 
 # --- 6. 9/15〜16 の追記9本(条件 b・e とビフォー基準値。2026-09-25) --------------------
 def test_the_strata_splits_all_appends_from_the_late_nine():
-    assert len(pool.appended_slugs()) == 17, "9/11〜9/16 の追記(条件 b)"
+    """全編集一覧(2026-09-25 取り込み)から: 条件 b は23本、条件 e は9本。"""
+    appended = pool.appended_slugs()
     late = pool.late_appended_slugs()
-    assert len(late) == 9, "9/15〜16 の追記(条件 e)"
-    assert late <= pool.appended_slugs() and late <= pool.pool_slugs()
+    assert len(appended) == 23, "内部リンクが増えた記事(条件 b)"
+    assert len(late) == 9, "観測開始(9/15 08:00)〜9/16 に変わった記事(条件 e)"
+    assert late <= pool.pool_slugs()
     assert "revops-guide" in late and "agentforce-rag" not in late
+    # 9/15 01:34 の2本は観測開始より前。リンクは増えたので b には入るが e には入らない
+    for slug in ("agentforce-einstein-difference", "agentforce-service-agent"):
+        assert slug in appended and slug not in late, slug
 
 
 def test_the_newer_strata_file_wins(tmp_path, monkeypatch):
@@ -255,7 +260,7 @@ def test_the_allocation_checks_b_and_e(monkeypatch, tmp_path, cited_csv):
     code, out, _ = _allocate(monkeypatch, tmp_path, cited_csv, "--write")
     assert code == 0
     text = out.read_text(encoding="utf-8")
-    assert "b 逆リンク追記17本が組間で均等" in text
+    assert "b 逆リンク追記23本が組間で均等" in text
     assert "e 9/15〜16 の追記9本が各組2〜3本" in text
     assert "| 9/15〜16 の変更 |" in text, "割付表に列がある(追記＋タイトル変更)"
     rows = [ln for ln in text.splitlines() if ln.startswith("| ") and "cross-com.jp" in ln]
@@ -349,8 +354,14 @@ def test_condition_g_keeps_the_title_changes_apart(monkeypatch, tmp_path, cited_
     assert "| タイトル変更 |" in text
 
 
-def test_a_title_change_dated_9_15_joins_the_late_list(monkeypatch):
-    """タイトル変更の日時が 9/15〜16 と分かったら、9/17 以降のみ使用の対象に入る。"""
+def test_a_title_change_dated_9_15_joins_the_late_list(monkeypatch, tmp_path):
+    """全編集一覧が無いときの手当て: TITLE_CHANGE_DATES から 9/15 以降を拾う。
+
+    一覧があるときは時刻で切った late_changes_*.csv が優先される(そちらは
+    tests/test_edits_ingest.py で固定)。
+    """
+    monkeypatch.setattr(pool, "LATE_CHANGE_GLOB", str(tmp_path / "late_changes_*.csv"))
+    monkeypatch.setattr(pool, "TITLE_CHANGE_GLOB", str(tmp_path / "title_changes_*.csv"))
     before = pool.late_appended_slugs()
     assert "agentic-ai-guide" not in before, "日付が分かるまでは入れない"
     monkeypatch.setattr(pool, "TITLE_CHANGE_DATES",
