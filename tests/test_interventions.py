@@ -67,6 +67,16 @@ def test_the_real_log_parses_and_keeps_the_agreed_columns():
     assert len(set(ids)) == len(ids), "intervention_id が重複している"
     pool = [r for r in rows if r["touches_pool46"] == "yes"]
     assert [r["intervention_id"] for r in pool] == ["I-07"], "9/29 の処置反映だけがプール46本に触れる"
+    by_id = {r["intervention_id"]: r for r in rows}
+    # 9/29 に入れる訂正は2本(E37 は 9/22 に実験外で適用済み)
+    assert "訂正2件" in by_id["I-07"]["description"]
+    assert "agentforce-vibes" in by_id["I-07"]["description"]
+    assert "agentforce-features" in by_id["I-07"]["description"]
+    e37 = by_id["I-08"]
+    assert e37["date"] == dt.date(2026, 9, 22) and e37["touches_pool46"] == "no"
+    assert "watch" in e37["scope"], "E37 は実験外(watch)"
+    # 照会中の2件は日付を埋めない(未確定のまま縦線にしない)
+    assert [r["intervention_id"] for r in interventions.undated(rows)] == ["I-04", "I-05"]
 
 
 # --- 折れ線(R2)の縦線 ---------------------------------------------------------
