@@ -422,3 +422,16 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 - `config/kgi.yaml` の `official`（Lead の項目定義から写した選択リストの API 値）は
   **接続先未確認**と明記した。コードはこの定義を読まない（読むのは GA4 の `supplementary.key_events` だけ）
 - dashboard のコードから Salesforce へ接続する処理は無い（SOQL は文書に載せた手動照会用のみ）
+
+---
+
+## 2026-09-26 14:46／E37（agentforce-coworker・post 7003）の権限セット名の差し替えを適用（便MC）
+
+**処置ではない**（E37 はプールから除外済み・観測は watch で継続）。事実の誤りの訂正。記事制作の便MC で適用。
+- 箇所：H2「Agentforce Coworkerを使い始める4ステップ」ステップ③の第2段落（1段落のみ・見出しは不変）
+- 内容：他社（フロッグウェル）の検証記事由来の名称（「Ask Agentforce Setup」「Ask Agentforce」／「エージェンティックエンタープライズ検索ユーザー・管理者」）を、
+  公式の記載へ差し替え。開発者ドキュメント「Agentforce Coworker Admin」と FAQ「Ask Agentforce Admin」を併記し、同じものかは断定しない
+- 外部リンク +2（developer.salesforce.com／help.salesforce.com）。内部リンクの増減なし（新規リンク禁止47本の照合に掛からない）
+- WP modified：2026-09-26T14:46:30（context=edit で再読一致・sync_check 乖離0）
+- 判定には影響しない（E37 は統計の46本に入っていない）。引用の追跡のために適用日時を残す
+- 変更前後の全文：crosscom-seo-agent/output/reports/bunMB_coworker_names.md
