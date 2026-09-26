@@ -446,3 +446,16 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 - WP modified：2026-09-26T14:46:30（context=edit で再読一致・sync_check 乖離0）
 - 判定には影響しない（E37 は統計の46本に入っていない）。引用の追跡のために適用日時を残す
 - 変更前後の全文：crosscom-seo-agent/output/reports/bunMB_coworker_names.md
+
+---
+
+## 2026-09-26 17:37／E37（agentforce-coworker・post 7003）へ D-42（出典のインライン化）を適用（便MI・便MH §1）
+
+**処置ではない**（E37 はプールから除外済み・観測は watch で継続）。出典の書き方の変更（D-42）と、欠けていた出典リンク1本の追加。
+- 旧形式「※参考記事はこちら」6件を、主張文の中核語句へインライン化（URL は既存のまま）。参考行だけの段落1つを削除
+- H2「Coworker導入でつまずく3つの落とし穴」のフロッグウェル由来の記述に、同じ出典のリンクを1本追加
+- 本文に書かれていた target="_blank" 5件は、インライン化で本文から消えた（B-33 のフィルタが表示時に付ける）
+- リンク 22→23（すべて外部。内部リンクの増減なし）／44,696→44,497字
+- WP modified：2026-09-26T17:37 台（context=edit で再読一致・sync_check 乖離0・D-42 違反0）
+- 判定には影響しない。引用の追跡のために適用日時を残す
+- 変更の一覧：crosscom-seo-agent/output/reports/bunME_coworker_d42_plan.md
