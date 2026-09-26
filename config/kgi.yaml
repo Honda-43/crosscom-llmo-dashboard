@@ -6,6 +6,11 @@
 
 # 正式指標: 問い合わせフォームの認知経路で「AIに聞いて知った」を選んだ件数。
 # A-005(2026-08-24)で全16フォームに設置。Web-to-Lead で Lead に入る。
+# 【2026-09-25 取り出し元未確認(フォームの送信先は Supabase)】cross-com.jp のお問い合わせ・
+# 資料請求フォームは自作の多段フォームで、送信先は Supabase の関数(/form_submit)だった
+# (制作管制 便JZ)。下の object/field は Web-to-Lead を前提にしたもので、本番の Lead に
+# 届く経路があるかは未確認。なお、この official をコードは読まない
+# (読むのは supplementary.key_events.valid_from だけ)。
 official:
   name: AI認知経由の問い合わせ件数
   object: Lead

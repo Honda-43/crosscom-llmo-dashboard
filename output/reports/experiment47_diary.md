@@ -429,6 +429,10 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
   Sandbox を照会していたことで元の観測そのものが無効になったため、ほかの可能性
   （問い合わせが無かった／フォーム送信が Lead を作れていない／Lead が別の場所へ移っている）は
   すべて未確定と明記した。09-17 確定版は同文書の語（「照会先の組織が違う」）に合わせた
+- **フォームの送信先が Supabase の自作フォームと判明**（制作管制 便JZ）。原因2の「retURL 不備」は
+  Salesforce Web-to-Lead 前提のため、「**送信内容の書き込み先と本番 Lead への経路の確認**」に置き換えた。
+  `config/kgi.yaml` の `official` と README の該当行に「取り出し元未確認（フォームの送信先は Supabase）」を明記
+- **L4 は判定に使わないため実験への影響なし**（判定は `llm_experiment` のみ）
 
 ---
 
