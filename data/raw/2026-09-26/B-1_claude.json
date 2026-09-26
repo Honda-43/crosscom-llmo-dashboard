@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-26",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-09-26T00:25:10.470099Z",
+  "answer": "## Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、**人間と自律的なAIエージェントが協働して顧客対応を行う次世代のCRMシステム**のことです。\nAgentic CRMとは、人間と自律的なAIエージェントが協力して顧客の成功を推進する顧客関係管理システムです。\n\n\n### 従来のCRMとの違い\n\n従来型のCRMは「データを蓄積し、人間の指示を待つ」受動的なシステムでした。一方、\n従来型のCRMが営業担当者による通話記録や情報更新を待つのに対し、Agentic CRMはその情報をもとに指示されなくても自ら行動します。\n\n\n具体的には、\nAgentic CRMは、各ステップで人間の承認を必要とせずに複数ステップのワークフローを計画・実行・適応できる自律的なAIエージェントを備えたCRMシステムであり、事前に設定されたガードレールの範囲内でエージェントが行動し、必要な場合は人間にエスカレーションする仕組みです。\n\n\nこれは単純なルールベースの自動化とも異なります。\nルールベースの自動化が「リードスコアが閾値を超えたら定型メールを送る」といった固定ロジックに従うのに対し、Agentic CRMのエージェントは文脈を解釈し、条件と出力を単に一致させるのではなく、顧客データを推論して状況に応じた最適な行動を特定し、その結果に基づいてアプローチを調整します。\n\n\n### 主な特徴\n- **複数の専門エージェントが協働**：\n単一のAIが全てをこなそうとするのではなく、特定の機能ごとに設計された複数の専門エージェントが、統一されたデータ基盤の上で連携して動作する点が特徴です。\n\n- **マーケティング・営業・カスタマーサービスへの適用**：\nAIマーケティングエージェントがURLやブリーフから戦略・キャンペーンを自動生成したり、カスタマー向けAIエージェントがWebチャットやSMS、メール、WhatsAppを通じて質問対応・注文追跡・返品処理・商品推薦を行い、店舗情報やポリシーに基づいた正確な応答を24時間提供したりします。\n\n\n### 代表的な提供ベンダー\n\nCreatio、Salesforce、Microsoft、HubSpot、Zohoなどの主要ベンダーが、Agentic CRMがすでに市場をどのように変革し、今後の標準を形作りつつあるかを示しています。\n\n\n---\n\n## 導入・設計を支援してくれる会社\n\n### 1. Agentic CRM／AIエージェント特化の支援会社\n- **100inc**：日本国内で見つかった数少ない「Agentic CRM」専門支援会社です。\nHubSpot×AI Agent×DXを統合する「Agentic CRMパートナー」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシーで、HubSpot Eliteの実装力で顧客フロント業務を再設計します。\n 具体的には、\nHubSpotを共通基盤にAIエージェントを組み込んだ顧客フロント業務（マーケティング・営業・CS）を組織全体で設計・実装し、データ品質設計やCRM統合、営業・マーケティング業務をAIが自律実行する組織への移行の設計・実装、部門横断のDX×AI変革のPMO伴走支援\nまで手掛けています。\n\n- 各ベンダー（Salesforce、HubSpot、Microsoft、Zoho、Creatio）自体もAgentic CRM機能（Salesforce Agentforce、HubSpot Breezeなど）を提供しており、各社の認定パートナー企業経由でも導入支援を受けられます。\n\n### 2. 一般的なCRM導入・活用コンサルティング会社（日本）\nAgentic CRM特化ではなくても、CRM全般の設計・導入・定着化を支援する実績豊富な会社もあります。\n- **船井総合研究所**：\n「CRMで何を達成したいか目標が定まっていない」「必要な機能やカスタマイズが定まらない」といった相談に対し、経験豊富なコンサルタントがKGI/KPI設計支援からシステム選定、社内教育まで柔軟に対応しています。\n\n- **グラビス・アーキテクツ**：\nIT利活用による生産性向上と業務改革支援、ERP・CRMパッケージ導入・利活用コンサルティング専門の会社として実績があります。\n\n- **FooLaiBo**：\n「成果を出す現場伴走型」を掲げるBtoB営業改革のスペシャリストで、社外営業マネージャーとして週次・月次で現場",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.fullpath.com/blog/what-is-an-agentic-crm-understanding-the-future-of-dealership-customer-management/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://ecosystem.hubspot.com/ja/marketplace/explore/solutions-partners?eco_language=hi&eco_agency_tier=gold&eco_PROFILE_CATALOG_SERVICES=1",
+    "https://www.funaisoken.co.jp/solution/dc-crm_705_S092",
+    "https://www.biz.ne.jp/matome/2002682/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-26",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-09-26T00:25:42.851284Z",
+  "answer": "営業にAIエージェントの活用を検討されており、ツール選定前のCRMデータ設計から支援してくれるパートナーをお探しなのですね。AIエージェントを効果的に導入するためには、CRMデータの適切な設計と整備が非常に重要となります。\n\n以下に、CRMデータ設計とAIエージェント活用支援の両方を提供している可能性のあるパートナー企業を挙げます。\n\n*   **テクノデジタルコンサルティング**: データ活用・AIコンサルティングサービスを提供しており、CRM・データ戦略設計からデータ基盤構築、AI予測分析、生成AI活用、AIエージェント開発までを一気通貫で支援しています。特に「AI活用を前提としたデータ基盤」の構築に強みを持っています。\n*   **株式会社ヘッドウォータース**: AIエージェント開発や生成AI活用支援に強みを持ち、営業支援AIアプリケーションの構築、CRM/SFAや社内システムとの連携、PoC（概念実証）から本番導入までを見据えた段階的な開発・評価・改善を前提としたAIエージェント構築を支援しています.\n*   **株式会社テラスカイ**: AIエージェント導入支援を提供しており、AI活用の構想策定から実装・運用までを一気通貫で支援し、顧客企業の業務プロセス再設計に伴走します。システム連携やROI（投資収益率）算出など、AI活用における課題解決も支援対象としています.\n*   **ノーコード総合研究所**: 営業プロセスの整理、AIワークフロー設計、CRM/SFA連携、運用ルール作成まで支援を提供できるとされています.\n*   **Sista AI**: CRMの監査、優先データセグメントのクレンジング、そして営業オペレーションを支援するRevOpsエージェントの設計・稼働までを支援する「Pilot」プランを提供しています.\n\nこれらのパートナーは、CRMデータの整備がAIエージェントの効果を最大化するために不可欠であることを認識しており、データ戦略設計からAIエージェントの実装・運用まで、幅広いフェーズでの支援が期待できます。AIエージェントを導入する際には、個人情報の保護や誤送信対策、AI過信への対策など、導入前の要件整理が重要であると指摘されています.",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEO1gubmqNQR0gxVF02t2gSmL75s0RFstffTzQTYCR1dmAcj_Muz1fSA3Ii8paKv0jo--qACfU6tsqvdYKWSfp7erR85TU_i9rgJg_6FAE1cf2esk0_cc-m6-GnCKYzfvCfkTs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHLm7SI84y4__dgvVWyjlwZFbdB9DGRKRb4-LSaU4msKr7IRy-PZtmQNynWqd81GT2hcX4RpXzE1yFnlP2hEXwvVs_mByt6plzMpd3niSfpOA2lnSsgubmk5mpi",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEaycUkrzc4SVc3ZFFxh0TbhozU1OmWvdJcWl5_Bog6Vb6bDMSEHne-XUT7-OKx5vW_gwsu9BUnZFNj5qwWyPuiRfldqzM45VJWW4bMGcAaApmWvKu4d9oH_dV8ZXX8rE9rsFWx-LXne2js",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGAlcHKPXAsCcNMYShfjq3842F7-M8hghiu2eS690PeGt9s_5ztl6LtLPO1IeCOXjRZztlctu7rlnXj82iej4wgDezvPV8p8YZ1EE6pVNzXLYa1n2JMyJ5Vp58-dAeOWeD0XFid",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcHZwg6CzQ97ePcHgD2_7D2w8QDK5nR_y9lXJuL4FlxwjSK-CI8UUUFFqyjwVDZjUI-TvpbVH4HS0AQNZPkwbjSPnsgkDDbHPPNdrxALR8a2lVLHpyxbthrPCObMTRpXERTUQm5V1cy9u0NZZ5F2luJNa64NPi3xnOXw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFFPwQndyffITCrKGWCmp8btlwnpwRyZuVQq6C5gqtNFSZYtBZPFo7EXqteRq5AOqYh5yd9kjakJNjf_Knzn2K7PG_r8EQlaw_JqZvNZ4nSLgTY5iy7WMIagawvP6b_4vVFJXs_ahKfxMXc"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}
