@@ -408,3 +408,17 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
   （agentforce-testing-center）で終わり、9/17 以降の行は0件。
   ただし同ファイルの範囲は 9/11〜9/16 なので、それだけでは 9/17〜9/18 の不在は示せない。
   便GL の記録（9/17 作成・9/18 追記）にも 9/17・9/18 の追記行が無いことで裏を取った
+
+---
+
+## 2026-09-25／measurement_design のリード件数の記述を訂正（Sandbox 照会だった）
+
+- `measurement_design_2026-09-14.md` のリード件数の記述（「Lead は全体で1件、最新の作成日は 2026-03-19」）が
+  **Sandbox（JPN2S）照会だったため訂正**。Salesforce MCP の接続先が Sandbox に固定されていたことに
+  当時気づいていなかった（制作管制報告・R-83）。元の文は取り消し線で残し、直後に訂正注記を入れた
+- **実験の判定には使わない指標のため影響なし。** 問い合わせ・リード（L4）は LLMO実験の
+  設計・判定・割付のどれにも入らない（判定は `llm_experiment` のみ）
+- 確定版 `measurement_design_2026-09-17.md` にも同じ照会に基づく同じ記述があったため、同じ訂正を入れた
+- `config/kgi.yaml` の `official`（Lead の項目定義から写した選択リストの API 値）は
+  **接続先未確認**と明記した。コードはこの定義を読まない（読むのは GA4 の `supplementary.key_events` だけ）
+- dashboard のコードから Salesforce へ接続する処理は無い（SOQL は文書に載せた手動照会用のみ）

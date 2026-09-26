@@ -12,6 +12,10 @@ official:
   field: Recognition_Route__c
   # 選択リストの API 値そのもの(括弧は全角)。2026-09-14 に Salesforce の
   # 項目定義から写した。表示ラベルを変えても API 値が変わらなければ集計は壊れない。
+  # 【2026-09-25 接続先未確認】この項目定義は Sandbox(JPN2S)から写した可能性がある
+  # (Salesforce MCP の接続先が Sandbox に固定されていた。制作管制報告・R-83)。
+  # 本番の項目定義と一致するかは未確認。正式指標を数え始める前に本番で確かめること。
+  # LLMO実験の判定には使わない指標なので、実験への影響はない。
   value: "AIに聞いて知った(ChatGPT・Gemini等)"
   date_field: CreatedDate
   valid_from: "2026-08-24"   # 選択肢の設置日。これより前は「選べなかった」のであって0件ではない
