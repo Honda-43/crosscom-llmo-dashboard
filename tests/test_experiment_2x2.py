@@ -181,21 +181,28 @@ def _exp_csv(path, rows):
 
 
 def test_condition_f_covers_vibes_and_features():
+    """条件 f は vibes の訂正見送り(2026-09-26)後も2本のまま。
+
+    9/28 のシード探索は条件で決まるので、後から条件を動かすと引き直しの結果が変わる。
+    実際に訂正が入るのは features の1本だけで、感度分析で抜くのはそちら。
+    """
     assert pool.CORRECTION_SLUGS == ("agentforce-vibes", "agentforce-features")
+    assert pool.APPLIED_CORRECTION_SLUGS == ("agentforce-features",)
 
 
 def test_summarize_reads_llm_experiment_and_drops_watch_rows(monkeypatch, tmp_path, capsys):
     rag = "https://cross-com.jp/agentforce-rag/"
-    vibes = "https://cross-com.jp/agentforce-vibes/"
+    feat = "https://cross-com.jp/agentforce-features/"      # 訂正対象(9/29〜30)
     cowork = "https://cross-com.jp/agentforce-coworker/"
     monkeypatch.setattr(summarize, "load_allocation",
-                        lambda: {"agentforce-rag": "③リードのみ", "agentforce-vibes": "①対照",
+                        lambda: {"agentforce-rag": "③リードのみ",
+                                 "agentforce-features": "①対照",
                                  "agentforce-coworker": "④両方"})
     path = tmp_path / "llm_experiment.csv"
     _exp_csv(path, [
         ["2026-09-20", "E06", "gemini", rag, "0", "", "pool"],
         ["2026-10-10", "E06", "gemini", rag, "1", "", "pool"],
-        ["2026-10-10", "E11", "gemini", vibes, "1", "", "pool"],
+        ["2026-10-10", "E12", "gemini", feat, "1", "", "pool"],
         ["2026-10-10", "E37", "gemini", cowork, "1", "", "watch"],       # watch は数えない
         ["2026-10-11", "E06", "gemini", rag, "", "503 UNAVAILABLE", "pool"],  # 欠測は数えない
     ])
@@ -204,7 +211,7 @@ def test_summarize_reads_llm_experiment_and_drops_watch_rows(monkeypatch, tmp_pa
     out = capsys.readouterr().out
     assert "watch 1行" in out
     assert "gemini 両方込み（2本）" in out
-    assert "gemini 2本抜き（訂正対象）（1本）" in out
+    assert "gemini features 抜き（訂正対象）（1本）" in out
     # E37(watch)は④両方に割り付けてあるが、数えないので④両方は0本のまま
     assert "④両方:" not in out, "watch の E37 が組に入っている"
     import re
@@ -294,30 +301,32 @@ def test_the_baseline_skips_observations_before_the_append(monkeypatch, tmp_path
 # --- 7. 感度分析(2026-09-25) -------------------------------------------------------
 def test_the_four_variants_are_the_agreed_ones():
     labels = [label for label, _ in summarize.variants()]
-    assert labels[0] == "両方込み" and labels[-1] == "両方抜き"
-    assert "9本抜き" in labels[1] and "2本抜き" in labels[2]
+    assert labels[0] == "両方込み" and labels[-1] == "9本＋features 抜き"
+    assert "9本抜き" in labels[1] and labels[2] == "features 抜き（訂正対象）"
     by_label = dict(summarize.variants())
+    applied = set(pool.APPLIED_CORRECTION_SLUGS)
     assert by_label["両方込み"] == set()
     assert by_label[labels[1]] == pool.late_appended_slugs()
-    assert by_label[labels[2]] == set(pool.CORRECTION_SLUGS)
-    assert by_label["両方抜き"] == pool.late_appended_slugs() | set(pool.CORRECTION_SLUGS)
+    assert by_label[labels[2]] == applied, "抜くのは訂正が入る features だけ"
+    assert "agentforce-vibes" not in by_label[labels[2]], "vibes は訂正見送り"
+    assert by_label["9本＋features 抜き"] == pool.late_appended_slugs() | applied
 
 
 def test_the_judgement_prints_one_table_with_four_rows(monkeypatch, tmp_path, capsys):
     rag = "https://cross-com.jp/agentforce-rag/"          # 追記なし・訂正対象でない
     revops = "https://cross-com.jp/revops-guide/"         # 9/15〜16 追記の9本
-    vibes = "https://cross-com.jp/agentforce-vibes/"      # 訂正対象
+    feat = "https://cross-com.jp/agentforce-features/"    # 訂正対象(features の1本のみ)
     monkeypatch.setattr(summarize, "load_allocation",
                         lambda: {"agentforce-rag": "①対照", "revops-guide": "②FAQのみ",
-                                 "agentforce-vibes": "③リードのみ"})
+                                 "agentforce-features": "③リードのみ"})
     path = tmp_path / "e.csv"
     _exp_csv(path, [
         ["2026-09-18", "E06", "gemini", rag, "0", "", "pool"],
         ["2026-09-18", "E28", "gemini", revops, "0", "", "pool"],
-        ["2026-09-18", "E11", "gemini", vibes, "0", "", "pool"],
+        ["2026-09-18", "E12", "gemini", feat, "0", "", "pool"],
         ["2026-10-10", "E06", "gemini", rag, "1", "", "pool"],
         ["2026-10-10", "E28", "gemini", revops, "1", "", "pool"],
-        ["2026-10-10", "E11", "gemini", vibes, "1", "", "pool"],
+        ["2026-10-10", "E12", "gemini", feat, "1", "", "pool"],
     ])
     summarize.main(["--before", "2026-09-15:2026-09-28", "--after", "2026-10-08:2026-10-27",
                     "--csv", str(path), "--model", "gemini"])
@@ -325,9 +334,9 @@ def test_the_judgement_prints_one_table_with_four_rows(monkeypatch, tmp_path, ca
     import re
     table = [re.split(r"\s{2,}", ln)
              for ln in out.splitlines()
-             if ln.startswith(("両方込み", "9本抜き", "2本抜き", "両方抜き"))]
+             if ln.startswith(("両方込み", "9本抜き", "features 抜き", "9本＋features"))]
     assert len(table) == 4, out
-    # 3本 → 9本を抜くと2本、訂正2本を抜くと2本、両方抜くと1本
+    # 3本 → 9本を抜くと2本、features を抜くと2本、両方抜くと1本
     assert [r[1] for r in table] == ["3", "2", "2", "1"], table
     assert "感度分析（gemini）" in out, "見出しに余分な空白を入れない"
     assert out.count("=== gemini ") == 4, "4通りそれぞれの内訳も出す"

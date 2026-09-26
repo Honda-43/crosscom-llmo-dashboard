@@ -459,3 +459,18 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 - WP modified：2026-09-26T17:37 台（context=edit で再読一致・sync_check 乖離0・D-42 違反0）
 - 判定には影響しない。引用の追跡のために適用日時を残す
 - 変更の一覧：crosscom-seo-agent/output/reports/bunME_coworker_d42_plan.md
+
+---
+
+## 2026-09-26／agentforce-vibes の訂正を見送り（戦略管制塔の裁定）
+
+- **vibes の本文訂正は見送り**（凍結明けへ）。9/29〜30 に訂正するのは
+  **agentforce-features の1文のみ**になった
+- `output/interventions.csv` の I-07 の description を「訂正2件（vibes・features）」→
+  **「訂正1件（agentforce-features）」** に修正
+- 判定の感度分析の3通り目を「2本抜き（訂正対象）」→ **「features 抜き（訂正対象）」** に変更。
+  抜くのは `pool.APPLIED_CORRECTION_SLUGS`（features の1本）だけ。4通りは
+  **両方込み／9本抜き／features 抜き／9本＋features 抜き**。再ランダム化検定も同じ4通りにかける
+- **くじ引きの条件 f（vibes・features は各組最大1本）は変更しない**（`pool.CORRECTION_SLUGS` は2本のまま）。
+  9/28 のシード探索は条件で決まるので、後から条件を動かすと引き直しの結果そのものが変わる。
+  README にも「条件 f は vibes の訂正見送り後もシード探索の一貫性のため維持」と明記した

@@ -18,9 +18,10 @@
 - 組は allocation_v1.csv（9/28 の割付）から引く。9/28 の割付で組が変わるので、
   ビフォーとアフターは記事（URL）で突き合わせる
 
-鮮度更新の誤り訂正の対象（pool.CORRECTION_SLUGS。2026-09-23 から agentforce-vibes・
-agentforce-features の2本）は、アフター期間の本文に処置と訂正の両方が乗る。
-判定は「2本込み」と「2本抜き」の両方を必ず出す。
+鮮度更新の誤り訂正が入る記事は、アフター期間の本文に処置と訂正の両方が乗る。
+2026-09-26 に vibes の訂正は見送りになり、9/29〜30 に訂正するのは agentforce-features の
+1文だけになった（pool.APPLIED_CORRECTION_SLUGS）。判定は「込み」と「features 抜き」の
+両方を必ず出す。くじ引きの条件 f は2本のまま（pool.CORRECTION_SLUGS）。
 """
 import argparse
 import collections
@@ -32,9 +33,9 @@ from math import comb
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import rerandomize  # noqa: E402
-from pool import (CORRECTION_SLUGS, EXCLUDED, LATE_BASELINE_FROM,  # noqa: E402
-                  PROBE_BASELINE_EXCLUDED, baseline_start, late_appended_slugs,
-                  load_allocation, pool_slugs, slug)
+from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
+                  LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
+                  late_appended_slugs, load_allocation, pool_slugs, slug)
 
 WATCH_FLAG = "watch"
 MODELS = ("gemini", "claude")
@@ -195,22 +196,23 @@ def randomization(after, exclude=()):
 def variants():
     """感度分析の4通り。(見出し, 除く記事) を返す。
 
-    9/15〜16 に逆リンク追記が入った9本と、鮮度更新の訂正2本は、どちらも
+    9/15〜16 に逆リンク追記が入った9本と、鮮度更新の訂正が入る記事は、どちらも
     処置以外の理由で本文が変わっている。片方だけ抜いた結果も並べないと、
     結論がどちらの影響で動いたのか分からない。
+    訂正対象は 2026-09-26 から agentforce-features の1本だけ（vibes は訂正見送り）。
     """
     late = late_appended_slugs()
-    corr = set(CORRECTION_SLUGS)
+    corr = set(APPLIED_CORRECTION_SLUGS)
     return [
         ("両方込み", set()),
         (f"9本抜き（9/15〜16 追記）", set(late)),
-        (f"{len(corr)}本抜き（訂正対象）", corr),
-        ("両方抜き", set(late) | corr),
+        ("features 抜き（訂正対象）", corr),
+        ("9本＋features 抜き", set(late) | corr),
     ]
 
 
 def sensitivity_table(after, before, title=""):
-    """4通り（両方込み／9本抜き／2本抜き／両方抜き）を1つの表にする。"""
+    """4通り（両方込み／9本抜き／features 抜き／9本＋features 抜き）を1つの表にする。"""
     rows = []
     for label, exclude in variants():
         groups = tally(after, before, exclude)

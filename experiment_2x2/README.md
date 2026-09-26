@@ -47,7 +47,8 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
   ```
   条件 a〜g を満たす割付 5,000通り（シード 20290101 から順に探索。実際の割付と同じものは除く）を
   `results/rerandomization_pool.csv` に保存する。判定のたびに読み直すので、同じ p値が何度でも出る
-- 感度分析の4通り（両方込み／9本抜き／2本抜き／両方抜き）それぞれに再ランダム化検定をかける
+- 感度分析の4通り（両方込み／9本抜き／features 抜き／9本＋features 抜き）それぞれに
+  再ランダム化検定をかける
 
 ## 判定（summarize.py）
 - 判定は **llm_experiment のみ**。既定でシートの llm_experiment を読む：
@@ -56,8 +57,12 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
   ```
   （`--csv` でシートの書き出しを使える。`--model gemini|claude` で1モデルだけ）
 - `experiment_flag=watch` の行（E37）・プール外・欠測の行は自動で数えない
-- 鮮度更新の訂正対象2本（agentforce-vibes・agentforce-features）の **2本込み／2本抜き** を
-  モデルごとに出す。組は `allocation_v1.csv` から引く（割付前は止まる）
+- 鮮度更新の訂正が入るのは **agentforce-features の1本だけ**（2026-09-26 に
+  agentforce-vibes の訂正は見送り）。**込み／features 抜き** をモデルごとに出す。
+  組は `allocation_v1.csv` から引く（割付前は止まる）
+- **条件 f（vibes・features は各組最大1本）は vibes の訂正見送り後も維持する。**
+  9/28 のシード探索は条件で決まるので、後から条件を動かすと引き直しの結果が変わる
+  （`pool.CORRECTION_SLUGS` は2本のまま。抜くのは `pool.APPLIED_CORRECTION_SLUGS`）
 - `--probe results/<アフター>.csv [results/<ビフォー>.csv]` はプローブの結果での集計（参考。実験期間中は不使用）
 
 ## 指標

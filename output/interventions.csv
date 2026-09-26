@@ -21,5 +21,5 @@ date,intervention_id,description,scope,executor,touches_pool46
 2026-09-20〜22,I-04,sameAs を6→7に追加(Yoast 組織設定・Organization スキーマ。全ページ共通),サイト全体,本田さん(手動),no
 2026-09-15より前,I-05,タイトル・メタディスクリプション改修(9/15 以降の変更は0件。記録のみ),サイト(メタ),本田さん(手動),no
 2026-09-25〜,I-06,Claudeforce 記事に D-39 等を適用(以後継続),サイト(記事),要確認,要確認
-2026-09-29,I-07,2x2 の処置反映(リード・FAQ)と鮮度更新の訂正2件(agentforce-vibes・agentforce-features),プール46本,seo-agent(publish_followup),yes
+2026-09-29,I-07,2x2 の処置反映(リード・FAQ)と鮮度更新の訂正1件(agentforce-features),プール46本,seo-agent(publish_followup),yes
 2026-09-25,I-10,D-39 結論要約ブロックを横展開の1本目(sales-back-office)へ適用(残り37本は9/29以降),サイト(記事),seo-agent,no

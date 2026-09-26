@@ -27,7 +27,9 @@
 　　2026-09-22 に3本で追加し、同日 agentforce-vibes のみに、2026-09-23 に
 　　agentforce-vibes・agentforce-features の2本に更新した（coworker はプールから除外し
 　　watch で観測継続。features は本文1文の訂正を 9/29〜30 に入れることを了承）。
-　　判定時は「2本込み／2本抜き」の両方を出す（summarize.py）。
+　　2026-09-26 に vibes の訂正は見送りになったが、条件 f は2本のまま変えない
+　　（シード探索は条件で決まるため）。判定時に抜くのは実際に訂正する
+　　pool.APPLIED_CORRECTION_SLUGS（features の1本）だけ（summarize.py）。
 
 **既定はドライラン（画面に出すだけ）**（2026-09-22）。--write を付けたときだけ
 allocation_v1.csv と output/reports/experiment47_allocation_v1_20260928.md を書く。
@@ -53,7 +55,8 @@ import sys
 from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pool import (ALLOCATION_CSV, CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
+from pool import (ALLOCATION_CSV, APPLIED_CORRECTION_SLUGS,  # noqa: E402
+                  CORRECTION_SLUGS, EXCLUDED,
                   appended_slugs, late_appended_slugs, load_pool, read_csv, slug,
                   strata_path, title_changed_slugs)
 
@@ -176,8 +179,9 @@ def report(arts, assign, cited, cited_src, seed, seed_start, tried, res, a):
              f'うち 9/15〜16 が {sum(1 for x in arts if x["late_backlink"])}本）',
              '- タイトル変更（条件 g）：'
              + ('・'.join(sorted(x['slug'] for x in arts if x['title_changed'])) or 'なし'),
-             '- 鮮度更新の訂正対象：' + '・'.join(CORRECTION_SLUGS)
-             + '（訂正が未確定でも条件 f と判定の込み／抜きに含める）',
+             '- 鮮度更新の訂正対象（条件 f）：' + '・'.join(CORRECTION_SLUGS)
+             + '（2026-09-26 に agentforce-vibes の訂正は見送り。条件 f は2本のまま。'
+             + '判定で抜くのは ' + '・'.join(APPLIED_CORRECTION_SLUGS) + ' だけ）',
              '- プールから除外：' + '、'.join(f'{k}（{v}）' for k, v in EXCLUDED.items()),
              f'- 対象：config/prompts_experiment.csv の {len(arts)} 本', '',
              '## チェック結果', '',
@@ -198,21 +202,22 @@ def report(arts, assign, cited, cited_src, seed, seed_start, tried, res, a):
                      f'{"あり" if x["slug"] in cited else "—"} | '
                      f'{"あり" if x["title_changed"] else "—"} | '
                      f'{"対象" if x["correction"] else "—"} | {assign[x["slug"]]} |')
-    names = '・'.join(CORRECTION_SLUGS)
-    k = len(CORRECTION_SLUGS)
-    lines += ['', f'## 判定時の集計（{k}本込み／{k}本抜き）', '',
+    names = '・'.join(APPLIED_CORRECTION_SLUGS)
+    k = len(APPLIED_CORRECTION_SLUGS)
+    lines += ['', '## 判定時の集計（込み／訂正対象を抜き）', '',
               '判定は llm_experiment のみで行う（引用プローブは実験期間中は不使用）。',
               '訂正対象はアフター期間の本文に「処置」と「訂正」の両方が乗る。',
               '判定は次の2通りを必ず並べて出し、結論が食い違えば訂正の影響として扱う。', '',
-              f'- **{k}本込み**：{len(arts)}本すべて',
-              f'- **{k}本抜き**：{names} を除いた{len(arts) - k}本',
-              '  （訂正を見送った場合も、事前に決めたとおり抜いた集計も出す）',
+              f'- **込み**：{len(arts)}本すべて',
+              f'- **{names} 抜き**：訂正が入る{k}本を除いた{len(arts) - k}本',
+              '  （2026-09-26 に agentforce-vibes の訂正は見送り。条件 f は2本のまま）',
               '- llm_experiment の experiment_flag=watch の行（E37）は数えない', '',
               FENCE,
               'python experiment_2x2/summarize.py --before <ビフォー開始>:<ビフォー終了> '
               '--after <アフター開始>:<アフター終了>',
               FENCE,
-              '（summarize.py がモデルごとに両方を出す。対象は pool.CORRECTION_SLUGS）', '',
+              '（summarize.py がモデルごとに両方を出す。対象は '
+              'pool.APPLIED_CORRECTION_SLUGS）', '',
               '## 再現方法', '', FENCE,
               f'python experiment_2x2/allocate_47.py --seed-start {seed} '
               f'--cited-from {a.cited_from} --cited-to {a.cited_to}',

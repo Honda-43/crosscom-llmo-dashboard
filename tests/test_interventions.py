@@ -78,10 +78,11 @@ def test_the_real_log_parses_and_keeps_the_agreed_columns():
     # 9/29 の処置反映がプール46本に触れる
     assert [r["intervention_id"] for r in pool] == ["I-11", "I-12", "I-09", "I-07"]
     by_id = {r["intervention_id"]: r for r in rows}
-    # 9/29 に入れる訂正は2本(E37 は 9/22 に実験外で適用済み)
-    assert "訂正2件" in by_id["I-07"]["description"]
-    assert "agentforce-vibes" in by_id["I-07"]["description"]
+    # 9/29 に入れる訂正は1本(E37 は 9/22 に実験外で適用済み。
+    # agentforce-vibes は 2026-09-26 に訂正見送り —— 戦略管制塔の裁定で凍結明けへ)
+    assert "訂正1件" in by_id["I-07"]["description"]
     assert "agentforce-features" in by_id["I-07"]["description"]
+    assert "agentforce-vibes" not in by_id["I-07"]["description"]
     e37 = by_id["I-08"]
     assert e37["date"] == dt.date(2026, 9, 22) and e37["touches_pool46"] == "no"
     assert "watch" in e37["scope"], "E37 は実験外(watch)"

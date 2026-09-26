@@ -32,6 +32,11 @@ PROBE_BASELINE_EXCLUDED = ('2026-09-17',)
 # 訂正が確定していなくても、条件 f と「込み／抜き」の集計には含める。
 # 2026-09-23: features の本文1文の訂正(9/29〜30)を了承したため2本に戻した。
 CORRECTION_SLUGS = ('agentforce-vibes', 'agentforce-features')
+# 2026-09-26: agentforce-vibes の本文訂正は見送り(戦略管制塔の裁定・凍結明けへ)。
+# 9/29〜30 に実際に訂正するのは agentforce-features の1文だけなので、判定の感度分析で
+# 抜くのはこちら。条件 f(各組に最大1本)は上の2本のまま変えない —— 9/28 のシード探索は
+# 条件で決まるので、後から条件を動かすと引き直しの結果そのものが変わってしまう。
+APPLIED_CORRECTION_SLUGS = ('agentforce-features',)
 
 
 # 逆リンク追記の層(くじ引きの条件 b・e とビフォー基準値に使う)。
