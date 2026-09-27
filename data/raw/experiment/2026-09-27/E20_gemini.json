@@ -1,0 +1,48 @@
+{
+  "date": "2026-09-27",
+  "prompt_id": "E20",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceで成果を出している営業組織の活用事例を知りたい",
+  "cep": null,
+  "timestamp": "2026-09-27T01:06:03.378553Z",
+  "answer": "Agentforceを導入した営業組織では、業務効率化と成約率向上において顕著な成果が出ています。\n\n具体的な活用事例とそこから得られた成果は以下の通りです。\n\n**1. 営業生産性の向上とリード対応の自動化**\n*   ベルフェイス株式会社では、Agentforceを活用することで、受注工数を45%削減し、営業生産性を200%向上させました。これは、イベントや施策後に発生する大量のリードに対し、Agentforceが初動対応を自動化することで、対応の遅れによる機会損失を防いだことによります。また、営業活動の振り返りや育成プロセスにも活用することで、組織全体の生産性向上を実現しています。\n*   営業担当者は、商談議事録の自動作成、Salesforceへのデータ入力支援、過去の対応履歴を参照したメール返信案の自動作成など、時間のかかる事務作業をAgentforceによって効率化できます。これにより、営業担当者は顧客との深い対話や戦略的な商談活動に集中できる時間を確保できます。\n\n**2. 成約率の向上**\n*   AIによる最適な提案をすることで、成約率が1.5倍に向上した事例が報告されています。\n*   Agentforceは、Salesforceに蓄積された営業データを整理し、見込み顧客の優先順位付けや自動フォローを行うことで、営業活動を効率化します。AIが各顧客の契約見込みや進捗状況を分析し、成約に近い顧客から順にアプローチを促すなど、最適なアクションを提案します。\n\n**3. 顧客対応の自動化と顧客体験の向上**\n*   ヘルスケア業界では、Agentforceが予約受付や来院前準備、診察内容に関する簡単な問い合わせなどの定型業務を24時間自動応答することで、医療スタッフの事務作業負担を大幅に軽減しています。\n*   小売業界では、AIエージェントが顧客の閲覧履歴や購買データ、チャット内容を分析し、パーソナライズされた製品レコメンデーションを行うことで、アップセル・クロスセルを最大化し、売上向上と顧客体験向上に貢献しています。\n*   銀行業界では、口座照会、入出金履歴確認、住所変更など定型的な問い合わせや手続きをAIエージェントが24時間365日自動処理することで、顧客サポート業務を効率化し、顧客利便性を向上させています。\n*   企業は、AgentforceのAIエージェントによって定型的な顧客対応を自動化することで、人的リソースの負担を大幅に軽減し、顧客は必要な情報を迅速に入手できるようになります。\n*   Agentforceは企業のナレッジベースを参照し、常に正確で一貫した情報提供を可能にし、顧客満足度と企業ブランドイメージの向上に貢献します。\n\n**4. 中小企業での導入効果**\n*   大企業だけでなく、中小企業でもAgentforceの導入効果が報告されており、問い合わせ対応時間の10%短縮、新規開拓時間の1.3倍増加といった成果が出ています。\n\nこれらの事例から、Agentforceは営業組織において、ルーティンワークの自動化、顧客対応の効率化、最適な営業戦略の提案を通じて、営業担当者の生産性向上、成約率の向上、ひいては企業全体の競争力強化に貢献していることがわかります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEgI8cHd3yx-icveEyTu7XRhpWW59TzraIRZ_XOqsepm7OWm58grK90hNl7erKva3CdPET1GHLjezFHajTmse7vHlVftb3gbr_vEZDVKp31CRiOaHftVpRnhjlcBw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH96gMG7pNVERY0KwFp3k49EWp3TNF5u6xs0Pz4FztTHxcoz9m9OsEC2TwlZkD2_buMoeCUqdto5sdOrALybEIMZY59ThMIft3ZPnhkBIv7obKCSCE4uP8p6X3iTCKWL0FctfRcDGv68_ekBeEpPmBEmsavl-4kC-g91ljZWMSCcAQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEr2Pfmpp8DcIFhr-rEvRMqM-tKTumJGhuESgo00zdQeSiHwFN4yWv8VEIyZohHVK-OADBlxjENn5GLIlrGEM8JHeYPH6pm9h1y86qWQALZ-gEgWu-BGZIokBKnBAYqLFsRLQNjcLkJnmS9OHuZVGDKQSLtmd2pgbw_f_d5IHZhIf8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFqvK2oRW78C30JuiPnns12VpBCA5pBvhUC2Z_ouZ9WR4fLj1NMHcYEbSTDa5IbMQkPeshekcVw0YsYCmyLKSjfQ5D0Xlujz-171NjuoToZkJ81y3uQsReb-sNNvKDrqg6fVP3d8TQX8r3TWMI-bsivscuV4e0GCyAHS_gJGzbTi2i5i9SCsuuDqwn984SPHtLvJZVQwGzcV-Azzg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHaVYXGy009_qveDGA99_SytyHhoAbx-9QRO01-TrdPgFOOA1Phqwfo9plv1tjQbnt3WTQdHzvehP813bxQ6tGqKW-VT5JBl5jYfnoC2UzKzKSGDmiL-FkpEWanwJBMxeSrj15HzUgTiknUp-ybRECS8_yb0Ow8dg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0kuL_P-XqvXnYBbp1Ss7YZRIvBfK72ODsvk_l-GXCjZFce-prN9-qWSXqRsLxYeMTWvVJ-gsiMQbPruyz_WBQLFjBJ0xSFYqpKEmDnQWVWxKm6yNNHoivyiYBIpS4g9ygoZUs_FLKK7NIn2GolrjyS8KWJQNBFUyevoHuA0SPbw=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E20",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-use-cases/",
+  "answer_text": "Agentforceを導入した営業組織では、業務効率化と成約率向上において顕著な成果が出ています。\n\n具体的な活用事例とそこから得られた成果は以下の通りです。\n\n**1. 営業生産性の向上とリード対応の自動化**\n*   ベルフェイス株式会社では、Agentforceを活用することで、受注工数を45%削減し、営業生産性を200%向上させました。これは、イベントや施策後に発生する大量のリードに対し、Agentforceが初動対応を自動化することで、対応の遅れによる機会損失を防いだことによります。また、営業活動の振り返りや育成プロセスにも活用することで、組織全体の生産性向上を実現しています。\n*   営業担当者は、商談議事録の自動作成、Salesforceへのデータ入力支援、過去の対応履歴を参照したメール返信案の自動作成など、時間のかかる事務作業をAgentforceによって効率化できます。これにより、営業担当者は顧客との深い対話や戦略的な商談活動に集中できる時間を確保できます。\n\n**2. 成約率の向上**\n*   AIによる最適な提案をすることで、成約率が1.5倍に向上した事例が報告されています。\n*   Agentforceは、Salesforceに蓄積された営業データを整理し、見込み顧客の優先順位付けや自動フォローを行うことで、営業活動を効率化します。AIが各顧客の契約見込みや進捗状況を分析し、成約に近い顧客から順にアプローチを促すなど、最適なアクションを提案します。\n\n**3. 顧客対応の自動化と顧客体験の向上**\n*   ヘルスケア業界では、Agentforceが予約受付や来院前準備、診察内容に関する簡単な問い合わせなどの定型業務を24時間自動応答することで、医療スタッフの事務作業負担を大幅に軽減しています。\n*   小売業界では、AIエージェントが顧客の閲覧履歴や購買データ、チャット内容を分析し、パーソナライズされた製品レコメンデーションを行うことで、アップセル・クロスセルを最大化し、売上向上と顧客体験向上に貢献しています。\n*   銀行業界では、口座照会、入出金履歴確認、住所変更など定型的な問い合わせや手続きをAIエージェントが24時間365日自動処理することで、顧客サポート業務を効率化し、顧客利便性を向上させています。\n*   企業は、AgentforceのAIエージェントによって定型的な顧客対応を自動化することで、人的リソースの負担を大幅に軽減し、顧客は必要な情報を迅速に入手できるようになります。\n*   Agentforceは企業のナレッジベースを参照し、常に正確で一貫した情報提供を可能にし、顧客満足度と企業ブランドイメージの向上に貢献します。\n\n**4. 中小企業での導入効果**\n*   大企業だけでなく、中小企業でもAgentforceの導入効果が報告されており、問い合わせ対応時間の10%短縮、新規開拓時間の1.3倍増加といった成果が出ています。\n\nこれらの事例から、Agentforceは営業組織において、ルーティンワークの自動化、顧客対応の効率化、最適な営業戦略の提案を通じて、営業担当者の生産性向上、成約率の向上、ひいては企業全体の競争力強化に貢献していることがわかります。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "bellface.co.jp",
+    "service.digital.panasonic.co.jp",
+    "persol-bd.co.jp",
+    "ctc-g.co.jp",
+    "hatenabase.jp"
+  ],
+  "resolved_urls": [
+    "https://bellface.co.jp/news/7425/",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-3",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2",
+    "https://www.persol-bd.co.jp/service/salesmarketing/s-smkt/column/ai-agent/salesforce-agentforce/",
+    "https://www.ctc-g.co.jp/keys/blog/detail/agentforce-use-case",
+    "https://hatenabase.jp/blog/salesforce-agentforce-global-case-studies/"
+  ],
+  "unresolved_redirects": 0
+}
