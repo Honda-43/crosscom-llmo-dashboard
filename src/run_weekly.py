@@ -46,6 +46,21 @@ def _job_summary(lines: List[str]) -> None:
             fh.write("\n".join(lines) + "\n")
 
 
+def _step_outputs(delivered: bool, failures: List[str]) -> None:
+    """ワークフローの失敗通知に渡す(所見が届いたか・落ちたフェーズ名)。
+
+    フェーズ名だけを渡す。例外の文面は引用符や改行を含み得て、
+    通知の JSON を壊すので載せない(文面は job summary にある)。
+    """
+    path = os.getenv("GITHUB_OUTPUT")
+    if not path:
+        return
+    names = [f.split(":", 1)[0] for f in failures]
+    with open(path, "a", encoding="utf-8") as fh:
+        fh.write(f"delivered={'true' if delivered else 'false'}\n")
+        fh.write(f"failed_phases={', '.join(names)}\n")
+
+
 def _run(name: str, fn: Callable[[], Any], failures: List[str]) -> Any:
     try:
         result = fn()
@@ -108,6 +123,7 @@ def main() -> None:
     stats = _run("rules_engine", lambda: rules_engine.run(date), failures)
 
     report_md, source = None, None
+    delivered = False
     if stats is not None:
         _run("save_stats", lambda: _save_stats(date, stats), failures)
 
@@ -123,6 +139,8 @@ def main() -> None:
             lines.append(f"- ⚠️ 所見の記述ルール: {warning}")
         for note in result.get("suppressed") or []:
             lines.append(f"- 実施済みのため再提案を差し替え: {note}")
+        for note in result.get("frozen") or []:
+            lines.append(f"- 実験の凍結対象のため差し替え: {note}")
 
         # 3-2. 引用元の3分類(Phase 5 §3-2)。data/raw を読むだけで
         # Sheets の追加読み取りはしない。
@@ -171,11 +189,11 @@ def main() -> None:
         if args.no_slack:
             print(report_md)
         else:
-            _run(
+            delivered = bool(_run(
                 "notify_weekly",
                 lambda: notify_slack.notify_weekly(date, report_md),
                 failures,
-            )
+            ))
 
         lines += [
             f"- Fired rules: {', '.join(stats['fired_rules']) or 'none'}",
@@ -207,6 +225,7 @@ def main() -> None:
     # back to numbers *did* get delivered, yet the run is still marked failed —
     # a degraded weekly insight is something to notice, not to swallow.
     critical = [f for f in failures if not f.startswith(("collect_ahrefs", "write_ahrefs"))]
+    _step_outputs(delivered, critical)
     sys.exit(1 if critical or stats is None or report_md is None else 0)
 
 

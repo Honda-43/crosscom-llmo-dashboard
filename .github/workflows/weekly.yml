@@ -46,6 +46,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run weekly pipeline (Ahrefs -> rules -> insight -> Slack)
+        id: pipeline
         working-directory: src
         run: |
           python run_weekly.py \
@@ -72,6 +73,7 @@ jobs:
             ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
 
       - name: Commit weekly stats.json
+        id: commit
         if: always()
         run: |
           git config user.name  "github-actions[bot]"
@@ -81,6 +83,10 @@ jobs:
             echo "No new weekly stats to commit."
           else
             git commit -m "data: weekly stats $(date -u +%Y-%m-%d)"
+            # 定時より遅れて走ると(2026-09-28 は08:30の予定が10:50)、drift_check の
+            # 2分強の間に experiment.yml 等の push が入り non-fast-forward で弾かれる。
+            # 触るパスは重ならないので、取り込んでから送る。
+            git pull --rebase
             git push
           fi
 
@@ -89,12 +95,29 @@ jobs:
         run: echo "::warning::One or more weekly pipeline phases failed — see the job summary."
 
       # Catches failures that never reach notify_slack.py (checkout, pip install,
-      # a crash before the Python delivery phase).
+      # a crash before the Python delivery phase) and failures after delivery
+      # (commit/push). 所見が届いたかは run_weekly.py の出力(delivered)で分ける。
       - name: Notify Slack on workflow failure
         if: failure() && env.SLACK_WEBHOOK_URL != ''
+        env:
+          DELIVERED: ${{ steps.pipeline.outputs.delivered }}
+          FAILED_PHASES: ${{ steps.pipeline.outputs.failed_phases }}
+          COMMIT_CONCLUSION: ${{ steps.commit.conclusion }}
         run: |
           RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-          TEXT="*LLMO週次アラート*\n*❌ ワークフロー失敗*\n• weekly.yml が異常終了しました(週次所見が未配信の可能性あり)\n<$RUN_URL|実行ログを開く>"
+          PHASES="$FAILED_PHASES"
+          if [ "$COMMIT_CONCLUSION" = "failure" ]; then
+            PHASES="${PHASES:+$PHASES, }commit(git push)"
+          fi
+          if [ "$DELIVERED" = "true" ]; then
+            DETAIL="• weekly.yml が異常終了しました(週次所見は配信済み)\n• 落ちたフェーズ: ${PHASES:-不明}"
+          else
+            DETAIL="• weekly.yml が異常終了しました(週次所見が未配信の可能性あり)"
+            if [ -n "$PHASES" ]; then
+              DETAIL="$DETAIL\n• 落ちたフェーズ: $PHASES"
+            fi
+          fi
+          TEXT="*LLMO週次アラート*\n*❌ ワークフロー失敗*\n$DETAIL\n<$RUN_URL|実行ログを開く>"
           printf '{"text":"%s"}' "$TEXT" > payload.json
           curl -sS -X POST -H 'Content-type: application/json' \
             --data @payload.json "$SLACK_WEBHOOK_URL" > /dev/null

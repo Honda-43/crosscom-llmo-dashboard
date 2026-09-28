@@ -251,3 +251,41 @@ def test_a_missing_journal_does_not_fail_the_weekly_run(wired, monkeypatch):
     assert run(["--date", "2026-08-17", "--no-slack"], monkeypatch) == 0
     assert any("503欠測" in line for line in calls["summary"])
 
+
+
+def _outputs(path):
+    return dict(line.split("=", 1) for line in path.read_text(encoding="utf-8").splitlines())
+
+
+def test_step_outputs_say_the_report_was_delivered(wired, monkeypatch):
+    """2026-09-28: 所見は配信済みなのに、失敗通知が「未配信の可能性あり」と言った。
+    ワークフロー側で文面を分けられるよう、配信の成否とフェーズ名を渡す。"""
+    calls, tmp_path = wired
+    out = tmp_path / "github_output"
+    monkeypatch.setenv("GITHUB_OUTPUT", str(out))
+    monkeypatch.setattr(collect_ahrefs, "collect",
+                        lambda date=None: (_ for _ in ()).throw(RuntimeError("402")))
+    monkeypatch.setattr(sheets_writer, "write_weekly_report",
+                        lambda date, stats, report: (_ for _ in ()).throw(
+                            RuntimeError('quota "exceeded"\nretry')))
+    monkeypatch.setattr(generate_insight, "generate",
+                        lambda stats, **kw: {"report_md": "本文", "source": "llm", "error": None})
+
+    assert run(["--date", "2026-08-17"], monkeypatch) == 1
+    got = _outputs(out)
+    assert got["delivered"] == "true"
+    # Ahrefs は best-effort なので載せない。例外の文面(引用符・改行)も載せない。
+    assert got["failed_phases"] == "write_weekly_report"
+
+
+def test_step_outputs_say_not_delivered_when_slack_fails(wired, monkeypatch):
+    calls, tmp_path = wired
+    out = tmp_path / "github_output"
+    monkeypatch.setenv("GITHUB_OUTPUT", str(out))
+    monkeypatch.setattr(notify_slack, "notify_weekly",
+                        lambda date, report, **kw: (_ for _ in ()).throw(RuntimeError("500")))
+    monkeypatch.setattr(generate_insight, "generate",
+                        lambda stats, **kw: {"report_md": "本文", "source": "llm", "error": None})
+
+    assert run(["--date", "2026-08-17"], monkeypatch) == 1
+    assert _outputs(out) == {"delivered": "false", "failed_phases": "notify_weekly"}
