@@ -38,6 +38,10 @@ from pool import load_allocation, slug  # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 POOL_FILE = os.path.join(HERE, 'results', 'rerandomization_pool.csv')
 POOL_SIZE = 5000
+# 判定に使う最低件数（2026-09-28）。目標は POOL_SIZE のまま。p のモンテカルロ誤差は
+# sqrt(p(1-p)/N) で、p=0.05 付近なら 2,000件で約±0.005（5,000件で約±0.003）。
+# これより少ないプールでは再ランダム化の p を出さない（summarize.py）
+POOL_MIN = 2000
 SEED_START = 20290101
 # 9/28 の本番と同じ範囲（条件 c の「引用あり」をこの期間で決める）
 CITED_FROM, CITED_TO = '2026-09-15', '2026-09-27'

@@ -140,13 +140,46 @@ def _outcome_rows(monkeypatch, pool_rows):
     return after
 
 
+def _pool(n):
+    return [(i, "1234" * 11 + "12") for i in range(n)]
+
+
 def test_the_table_shows_both_p_values(monkeypatch, capsys):
-    after = _outcome_rows(monkeypatch, [(1, "1234" * 11 + "12")])
+    after = _outcome_rows(monkeypatch, _pool(2000))
     summarize.sensitivity_table(after, None, "gemini")
     out = capsys.readouterr().out
     assert "p(再ランダム化)" in out and "p(フィッシャー)" in out
     body = [ln for ln in out.splitlines() if ln.startswith("両方込み")][0]
     assert "—" not in body, body
+    assert "使用した割付数：2,000" in out
+
+
+# --- 5b. プールの下限(2026-09-28)：2,000 未満なら再ランダム化の p を出さない ---------------
+def test_the_pool_minimum_is_2000_and_the_target_stays_5000():
+    assert rerandomize.POOL_MIN == 2000 and rerandomize.POOL_SIZE == 5000
+
+
+def test_a_short_pool_is_not_tested_but_fisher_is_still_shown(monkeypatch, capsys):
+    after = _outcome_rows(monkeypatch, _pool(1999))
+    assert summarize.randomization(after) == {"n": 1999, "short": True}
+    summarize.sensitivity_table(after, None, "gemini")
+    out = capsys.readouterr().out
+    body = [ln for ln in out.splitlines() if ln.startswith("両方込み")][0]
+    cols = body.split()
+    assert cols[-5] == "—" and cols[-2] == "—", body     # 再ランダム化の p は出さない
+    assert cols[-4] != "—" and cols[-1] != "—", body     # フィッシャーは参考として出す
+    assert "プール不足（1,999件／下限2,000）" in out
+    assert "使用した割付数" not in out
+
+
+def test_the_per_variant_summary_shows_the_count_or_the_shortage(monkeypatch, capsys):
+    after = _outcome_rows(monkeypatch, _pool(2000))
+    summarize.summarize(after, None, (), "gemini 両方込み")
+    assert "使用した割付数：2,000" in capsys.readouterr().out
+    after = _outcome_rows(monkeypatch, _pool(10))
+    summarize.summarize(after, None, (), "gemini 両方込み")
+    out = capsys.readouterr().out
+    assert "プール不足（10件／下限2,000）" in out and "片側p=" in out   # フィッシャーは出る
 
 
 def test_without_a_pool_the_randomization_column_is_a_dash(monkeypatch, capsys):

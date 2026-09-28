@@ -163,25 +163,43 @@ def summarize(after, before, exclude=(), label=""):
     line("結論要約リード", LEAD_ON, LEAD_OFF)
     line("FAQブロック化", FAQ_ON, FAQ_OFF)
     rr = randomization(after, exclude)
-    if rr:
-        print(f"再ランダム化検定（同じ条件を満たす割付 {rr['n']:,}通りの中で。**判定の本線**）"
+    if tested(rr):
+        print(f"再ランダム化検定（同じ条件を満たす割付の中で。**判定の本線**。使用した割付数：{rr['n']:,}）"
               f": リード 片側p={rr['lead_p']:.3f}／FAQ 片側p={rr['faq_p']:.3f}")
     else:
-        print("再ランダム化検定: プール未作成"
-              "（experiment_2x2/rerandomize.py --build で作る）")
+        print(pool_note(rr))
     print()
+
+
+def tested(rr):
+    """再ランダム化の p を出してよいか（プールが下限以上）。"""
+    return bool(rr) and not rr.get("short")
+
+
+def pool_note(rr):
+    """再ランダム化の p を出さないときの1行。フィッシャーは参考として並べたまま。"""
+    if not rr:
+        return ("再ランダム化検定: プール未作成"
+                "（experiment_2x2/rerandomize.py --build で作る）")
+    return (f"再ランダム化検定: プール不足（{rr['n']:,}件／下限{rerandomize.POOL_MIN:,}）。"
+            "検定は行わない（フィッシャー検定は参考）。"
+            "experiment_2x2/rerandomize.py --resume で続きを作る")
 
 
 def randomization(after, exclude=()):
     """再ランダム化検定。同じ条件 a〜g を満たす割付の中で、実際の差以上が出る割合。
 
-    プール(results/rerandomization_pool.csv)が無ければ None。条件の合格率が
+    プール(results/rerandomization_pool.csv)が無ければ None。下限
+    (rerandomize.POOL_MIN)未満なら {"n": 件数, "short": True} で p は出さない。条件の合格率が
     約 1/9,200 なので、取りうる割付すべてを前提にしたフィッシャー検定より、
     こちらを判定の本線にする。
     """
     pool_rows = rerandomize.load()
     if not pool_rows:
         return None
+    if len(pool_rows) < rerandomize.POOL_MIN:
+        # 2026-09-28：下限 2,000 件。少ないプールの p はモンテカルロ誤差が大きい
+        return {"n": len(pool_rows), "short": True}
     import allocate_47
     arts, _ = allocate_47.load_articles()
     groups = load_allocation()
@@ -224,11 +242,12 @@ def sensitivity_table(after, before, title=""):
         _, _, _, _, lead_diff, lead_p = effect(groups, LEAD_ON, LEAD_OFF)
         _, _, _, _, faq_diff, faq_p = effect(groups, FAQ_ON, FAQ_OFF)
         rr = randomization(after, exclude)
+        ok = tested(rr)
         rows.append([label, str(n)] + rates
                     + [f"{lead_diff:+.0%}",
-                       f"{rr['lead_p']:.3f}" if rr else "—", f"{lead_p:.3f}",
+                       f"{rr['lead_p']:.3f}" if ok else "—", f"{lead_p:.3f}",
                        f"{faq_diff:+.0%}",
-                       f"{rr['faq_p']:.3f}" if rr else "—", f"{faq_p:.3f}"])
+                       f"{rr['faq_p']:.3f}" if ok else "—", f"{faq_p:.3f}"])
     head = ["感度分析" + (f"（{title.strip()}）" if title.strip() else ""), "本数",
             "①対照", "②FAQのみ", "③リードのみ", "④両方",
             "リード差", "p(再ランダム化)", "p(フィッシャー)",
@@ -240,6 +259,7 @@ def sensitivity_table(after, before, title=""):
     print("  ".join("-" * w for w in width))
     for r in rows:
         print(row(r))
+    print(f"使用した割付数：{rr['n']:,}" if tested(rr) else pool_note(rr))
     print()
 
 
