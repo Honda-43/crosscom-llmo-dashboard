@@ -171,3 +171,129 @@ def test_each_variant_gets_its_own_randomization(monkeypatch, capsys):
     summarize.sensitivity_table(after, None, "gemini")
     assert len(seen) == 4
     assert seen[0] == set() and seen[3] == set(summarize.variants()[3][1])
+
+
+# --- 6. 1行ずつ追記・途中再開(2026-09-28) ---------------------------------------------
+# 9/28 に一気に作ろうとしてメモリ不足で止められた。見つけるたびに追記し、止まっても
+# --resume で続きから作れること。**再開した結果が、一気に作った結果と同じ**であること。
+def _pure_ok(labels, _feats, _totals):
+    """割付だけで決まる速い合否(約 1/13)。本物の条件は 1/9,200 で遅すぎるため。"""
+    return sum((i + 1) * g for i, g in enumerate(labels)) % 13 == 0
+
+
+def _stop_after(n, exc):
+    calls = []
+
+    def ok(labels, feats, totals):
+        calls.append(1)
+        if len(calls) > n:
+            raise exc
+        return _pure_ok(labels, feats, totals)
+    return ok
+
+
+def _build(tmp_path, name, resume=False, target=30, **kw):
+    kw.setdefault("log", lambda *a, **k: None)
+    return rerandomize.build_to_file(
+        ARTS, CITED, actual="", out=str(tmp_path / f"{name}.csv"),
+        checkpoint=str(tmp_path / f"{name}.checkpoint"), target=target,
+        seed_start=20290101, resume=resume, meta={"target": target}, **kw)
+
+
+def _one_shot(tmp_path, monkeypatch, target=30):
+    monkeypatch.setattr(rerandomize, "fast_ok", _pure_ok)
+    _build(tmp_path, "whole", target=target)
+    return (tmp_path / "whole.csv").read_bytes()
+
+
+def test_resume_after_ctrl_c_matches_a_single_run(tmp_path, monkeypatch):
+    whole = _one_shot(tmp_path, monkeypatch)
+    for stop in (57, 100, 60):                 # 3回止めて、そのたびに続きから
+        monkeypatch.setattr(rerandomize, "fast_ok", _stop_after(stop, KeyboardInterrupt()))
+        with pytest.raises(KeyboardInterrupt):
+            _build(tmp_path, "part", resume=(tmp_path / "part.checkpoint").exists())
+        assert 0 < len(rerandomize.load(str(tmp_path / "part.csv"))) < 30
+    monkeypatch.setattr(rerandomize, "fast_ok", _pure_ok)
+    state = _build(tmp_path, "part", resume=True)
+    assert state["done"] and state["count"] == 30
+    assert (tmp_path / "part.csv").read_bytes() == whole
+
+
+def test_resume_after_a_hard_kill_matches_a_single_run(tmp_path, monkeypatch):
+    """強制終了(メモリ不足など)：checkpoint が最後の行より古く、最後の行が書きかけでも同じになる。"""
+    whole = _one_shot(tmp_path, monkeypatch)
+    monkeypatch.setattr(rerandomize, "fast_ok", _stop_after(200, RuntimeError("killed")))
+    with pytest.raises(RuntimeError):
+        _build(tmp_path, "part", checkpoint_every=10 ** 9)
+    ck = tmp_path / "part.checkpoint"
+    stale = rerandomize.read_checkpoint(str(ck))
+    stale.update(next_seed=20290101 + 5, count=0)       # 保存の間に落ちた状態を作る
+    rerandomize.write_checkpoint(stale, str(ck))
+    with open(tmp_path / "part.csv", "a", encoding="utf-8", newline="") as f:
+        f.write("99,2029")                              # 書きかけの最後の1行
+    monkeypatch.setattr(rerandomize, "fast_ok", _pure_ok)
+    _build(tmp_path, "part", resume=True)
+    assert (tmp_path / "part.csv").read_bytes() == whole
+
+
+def test_rows_found_before_a_stop_are_valid(tmp_path, monkeypatch):
+    _one_shot(tmp_path, monkeypatch)
+    monkeypatch.setattr(rerandomize, "fast_ok", _stop_after(150, KeyboardInterrupt()))
+    with pytest.raises(KeyboardInterrupt):
+        _build(tmp_path, "part")
+    part = rerandomize.load(str(tmp_path / "part.csv"))
+    assert part == rerandomize.load(str(tmp_path / "whole.csv"))[:len(part)]
+    state = rerandomize.read_checkpoint(str(tmp_path / "part.checkpoint"))
+    assert state["count"] == len(part) and not state["done"]
+    assert state["last_tried_seed"] >= part[-1][0]
+
+
+def test_it_stops_at_the_target_and_resuming_a_finished_pool_adds_nothing(tmp_path, monkeypatch):
+    _one_shot(tmp_path, monkeypatch, target=20)
+    before = (tmp_path / "whole.csv").read_bytes()
+    assert len(rerandomize.load(str(tmp_path / "whole.csv"))) == 20
+    state = _build(tmp_path, "whole", resume=True, target=20)
+    assert state["done"] and (tmp_path / "whole.csv").read_bytes() == before
+    # 目標を増やして再開すれば、続きの行が足される(一気に 25 作ったのと同じ)
+    _build(tmp_path, "whole", resume=True, target=25)
+    monkeypatch.setattr(rerandomize, "fast_ok", _pure_ok)
+    _build(tmp_path, "whole25", target=25)
+    assert (rerandomize.load(str(tmp_path / "whole.csv"))
+            == rerandomize.load(str(tmp_path / "whole25.csv")))
+
+
+def test_progress_reports_count_elapsed_and_seed(tmp_path, monkeypatch):
+    assert rerandomize.PROGRESS_EVERY == 100
+    monkeypatch.setattr(rerandomize, "fast_ok", _pure_ok)
+    lines, ticks = [], iter(range(0, 10 ** 6, 7))
+    _build(tmp_path, "p", target=20, progress=10, clock=lambda: next(ticks),
+           log=lambda msg, **k: lines.append(msg))
+    assert len(lines) == 2
+    assert "10/20 件" in lines[0] and "経過 0:" in lines[0] and "現在のシード 2029" in lines[0]
+
+
+def test_resume_refuses_a_different_condition(tmp_path, monkeypatch):
+    monkeypatch.setattr(rerandomize, "fast_ok", _stop_after(100, KeyboardInterrupt()))
+    with pytest.raises(KeyboardInterrupt):
+        _build(tmp_path, "part")
+    monkeypatch.setattr(rerandomize, "fast_ok", _pure_ok)
+    with pytest.raises(rerandomize.ResumeError, match="cited"):
+        rerandomize.build_to_file(
+            ARTS, CITED | {"agentforce-roi"}, actual="", out=str(tmp_path / "part.csv"),
+            checkpoint=str(tmp_path / "part.checkpoint"), target=30, seed_start=20290101,
+            resume=True, log=lambda *a, **k: None)
+
+
+def test_build_does_not_overwrite_an_existing_pool(tmp_path):
+    out = tmp_path / "pool.csv"
+    out.write_text("keep", encoding="utf-8")
+    assert rerandomize.main(["--build", "--out", str(out),
+                             "--checkpoint", str(tmp_path / "c")]) == 2
+    assert out.read_text(encoding="utf-8") == "keep"
+
+
+def test_load_skips_a_half_written_last_line(tmp_path):
+    path = rerandomize.save([(20290105, "1" * 46)], ARTS, {}, str(tmp_path / "pool.csv"))
+    with open(path, "a", encoding="utf-8", newline="") as f:
+        f.write("2,2029011")
+    assert rerandomize.load(path) == [(20290105, "1" * 46)]
