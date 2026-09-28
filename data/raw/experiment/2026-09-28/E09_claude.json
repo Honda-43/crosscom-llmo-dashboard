@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E09",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce MCPとは？Agentforceと外部システムの接続方式と境界の設計",
+  "cep": null,
+  "timestamp": "2026-09-28T01:32:35.600211Z",
+  "answer": "Salesforce MCPとAgentforceと外部システムの連携について調べます。\n# Salesforce MCPとAgentforceの接続アーキテクチャ\n\n## MCP（Model Context Protocol）とは\n\n\nModel Context Protocolは、AIモデルが外部のツール、システム、データとどのように接続するかを定めた、Anthropicが元々開発したオープンスタンダードです\n。Salesforceはこれを「\nAIのためのUSB-C\n」と表現しており、\nAIエージェントが単一の明確なハンドシェイクを通じて、社内外のソースからリソース、ツール、プロンプトを取得できるようにするオープンスタンダード\nと位置づけています。\n\n従来は\nツールごとに個別のカスタム統合コードが必要で、ツールやリソースが断片化していましたが、MCPによりツールごとに1つのMCPサーバーを構築すれば、MCPを理解する任意のAIアプリやエージェントに接続できるようになります\n。\n\n## MCPの基本アーキテクチャ（3層構造）\n\n\nMCPスタックはホスト、クライアント、サーバーで構成され、クライアント・サーバーアーキテクチャに従い、1つのホストアプリケーションが複数のサーバーに接続できます\n。\n\n- **Host（ホスト）**：\nSalesforce Agentforceのようなプラットフォームなど、ユーザーが直接やり取りする主要なAIアプリケーション。ワークフロー全体を調整し、ユーザーの入口となる役割\n\n- **Client（クライアント）**：\nホストアプリケーション内に存在し、特定の外部サーバーへの専用接続を維持し、AIモデルのニーズをサーバーが理解できる構造化されたプロトコルリクエストに変換する\n\n- **Server（サーバー）**：ツール・データ・プロンプトを公開する外部システム側の実装\n\n通信は\nJSON-RPC 2.0を介したHost→Client→Serverの3層モデル\nで行われ、\ninitialize（ハンドシェイク）、tools/list（カタログ取得）、tools/call（実行）という3つの主要メソッド\nで構成されます。\n\n## Agentforceにおける2つの接続方向\n\nAgentforceは**双方向**でMCPをサポートします。\n\n### ① MCP Client（Agentforceが外部を利用する側）\n\n\nMCP Clientにより、Agentforce管理者は外部のMCPサーバーを登録し、ビルダーはリモートのツール・リソース・アクションを標準化された方法でAgentforce内に統合できます。これにより、Agentforceは個別のポイントツーポイント統合ではなく、ツールコントラクトを通じて外部の機能を利用できます\n。\n\n判断基準として、\nAgentforceが主要なオーケストレーターであり続け、外部データの取得・ワークフロー起動・ナレッジ検索・サードパーティ操作などの外部機能をツールとして利用するだけでよい場合はMCP Clientを使います\n。\n\n### ② Salesforce Hosted MCP Server（Agentforceを外部に公開する側）\n\n\nSalesforceのHosted MCP Serverは、標準化されたMCPインターフェースを通じて、サードパーティのエージェントやコパイロット、LLMプラットフォームなどの外部ホストにAgentforceの機能を公開できます\n。\n\n### 実際の接続経路（MuleSoft / Heroku）\n\nエンタープライズ環境では、直接接続に加えMuleSoftやHerokuを経由するパターンが主流です。\nクライアントがAgentforceエージェントとやり取りし、それがMCPクライアントを介して外部システムに直接、あるいはMuleSoftを経由してやり取りする構成\nが示されています。\n\n- **MuleSoft経由**：\nSAPやNetSuite、社内APIなど企業システムへ接続する際、AgentforceはMCPクライアントとして動作し、MuleSoft MCP Serversを介して標準的な統合パターンでAPIと会話します。MuleSoft MCP Supportにより、SAP APIなどのレガシーシステムとやり取りできます\n\n- **",
+  "cited_urls": [
+    "https://www.salesforce.com/agentforce/mcp-support/",
+    "https://developer.salesforce.com/blogs/2025/06/introducing-mcp-support-across-salesforce",
+    "https://www.salesforce.com/agentforce/mcp-support/model-context-protocol/",
+    "https://vantagepoint.io/blog/sf/agentforce-mcp-connect-external-systems-guide",
+    "https://developer.salesforce.com/blogs/2026/08/extending-agentforce-with-external-mcp-tools-via-mulesoft",
+    "https://www.salesforce.com/agentforce/resources/interoperability-guide/",
+    "https://www.salesforce.com/blog/how-to-choose-integration-pattern-for-agentforce/",
+    "https://medium.com/@gauravkheterpal/multi-agent-madness-demystifying-the-architecture-of-salesforce-agentforce-a2a-mcp-76581b91bc61"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E09",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-mcp/",
+  "answer_text": "Salesforce MCPとAgentforceと外部システムの連携について調べます。\n# Salesforce MCPとAgentforceの接続アーキテクチャ\n\n## MCP（Model Context Protocol）とは\n\n\nModel Context Protocolは、AIモデルが外部のツール、システム、データとどのように接続するかを定めた、Anthropicが元々開発したオープンスタンダードです\n。Salesforceはこれを「\nAIのためのUSB-C\n」と表現しており、\nAIエージェントが単一の明確なハンドシェイクを通じて、社内外のソースからリソース、ツール、プロンプトを取得できるようにするオープンスタンダード\nと位置づけています。\n\n従来は\nツールごとに個別のカスタム統合コードが必要で、ツールやリソースが断片化していましたが、MCPによりツールごとに1つのMCPサーバーを構築すれば、MCPを理解する任意のAIアプリやエージェントに接続できるようになります\n。\n\n## MCPの基本アーキテクチャ（3層構造）\n\n\nMCPスタックはホスト、クライアント、サーバーで構成され、クライアント・サーバーアーキテクチャに従い、1つのホストアプリケーションが複数のサーバーに接続できます\n。\n\n- **Host（ホスト）**：\nSalesforce Agentforceのようなプラットフォームなど、ユーザーが直接やり取りする主要なAIアプリケーション。ワークフロー全体を調整し、ユーザーの入口となる役割\n\n- **Client（クライアント）**：\nホストアプリケーション内に存在し、特定の外部サーバーへの専用接続を維持し、AIモデルのニーズをサーバーが理解できる構造化されたプロトコルリクエストに変換する\n\n- **Server（サーバー）**：ツール・データ・プロンプトを公開する外部システム側の実装\n\n通信は\nJSON-RPC 2.0を介したHost→Client→Serverの3層モデル\nで行われ、\ninitialize（ハンドシェイク）、tools/list（カタログ取得）、tools/call（実行）という3つの主要メソッド\nで構成されます。\n\n## Agentforceにおける2つの接続方向\n\nAgentforceは**双方向**でMCPをサポートします。\n\n### ① MCP Client（Agentforceが外部を利用する側）\n\n\nMCP Clientにより、Agentforce管理者は外部のMCPサーバーを登録し、ビルダーはリモートのツール・リソース・アクションを標準化された方法でAgentforce内に統合できます。これにより、Agentforceは個別のポイントツーポイント統合ではなく、ツールコントラクトを通じて外部の機能を利用できます\n。\n\n判断基準として、\nAgentforceが主要なオーケストレーターであり続け、外部データの取得・ワークフロー起動・ナレッジ検索・サードパーティ操作などの外部機能をツールとして利用するだけでよい場合はMCP Clientを使います\n。\n\n### ② Salesforce Hosted MCP Server（Agentforceを外部に公開する側）\n\n\nSalesforceのHosted MCP Serverは、標準化されたMCPインターフェースを通じて、サードパーティのエージェントやコパイロット、LLMプラットフォームなどの外部ホストにAgentforceの機能を公開できます\n。\n\n### 実際の接続経路（MuleSoft / Heroku）\n\nエンタープライズ環境では、直接接続に加えMuleSoftやHerokuを経由するパターンが主流です。\nクライアントがAgentforceエージェントとやり取りし、それがMCPクライアントを介して外部システムに直接、あるいはMuleSoftを経由してやり取りする構成\nが示されています。\n\n- **MuleSoft経由**：\nSAPやNetSuite、社内APIなど企業システムへ接続する際、AgentforceはMCPクライアントとして動作し、MuleSoft MCP Serversを介して標準的な統合パターンでAPIと会話します。MuleSoft MCP Supportにより、SAP APIなどのレガシーシステムとやり取りできます\n\n- **",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "developer.salesforce.com",
+    "vantagepoint.io",
+    "medium.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/agentforce/mcp-support/",
+    "https://developer.salesforce.com/blogs/2025/06/introducing-mcp-support-across-salesforce",
+    "https://www.salesforce.com/agentforce/mcp-support/model-context-protocol/",
+    "https://vantagepoint.io/blog/sf/agentforce-mcp-connect-external-systems-guide",
+    "https://developer.salesforce.com/blogs/2026/08/extending-agentforce-with-external-mcp-tools-via-mulesoft",
+    "https://www.salesforce.com/agentforce/resources/interoperability-guide/",
+    "https://www.salesforce.com/blog/how-to-choose-integration-pattern-for-agentforce/",
+    "https://medium.com/@gauravkheterpal/multi-agent-madness-demystifying-the-architecture-of-salesforce-agentforce-a2a-mcp-76581b91bc61"
+  ],
+  "unresolved_redirects": 0
+}

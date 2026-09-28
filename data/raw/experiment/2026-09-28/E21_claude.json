@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E21",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agent Scriptとは？Agentforceの設定を画面ではなくコードで管理すべきケースは？",
+  "cep": null,
+  "timestamp": "2026-09-28T01:38:10.075108Z",
+  "answer": "# Agent Scriptとは\n\n**Agent Script**は、Salesforceが開発したAgentforce向けのスクリプト（DSL/宣言型言語）で、Agentforce Builder上でエージェントを構築するための言語です。\nAgentforce Builderでエージェントを構築するための言語であり、LLMの解釈だけに頼らない、予測可能でコンテキストを考慮したエージェントのワークフローを構築できます。\n\n\n## 特徴\n\n- **ハイブリッド推論**：\n自然言語による会話タスクの柔軟性と、ビジネスルールを扱うプログラム的な表現の信頼性を組み合わせています。スクリプトでは、if/else条件・遷移などのロジックを定義したり、変数の設定・変更・比較、サブエージェントやアクションの選択を行ったりします。\n\n\n- **コンパイル型言語**：\nAgent Scriptはコンパイル言語であり、SalesforceのAtlas Reasoning Engineが消費する構造化された仕様であるAgent Graphに変換されます。実行時に一行ずつ実行される従来のコードとは異なります。\n\n\n- **ブロックベースの構造**：\nAgent Scriptはブロックベースです。すべてがブロックであり、ブロックが組み合わさってエージェントを構成します。ブロックは、エージェントのアイデンティティと動作を設定する構成系（config、system）と、エージェントの実行方法を定義する実行系（topic、start_agent）の2種類に分類されます。\nインデントで階層を表す点はPythonやYAMLに似ています（\n言語はインデントに敏感で、PythonやYAMLのようにインデントがスコープを決定します\n）。\n\n- **3つの作成方法が同じ土台**：\nエージェントを構築する方法は3つあり、AI Assistance、キャンバス上での自然言語、Agent Scriptです。すべての方法は同じSalesforceメタデータ基盤を使用します。\nつまり画面（Canvas）で作っても裏では常にAgent Scriptとして保存されています（\nどちらの方法でも好きな時に構築でき、ローコードのキャンバスビューでも開発者向けのスクリプトビューでも構いません。どちらを選んでも、常にAgent Scriptを書いていることになります。\n）。\n\n- **開発者ツール連携**：\n開発者はAgentforce DXを使ってスクリプトファイルをローカルのSalesforce DXプロジェクトに生成・取得し、Visual Studio Codeで作業することもできます。Agentforce DX VS Code拡張機能はAgent Script言語を標準的なコード編集機能で完全にサポートしています。\n\n\n---\n\n# コード管理（Agent Script／DX）を選ぶべきケース\n\n画面（Canvas/GUIビルダー）とコード（Script view / Agentforce DX + VS Code）は同じメタデータ基盤を使うため自由に行き来できますが、以下のような場面では**コードでの管理**が有利です。\n\n### 1. 厳密な決定論的ロジックが必要な場合\nLLMの解釈揺れを避け、業務ルールを確実に強制したい場合。\nエージェントの振る舞いを予測可能かつ信頼できるものにすることが主な利点であり、LLMのランダム性を排除する決定論的な支点を提供します。これにより企業はエージェントの動作を完全にコントロールでき、business policiesを厳格に遵守できます。\n\n\n### 2. if/elseの分岐、アクションチェーン、サブエージェント遷移を細かく制御したい場合\n\n従来のAgent Builder（画面のみ）は硬直した構造で条件分岐が限定的、実行フローに決定論的な振る舞いを組み込む余地がほとんどありませんでした。Agent Scriptはこれを変え、人間が読める形式でif/elseロジック、ツールチェーン、推論前後の決定論的フック、明確なトピック遷移を定義できます。\n\n\n### 3. バージョン管理・コードレビューをしたい場合\n\n人間が読めるプレーンなYAMLライクな構文で、レビューやバージョン管理が可能です。\nGitでの差分管理やプルリクエストレビューを組織のプロセスに組み込みたい場合はコード（ファイル）管理が適しています。\n\n### 4. IaC（Infrastructure-as-Code）的にエージェント定義を再現・複製したい場合\n\nAgent Scriptはコンパイル型の宣言的言語で、エージェ",
+  "cited_urls": [
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-script.html",
+    "https://www.pantherschools.com/building-agentforce-agents-with-agent-script/",
+    "https://github.com/salesforce/agentscript",
+    "https://www.salesforce.com/agentforce/script/",
+    "https://medium.com/agentforce-simplified/what-is-agent-script-how-to-build-agents-with-it-in-agentforce-1f0ffc45803d"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E21",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-agent-script/",
+  "answer_text": "# Agent Scriptとは\n\n**Agent Script**は、Salesforceが開発したAgentforce向けのスクリプト（DSL/宣言型言語）で、Agentforce Builder上でエージェントを構築するための言語です。\nAgentforce Builderでエージェントを構築するための言語であり、LLMの解釈だけに頼らない、予測可能でコンテキストを考慮したエージェントのワークフローを構築できます。\n\n\n## 特徴\n\n- **ハイブリッド推論**：\n自然言語による会話タスクの柔軟性と、ビジネスルールを扱うプログラム的な表現の信頼性を組み合わせています。スクリプトでは、if/else条件・遷移などのロジックを定義したり、変数の設定・変更・比較、サブエージェントやアクションの選択を行ったりします。\n\n\n- **コンパイル型言語**：\nAgent Scriptはコンパイル言語であり、SalesforceのAtlas Reasoning Engineが消費する構造化された仕様であるAgent Graphに変換されます。実行時に一行ずつ実行される従来のコードとは異なります。\n\n\n- **ブロックベースの構造**：\nAgent Scriptはブロックベースです。すべてがブロックであり、ブロックが組み合わさってエージェントを構成します。ブロックは、エージェントのアイデンティティと動作を設定する構成系（config、system）と、エージェントの実行方法を定義する実行系（topic、start_agent）の2種類に分類されます。\nインデントで階層を表す点はPythonやYAMLに似ています（\n言語はインデントに敏感で、PythonやYAMLのようにインデントがスコープを決定します\n）。\n\n- **3つの作成方法が同じ土台**：\nエージェントを構築する方法は3つあり、AI Assistance、キャンバス上での自然言語、Agent Scriptです。すべての方法は同じSalesforceメタデータ基盤を使用します。\nつまり画面（Canvas）で作っても裏では常にAgent Scriptとして保存されています（\nどちらの方法でも好きな時に構築でき、ローコードのキャンバスビューでも開発者向けのスクリプトビューでも構いません。どちらを選んでも、常にAgent Scriptを書いていることになります。\n）。\n\n- **開発者ツール連携**：\n開発者はAgentforce DXを使ってスクリプトファイルをローカルのSalesforce DXプロジェクトに生成・取得し、Visual Studio Codeで作業することもできます。Agentforce DX VS Code拡張機能はAgent Script言語を標準的なコード編集機能で完全にサポートしています。\n\n\n---\n\n# コード管理（Agent Script／DX）を選ぶべきケース\n\n画面（Canvas/GUIビルダー）とコード（Script view / Agentforce DX + VS Code）は同じメタデータ基盤を使うため自由に行き来できますが、以下のような場面では**コードでの管理**が有利です。\n\n### 1. 厳密な決定論的ロジックが必要な場合\nLLMの解釈揺れを避け、業務ルールを確実に強制したい場合。\nエージェントの振る舞いを予測可能かつ信頼できるものにすることが主な利点であり、LLMのランダム性を排除する決定論的な支点を提供します。これにより企業はエージェントの動作を完全にコントロールでき、business policiesを厳格に遵守できます。\n\n\n### 2. if/elseの分岐、アクションチェーン、サブエージェント遷移を細かく制御したい場合\n\n従来のAgent Builder（画面のみ）は硬直した構造で条件分岐が限定的、実行フローに決定論的な振る舞いを組み込む余地がほとんどありませんでした。Agent Scriptはこれを変え、人間が読める形式でif/elseロジック、ツールチェーン、推論前後の決定論的フック、明確なトピック遷移を定義できます。\n\n\n### 3. バージョン管理・コードレビューをしたい場合\n\n人間が読めるプレーンなYAMLライクな構文で、レビューやバージョン管理が可能です。\nGitでの差分管理やプルリクエストレビューを組織のプロセスに組み込みたい場合はコード（ファイル）管理が適しています。\n\n### 4. IaC（Infrastructure-as-Code）的にエージェント定義を再現・複製したい場合\n\nAgent Scriptはコンパイル型の宣言的言語で、エージェ",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "developer.salesforce.com",
+    "pantherschools.com",
+    "github.com",
+    "salesforce.com",
+    "medium.com"
+  ],
+  "resolved_urls": [
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/agent-script.html",
+    "https://www.pantherschools.com/building-agentforce-agents-with-agent-script/",
+    "https://github.com/salesforce/agentscript",
+    "https://www.salesforce.com/agentforce/script/",
+    "https://medium.com/agentforce-simplified/what-is-agent-script-how-to-build-agents-with-it-in-agentforce-1f0ffc45803d"
+  ],
+  "unresolved_redirects": 0
+}

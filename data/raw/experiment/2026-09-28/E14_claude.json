@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E14",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce in Slackで何ができる？導入手順も知りたい",
+  "cep": null,
+  "timestamp": "2026-09-28T01:34:50.480235Z",
+  "answer": "Agentforce in Slackについて、最新情報を検索してご説明します。\n# Agentforce in Slackとは\n\n\nAgentforce in Slackとは、Salesforceが提供するAIエージェント「Agentforce」をSlack上に連携させた機能で、Slack上でAIエージェントがチームメンバーの一員として稼働し、業務の自動化・効率化を実現します。\n\n\n## 何ができるか\n\n### 1. チームメイトとして会話・タスク実行\n\nAgentforce in Slackでは、質問に答えたりタスクを完了したりする自律型AIエージェントと一緒に働くことができます。エージェントは自社の人によって作成され、ITヘルプへの対応や福利厚生に関する情報提供など、特定の目的を果たすよう設計されています。\n\n\nチャネル内での使い方も通常の同僚と同じです。\nAgentforceエージェントとはチャネル内で他のチームメイトと同じように連携でき、エージェントをチャネルに追加した後、メッセージでメンションすることで注意を引きます。\n\n\n### 2. Enterprise Search（横断検索）\n\nAgentforce in Slackでは、エージェントがGoogle Drive、Microsoft OneDrive、Asanaなど連携済みのサードパーティアプリを、Slackのメッセージやファイルと合わせて横断的に検索できるようになりました。このリアルタイム検索機能により、エージェントはチームがすでに使用しているツールに基づいて、より完全で正確、かつ文脈に即した回答を生成できます。\n\n\n### 3. Slackアクションの自動実行\n\nキャンバスの作成、プロジェクトリストの開始、新規チャネルの立ち上げなどが可能で、Agentforceは従業員向けエージェントにSlack特有のアクションを持たせることで、従業員がSlackで行うのと同じことを自律的に実行できます。\n\n\n具体例として、IT障害対応では\n関連するSlackチャネルの会話データを活用し、影響を受けたシステムと潜在的な原因の初期評価を作成し、Service Cloudにチケットを作成し、現地のITリソースにダイレクトメッセージを送信して解決を図り、完全なインシデントレポートを生成する\nことができます。\n\n### 4. 権限に基づく安全な回答\n\nSlack上のエージェントは、ユーザーのSlackおよびSalesforceの権限を使って回答を作成するため、アクセス権のない情報を回答することはありません。\nまた\n「General Slack Topic」をエージェントに割り当てることで、各ユーザーのコンテキストと権限で動作させ、そのユーザーのアクセス権や会話コンテキストを踏まえた、関連性が高く安全なアクションを取ることができます。\n\n\n### 5. 代表的なテンプレート\n\nSlack向けには3種類のエージェントテンプレートが用意されています。Customer Insights Agent（Salesforceデータを使って顧客情報を要約し、Slack内の有識者を探し、顧客ブリーフを生成）、Employee Help Agent（社内リソースやSlackでの会話を使ってFAQに回答し社内課題を解決）、Onboarding Agent（オンボーディング用キャンバスの作成とカスタムナレッジベースからのFAQ回答で新メンバーのオンボーディングを支援）です。\n\n\n### 6. ノーコードでのワークフロー連携（今後）\n\n近日中に、コードを書かずにAgentforceをSlackワークフローに追加できるようになり、Slackのイベントからトリガーしたり、ユーザー起点のアクションに頼らずにSlackの会話コンテキストをAgentforceに渡したりできるようになります。\n\n\n---\n\n## 導入手順\n\n### 前提\n\nSlack向けのエージェントは「Agentforce Employee Agent」タイプでのみ構築可能です。\nまた\nSalesforceアカウントを持たないSlackユーザーがAgentforce in Slackを利用するには仮のSalesforceライセンスが必要になるため、詳細はSalesforceの営業担当者に確認してください。\n\n\n### ステップ1：SalesforceとSlackの接続\n\nSalesforceの「Setup」を開き、クイック検索ボックスで「Connected Apps OAuth Usage」を検索・選択します。下にスクロールしてSlackを見つけ、右側の「Install」を選択し、「Install」をクリックして完了させます。\n\n\n### ステップ2：メンバーアカウントの連携\n\nメンバーのSalesforceアカウントとSlackアカウントを接続します。Slackでメンバーを手動でマッピングすると、Salesforceにサインインしてアカウントを接続するよう促されます。\n\n\n### ステップ3：Agentforce Builderでエージェントを作成\nSalesforce側のAgentforce Builderでエージェントを構築します。\n\nSlack向けの既製テンプレートを使ってエージェントを作成し、サブエージェントやアクションでスコープと専門性をカスタマイズします。「General Slack Actions」サブエージェントを追加すると、キャンバス作成（Slack無料版では利用不可）や検索実行など、一連のSlackアクションから選択できるようになります。",
+  "cited_urls": [
+    "https://www.ctc-g.co.jp/keys/blog/detail/agentforce-in-slack",
+    "https://slack.com/help/articles/36218786859667-Use-Agentforce-in-Slack",
+    "https://slack.com/blog/news/ai-for-employees-agentforce-slack",
+    "https://slack.com/blog/news/turn-agents-into-teammates-with-slack",
+    "https://slack.com/blog/news/agentforce-ai-slack-actions-data",
+    "https://slack.com/help/articles/36218109305875-Set-up-and-manage-Agentforce-in-Slack",
+    "https://slack.com/blog/news/digital-labor-for-every-team"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E14",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-in-slack/",
+  "answer_text": "Agentforce in Slackについて、最新情報を検索してご説明します。\n# Agentforce in Slackとは\n\n\nAgentforce in Slackとは、Salesforceが提供するAIエージェント「Agentforce」をSlack上に連携させた機能で、Slack上でAIエージェントがチームメンバーの一員として稼働し、業務の自動化・効率化を実現します。\n\n\n## 何ができるか\n\n### 1. チームメイトとして会話・タスク実行\n\nAgentforce in Slackでは、質問に答えたりタスクを完了したりする自律型AIエージェントと一緒に働くことができます。エージェントは自社の人によって作成され、ITヘルプへの対応や福利厚生に関する情報提供など、特定の目的を果たすよう設計されています。\n\n\nチャネル内での使い方も通常の同僚と同じです。\nAgentforceエージェントとはチャネル内で他のチームメイトと同じように連携でき、エージェントをチャネルに追加した後、メッセージでメンションすることで注意を引きます。\n\n\n### 2. Enterprise Search（横断検索）\n\nAgentforce in Slackでは、エージェントがGoogle Drive、Microsoft OneDrive、Asanaなど連携済みのサードパーティアプリを、Slackのメッセージやファイルと合わせて横断的に検索できるようになりました。このリアルタイム検索機能により、エージェントはチームがすでに使用しているツールに基づいて、より完全で正確、かつ文脈に即した回答を生成できます。\n\n\n### 3. Slackアクションの自動実行\n\nキャンバスの作成、プロジェクトリストの開始、新規チャネルの立ち上げなどが可能で、Agentforceは従業員向けエージェントにSlack特有のアクションを持たせることで、従業員がSlackで行うのと同じことを自律的に実行できます。\n\n\n具体例として、IT障害対応では\n関連するSlackチャネルの会話データを活用し、影響を受けたシステムと潜在的な原因の初期評価を作成し、Service Cloudにチケットを作成し、現地のITリソースにダイレクトメッセージを送信して解決を図り、完全なインシデントレポートを生成する\nことができます。\n\n### 4. 権限に基づく安全な回答\n\nSlack上のエージェントは、ユーザーのSlackおよびSalesforceの権限を使って回答を作成するため、アクセス権のない情報を回答することはありません。\nまた\n「General Slack Topic」をエージェントに割り当てることで、各ユーザーのコンテキストと権限で動作させ、そのユーザーのアクセス権や会話コンテキストを踏まえた、関連性が高く安全なアクションを取ることができます。\n\n\n### 5. 代表的なテンプレート\n\nSlack向けには3種類のエージェントテンプレートが用意されています。Customer Insights Agent（Salesforceデータを使って顧客情報を要約し、Slack内の有識者を探し、顧客ブリーフを生成）、Employee Help Agent（社内リソースやSlackでの会話を使ってFAQに回答し社内課題を解決）、Onboarding Agent（オンボーディング用キャンバスの作成とカスタムナレッジベースからのFAQ回答で新メンバーのオンボーディングを支援）です。\n\n\n### 6. ノーコードでのワークフロー連携（今後）\n\n近日中に、コードを書かずにAgentforceをSlackワークフローに追加できるようになり、Slackのイベントからトリガーしたり、ユーザー起点のアクションに頼らずにSlackの会話コンテキストをAgentforceに渡したりできるようになります。\n\n\n---\n\n## 導入手順\n\n### 前提\n\nSlack向けのエージェントは「Agentforce Employee Agent」タイプでのみ構築可能です。\nまた\nSalesforceアカウントを持たないSlackユーザーがAgentforce in Slackを利用するには仮のSalesforceライセンスが必要になるため、詳細はSalesforceの営業担当者に確認してください。\n\n\n### ステップ1：SalesforceとSlackの接続\n\nSalesforceの「Setup」を開き、クイック検索ボックスで「Connected Apps OAuth Usage」を検索・選択します。下にスクロールしてSlackを見つけ、右側の「Install」を選択し、「Install」をクリックして完了させます。\n\n\n### ステップ2：メンバーアカウントの連携\n\nメンバーのSalesforceアカウントとSlackアカウントを接続します。Slackでメンバーを手動でマッピングすると、Salesforceにサインインしてアカウントを接続するよう促されます。\n\n\n### ステップ3：Agentforce Builderでエージェントを作成\nSalesforce側のAgentforce Builderでエージェントを構築します。\n\nSlack向けの既製テンプレートを使ってエージェントを作成し、サブエージェントやアクションでスコープと専門性をカスタマイズします。「General Slack Actions」サブエージェントを追加すると、キャンバス作成（Slack無料版では利用不可）や検索実行など、一連のSlackアクションから選択できるようになります。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "ctc-g.co.jp",
+    "slack.com"
+  ],
+  "resolved_urls": [
+    "https://www.ctc-g.co.jp/keys/blog/detail/agentforce-in-slack",
+    "https://slack.com/help/articles/36218786859667-Use-Agentforce-in-Slack",
+    "https://slack.com/blog/news/ai-for-employees-agentforce-slack",
+    "https://slack.com/blog/news/turn-agents-into-teammates-with-slack",
+    "https://slack.com/blog/news/agentforce-ai-slack-actions-data",
+    "https://slack.com/help/articles/36218109305875-Set-up-and-manage-Agentforce-in-Slack",
+    "https://slack.com/blog/news/digital-labor-for-every-team"
+  ],
+  "unresolved_redirects": 0
+}

@@ -1,0 +1,50 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E37",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce Coworkerとは何？営業がどんな場面で使える？",
+  "cep": null,
+  "timestamp": "2026-09-28T01:45:53.291203Z",
+  "answer": "Agentforce Coworkerについて調べてみます。\n# Agentforce Coworkerとは\n\n**Agentforce Coworker**は、Salesforceが2026年に発表したAIチームメイト（同僚）です。\n「賢くなった検索バー」ではなく、あらゆる検索を答えに変え、その答えをアクションに変えるAIチームメイトで、人々がSalesforceと対話するためのまったく新しい方法として位置づけられています。\n\n\n## 主な特徴\n\n**1. 単一の対話窓口からすべてを操作**\n\n単一の会話から、AgentforceのAIエージェントからカスタムエージェント、CRMアクション、Flow、サードパーティAPI、外部システムまでを呼び出し、適切にオーケストレーションします。散らばっていた能力を、1つの対話の入り口に束ねる設計です。\n\n\n**2. 自然言語での検索・分析・実行**\n\n従来のグローバル検索は入力したキーワードに一致するレコードを一覧表示するものでしたが、Agentforce Coworkerは、Salesforce内の取引先・商談・ケースなどのデータや、接続された外部ソース（Data 360、Slack、Googleドライブなど）を理解し、自然言語での質問に対して要約・分析・次のアクションの提案などを会話形式で行ってくれます。\n\n\n**3. Data 360基盤で即戦力**\n\nData 360上にネイティブに構築されたAgentforce Coworkerは、トレーニングもチューニングも習熟期間も不要です。Salesforce設定を即座に継承し、カスタムワークフローとメタデータをマッピングすると同時に、ガバナンスと共有ルールを遵守します。\n\n\n**4. エンタープライズグレードのガバナンス**\n\n権限ベースのアクセス制御、ソースレベルの権限、自動データ分類、動的データマスキングにより、データの安全性とコンプライアンスを確保します。\n\n\n## 提供状況\n\nAgentforce Coworkerは2026年8月5日より日本市場でも提供開始されています。\n\n\n---\n\n# 営業がどんな場面で使えるか\n\n## 場面1：商談・訪問前の事前準備\n\n\n「次回の取引先訪問前に知っておくべきことは？」と尋ねるだけで、直近の商談進捗・オープン中のサポートケース・活動履歴などの取引先に紐付く情報をまとめて要約し提示します。\n続けて\n「アポイント取得のメールを作成して」と指示を出すとアポイント調整のドラフトメールを作成します。\n\n\n## 場面2：停滞案件のトラブルシューティング（Discover → Research → Act）\n\nSalesforceが紹介する具体例では、次のような流れで活用できます：\n\n- **発見**：\nSalesforce Lightningで営業担当者がAgentforce Coworkerに「Edge Communicationsの状況は？」と尋ねると、接続されたソースから関連データを表示し、特定の資料での新しい価格懸念により取引がリスクにさらされていることを示します。\n\n- **深掘り**：\n「価格に関する懸念についてもっと教えて」と尋ねると、Edge Communicationsが立ち上げコストとトレーニングコストを懸念し、1年契約を希望していることを詳細に伝え、インサイドセールスの担当者が来週早々にフォローアップの打ち合わせを予定していることも伝えます。\n\n- **実行**：\n営業担当者は価格懸念への対処方法についてAgentforce Coworkerにコーチングを依頼できます。\n\n\n## 場面3：失注案件の分析からフォローアップまで一気通貫\n\n\n「昨日落ちた案件は？」と打ち込むと、Coworkerは単なるリストを返す代わりに、Tableauの分析エージェントを呼び込み、失われた売上をセグメント別に示すチャートを作ります。続けて「この見込み客にフォローアップメールを作って」と頼めば、今度はSales Coachエージェントが書き上げてくれます。\nアプリの切り替えや新しいタブを開く必要がなく、面倒な作業が1つのウィンドウ内で完結します。\n\n## 場面4：散在情報の一括要約（複数ソースからの統合）\n\n営業が複数タブを行き来して確認していた情報も一括で聞けます。\n例えば、営業担当者が「何がこの案件をリスクにさらしているか」を尋ねると、オープン中のケース、価格に関するSlackのスレッド、停滞中の承認プロセスを1つの回答としてまとめて得られます。\n\n\n## 場面5：レコードの作成・更新\n\n\nAgentforce Coworkerにレコードの作成や更新を依頼すると、自動的に権限を評価し、変更すべきフィールドを特定し、選択リストの入力内容を検証した上で、レビュー用に提案されたレコード作成・更新案を提示してくれます。\n\n\n---\n\n## まとめ：営業にとってのメリット\n\nこれまで「あの案件、前回どんな経緯で決まったんだっけ」といった確認作業のために、複数のタブやツールを行き来したり、口頭で同僚に聞いたりしていた場面を、\nSalesforceのレコード、Slackのスレッド、SharePointフォルダなどを掘り返して状況を把握するのに20分も費やしていたよう",
+  "cited_urls": [
+    "https://www.salesforce.com/jp/blog/jp-how-to-agentforce-coworker/",
+    "https://successjp.salesforce.com/article/NAI-001320",
+    "https://www.salesforce.com/jp/agentforce/coworker/",
+    "https://developer.salesforce.com/docs/data/agentforce-coworker/guide/agentforce-coworker-benefits-and-use-cases.html",
+    "https://www.salesforce.com/jp/news/press-releases/2026/08/05/agentforce-coworker-general-availability-japan/",
+    "https://ashapurasoftech.com/blog/agentforce-coworker/",
+    "https://salesforcebreak.com/2026/05/26/agentforce-coworker/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E37",
+  "experiment_flag": "watch",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-coworker/",
+  "answer_text": "Agentforce Coworkerについて調べてみます。\n# Agentforce Coworkerとは\n\n**Agentforce Coworker**は、Salesforceが2026年に発表したAIチームメイト（同僚）です。\n「賢くなった検索バー」ではなく、あらゆる検索を答えに変え、その答えをアクションに変えるAIチームメイトで、人々がSalesforceと対話するためのまったく新しい方法として位置づけられています。\n\n\n## 主な特徴\n\n**1. 単一の対話窓口からすべてを操作**\n\n単一の会話から、AgentforceのAIエージェントからカスタムエージェント、CRMアクション、Flow、サードパーティAPI、外部システムまでを呼び出し、適切にオーケストレーションします。散らばっていた能力を、1つの対話の入り口に束ねる設計です。\n\n\n**2. 自然言語での検索・分析・実行**\n\n従来のグローバル検索は入力したキーワードに一致するレコードを一覧表示するものでしたが、Agentforce Coworkerは、Salesforce内の取引先・商談・ケースなどのデータや、接続された外部ソース（Data 360、Slack、Googleドライブなど）を理解し、自然言語での質問に対して要約・分析・次のアクションの提案などを会話形式で行ってくれます。\n\n\n**3. Data 360基盤で即戦力**\n\nData 360上にネイティブに構築されたAgentforce Coworkerは、トレーニングもチューニングも習熟期間も不要です。Salesforce設定を即座に継承し、カスタムワークフローとメタデータをマッピングすると同時に、ガバナンスと共有ルールを遵守します。\n\n\n**4. エンタープライズグレードのガバナンス**\n\n権限ベースのアクセス制御、ソースレベルの権限、自動データ分類、動的データマスキングにより、データの安全性とコンプライアンスを確保します。\n\n\n## 提供状況\n\nAgentforce Coworkerは2026年8月5日より日本市場でも提供開始されています。\n\n\n---\n\n# 営業がどんな場面で使えるか\n\n## 場面1：商談・訪問前の事前準備\n\n\n「次回の取引先訪問前に知っておくべきことは？」と尋ねるだけで、直近の商談進捗・オープン中のサポートケース・活動履歴などの取引先に紐付く情報をまとめて要約し提示します。\n続けて\n「アポイント取得のメールを作成して」と指示を出すとアポイント調整のドラフトメールを作成します。\n\n\n## 場面2：停滞案件のトラブルシューティング（Discover → Research → Act）\n\nSalesforceが紹介する具体例では、次のような流れで活用できます：\n\n- **発見**：\nSalesforce Lightningで営業担当者がAgentforce Coworkerに「Edge Communicationsの状況は？」と尋ねると、接続されたソースから関連データを表示し、特定の資料での新しい価格懸念により取引がリスクにさらされていることを示します。\n\n- **深掘り**：\n「価格に関する懸念についてもっと教えて」と尋ねると、Edge Communicationsが立ち上げコストとトレーニングコストを懸念し、1年契約を希望していることを詳細に伝え、インサイドセールスの担当者が来週早々にフォローアップの打ち合わせを予定していることも伝えます。\n\n- **実行**：\n営業担当者は価格懸念への対処方法についてAgentforce Coworkerにコーチングを依頼できます。\n\n\n## 場面3：失注案件の分析からフォローアップまで一気通貫\n\n\n「昨日落ちた案件は？」と打ち込むと、Coworkerは単なるリストを返す代わりに、Tableauの分析エージェントを呼び込み、失われた売上をセグメント別に示すチャートを作ります。続けて「この見込み客にフォローアップメールを作って」と頼めば、今度はSales Coachエージェントが書き上げてくれます。\nアプリの切り替えや新しいタブを開く必要がなく、面倒な作業が1つのウィンドウ内で完結します。\n\n## 場面4：散在情報の一括要約（複数ソースからの統合）\n\n営業が複数タブを行き来して確認していた情報も一括で聞けます。\n例えば、営業担当者が「何がこの案件をリスクにさらしているか」を尋ねると、オープン中のケース、価格に関するSlackのスレッド、停滞中の承認プロセスを1つの回答としてまとめて得られます。\n\n\n## 場面5：レコードの作成・更新\n\n\nAgentforce Coworkerにレコードの作成や更新を依頼すると、自動的に権限を評価し、変更すべきフィールドを特定し、選択リストの入力内容を検証した上で、レビュー用に提案されたレコード作成・更新案を提示してくれます。\n\n\n---\n\n## まとめ：営業にとってのメリット\n\nこれまで「あの案件、前回どんな経緯で決まったんだっけ」といった確認作業のために、複数のタブやツールを行き来したり、口頭で同僚に聞いたりしていた場面を、\nSalesforceのレコード、Slackのスレッド、SharePointフォルダなどを掘り返して状況を把握するのに20分も費やしていたよう",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "successjp.salesforce.com",
+    "developer.salesforce.com",
+    "ashapurasoftech.com",
+    "salesforcebreak.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/jp/blog/jp-how-to-agentforce-coworker/",
+    "https://successjp.salesforce.com/article/NAI-001320",
+    "https://www.salesforce.com/jp/agentforce/coworker/",
+    "https://developer.salesforce.com/docs/data/agentforce-coworker/guide/agentforce-coworker-benefits-and-use-cases.html",
+    "https://www.salesforce.com/jp/news/press-releases/2026/08/05/agentforce-coworker-general-availability-japan/",
+    "https://ashapurasoftech.com/blog/agentforce-coworker/",
+    "https://salesforcebreak.com/2026/05/26/agentforce-coworker/"
+  ],
+  "unresolved_redirects": 0
+}

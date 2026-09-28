@@ -1,0 +1,53 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E04",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce Observabilityとは？定着と精度を測る指標はどう設計する？",
+  "cep": null,
+  "timestamp": "2026-09-28T01:30:14.040218Z",
+  "answer": "# Agentforce Observabilityとは\n\nAgentforce Observabilityは、SalesforceのAIエージェント専用の監視・診断スイートです。\nAIエージェント専用に設計された監視・診断スイートであり、個々のエージェントのパフォーマンスに関する深い可視性を提供します。\n\n\nこれまでAgentforceは「ブラックボックス」的な構造が課題でした。\n組織はエージェントをデプロイして出力を観察できても、その結果を生み出した推論や意思決定プロセスへの可視性はほとんどありませんでした\n。この課題に対応する形で2025年11月にGA(一般提供)となりました。\nSalesforceは本日、Agentforce Observabilityを一般提供として正式リリースしました。このアップデートにより、Agent AnalyticsとAgent Optimizationという2つの主要機能がAgentforce Studioに直接組み込まれ、Agent Health Monitoring機能は2026年春に予定されています。\n\n\n## なぜ必要なのか\n\n\n従来の監視ツール(Datadog、New Relic、Splunkなど)は、日々ほぼ同じ挙動をする安定したアプリ向けに作られており、SREはダッシュボードでレイテンシ、エラー率、稼働時間を監視していました。しかしエージェントは異なり、リアルタイムで推論し、言語を解釈し、適応します。そして明確なエラーが出るずっと前に、微妙な形で失敗することがあります。システムが即座に応答しても、答えが完全に間違っていることもあり得ます。\n\n\n## 3つの機能領域\n\n\nSalesforceは Agentforce Observability を3つの機能領域に整理しています。Agent Analytics(実際の顧客とのやり取りにおける各エージェントのパフォーマンスの包括的なビューを提供し、KPIトレンドを可視化)、Agent Optimization(エージェントの推論チェーンの各ステップを記録し、なぜ・どのようにその挙動を取ったかを学べる)、Agent Health Monitoring(エージェントの健全性へのリアルタイム可視性を提供)です。\n\n\n技術的な仕組みとして、\nこれを支えているのがSession Tracing Data Model (STDM)で、セッション内でログされるすべてのイベントを会話ターン単位まで構造化し、ユーザー入力・プランナーの判断・プロンプトとアクションのフロー・ゲートウェイの入出力・エラー・最終出力を捕捉します。これがなければセッションデータは生のJSONとして届き、レポート作成前に変換が必要になります。STDMがセッション・インタラクション・ステップを定義することで、分析やアラートが構造化テーブルから直接構築できます\n。\n\nなお適用範囲には注意が必要です。\nObservabilityが読み取るのはAgentforce自体のセッションデータ、プランナートレース、RAGコンポーネントです。Apexから呼び出した独自のLLMサービスはこれには見えず、サードパーティのエージェントも同様です\n。またエージェント種別によって対応範囲が異なり、\nAgentforce Service AgentとEmployee AgentはAnalyticsとOptimizationの両方を利用でき、Default AgentはOptimizationのみでAnalyticsは非対応、SDRエージェントはAnalyticsのみでOptimizationは非対応です\n。\n\n---\n\n# 定着(アダプション)と精度を測る指標の設計\n\n## 1. 定着率(アダプション)を測る指標\n\nSalesforceのプロダクト責任者は、業務領域ごとに測るべき指標が異なると説明しています。\n彼は、従来の監視ツールが見落とすビジネス固有の指標をこのシステムが提供すると強調しました。「サービス領域ではエンゲージメント率や解決(デフレクション)率が該当します。営業領域では、割り当てられたリード数、成約したリード数、返信率などです」\n\n\n定着状況を測る具体的な指標としては以下が挙げられます。\n- **利用状況・効果指標**:\n全ての導入済みエージェントにわたる利用状況と効果に関する指標を監視し、実際の顧客対応におけるエージェントのパフォーマンスを明確に把握できるようにします\n\n- **KPIトレンド**:\n時間経過に伴うKPIトレンドを表示し、パフォーマンスが向上・低下・要注意のどこにあるかを把握しやすくします\n\n- **エンゲージメント/デフレクション率、リード関連指標**(上記5-13,5-14参照)\n\n実務での代表的な定着指標として、\nデフレクション率、エスカレーション頻度、CSATスコア、タスク成功率といった、エージェントが資産なのか負債なのかを教えてくれる数値\nを継続的にウォッチすることが推奨されています。\n\n## 2. 精度・信頼性を測る指標\n\n精度側の設計は、単一のLLM呼び出しではなく「推論の連鎖全体」を評価する点が特徴です。\nLLM監視が単一のモデル呼び出しの入出力に焦点を当てるのに対し、エージェントオブザーバビリティは複雑なワークフロー",
+  "cited_urls": [
+    "https://www.mavlers.com/blog/salesforce-agentforce-analytics-observability-guide/",
+    "https://salesforcebreak.com/2026/05/28/setting-up-agentforce-observability/",
+    "https://salesforcedevops.net/index.php/2025/11/20/salesforce-makes-agent-observability-ga-extending-the-agentic-sdlc/",
+    "https://www.salesforce.com/blog/agentforce-observability/",
+    "https://salesforcedictionary.com/blogs/agentforce-observability-2026-guide",
+    "https://venturebeat.com/ai/salesforce-agentforce-observability-lets-you-watch-your-ai-agents-think-in",
+    "https://www.salesforce.com/news/stories/agentforce-studio-observability-tools-announcement/",
+    "https://www.salesforce.com/agentforce/observability/agent-observability/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E04",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-observability/",
+  "answer_text": "# Agentforce Observabilityとは\n\nAgentforce Observabilityは、SalesforceのAIエージェント専用の監視・診断スイートです。\nAIエージェント専用に設計された監視・診断スイートであり、個々のエージェントのパフォーマンスに関する深い可視性を提供します。\n\n\nこれまでAgentforceは「ブラックボックス」的な構造が課題でした。\n組織はエージェントをデプロイして出力を観察できても、その結果を生み出した推論や意思決定プロセスへの可視性はほとんどありませんでした\n。この課題に対応する形で2025年11月にGA(一般提供)となりました。\nSalesforceは本日、Agentforce Observabilityを一般提供として正式リリースしました。このアップデートにより、Agent AnalyticsとAgent Optimizationという2つの主要機能がAgentforce Studioに直接組み込まれ、Agent Health Monitoring機能は2026年春に予定されています。\n\n\n## なぜ必要なのか\n\n\n従来の監視ツール(Datadog、New Relic、Splunkなど)は、日々ほぼ同じ挙動をする安定したアプリ向けに作られており、SREはダッシュボードでレイテンシ、エラー率、稼働時間を監視していました。しかしエージェントは異なり、リアルタイムで推論し、言語を解釈し、適応します。そして明確なエラーが出るずっと前に、微妙な形で失敗することがあります。システムが即座に応答しても、答えが完全に間違っていることもあり得ます。\n\n\n## 3つの機能領域\n\n\nSalesforceは Agentforce Observability を3つの機能領域に整理しています。Agent Analytics(実際の顧客とのやり取りにおける各エージェントのパフォーマンスの包括的なビューを提供し、KPIトレンドを可視化)、Agent Optimization(エージェントの推論チェーンの各ステップを記録し、なぜ・どのようにその挙動を取ったかを学べる)、Agent Health Monitoring(エージェントの健全性へのリアルタイム可視性を提供)です。\n\n\n技術的な仕組みとして、\nこれを支えているのがSession Tracing Data Model (STDM)で、セッション内でログされるすべてのイベントを会話ターン単位まで構造化し、ユーザー入力・プランナーの判断・プロンプトとアクションのフロー・ゲートウェイの入出力・エラー・最終出力を捕捉します。これがなければセッションデータは生のJSONとして届き、レポート作成前に変換が必要になります。STDMがセッション・インタラクション・ステップを定義することで、分析やアラートが構造化テーブルから直接構築できます\n。\n\nなお適用範囲には注意が必要です。\nObservabilityが読み取るのはAgentforce自体のセッションデータ、プランナートレース、RAGコンポーネントです。Apexから呼び出した独自のLLMサービスはこれには見えず、サードパーティのエージェントも同様です\n。またエージェント種別によって対応範囲が異なり、\nAgentforce Service AgentとEmployee AgentはAnalyticsとOptimizationの両方を利用でき、Default AgentはOptimizationのみでAnalyticsは非対応、SDRエージェントはAnalyticsのみでOptimizationは非対応です\n。\n\n---\n\n# 定着(アダプション)と精度を測る指標の設計\n\n## 1. 定着率(アダプション)を測る指標\n\nSalesforceのプロダクト責任者は、業務領域ごとに測るべき指標が異なると説明しています。\n彼は、従来の監視ツールが見落とすビジネス固有の指標をこのシステムが提供すると強調しました。「サービス領域ではエンゲージメント率や解決(デフレクション)率が該当します。営業領域では、割り当てられたリード数、成約したリード数、返信率などです」\n\n\n定着状況を測る具体的な指標としては以下が挙げられます。\n- **利用状況・効果指標**:\n全ての導入済みエージェントにわたる利用状況と効果に関する指標を監視し、実際の顧客対応におけるエージェントのパフォーマンスを明確に把握できるようにします\n\n- **KPIトレンド**:\n時間経過に伴うKPIトレンドを表示し、パフォーマンスが向上・低下・要注意のどこにあるかを把握しやすくします\n\n- **エンゲージメント/デフレクション率、リード関連指標**(上記5-13,5-14参照)\n\n実務での代表的な定着指標として、\nデフレクション率、エスカレーション頻度、CSATスコア、タスク成功率といった、エージェントが資産なのか負債なのかを教えてくれる数値\nを継続的にウォッチすることが推奨されています。\n\n## 2. 精度・信頼性を測る指標\n\n精度側の設計は、単一のLLM呼び出しではなく「推論の連鎖全体」を評価する点が特徴です。\nLLM監視が単一のモデル呼び出しの入出力に焦点を当てるのに対し、エージェントオブザーバビリティは複雑なワークフロー",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "mavlers.com",
+    "salesforcebreak.com",
+    "salesforcedevops.net",
+    "salesforce.com",
+    "salesforcedictionary.com",
+    "venturebeat.com"
+  ],
+  "resolved_urls": [
+    "https://www.mavlers.com/blog/salesforce-agentforce-analytics-observability-guide/",
+    "https://salesforcebreak.com/2026/05/28/setting-up-agentforce-observability/",
+    "https://salesforcedevops.net/index.php/2025/11/20/salesforce-makes-agent-observability-ga-extending-the-agentic-sdlc/",
+    "https://www.salesforce.com/blog/agentforce-observability/",
+    "https://salesforcedictionary.com/blogs/agentforce-observability-2026-guide",
+    "https://venturebeat.com/ai/salesforce-agentforce-observability-lets-you-watch-your-ai-agents-think-in",
+    "https://www.salesforce.com/news/stories/agentforce-studio-observability-tools-announcement/",
+    "https://www.salesforce.com/agentforce/observability/agent-observability/"
+  ],
+  "unresolved_redirects": 0
+}

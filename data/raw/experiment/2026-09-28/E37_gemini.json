@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E37",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Coworkerとは何？営業がどんな場面で使える？",
+  "cep": null,
+  "timestamp": "2026-09-28T01:22:55.319169Z",
+  "answer": "Agentforce Coworkerは、Salesforceが提供する自律型AIアシスタントであり、Salesforce内の情報だけでなく、Slackやその他の接続されたエンタープライズソースにわたるビジネスコンテキストを理解し、ユーザーが自然言語で質問することで、関連する情報を集約して回答し、次のアクションを支援します。従来のSalesforce検索がレコードの特定に重点を置いているのに対し、Agentforce Coworkerは情報が何を意味するのかを理解し、作業を完了させることを目的としています。\n\n**Agentforce Coworkerが営業で活用できる場面**\n\n営業担当者は、Agentforce Coworkerを以下のような様々な場面で活用し、業務効率化と顧客対応の質向上を図ることができます。\n\n*   **営業アカウントの準備**：顧客とのミーティング前に、営業担当者はアカウント、商談、活動履歴、メモ、未解決のケースなどを個別に確認して状況を把握する必要があります。Agentforce Coworkerは、これらの情報をまとめて提示することで、準備にかかる手間を削減します。例えば、「この顧客とのミーティングの前に知っておくべきことは何ですか？」と尋ねることで、関連するコンテキスト、主要な課題や機会を特定し、次のアクションを決定するのに役立ちます。\n*   **商談・パイプラインレビュー**：マネージャーが商談の数字だけを見るのではなく、Agentforce Coworkerは関連情報をまとめて、注意が必要な領域を強調することで、パイプラインレビューを効率化できます。\n*   **停滞している商談の再活性化**：停滞している商談について、Agentforce Coworkerに「Edge Communicationsで何が起こっているのか？」のように尋ねることで、関連するデータ（例えば、価格設定に関する懸念があるなど）を明らかにし、さらに詳細を掘り下げて具体的な懸念事項や次にとるべき行動についてのアドバイスを得ることができます。\n*   **営業活動の記録**：ミーティング後、営業担当者が「Ursa Solarミーティングのメモを検索してくれますか？」と尋ねると、Agentforce CoworkerはGoogleカレンダーのミーティング詳細、Slackで共有された同僚のメモ、CRMのUrsa Solarアカウントと商談の詳細を取得し、商談への更新を支援します。\n*   **社内知識の発見**：製品情報、過去の成功事例、競合分析など、社内に散在する様々な情報の中から、営業に必要なコンテキストを自然言語で質問して素早く見つけ出すことができます。\n*   **顧客の状況分析と次のアクションの提案**：複数のレポートを比較する代わりに、Agentforce Coworkerにチーム全体のパイプラインパフォーマンスをレビューするよう依頼することで、関連情報をまとめ、注意すべき点を強調できます。また、顧客の問題を特定した後、メールのドラフト作成、Salesforceレコードの更新、関連するワークフローの開始、専門エージェントとの連携などを依頼することも可能です。\n*   **データの一元化と分析**：Salesforce CRMデータだけでなく、Slackの会話履歴やその他の企業データなど、300以上の情報源から関連情報を接続・インデックス化し、ビジネスコンテキストを伴った回答を生成します。これにより、営業担当者は複数のアプリケーションを行き来することなく、必要な情報を一元的に把握できます。\n*   **Salesforceレコードの更新**：自然言語での指示に基づいて、Agentforce CoworkerがSalesforce CRMレコードの作成や更新を自動的に実行できます。これにより、手動でのデータ入力作業が削減されます。\n\nAgentforce Coworkerは、CRMを「入力するツール」から「対話するパートナー」へと変革し、営業担当者が情報検索にかける時間を減らし、顧客との関係構築や商談推進といったより戦略的な業務に集中できるように支援します。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFo_Vof9a1wVRWkF0GiqUeoa0tosaU_Yis68_G7DbGeZPtRwjVzUrozV789teiVPNDNEhRf4PR5c2DKwJVuMc6Z2oVrlXLalBlsxZ9ckek2XSLqkD_lGConpNBYmBAV34LvAgzjWW_C2q7jFgy75yodfY8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFub-HTRtOvR1oBZvoibUq6EisrChe-97I65k6IdI1xmdHDRzMj9b-XjFjvWURLaQyq7D3lnXx22TlecNNhzlkCAII0wNfgWfZQDf6YpKNR-D7hBneUhkgPzWgx0GSI6rypW5RlzhPintYY",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHRhj_udCrNtKYcyKi_LGozjf_SYrA-hcfPW2kJQrKsYTPIn6KkTQz8moUAXzQ8JoszSw0wD7mZkVuNCvm9-IZN87Rtttg8EAKu8oNxWzJt7YatCtsh2Vz5R2zBJK9HJVMrYL2R6kfJEA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEYK_WNo3WkaT-6fLRR0WrHoc5dU0DbfpBM9xXEHevKNl__fX-L2CFDe19sEeX5tdOeMDtPFFfOYdaPMV_Si7DzZOQLzg3Wwfm7SjbmlSrf4Rj1FaIbC7AJN52x6yPD0pKh_ahExTJdRWCm2Np4CUwssDpgvF57ZNpGMsdOZvtJleVtqDgkcHiJYNzsitNnYUkJPJCq02oLMPm07WhtW3ERauTeBsmrN9I4eOT8Auk0",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEzO4cN0rDhWoCELLzYDaVRGJ0Wj0eoj3y4X5ypbU_4qnTGHtLtvKpD-M4Q7Co71ZCukQgLp8SZj8VM1SrNiCcfl6xXfjeD_VtR_o25BdCBFdBkCL4fw7y7h3s7Fg0vQqilQ2BB6nGfs1d-2ywToszv_zOLMLl0D0oNclm93WZklOprB0Y6WJYcuA=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E37",
+  "experiment_flag": "watch",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-coworker/",
+  "answer_text": "Agentforce Coworkerは、Salesforceが提供する自律型AIアシスタントであり、Salesforce内の情報だけでなく、Slackやその他の接続されたエンタープライズソースにわたるビジネスコンテキストを理解し、ユーザーが自然言語で質問することで、関連する情報を集約して回答し、次のアクションを支援します。従来のSalesforce検索がレコードの特定に重点を置いているのに対し、Agentforce Coworkerは情報が何を意味するのかを理解し、作業を完了させることを目的としています。\n\n**Agentforce Coworkerが営業で活用できる場面**\n\n営業担当者は、Agentforce Coworkerを以下のような様々な場面で活用し、業務効率化と顧客対応の質向上を図ることができます。\n\n*   **営業アカウントの準備**：顧客とのミーティング前に、営業担当者はアカウント、商談、活動履歴、メモ、未解決のケースなどを個別に確認して状況を把握する必要があります。Agentforce Coworkerは、これらの情報をまとめて提示することで、準備にかかる手間を削減します。例えば、「この顧客とのミーティングの前に知っておくべきことは何ですか？」と尋ねることで、関連するコンテキスト、主要な課題や機会を特定し、次のアクションを決定するのに役立ちます。\n*   **商談・パイプラインレビュー**：マネージャーが商談の数字だけを見るのではなく、Agentforce Coworkerは関連情報をまとめて、注意が必要な領域を強調することで、パイプラインレビューを効率化できます。\n*   **停滞している商談の再活性化**：停滞している商談について、Agentforce Coworkerに「Edge Communicationsで何が起こっているのか？」のように尋ねることで、関連するデータ（例えば、価格設定に関する懸念があるなど）を明らかにし、さらに詳細を掘り下げて具体的な懸念事項や次にとるべき行動についてのアドバイスを得ることができます。\n*   **営業活動の記録**：ミーティング後、営業担当者が「Ursa Solarミーティングのメモを検索してくれますか？」と尋ねると、Agentforce CoworkerはGoogleカレンダーのミーティング詳細、Slackで共有された同僚のメモ、CRMのUrsa Solarアカウントと商談の詳細を取得し、商談への更新を支援します。\n*   **社内知識の発見**：製品情報、過去の成功事例、競合分析など、社内に散在する様々な情報の中から、営業に必要なコンテキストを自然言語で質問して素早く見つけ出すことができます。\n*   **顧客の状況分析と次のアクションの提案**：複数のレポートを比較する代わりに、Agentforce Coworkerにチーム全体のパイプラインパフォーマンスをレビューするよう依頼することで、関連情報をまとめ、注意すべき点を強調できます。また、顧客の問題を特定した後、メールのドラフト作成、Salesforceレコードの更新、関連するワークフローの開始、専門エージェントとの連携などを依頼することも可能です。\n*   **データの一元化と分析**：Salesforce CRMデータだけでなく、Slackの会話履歴やその他の企業データなど、300以上の情報源から関連情報を接続・インデックス化し、ビジネスコンテキストを伴った回答を生成します。これにより、営業担当者は複数のアプリケーションを行き来することなく、必要な情報を一元的に把握できます。\n*   **Salesforceレコードの更新**：自然言語での指示に基づいて、Agentforce CoworkerがSalesforce CRMレコードの作成や更新を自動的に実行できます。これにより、手動でのデータ入力作業が削減されます。\n\nAgentforce Coworkerは、CRMを「入力するツール」から「対話するパートナー」へと変革し、営業担当者が情報検索にかける時間を減らし、顧客との関係構築や商談推進といったより戦略的な業務に集中できるように支援します。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "midcai.com",
+    "codleo.com",
+    "cyntexa.com",
+    "developer.salesforce.com",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://www.midcai.com/post/what-is-agentforce-coworker",
+    "https://www.codleo.com/blog/agentforce-coworker",
+    "https://cyntexa.com/blog/agentforce-coworker/",
+    "https://developer.salesforce.com/docs/data/agentforce-coworker/guide/agentforce-coworker-benefits-and-use-cases.html",
+    "https://www.salesforce.com/jp/news/stories/video/agentforce-coworker-briefing/"
+  ],
+  "unresolved_redirects": 0
+}

@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E30",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Einstein Trust Layerとは？AIに任せる範囲と人が承認すべき場面はどう分ける？",
+  "cep": null,
+  "timestamp": "2026-09-28T01:42:38.620601Z",
+  "answer": "# Einstein Trust Layerとは\n\nEinstein Trust Layerは、Salesforce公式には\nデータプライバシーの保護、AI精度の向上、そしてSalesforceエコシステム全体での責任あるAI利用を促進するために設計された機能・プロセス・ポリシーの集合体\nと定義されています。\n\nこれは購入する製品ではなく、\n購入する製品ではなく、Salesforce発のあらゆる生成AI呼び出しをラップする組み込みのゲートウェイ\nで、Prompt Builderやエージェント・アクションなど\nPrompt Builder、Agentforceのエージェントアクション、Einstein for Serviceの返信レコメンド機能などがこれを呼び出します\n。\n\n## 主な仕組み（プロンプト～レスポンスの流れ）\n\nデータはCRMアプリからTrust Layerを経てLLMへ送られ（プロンプトジャーニー）、生成された応答が再びTrust Layerを通ってCRMアプリに戻ります（レスポンスジャーニー）\nこれはCRMアプリから、Einstein Trust Layerを通り、大規模言語モデル（LLM）へと流れるプロンプトジャーニーと呼ばれる過程を経て、LLMがプロンプトを使って応答を生成し（レスポンス生成）、生成された応答が再びEinstein Trust Layerを通ってCRMアプリに戻る（レスポンスジャーニー）という流れです\n。\n\n具体的な保護機能は主に以下の5つのレイヤーで構成されます：\n\n1. **データマスキング**：外部LLMへプロンプトを送る前に、氏名やクレジットカード番号などのPIIをパターン照合とフィールド分類の組み合わせで検出し、伏せ字（トークン）に置換します\nパターンベースの検出（電話番号のような標準フォーマットのもの）とフィールドベースの検出（Salesforceで既に設定済みのデータ分類を利用）の2つの方法を使い、LLMが応答を返した後、Trust Layerはデータのマスクを解除して実際の情報を元に戻します。ユーザーには正しい詳細情報が見えますが、LLMは個人情報を一切見ていません\n。\n\n2. **セキュアデータ検索・ダイナミックグラウンディング**：Salesforceデータに基づき応答の根拠づけを行う仕組みです。\n\n3. **信頼境界を持つLLMゲートウェイ**：複数のモデルプロバイダーとの通信を統一的・安全に管理し\nプロンプトが完全に補完・保護された後、LLMゲートウェイを通して送信される準備が整い、このゲートウェイは異なるモデルプロバイダーとのやり取りを統括し、複数のLLMと通信するための統一された安全な手段を提供します\n、Salesforce製モデル・外部モデル（OpenAIなど）・自社構築モデルそれぞれで異なる信頼境界を設定しています\nSalesforceが構築・微調整したモデルはSalesforceの信頼境界内でホストされ、OpenAIのようなサードパーティが構築・保守する外部モデルは共有信頼境界内にあり、ユーザー自身が構築・保守するモデルは自社インフラ上でホストされます\n。\n\n4. **ゼロデータ保持ポリシー**：\nOpenAIやAzure OpenAIといった外部パートナーモデルプロバイダーとの間でゼロデータ保持ポリシーを設けており、Salesforceから送信されたデータはLLMに保持されず、応答が返された後に削除されます\n。\n\n5. **監査ログ**：\nすべてのプロンプト、応答、マスクされたエンティティ、毒性スコア、グラウンディングソース、ユーザー、タイムスタンプがData Cloud内のEinstein監査ログに記録されます\n。\n\n# AIに任せる範囲と人が承認すべき場面の分け方\n\n## Salesforceが掲げる基本原則：人間によるチェック\n\nSalesforceの5原則の1つ「Accuracy（正確性）」では、\nモデルの応答には可能な限り説明や情報源を付与し、大半のユースケースにおいて、モデルの応答をエンドユーザーに共有する前に人間がチェックすることを推奨しています\n。\n\n## 「人が承認する」仕組みは機能として存在する\n\nAgentforceのエージェントは、特定のアクションを実行する前に人間の承認を必要とするよう設定できます\n人間による監視は一貫して維持されます。エージェントは特定のアクションを取る前に人間の承認を必要とするよう設定でき、すべての自律的なアクションは何が起き、なぜ起きたかを再構築できるだけの詳細さで記録されます\n。また、Salesforceは\nユーザーのワークフローのあらゆる段階で「human in the loop（人間の関与）」を保持しており、人間のユーザーは出力がアクティブ化される前（例：生成されたメールが受信者に送信される前）に、それを承認するか却下するかを選択できます\n。\n\n## 実務上",
+  "cited_urls": [
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_trust_arch.htm&amp=&language=en_US",
+    "https://salesforcedictionary.com/blogs/salesforce-einstein-trust-layer-complete-2026-guide",
+    "https://www.eesel.ai/blog/salesforce-einstein-trust-layer",
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_trust_arch.htm&language=en_US&type=5",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/trust.html",
+    "https://applikontech.com/einstein-trust-layer-the-foundation-of-agentforce/",
+    "https://www.salesforceben.com/einstein-trust-layer-whats-the-trust-gap-salesforce-keep-talking-about/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E30",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/einstein-trust-layer/",
+  "answer_text": "# Einstein Trust Layerとは\n\nEinstein Trust Layerは、Salesforce公式には\nデータプライバシーの保護、AI精度の向上、そしてSalesforceエコシステム全体での責任あるAI利用を促進するために設計された機能・プロセス・ポリシーの集合体\nと定義されています。\n\nこれは購入する製品ではなく、\n購入する製品ではなく、Salesforce発のあらゆる生成AI呼び出しをラップする組み込みのゲートウェイ\nで、Prompt Builderやエージェント・アクションなど\nPrompt Builder、Agentforceのエージェントアクション、Einstein for Serviceの返信レコメンド機能などがこれを呼び出します\n。\n\n## 主な仕組み（プロンプト～レスポンスの流れ）\n\nデータはCRMアプリからTrust Layerを経てLLMへ送られ（プロンプトジャーニー）、生成された応答が再びTrust Layerを通ってCRMアプリに戻ります（レスポンスジャーニー）\nこれはCRMアプリから、Einstein Trust Layerを通り、大規模言語モデル（LLM）へと流れるプロンプトジャーニーと呼ばれる過程を経て、LLMがプロンプトを使って応答を生成し（レスポンス生成）、生成された応答が再びEinstein Trust Layerを通ってCRMアプリに戻る（レスポンスジャーニー）という流れです\n。\n\n具体的な保護機能は主に以下の5つのレイヤーで構成されます：\n\n1. **データマスキング**：外部LLMへプロンプトを送る前に、氏名やクレジットカード番号などのPIIをパターン照合とフィールド分類の組み合わせで検出し、伏せ字（トークン）に置換します\nパターンベースの検出（電話番号のような標準フォーマットのもの）とフィールドベースの検出（Salesforceで既に設定済みのデータ分類を利用）の2つの方法を使い、LLMが応答を返した後、Trust Layerはデータのマスクを解除して実際の情報を元に戻します。ユーザーには正しい詳細情報が見えますが、LLMは個人情報を一切見ていません\n。\n\n2. **セキュアデータ検索・ダイナミックグラウンディング**：Salesforceデータに基づき応答の根拠づけを行う仕組みです。\n\n3. **信頼境界を持つLLMゲートウェイ**：複数のモデルプロバイダーとの通信を統一的・安全に管理し\nプロンプトが完全に補完・保護された後、LLMゲートウェイを通して送信される準備が整い、このゲートウェイは異なるモデルプロバイダーとのやり取りを統括し、複数のLLMと通信するための統一された安全な手段を提供します\n、Salesforce製モデル・外部モデル（OpenAIなど）・自社構築モデルそれぞれで異なる信頼境界を設定しています\nSalesforceが構築・微調整したモデルはSalesforceの信頼境界内でホストされ、OpenAIのようなサードパーティが構築・保守する外部モデルは共有信頼境界内にあり、ユーザー自身が構築・保守するモデルは自社インフラ上でホストされます\n。\n\n4. **ゼロデータ保持ポリシー**：\nOpenAIやAzure OpenAIといった外部パートナーモデルプロバイダーとの間でゼロデータ保持ポリシーを設けており、Salesforceから送信されたデータはLLMに保持されず、応答が返された後に削除されます\n。\n\n5. **監査ログ**：\nすべてのプロンプト、応答、マスクされたエンティティ、毒性スコア、グラウンディングソース、ユーザー、タイムスタンプがData Cloud内のEinstein監査ログに記録されます\n。\n\n# AIに任せる範囲と人が承認すべき場面の分け方\n\n## Salesforceが掲げる基本原則：人間によるチェック\n\nSalesforceの5原則の1つ「Accuracy（正確性）」では、\nモデルの応答には可能な限り説明や情報源を付与し、大半のユースケースにおいて、モデルの応答をエンドユーザーに共有する前に人間がチェックすることを推奨しています\n。\n\n## 「人が承認する」仕組みは機能として存在する\n\nAgentforceのエージェントは、特定のアクションを実行する前に人間の承認を必要とするよう設定できます\n人間による監視は一貫して維持されます。エージェントは特定のアクションを取る前に人間の承認を必要とするよう設定でき、すべての自律的なアクションは何が起き、なぜ起きたかを再構築できるだけの詳細さで記録されます\n。また、Salesforceは\nユーザーのワークフローのあらゆる段階で「human in the loop（人間の関与）」を保持しており、人間のユーザーは出力がアクティブ化される前（例：生成されたメールが受信者に送信される前）に、それを承認するか却下するかを選択できます\n。\n\n## 実務上",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "help.salesforce.com",
+    "salesforcedictionary.com",
+    "eesel.ai",
+    "developer.salesforce.com",
+    "applikontech.com",
+    "salesforceben.com"
+  ],
+  "resolved_urls": [
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_trust_arch.htm&amp=&language=en_US",
+    "https://salesforcedictionary.com/blogs/salesforce-einstein-trust-layer-complete-2026-guide",
+    "https://www.eesel.ai/blog/salesforce-einstein-trust-layer",
+    "https://help.salesforce.com/s/articleView?id=ai.generative_ai_trust_arch.htm&language=en_US&type=5",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/trust.html",
+    "https://applikontech.com/einstein-trust-layer-the-foundation-of-agentforce/",
+    "https://www.salesforceben.com/einstein-trust-layer-whats-the-trust-gap-salesforce-keep-talking-about/"
+  ],
+  "unresolved_redirects": 0
+}

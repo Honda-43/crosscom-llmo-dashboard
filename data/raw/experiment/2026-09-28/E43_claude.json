@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E43",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの設定は開発者なしで営業部門だけでできる？開発が必要になる範囲はどこから？",
+  "cep": null,
+  "timestamp": "2026-09-28T01:48:26.511038Z",
+  "answer": "Agentforceの設定範囲について、最新情報を調べてご説明します。\n# Agentforce設定：営業部門だけでできる範囲と開発が必要になる境界線\n\n## 結論：基本部分はノーコードで可能\n\n\nAgentforce Builderは、ApexコードもDeveloperも不要な、Salesforceのポイント＆クリック式インターフェースで、AIエージェントを作成できます\n。実際、\nAgentforce Builderは、誰でも自然言語で「やりたいこと」を説明するだけでエージェントを作成できるようになっています\n。\n\nまた\nAgentforceには、Service Agent、Employee Agent、Campaign Agent、Sales Development Rep、Sales Coachなど、すぐに使える事前構築済みのエージェントテンプレートが用意されており、それぞれ独自のデータ・ガードレール・ビジネスロジックでカスタマイズ可能\nです。営業部門であれば、SDR（Sales Development Representative）やSales Coachなどのテンプレートをベースに、基本設定は管理者権限があれば進められます。\n\n## 営業部門（管理者）だけでできる範囲\n\n1. **エージェントの基本作成**\n   - テンプレート選択、トピック（Topic）の作成\n   - \nトピックはエージェントがユーザーの意図を理解するための仕組みで、「返品・返金」のような具体的な名前の方が「カスタマーヘルプ」より効果的\n\n\n2. **標準アクションの追加**\n   - \nApexコードの代わりに、Salesforceのノーコードツールであるフローを使ってアクションを定義\nすることが可能で、画面フローでレコード取得・表示なども組み立てられます\n\n3. **テスト・チューニング**\n   - \nBuilder内蔵の会話プレビューパネルを使い、曖昧な質問や範囲外リクエストなどのエッジケースをテストし、どのトピックが選択されたかを確認できます\n\n\n4. **チャネルへのデプロイ**\n   - \nExperience Cloudサイトへのメッセージング設定や、Slackなど社内向けチャネルへの割り当ても、同様のパターンで設定可能\n\n\n## 開発が必要になる境界線\n\n開発（Apex/カスタムコード、外部エンジニアの支援）が必要になるのは、主に以下のポイントです。\n\n### ① 単純な質問応答を超えるアクションが必要な時\n\nプラットフォームの推論エンジンが会話をルーティングし、タスクを実行する仕組みですが、質問への回答を超えて「ケースレコードの作成」や「注文の照会」など何かを実行させたい場合は、少なくとも簡単なSalesforce Flowが必要\nになります。\n\n### ② データ基盤・複数システム連携\n\n基本的なエージェントの設定はAgent Builderというノーコードツールで直感的に行えますが、AIが参照するための基盤作り（Data Cloudの整備、複数システムからのデータ統合）や、複雑なビジネス要件を反映したアクションフローの構築には、Salesforceの専門知識を持つ管理者や外部コンサルタントの支援が推奨されます\n。\n\n### ③ ライセンス・エディションの制約\nそもそもの前提として、\nAgentforceにはEnterprise、Performance、Unlimited、またはDeveloper Editionが必要で、StarterやProfessional Editionでは特定のアドオンなしには利用できません\n。これは開発以前の契約・管理者権限の話ですが、営業部門だけでは解決できない領域です。\n\n### ④ 本番品質・エッジケース対応\n\nBuilderは非開発者にも取っ掛かりを与えますが、本番品質のエージェントには、Flow・Apex・Atlas Reasoning Engineのエッジケース処理を理解している人材が依然として必要\nとされています。\n\n### ⑤ 外部API・複雑な統合\n\nAgentforceエージェントは既存のFlows、Apex、MuleSoft APIs、CRMデータ、ナレッジ記事といったSalesforceツール・データと連携でき、外部システム・アプリ・チャネルとも統合可能\nですが、この外部システム連携（特にMuleSoft経由の複雑なAPI統合）は基本的に開発者の関与が必要な領域です。\n\n## まとめ：判断の目安\n\n| 範囲 | 担当 |\n|---|---|\n| テンプレート選択・トピック設定・基本会話フロー | 営業部門の管理者（ノーコード） |\n| 簡単な画面フローでのレコード検索・表示 | 管理者（ノーコード〜ローコード） |\n| Data Cloud整備・複数システムのデータ統合 | 管理者＋専門知識者/外部コンサル |\n| 複雑なビジネスロジック・Apexが必要なアクション | 開発者 |\n| 外部システムとのAPI統合（MuleSoftなど） | 開発者 |\n| 本番運用でのエッジケース対応・パフォーマンスチューニング | 管理者＋開発者の協働 |\n\n要するに、**「聞かれたことに答える」レベルのシンプルなエージェントなら営業部門の管理者だけで完結**しますが、**「何かを実行させる（レコード作成・外部システム連携・複雑な条件分岐）」段階からFlowやApexの知識が必要**になり、本格的な業務適用ではやは",
+  "cited_urls": [
+    "https://crmxai.com/blog/how-to-set-up-agentforce-agent-no-code",
+    "https://www.salesforce.com/blog/easy-to-use-agentforce-builder/",
+    "https://www.salesforce.com/agentforce/agent-builder/",
+    "https://www.girikon.com/blog/build-agentforce-agent-without-code-step-by-step/",
+    "https://atmarkit.itmedia.co.jp/ait/articles/2603/30/news035.html",
+    "https://www.immedio.io/mag/what-is-agentforce/",
+    "https://www.buildmvpfast.com/blog/salesforce-agentforce-builder-no-code-agent-playbook-2026"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E43",
+  "experiment_flag": "pool",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-no-code-scope/",
+  "answer_text": "Agentforceの設定範囲について、最新情報を調べてご説明します。\n# Agentforce設定：営業部門だけでできる範囲と開発が必要になる境界線\n\n## 結論：基本部分はノーコードで可能\n\n\nAgentforce Builderは、ApexコードもDeveloperも不要な、Salesforceのポイント＆クリック式インターフェースで、AIエージェントを作成できます\n。実際、\nAgentforce Builderは、誰でも自然言語で「やりたいこと」を説明するだけでエージェントを作成できるようになっています\n。\n\nまた\nAgentforceには、Service Agent、Employee Agent、Campaign Agent、Sales Development Rep、Sales Coachなど、すぐに使える事前構築済みのエージェントテンプレートが用意されており、それぞれ独自のデータ・ガードレール・ビジネスロジックでカスタマイズ可能\nです。営業部門であれば、SDR（Sales Development Representative）やSales Coachなどのテンプレートをベースに、基本設定は管理者権限があれば進められます。\n\n## 営業部門（管理者）だけでできる範囲\n\n1. **エージェントの基本作成**\n   - テンプレート選択、トピック（Topic）の作成\n   - \nトピックはエージェントがユーザーの意図を理解するための仕組みで、「返品・返金」のような具体的な名前の方が「カスタマーヘルプ」より効果的\n\n\n2. **標準アクションの追加**\n   - \nApexコードの代わりに、Salesforceのノーコードツールであるフローを使ってアクションを定義\nすることが可能で、画面フローでレコード取得・表示なども組み立てられます\n\n3. **テスト・チューニング**\n   - \nBuilder内蔵の会話プレビューパネルを使い、曖昧な質問や範囲外リクエストなどのエッジケースをテストし、どのトピックが選択されたかを確認できます\n\n\n4. **チャネルへのデプロイ**\n   - \nExperience Cloudサイトへのメッセージング設定や、Slackなど社内向けチャネルへの割り当ても、同様のパターンで設定可能\n\n\n## 開発が必要になる境界線\n\n開発（Apex/カスタムコード、外部エンジニアの支援）が必要になるのは、主に以下のポイントです。\n\n### ① 単純な質問応答を超えるアクションが必要な時\n\nプラットフォームの推論エンジンが会話をルーティングし、タスクを実行する仕組みですが、質問への回答を超えて「ケースレコードの作成」や「注文の照会」など何かを実行させたい場合は、少なくとも簡単なSalesforce Flowが必要\nになります。\n\n### ② データ基盤・複数システム連携\n\n基本的なエージェントの設定はAgent Builderというノーコードツールで直感的に行えますが、AIが参照するための基盤作り（Data Cloudの整備、複数システムからのデータ統合）や、複雑なビジネス要件を反映したアクションフローの構築には、Salesforceの専門知識を持つ管理者や外部コンサルタントの支援が推奨されます\n。\n\n### ③ ライセンス・エディションの制約\nそもそもの前提として、\nAgentforceにはEnterprise、Performance、Unlimited、またはDeveloper Editionが必要で、StarterやProfessional Editionでは特定のアドオンなしには利用できません\n。これは開発以前の契約・管理者権限の話ですが、営業部門だけでは解決できない領域です。\n\n### ④ 本番品質・エッジケース対応\n\nBuilderは非開発者にも取っ掛かりを与えますが、本番品質のエージェントには、Flow・Apex・Atlas Reasoning Engineのエッジケース処理を理解している人材が依然として必要\nとされています。\n\n### ⑤ 外部API・複雑な統合\n\nAgentforceエージェントは既存のFlows、Apex、MuleSoft APIs、CRMデータ、ナレッジ記事といったSalesforceツール・データと連携でき、外部システム・アプリ・チャネルとも統合可能\nですが、この外部システム連携（特にMuleSoft経由の複雑なAPI統合）は基本的に開発者の関与が必要な領域です。\n\n## まとめ：判断の目安\n\n| 範囲 | 担当 |\n|---|---|\n| テンプレート選択・トピック設定・基本会話フロー | 営業部門の管理者（ノーコード） |\n| 簡単な画面フローでのレコード検索・表示 | 管理者（ノーコード〜ローコード） |\n| Data Cloud整備・複数システムのデータ統合 | 管理者＋専門知識者/外部コンサル |\n| 複雑なビジネスロジック・Apexが必要なアクション | 開発者 |\n| 外部システムとのAPI統合（MuleSoftなど） | 開発者 |\n| 本番運用でのエッジケース対応・パフォーマンスチューニング | 管理者＋開発者の協働 |\n\n要するに、**「聞かれたことに答える」レベルのシンプルなエージェントなら営業部門の管理者だけで完結**しますが、**「何かを実行させる（レコード作成・外部システム連携・複雑な条件分岐）」段階からFlowやApexの知識が必要**になり、本格的な業務適用ではやは",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "crmxai.com",
+    "salesforce.com",
+    "girikon.com",
+    "atmarkit.itmedia.co.jp",
+    "immedio.io",
+    "buildmvpfast.com"
+  ],
+  "resolved_urls": [
+    "https://crmxai.com/blog/how-to-set-up-agentforce-agent-no-code",
+    "https://www.salesforce.com/blog/easy-to-use-agentforce-builder/",
+    "https://www.salesforce.com/agentforce/agent-builder/",
+    "https://www.girikon.com/blog/build-agentforce-agent-without-code-step-by-step/",
+    "https://atmarkit.itmedia.co.jp/ait/articles/2603/30/news035.html",
+    "https://www.immedio.io/mag/what-is-agentforce/",
+    "https://www.buildmvpfast.com/blog/salesforce-agentforce-builder-no-code-agent-playbook-2026"
+  ],
+  "unresolved_redirects": 0
+}

@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E02",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceを設定したのに現場で使われない。定着させるための3ヶ月のロードマップは？",
+  "cep": null,
+  "timestamp": "2026-09-28T01:29:12.443496Z",
+  "answer": "Agentforceの定着に関する最新情報を確認してから、具体的な3ヶ月ロードマップをご提案します。\nAgentforceが「導入したのに現場で使われない」現象は、日本国内でも多くの企業が直面している典型的な課題です。実際、\n2025年2月時点で約5,000件のAgentforce導入が報告されているものの、有料顧客はそのうち3,000件にとどまり、残りは評価中で、多くの顧客はバンドル契約を締結しているだけで実際に利用していないケースも多く見られます\n。つまり「導入=定着」ではなく、定着化には別の設計が必要ということです。\n\n以下、現場への定着を目的とした**3ヶ月ロードマップ**を、フェーズごとにご提案します。\n\n---\n\n## 全体の考え方\n\n\n導入の失敗パターン（誤った動作、低い定着率、予算超過）はすべて、最初のシーケンス（順序）の決定に起因します。Agentforceの導入成否は「どのエージェントを買うか」ではなく「順序」で決まります\n。つまり、いきなり全社展開・全業務適用を狙わず、**「小さく始めて、成功体験を作り、広げる」**という順序が定着化の鍵になります。\n\n---\n\n## 1ヶ月目：診断と土台づくり（Readiness & Foundation）\n\n### Week1-2：現状診断\n- なぜ使われないのかを可視化する。よくある原因は以下の通りです。\n  - \nKPIが不明確なまま導入が停滞している、CRMやナレッジベースのデータが不完全・不統一・サイロ化している、トレーニングやコミュニケーション不足による現場の抵抗\n\n  - \n組み込み型トレーニングの欠如、オンボーディングの不統一、実用的なユースケースの認知不足、機能利用状況の可視性の低さ、AIへの抵抗感や不明確なROIも定着を妨げる要因\n\n\n### Week3-4：基盤整備\n- **データ品質の監査**：\nCRM・ナレッジベース・製品データをロールアウト前に監査・クレンジングし、エージェントの精度を最大化する\nことが最優先です。\n- **推進体制の構築**：\nAIエージェントの得意・不得意を踏まえて活用業務を定め、活用を成功に導く推進体制を作り、成果につながるユースケースと活用データを選ぶ\nことが計画フェーズの要点です。\n- **ガバナンス設計**：\nルール・アクセスレベル・コンプライアンスポリシーを事前に定義し、分析ツールで遵守状況をモニタリングする体制\nを先に用意しておきます。\n\n---\n\n## 2ヶ月目：小さな成功体験を作る（Pilot & Trust Building）\n\n### Week5-6：限定パイロット\n- \n限られたユースケースや部門でパイロットを実施し、全社展開前にROIを検証する\nことが定着化の基本パターンです。\n- \n技術面・データの整備状況・チェンジマネジメントの観点で組織の準備状況を評価し、機能横断チームとKPIを確立してパイロットとソフトロールアウトを開始する\n。\n\n### Week7-8：現場の心理的ハードルを外す\n定着しない最大の理由は技術ではなく「人」です。Salesforce社自身の社内展開事例が参考になります。\n- \n初期の抵抗は自然なものとして受け止め、雇用への不安など従業員の懸念に正面から向き合う\n\n- \n「自分にとって何の得があるか（WIIFM）」を明確に伝え、定型業務から解放されてより価値の高い仕事に集中できることを伝える\n\n- 現場担当者には「AIエージェントの精度を上げる役割」を担ってもらうという位置づけが有効です。\nサポートエンジニアには「人の手が必要な難しい問題」に集中してほしいと伝え、彼らこそがAgentforceの成功の鍵だと明確に位置づけた\nという事例があります。\n\n- **業務フローに溶け込んだ学習支援**：\nアプリ内ガイダンス、オンボーディングフロー、コンテキストに応じたサポート、プロアクティブな通知をAgentforceに直接組み込み、業務の流れの中で学べるようにする\nことも効果的です。役割別のオンボーディ",
+  "cited_urls": [
+    "https://note.com/furucrm/n/nf9d38b80cf60",
+    "https://worxwide.com/insights/agentforce-implementation-guide-for-sales/",
+    "https://bluvium.com/agentforce-faq-series-faq-3-adoption-challenges-proven-best-practices/",
+    "https://whatfix.com/blog/salesforce-agentforce-adoption/",
+    "https://successjp.salesforce.com/ai-solution/agentforce",
+    "https://centricconsulting.com/blog/how-to-enable-agentforce-in-salesforce-right-now/",
+    "https://www.salesforce.com/news/stories/agentic-ai-rollout-employee-adoption/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E02",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-retention/",
+  "answer_text": "Agentforceの定着に関する最新情報を確認してから、具体的な3ヶ月ロードマップをご提案します。\nAgentforceが「導入したのに現場で使われない」現象は、日本国内でも多くの企業が直面している典型的な課題です。実際、\n2025年2月時点で約5,000件のAgentforce導入が報告されているものの、有料顧客はそのうち3,000件にとどまり、残りは評価中で、多くの顧客はバンドル契約を締結しているだけで実際に利用していないケースも多く見られます\n。つまり「導入=定着」ではなく、定着化には別の設計が必要ということです。\n\n以下、現場への定着を目的とした**3ヶ月ロードマップ**を、フェーズごとにご提案します。\n\n---\n\n## 全体の考え方\n\n\n導入の失敗パターン（誤った動作、低い定着率、予算超過）はすべて、最初のシーケンス（順序）の決定に起因します。Agentforceの導入成否は「どのエージェントを買うか」ではなく「順序」で決まります\n。つまり、いきなり全社展開・全業務適用を狙わず、**「小さく始めて、成功体験を作り、広げる」**という順序が定着化の鍵になります。\n\n---\n\n## 1ヶ月目：診断と土台づくり（Readiness & Foundation）\n\n### Week1-2：現状診断\n- なぜ使われないのかを可視化する。よくある原因は以下の通りです。\n  - \nKPIが不明確なまま導入が停滞している、CRMやナレッジベースのデータが不完全・不統一・サイロ化している、トレーニングやコミュニケーション不足による現場の抵抗\n\n  - \n組み込み型トレーニングの欠如、オンボーディングの不統一、実用的なユースケースの認知不足、機能利用状況の可視性の低さ、AIへの抵抗感や不明確なROIも定着を妨げる要因\n\n\n### Week3-4：基盤整備\n- **データ品質の監査**：\nCRM・ナレッジベース・製品データをロールアウト前に監査・クレンジングし、エージェントの精度を最大化する\nことが最優先です。\n- **推進体制の構築**：\nAIエージェントの得意・不得意を踏まえて活用業務を定め、活用を成功に導く推進体制を作り、成果につながるユースケースと活用データを選ぶ\nことが計画フェーズの要点です。\n- **ガバナンス設計**：\nルール・アクセスレベル・コンプライアンスポリシーを事前に定義し、分析ツールで遵守状況をモニタリングする体制\nを先に用意しておきます。\n\n---\n\n## 2ヶ月目：小さな成功体験を作る（Pilot & Trust Building）\n\n### Week5-6：限定パイロット\n- \n限られたユースケースや部門でパイロットを実施し、全社展開前にROIを検証する\nことが定着化の基本パターンです。\n- \n技術面・データの整備状況・チェンジマネジメントの観点で組織の準備状況を評価し、機能横断チームとKPIを確立してパイロットとソフトロールアウトを開始する\n。\n\n### Week7-8：現場の心理的ハードルを外す\n定着しない最大の理由は技術ではなく「人」です。Salesforce社自身の社内展開事例が参考になります。\n- \n初期の抵抗は自然なものとして受け止め、雇用への不安など従業員の懸念に正面から向き合う\n\n- \n「自分にとって何の得があるか（WIIFM）」を明確に伝え、定型業務から解放されてより価値の高い仕事に集中できることを伝える\n\n- 現場担当者には「AIエージェントの精度を上げる役割」を担ってもらうという位置づけが有効です。\nサポートエンジニアには「人の手が必要な難しい問題」に集中してほしいと伝え、彼らこそがAgentforceの成功の鍵だと明確に位置づけた\nという事例があります。\n\n- **業務フローに溶け込んだ学習支援**：\nアプリ内ガイダンス、オンボーディングフロー、コンテキストに応じたサポート、プロアクティブな通知をAgentforceに直接組み込み、業務の流れの中で学べるようにする\nことも効果的です。役割別のオンボーディ",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "note.com",
+    "worxwide.com",
+    "bluvium.com",
+    "whatfix.com",
+    "successjp.salesforce.com",
+    "centricconsulting.com",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://note.com/furucrm/n/nf9d38b80cf60",
+    "https://worxwide.com/insights/agentforce-implementation-guide-for-sales/",
+    "https://bluvium.com/agentforce-faq-series-faq-3-adoption-challenges-proven-best-practices/",
+    "https://whatfix.com/blog/salesforce-agentforce-adoption/",
+    "https://successjp.salesforce.com/ai-solution/agentforce",
+    "https://centricconsulting.com/blog/how-to-enable-agentforce-in-salesforce-right-now/",
+    "https://www.salesforce.com/news/stories/agentic-ai-rollout-employee-adoption/"
+  ],
+  "unresolved_redirects": 0
+}

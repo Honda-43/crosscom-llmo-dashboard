@@ -1,0 +1,51 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E25",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce for Marketingで何を任せられる？営業への引き渡しはどう設計する？",
+  "cep": null,
+  "timestamp": "2026-09-28T01:40:10.101365Z",
+  "answer": "Agentforce for Marketing(Salesforceのマーケティング向けAIエージェント製品)について、最新情報を調べて回答します。\n# Agentforce for Marketingで任せられること\n\n## 1. キャンペーンの企画〜実行〜最適化\n\nAgentforce for Marketingの中核機能は、キャンペーンの一気通貫型自動化です。\nマーケターが設定した事前定義のキャンペーン目標とブランドガイドラインをもとに、Agentforce Campaignsがキャンペーン全体の作成を支援します。ブリーフを生成し、ターゲットオーディエンスのセグメントを特定・作成し、メールやランディングページの初稿を生成し、Flowでカスタマージャーニーまで構築します。その後、キャンペーンのパフォーマンスを継続的に分析し、目標KPIに基づいてターゲットオーディエンス・コンテンツ・チャネルの最適化を推奨します。\n\n\n日本語ソースでも同様に、\nマーケティング、セールス、カスタマーサービスの各部門で具体的な業務改善を実現でき、キャンペーン自動生成機能により顧客セグメント分析から適切なメッセージング、配信タイミングの最適化まで包括的なマーケティング活動を自動化できる\nとされています。\n\n## 2. パーソナライゼーション（Personalization Decisioning）\n\n\n顧客のプロフィールに基づき、それぞれに最適なコンテンツ、製品、オファーを自動的に提供することで、マーケティング担当者が1対1のパーソナライズを大規模に展開できるよう支援します\n。\n\n## 3. 広告運用の最適化（Paid Media Optimization）\n\n\nパフォーマンスの低い広告を自動的に特定して一時停止し、最適化の提案を行います。また、自動作成された目標に基づいて指標を調整することで、マーケティング担当者がより効果的にペイドメディアを最適化できるよう支援します\n。\n\n## 4. リードナーチャリング・スコアリング（Agentforce Lead Nurturing / SDR）\n\n\n新規または更新されたリード、コンタクト、パーソンアカウントに自動的にエンゲージし、パーソナライズされたアウトリーチメールの送信、見込み客の返信への対応、適格なリードと営業担当者の接続を行います\n。具体的には以下の機能があります。\n\n- \nリードデータを使用してカスタマイズされたメールを作成・送信し、自動フォローアップを行う\n\n- \n会社データを使った質問への回答、オプトアウトや脱線した返信への対応\n\n- \n購買意欲を検知してミーティングを予約し、完全な文脈と共にリードを営業担当者に引き渡す\n\n- \nSales EngagementのケイデンスやEinstein AIなどのツールと統合し、24時間365日稼働する\n\n\n実際の導入事例では、\nあるSaaS企業でリード資格審査の80%を自動化し、手作業の労力を70%削減した\nという成果も報告されています。\n\n---\n\n# 営業への引き渡し（ハンドオフ）の設計方法\n\n## 1. 「Qualified」の定義をマーケ・営業・RevOpsで合意する\n\nまず前提として、\n「適格」の意味を明確に定義することが重要です。ICP（理想的顧客プロファイル）、インテントの閾値、失格理由についてマーケティング・営業・RevOpsで整合を取り、必要項目・エンゲージメントの最低基準・フィットスコア・引き渡しSLAとして明文化します\n。\n\n## 2. ルーティングルールと制約条件の設計\n\n\nルーティングルールと制約条件を設計し、テリトリー・セグメント・所有モデル・エスカレーションパスをマッピングします。新規顧客と既存顧客、パートナー経由と直接、大企業向けとSMB向けなど、セグメントごとのロジックを文書化します\n。\n\n## 3. Agentforceにロジックを実装する\n\n\n設計したロジックに基づいてAgentforceを設定し、Agentforce Builderを使ってSDR型のエージェントを作成します。このエージェントは質問をし、データを検証し、資格ルールを適用し、Salesforceのフローを呼び出して担当者割り当て・タスク作成・ミーティングスケジューリングを行います\n。\n\n## 4. ハンドオフとフォローアップの自動化\n\n\nハンドオフとフォローアップを自動化します。適格なリードにはタスクを作成し、ケイデンスに追加し、カレンダーリンクを送付します。まだ準備ができていないリードにはナーチャリングジャーニーに登録し、（タイミング・予算・フィットなどの）理由をタグ付けして将来のルーティングに備えます\n。\n\n## 5. 引き渡し時に必要な情報（コンテキスト）を必ず添える\n\nハンドオフの質を高めるには、以下の4項目を必須情報として設計することが推奨されます。\n\n- \nリードの出所、引き渡しのきっかけとなったアクション、その発生時刻\n\n- \n満たされた適合性・インテント基準（判断が必要だった場合は簡潔な説明）\n\n- \n見込み客が説明した質問・関心のある製品・課題（可能であれば",
+  "cited_urls": [
+    "https://www.salesforce.com/news/stories/marketing-cloud-dreamforce-24/",
+    "https://www.fsi.co.jp/Salesforce/column/column19.html",
+    "https://www.salesforce.com/jp/news/press-releases/2025/03/25/agentforceformarketing-announcement/",
+    "https://www.concret.io/blog/set-up-agentforce-lead-nurturing-marketing-cloud",
+    "https://www.jadeglobal.com/resources/case-study/salesforce-agentforce-lead-engagement-transformation",
+    "https://www.pedowitzgroup.com/agentforce-help-lead-qualification-routing",
+    "https://www.ortecadscience.com/marketing-sales-lead-handoff-checklist/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E25",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-marketing/",
+  "answer_text": "Agentforce for Marketing(Salesforceのマーケティング向けAIエージェント製品)について、最新情報を調べて回答します。\n# Agentforce for Marketingで任せられること\n\n## 1. キャンペーンの企画〜実行〜最適化\n\nAgentforce for Marketingの中核機能は、キャンペーンの一気通貫型自動化です。\nマーケターが設定した事前定義のキャンペーン目標とブランドガイドラインをもとに、Agentforce Campaignsがキャンペーン全体の作成を支援します。ブリーフを生成し、ターゲットオーディエンスのセグメントを特定・作成し、メールやランディングページの初稿を生成し、Flowでカスタマージャーニーまで構築します。その後、キャンペーンのパフォーマンスを継続的に分析し、目標KPIに基づいてターゲットオーディエンス・コンテンツ・チャネルの最適化を推奨します。\n\n\n日本語ソースでも同様に、\nマーケティング、セールス、カスタマーサービスの各部門で具体的な業務改善を実現でき、キャンペーン自動生成機能により顧客セグメント分析から適切なメッセージング、配信タイミングの最適化まで包括的なマーケティング活動を自動化できる\nとされています。\n\n## 2. パーソナライゼーション（Personalization Decisioning）\n\n\n顧客のプロフィールに基づき、それぞれに最適なコンテンツ、製品、オファーを自動的に提供することで、マーケティング担当者が1対1のパーソナライズを大規模に展開できるよう支援します\n。\n\n## 3. 広告運用の最適化（Paid Media Optimization）\n\n\nパフォーマンスの低い広告を自動的に特定して一時停止し、最適化の提案を行います。また、自動作成された目標に基づいて指標を調整することで、マーケティング担当者がより効果的にペイドメディアを最適化できるよう支援します\n。\n\n## 4. リードナーチャリング・スコアリング（Agentforce Lead Nurturing / SDR）\n\n\n新規または更新されたリード、コンタクト、パーソンアカウントに自動的にエンゲージし、パーソナライズされたアウトリーチメールの送信、見込み客の返信への対応、適格なリードと営業担当者の接続を行います\n。具体的には以下の機能があります。\n\n- \nリードデータを使用してカスタマイズされたメールを作成・送信し、自動フォローアップを行う\n\n- \n会社データを使った質問への回答、オプトアウトや脱線した返信への対応\n\n- \n購買意欲を検知してミーティングを予約し、完全な文脈と共にリードを営業担当者に引き渡す\n\n- \nSales EngagementのケイデンスやEinstein AIなどのツールと統合し、24時間365日稼働する\n\n\n実際の導入事例では、\nあるSaaS企業でリード資格審査の80%を自動化し、手作業の労力を70%削減した\nという成果も報告されています。\n\n---\n\n# 営業への引き渡し（ハンドオフ）の設計方法\n\n## 1. 「Qualified」の定義をマーケ・営業・RevOpsで合意する\n\nまず前提として、\n「適格」の意味を明確に定義することが重要です。ICP（理想的顧客プロファイル）、インテントの閾値、失格理由についてマーケティング・営業・RevOpsで整合を取り、必要項目・エンゲージメントの最低基準・フィットスコア・引き渡しSLAとして明文化します\n。\n\n## 2. ルーティングルールと制約条件の設計\n\n\nルーティングルールと制約条件を設計し、テリトリー・セグメント・所有モデル・エスカレーションパスをマッピングします。新規顧客と既存顧客、パートナー経由と直接、大企業向けとSMB向けなど、セグメントごとのロジックを文書化します\n。\n\n## 3. Agentforceにロジックを実装する\n\n\n設計したロジックに基づいてAgentforceを設定し、Agentforce Builderを使ってSDR型のエージェントを作成します。このエージェントは質問をし、データを検証し、資格ルールを適用し、Salesforceのフローを呼び出して担当者割り当て・タスク作成・ミーティングスケジューリングを行います\n。\n\n## 4. ハンドオフとフォローアップの自動化\n\n\nハンドオフとフォローアップを自動化します。適格なリードにはタスクを作成し、ケイデンスに追加し、カレンダーリンクを送付します。まだ準備ができていないリードにはナーチャリングジャーニーに登録し、（タイミング・予算・フィットなどの）理由をタグ付けして将来のルーティングに備えます\n。\n\n## 5. 引き渡し時に必要な情報（コンテキスト）を必ず添える\n\nハンドオフの質を高めるには、以下の4項目を必須情報として設計することが推奨されます。\n\n- \nリードの出所、引き渡しのきっかけとなったアクション、その発生時刻\n\n- \n満たされた適合性・インテント基準（判断が必要だった場合は簡潔な説明）\n\n- \n見込み客が説明した質問・関心のある製品・課題（可能であれば",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "fsi.co.jp",
+    "concret.io",
+    "jadeglobal.com",
+    "pedowitzgroup.com",
+    "ortecadscience.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/news/stories/marketing-cloud-dreamforce-24/",
+    "https://www.fsi.co.jp/Salesforce/column/column19.html",
+    "https://www.salesforce.com/jp/news/press-releases/2025/03/25/agentforceformarketing-announcement/",
+    "https://www.concret.io/blog/set-up-agentforce-lead-nurturing-marketing-cloud",
+    "https://www.jadeglobal.com/resources/case-study/salesforce-agentforce-lead-engagement-transformation",
+    "https://www.pedowitzgroup.com/agentforce-help-lead-qualification-routing",
+    "https://www.ortecadscience.com/marketing-sales-lead-handoff-checklist/"
+  ],
+  "unresolved_redirects": 0
+}

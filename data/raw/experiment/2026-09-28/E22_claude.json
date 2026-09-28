@@ -1,0 +1,47 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E22",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの出力が毎回変わって安定しない。モデル選択と推論制御の設定は？",
+  "cep": null,
+  "timestamp": "2026-09-28T01:38:40.194506Z",
+  "answer": "Agentforceの出力が安定しない問題と、モデル選択・推論制御の設定について調べます。\nAgentforceの出力が不安定になる原因と、モデル選択・推論制御の設定方法について整理します。\n\n## 1. Agentforceの2層構造を理解する\n\nAgentforceは大きく分けて2つのLLM利用箇所があります。\n\n\nPrompt Templateで使われるLLMとは別に、Agentforce自体（正確にはAtlas Reasoning Engine）が使用するLLMがあり、Atlas Reasoning Engineの役割は、Agentが与えられたタスクに対して何をどの順番で実行すべきかを決めることです。\nつまり「どのトピック・アクションを選ぶか」を決める推論部分と、「実際の回答文を生成する」プロンプトテンプレート部分の両方にモデル設定が存在します。\n\n## 2. モデル選択の設定場所\n\n**① デフォルトモデル（Atlas推論エンジン用）**\n\nこの核となるコンポーネントで使われるLLMを変更できるかという疑問があったが、最近これが可能になり、「デフォルトモデル」という設定項目から、Select Default Model for Agentのセクションで使用したいモデル（プロバイダー）を選択できます。\n\n\n**② サブエージェント単位でのモデルオーバーライド（2026年6月〜)**\n\n2026年6月の機能リリースでこの設定はさらに簡単になり、Agentforce BuilderのキャンバスからGUIで直接モデルを変更できるようになりました。これにより、YAMLを直接編集することなくユースケースに応じてLLMを切り替えられます。\nYAMLでは`model_config`に`model://sfdc_ai__DefaultBedrockAnthropicClaude46Sonnet`のようにモデルを直接指定することも可能です。\n\n**③ サポートされているモデル一覧**\n\n古いモデルは削除ではなくリルーティングされる仕様で、Claude 3 HaikuはHaiku 4.5へ、Claude Sonnet 4はSonnet 4.6へ、GPT-4/GPT-4 TurboはGPT-4oへ、Gemini 2.0 FlashはGemini 2.5 Flashへ移行し、Salesforceのドキュメントではエージェント用途にGPT-4.1、Claude Haiku 4.5、Gemini 3.5 Flashを推奨しています。\n\n\n## 3. 出力の「ブレ」を抑える推論制御パラメータ\n\nSalesforceのモデルプレイグラウンドでは、既存の基盤モデルに対して以下のパラメータを調整できます。\n\n\ntemperature、frequency penalty、presence penalty\nの3つが主な調整可能パラメータです。\n\n出力の安定性に直結するのは**temperature**です。一般的なLLM運用の知見として、\n\n分類・ルーティングのようなタスクは temperature 0.0、安全性が重要なタスク（緊急対応・医療・法律など）は temperature 0.1以下\nに設定するのがセオリーとされています。逆に会話的な応答で自然さを出したい場合は0.7程度が使われますが、その分ブレも大きくなります。\n\nただし注意点として、\n\ntemperature=0に設定してもツール選択の評価をより決定論的にする狙いはあるものの、これ",
+  "cited_urls": [
+    "https://medium.com/@hiroki.asami/what-happens-when-you-change-your-agentforce-llm-provider-076ed877a2b3",
+    "https://medium.com/@marketingcloudtips/agentforce-easily-switch-llm-models-for-each-subagent-with-model-override-fc83493ee86b",
+    "https://gptfy.ai/which-llm-does-agentforce-use",
+    "https://low-code-media.com/agentforcespecialist-53/",
+    "https://medium.com/@kumaran.isk/why-your-agents-need-different-llm-parameters-f1feaffc2910",
+    "https://arxiv.org/pdf/2510.02554"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E22",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-reasoning-control/",
+  "answer_text": "Agentforceの出力が安定しない問題と、モデル選択・推論制御の設定について調べます。\nAgentforceの出力が不安定になる原因と、モデル選択・推論制御の設定方法について整理します。\n\n## 1. Agentforceの2層構造を理解する\n\nAgentforceは大きく分けて2つのLLM利用箇所があります。\n\n\nPrompt Templateで使われるLLMとは別に、Agentforce自体（正確にはAtlas Reasoning Engine）が使用するLLMがあり、Atlas Reasoning Engineの役割は、Agentが与えられたタスクに対して何をどの順番で実行すべきかを決めることです。\nつまり「どのトピック・アクションを選ぶか」を決める推論部分と、「実際の回答文を生成する」プロンプトテンプレート部分の両方にモデル設定が存在します。\n\n## 2. モデル選択の設定場所\n\n**① デフォルトモデル（Atlas推論エンジン用）**\n\nこの核となるコンポーネントで使われるLLMを変更できるかという疑問があったが、最近これが可能になり、「デフォルトモデル」という設定項目から、Select Default Model for Agentのセクションで使用したいモデル（プロバイダー）を選択できます。\n\n\n**② サブエージェント単位でのモデルオーバーライド（2026年6月〜)**\n\n2026年6月の機能リリースでこの設定はさらに簡単になり、Agentforce BuilderのキャンバスからGUIで直接モデルを変更できるようになりました。これにより、YAMLを直接編集することなくユースケースに応じてLLMを切り替えられます。\nYAMLでは`model_config`に`model://sfdc_ai__DefaultBedrockAnthropicClaude46Sonnet`のようにモデルを直接指定することも可能です。\n\n**③ サポートされているモデル一覧**\n\n古いモデルは削除ではなくリルーティングされる仕様で、Claude 3 HaikuはHaiku 4.5へ、Claude Sonnet 4はSonnet 4.6へ、GPT-4/GPT-4 TurboはGPT-4oへ、Gemini 2.0 FlashはGemini 2.5 Flashへ移行し、Salesforceのドキュメントではエージェント用途にGPT-4.1、Claude Haiku 4.5、Gemini 3.5 Flashを推奨しています。\n\n\n## 3. 出力の「ブレ」を抑える推論制御パラメータ\n\nSalesforceのモデルプレイグラウンドでは、既存の基盤モデルに対して以下のパラメータを調整できます。\n\n\ntemperature、frequency penalty、presence penalty\nの3つが主な調整可能パラメータです。\n\n出力の安定性に直結するのは**temperature**です。一般的なLLM運用の知見として、\n\n分類・ルーティングのようなタスクは temperature 0.0、安全性が重要なタスク（緊急対応・医療・法律など）は temperature 0.1以下\nに設定するのがセオリーとされています。逆に会話的な応答で自然さを出したい場合は0.7程度が使われますが、その分ブレも大きくなります。\n\nただし注意点として、\n\ntemperature=0に設定してもツール選択の評価をより決定論的にする狙いはあるものの、これ",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "medium.com",
+    "gptfy.ai",
+    "low-code-media.com",
+    "arxiv.org"
+  ],
+  "resolved_urls": [
+    "https://medium.com/@hiroki.asami/what-happens-when-you-change-your-agentforce-llm-provider-076ed877a2b3",
+    "https://medium.com/@marketingcloudtips/agentforce-easily-switch-llm-models-for-each-subagent-with-model-override-fc83493ee86b",
+    "https://gptfy.ai/which-llm-does-agentforce-use",
+    "https://low-code-media.com/agentforcespecialist-53/",
+    "https://medium.com/@kumaran.isk/why-your-agents-need-different-llm-parameters-f1feaffc2910",
+    "https://arxiv.org/pdf/2510.02554"
+  ],
+  "unresolved_redirects": 0
+}

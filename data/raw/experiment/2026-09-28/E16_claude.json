@@ -1,0 +1,49 @@
+{
+  "date": "2026-09-28",
+  "prompt_id": "E16",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "AgentforceとChatGPT・Microsoft Copilotは何が違う？営業部門で使うならどれ？",
+  "cep": null,
+  "timestamp": "2026-09-28T01:35:49.340239Z",
+  "answer": "# Agentforce・ChatGPT・Microsoft Copilotの違い\n\n## 基本的な立ち位置の違い\n\n**Agentforce（Salesforce）**\n\nSalesforce Agentforceは、CRMネイティブなエージェント型AIです。SalesforceのAtlasエンジンによって推論し、Salesforce内で自律的に行動します（リードの選別、案件解決、更新の推進など）\n。\nAgentforceは、Atlas Reasoning Engineを使って複数ステップのタスクを自律的に実行するのに対し、Microsoft Copilotは通常、人間のプロンプトと承認を待ちます\n。\n\n**ChatGPT（OpenAI）**\n\nChatGPTは一般的に、幅広い知識作業、リサーチ、分析、コンテンツ作成、コーディング、クロスシステムのAIワークフローに適しています\n。CRMとの連携は近年強化されており、\nChatGPTでのAgentforce 360アプリでは、SalesforceのアプリケーションがApps in ChatGPTプログラムを通じて利用可能となり、企業向けインテリジェンス、CRMデータ、Tableauの可視化機能がChatGPTでの会話にシームレスに組み込まれます\n。ただし、\nガバナンス設定を行った上で、Salesforce管理者による構成が必要な「Hosted MCP Servers」経由での接続が中心\nで、CRM実行力はSalesforce側の設定に依存します。\n\n**Microsoft Copilot**\n\nAgentforceは、Sales CloudやService Cloudにある顧客対応業務とCRMを中心に構築されているのに対し、Copilotは、Microsoft 365の生産性レイヤーと、Teams・Outlook・Power Platformでの業務を中心に構築されています\n。\nMicrosoft Copilot Studioは Power Platform上の横断的なエージェント構築ツールで、Microsoft Graphと600以上のコネクタを通じてデータにアクセスし、Teams・Microsoft 365など人が普段働く場所で動作し、人間をループに残しながらナレッジワークを支援する傾向にあります\n。\n\n## 比較表\n\n| 観点 | Agentforce | ChatGPT | Microsoft Copilot |\n|---|---|---|---|\n| 中心データ | Salesforce CRM（Data Cloud） | 汎用・外部連携次第 | Microsoft 365/Graph |\n| 自律性 | 高い（自律実行） | 補助的（連携先次第） | 人間承認前提が多い |\n| 得意領域 | リード対応・商談進捗・SFA自動化 | リサーチ・分析・文章生成 | Word/Excel/Teams等の日常業務 |\n| 価",
+  "cited_urls": [
+    "https://clarityarc.com/resources/copilot-vs-agentforce-vs-build-your-own/",
+    "https://blog.aimactgrow.com/agentforce-vs-microsoft-copilot-comparability/",
+    "https://codingcops.com/salesforce-agentforce-vs-chatgpt/",
+    "https://prtimes.jp/main/html/rd/p/000000309.000041550.html",
+    "https://www.breakcold.com/blog/best-crms-with-chatgpt-integration",
+    "https://gptfy.ai/resources/blog/agentforce-vs-microsoft-copilot"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E16",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-chatgpt-copilot-comparison/",
+  "answer_text": "# Agentforce・ChatGPT・Microsoft Copilotの違い\n\n## 基本的な立ち位置の違い\n\n**Agentforce（Salesforce）**\n\nSalesforce Agentforceは、CRMネイティブなエージェント型AIです。SalesforceのAtlasエンジンによって推論し、Salesforce内で自律的に行動します（リードの選別、案件解決、更新の推進など）\n。\nAgentforceは、Atlas Reasoning Engineを使って複数ステップのタスクを自律的に実行するのに対し、Microsoft Copilotは通常、人間のプロンプトと承認を待ちます\n。\n\n**ChatGPT（OpenAI）**\n\nChatGPTは一般的に、幅広い知識作業、リサーチ、分析、コンテンツ作成、コーディング、クロスシステムのAIワークフローに適しています\n。CRMとの連携は近年強化されており、\nChatGPTでのAgentforce 360アプリでは、SalesforceのアプリケーションがApps in ChatGPTプログラムを通じて利用可能となり、企業向けインテリジェンス、CRMデータ、Tableauの可視化機能がChatGPTでの会話にシームレスに組み込まれます\n。ただし、\nガバナンス設定を行った上で、Salesforce管理者による構成が必要な「Hosted MCP Servers」経由での接続が中心\nで、CRM実行力はSalesforce側の設定に依存します。\n\n**Microsoft Copilot**\n\nAgentforceは、Sales CloudやService Cloudにある顧客対応業務とCRMを中心に構築されているのに対し、Copilotは、Microsoft 365の生産性レイヤーと、Teams・Outlook・Power Platformでの業務を中心に構築されています\n。\nMicrosoft Copilot Studioは Power Platform上の横断的なエージェント構築ツールで、Microsoft Graphと600以上のコネクタを通じてデータにアクセスし、Teams・Microsoft 365など人が普段働く場所で動作し、人間をループに残しながらナレッジワークを支援する傾向にあります\n。\n\n## 比較表\n\n| 観点 | Agentforce | ChatGPT | Microsoft Copilot |\n|---|---|---|---|\n| 中心データ | Salesforce CRM（Data Cloud） | 汎用・外部連携次第 | Microsoft 365/Graph |\n| 自律性 | 高い（自律実行） | 補助的（連携先次第） | 人間承認前提が多い |\n| 得意領域 | リード対応・商談進捗・SFA自動化 | リサーチ・分析・文章生成 | Word/Excel/Teams等の日常業務 |\n| 価",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "cited_domains": [
+    "clarityarc.com",
+    "blog.aimactgrow.com",
+    "codingcops.com",
+    "prtimes.jp",
+    "breakcold.com",
+    "gptfy.ai"
+  ],
+  "resolved_urls": [
+    "https://clarityarc.com/resources/copilot-vs-agentforce-vs-build-your-own/",
+    "https://blog.aimactgrow.com/agentforce-vs-microsoft-copilot-comparability/",
+    "https://codingcops.com/salesforce-agentforce-vs-chatgpt/",
+    "https://prtimes.jp/main/html/rd/p/000000309.000041550.html",
+    "https://www.breakcold.com/blog/best-crms-with-chatgpt-integration",
+    "https://gptfy.ai/resources/blog/agentforce-vs-microsoft-copilot"
+  ],
+  "unresolved_redirects": 0
+}
