@@ -34,6 +34,9 @@ PROMPTS_EXPERIMENT_FILE = CONFIG_DIR / "prompts_experiment.csv"
 # 見出し・FAQに及ぶ訂正でプールから外したが、訂正後の引用の動きは見たいので観測を続ける。
 # llm_experiment では experiment_flag=watch。割付・判定・週次集計の母数には入らない。
 PROMPTS_WATCH_FILE = CONFIG_DIR / "prompts_watch.csv"
+# 実験期間中の編集凍結(2026-09-28)。凍結対象の一覧そのものは seo-agent 管理の
+# experiment_2x2/targets.csv・link_ban.csv を読む(このファイルにはパスと期間だけ)。
+EXPERIMENT_FREEZE_FILE = CONFIG_DIR / "experiment_freeze.yaml"
 EXPERIMENT_FLAG_POOL = "pool"
 EXPERIMENT_FLAG_WATCH = "watch"
 # 実験の回答全文。日次・月次の日付ディレクトリと混ぜない。

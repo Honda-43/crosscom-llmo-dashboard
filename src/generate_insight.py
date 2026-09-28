@@ -24,6 +24,7 @@ import json
 import os
 from typing import Any, Dict, List, Optional, Sequence
 
+import experiment_freeze
 import insight_style
 from settings import (
     INSIGHT_MAX_CHARS,
@@ -167,7 +168,7 @@ _USER_TEMPLATE = """以下が今週の stats.json です。この内容だけを
 
 # 表示用の数値(本文にはこの表記で書く。小数の生値は書かない)
 {formatted_numbers}
-{co_fired}"""
+{co_fired}{freeze}"""
 
 _CO_FIRED_TEMPLATE = """
 # 統合が必要な発火
@@ -264,7 +265,8 @@ def _formatted_numbers(stats: Dict[str, Any], flat: int) -> str:
 
 def build_user_prompt(stats: Dict[str, Any],
                       actions: Sequence[Dict[str, Any]] = (),
-                      thresholds: Optional[Dict[str, Any]] = None) -> str:
+                      thresholds: Optional[Dict[str, Any]] = None,
+                      freeze: Optional["experiment_freeze.Freeze"] = None) -> str:
     import action_log
 
     thresholds = thresholds if thresholds is not None else load_thresholds()
@@ -280,6 +282,7 @@ def build_user_prompt(stats: Dict[str, Any],
                 prompt_ids="\n".join(f"- {p}" for p in co_fired)
             ) if co_fired else ""
         ),
+        freeze=experiment_freeze.prompt_block(freeze),
     )
 
 
@@ -465,10 +468,12 @@ def _load_actions() -> List[Dict[str, Any]]:
 
 def postprocess(report_md: str, stats: Dict[str, Any],
                 actions: Sequence[Dict[str, Any]] = (),
-                thresholds: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+                thresholds: Optional[Dict[str, Any]] = None,
+                freeze: Optional["experiment_freeze.Freeze"] = None) -> Dict[str, Any]:
     """記述ルールのうち、確定的に直せるものを当てる(§A・§B)。
 
-    返り値は ``{"report_md", "suppressed", "warnings", "settled_lines"}``。
+    返り値は ``{"report_md", "suppressed", "frozen", "warnings", "settled_lines"}``。
+    ``frozen`` は実験の凍結対象に触れたため差し替えた推奨アクション。
     ``settled_lines`` は差し替えて書き込んだ本文で、action_log 側が
     「これは新しい提案ではない」と判別するために使う。
     直せないもの(主語の省略、残った比喩)は warnings に積んで、
@@ -485,6 +490,8 @@ def postprocess(report_md: str, stats: Dict[str, Any],
     import action_log
 
     text, suppressed, settled_lines = action_log.suppress_settled(text, actions)
+    text, frozen, freeze_lines = experiment_freeze.suppress_frozen(text, freeze)
+    settled_lines = settled_lines + freeze_lines
     text = insight_style.apply_number_format(
         text, insight_style.number_replacements(stats, flat)
     )
@@ -501,7 +508,7 @@ def postprocess(report_md: str, stats: Dict[str, Any],
     if missing:
         warnings.append(f"セクションが欠落しています: {', '.join(missing)}")
 
-    return {"report_md": text.strip(), "suppressed": suppressed,
+    return {"report_md": text.strip(), "suppressed": suppressed, "frozen": frozen,
             "warnings": warnings, "settled_lines": settled_lines}
 
 
@@ -521,8 +528,11 @@ def generate(stats: Dict[str, Any], model: Optional[str] = None,
     model = model or INSIGHT_MODEL
     actions = list(actions) if actions is not None else _load_actions()
     try:
+        # 期間内で凍結対象が読めないときは例外 → 数値だけの所見に落とす。
+        # 制約なしで書かせて凍結対象の更新を配るよりよい。
+        freeze = experiment_freeze.load(str(stats.get("date", "")))
         system = build_system_prompt(playbook)
-        user = build_user_prompt(stats, actions)
+        user = build_user_prompt(stats, actions, freeze=freeze)
         try:
             report = _call_model(system, user, model)
         except TruncatedResponse as exc:
@@ -535,21 +545,24 @@ def generate(stats: Dict[str, Any], model: Optional[str] = None,
         if len(report) > INSIGHT_MAX_CHARS * 2:
             # Well past the instructed limit — keep it, but say so.
             print(f"[warn] insight is {len(report)} chars, over the {INSIGHT_MAX_CHARS} target")
-        result = postprocess(report, stats, actions)
+        result = postprocess(report, stats, actions, freeze=freeze)
         for warning in result["warnings"]:
             print(f"[warn] 記述ルール: {warning}")
         for note in result["suppressed"]:
             print(f"[ok] 実施済みのため再提案を差し替え: {note}")
+        for note in result["frozen"]:
+            print(f"[ok] 実験の凍結対象のため差し替え: {note}")
         print(f"[ok] generate_insight: {len(result['report_md'])} chars via {model}")
         # settled_lines を必ず返す。落とすと run_weekly が差し替えた本文を
         # 新しい提案として action_log に登録する(A-016・A-018 の原因)。
         return {"report_md": result["report_md"], "source": "llm", "error": None,
-                "suppressed": result["suppressed"], "warnings": result["warnings"],
-                "settled_lines": result["settled_lines"]}
+                "suppressed": result["suppressed"], "frozen": result["frozen"],
+                "warnings": result["warnings"], "settled_lines": result["settled_lines"]}
     except Exception as exc:  # noqa: BLE001 - degrade, never drop the report
         print(f"[warn] generate_insight failed ({exc}) — falling back to the numeric summary")
         return {"report_md": fallback_report(stats), "source": "fallback",
-                "error": str(exc), "suppressed": [], "warnings": [], "settled_lines": []}
+                "error": str(exc), "suppressed": [], "frozen": [], "warnings": [],
+                "settled_lines": []}
 
 
 def main() -> None:

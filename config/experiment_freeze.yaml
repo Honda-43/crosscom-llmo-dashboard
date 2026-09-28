@@ -1,0 +1,23 @@
+# 実験期間中の編集凍結(2026-09-28)
+#
+# 週次所見(generate_insight)の推奨アクションが、実験の記事を更新する施策を
+# 出さないようにするための設定。
+#
+# 凍結対象の一覧はここに書き写さない。seo-agent(apply_gate / publish_followup)が
+# 読んでいるのと同じファイルを直接読む。一覧の変更は効果測定チャットの通知で
+# seo-agent 側が行うので、dashboard はファイルを読むだけ(編集もコミットもしない)。
+#
+# 日付は文字列で書く(YAML の日付型にすると比較のときに型がずれる)。
+
+# 実験期間(所見の文面に出す期間)。処置の反映(9/29〜30)から判定の終わりまで。
+experiment_start: "2026-09-29"
+experiment_end: "2026-12-31"
+
+# 凍結の開始日。targets.csv / publish_followup.py の EXPERIMENT_START と同じ。
+# ビフォー観測が始まった 9/15 から本文を変えていないので、所見もこの日から縛る。
+freeze_start: "2026-09-15"
+
+# 編集禁止(本文・タイトル・meta・スキーマ・逆リンクの追記を含む)。49本。
+edit_ban_file: experiment_2x2/targets.csv
+# 新規リンクの張り先にしない。47本(edit_ban からピラー2本を除いたもの)。
+link_ban_file: experiment_2x2/link_ban.csv
