@@ -1,0 +1,20 @@
+# プロンプトIDと自社ページの対応表(2026-09-28)
+#
+# 各プロンプト(CEP)に対応する自社ページ。週次所見の「A-3の自社ページを更新」のように
+# パスを書かない提案が、実験の凍結対象を更新させないかを判定するのに使う
+# (src/experiment_freeze.py)。対応ページが凍結対象に含まれるプロンプトへの
+# 「ページ更新」系の提案は、文面にパスが無くても差し替える。
+#
+# - 値はパスのリスト。先頭が主、2つめ以降が副。
+# - 初期値は調査済みの引用実績にもとづく。**引用実績が変わったら更新する**
+#   (どのページが引かれているかは lk_scatter / citation_gap で見る)。
+# - 対象は日次プロンプト(config/prompts.yaml)だけ。月次 M-1〜M-12 はブランド指名のため
+#   ページ単位の施策と対応せず、ここには載せない。
+pages:
+  A-1: [/service/agentforce-support/]
+  A-2: [/service/agentforce-support/]
+  A-3: [/agentforce-pricing/, /service/agentforce-support/]
+  B-1: [/agentic-crm/]
+  B-2: [/service/agentic-crm-design/]
+  B-3: [/service/agentic-crm-design/]
+  E-1: [/about/]

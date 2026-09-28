@@ -37,6 +37,8 @@ PROMPTS_WATCH_FILE = CONFIG_DIR / "prompts_watch.csv"
 # 実験期間中の編集凍結(2026-09-28)。凍結対象の一覧そのものは seo-agent 管理の
 # experiment_2x2/targets.csv・link_ban.csv を読む(このファイルにはパスと期間だけ)。
 EXPERIMENT_FREEZE_FILE = CONFIG_DIR / "experiment_freeze.yaml"
+# プロンプトIDと自社ページの対応表。パスを書かない「自社ページ更新」の提案の凍結判定に使う。
+PROMPT_PAGE_MAP_FILE = CONFIG_DIR / "prompt_page_map.yaml"
 EXPERIMENT_FLAG_POOL = "pool"
 EXPERIMENT_FLAG_WATCH = "watch"
 # 実験の回答全文。日次・月次の日付ディレクトリと混ぜない。

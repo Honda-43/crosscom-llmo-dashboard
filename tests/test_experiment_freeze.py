@@ -98,3 +98,77 @@ def test_an_unreadable_list_degrades_to_the_numeric_report(monkeypatch, tmp_path
     result = generate_insight.generate(stats, playbook="p", actions=[])
     assert result["source"] == "fallback"
     assert not called
+
+
+# --------------------------------------------------------------------------
+# プロンプトIDと自社ページの対応表(config/prompt_page_map.yaml)
+# --------------------------------------------------------------------------
+NOTE = "実験期間中(〜2026-12-31)のため、ページ更新を伴う施策は提案対象外。凍結対象外の施策のみ提案する"
+
+
+def test_every_daily_prompt_has_pages_and_monthly_is_left_out():
+    """対応表は日次プロンプトだけ。月次(ブランド指名)はページ単位の施策と対応しない。"""
+    from settings import PROMPTS_FILE, load_yaml
+    daily = {p["id"] for p in load_yaml(PROMPTS_FILE)["prompts"]}
+    pages = experiment_freeze.load_prompt_pages()
+    assert set(pages) == daily
+    assert all(paths for paths in pages.values())
+
+
+def test_only_a3_and_b1_map_to_frozen_pages(freeze):
+    frozen = {pid for pid in freeze.prompt_pages if freeze.frozen_pages(pid)}
+    assert frozen == {"A-3", "B-1"}
+    assert freeze.frozen_pages("A-3") == ["/agentforce-pricing/"]
+
+
+@pytest.mark.parametrize("line", [
+    "推奨アクション: 担当者が来週末までにA-3の自社ページを更新する。",
+    "推奨アクション: 担当者が2026/10/05までにB-1の記事にFAQを追記する。",
+])
+def test_a_page_update_without_a_path_is_judged_by_the_map(freeze, line):
+    text, notes, _ = experiment_freeze.suppress_frozen(line, freeze)
+    assert text == f"推奨アクション: {NOTE}"
+    assert notes
+
+
+@pytest.mark.parametrize("line", [
+    # 凍結対象外の副ページをパスで指定している
+    "推奨アクション: 担当者が来週末までにA-3の /service/agentforce-support/ を更新する。",
+    # 対応ページが凍結対象外
+    "推奨アクション: 担当者が来週末までにA-1の自社ページを更新する。",
+    # 外部への修正依頼は自社ページの更新ではない
+    "推奨アクション: 担当者が来週末までにA-3で引用された外部記事の運営者に修正を依頼する。",
+    # 更新を伴わない
+    "推奨アクション: 担当者が来週末までにA-3で引用されている競合ページを調査する。",
+])
+def test_other_actions_on_mapped_prompts_are_kept(freeze, line):
+    text, notes, _ = experiment_freeze.suppress_frozen(line, freeze)
+    assert text == line and not notes
+
+
+def test_the_prompt_id_comes_from_the_item_heading(freeze):
+    report = ("**R-P2(言及消失) — A-3**\n"
+              "状態: A-3でClaudeの回答に3観測日以上言及がない。\n"
+              "推奨アクション: 担当者が来週末までに対象ページの本文を更新する。\n"
+              "**R-P2(言及消失) — A-1**\n"
+              "推奨アクション: 担当者が来週末までに対象ページの本文を更新する。\n")
+    text, notes, _ = experiment_freeze.suppress_frozen(report, freeze)
+    lines = text.splitlines()
+    assert lines[2] == f"推奨アクション: {NOTE}"
+    assert lines[4].endswith("対象ページの本文を更新する。")
+    assert len(notes) == 1
+
+
+def test_the_models_own_note_and_alternative_are_kept(freeze):
+    """注記の文面に「ページ更新」が入っているので、判定すると代替施策ごと消える。"""
+    line = f"推奨アクション: {NOTE}。代わりにA-3について第三者メディアへ料金情報を提供する。"
+    report = f"**R-P2(言及消失) — A-3**\n{line}"
+    text, notes, _ = experiment_freeze.suppress_frozen(report, freeze)
+    assert line in text.splitlines() and not notes
+
+
+def test_the_prompt_names_the_mapped_frozen_prompts(freeze):
+    block = experiment_freeze.prompt_block(freeze)
+    assert "- A-3: /agentforce-pricing/" in block
+    assert "- B-1: /agentic-crm/" in block
+    assert "- A-1:" not in block

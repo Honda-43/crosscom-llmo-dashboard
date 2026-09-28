@@ -15,14 +15,21 @@ import csv
 import io
 import re
 from dataclasses import dataclass
-from typing import FrozenSet, List, Optional, Tuple
+from typing import Dict, FrozenSet, List, Optional, Tuple
 from urllib.parse import urlparse
 
 import insight_style
-from settings import EXPERIMENT_FREEZE_FILE, ROOT_DIR, load_yaml
+from settings import EXPERIMENT_FREEZE_FILE, PROMPT_PAGE_MAP_FILE, ROOT_DIR, load_yaml
 
 # ピラーの「張り先にする」は可、「本文を触る」は不可。ピラーだけは行の動詞で分ける。
 _EDIT_WORDS = re.compile(r"更新|追記|編集|書き換|書換|修正|改訂|差し替|差替|加筆|リライト")
+# パスを書かない提案のうち「自社ページの更新」とみなすもの。編集の動詞に加えて
+# 自社のページを指す語があり、外部への依頼・掲載の話ではないこと。
+_OWN_PAGE_WORDS = re.compile(r"自社|ページ|記事|本文|FAQ|見出し|タイトル|コンテンツ|サイト")
+_EXTERNAL_WORDS = re.compile(r"外部|第三者|他社|依頼|メディア|ディレクトリ|プレスリリース")
+# 行に書かれたパス(/xxx/ または https://…/xxx/)。書かれていればパスで判定する。
+# 日付(2026/10/05)をパスと取り違えないよう、英字を含む区切りだけを見る。
+_PATH = re.compile(r"(?:https?://[^\s/]+)?(/(?=[\w-]*[A-Za-z])[\w-]+(?:/[\w-]+)*/)", re.ASCII)
 _ACTION_LINE = re.compile(
     r"^\s*(?:[-*・]|\d+[.)])?\s*(?:\*\*)?(?:推奨)?アクション(?:\*\*)?\s*[:：]\s*(.+)$"
 )
@@ -34,6 +41,13 @@ class Freeze:
     experiment_end: str
     edit_ban: FrozenSet[str]    # 本文を変えない(49本)
     link_ban: FrozenSet[str]    # 新しいリンクの張り先にしない(47本)
+    # プロンプトID -> 対応する自社ページ(先頭が主)。config/prompt_page_map.yaml
+    prompt_pages: Dict[str, Tuple[str, ...]] = None  # type: ignore[assignment]
+
+    def frozen_pages(self, prompt_id: str) -> List[str]:
+        """そのプロンプトの対応ページのうち、凍結対象のもの。"""
+        return [p for p in (self.prompt_pages or {}).get(prompt_id, ())
+                if p.strip("/") in self.edit_ban]
 
     @property
     def note(self) -> str:
@@ -58,7 +72,13 @@ def _read_slugs(path) -> FrozenSet[str]:
     return frozenset(slugs)
 
 
-def load(date: str, config_path=EXPERIMENT_FREEZE_FILE) -> Optional[Freeze]:
+def load_prompt_pages(path=PROMPT_PAGE_MAP_FILE) -> Dict[str, Tuple[str, ...]]:
+    pages = (load_yaml(path) or {}).get("pages") or {}
+    return {str(pid): tuple(str(p) for p in paths) for pid, paths in pages.items()}
+
+
+def load(date: str, config_path=EXPERIMENT_FREEZE_FILE,
+         page_map_path=PROMPT_PAGE_MAP_FILE) -> Optional[Freeze]:
     """``date``(所見の週末日)が凍結期間内なら Freeze、期間外なら None。
 
     期間内なのに一覧が読めない場合は例外にする。黙って制約なしで書かせると、
@@ -74,6 +94,7 @@ def load(date: str, config_path=EXPERIMENT_FREEZE_FILE) -> Optional[Freeze]:
         experiment_end=end,
         edit_ban=_read_slugs(ROOT_DIR / cfg["edit_ban_file"]),
         link_ban=_read_slugs(ROOT_DIR / cfg["link_ban_file"]),
+        prompt_pages=load_prompt_pages(page_map_path),
     )
 
 
@@ -85,6 +106,13 @@ def prompt_block(freeze: Optional[Freeze]) -> str:
         f"- /{slug}/" + ("" if slug in freeze.link_ban else "(ピラー:張り先にするのは可)")
         for slug in sorted(freeze.edit_ban)
     )
+    mapped = [f"- {pid}: " + "、".join(freeze.frozen_pages(pid))
+              for pid in sorted(freeze.prompt_pages or {}) if freeze.frozen_pages(pid)]
+    mapped_block = (
+        "\n次のプロンプトは、対応する自社ページが凍結対象です。"
+        "このプロンプトに対する「自社ページ更新」は、パスを書かなくても凍結対象の更新として扱います。\n"
+        + "\n".join(mapped) + "\n"
+    ) if mapped else ""
     return f"""
 # 実験期間の制約(実験期間 {freeze.experiment_start}〜{freeze.experiment_end})
 次のページは実験の対象のため、{freeze.experiment_end} まで本文を変えません(編集凍結)。
@@ -96,7 +124,7 @@ def prompt_block(freeze: Optional[Freeze]) -> str:
 凍結対象外のページの更新など。プレイブックに沿うものに限る)。代わりが無ければこの1文だけにする。
 「{freeze.note}」
 推奨アクションで対象ページを書くときは、パス(例: /{sorted(freeze.link_ban)[0]}/)で書く。
-
+{mapped_block}
 凍結対象({len(freeze.edit_ban)}本):
 {pages}
 """
@@ -121,6 +149,23 @@ def violations(line: str, freeze: Freeze) -> List[str]:
     return found
 
 
+def _is_own_page_update(line: str) -> bool:
+    return (_EDIT_WORDS.search(line) is not None
+            and _OWN_PAGE_WORDS.search(line) is not None
+            and _EXTERNAL_WORDS.search(line) is None)
+
+
+def mapped_violations(line: str, prompt_ids: List[str], freeze: Freeze) -> List[str]:
+    """パスを書かない「自社ページ更新」が、対応表で凍結対象に当たるか。
+
+    行にパスが書かれていればパスの判定(violations)に任せる。
+    「A-3 の /service/agentforce-support/ を更新」は凍結対象外の副ページなので通す。
+    """
+    if _PATH.search(line) or not _is_own_page_update(line):
+        return []
+    return [p.strip("/") for pid in prompt_ids for p in freeze.frozen_pages(pid)]
+
+
 def suppress_frozen(report_md: str, freeze: Optional[Freeze]
                     ) -> Tuple[str, List[str], List[str]]:
     """凍結対象に触れる推奨アクションを、凍結の注記に差し替える。
@@ -133,10 +178,22 @@ def suppress_frozen(report_md: str, freeze: Optional[Freeze]
         return report_md, [], []
     lines = report_md.splitlines()
     notes: List[str] = []
+    # 行に prompt_id が無ければ、その行が属する項目(見出し)の prompt_id を使う
+    block_prompts: Dict[int, List[str]] = {}
+    for start, end in insight_style._block_spans(lines):
+        ids = sorted(set(insight_style.PROMPT_ID_RE.findall("\n".join(lines[start:end]))))
+        for i in range(start, end):
+            block_prompts[i] = ids
     for i, line in enumerate(lines):
         if not _ACTION_LINE.match(line):
             continue
-        hit = violations(line, freeze)
+        # モデルが自分で書いた注記(と、続けて書いた代替施策)は判定しない。
+        # 注記の文面に「ページ更新」が含まれるため、見ると代替施策ごと消してしまう。
+        if freeze.note in line:
+            continue
+        prompt_ids = (sorted(set(insight_style.PROMPT_ID_RE.findall(line)))
+                      or block_prompts.get(i, []))
+        hit = violations(line, freeze) or mapped_violations(line, prompt_ids, freeze)
         if not hit:
             continue
         indent = line[:len(line) - len(line.lstrip())]
