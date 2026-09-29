@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-29",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-09-29T01:32:03.645919Z",
+  "answer": "# Agentic CRMとは\n\nAgentic CRM（エージェンティックCRM）とは、従来のように人間が情報を入力・確認して初めて動く受動的なCRMとは異なり、**AIエージェントが自律的に計画・実行・適応しながら顧客関連業務を進める次世代のCRM**を指します。\n\n## 従来のCRMとの違い\n\nSalesforceの定義によれば、\nAgentic CRMは、人間とともに、各ステップで人間の承認を必要とせずに多段階のワークフローを計画・実行・適応する自律的AIエージェントを使う顧客関係管理システムであり、エージェントは事前に設定されたガードレール内で行動し、必要な時には人間にエスカレーションする\n点が特徴です。\n\n従来型のルールベース自動化との違いも明確にされています。\n従来のルールベースCRM自動化は、リードスコアが閾値を超えたら定型メールを送るといった固定ロジックに従うのに対し、エージェント型システムは文脈を解釈し、条件と出力を単純に一致させるのではなく、顧客データを推論し、状況に応じた適切な行動を特定し、その後の結果に基づいてアプローチを調整する\nという点が本質的な違いです。\n\nCreatioの解説では、\nエージェント型CRMではAIエージェントがソフトウェアに不可欠な一部となり、CRMのオブジェクト・ワークフロー・関係性をすべて包括的に理解・アクセスできる必要があり、単に情報を保存したり定義済みのステップを自動化したりするだけの従来型CRMとは異なる\nとされています。\n\n## 具体的にできること\n\n例えば自動車販売業界向けのFullpathの解説では、\n人間の指示を待つのではなく、エージェント型CRMは特定の役割を持つ専門化されたAIエージェントを配置し、それらが観察・判断・行動を代行する\nとされ、\n従来の「スマートCRM」との違いは、1つのAIが全てをこなそうとするのではなく、複数の専門化されたエージェントが統合されたデータ基盤の上で連携して働く点にある\nと説明されています。\n\nMicrosoftのブログでは、\nエージェント型CRMは次に何が起きるべきかを予測し、リスクを早期に察知し、問題解決への道筋を提案し、成果に向けて推進する\n機能を持つとされています。\n\n## 導入している主要プラットフォーム\n\nCreatioによれば、\nCreatio、Salesforce、Microsoft、HubSpot、Zohoといった主要ソリューションが、エージェント型CRMがすでに市場をどのように再構築し、今後の標準を確立しつつあるかを示している\nとされています。SalesforceはAgentforce、MicrosoftはDynamics 365上でこの概念を展開しています。\n\n## 導入・設計を支援してくれる会社\n\n### 日本国内の支援会社の例\n\n1. **クロスコム（合同会社クロスコム）**\n   Salesforce公式パートナーとして、\nSales Cloud（CRM）、Account Engagement（MA）の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装\nしており、\n「どの業務で・誰が・何を判断できるようにするか」を定義し、マーケ・営業・サポートのユースケースに合わせてAgentforceを業務フローへ組み込む\n支援を行っています。\n\n2. **株式会社MCネクスト**\n   SFA・CRM導入支援を専門とし、\n企業文化や営業戦略、営業マネジメントの現状を踏まえた独自の導入・活用プラン策定支援や、導入時のシステム活用範囲・詳細項目（カスタマイズ）の設計支援\nを提供しています。\n\n3. **EY Japan（EY Strategy and Consulting）**\n   特に製薬業界向けに、\nCRMがAIエージェント化し、記録・管理から最適行動を提示・実行支援する業務基盤へ進化するという観点から、データの正確性・粒度・更新頻度を担保し、仮説検証を高速で回す運用力が競争優位を左右する\nという視点でのコンサルティングを行っています。\n\n4. **Relipasoft（AI導入支援会社）**\n   より広くAgentic AI全般の導入設計について、\nAgentic AIを企業の業務へ導入するにはAIモデルに関する知識だけでなく、システム開発、データ連携、クラウド、セキュリティ、業務設計など幅広い知識が必要であり、自社だけでの設計・開発が難しい場合はAI導入支援会社などの専門パートナーと連携することで、業務への適用からシステム開発、運用まで段階的に進められる\nとしています。\n\n### 選び方のポイント\n\n- **プラットフォーム系（Salesforce",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://www.fullpath.com/blog/what-is-an-agentic-crm-understanding-the-future-of-dealership-customer-management/",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/06/25/agentic-crm-in-the-flow-of-work-how-ai-is-transforming-sales-and-rebuilding-customer-trust/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://www.mcnext.co.jp/service/service1/",
+    "https://www.ey.com/ja_jp/insights/health/generative-ai-transforms-the-role-of-pharma-crm",
+    "https://relipasoft.com/blog/agentic-ai-architecture-ai-implementation-support-company/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-29",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-09-29T01:29:33.279698Z",
+  "answer": "Agentforceの導入支援を検討されている方へ、以下におすすめの会社をご紹介します。AgentforceはSalesforceが提供する自律型AIエージェントのプラットフォームで、CRMやData 360を活用し、AIエージェントと自然言語で対話しながら情報検索、入力、分析、業務実行を可能にします。これにより、従業員の業務体験の高度化、顧客体験や意思決定の質の向上、企業全体の生産性向上を実現します。\n\nAgentforceの導入支援を提供している主な企業は以下の通りです。\n\n*   **三菱総研ＤＣＳ**\n    *   Agentforceを中核としたデータ統合型導入支援を提供しています。データ分析・活用基盤の構築、クラウド利活用、多様なシステムの横断的な統合において豊富な実績を持ち、社内の基幹・周辺システムに分散するデータの統合も含めた導入を一気通貫で支援します。金融分野での実績に基づく高いセキュリティと信頼性も特長です。\n*   **株式会社enucolor**\n    *   Agentforce導入に対する業務整理からPoC（概念実証）開発、活用推進まで一貫したサポートを提供し、企業のDX推進と業務改革を支援しています。\n*   **K2 Partnering Solutions**\n    *   世界のリーディングカンパニーへのSalesforceソリューション提供実績があり、Agentforceをお客様のエコシステムに統合するための最適なパートナーです。Salesforce全体を熟知したチームによる効率的でスケーラブルな導入を実現します。また、導入後の最適化と保守を行う独自の応用管理サービス（AMS）も提供しています。\n*   **株式会社メンバーズ**\n    *   Agentforceの初期導入コンサルティングから、設計・実装・運用、内製化、社員育成まで伴走しながら支援します。 現状業務ヒアリングと業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出しと対応策の検討、投資対効果（ROI）の試算など、導入前コンサルティングから利活用・定着化支援まで幅広く対応しています。\n*   **Girikon**\n    *   Agentforceの導入、Salesforce AIコンサルティング、インテグレーション、マネージドサポートを提供しており、Salesforce導入からコンプライアンス対応、マネージドサポートまで一貫したサービスを求める企業に適しています。\n*   **株式会社ウフル**\n    *   Salesforceのテクノロジーを活かした業務支援の現場経験を豊富に持ち、Agentforceの導入・活用を現実的かつ実践的に支援しています。特に「Agentforce for Service」を対象としたカスタマーサービス領域に特化した支援を提供しています。\n*   **バーチャレクス・コンサルティング株式会社**\n    *   Agentforceの利用を迅速に開始したい企業向けの初期導入プラン、導入後の効果的な活用と継続的な改善を目指す伴走支援プラン、Agentforceを含むAI技術を最大限に活用するための構想策定支援プランを提供しています。\n*   **富士ソフト**\n    *   Agentforceの導入支援ソリューションを提供しており、社内検証で培った知見やノウハウを活かし、顧客の営業DX化に貢献します。導入に必要なシステム側の改修（API連携、データ整備、UI/UX改善など）も実施し、スムーズな利用環境を整備します。\n\nこれらの企業は、Agentforceの導入から運用、定着化まで、お客様のビジネス課題や目的に合わせて多岐にわたる支援を提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEBcQgu5SlhUVhN1XebHcrGJ5UCcCxml2evNBYffbVXQ1Eki4QD0e36poHVbuPpGq7dFy48L3Zk4XDktBDw4Cv1baB5nQNdXiV_CPcfdcS2vG_Z9bsT0tuKNSdfdm8QMEYUhVaTw1Hbys0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHr6Dxl-gSNO8Li-PcPx02S93mx8z0tAR_cpCifApBF_hTTz8MQGKbsXGG3j_qRzyUicgzV3jUNxc4aglCnkk4prgPr1pmbJ1beT_NxxLz8UxVE2dnrnTVUyzmgE3EuDHQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFeTS6QDLbkhl0g5ytShYd5wc5dRD1pnfJc4Om7S1RMuDeudlHNQNWw1ASaa-KvFlZBL67izHi2SDJeMrGk0aB6BObbIM8K0KxbhbH7WsuPOSWg28Z5qOEGOUmfzoWJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE4C0m2PKCRQQiOfv8C7pfTvzYiyGjJwaFYc6Ctxt3jejGomxX0Lh74TH6DMaAQYfuHxKSHwXgxNms43-3AwHjQhxIjQo-PlXlCwVyJESO7hrYyW3lj1Qvj2Vud6tpAcEQPjwkVDcfDPidjxM9lVYwET8lk0I-vQKjiJ2IEO8_CdiYpJl8VyPeCjTJvWbF5yhRat3ckukbuUIo7t1eWH4uqy2LT30bTtU7A-nR2R0Gu",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFOSmOrnkZo8oM0hlwj-dI2xH_QL_CEg0hRu7MZl2KzjrEC7do_x8DjQnCmieyob6My4gl3jysvzoE-Zjy5EnSBYUttzZ-sN4237t1PW9L2rVHYjBb9CxlGT0_wiENNcWrivPOgp8IvG68-xvP3JyEL6Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-41qre2JH1MD3XFwbj8FMUwO_0HECHjSPJfH6ihcODH8iWTKfjzaBfR3D65nTJuv_tqa8ZrZkvQw1cTDH-6CcmFK11mItFsDJQc90WH1ZbhQWu_-rXYEpjO5l2qgOdmd5V4p3kQY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEBamFmQVYANSNB40FYJhQDtcFiIAJsBKLIkunMy_AnD0WnfSM5kzhY2kIdGr6Cd8O51djlmI6D3zohlG050cIbKakF4_BvuzVExmwTt2yCdHO1mor2IEzn09vA1qYaiMloSul4-fv5INoMfnv5p_CItmdRFna3AVzj",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHNcuHkgE6sFc6bq4fqWoDGJY-MdjlwAL8doIw2uMTRav5fbSqj49Ry3e8qbUJlbgREG2N0IB47QppIDI_YLbTNu43-AGkeCzBgbNJUgKDHOudjI8VtZtm7P6kB7YBIqFzDT5LLcLrIQVIH",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHKTisQZPnV80deIfmKHp0oCMY3BlMJVASzHuQXBLrvJ1kqhtUB4yuQf9bojyHuWZNv7fml6dOobPalIVMRRALMPdelB39cpUiz7a3d8eV9XUHlzeoeIwLIEWfTenplccqn0eD6E4CfRPejv2OMcdNqkyGz68Rat3FaCRiMK4U=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtHB5GbFXc7EM-GWKete-0w47aM5Fs_GdxBT3QuqPXfoyYEllil_JTVesNbEutDQfNBtD1uWriTDAsCalFVnOKxkmr2sNDXlLLCu3qk0AAZxxopiK7YYdjUOISaC0gr7aXmxelphcbLAGGvQ=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}
