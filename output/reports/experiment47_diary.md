@@ -560,3 +560,50 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 確かめ方：2026-09-29 時点で faq_multiparagraph_20260929.csv は dashboard・seo-agent のどちらにもまだ無い。
 5通り目の動き（全組から抜く・再ランダム化も同じ除外・表が無いとき・載っていない記事の警告）は
 `tests/test_rerandomize.py` で確かめた。
+
+## 2026-09-29 13:13／features（post 6541）L290 の1文の誤り訂正を適用（便IX §4・便JA）
+
+**処置ではない**（群：③リードのみ。内容を限定した例外 EXPERIMENT_PATCH_EXCEPTIONS で、この1文の置換だけを通した）。理由：提供状況の誤り訂正（管BO／管BN）。効果測定チャットの了承（便JN・2026-09-23）
+- 変更前：SlackやMicrosoft Teams、ChatGPT、Claudeなど、複数の面から利用できるよう順次拡大が計画されています。
+- 変更後：Salesforceの製品ページでは、SlackやMicrosoft Teams、Claude、ChatGPT、モバイルからも利用できると案内されています（2026年9月時点）。※参考記事はhttps://www.salesforce.com/agentforce/coworker/
+- 見出し（【2026年8月時点】）・FAQ・メタは変えていない。apply_gate は差分がこの置換と完全一致のときだけ通す
+- 一次情報：Salesforce 製品ページ（2026-09-22 取得）「…like Salesforce, Slack, Microsoft Teams, Claude, ChatGPT, and mobile.」
+
+## 2026-09-29 13:12／処置反映の1本目：agentforce-small-business（post 6554・④両方）
+
+- D-39 結論要約ブロック（lead_drafts_20260927.csv の block_html のまま）＋「（2026年9月時点）」を記事の最上部へ
+- 既存の FAQ 5問（H3＋段落）を Yoast FAQ ブロック1つへ。Q・A の文言・問数は不変。折りたたみなし
+- 既存の本文は不変（タグを落としたテキストが「足したブロックの文言＋元の本文」と一致）。apply_gate 17検査 NG0
+- 公開ページ（13:13 取得）：d39-summary 1・FAQPage の Question 5・details 0
+- 本田さんの目視確認を待って止めている（残りの処置群34本は未適用）。処置群35本の下見では11本が止まる（FAQ の変換10本・古い autosave 1本）→ 判断待ち
+- 2026-09-29 13:22／処置反映：agentforce-roi（post 6647・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:22／処置反映：agentforce-vibes（post 6543・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:22／処置反映：agentforce-features（post 6541・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:22／処置反映：agentforce-in-slack（post 6545・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:22／処置反映：agentforce-certification（post 6571・②FAQのみ）… D-39 —／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:23／処置反映：agentforce-chatgpt-copilot-comparison（post 6608・②FAQのみ）… D-39 —／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:23／処置反映：agentforce-usage（post 6606・②FAQのみ）… D-39 —／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:23／処置反映：agentforce-reasoning-control（post 6648・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:23／処置反映：salesforce-ai（post 6825・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:23／処置反映：salesforce-data-360（post 6829・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:24／処置反映：revops-guide（post 6402・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:24／処置反映：tableau-ai（post 6827・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:24／処置反映：agentforce-sales-roleplay（post 7174・②FAQのみ）… D-39 —／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:24／処置反映：agentic-crm-pipeline-stagnation-detection（post 6406・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:24／処置反映：agentforce-deal-notes（post 7215・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:25／処置反映：agentforce-voice（post 6999・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:25／処置反映：agentforce-subagents（post 7124・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:25／処置反映：agentforce-lost-deal-analysis（post 7153・②FAQのみ）… D-39 —／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:26／処置反映：agentforce-sales-dependency（post 7133・②FAQのみ）… D-39 —／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:26／処置反映：agentforce-data-volume（post 7186・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:26／処置反映：agentforce-data-library（post 7127・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:27／処置反映：agentforce-permission-set（post 7130・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:27／処置反映：agentforce-proposal-review（post 7165・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:27／処置反映：einstein-trust-layer（post 6816・③リードのみ）… D-39 あり／FAQ —（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:29／処置反映：agentforce-use-cases（post 6603・②FAQのみ）… D-39 —／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 13:29／処置反映：agentforce-testing-center（post 6643・②FAQのみ）… D-39 —／FAQ 6問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 14:00／処置反映：agentforce-for-sales-sdr-sales-coach（post 6234・②FAQのみ）… D-39 —／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 14:00／処置反映：agentforce-agent-script（post 6642・④両方）… D-39 あり／FAQ 6問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 14:00／処置反映：buyer-enablement（post 6724・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 14:00／処置反映：hyper-personalization（post 6235・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 14:00／処置反映：agentforce-mcp（post 6645・②FAQのみ）… D-39 —／FAQ 6問（apply_gate NG0・再読一致・既存本文不変）
