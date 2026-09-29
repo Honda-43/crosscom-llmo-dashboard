@@ -607,3 +607,4 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 - 2026-09-29 14:00／処置反映：buyer-enablement（post 6724・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
 - 2026-09-29 14:00／処置反映：hyper-personalization（post 6235・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
 - 2026-09-29 14:00／処置反映：agentforce-mcp（post 6645・②FAQのみ）… D-39 —／FAQ 6問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 17:47／処置反映：agentforce-rag（post 6604・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
