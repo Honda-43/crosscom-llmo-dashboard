@@ -139,3 +139,9 @@ def test_a_week_without_interventions_says_so(log, tmp_path):
     section = text.split("## 4. この週の介入")[1].split("## 5.")[0]
     assert "この週に実施した介入はない" in section
     assert "プール46本に触れる介入がこの週にある" not in section
+
+
+def test_i07_notes_the_multi_paragraph_faq_conversion():
+    """B-24：複数段落回答の6本は <br> でつないで変換した(2026-09-29)。判定の5通り目の理由。"""
+    by_id = {r["intervention_id"]: r for r in interventions.load()}
+    assert "B-24" in by_id["I-07"]["note"] and "<br>" in by_id["I-07"]["note"]

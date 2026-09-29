@@ -132,7 +132,11 @@ def test_the_p_value_is_the_share_of_permutations_at_least_as_extreme():
 
 
 # --- 5. 判定の出力 -------------------------------------------------------------------
-def _outcome_rows(monkeypatch, pool_rows):
+def _outcome_rows(monkeypatch, pool_rows, multi_csv=None):
+    """multi_csv を渡さなければ、複数段落回答の表は「無い」ことにする(本物の表を読まない)。"""
+    import pool
+    monkeypatch.setattr(pool, "MULTI_PARAGRAPH_GLOBS",
+                        (str(multi_csv),) if multi_csv else ("__none__/faq_multiparagraph_*.csv",))
     monkeypatch.setattr(summarize.rerandomize, "load", lambda path=None: pool_rows)
     groups = {a["slug"]: rerandomize.GROUPS[i % 4] for i, a in enumerate(ARTS)}
     monkeypatch.setattr(summarize, "load_allocation", lambda: groups)
@@ -330,3 +334,63 @@ def test_load_skips_a_half_written_last_line(tmp_path):
     with open(path, "a", encoding="utf-8", newline="") as f:
         f.write("2,2029011")
     assert rerandomize.load(path) == [(20290105, "1" * 46)]
+
+
+# --- 7. 5通り目：複数段落回答の記事を全組から抜く(2026-09-29) -----------------------------
+# B-24 で処置群の複数段落回答6本は <br> でつないで変換した。処置群だけ抜くと組の条件が
+# 崩れるので、has_multi_paragraph_answer=1 の記事は**組に関係なく**抜く。
+def _multi_csv(tmp_path, multi, listed=None):
+    listed = [a["slug"] for a in ARTS] if listed is None else listed
+    path = tmp_path / "faq_multiparagraph_20260929.csv"
+    lines = ["slug,has_multi_paragraph_answer"]
+    lines += [f"{s},{1 if s in multi else 0}" for s in listed]
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    return path
+
+
+def test_the_fifth_variant_drops_multi_paragraph_articles_from_every_group(tmp_path, monkeypatch, capsys):
+    # 各組から1本ずつ(①③の同じ性質の記事も抜く)
+    multi = {a["slug"] for a in ARTS[:4]}
+    after = _outcome_rows(monkeypatch, _pool(2000), _multi_csv(tmp_path, multi))
+    groups = {after[s][0] for s in multi}
+    assert groups == set(rerandomize.GROUPS), "全組から抜く前提のテストになっていない"
+    label, exclude = summarize.variants()[4]
+    assert label.startswith("複数段落回答抜き（4本") and exclude == multi
+
+    seen = []
+    real = summarize.randomization
+    monkeypatch.setattr(summarize, "randomization",
+                        lambda a, exclude=(): seen.append(set(exclude)) or real(a, exclude))
+    summarize.sensitivity_table(after, None, "gemini")
+    out = capsys.readouterr().out
+    assert len(seen) == 5 and seen[4] == multi, "再ランダム化検定も同じ除外で"
+    body = [ln for ln in out.splitlines() if ln.startswith("複数段落回答抜き")][0]
+    assert body.split()[1] == str(len(ARTS) - 4), body
+    assert "※" not in out
+
+
+def test_without_the_table_the_fifth_variant_is_not_shown_and_says_why(monkeypatch, capsys):
+    after = _outcome_rows(monkeypatch, _pool(2000))
+    assert len(summarize.variants()) == 4
+    summarize.sensitivity_table(after, None, "gemini")
+    out = capsys.readouterr().out
+    assert "複数段落回答抜き" in out and "faq_multiparagraph_*.csv が無い" in out
+
+
+def test_articles_missing_from_the_table_are_warned(tmp_path, monkeypatch, capsys):
+    listed = [a["slug"] for a in ARTS[:-2]]
+    after = _outcome_rows(monkeypatch, _pool(2000),
+                          _multi_csv(tmp_path, {ARTS[0]["slug"]}, listed))
+    summarize.sensitivity_table(after, None, "gemini")
+    out = capsys.readouterr().out
+    assert "表に載っていない記事が 2本" in out and ARTS[-1]["slug"] in out
+
+
+def test_the_table_can_use_urls_instead_of_slugs(tmp_path):
+    import pool
+    path = tmp_path / "t.csv"
+    path.write_text("url,has_multi_paragraph_answer\n"
+                    f"https://cross-com.jp/{ARTS[0]['slug']}/,1\n"
+                    f"https://cross-com.jp/{ARTS[1]['slug']}/,0\n", encoding="utf-8")
+    multi, missing = pool.multi_paragraph_slugs(str(path))
+    assert multi == {ARTS[0]["slug"]} and len(missing) == len(ARTS) - 2

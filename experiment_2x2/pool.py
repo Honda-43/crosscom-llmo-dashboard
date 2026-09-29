@@ -135,6 +135,47 @@ def late_appended_slugs(path=None):
     return late
 
 
+# B-24(FAQ ブロック化)で回答が複数段落だった記事の表(2026-09-29。seo-agent 側が作る)。
+# 列: slug または url、has_multi_paragraph_answer(1/0)。46本すべてを載せる。
+# 処置群の6本は <br> でつないで変換した(文言不変)。同じ性質の記事を組に関係なく抜いた
+# 感度分析を判定に並べる(summarize.variants の5通り目)。dashboard 側に写しが無ければ
+# seo-agent の output/reports を読む。
+MULTI_PARAGRAPH_GLOBS = (
+    os.path.join(HERE, 'faq_multiparagraph_*.csv'),
+    os.path.join(ROOT, '..', 'crosscom-seo-agent', 'output', 'reports', 'faq_multiparagraph_*.csv'),
+)
+
+
+def multi_paragraph_path():
+    """複数段落回答の表。dashboard 側を優先し、同じ場所では日付の新しいほう。無ければ None。"""
+    for pattern in MULTI_PARAGRAPH_GLOBS:
+        dated = sorted(glob.glob(pattern))
+        if dated:
+            return dated[-1]
+    return None
+
+
+def multi_paragraph_slugs(path=None):
+    """(has_multi_paragraph_answer=1 の記事, 表に載っていないプールの記事)。表が無ければ None。
+
+    抜くのは組に関係なく全記事。表に載っていない記事があれば、抜き漏れがありうるので
+    2つ目で知らせる(判定の出力に出す)。
+    """
+    path = path or multi_paragraph_path()
+    if not path or not os.path.exists(path):
+        return None
+    pool = pool_slugs()
+    listed, multi = set(), set()
+    for r in read_csv(path):
+        s = slug(r.get('slug') or r.get('url') or r.get('target_url') or '')
+        if not s:
+            continue
+        listed.add(s)
+        if str(r.get('has_multi_paragraph_answer', '')).strip() == '1':
+            multi.add(s)
+    return multi & pool, pool - listed
+
+
 def baseline_start(slug_name, path=None):
     """その記事のビフォー基準値に使える最初の日。制限が無ければ None。"""
     return LATE_BASELINE_FROM if slug_name in late_appended_slugs(path) else None

@@ -35,7 +35,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import rerandomize  # noqa: E402
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
                   LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
-                  late_appended_slugs, load_allocation, pool_slugs, slug)
+                  late_appended_slugs, load_allocation, multi_paragraph_slugs,
+                  pool_slugs, slug)
 
 WATCH_FLAG = "watch"
 MODELS = ("gemini", "claude")
@@ -212,25 +213,46 @@ def randomization(after, exclude=()):
 
 
 def variants():
-    """感度分析の4通り。(見出し, 除く記事) を返す。
+    """感度分析の4通り（表があれば5通り）。(見出し, 除く記事) を返す。
 
     9/15〜16 に逆リンク追記が入った9本と、鮮度更新の訂正が入る記事は、どちらも
     処置以外の理由で本文が変わっている。片方だけ抜いた結果も並べないと、
     結論がどちらの影響で動いたのか分からない。
     訂正対象は 2026-09-26 から agentforce-features の1本だけ（vibes は訂正見送り）。
+
+    5通り目（2026-09-29）：FAQ の回答が複数段落の記事を**組に関係なく**抜く。
+    B-24 の処置で、処置群の複数段落回答6本（②3本・④3本）は <br> でつないで変換した。
+    処置群だけ抜くと組の条件が崩れるので、①③の同じ性質の記事も抜く。
+    表（pool.multi_paragraph_slugs）が無いときは出さない（pool_multi_note が理由を出す）。
     """
     late = late_appended_slugs()
     corr = set(APPLIED_CORRECTION_SLUGS)
-    return [
+    out = [
         ("両方込み", set()),
         (f"9本抜き（9/15〜16 追記）", set(late)),
         ("features 抜き（訂正対象）", corr),
         ("9本＋features 抜き", set(late) | corr),
     ]
+    multi = multi_paragraph_slugs()
+    if multi is not None:
+        out.append((f"複数段落回答抜き（{len(multi[0])}本・全組）", set(multi[0])))
+    return out
+
+
+def multi_paragraph_note():
+    """5通り目を出せない・抜き漏れがありうるときの1行。問題が無ければ None。"""
+    multi = multi_paragraph_slugs()
+    if multi is None:
+        return ("※ 5通り目（複数段落回答抜き）は出していない："
+                "faq_multiparagraph_*.csv が無い（seo-agent 側が作る）")
+    if multi[1]:
+        return (f"※ 複数段落回答の表に載っていない記事が {len(multi[1])}本ある"
+                f"（{'・'.join(sorted(multi[1]))}）。抜き漏れがありうる")
+    return None
 
 
 def sensitivity_table(after, before, title=""):
-    """4通り（両方込み／9本抜き／features 抜き／9本＋features 抜き）を1つの表にする。"""
+    """感度分析（両方込み／9本抜き／features 抜き／9本＋features 抜き／複数段落回答抜き）を1つの表にする。"""
     rows = []
     for label, exclude in variants():
         groups = tally(after, before, exclude)
@@ -260,11 +282,14 @@ def sensitivity_table(after, before, title=""):
     for r in rows:
         print(row(r))
     print(f"使用した割付数：{rr['n']:,}" if tested(rr) else pool_note(rr))
+    note = multi_paragraph_note()
+    if note:
+        print(note)
     print()
 
 
 def both_ways(after, before, title=""):
-    """感度分析の表と、4通りそれぞれの組別の内訳を出す。"""
+    """感度分析の表と、各通りの組別の内訳を出す。"""
     sensitivity_table(after, before, title)
     for label, exclude in variants():
         summarize(after, before, exclude, f"{title}{label}")
@@ -318,8 +343,9 @@ def main(argv=None):
     print("判定: 差が +25pt 以上 かつ p<0.10 で「効いた」。どちらか欠ければ「この本数では判断できない」。")
     print("p は**再ランダム化検定**を本線にする（条件 a〜g の合格率が約 1/9,200 のため、"
           "同じ条件を満たす割付の中で数える）。フィッシャー正確検定は参考。")
-    print("感度分析の4通りで結論が食い違う場合は、処置ではなく"
-          "「9/15〜16 の追記」か「鮮度更新の訂正」の影響として扱う。")
+    print("感度分析で結論が食い違う場合は、処置ではなく"
+          "「9/15〜16 の追記」「鮮度更新の訂正」「FAQ の複数段落回答（<br> でつないだ変換）」"
+          "のどれかの影響として扱う。")
     return 0
 
 

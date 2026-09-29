@@ -65,6 +65,13 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
   **p=0.05 付近で 2,000件なら約±0.005**（5,000件なら約±0.003）。定数は `rerandomize.POOL_MIN`
 - 感度分析の4通り（両方込み／9本抜き／features 抜き／9本＋features 抜き）それぞれに
   再ランダム化検定をかける
+- **5通り目：複数段落回答抜き**（2026-09-29）。B-24 の処置で、FAQ の回答が複数段落だった処置群6本
+  （②3本・④3本）は `<br>` でつないで変換した（文言不変）。処置群から外すとくじ引き後の除外で組の条件が
+  崩れるため、**判定時に has_multi_paragraph_answer=1 の記事を組に関係なく全組から抜く**
+  （①③の同じ性質の記事も抜く）。再ランダム化検定も同じ除外でかける。
+  表は `faq_multiparagraph_*.csv`（46本・列 slug か url と has_multi_paragraph_answer）。
+  `experiment_2x2/` に写しがあればそれを、無ければ seo-agent の `output/reports/` を読む。
+  表が無いときは5通り目を出さず、その旨を出す。46本のうち表に載っていない記事があれば警告する
 
 ## 判定（summarize.py）
 - 判定は **llm_experiment のみ**。既定でシートの llm_experiment を読む：
