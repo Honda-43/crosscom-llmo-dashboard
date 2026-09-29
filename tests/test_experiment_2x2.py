@@ -301,7 +301,9 @@ def test_the_baseline_skips_observations_before_the_append(monkeypatch, tmp_path
 # --- 7. 感度分析(2026-09-25) -------------------------------------------------------
 def test_the_four_variants_are_the_agreed_ones():
     labels = [label for label, _ in summarize.variants()]
-    assert labels[0] == "両方込み" and labels[-1] == "9本＋features 抜き"
+    # 2026-09-29：複数段落回答の表があれば5通り目が末尾に付く(tests/test_rerandomize.py で確認)
+    assert labels[0] == "両方込み" and labels[3] == "9本＋features 抜き"
+    assert len(labels) == 5 and labels[4].startswith("複数段落回答抜き")
     assert "9本抜き" in labels[1] and labels[2] == "features 抜き（訂正対象）"
     by_label = dict(summarize.variants())
     applied = set(pool.APPLIED_CORRECTION_SLUGS)
@@ -312,7 +314,7 @@ def test_the_four_variants_are_the_agreed_ones():
     assert by_label["9本＋features 抜き"] == pool.late_appended_slugs() | applied
 
 
-def test_the_judgement_prints_one_table_with_four_rows(monkeypatch, tmp_path, capsys):
+def test_the_judgement_prints_one_table_with_five_rows(monkeypatch, tmp_path, capsys):
     rag = "https://cross-com.jp/agentforce-rag/"          # 追記なし・訂正対象でない
     revops = "https://cross-com.jp/revops-guide/"         # 9/15〜16 追記の9本
     feat = "https://cross-com.jp/agentforce-features/"    # 訂正対象(features の1本のみ)
@@ -334,12 +336,14 @@ def test_the_judgement_prints_one_table_with_four_rows(monkeypatch, tmp_path, ca
     import re
     table = [re.split(r"\s{2,}", ln)
              for ln in out.splitlines()
-             if ln.startswith(("両方込み", "9本抜き", "features 抜き", "9本＋features"))]
-    assert len(table) == 4, out
-    # 3本 → 9本を抜くと2本、features を抜くと2本、両方抜くと1本
-    assert [r[1] for r in table] == ["3", "2", "2", "1"], table
+             if ln.startswith(("両方込み", "9本抜き", "features 抜き", "9本＋features",
+                               "複数段落回答抜き"))]
+    assert len(table) == 5, out
+    # 3本 → 9本を抜くと2本、features を抜くと2本、両方抜くと1本。
+    # 3本とも複数段落回答ではないので、5通り目は3本のまま
+    assert [r[1] for r in table] == ["3", "2", "2", "1", "3"], table
     assert "感度分析（gemini）" in out, "見出しに余分な空白を入れない"
-    assert out.count("=== gemini ") == 4, "4通りそれぞれの内訳も出す"
+    assert out.count("=== gemini ") == 5, "5通りそれぞれの内訳も出す"
 
 
 # --- 8. 条件 g: タイトル変更3本(2026-09-25) ----------------------------------------
