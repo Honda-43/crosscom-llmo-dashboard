@@ -394,3 +394,61 @@ def test_the_table_can_use_urls_instead_of_slugs(tmp_path):
                     f"https://cross-com.jp/{ARTS[1]['slug']}/,0\n", encoding="utf-8")
     multi, missing = pool.multi_paragraph_slugs(str(path))
     assert multi == {ARTS[0]["slug"]} and len(missing) == len(ARTS) - 2
+
+
+# --- 8. 本物の表：複数段落回答の7本(2026-09-29) --------------------------------------------
+# seo-agent の faq_multiparagraph_20260929.csv の写し(experiment_2x2/)。7本は偶然すべて ②④ に入った
+MULTI7 = {"agentforce-for-sales-sdr-sales-coach", "agentforce-retention", "agentforce-mcp",
+          "agentforce-agent-script", "buyer-enablement", "hyper-personalization", "sfa-teichaku"}
+
+
+def test_the_real_table_lists_all_46_and_marks_the_seven():
+    import pool
+    assert Path(pool.multi_paragraph_path()).name == "faq_multiparagraph_20260929.csv"
+    assert Path(pool.multi_paragraph_path()).parent == ROOT / "experiment_2x2", "写しを優先する"
+    multi, missing = pool.multi_paragraph_slugs()
+    assert multi == MULTI7 and not missing
+
+
+def test_the_fifth_variant_drops_exactly_the_seven():
+    label, exclude = summarize.variants()[4]
+    assert label == "複数段落回答抜き（7本・全組）" and exclude == MULTI7
+
+
+def test_the_seven_all_sit_in_faq_groups():
+    groups = summarize.load_allocation()
+    assert {groups[s] for s in MULTI7} == {"②FAQのみ", "④両方"}
+    assert sum(groups[s] == "②FAQのみ" for s in MULTI7) == 3
+    assert sum(groups[s] == "④両方" for s in MULTI7) == 4
+
+
+def _real_after(pattern_after, pattern_before):
+    groups = summarize.load_allocation()
+    after = {a["slug"]: (groups[a["slug"]], pattern_after(i)) for i, a in enumerate(ARTS)}
+    before = {a["slug"]: (groups[a["slug"]], pattern_before(i)) for i, a in enumerate(ARTS)}
+    return after, before
+
+
+def test_the_stratified_faq_comparison_says_the_multi_layer_cannot_be_compared(capsys):
+    after, before = _real_after(lambda i: i % 2, lambda i: i % 3 == 0)
+    got = summarize.faq_by_multi_paragraph(after, before, "gemini")
+    out = capsys.readouterr().out
+    assert got["複数段落あり"] is None
+    assert "複数段落あり（7本）：比較不能（②④ 7本／①③ 0本" in out
+    none = got["複数段落なし"]
+    assert none["n"] == 39 and none["on"][1] == 16 and none["off"][1] == 23
+    # 「なし」の層は感度分析の5通り目(7本抜き)の FAQ 差と同じ
+    groups = summarize.tally(after, before, MULTI7)
+    assert none["diff"] == pytest.approx(summarize.effect(groups, summarize.FAQ_ON,
+                                                          summarize.FAQ_OFF)[4])
+    assert "差の差（Δ平均の差）" in out
+
+
+def test_the_stratified_comparison_is_part_of_the_judgement_output(monkeypatch, capsys):
+    after, before = _real_after(lambda i: i % 2, lambda i: 0)
+    monkeypatch.setattr(summarize.rerandomize, "load", lambda path=None: [])
+    monkeypatch.setattr(summarize, "summarize", lambda *a, **k: None)
+    summarize.both_ways(after, before, "claude ")
+    out = capsys.readouterr().out
+    assert "FAQ の主効果（複数段落回答で層別）（claude）" in out
+    assert "複数段落なし（39本）" in out

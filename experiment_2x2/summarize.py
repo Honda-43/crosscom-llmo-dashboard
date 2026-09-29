@@ -288,9 +288,48 @@ def sensitivity_table(after, before, title=""):
     print()
 
 
+def faq_by_multi_paragraph(after, before, title=""):
+    """FAQ の主効果を、複数段落回答あり／なしの層に分けて比べる（2026-09-29）。
+
+    複数段落回答の7本は、9/28 の割付で偶然すべて ②④（FAQ あり）に入った（条件 a〜g に
+    入れていなかった性質）。この性質を共変量として、層の中だけで ②④ 対 ①③ を比べる。
+    片側の組に1本も無い層は比べられないので「比較不能」と出す。
+    「なし」の層は、感度分析の5通り目（複数段落回答抜き）の FAQ 差と同じ記事で数える。
+    """
+    multi = multi_paragraph_slugs()
+    head = "FAQ の主効果（複数段落回答で層別）" + (f"（{title.strip()}）" if title.strip() else "")
+    print(head)
+    if multi is None:
+        print("  faq_multiparagraph_*.csv が無いため出していない\n")
+        return None
+    multi_set = set(multi[0])
+    out = {}
+    for name, keep in (("複数段落あり", lambda s: s in multi_set),
+                       ("複数段落なし", lambda s: s not in multi_set)):
+        drop = {s for s in after if not keep(s)}
+        groups = tally(after, before, drop)
+        a, an, c, cn, diff, p = effect(groups, FAQ_ON, FAQ_OFF)
+        n = an + cn
+        if not an or not cn:
+            print(f"  {name}（{n}本）：比較不能（②④ {an}本／①③ {cn}本。片側に記事が無い）")
+            out[name] = None
+            continue
+        on_d = [d for g in FAQ_ON for _, d in groups.get(g, [])]
+        off_d = [d for g in FAQ_OFF for _, d in groups.get(g, [])]
+        did = sum(on_d) / len(on_d) - sum(off_d) / len(off_d)
+        print(f"  {name}（{n}本）：②④ {a}/{an}={a / an:.0%}  ①③ {c}/{cn}={c / cn:.0%}"
+              f"  差 {diff:+.0%}  片側p(フィッシャー)={p:.3f}"
+              + (f"  差の差（Δ平均の差）{did:+.2f}" if before else ""))
+        out[name] = {"n": n, "on": (a, an), "off": (c, cn), "diff": diff, "p": p,
+                     "did": did if before else None}
+    print("  ※「複数段落なし」は感度分析の「複数段落回答抜き」と同じ記事。再ランダム化の p はそちらの行を見る\n")
+    return out
+
+
 def both_ways(after, before, title=""):
     """感度分析の表と、各通りの組別の内訳を出す。"""
     sensitivity_table(after, before, title)
+    faq_by_multi_paragraph(after, before, title)
     for label, exclude in variants():
         summarize(after, before, exclude, f"{title}{label}")
 

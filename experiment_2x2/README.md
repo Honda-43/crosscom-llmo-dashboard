@@ -70,8 +70,13 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
   崩れるため、**判定時に has_multi_paragraph_answer=1 の記事を組に関係なく全組から抜く**
   （①③の同じ性質の記事も抜く）。再ランダム化検定も同じ除外でかける。
   表は `faq_multiparagraph_*.csv`（46本・列 slug か url と has_multi_paragraph_answer）。
-  `experiment_2x2/` に写しがあればそれを、無ければ seo-agent の `output/reports/` を読む。
+  `experiment_2x2/` に写しがあればそれを、無ければ seo-agent の `output/experiment/`（次に `output/reports/`）を読む。
   表が無いときは5通り目を出さず、その旨を出す。46本のうち表に載っていない記事があれば警告する
+- **複数段落回答の7本は偶然すべて ②④ に入った**（②3本・④4本。条件 a〜g に入れていなかった性質。
+  確率は `imbalance_check.py` で出す）。処置は適用済みのためくじ引きはやり直さない。判定は
+  ①差の差で元々の水準の差を相殺、②7本抜きの感度分析（5通り目）、③**FAQ の主効果を複数段落回答で層別**
+  （`summarize.faq_by_multi_paragraph`。「あり」の層は ①③ に0本のため比較不能と出し、「なし」の層 39本で
+  ②④ 対 ①③ を比べる。再ランダム化の p は5通り目の行を見る）
 
 ## 判定（summarize.py）
 - 判定は **llm_experiment のみ**。既定でシートの llm_experiment を読む：

@@ -139,9 +139,11 @@ def late_appended_slugs(path=None):
 # 列: slug または url、has_multi_paragraph_answer(1/0)。46本すべてを載せる。
 # 処置群の6本は <br> でつないで変換した(文言不変)。同じ性質の記事を組に関係なく抜いた
 # 感度分析を判定に並べる(summarize.variants の5通り目)。dashboard 側に写しが無ければ
-# seo-agent の output/reports を読む。
+# seo-agent の output/experiment（無ければ output/reports）を読む。
 MULTI_PARAGRAPH_GLOBS = (
     os.path.join(HERE, 'faq_multiparagraph_*.csv'),
+    # 2026-09-29：seo-agent は output/experiment/ に置いた（便NJ）。reports/ も念のため見る
+    os.path.join(ROOT, '..', 'crosscom-seo-agent', 'output', 'experiment', 'faq_multiparagraph_*.csv'),
     os.path.join(ROOT, '..', 'crosscom-seo-agent', 'output', 'reports', 'faq_multiparagraph_*.csv'),
 )
 
