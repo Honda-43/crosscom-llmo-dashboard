@@ -628,3 +628,38 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 - 2026-09-29 18:13／処置反映：sfa-teichaku（post 7067・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
 - 2026-09-29 18:13／処置反映：agentforce-retention（post 6260・②FAQのみ）… D-39 —／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
 - 2026-09-30／drift_check：処置後の基準（46本）を experiment_2x2/drift/post_treatment/ に取得。10/5 の回は前回（9/21）ではなくこの基準と比べ、9/29〜30 の処置による変化は想定内として出さない。10/5 以降の変化は想定外として報告。読了時間の表示はハッシュから除外、本文テキストが同じで HTML だけ違う記事は別枠で出す
+
+---
+
+## 2026-09-29〜09-30／処置反映の完了（35本全件合格）
+
+seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
+
+- **処置本数：②11・③12・④12 の計35本、全件合格。①11本は変化なし**（D-39 なし・FAQPage なし・内部リンク本数不変）
+  - 1本目 13:12（agentforce-small-business）〜35本目 18:13（agentforce-retention）
+- **features の差し替え（13:14）**
+  - 前：SlackやMicrosoft Teams、ChatGPT、Claudeなど、複数の面から利用できるよう順次拡大が計画されています。
+  - 後：Salesforceの製品ページでは、SlackやMicrosoft Teams、Claude、ChatGPT、モバイルからも利用できると案内されています（2026年9月時点）。
+- **B-24 の例外**
+  - 複数段落回答の7本は段落の間を `<br><br>` でつなぐ（文言・問数不変・折りたたみなし）。7本目の sfa-teichaku は便NL で追加
+  - agentforce-retention の質問③は `<ul><li>` を保持。Yoast の回答は `<p>` の中に出るため HTML としては不正だが、
+    **JSON-LD（質問③の回答にリスト3項目の文言すべて）・表示（FAQ の節の中に順に表示）とも処置は成立。凍結明けに修正**
+  - 例外はすべて 2026-09-30 まで（10/1 以降は apply_gate が許さない）
+- **確認スクリプトの読み違い3件を修正したうえで合格を確認**
+
+確かめ方：seo-agent の `output/reports/bunNL_report.md`（§3〜§4）・`output/experiment/treatment_applied_20260929.csv`（35行）。
+
+---
+
+## 2026-09-30／アフター期間の運用：反映ラグ・アフターの開始・途中で組ごとの数字を見ない
+
+- **反映ラグ：2026-10-01〜10-05 の観測は判定から除外**（観測の記録は続ける）
+- **アフター観測：2026-10-06 以降**
+- **2026-11-02 の短期判定まで、組ごとの比較（①〜④別の率・差・p値）を出さない・見ない。**
+  理由：途中で覗くと、偶然の上下を見て判断してしまうため
+  - 週次レポート（experiment47_weekN）は、処置反映以後の週で判定日より前に作る回は
+    **46本全体の cited_article 率・cited_domain 率と欠測数だけ**を出す。記事ごとの表・引用された記事の一覧・
+    社名言及の記事一覧も伏せる（記事IDと割付表から組が引けるため）。`src/experiment_weekly.py` の
+    `GROUP_BLIND_UNTIL`（2026-11-02）で切り替え、テストで固定
+  - **組ごとの表は判定日（2026-11-02）以降に解禁**。README（experiment_2x2）にも明記
+- `output/interventions.csv` の I-07 の note に「35本全件合格・ef99696」を追記

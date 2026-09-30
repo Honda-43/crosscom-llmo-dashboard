@@ -114,3 +114,50 @@ def test_the_weekly_workflow_builds_and_commits_the_summary():
     assert "experiment_weekly.py" in steps[build]["run"]
     assert steps[build].get("continue-on-error") is True
     assert "output/reports" in steps[commit]["run"]
+
+
+# --- 6. アフター期間の運用(2026-09-30) ---------------------------------------------------
+# 反映ラグ 10/1〜10/5 は判定に使わない・アフターは 10/6 から。
+# 11/2 の短期判定まで、組ごとの比較につながる数字(記事ごとの表・記事の一覧)を出さない。
+def _build_on(report_date, rows, tmp_path):
+    return ew.build(report_date, rows, pool=POOL, raw_dir=tmp_path / "raw",
+                    experiment_dir=tmp_path / "exp", monthly_dir=tmp_path / "monthly")
+
+
+def test_the_lag_and_after_dates():
+    assert ew.TREATMENT_LAG_UNTIL == dt.date(2026, 10, 5)
+    assert ew.AFTER_FROM == dt.date(2026, 10, 6)
+    assert ew.GROUP_BLIND_UNTIL == dt.date(2026, 11, 2)
+    assert "反映ラグ" in ew._phase(*ew.week_window(dt.date(2026, 10, 6)))   # 9/29〜10/5
+    assert ew._phase(*ew.week_window(dt.date(2026, 10, 13))) == "アフター"  # 10/6〜10/12
+
+
+def test_before_the_judgement_only_totals_and_misses_are_shown(tmp_path):
+    day = dt.date(2026, 10, 13)                                        # 10/6〜10/12
+    rows = [_row("2026-10-07", "E01", "gemini", article=1, domain=1, mentioned=1),
+            _row("2026-10-08", "E02", "gemini", error="429 RESOURCE_EXHAUSTED PerDay"),
+            _row("2026-10-08", "E02", "claude", article=0, domain=1)]
+    text = _build_on(day, rows, tmp_path)
+    assert ew.group_blind(day, ew.week_window(day)[1])
+    assert "| Gemini | 2 | 1 | 1 | 1 | 100.0% | 1 | 100.0% |" in text   # 46本全体の率と欠測
+    assert "記事URLが1回でも出た記事: 1本 / 2本" in text
+    assert "2026-11-02 の短期判定まで、組ごとの比較につながる数字" in text
+    for leak in ("| E01 |", "| E02 |", "  - E01", "— E01"):
+        assert leak not in text, leak                                   # 記事IDを出さない
+    assert "2026-11-02 の短期判定まで出さない" in text.split("## 3.")[1].split("## 4.")[0]
+
+
+def test_the_lag_week_is_also_blind_but_the_before_weeks_are_not(tmp_path):
+    rows = [_row("2026-10-01", "E01", "gemini", article=1)]
+    assert "| E01 |" not in _build_on(dt.date(2026, 10, 6), rows, tmp_path)
+    rows = [_row("2026-09-22", "E01", "gemini", article=1)]
+    assert "| E01 |" in _build_on(dt.date(2026, 9, 28), rows, tmp_path)
+
+
+def test_group_level_numbers_come_back_on_the_judgement_day(tmp_path):
+    day = dt.date(2026, 11, 2)                                          # 10/26〜11/1
+    assert not ew.group_blind(day, ew.week_window(day)[1])
+    rows = [_row("2026-10-27", "E01", "gemini", article=1, mentioned=1)]
+    text = _build_on(day, rows, tmp_path)
+    assert "| E01 |" in text and "  - E01(a)" in text and "— E01" in text
+    assert "短期判定まで" not in text

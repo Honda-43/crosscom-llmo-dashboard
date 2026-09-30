@@ -39,9 +39,15 @@ from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DI
 REPORTS_DIR = ROOT_DIR / "output" / "reports"
 # 週番号の起点。9/15(火)〜9/21(月)を手で集計した回が1週目。自動の回は月〜日で切る。
 WEEK1_MONDAY = dt.date(2026, 9, 14)
-# 処置の反映(9/29〜30)と、判定に使わない反映後1週間(README の運用)
+# 処置の反映(9/29〜30)と反映ラグ(10/1〜10/5)。どちらも判定には使わない(記録は続ける)。
+# アフター観測は 10/6 から(2026-09-30 確定・README の運用)
 TREATMENT_FROM = dt.date(2026, 9, 29)
-TREATMENT_LAG_UNTIL = dt.date(2026, 10, 7)
+TREATMENT_LAG_UNTIL = dt.date(2026, 10, 5)
+AFTER_FROM = dt.date(2026, 10, 6)
+# 短期判定の日。この日より前の週次では組ごとの比較につながる数字(記事ごとの表・記事の一覧)を
+# 出さない(2026-09-30)。途中で覗くと、偶然の上下を見て判断してしまうため。
+# 組は割付表(allocation_v1.csv)と記事IDで引けるので、記事ごとの数字も伏せる
+GROUP_BLIND_UNTIL = dt.date(2026, 11, 2)
 GEMINI_DAILY_LIMIT = 20
 
 
@@ -89,8 +95,14 @@ def _phase(start: dt.date, end: dt.date) -> str:
     if end < TREATMENT_FROM:
         return "ビフォー(処置反映 9/29〜30 より前)"
     if start <= TREATMENT_LAG_UNTIL:
-        return "処置反映・反映ラグの期間(判定には使わない)"
+        return ("処置反映(9/29〜30)・反映ラグ(10/1〜10/5)を含む(この期間の観測は判定に使わない。"
+                "アフターは 10/6 から)")
     return "アフター"
+
+
+def group_blind(report_date: dt.date, end: dt.date) -> bool:
+    """組ごとの比較につながる数字を伏せる週か(処置反映以後の週で、判定日より前に作る回)。"""
+    return end >= TREATMENT_FROM and report_date < GROUP_BLIND_UNTIL
 
 
 def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
@@ -121,6 +133,11 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
          "attempts の無い raw がある日は下限(≥)で示す"]
     if n == 2:
         L.append("- 1週目(手集計)は 9/15(火)〜9/21(月) で切ったため、9/21 は1週目と重なる")
+    blind = group_blind(report_date, end)
+    if blind:
+        L.append(f"- **{GROUP_BLIND_UNTIL.isoformat()} の短期判定まで、組ごとの比較につながる数字"
+                 "(記事ごとの表・引用された記事の一覧)は出さない。** 出すのは46本全体の率と欠測数だけ。"
+                 "途中で覗くと偶然の上下で判断してしまうため(README・日誌 2026-09-30)")
     L.append("")
 
     # ---- 1. 全体 -----------------------------------------------------------
@@ -145,7 +162,7 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
     order = lambda ids: sorted(ids, key=pool_ids.index)              # noqa: E731
     L.append(f"- **記事URLが1回でも出た記事: {len(arts_any)}本 / {len(pool_ids)}本**"
              f"(Gemini {len(arts_g)}本・Claude {len(arts_c)}本・両方 {len(arts_g & arts_c)}本)")
-    if arts_any:
+    if arts_any and not blind:
         L.append("  - " + "、".join(f"{i}({meta[i][1]})" for i in order(arts_any)))
     dom_any = hit(None, "cited_domain")
     L.append(f"- cross-com.jp のどれかのURLが1回でも出た記事: {len(dom_any)}本 / {len(pool_ids)}本")
@@ -188,27 +205,31 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
           "- 合計には 429 で拒否された回も含む(投げた回数であり、枠を消費した回数ではない)", ""]
 
     # ---- 3. 記事ごと ---------------------------------------------------------
-    per: Dict[str, collections.Counter] = collections.defaultdict(collections.Counter)
-    for r in wk:
-        m, c = r["model"], per[r["experiment_id"]]
-        c[f"{m}_n"] += 1
-        if missing(r):
-            c[f"{m}_miss"] += 1
-        else:
-            c[f"{m}_art"] += _flag(r.get("cited_article"))
-            c[f"{m}_dom"] += _flag(r.get("cited_domain"))
-            c[f"{m}_men"] += _flag(r.get("mentioned"))
-    L += ["## 3. 記事ごと", "",
-          "「観測」は観測行数(欠測を含む)、「記事」は cited_article=1、「ドメイン」は cited_domain=1 の回数。",
-          "",
-          "| ID | 層 | 記事 | Gemini 観測 | 記事 | ドメイン | 欠測 | Claude 観測 | 記事 | ドメイン | 欠測 |",
-          "|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
-    for i in pool_ids:
-        c = per[i]
-        L.append(f"| {i} | {meta[i][0]} | {meta[i][1]} | {c['gemini_n']} | {c['gemini_art']} | "
-                 f"{c['gemini_dom']} | {c['gemini_miss']} | {c['claude_n']} | {c['claude_art']} | "
-                 f"{c['claude_dom']} | {c['claude_miss']} |")
-    L.append("")
+    L += ["## 3. 記事ごと", ""]
+    if blind:
+        L += [f"{GROUP_BLIND_UNTIL.isoformat()} の短期判定まで出さない"
+              "(記事IDから組が引けるため。欠測の合計は 1・2 にある)", ""]
+    else:
+        per: Dict[str, collections.Counter] = collections.defaultdict(collections.Counter)
+        for r in wk:
+            m, c = r["model"], per[r["experiment_id"]]
+            c[f"{m}_n"] += 1
+            if missing(r):
+                c[f"{m}_miss"] += 1
+            else:
+                c[f"{m}_art"] += _flag(r.get("cited_article"))
+                c[f"{m}_dom"] += _flag(r.get("cited_domain"))
+                c[f"{m}_men"] += _flag(r.get("mentioned"))
+        L += ["「観測」は観測行数(欠測を含む)、「記事」は cited_article=1、「ドメイン」は cited_domain=1 の回数。",
+              "",
+              "| ID | 層 | 記事 | Gemini 観測 | 記事 | ドメイン | 欠測 | Claude 観測 | 記事 | ドメイン | 欠測 |",
+              "|---|---|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
+        for i in pool_ids:
+            c = per[i]
+            L.append(f"| {i} | {meta[i][0]} | {meta[i][1]} | {c['gemini_n']} | {c['gemini_art']} | "
+                     f"{c['gemini_dom']} | {c['gemini_miss']} | {c['claude_n']} | {c['claude_art']} | "
+                     f"{c['claude_dom']} | {c['claude_miss']} |")
+        L.append("")
 
     # ---- 4. 介入 -------------------------------------------------------------
     # 数字の増減を「処置の効果」と読む前に、その週に何をしたかを並べる。
@@ -243,7 +264,7 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
         men = [r["experiment_id"] for r in ok if _flag(r.get("mentioned"))]
         rate = f"{len(men) / len(ok):.1%}" if ok else "—"
         L.append(f"- {model.capitalize()}: {len(men)} / {len(ok)}({rate})"
-                 + (f" — {'、'.join(order(set(men)))}" if men else ""))
+                 + (f" — {'、'.join(order(set(men)))}" if men and not blind else ""))
     L.append("")
     return "\n".join(L)
 

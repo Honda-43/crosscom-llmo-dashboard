@@ -28,3 +28,6 @@ credentials/
 
 # シートから引いた作業用のダンプ(手元確認のみ。成果物ではない)
 .tmp/
+
+# imbalance_check.py の途中経過（再開用。結果は results/imbalance_sample_*.csv に残す）
+experiment_2x2/results/imbalance_parts/
