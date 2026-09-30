@@ -122,3 +122,8 @@ def test_markup_only_change_is_listed_separately(monkeypatch, tmp_path):
     assert rep is not None
     assert "本文テキストが変化した記事（想定外）：**0 本" in rep
     assert "HTMLのみの変化（本文テキストは同一・要確認）：1 本" in rep
+
+
+def test_markup_diff_points_at_the_changed_fragment():
+    d = drift_check.markup_diff('<p class="a">本文</p>', '<p class="abcdefgh">本文</p>')
+    assert d and "abcdefgh" in d[0]

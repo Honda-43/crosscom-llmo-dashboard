@@ -33,6 +33,7 @@ import argparse
 import csv
 import datetime
 import difflib
+import gzip
 import hashlib
 import io
 import json
@@ -51,6 +52,20 @@ UA = {'User-Agent': 'Mozilla/5.0 (compatible; crosscom-llmo-drift/1.0)'}
 POST_DIR = os.path.join(HERE, 'drift', 'post_treatment')
 POST_MANIFEST = os.path.join(POST_DIR, 'manifest.json')
 POST_SNAP_DIR = os.path.join(POST_DIR, 'snapshots')
+POST_HTML_DIR = os.path.join(POST_DIR, 'html')
+
+
+def markup_diff(before, after, limit=6, ctx=60):
+    """HTML の違う箇所を最大 limit 件、前後 ctx 文字つきで返す（テキストが同じ記事の原因を示すため）。"""
+    sm = difflib.SequenceMatcher(None, before, after, autojunk=False)
+    out = []
+    for op, i1, i2, j1, j2 in sm.get_opcodes():
+        if op == 'equal':
+            continue
+        out.append(f'{op}: …{before[max(0, i1 - ctx):i2 + ctx]}… → …{after[max(0, j1 - ctx):j2 + ctx]}…')
+        if len(out) >= limit:
+            break
+    return out
 # 処置の期間の最終日。前回の基準がこの日以前なら、処置後の基準と比べる
 TREATMENT_END = '2026-09-30'
 
@@ -142,6 +157,10 @@ def main():
             post[slug] = {'url': url, 'sha256': hashlib.sha256(body.encode('utf-8')).hexdigest(),
                           'bytes': len(body), 'checked': today}
             io.open(os.path.join(POST_SNAP_DIR, f'{slug}.txt'), 'w', encoding='utf-8').write(text_of(body))
+            # HTML も残す（2026-09-30）。「テキストは同じで HTML だけ違う」を 10/5 に差分で示せるようにするため
+            os.makedirs(POST_HTML_DIR, exist_ok=True)
+            with gzip.open(os.path.join(POST_HTML_DIR, f'{slug}.html.gz'), 'wt', encoding='utf-8') as g:
+                g.write(body)
             time.sleep(a.sleep)
         if bad:
             print(f'★{len(bad)} 本を取得できないため処置後の基準を保存しない：{bad}')
@@ -189,6 +208,10 @@ def main():
             else:
                 # 本文テキストは同じで HTML だけが違う（2026-09-30）。9/18→9/21→9/30 で47本が ±7 バイト往復した例があり、
                 # 　テキストの変化と同じ扱いにすると本物の変化が埋もれる。ただしリンク先・属性の変化もここに入るため、別枠で必ず出す
+                ref_html = os.path.join(POST_HTML_DIR, f'{slug}.html.gz')
+                if ref_kind == 'post_treatment' and os.path.exists(ref_html):
+                    with gzip.open(ref_html, 'rt', encoding='utf-8') as g:
+                        item['markup'] = markup_diff(g.read(), body)
                 markup_only.append(item)
                 print(f'  △HTMLのみの変化 {slug}（本文テキストは同一）')
         io.open(snap, 'w', encoding='utf-8').write(text)
@@ -225,6 +248,9 @@ def main():
               'リンク先や属性の変化もここに入るため、本数が多い週は1本を開いて確かめる。', '',
               '| slug | 基準 | 今回 |', '|---|---|---|']
         L += [f'| {c["slug"]} | {c["prev_checked"]} `{c["prev"][:12]}` | `{c["now"][:12]}` |' for c in markup_only]
+        shown = [c for c in markup_only if c.get('markup')][:3]
+        for c in shown:   # 処置後の基準の HTML があるときだけ、どこが違うかを示す（最大3本）
+            L += ['', f'### {c["slug"]}：HTML の違う箇所', '', '`' * 3] + c['markup'] + ['`' * 3]
         L.append('')
     for c in changed:
         L += [f'## {c["url"]}', '',
