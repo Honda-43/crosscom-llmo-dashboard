@@ -376,3 +376,55 @@ def test_the_month_comparison_uses_only_prompts_observed_in_both_months():
                     "mentioned_now": 2, "mentioned_prev": 1, "cited_now": 1, "cited_prev": 0}]
     assert marketing.previous_month("2027-01") == "2026-12"
     assert marketing.previous_month("2026-11") == "2026-10"
+
+
+# --- 8. 凍結明け:実験の観測の終わり(2026-10-01) ---------------------------------------------
+# 実験優先は「実験の観測が予定されている日」だけ効く。EXPERIMENT_OBSERVATION_END を入れると、その翌日から
+# 実験の観測が止まり、marketing の Gemini は日次・月次を引いた残りをすべて使える(1月第1週に54本)。
+@pytest.fixture
+def ended(monkeypatch):
+    monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
+    monkeypatch.setattr(settings, "EXPERIMENT_OBSERVATION_END", "2026-12-28")
+
+
+def test_by_default_the_experiment_never_ends(monkeypatch):
+    monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
+    assert settings.EXPERIMENT_OBSERVATION_END == ""
+    assert settings.experiment_plan("2027-01-04").get("gemini"), "既定では1月も実験優先のまま"
+
+
+def test_the_experiment_is_observed_up_to_and_including_the_end_date(ended):
+    assert settings.experiment_plan("2026-12-28")                      # 月曜:Gemini・Claude
+    assert set(settings.experiment_plan("2026-12-28")) == {"gemini", "claude"}
+    assert settings.experiment_plan("2026-12-29") == {}
+    assert settings.experiment_plan("2027-01-04") == {}
+
+
+def test_while_the_experiment_is_scheduled_it_keeps_priority(monkeypatch):
+    """終わりの日が入っていても、実験の観測がある日は実験の残りしか使わない。"""
+    monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
+    monkeypatch.setattr(settings, "EXPERIMENT_OBSERVATION_END", "2027-01-03")
+    q = settings.gemini_requests_on("2027-01-03")                      # 日曜:実験16本
+    assert q["experiment"] == 16
+    assert settings.marketing_gemini_allowance(q["daily"] + q["monthly"] + q["experiment"]) == 4
+    q = settings.gemini_requests_on("2027-01-04")
+    assert q["experiment"] == 0
+    assert settings.marketing_gemini_allowance(q["daily"] + q["monthly"]) == 20
+
+
+def test_after_the_end_all_54_fit_in_the_first_week_of_january(ended):
+    done, day = 0, dt.date(2027, 1, 1)
+    while day <= dt.date(2027, 1, 7) and done < 54:
+        q = settings.gemini_requests_on(day.isoformat())
+        used = q["daily"] + q["monthly"] + q["experiment"]
+        extra = settings.marketing_gemini_allowance(used)
+        assert q["experiment"] == 0 and used + extra <= 20
+        done += extra
+        day += dt.timedelta(days=1)
+    assert done >= 54 and day <= dt.date(2027, 1, 5), "1/4 までに54本"
+
+
+def test_after_the_end_the_marketing_day_needs_no_experiment_raw(ended):
+    used, note = run_marketing.gemini_used_today("2027-01-04", experiment_records=[], prior=[],
+                                                 marketing_dir=settings.ROOT_DIR / "no-such-dir")
+    assert used == 0 and "実験0" in note
