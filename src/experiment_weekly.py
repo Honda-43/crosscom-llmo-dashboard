@@ -10,8 +10,9 @@
   記事URLが1回でも出た記事の本数
 - Gemini の1日あたり呼び出し数(日次・月次・実験。data/raw の attempts、再試行込み)と、
   欠測の理由(枠切れ・503・投げずに記録)
-- mentioned(回答本文に社名)は参考欄に回す。社名は記事の引用が無くても出るので、
-  処置(リード・FAQ)の効果とは別の指標として読む
+- 社名の言及は参考欄に回す。社名は記事の引用が無くても出るので、
+  処置(リード・FAQ)の効果とは別の指標として読む。2026-10-01 から表記ゆれを含めた
+  mentioned_v2 を使う(旧ルールの mentioned は「クロスコム」だけで英字表記を落としていた)
 
 プールに無い記事(9/22 に除外した E37 など)の行は数えない。
 """
@@ -219,7 +220,7 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
             else:
                 c[f"{m}_art"] += _flag(r.get("cited_article"))
                 c[f"{m}_dom"] += _flag(r.get("cited_domain"))
-                c[f"{m}_men"] += _flag(r.get("mentioned"))
+                c[f"{m}_men"] += _flag(r.get("mentioned_v2"))
         L += ["「観測」は観測行数(欠測を含む)、「記事」は cited_article=1、「ドメイン」は cited_domain=1 の回数。",
               "",
               "| ID | 層 | 記事 | Gemini 観測 | 記事 | ドメイン | 欠測 | Claude 観測 | 記事 | ドメイン | 欠測 |",
@@ -255,13 +256,14 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
               for r in pending]
     L.append("")
 
-    # ---- 5. 参考: mentioned -------------------------------------------------
-    L += ["## 5. 参考:回答本文の社名言及(mentioned)", "",
+    # ---- 5. 参考: mentioned_v2 ----------------------------------------------
+    L += ["## 5. 参考:回答本文の社名言及(mentioned_v2)", "",
           "社名は記事が引用されなくても出るため、処置の効果の判定には使わない。"
-          "ブランド想起の目安として並べる。", ""]
+          "ブランド想起の目安として並べる。表記ゆれ(Cross-Com・CrossCom・クロス・コム など)を含む"
+          "(2026-10-01 修正。9/15 以降は遡って再計算済み)。", ""]
     for model in ("gemini", "claude"):
         ok = [r for r in wk if r.get("model") == model and not missing(r)]
-        men = [r["experiment_id"] for r in ok if _flag(r.get("mentioned"))]
+        men = [r["experiment_id"] for r in ok if _flag(r.get("mentioned_v2"))]
         rate = f"{len(men) / len(ok):.1%}" if ok else "—"
         L.append(f"- {model.capitalize()}: {len(men)} / {len(ok)}({rate})"
                  + (f" — {'、'.join(order(set(men)))}" if men and not blind else ""))

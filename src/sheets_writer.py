@@ -656,6 +656,9 @@ HEADERS_EXPERIMENT = [
     #   cited_urls は解決後で、解決できなかった転送URLは落ちる。判定の検算に生も残す
     # experiment_flag … pool(統計の対象)/ watch(観測だけ続ける。E37)
     "raw_cited_urls", "experiment_flag",
+    # 2026-10-01 追加:社名の表記ゆれを含めた言及(experiment.MENTION_TERMS_V2)。
+    #   mentioned(旧ルール)は残す。9/15 以降の既存行は backfill_mentioned_v2.py で埋めた
+    "mentioned_v2",
 ]
 KEYS_EXPERIMENT = ["date", "experiment_id", "model"]
 # USER_ENTERED では、この文字で始まる文字列が数式として解釈されてセルが壊れる。
@@ -697,6 +700,7 @@ def _experiment_row(rec: Dict[str, Any]) -> Dict[str, Any]:
         "raw_file": rec.get("raw_file", ""),
         "raw_cited_urls": rec.get("cited_urls", []),
         "experiment_flag": rec.get("experiment_flag", ""),
+        "mentioned_v2": rec.get("mentioned_v2", ""),
     }
 
 

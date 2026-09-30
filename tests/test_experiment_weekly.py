@@ -22,7 +22,7 @@ POOL = [{"id": "E01", "layer": "古", "url": "https://cross-com.jp/a/"},
 
 def _row(date, pid, model, article=0, domain=0, mentioned=0, error=""):
     return {"date": date, "experiment_id": pid, "model": model, "cited_article": str(article),
-            "cited_domain": str(domain), "mentioned": str(mentioned), "error": error}
+            "cited_domain": str(domain), "mentioned_v2": str(mentioned), "error": error}
 
 
 def _build(rows, tmp_path):
@@ -161,3 +161,12 @@ def test_group_level_numbers_come_back_on_the_judgement_day(tmp_path):
     text = _build_on(day, rows, tmp_path)
     assert "| E01 |" in text and "  - E01(a)" in text and "— E01" in text
     assert "短期判定まで" not in text
+
+
+def test_the_reference_section_uses_mentioned_v2_not_the_old_column(tmp_path):
+    """2026-10-01:旧 mentioned(「クロスコム」だけ)ではなく、表記ゆれを含む mentioned_v2 を数える。"""
+    rows = [dict(_row("2026-09-22", "E01", "gemini", mentioned=1), mentioned="0"),
+            dict(_row("2026-09-22", "E02", "gemini", mentioned=0), mentioned="1")]
+    reference = _build(rows, tmp_path).split("## 5. 参考")[1]
+    assert "mentioned_v2" in reference
+    assert "Gemini: 1 / 2(50.0%) — E01" in reference

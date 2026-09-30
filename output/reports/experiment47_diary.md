@@ -678,3 +678,20 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - 使った割付：再ランダム化プールが未作成のため、`imbalance_check.py` で条件 a〜g を満たす割付を
   1,000通り作った（シード 20390101 から・4プロセス・約1時間33分）。割付は
   `experiment_2x2/results/imbalance_sample_20260929.csv` に残した
+
+---
+
+## 2026-10-01／mentioned の判定ルールを修正（mentioned_v2）
+
+- **2026-10-01 mentioned の判定ルールを修正し、9/15 以降の全行を answer_text から遡って再計算（mentioned_v2）。参考指標のため判定には影響なし**
+- 新ルール：「クロスコム」「Cross-Com」「CrossCom」「Crosscom」「cross-com」「クロス・コム」のどれかを含めば 1
+  （大文字小文字・全角半角を区別しない）。旧ルールは「クロスコム」のみ
+- `llm_experiment` に列 `mentioned_v2` を追加し、9/15〜9/30 の 400行を書いた（有効 385行・欠測 15行は空欄）。
+  旧 `mentioned` 列は残す（以後の行も旧ルールのまま）
+- **数え直しの結果、mentioned と mentioned_v2 が違った行は 0行。** 385行すべて旧=0・新=0。
+  9/15 以降の回答には、どの表記でも社名が1回も出ていない（「クロスセル」「コムデザイン」「Cross-encoder」など
+  社名でない語だけ。シートの answer_text は raw_file の本文と全行一致・セルで切れた行なし）
+- 週次レポートの参考欄は以後 `mentioned_v2` を使う
+
+確かめ方：`src/backfill_mentioned_v2.py`（下見→`--write`）・`output/reports/mentioned_v2_backfill_20261001.md`。
+作業は 2026-09-30 夜に実施し、ルールの適用日は 2026-10-01 として記録した。

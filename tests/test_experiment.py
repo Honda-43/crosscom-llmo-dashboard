@@ -950,7 +950,8 @@ def test_the_sheet_keeps_raw_and_resolved_urls_and_the_flag():
     assert row["cited_urls"] == ["https://cross-com.jp/agentforce-rag/"]
     assert row["experiment_flag"] == "pool"
     # 新しい列は既存の列の後ろ(既存の行の位置を動かさない)
-    assert sheets_writer.HEADERS_EXPERIMENT[-2:] == ["raw_cited_urls", "experiment_flag"]
+    assert sheets_writer.HEADERS_EXPERIMENT[-3:-1] == ["raw_cited_urls", "experiment_flag"]
+    assert sheets_writer.HEADERS_EXPERIMENT[-1] == "mentioned_v2"      # 2026-10-01 追加
     assert sheets_writer.HEADERS_EXPERIMENT[:3] == sheets_writer.KEYS_EXPERIMENT
 
 
@@ -976,3 +977,36 @@ def test_a_redirect_whose_target_has_broken_tls_is_read_from_location(monkeypatc
     retired_urls._RESOLVED.pop(url, None)
     assert retired_urls.resolve_redirect(url) == "https://trendemon.jp/blog/btob-ai-report/"
 
+
+
+# --- mentioned_v2：社名の表記ゆれ(2026-10-01) ------------------------------------------
+# 「クロスコム」だけでは英字表記・中黒入りを落としていた。旧ルールの mentioned は残す。
+@pytest.mark.parametrize("answer", [
+    "クロスコムの記事", "Cross-Comによると", "CrossCom社", "Crosscom の解説", "cross-com の記事",
+    "クロス・コムが", "CROSS-COM", "ｃｒｏｓｓｃｏｍ", "Ｃｒｏｓｓ－Ｃｏｍ", "ｸﾛｽｺﾑ", "ｸﾛｽ･ｺﾑ",
+    "出典: https://cross-com.jp/agentforce-rag/",
+])
+def test_mentioned_v2_catches_every_spelling(answer):
+    got = experiment.evaluate(_record(answer=answer), TARGET)
+    assert got["mentioned_v2"] == 1, answer
+
+
+@pytest.mark.parametrize("answer", ["Salesforceの公式では", "クロス コム", "cross com", "クロスコンサル"])
+def test_mentioned_v2_is_zero_without_the_name(answer):
+    assert experiment.evaluate(_record(answer=answer), TARGET)["mentioned_v2"] == 0
+
+
+def test_the_old_mentioned_keeps_its_rule():
+    got = experiment.evaluate(_record(answer="CrossCom の記事では"), TARGET)
+    assert got["mentioned"] == 0 and got["mentioned_v2"] == 1
+
+
+def test_mentioned_v2_is_blank_on_a_miss_and_reaches_the_sheet():
+    assert experiment.evaluate(_record(error="429"), TARGET)["mentioned_v2"] == ""
+    rec = _record(answer="Cross-Com")
+    rec.update(experiment.evaluate(rec, TARGET))
+    assert sheets_writer._experiment_row(dict(rec, date="2026-10-01"))["mentioned_v2"] == 1
+
+
+def test_mention_hits_point_at_each_occurrence():
+    assert experiment.mention_hits_v2("aクロスコムb cross-com") == [(1, 6), (8, 17)]

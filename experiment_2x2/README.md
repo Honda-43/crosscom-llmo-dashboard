@@ -41,6 +41,18 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
   アフター期間を入れた `summarize.py` の判定や、その他の組別の集計も判定日までは実行しない
   （`imbalance_check.py` は観測値を使わない割付の確率なので対象外）
 
+## 社名の言及（mentioned / mentioned_v2）
+- **2026-10-01 mentioned の判定ルールを修正し、9/15 以降の全行を answer_text から遡って再計算（mentioned_v2）。
+  参考指標のため判定には影響なし**
+- 新ルール（`src/experiment.py` の `MENTION_TERMS_V2`）：「クロスコム」「Cross-Com」「CrossCom」「Crosscom」
+  「cross-com」「クロス・コム」のどれかを含めば 1。大文字小文字・全角半角を区別しない（NFKC＋casefold）。
+  "cross-com" は本文に書かれた cross-com.jp の URL にも当たる
+- `llm_experiment` に列 `mentioned_v2` を足した（最後の列）。旧ルールの `mentioned`（「クロスコム」のみ）は消さずに残し、
+  以後の行でも旧ルールのまま書く（列の意味が途中で変わらないように）
+- 遡及の再計算は `src/backfill_mentioned_v2.py`（既定は下見・`--write` でシートの `mentioned_v2` 列だけを書く）。
+  結果は `output/reports/mentioned_v2_backfill_20261001.md`
+- 週次レポートの参考欄は以後 `mentioned_v2` を使う
+
 ## 割付（allocate_47.py）
 - **既定はドライラン**（画面に出すだけ）。`--write` を付けたときだけ `allocation_v1.csv` と
   `output/reports/experiment47_allocation_v1_20260928.md` を書く
