@@ -57,10 +57,28 @@ def test_marketing_prompts_are_not_in_the_experiment_pool():
     assert len(settings.load_experiment_prompts()) == 46
 
 
-def test_the_layers_are_interleaved_so_a_short_month_covers_every_layer():
-    order = [p["layer"] for p in marketing.interleave_layers(PROMPTS)]
-    assert order[:5] == list(marketing.LAYER_ORDER)
-    assert len(order) == 54 and set(order[:28]) == set(marketing.LAYER_ORDER)
+# 2026-10-01 改訂:Gemini は層ブロック順(L0 → BOFU_single → BOFU_compare → L1 → L2)。各層の中は id 順。
+# 毎月まったく同じ順にする(月によって変えない)
+GEMINI_ORDER = ([f"PM-L0-{i:02d}" for i in range(1, 11)] + [f"PM-BS-{i:02d}" for i in range(1, 13)]
+                + [f"PM-BC-{i:02d}" for i in range(1, 9)] + [f"PM-L1-{i:02d}" for i in range(1, 19)]
+                + [f"PM-L2-{i:02d}" for i in range(1, 7)])
+
+
+def test_gemini_runs_in_fixed_layer_blocks():
+    assert marketing.GEMINI_LAYER_ORDER == ("MOFU_L0", "BOFU_single", "BOFU_compare",
+                                            "MOFU_L1", "MOFU_L2")
+    assert [p["id"] for p in marketing.gemini_order(PROMPTS)] == GEMINI_ORDER
+
+
+def test_the_order_is_the_same_every_month(tmp_path):
+    months = ["2026-10", "2026-11", "2027-01", "2027-06"]
+    orders = {m: [p["id"] for p in marketing.pending(PROMPTS, m, "gemini", tmp_path)] for m in months}
+    assert all(o == GEMINI_ORDER for o in orders.values())
+
+
+def test_claude_runs_all_54_in_id_order(tmp_path):
+    got = [p["id"] for p in marketing.pending(PROMPTS, "2026-10", "claude", tmp_path)]
+    assert got == sorted(p["id"] for p in PROMPTS)
 
 
 # --- 2. 判定 ---------------------------------------------------------------------
@@ -219,6 +237,8 @@ def test_the_last_window_day_records_the_rest_as_quota_skipped(monkeypatch, tmp_
     assert len(calls) == 4
     skipped = [r for r in recs if str(r["error"]).startswith("quota_skipped")]
     assert len(skipped) == 50 and not any(r.get("attempts") for r in skipped)
+    assert [r["prompt_id"] for r in recs[:4]] == GEMINI_ORDER[:4]
+    assert [r["prompt_id"] for r in skipped] == GEMINI_ORDER[4:], "残りは順番の後ろから記録"
     assert marketing.pending(PROMPTS, "2026-10", "gemini", tmp_path / "marketing") == []
 
 
@@ -279,8 +299,8 @@ def test_claude_runs_all_on_the_first_day_and_is_not_stopped(monkeypatch, tmp_pa
 # --- 6. 列・ワークフロー・ダッシュボード --------------------------------------------------
 def test_the_sheet_has_the_agreed_columns():
     assert sheets_writer.HEADERS_MARKETING == [
-        "date", "model", "prompt_id", "layer", "prompt", "mentioned", "is_first",
-        "mention_rank", "cited_domain", "cited_domains", "answer_text", "error"]
+        "date", "run_date", "model", "prompt_id", "layer", "prompt", "mentioned", "is_first",
+        "mention_rank", "extractor_model", "cited_domain", "cited_domains", "answer_text", "error"]
     assert settings.TAB_MARKETING == "llm_marketing" != settings.TAB_EXPERIMENT
 
 
@@ -307,6 +327,52 @@ def test_layer_rates_use_the_latest_observation_and_skip_misses():
         {"date": "2026-10-01", "prompt_id": "C", "model": "claude", "layer": "BOFU_single",
          "mentioned": "1", "cited_domain": "0", "error": ""},
     ]
-    got = marketing.layer_rates(rows)
-    assert [(c["layer"], c["model"], c["n"], c["mentioned"], c["cited_domain"]) for c in got] == [
-        ("MOFU_L0", "gemini", 1, 1, 1), ("BOFU_single", "claude", 1, 1, 0)]
+    got = marketing.layer_rates(rows, {"MOFU_L0": 10, "BOFU_single": 1})
+    assert [(c["layer"], c["model"], c["n"], c["total"], c["partial"], c["mentioned"], c["cited_domain"])
+            for c in got] == [("MOFU_L0", "gemini", 1, 10, True, 1, 1),
+                              ("BOFU_single", "claude", 1, 1, False, 1, 0)]
+
+
+# --- 7. 実行日時・抽出モデル・月をまたいだ比較(2026-10-01 改訂) --------------------------------
+def test_run_date_is_when_the_api_was_called_in_jst():
+    rec = dict(_rec("答え"), timestamp="2026-10-02T02:03:04.5Z", attempts=1)
+    assert marketing.evaluate(rec, PROMPTS[0])["run_date"] == "2026-10-02 11:03:04"
+    skipped = marketing.skipped_record("2026-10-14", PROMPTS[0], "gemini", "gemini-2.5-flash")
+    assert skipped["run_date"] == "", "投げていない行は空"
+
+
+def test_the_extractor_model_is_pinned_and_recorded_on_every_row(monkeypatch):
+    assert marketing.EXTRACTOR_MODEL == "claude-haiku-4-5-20251001"
+    monkeypatch.setenv("EXTRACT_MODEL", "something-else")
+    assert marketing.evaluate(_rec("答え"), PROMPTS[0])["extractor_model"] == marketing.EXTRACTOR_MODEL
+    assert marketing.skipped_record("2026-10-14", PROMPTS[0], "gemini", "g")["extractor_model"]         == marketing.EXTRACTOR_MODEL
+    row = sheets_writer._marketing_row(dict(marketing.evaluate(_rec("答え"), PROMPTS[0]),
+                                            date="2026-10-02", model="gemini", prompt_id="PM-L0-01"))
+    assert row["extractor_model"] == marketing.EXTRACTOR_MODEL
+
+
+def test_the_extractor_model_change_rule_is_in_the_readme():
+    """変えるときは README と日誌に日付と理由を書いてから。README に現在のモデル名があること。"""
+    readme = (settings.ROOT_DIR / "README.md").read_text(encoding="utf-8")
+    assert marketing.EXTRACTOR_MODEL in readme
+
+
+def _obs(month, pid, model="gemini", layer="MOFU_L0", mentioned="0", cited="0", error=""):
+    return {"date": f"{month}-05", "prompt_id": pid, "model": model, "layer": layer,
+            "mentioned": mentioned, "cited_domain": cited, "error": error}
+
+
+def test_the_month_comparison_uses_only_prompts_observed_in_both_months():
+    rows = [
+        _obs("2026-10", "A", mentioned="0"), _obs("2026-11", "A", mentioned="1"),
+        _obs("2026-10", "B", mentioned="1"), _obs("2026-11", "B", mentioned="1", cited="1"),
+        _obs("2026-10", "C", mentioned="1"),                               # 11月は無い
+        _obs("2026-11", "D", mentioned="1"),                               # 10月は無い
+        _obs("2026-10", "E"), _obs("2026-11", "E", error="quota_skipped"),  # 11月は見送り
+        _obs("2026-10", "F", error="503"), _obs("2026-11", "F", mentioned="1"),
+    ]
+    got = marketing.compare_months(rows, "2026-11", "2026-10")
+    assert got == [{"layer": "MOFU_L0", "model": "gemini", "n": 2,
+                    "mentioned_now": 2, "mentioned_prev": 1, "cited_now": 1, "cited_prev": 0}]
+    assert marketing.previous_month("2027-01") == "2026-12"
+    assert marketing.previous_month("2026-11") == "2026-10"

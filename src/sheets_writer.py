@@ -880,8 +880,11 @@ def write_ahrefs(result: Optional[Dict[str, Any]]) -> None:
 # 第3観測層 prompt_marketing(2026-10-01)。llm_experiment とは別のタブ
 # --------------------------------------------------------------------------
 HEADERS_MARKETING = [
-    "date", "model", "prompt_id", "layer", "prompt",
-    "mentioned", "is_first", "mention_rank", "cited_domain", "cited_domains",
+    # run_date … 実際に API を呼んだ日時(JST)。date は観測の日付(その日の実行)で、
+    #   Gemini と Claude は実行日がずれる。投げていない行(quota_skipped)は空
+    # extractor_model … is_first / mention_rank の会社名一覧を挙げたモデル(marketing.EXTRACTOR_MODEL)
+    "date", "run_date", "model", "prompt_id", "layer", "prompt",
+    "mentioned", "is_first", "mention_rank", "extractor_model", "cited_domain", "cited_domains",
     "answer_text", "error",
 ]
 KEYS_MARKETING = ["date", "model", "prompt_id"]
@@ -892,10 +895,13 @@ def _marketing_row(rec: Dict[str, Any]) -> Dict[str, Any]:
     if len(answer) > CELL_CHAR_LIMIT:
         answer = answer[:CELL_CHAR_LIMIT] + "…[続きは data/raw/marketing]"
     return {
-        "date": rec.get("date"), "model": rec.get("model"), "prompt_id": rec.get("prompt_id"),
+        "date": rec.get("date"), "run_date": rec.get("run_date", ""),
+        "model": rec.get("model"), "prompt_id": rec.get("prompt_id"),
         "layer": rec.get("layer", ""), "prompt": _as_text(rec.get("prompt") or ""),
         "mentioned": rec.get("mentioned", ""), "is_first": rec.get("is_first", ""),
-        "mention_rank": rec.get("mention_rank", ""), "cited_domain": rec.get("cited_domain", ""),
+        "mention_rank": rec.get("mention_rank", ""),
+        "extractor_model": rec.get("extractor_model", ""),
+        "cited_domain": rec.get("cited_domain", ""),
         "cited_domains": rec.get("cited_domains", []),
         "answer_text": _as_text(answer), "error": _as_text(rec.get("error") or ""),
     }

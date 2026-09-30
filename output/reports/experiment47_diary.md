@@ -715,3 +715,19 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - `output/interventions.csv` に I-13（第3観測層の新設・scope=measurement・touches_pool46=no）を追加
 - I-07 の note を「複数段落回答の7本（sfa-teichaku を含む）」に修正（6本→7本）
 - `summarize.py` には mentioned_v2 の欄を置かない（判定に使わない数字を判定の出力に並べない。README に明記）
+
+---
+
+## 2026-10-01（続き）／第3観測層：Gemini の実行順を層ブロック順に・run_date・extractor_model・月をまたいだ比較
+
+- **Gemini の月上限は実測で約28本。実行順は層ブロック順（L0→BOFU_single→BOFU_compare→L1→L2）で毎月固定。
+  Gemini では通常 L0・BOFU_single が完結し BOFU_compare が一部、L1・L2 は観測されない月が多い。L1・L2 は Claude で毎月54本観測する。
+  月をまたいだ比較は、両月で観測できたプロンプトのみで行う**
+- 層をまたいだ順番回し（b9e9264）はやめた。各層の中は id 順。枠が尽きた時点で止め、残りは error=quota_skipped（翌月に持ち越さない）。
+  Claude は従来どおり毎月54本すべて
+- 列 `run_date`（実際に API を呼んだ日時・JST）を追加。投げていない行（quota_skipped）は空
+- is_first / mention_rank の会社名一覧を挙げるモデルを `claude-haiku-4-5-20251001` に固定し、列 `extractor_model` に毎行記録。
+  変える場合は README と日誌に日付と理由を書いてから変える
+- ダッシュボード：ヒートマップのセルに「観測本数／層の全本数」を併記し、全本数に満たない層は「一部観測」。
+  前月との差は両月で観測できたプロンプトだけで出す
+- `llm_marketing` タブは初回実行の前（まだ行が無い）に列を確定したため、既存行の並べ替えは発生していない
