@@ -692,6 +692,27 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 
 ---
 
+## 2026-09-30／フォームの記録（I-15〜I-17）と、フォームの前提の再訂正
+
+- **interventions.csv に3件を記録**（いずれも touches_pool46=no・note「L4（問い合わせ）の計測に関わる変更。実験の判定には使わない」）
+  - I-15（2026-09-26・記事制作）：B-32 自作フォームの認知経路の選択肢「AI検索」の表示ラベルを「AI検索(ChatGPT・Gemini・Claude等)」に変更
+    （表示のみ・保存される値 AI検索 は不変）。固定ページ4件：68 /contact/・1891 /download-paper/company-service/・
+    5702 /download-paper/agentforce-support/・5801 /agentforce-business-partner/（seo-agent 便NC の記録から特定）
+  - I-16（2026-09-30・記事制作）：B-32 同上。2231 /service/salesforce-implementation/・6443 /service/agentic-crm-design/・5706 /service/agentforce-support/
+  - I-17（2026-09-30・制作管制）：導線是正。1337 /service/btob-marketing-strategy/ の旧事業フォームを撤去し、現行サービスへの誘導を設置
+- 記録の前の照合：上の8ページ（68・1891・5702・5801・2231・6443・5706・1337）は、編集禁止49本（targets.csv）・
+  新規リンク禁止47本（link_ban.csv）の**どちらにも含まれない**（URL のパスで照合。リストは URL で持っているため、
+  post ID は seo-agent の報告〈便NC・便ND・便NW ほか〉の表から URL に対応づけた）
+- **フォームの前提を再訂正**：measurement_design_2026-09-14.md・09-17 確定版の訂正注記のうち、「フォームは自作の多段フォームで
+  送信先は Supabase の関数…」の文を「フォームは2つの仕組みに分かれている（自作フォーム7ページ＝Supabase form_submissions／
+  Web-to-Lead 4ページ＝本番 Lead。1337 は 9/30 に撤去し以後3ページ）」に差し替え。原因2は仕組みごとに本番で確かめるまで未確定。
+  冒頭の訂正ありの行に「（2026-09-30、フォームの前提を再訂正）」を追加（取り消し線の原文はそのまま）
+- **L4 の定義**：config/kgi.yaml の official と README の正式指標の行に、保存先が2か所（Supabase form_submissions.found_us='AI検索'・
+  本番 Lead の 00NQ800000Ulaeg='AIに聞いて知った(ChatGPT・Gemini等)'）で集計は両方の合計、と注記。
+  Salesforce 本番側は MCP の接続先が Sandbox のため、現状は本田さんの画面での確認が必要。コードから読む処理は追加しない（L4 は判定に使わない）
+
+---
+
 ## 2026-10-01／mentioned の判定ルールを修正（mentioned_v2）
 
 - **2026-10-01 mentioned の判定ルールを修正し、9/15 以降の全行を answer_text から遡って再計算（mentioned_v2）。参考指標のため判定には影響なし**

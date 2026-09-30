@@ -438,3 +438,16 @@ def test_drop_ignores_our_own_entity():
     """自社は競合ではないので構造変化の判定対象にしない。"""
     rows = [sov(days_before(1), "クロスコム", 1), sov(days_before(8), "クロスコム", 6)]
     assert verdict(build(sov_rows=rows), "R-DROP")["status"] == INSUFFICIENT
+
+
+def test_the_official_kgi_lists_both_places_ai_inquiries_are_stored():
+    """2026-09-30:自作フォーム(Supabase)と Web-to-Lead(本番 Lead)の2か所。集計は両方の合計。"""
+    import settings
+
+    official = settings.load_kgi()["official"]
+    assert official["aggregate"] == "sum_of_sources"
+    stores = {s["store"]: s for s in official["sources"]}
+    assert stores["Supabase form_submissions"]["column"] == "found_us"
+    assert stores["Supabase form_submissions"]["value"] == "AI検索"
+    assert stores["本番 Salesforce Lead"]["field"] == "00NQ800000Ulaeg"
+    assert stores["本番 Salesforce Lead"]["value"] == official["value"]

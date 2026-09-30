@@ -155,3 +155,15 @@ def test_i14_records_b33_as_a_site_wide_change_on_0930():
     assert row["executor"] == "管制室" and row["touches_pool46"] == "yes"
     assert 'target="_blank" rel="noopener noreferrer"' in row["description"]
     assert "全組共通" in row["note"] and "1,207本" in row["note"]
+
+
+def test_i15_to_i17_record_the_form_changes_as_outside_the_experiment():
+    """B-32 の表示ラベル変更(I-15・I-16)と 1337 の旧事業フォーム撤去(I-17)。L4 の計測のみで判定には使わない。"""
+    rows = {r["intervention_id"]: r for r in interventions.load()}
+    assert [rows[i]["raw_date"] for i in ("I-15", "I-16", "I-17")] == ["2026-09-26", "2026-09-30", "2026-09-30"]
+    for i in ("I-15", "I-16", "I-17"):
+        assert rows[i]["touches_pool46"] == "no"
+        assert rows[i]["note"] == "L4（問い合わせ）の計測に関わる変更。実験の判定には使わない"
+    assert all(pid in rows["I-15"]["scope"] for pid in ("68", "1891", "5702", "5801"))
+    assert all(pid in rows["I-16"]["scope"] for pid in ("2231", "6443", "5706"))
+    assert "1337" in rows["I-17"]["scope"] and rows["I-17"]["executor"] == "制作管制"

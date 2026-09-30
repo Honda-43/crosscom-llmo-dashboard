@@ -11,6 +11,8 @@
 # (制作管制 便JZ)。下の object/field は Web-to-Lead を前提にしたもので、本番の Lead に
 # 届く経路があるかは未確認。なお、この official をコードは読まない
 # (読むのは supplementary.key_events.valid_from だけ)。
+# 【2026-09-30 再訂正(制作管制)】フォームは2つの仕組みに分かれていた。AI経由の問い合わせの保存先は
+# 2か所で、集計は両方の合計(下の sources)。下の object/field/value は Web-to-Lead 側の定義。
 official:
   name: AI認知経由の問い合わせ件数
   object: Lead
@@ -24,6 +26,20 @@ official:
   value: "AIに聞いて知った(ChatGPT・Gemini等)"
   date_field: CreatedDate
   valid_from: "2026-08-24"   # 選択肢の設置日。これより前は「選べなかった」のであって0件ではない
+  # 保存先は2か所(2026-09-30 確定・制作管制)。集計は両方の合計。
+  # Salesforce 本番側は MCP の接続先が Sandbox のため、現状は本田さんの画面での確認が必要。
+  # L4 は実験の判定に使わないため、ここを読むコードは追加しない。
+  aggregate: sum_of_sources
+  sources:
+    - name: 自作フォーム(7ページ)
+      store: Supabase form_submissions
+      column: found_us
+      value: "AI検索"
+      same_value_since: "2026-09-05"   # この日から同じ値(B-32 は表示だけ変え、値は AI検索 のまま)
+    - name: Web-to-Lead(4ページ:1337・1246・4983・3465。1337 は 9/30 にフォームを撤去し以後3ページ)
+      store: 本番 Salesforce Lead
+      field: "00NQ800000Ulaeg"
+      value: "AIに聞いて知った(ChatGPT・Gemini等)"
 
 # 補助指標: GA4 の参照元がAIドメインのセッションとキーイベント。
 # 参照元の判定は settings.AI_SOURCE_FRAGMENTS(collect_ga4 と同じ)。
