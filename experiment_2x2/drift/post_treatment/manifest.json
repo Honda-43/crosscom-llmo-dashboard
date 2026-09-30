@@ -1,0 +1,278 @@
+{
+ "agentforce-for-sales-sdr-sales-coach": {
+  "url": "https://cross-com.jp/agentforce-for-sales-sdr-sales-coach/",
+  "sha256": "6ce6246ef0e7e26beb1ed04cb3a46e88beb7164f8c9b23ebd64c079148067b76",
+  "bytes": 38923,
+  "checked": "2026-09-30"
+ },
+ "agentforce-retention": {
+  "url": "https://cross-com.jp/agentforce-retention/",
+  "sha256": "64b6dcb2264894bb947ab667c946bd867cb162a4d0f3de24f716b5c6fe0d387e",
+  "bytes": 36559,
+  "checked": "2026-09-30"
+ },
+ "agentic-crm-pipeline-kpi-monitoring": {
+  "url": "https://cross-com.jp/agentic-crm-pipeline-kpi-monitoring/",
+  "sha256": "eb850fa8cbd8c052a6c7826ae97349b4599407cd97f09f0255b25605fac41236",
+  "bytes": 49543,
+  "checked": "2026-09-30"
+ },
+ "agentforce-observability": {
+  "url": "https://cross-com.jp/agentforce-observability/",
+  "sha256": "caadb1266733d3aae5e2e8b03990899e4453a6090d2addaedbb2d258b10be023",
+  "bytes": 67395,
+  "checked": "2026-09-30"
+ },
+ "agentforce-roi": {
+  "url": "https://cross-com.jp/agentforce-roi/",
+  "sha256": "0176a224d06829f9cbf90546d29bd1fe6ea1266225b9bace7ee5bbaef73f9d71",
+  "bytes": 60027,
+  "checked": "2026-09-30"
+ },
+ "agentforce-rag": {
+  "url": "https://cross-com.jp/agentforce-rag/",
+  "sha256": "4aca293b5a4da1360ecb9808548bf57c57451e48ac557c5d8e10cd815fe997e4",
+  "bytes": 38851,
+  "checked": "2026-09-30"
+ },
+ "agentforce-einstein-difference": {
+  "url": "https://cross-com.jp/agentforce-einstein-difference/",
+  "sha256": "1c7e964d096d3db8464bcd49bebc5569c9a2c9e3faa899a01850bc1b09702102",
+  "bytes": 39395,
+  "checked": "2026-09-30"
+ },
+ "agentforce-small-business": {
+  "url": "https://cross-com.jp/agentforce-small-business/",
+  "sha256": "d38580b0e1bb6a4ef0d6e91de06ad81414d0a7599e2f60bebb5c597209151191",
+  "bytes": 37125,
+  "checked": "2026-09-30"
+ },
+ "agentforce-mcp": {
+  "url": "https://cross-com.jp/agentforce-mcp/",
+  "sha256": "cf1ff2f24c857385e6727065080a2947a5dc2a12a6a8d11ebeeb442e975c3073",
+  "bytes": 71393,
+  "checked": "2026-09-30"
+ },
+ "agentforce-service-agent": {
+  "url": "https://cross-com.jp/agentforce-service-agent/",
+  "sha256": "4ece3f4b1ae2fa9e8323077cf6884840d35b86b5f5e1630584ebffd7ff0fb227",
+  "bytes": 49460,
+  "checked": "2026-09-30"
+ },
+ "agentforce-vibes": {
+  "url": "https://cross-com.jp/agentforce-vibes/",
+  "sha256": "c6627d06703d01a8f99b9552939c9b8869d027b93e6844d25f86e6e79d88e939",
+  "bytes": 36930,
+  "checked": "2026-09-30"
+ },
+ "agentforce-features": {
+  "url": "https://cross-com.jp/agentforce-features/",
+  "sha256": "b739f5799a09b9c2d05550fa47aeffb495b8eb45853cf07e4716806c51991e70",
+  "bytes": 49513,
+  "checked": "2026-09-30"
+ },
+ "agentforce-testing-center": {
+  "url": "https://cross-com.jp/agentforce-testing-center/",
+  "sha256": "63023ef79a7010e07bfe7f97867aa1665fa00f8b688b4f7edb0f8c2d053ac83c",
+  "bytes": 60367,
+  "checked": "2026-09-30"
+ },
+ "agentforce-in-slack": {
+  "url": "https://cross-com.jp/agentforce-in-slack/",
+  "sha256": "bdb7adf88d3977a929b687a0041f4d246375085d09254759b3cadba4d1bc4f5c",
+  "bytes": 38574,
+  "checked": "2026-09-30"
+ },
+ "agentforce-certification": {
+  "url": "https://cross-com.jp/agentforce-certification/",
+  "sha256": "5b98fff0235ad9f22467f1a29fffc3f84d0584f87084687aa3450897ee92a13c",
+  "bytes": 38839,
+  "checked": "2026-09-30"
+ },
+ "agentforce-chatgpt-copilot-comparison": {
+  "url": "https://cross-com.jp/agentforce-chatgpt-copilot-comparison/",
+  "sha256": "55e93a95aa1b7f66b5dba05770dd26e14cb444109f58f23ec3485a248a263ff2",
+  "bytes": 41517,
+  "checked": "2026-09-30"
+ },
+ "agentforce-security-risk-design": {
+  "url": "https://cross-com.jp/agentforce-security-risk-design/",
+  "sha256": "c12e17efcf6426f70bb939bc991b3979584caa1b69c0b6039c8162b7643a5eca",
+  "bytes": 45920,
+  "checked": "2026-09-30"
+ },
+ "agentforce-usecase-selection": {
+  "url": "https://cross-com.jp/agentforce-usecase-selection/",
+  "sha256": "4153d39027ad72b32cfced0399f0dd65b660879903fa29aa57b0091a37a2d781",
+  "bytes": 52600,
+  "checked": "2026-09-30"
+ },
+ "agentforce-usage": {
+  "url": "https://cross-com.jp/agentforce-usage/",
+  "sha256": "84fb4ef6b879cb02945b40435ec029297882d6d33bef171c84225f8a9f68f828",
+  "bytes": 36752,
+  "checked": "2026-09-30"
+ },
+ "agentforce-use-cases": {
+  "url": "https://cross-com.jp/agentforce-use-cases/",
+  "sha256": "7485d16c22b8af13cbcad4e4a2cefa17f282baf741a209e3fb645af5d2b06669",
+  "bytes": 39526,
+  "checked": "2026-09-30"
+ },
+ "agentforce-agent-script": {
+  "url": "https://cross-com.jp/agentforce-agent-script/",
+  "sha256": "dd2846582288bc450da55d9399fbbfbee3bfad32af0bc94d4ec41836ec34d75a",
+  "bytes": 60584,
+  "checked": "2026-09-30"
+ },
+ "agentforce-reasoning-control": {
+  "url": "https://cross-com.jp/agentforce-reasoning-control/",
+  "sha256": "48bc30bcaae983e53771c6dba1338781605e7bd80f4742d4fcf6344dc2346631",
+  "bytes": 74052,
+  "checked": "2026-09-30"
+ },
+ "buyer-enablement": {
+  "url": "https://cross-com.jp/buyer-enablement/",
+  "sha256": "2a8373874750508cdf5e3c34d967895d301bec3be28304530c77c3776f0adaad",
+  "bytes": 37014,
+  "checked": "2026-09-30"
+ },
+ "salesforce-ai": {
+  "url": "https://cross-com.jp/salesforce-ai/",
+  "sha256": "c43b28357256516f436ea9e5ac49ec6ec035536e9b2410765fe3f0e1b4e37c44",
+  "bytes": 53011,
+  "checked": "2026-09-30"
+ },
+ "agentforce-marketing": {
+  "url": "https://cross-com.jp/agentforce-marketing/",
+  "sha256": "b4e9890cfc577b4cb28bcf60117c62a153b5f9f3040eb65acdef41c665e25f72",
+  "bytes": 53134,
+  "checked": "2026-09-30"
+ },
+ "salesforce-data-360": {
+  "url": "https://cross-com.jp/salesforce-data-360/",
+  "sha256": "654aa973c55064db63dfc98bffe756a6c974327d03f510a38a5a4dd72ec67f58",
+  "bytes": 58062,
+  "checked": "2026-09-30"
+ },
+ "hyper-personalization": {
+  "url": "https://cross-com.jp/hyper-personalization/",
+  "sha256": "a37d17faec3ec5f17ddfe12f8fa5d4db8a5430bff66db1b971b396a214030895",
+  "bytes": 35402,
+  "checked": "2026-09-30"
+ },
+ "revops-guide": {
+  "url": "https://cross-com.jp/revops-guide/",
+  "sha256": "a00d73e3ff8c8f1847a997c6661f483d5bb61e35e370f6564bd92ffd12c48afa",
+  "bytes": 47345,
+  "checked": "2026-09-30"
+ },
+ "agentic-ai-guide": {
+  "url": "https://cross-com.jp/agentic-ai-guide/",
+  "sha256": "3d0ce5ef773fef2058c5a59f816736b63f3bf0f086d6384caeb3be26bbfdc632",
+  "bytes": 56950,
+  "checked": "2026-09-30"
+ },
+ "einstein-trust-layer": {
+  "url": "https://cross-com.jp/einstein-trust-layer/",
+  "sha256": "b7f4d436071cc11e10ebf0e5b7566069b2855deab15cb826356d5c916556756a",
+  "bytes": 54611,
+  "checked": "2026-09-30"
+ },
+ "agentforce-employee-agent": {
+  "url": "https://cross-com.jp/agentforce-employee-agent/",
+  "sha256": "713b8352d52254dee1786202c78d35ae15fab512a886d4df1a8408b95a6eba2d",
+  "bytes": 48904,
+  "checked": "2026-09-30"
+ },
+ "tableau-ai": {
+  "url": "https://cross-com.jp/tableau-ai/",
+  "sha256": "8746816d8ee0234eaaadec9e0b41a59544fd4998c3e3c84eef21ee1384b81bec",
+  "bytes": 58196,
+  "checked": "2026-09-30"
+ },
+ "agentforce-sales-roleplay": {
+  "url": "https://cross-com.jp/agentforce-sales-roleplay/",
+  "sha256": "1dd9b5d44a3d56d9037f298267ec2c46491f0352f3a0a0065e95f1ca2f9ae196",
+  "bytes": 47479,
+  "checked": "2026-09-30"
+ },
+ "agentic-crm-pipeline-stagnation-detection": {
+  "url": "https://cross-com.jp/agentic-crm-pipeline-stagnation-detection/",
+  "sha256": "7b9bd57a20500680ceab857a5f8f459e11cdaabfaa9f8676f7b887c73103a370",
+  "bytes": 51071,
+  "checked": "2026-09-30"
+ },
+ "agentforce-deal-notes": {
+  "url": "https://cross-com.jp/agentforce-deal-notes/",
+  "sha256": "bb0386e487a4622c9a1ad8705ed21bfb74497f88de55f19c16e86d6ded93bd76",
+  "bytes": 47438,
+  "checked": "2026-09-30"
+ },
+ "agentforce-voice": {
+  "url": "https://cross-com.jp/agentforce-voice/",
+  "sha256": "c667f6295cd6cb11a9ca7440a836d7239064151d74a6c30fe6e3565db7673641",
+  "bytes": 52742,
+  "checked": "2026-09-30"
+ },
+ "agentforce-subagents": {
+  "url": "https://cross-com.jp/agentforce-subagents/",
+  "sha256": "e53031608e73041d449937d1a242e44139d1e26b63ef23175a085aa575c88f1e",
+  "bytes": 54112,
+  "checked": "2026-09-30"
+ },
+ "sfa-teichaku": {
+  "url": "https://cross-com.jp/sfa-teichaku/",
+  "sha256": "af193b942cfef9bfa3240b7aba69e88dacf1ed0c77f2c484e8e19415fb56c455",
+  "bytes": 45951,
+  "checked": "2026-09-30"
+ },
+ "agentforce-lost-deal-analysis": {
+  "url": "https://cross-com.jp/agentforce-lost-deal-analysis/",
+  "sha256": "3cc5e8bb0a51f8b879cd5f6fc94a566053ddaf6181bef598cf6b3479315a1fc1",
+  "bytes": 47470,
+  "checked": "2026-09-30"
+ },
+ "agentforce-sales-dependency": {
+  "url": "https://cross-com.jp/agentforce-sales-dependency/",
+  "sha256": "14fae104fe7edcb41273a6f8b85e96be43ef126ff936929bdc8d6b1a8ed9885e",
+  "bytes": 49295,
+  "checked": "2026-09-30"
+ },
+ "agentforce-sales-meeting": {
+  "url": "https://cross-com.jp/agentforce-sales-meeting/",
+  "sha256": "c49df68ab0c11b8f196c193edf747bed539f979c1871751edc095b757ed9fdbb",
+  "bytes": 47361,
+  "checked": "2026-09-30"
+ },
+ "agentforce-no-code-scope": {
+  "url": "https://cross-com.jp/agentforce-no-code-scope/",
+  "sha256": "5f4fc762bcf1cf5a2d986f74af09734cef682d92dc082efecbc7bd2ca163bff9",
+  "bytes": 47811,
+  "checked": "2026-09-30"
+ },
+ "agentforce-data-volume": {
+  "url": "https://cross-com.jp/agentforce-data-volume/",
+  "sha256": "4d33dc18a6a358e1df8ba7e58fd2003a32577e6bc935871233f06fd685088ef2",
+  "bytes": 48805,
+  "checked": "2026-09-30"
+ },
+ "agentforce-data-library": {
+  "url": "https://cross-com.jp/agentforce-data-library/",
+  "sha256": "67c345b67e6933947ff9b1afb8739c840bb3c130bfc01953bb3fc8c679c13828",
+  "bytes": 52354,
+  "checked": "2026-09-30"
+ },
+ "agentforce-permission-set": {
+  "url": "https://cross-com.jp/agentforce-permission-set/",
+  "sha256": "ed988530bc62867541ade31c75fc68810d65817fea2ba54a800f1e3c3c93f9b1",
+  "bytes": 50934,
+  "checked": "2026-09-30"
+ },
+ "agentforce-proposal-review": {
+  "url": "https://cross-com.jp/agentforce-proposal-review/",
+  "sha256": "d1bf13a7ee135fe9fff0985cf61ba73e2583fc43c2d2750c937c8fb6f4fd633c",
+  "bytes": 48083,
+  "checked": "2026-09-30"
+ }
+}

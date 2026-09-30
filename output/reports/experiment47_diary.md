@@ -625,3 +625,6 @@ apply_gate が読む割付表の書式・場所（`output/reports/experiment47_a
 - 2026-09-29 14:00／処置反映：hyper-personalization（post 6235・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
 - 2026-09-29 14:00／処置反映：agentforce-mcp（post 6645・②FAQのみ）… D-39 —／FAQ 6問（apply_gate NG0・再読一致・既存本文不変）
 - 2026-09-29 17:47／処置反映：agentforce-rag（post 6604・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 18:13／処置反映：sfa-teichaku（post 7067・④両方）… D-39 あり／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-29 18:13／処置反映：agentforce-retention（post 6260・②FAQのみ）… D-39 —／FAQ 5問（apply_gate NG0・再読一致・既存本文不変）
+- 2026-09-30／drift_check：処置後の基準（46本）を experiment_2x2/drift/post_treatment/ に取得。10/5 の回は前回（9/21）ではなくこの基準と比べ、9/29〜30 の処置による変化は想定内として出さない。10/5 以降の変化は想定外として報告。読了時間の表示はハッシュから除外、本文テキストが同じで HTML だけ違う記事は別枠で出す

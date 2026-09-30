@@ -384,3 +384,12 @@ def test_a_title_change_dated_9_15_joins_the_late_list(monkeypatch, tmp_path):
     assert "agentic-crm-pipeline-stagnation-detection" not in after, "9/12 の変更は対象外"
     assert before < after and len(after) == len(before) + 1
     assert pool.baseline_start("agentic-ai-guide") == pool.LATE_BASELINE_FROM
+
+
+def test_load_probe_takes_groups_from_allocation_not_the_csv(tmp_path, monkeypatch):
+    """2026-09-30: 結果CSVの group 列（9/17 は割付前 v0）ではなく allocation_v1 の組で数える。"""
+    p = tmp_path / "2026-10-06.csv"
+    p.write_text("url,group,cited\nhttps://cross-com.jp/agentforce-rag/,①対照,1\n", encoding="utf-8")
+    monkeypatch.setattr(summarize, "load_allocation", lambda: {"agentforce-rag": "④両方"})
+    monkeypatch.setattr(summarize, "pool_slugs", lambda: {"agentforce-rag"})
+    assert summarize.load_probe(str(p)) == {"agentforce-rag": ("④両方", 1)}

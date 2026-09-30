@@ -105,13 +105,16 @@ def period(rows, span, model, groups, pool):
 # --------------------------------------------------------------------------
 def load_probe(path):
     """{slug: (組, 1回でも引用されたら1)}"""
-    cited = collections.defaultdict(list); group = {}; pool = pool_slugs()
+    # 2026-09-30：組は結果CSVの group 列ではなく割付表（allocation_v1）から読む（probe_summary と同じ）。
+    # 　9/17 の結果CSVは割付前（v0）の組を持っており、46本中37本が v1 と違う。group 列を使うと
+    # 　tally・effect・検定が v0 の組で数えられ、同じ出力の rerandomization_p（v1）と混ざる
+    cited = collections.defaultdict(list); pool = pool_slugs(); groups = load_allocation()
     for r in csv.DictReader(open(path, encoding="utf-8")):
         s = slug(r["url"])
         if s in EXCLUDED or s not in pool:   # E37・プール外（pricing 等）は統計に入れない
             continue
-        cited[s].append(int(r["cited"])); group[s] = r["group"]
-    return {s: (group[s], int(any(v))) for s, v in cited.items()}
+        cited[s].append(int(r["cited"]))
+    return {s: (groups.get(s, "（割付なし）"), int(any(v))) for s, v in cited.items()}
 
 
 # --------------------------------------------------------------------------
