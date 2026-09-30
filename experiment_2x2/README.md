@@ -121,6 +121,8 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
   ②④ 対 ①③ を比べる。再ランダム化の p は5通り目の行を見る）
 
 ## 判定（summarize.py）
+- 判定レポートの冒頭に、判定期間（ビフォーの初日〜アフターの最終日）と重なる `output/interventions.csv` の
+  scope=サイト全体 の介入を自動で並べる（2026-10-01。全記事に一様な変化は全組共通のベースラインとして読むため）
 - 判定は **llm_experiment のみ**。既定でシートの llm_experiment を読む：
   ```
   python3 experiment_2x2/summarize.py --before 2026-09-15:2026-09-28 --after <開始>:<終了>

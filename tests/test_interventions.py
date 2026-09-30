@@ -76,7 +76,7 @@ def test_the_real_log_parses_and_keeps_the_agreed_columns():
     pool = [r for r in rows if r["touches_pool46"] == "yes"]
     # ビフォー期間中の編集(9/11 の一括反映・9/11〜14 のリンク増・9/15〜16 の追記)と
     # 9/29 の処置反映がプール46本に触れる
-    assert [r["intervention_id"] for r in pool] == ["I-11", "I-12", "I-09", "I-07"]
+    assert [r["intervention_id"] for r in pool] == ["I-11", "I-12", "I-09", "I-07", "I-14"]
     by_id = {r["intervention_id"]: r for r in rows}
     # 9/29 に入れる訂正は1本(E37 は 9/22 に実験外で適用済み。
     # agentforce-vibes は 2026-09-26 に訂正見送り —— 戦略管制塔の裁定で凍結明けへ)
@@ -145,3 +145,13 @@ def test_i07_notes_the_multi_paragraph_faq_conversion():
     """B-24：複数段落回答の6本は <br> でつないで変換した(2026-09-29)。判定の5通り目の理由。"""
     by_id = {r["intervention_id"]: r for r in interventions.load()}
     assert "B-24" in by_id["I-07"]["note"] and "<br>" in by_id["I-07"]["note"]
+
+
+
+def test_i14_records_b33_as_a_site_wide_change_on_0930():
+    """B-33 外部リンク別タブ化(2026-09-30)。全記事に一様・本文不変。判定では全組共通の変化として扱う。"""
+    row = {r["intervention_id"]: r for r in interventions.load()}["I-14"]
+    assert row["raw_date"] == "2026-09-30" and row["scope"] == "サイト全体"
+    assert row["executor"] == "管制室" and row["touches_pool46"] == "yes"
+    assert 'target="_blank" rel="noopener noreferrer"' in row["description"]
+    assert "全組共通" in row["note"] and "1,207本" in row["note"]

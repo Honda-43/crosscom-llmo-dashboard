@@ -32,6 +32,8 @@ import sys
 from math import comb
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
+import interventions  # noqa: E402
 import rerandomize  # noqa: E402
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
                   LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
@@ -337,6 +339,66 @@ def both_ways(after, before, title=""):
         summarize(after, before, exclude, f"{title}{label}")
 
 
+# --------------------------------------------------------------------------
+# 判定期間と重なる介入(2026-10-01)
+# --------------------------------------------------------------------------
+SITE_WIDE_SCOPE = "サイト全体"
+
+
+def intervention_end(row):
+    """介入の終わりの日。継続("〜"で終わる)は None(終わりなし)。"2026-09-20〜22" は 22 日。"""
+    raw = str(row.get("raw_date") or "")
+    start = row.get("date")
+    if start is None or row.get("ongoing"):
+        return None
+    tail = raw.split("〜", 1)[1] if "〜" in raw else ""
+    try:
+        if tail.count("-") == 1:                         # 〜MM-DD
+            m, d = tail.split("-")
+            return start.replace(month=int(m), day=int(d))
+        if tail.isdigit():                               # 〜DD
+            return start.replace(day=int(tail))
+    except ValueError:
+        pass
+    return start
+
+
+def site_wide_interventions(start, end, rows=None):
+    """(期間と重なるサイト全体の介入, 日付が未確定のサイト全体の介入)。start・end は date。
+
+    サイト全体の介入は全記事に一様に効くので、組の差ではなく全組共通のベースラインの変化として読む。
+    判定のたびに冒頭に並べ、処置の効果と取り違えないようにする。
+    """
+    rows = interventions.load() if rows is None else rows
+    site = [r for r in rows if str(r.get("scope", "")).strip() == SITE_WIDE_SCOPE]
+    overlap = []
+    for r in site:
+        if r.get("date") is None:
+            continue
+        stop = intervention_end(r)
+        if r["date"] <= end and (stop is None or stop >= start):
+            overlap.append(r)
+    return overlap, [r for r in site if r.get("date") is None]
+
+
+def print_site_wide_interventions(before, after, rows=None):
+    import datetime as _dt
+    start = _dt.date.fromisoformat(_span(before)[0])
+    end = _dt.date.fromisoformat(_span(after)[1])
+    overlap, undated = site_wide_interventions(start, end, rows)
+    print(f"## 判定期間（{start}〜{end}）と重なる介入（interventions.csv・scope=サイト全体）")
+    if not overlap and not undated:
+        print("なし\n")
+        return overlap
+    for r in overlap:
+        print(f"- {r['raw_date']} {r['intervention_id']} {r['description']}"
+              f"（プール46本に触れる: {r.get('touches_pool46', '')}）")
+    for r in undated:
+        print(f"- 日付未確定 {r['intervention_id']} {r['description']}")
+    print("※ 全記事に一様にかかる介入は、組の差ではなく全組共通のベースラインの変化として読む\n")
+    return overlap
+
+
 def _span(text):
     start, _, end = text.partition(":")
     return start, end or start
@@ -367,6 +429,7 @@ def main(argv=None):
         groups = load_allocation()
         if not groups:
             sys.exit("allocation_v1.csv が無い（9/28 の割付の前）。組が決まってから判定する")
+        print_site_wide_interventions(a.before, a.after)
         rows = read_llm_experiment(a.csv)
         pool = pool_slugs()
         late = late_appended_slugs()

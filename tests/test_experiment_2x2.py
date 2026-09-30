@@ -393,3 +393,36 @@ def test_load_probe_takes_groups_from_allocation_not_the_csv(tmp_path, monkeypat
     monkeypatch.setattr(summarize, "load_allocation", lambda: {"agentforce-rag": "④両方"})
     monkeypatch.setattr(summarize, "pool_slugs", lambda: {"agentforce-rag"})
     assert summarize.load_probe(str(p)) == {"agentforce-rag": ("④両方", 1)}
+
+
+# --- 判定期間と重なるサイト全体の介入(2026-10-01) -------------------------------------------
+def _iv(raw, iid, scope="サイト全体"):
+    import interventions
+    return {"raw_date": raw, "date": interventions.parse_date(raw), "intervention_id": iid,
+            "description": f"{iid} の内容", "scope": scope, "touches_pool46": "yes",
+            "ongoing": raw.rstrip().endswith(interventions.ONGOING_MARKS)}
+
+
+def test_site_wide_interventions_that_overlap_the_judgement_are_listed():
+    import datetime as dt
+    rows = [_iv("2026-09-10", "OLD"), _iv("2026-09-10〜16", "RANGE_IN"),
+            _iv("2026-09-01〜09-14", "RANGE_OUT"), _iv("2026-09-01〜", "ONGOING"),
+            _iv("2026-09-30", "B33"), _iv("2026-11-05", "LATER"),
+            _iv("2026-09-30", "ARTICLE", scope="サイト(記事)"), _iv("", "UNDATED")]
+    overlap, undated = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 11, 1), rows)
+    assert [r["intervention_id"] for r in overlap] == ["RANGE_IN", "ONGOING", "B33"]
+    assert [r["intervention_id"] for r in undated] == ["UNDATED"]
+
+
+def test_the_judgement_report_starts_with_the_site_wide_interventions(monkeypatch, tmp_path, capsys):
+    rag = "https://cross-com.jp/agentforce-rag/"
+    monkeypatch.setattr(summarize, "load_allocation", lambda: {"agentforce-rag": "①対照"})
+    path = tmp_path / "e.csv"
+    _exp_csv(path, [["2026-09-18", "E06", "gemini", rag, "0", "", "pool"],
+                    ["2026-10-10", "E06", "gemini", rag, "1", "", "pool"]])
+    summarize.main(["--before", "2026-09-15:2026-09-28", "--after", "2026-10-06:2026-11-01",
+                    "--csv", str(path), "--model", "gemini"])
+    out = capsys.readouterr().out
+    head = out.split("#####")[0]
+    assert "判定期間（2026-09-15〜2026-11-01）と重なる介入" in head
+    assert "I-14 B-33" in head and "I-04" in head
