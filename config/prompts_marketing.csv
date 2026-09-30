@@ -1,0 +1,55 @@
+id,layer,prompt
+PM-L0-01,MOFU_L0,おすすめのAgentforce導入支援会社を教えてください。
+PM-L0-02,MOFU_L0,おすすめのAgentforce活用定着支援会社を教えてください。
+PM-L0-03,MOFU_L0,おすすめのAgentforce設計レビュー会社を教えてください。
+PM-L0-04,MOFU_L0,おすすめのAgentforceアドバイザリー会社を教えてください。
+PM-L0-05,MOFU_L0,おすすめのAgentic CRM設計支援会社を教えてください。
+PM-L0-06,MOFU_L0,おすすめのSalesforce導入支援会社を教えてください。
+PM-L0-07,MOFU_L0,おすすめのSalesforce構築支援会社を教えてください。
+PM-L0-08,MOFU_L0,おすすめの業務設計支援会社を教えてください。
+PM-L0-09,MOFU_L0,おすすめの業務改革支援会社を教えてください。
+PM-L0-10,MOFU_L0,おすすめの業務変革支援会社を教えてください。
+PM-L1-01,MOFU_L1,住宅業界におすすめのAgentforce導入支援会社を教えてください。
+PM-L1-02,MOFU_L1,住宅業界におすすめのAgentic CRM設計支援会社を教えてください。
+PM-L1-03,MOFU_L1,住宅業界におすすめのSalesforce導入支援会社を教えてください。
+PM-L1-04,MOFU_L1,不動産業界におすすめのAgentforce導入支援会社を教えてください。
+PM-L1-05,MOFU_L1,不動産業界におすすめのAgentic CRM設計支援会社を教えてください。
+PM-L1-06,MOFU_L1,不動産業界におすすめのSalesforce導入支援会社を教えてください。
+PM-L1-07,MOFU_L1,IT業界におすすめのAgentforce導入支援会社を教えてください。
+PM-L1-08,MOFU_L1,IT業界におすすめのAgentic CRM設計支援会社を教えてください。
+PM-L1-09,MOFU_L1,IT業界におすすめのSalesforce導入支援会社を教えてください。
+PM-L1-10,MOFU_L1,コンサルティング業界におすすめのAgentforce導入支援会社を教えてください。
+PM-L1-11,MOFU_L1,コンサルティング業界におすすめのAgentic CRM設計支援会社を教えてください。
+PM-L1-12,MOFU_L1,コンサルティング業界におすすめのSalesforce導入支援会社を教えてください。
+PM-L1-13,MOFU_L1,営業部門におすすめのAgentforce導入支援会社を教えてください。
+PM-L1-14,MOFU_L1,営業部門におすすめのAgentic CRM設計支援会社を教えてください。
+PM-L1-15,MOFU_L1,営業部門におすすめのSalesforce導入支援会社を教えてください。
+PM-L1-16,MOFU_L1,ソリューション営業におすすめのAgentforce導入支援会社を教えてください。
+PM-L1-17,MOFU_L1,ソリューション営業におすすめのAgentic CRM設計支援会社を教えてください。
+PM-L1-18,MOFU_L1,ソリューション営業におすすめのSalesforce導入支援会社を教えてください。
+PM-L2-01,MOFU_L2,中小企業におすすめのAgentforce導入支援会社を教えてください。
+PM-L2-02,MOFU_L2,中小企業におすすめのAgentic CRM設計支援会社を教えてください。
+PM-L2-03,MOFU_L2,中小企業におすすめのSalesforce導入支援会社を教えてください。
+PM-L2-04,MOFU_L2,中堅企業におすすめのAgentforce導入支援会社を教えてください。
+PM-L2-05,MOFU_L2,中堅企業におすすめのAgentic CRM設計支援会社を教えてください。
+PM-L2-06,MOFU_L2,中堅企業におすすめのSalesforce導入支援会社を教えてください。
+PM-BS-01,BOFU_single,合同会社クロスコムのAgentforce導入支援の評判を教えてください。
+PM-BS-02,BOFU_single,合同会社クロスコムのAgentforce導入支援の実績を教えてください。
+PM-BS-03,BOFU_single,合同会社クロスコムのAgentforce導入支援の専門性を教えてください。
+PM-BS-04,BOFU_single,合同会社クロスコムのAgentforce活用定着支援の評判を教えてください。
+PM-BS-05,BOFU_single,合同会社クロスコムのAgentforce活用定着支援の実績を教えてください。
+PM-BS-06,BOFU_single,合同会社クロスコムのAgentforce活用定着支援の専門性を教えてください。
+PM-BS-07,BOFU_single,合同会社クロスコムのAgentforce設計レビューの評判を教えてください。
+PM-BS-08,BOFU_single,合同会社クロスコムのAgentforce設計レビューの実績を教えてください。
+PM-BS-09,BOFU_single,合同会社クロスコムのAgentforce設計レビューの専門性を教えてください。
+PM-BS-10,BOFU_single,合同会社クロスコムのAgentic CRM設計支援の評判を教えてください。
+PM-BS-11,BOFU_single,合同会社クロスコムのAgentic CRM設計支援の実績を教えてください。
+PM-BS-12,BOFU_single,合同会社クロスコムのAgentic CRM設計支援の専門性を教えてください。
+PM-BC-01,BOFU_compare,合同会社クロスコムと株式会社ウフルのAgentforce導入支援の評判を比較して教えてください。
+PM-BC-02,BOFU_compare,合同会社クロスコムと株式会社ウフルのAgentforce導入支援の実績を比較して教えてください。
+PM-BC-03,BOFU_compare,合同会社クロスコムと株式会社ウフルのAgentic CRM設計支援の評判を比較して教えてください。
+PM-BC-04,BOFU_compare,合同会社クロスコムと株式会社ウフルのAgentic CRM設計支援の実績を比較して教えてください。
+PM-BC-05,BOFU_compare,合同会社クロスコムと株式会社enucolorのAgentforce導入支援の評判を比較して教えてください。
+PM-BC-06,BOFU_compare,合同会社クロスコムと株式会社enucolorのAgentforce導入支援の実績を比較して教えてください。
+PM-BC-07,BOFU_compare,合同会社クロスコムと株式会社enucolorのAgentic CRM設計支援の評判を比較して教えてください。
+PM-BC-08,BOFU_compare,合同会社クロスコムと株式会社enucolorのAgentic CRM設計支援の実績を比較して教えてください。

@@ -237,6 +237,7 @@ cd src && python run_weekly.py --skip-ahrefs --no-slack   # 所見だけ手元�
 | タブ | 粒度 | 主なカラム |
 |------|------|-----------|
 | `llm_observations` | 1日×1プロンプト×1モデル | date, prompt_id, pillar, model, mention, mention_type, rank, kbf_tags, negative_or_outdated, negative_detail, cited_crosscom_urls, competitors_mentioned, raw_file |
+| `llm_marketing`(2026-10-01) | 1日×1プロンプト×1モデル | date, model, prompt_id, layer, prompt, mentioned, is_first, mention_rank, cited_domain, cited_domains, answer_text, error |
 | `ga4_ai_traffic` | 1日×source×LP | date, source, landing_page, sessions, key_events |
 | `gsc_branded` | 1日×query | date, query, clicks, impressions |
 | `gsc_pages`(2026-09-14) | 1日×記事URL | date, page, impressions, clicks, position, queries |
@@ -972,6 +973,29 @@ python notify_slack.py --test-monthly          # 月次サマリのテスト送�
 ```
 
 ---
+
+## 第3観測層 prompt_marketing(2026-10-01)
+
+戦略管制塔が確定した54本(`config/prompts_marketing.csv`・列 id, layer, prompt)を、
+Gemini(gemini-2.5-flash・検索接続ON)と Claude で**月1回・毎月第1週**に観測する。
+実験(`llm_experiment`・46本)とは別の層で、タブは `llm_marketing`、raw は `data/raw/marketing/<日付>/`。
+**文言は初回(2026-10)の実行後に凍結**(`tests/test_marketing.py` のハッシュで止める)。
+
+- **Gemini の枠の優先順位**:その日の実験・日次・月次の呼び出し(再試行込みの実消費)を先に数え、
+  20 からの残りが **3回以上ある日だけ**動かす。1本1回(再試行・掃き直しなし)で残りの本数まで投げるので、
+  1日の合計は20を超えない(テストで保証)。実験の観測のあとに `experiment.yml` の同じジョブで走る。
+  先に走る観測が揃っていない日・15:30 JST 以降(Gemini の1日は太平洋時間で切り替わる)は投げない
+- **期間**:第1週(1〜7日)で54本が終わらなければ第2週(8〜14日)まで延長。残りは `error=quota_skipped`
+  として記録し、翌月に持ち越さない。枠が足りない月でも各層に行き渡るよう、層を1本ずつ順に回す
+- **停止**:その月に実験の観測で 429 PerDay の欠測が1回でも出たら、Gemini の残りを止めて
+  (`quota_skipped`)実験日誌に自動で1回記録する。Claude は Gemini の枠と無関係なので止めない
+- **Claude**:`marketing.yml`(毎日 10:00 JST・期間外は何もしない)。期間の初日に54本、欠測は期間内の次の日に取り直す
+- **判定列**:`mentioned` は社名の6表記(`experiment.MENTION_TERMS_V2`)の文字列照合。
+  `mention_rank` は回答に出てくる会社の中で社名が何番目か — 会社名の一覧だけを Haiku に挙げさせ、
+  **並び順は本文での初出の位置**で決める(LLM に順位を決めさせない)。`is_first` は rank が1か。
+  社名が出ない回答では Haiku を呼ばない。`cited_domain` は引用元に cross-com.jp の URL があるか
+- **ダッシュボード**:「詳細:第3観測層」に 層 × モデル の月次の出現率・cited_domain 率のヒートマップ。
+  1本ごとの表は参考として別タブ。**1プロンプト月1回の観測のため、層単位の率で読む**
 
 ## Phase 4:ローカル分析アプリ(Streamlit)
 

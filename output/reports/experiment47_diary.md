@@ -695,3 +695,23 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 
 確かめ方：`src/backfill_mentioned_v2.py`（下見→`--write`）・`output/reports/mentioned_v2_backfill_20261001.md`。
 作業は 2026-09-30 夜に実施し、ルールの適用日は 2026-10-01 として記録した。
+
+---
+
+## 2026-10-01／第3観測層 prompt_marketing を新設（54本・月1回）・I-07 の note を修正
+
+- **第3観測層 prompt_marketing**（戦略管制塔の確定仕様・効果測定チャットの承認条件つき）を実装。
+  54本（`config/prompts_marketing.csv`）を Gemini と Claude で月1回・毎月第1週に観測し、`llm_marketing` タブに記録。
+  **実験（llm_experiment・46本）には触れない**（prompts_experiment.csv は1行も変えていない）
+- **初回実行日：2026-10-01**（Claude・`marketing.yml` 10:00 JST）。Gemini は 10/1 の残りが2回のため動かず、
+  **10/2（金）から**（実験の観測のあと、その日の残りの範囲で）
+- Gemini の枠：実験・日次・月次の実消費を先に数え、20 からの残りが3回以上の日だけ、1本1回で残りの本数まで。
+  1日の合計が20を超えないことをテストで保証。**10月は1〜14日で最大28本（残り26本は quota_skipped）**。
+  層を1本ずつ順に回すので、28本の内訳は MOFU_L0 6/10・MOFU_L1 6/18・MOFU_L2 6/6・BOFU_single 5/12・BOFU_compare 5/8
+- 残りが3回以上ある日（月・水・金・日の実験16本の日）の4回は、実験の 503 の取り直しと同じ余りを使う。
+  実験が取り直した日は marketing の本数が減る（28本は上限）
+- その月の実験で PerDay の欠測が出たら、Gemini の残りを止めてこの日誌に自動で記録する
+- プロンプトの文言は初回の実行後に凍結（`tests/test_marketing.py` のハッシュ）
+- `output/interventions.csv` に I-13（第3観測層の新設・scope=measurement・touches_pool46=no）を追加
+- I-07 の note を「複数段落回答の7本（sfa-teichaku を含む）」に修正（6本→7本）
+- `summarize.py` には mentioned_v2 の欄を置かない（判定に使わない数字を判定の出力に並べない。README に明記）

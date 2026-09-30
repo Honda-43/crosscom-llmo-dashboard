@@ -52,6 +52,8 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
 - 遡及の再計算は `src/backfill_mentioned_v2.py`（既定は下見・`--write` でシートの `mentioned_v2` 列だけを書く）。
   結果は `output/reports/mentioned_v2_backfill_20261001.md`
 - 週次レポートの参考欄は以後 `mentioned_v2` を使う
+- `summarize.py`（判定）には mentioned_v2 の欄を置かない。判定に使わない数字を判定の出力に並べないため
+  （言及は週次レポートの参考欄のみ）
 
 ## 割付（allocate_47.py）
 - **既定はドライラン**（画面に出すだけ）。`--write` を付けたときだけ `allocation_v1.csv` と

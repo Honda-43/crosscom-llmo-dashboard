@@ -25,6 +25,7 @@ from settings import (
     TAB_BOARD,
     TAB_CITATION_GAP,
     TAB_EXPERIMENT,
+    TAB_MARKETING,
     TAB_LK_ACTIONS,
     TAB_LK_ANSWERS,
     TAB_LK_ANSWERS_PIVOT,
@@ -873,3 +874,49 @@ def write_ahrefs(result: Optional[Dict[str, Any]]) -> None:
         "keywords_json": json.dumps(result.get("keywords", []), ensure_ascii=False),
     }
     _upsert(ss, TAB_AHREFS, HEADERS_AHREFS, KEYS_AHREFS, [row])
+
+
+# --------------------------------------------------------------------------
+# 第3観測層 prompt_marketing(2026-10-01)。llm_experiment とは別のタブ
+# --------------------------------------------------------------------------
+HEADERS_MARKETING = [
+    "date", "model", "prompt_id", "layer", "prompt",
+    "mentioned", "is_first", "mention_rank", "cited_domain", "cited_domains",
+    "answer_text", "error",
+]
+KEYS_MARKETING = ["date", "model", "prompt_id"]
+
+
+def _marketing_row(rec: Dict[str, Any]) -> Dict[str, Any]:
+    answer = rec.get("answer_text") or ""
+    if len(answer) > CELL_CHAR_LIMIT:
+        answer = answer[:CELL_CHAR_LIMIT] + "…[続きは data/raw/marketing]"
+    return {
+        "date": rec.get("date"), "model": rec.get("model"), "prompt_id": rec.get("prompt_id"),
+        "layer": rec.get("layer", ""), "prompt": _as_text(rec.get("prompt") or ""),
+        "mentioned": rec.get("mentioned", ""), "is_first": rec.get("is_first", ""),
+        "mention_rank": rec.get("mention_rank", ""), "cited_domain": rec.get("cited_domain", ""),
+        "cited_domains": rec.get("cited_domains", []),
+        "answer_text": _as_text(answer), "error": _as_text(rec.get("error") or ""),
+    }
+
+
+def write_marketing(records: List[Dict[str, Any]]) -> int:
+    """prompt_marketing の観測を llm_marketing に upsert する。書いた行数を返す。"""
+    if not records:
+        return 0
+    ss = _open_spreadsheet()
+    ws = _ensure_worksheet(ss, TAB_MARKETING, HEADERS_MARKETING)
+    existing = ws.get(f"A1:C{ws.row_count}") or [HEADERS_MARKETING[:3]]
+    writes = _plan_upsert(list(existing), HEADERS_MARKETING, KEYS_MARKETING,
+                          [_marketing_row(r) for r in records])
+    needed = max(w["row"] for w in writes)
+    if ws.row_count < needed:
+        ws.add_rows(needed - ws.row_count + 200)
+    ss.values_batch_update({
+        "valueInputOption": "USER_ENTERED",
+        "data": [{"range": f"'{TAB_MARKETING}'!A{w['row']}", "values": [w["values"]]}
+                 for w in writes],
+    })
+    print(f"[ok] {TAB_MARKETING}: {len(writes)} rows")
+    return len(writes)

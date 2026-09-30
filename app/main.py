@@ -36,6 +36,7 @@ DETAIL_PAGES = [
     st.Page("views/p3_prompt.py", title="詳細:プロンプト", icon="🔍"),
     st.Page("views/p4_answers.py", title="詳細:回答・差分", icon="📝"),
     st.Page("views/p5_weekly.py", title="詳細:週次所見", icon="🗒️"),
+    st.Page("views/p6_marketing.py", title="詳細:第3観測層", icon="🧭"),
 ]
 
 with st.sidebar:

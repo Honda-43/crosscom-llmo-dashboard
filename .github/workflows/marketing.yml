@@ -1,0 +1,75 @@
+name: marketing
+
+on:
+  schedule:
+    # 第3観測層 prompt_marketing の Claude(2026-10-01)。Gemini は experiment.yml の中で、
+    # 実験の観測のあとに走る(枠を数えるため)。Claude は Gemini の枠と無関係なので別に回す。
+    # 毎日走るが、run_marketing.py が「毎月1〜14日で、その月にまだ終わっていない分」だけを投げる。
+    # 期間の初日にまとめて54本、欠測は期間内の次の日に取り直す。15日以降の最初の回だけ、
+    # 終わらなかった分を quota_skipped として記録する。
+    # 10:00 JST = 01:00 UTC。
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: '観測日 (YYYY-MM-DD、空なら当日JST)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write      # data/raw/marketing/ の commit に必要
+
+concurrency:
+  group: llmo-marketing
+  cancel-in-progress: false
+
+jobs:
+  marketing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180   # Claude 54本(web 検索つき)
+    env:
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+      SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run prompt_marketing (Claude)
+        working-directory: src
+        run: |
+          python run_marketing.py --model claude \
+            ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
+
+      - name: Commit marketing raw answers
+        if: always()
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -d data/raw/marketing ]; then git add data/raw/marketing; fi
+          if git diff --cached --quiet; then
+            echo "No new marketing answers to commit."
+          else
+            git commit -m "data: prompt_marketing observations $(TZ=Asia/Tokyo date +%Y-%m-%d)"
+            git pull --rebase
+            git push
+          fi
+
+      - name: Notify Slack on workflow failure
+        if: failure() && env.SLACK_WEBHOOK_URL != ''
+        run: |
+          RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          TEXT="*LLMO prompt_marketing アラート*\n*❌ ワークフロー失敗*\n• marketing.yml(Claude)が異常終了しました\n<$RUN_URL|実行ログを開く>"
+          printf '{"text":"%s"}' "$TEXT" > payload.json
+          curl -sS -X POST -H 'Content-type: application/json' \
+            --data @payload.json "$SLACK_WEBHOOK_URL" > /dev/null

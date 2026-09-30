@@ -58,6 +58,16 @@ jobs:
           python run_experiment.py \
             ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
 
+      # 第3観測層 prompt_marketing の Gemini(2026-10-01)。実験の観測が**終わってから**同じジョブで走る。
+      # その日の実消費(日次・月次・実験・同日の marketing。再試行込み)を数え、20 からの残りが
+      # 3回以上の日だけ、1本1回で残りの本数まで投げる。毎月1〜14日のほかは何もしない
+      # (15日以降の最初の回だけ、終わらなかった分を quota_skipped として記録する)。
+      # 実験の観測が失敗した日は走らない(実消費が数えきれないため)。
+      - name: Run prompt_marketing (Gemini) within the day's remaining quota
+        working-directory: src
+        run: |
+          python run_marketing.py --model gemini ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
+
       # 実験日誌(欠測の記録)は観測が失敗した日ほど必要なので always() で commit する。
       - name: Commit experiment raw answers and journal
         if: always()
@@ -65,6 +75,9 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/raw/experiment data/experiment_journal.csv
+          # prompt_marketing の raw と、実験の PerDay 欠測で止めたときの日誌の記録
+          if [ -d data/raw/marketing ]; then git add data/raw/marketing; fi
+          git add output/reports/experiment47_diary.md
           if git diff --cached --quiet; then
             echo "No new experiment answers to commit."
           else

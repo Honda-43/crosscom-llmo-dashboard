@@ -38,6 +38,7 @@ from settings import (  # noqa: E402  - needs the sys.path line above
     TAB_GA4,
     TAB_GSC,
     TAB_LLM,
+    TAB_MARKETING,
     TAB_SOV,
     TAB_SUMMARY,
     TAB_WEEKLY,
@@ -50,7 +51,7 @@ SPREADSHEET_ID_FILE = CREDENTIALS_DIR / "spreadsheet_id.txt"
 CACHE_TTL_SECONDS = 600  # §1: 10 minutes
 
 ALL_TABS = [TAB_SUMMARY, TAB_LLM, TAB_SOV, TAB_CHANGES, TAB_GA4, TAB_GSC,
-            TAB_WEEKLY, TAB_ACTION_LOG, TAB_CITATION_GAP]
+            TAB_WEEKLY, TAB_ACTION_LOG, TAB_CITATION_GAP, TAB_MARKETING]
 
 # Sample mode renders the UI without credentials so the layout can be reviewed
 # (and the chart code exercised) before the service account is wired up.

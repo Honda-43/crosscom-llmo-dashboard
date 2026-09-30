@@ -34,6 +34,8 @@ PROMPTS_EXPERIMENT_FILE = CONFIG_DIR / "prompts_experiment.csv"
 # 見出し・FAQに及ぶ訂正でプールから外したが、訂正後の引用の動きは見たいので観測を続ける。
 # llm_experiment では experiment_flag=watch。割付・判定・週次集計の母数には入らない。
 PROMPTS_WATCH_FILE = CONFIG_DIR / "prompts_watch.csv"
+# 第3観測層(2026-10-01)。戦略管制塔が確定した54本。初回実行後は文言を凍結(テストで止める)
+PROMPTS_MARKETING_FILE = CONFIG_DIR / "prompts_marketing.csv"
 # 実験期間中の編集凍結(2026-09-28)。凍結対象の一覧そのものは seo-agent 管理の
 # experiment_2x2/targets.csv・link_ban.csv を読む(このファイルにはパスと期間だけ)。
 EXPERIMENT_FREEZE_FILE = CONFIG_DIR / "experiment_freeze.yaml"
@@ -43,6 +45,7 @@ EXPERIMENT_FLAG_POOL = "pool"
 EXPERIMENT_FLAG_WATCH = "watch"
 # 実験の回答全文。日次・月次の日付ディレクトリと混ぜない。
 DATA_RAW_EXPERIMENT_DIR = ROOT_DIR / "data" / "raw" / "experiment"
+DATA_RAW_MARKETING_DIR = ROOT_DIR / "data" / "raw" / "marketing"
 # 実験日誌。欠測を1行1件で残す(date, experiment_id, model, reason, detail, attempts)。
 # 「観測できなかった事実と、その理由」を後から数えられるようにするためのもの。
 EXPERIMENT_JOURNAL_FILE = ROOT_DIR / "data" / "experiment_journal.csv"
@@ -401,6 +404,47 @@ def experiment_plan(date: str) -> Dict[str, List[Dict[str, Any]]]:
     return plan
 
 
+# --------------------------------------------------------------------------
+# 第3観測層 prompt_marketing(2026-10-01)
+# --------------------------------------------------------------------------
+# 月1回・毎月第1週。Gemini は**実験・日次・月次を先に数え**、その日の実消費
+# (再試行込み)を20から引いた残りが MARKETING_MIN_SPARE 以上の日だけ動かす。
+# 1本1回(再試行しない)なので、1日の合計は20を超えない。
+# 第1週(1〜7日)で終わらなければ第2週(8〜14日)まで延長。残りは error=quota_skipped
+# として記録し、翌月に持ち越さない。Claude は Gemini の枠と無関係で、初日にまとめて回す。
+MARKETING_FIRST_MONTH = "2026-10"
+MARKETING_WINDOW_LAST_DAY = 14          # 第1週(1〜7)+ 延長の第2週(8〜14)
+MARKETING_MIN_SPARE = 3
+MARKETING_QUOTA_SKIPPED = "quota_skipped"
+# Gemini の1日(枠)は太平洋時間で切り替わる(JST 16時〜17時)。これより後に投げると
+# 翌日の枠を食い、翌朝の日次・実験と合わせて20を超えうる。余裕を見てこの時刻で打ち切る
+MARKETING_GEMINI_CUTOFF_JST = (15, 30)
+
+
+def load_marketing_prompts() -> List[Dict[str, Any]]:
+    """第3観測層の54本(id, layer, prompt)。CSV の値は加工しない。``text`` に prompt を写す。"""
+    if not PROMPTS_MARKETING_FILE.exists():
+        return []
+    with open(PROMPTS_MARKETING_FILE, "r", encoding="utf-8", newline="") as fh:
+        return [dict(row, text=row["prompt"]) for row in csv.DictReader(fh)]
+
+
+def in_marketing_window(date: str) -> bool:
+    """prompt_marketing を投げてよい日か(初回の月以降の、1〜14日)。"""
+    day = dt.date.fromisoformat(str(date)[:10])
+    return (f"{day:%Y-%m}" >= MARKETING_FIRST_MONTH
+            and day.day <= MARKETING_WINDOW_LAST_DAY)
+
+
+def marketing_gemini_allowance(used_today: int) -> int:
+    """実験・日次・月次が合わせて ``used_today`` 回投げたあと、marketing が投げてよい本数。
+
+    残りが MARKETING_MIN_SPARE 未満なら0。1本1回なので、これを守れば合計は20以下。
+    """
+    room = GEMINI_DAILY_REQUEST_LIMIT - int(used_today)
+    return room if room >= MARKETING_MIN_SPARE else 0
+
+
 def gemini_requests_on(date: str) -> Dict[str, int]:
     """その日(JST)の Gemini リクエスト数の見積もり。日次・月次・実験の合計。
 
@@ -602,6 +646,8 @@ TAB_WEEKLY = "weekly_reports"
 TAB_MONTHLY = "monthly_observations"
 # LLMO効果測定実験(2026-09-14)。ダッシュボード用のタブとは混ぜない。
 TAB_EXPERIMENT = "llm_experiment"
+# 第3観測層 prompt_marketing(2026-10-01)。llm_experiment とは混ぜない
+TAB_MARKETING = "llm_marketing"
 # 比較型観測のKBF別評価。月次実行のたびに書き換える(Phase 3 追加)。
 TAB_LK_KBF_COMPARE = "lk_kbf_compare"
 # Phase 5
