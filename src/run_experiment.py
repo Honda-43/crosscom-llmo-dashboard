@@ -60,7 +60,8 @@ import experiment
 import notify_slack
 import sheets_writer
 from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DIR,
-                      EXPERIMENT_JOURNAL_FILE, experiment_weekly_target,
+                      EXPERIMENT_JOURNAL_FILE, EXPERIMENT_OBSERVATION_END,
+                      experiment_ended, experiment_weekly_target,
                       load_experiment_prompts,
                       GEMINI_DAILY_REQUEST_LIMIT, ROOT_DIR, WEEKDAY_LABELS,
                       experiment_gemini_allowance, experiment_plan, gemini_requests_on,
@@ -463,6 +464,10 @@ def weekly_count_line(date: str, raw_dir: Optional[Path] = None,
     target = experiment_weekly_target() if target is None else target
     pool_size = target // 2
     count = weekly_observation_count(date, raw_dir)
+    if experiment_ended(date):
+        # 観測の終わり(2026-12-31)をまたぐ週・その後の週は目標と比べない
+        return (f"- 実験の Gemini 観測: 週{count}本"
+                f"(実験の観測は {EXPERIMENT_OBSERVATION_END} で終了)")
     if count < target:
         end = dt.date.fromisoformat(str(date)[:10])
         monthly_week = any(monthly_batch_on((end - dt.timedelta(days=i)).isoformat())

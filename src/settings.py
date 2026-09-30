@@ -224,11 +224,12 @@ EXPERIMENT_CLAUDE_WEEKDAYS = (0, 3)             # 月・木(Claude は Gemini �
 # おり、09-21 始まりだと 09-19・09-20 の Gemini 観測が0本になるため
 # (09-18 と質問が重なるが、同じ質問を複数回観測するのは設計どおり)。
 EXPERIMENT_CYCLE_START = os.getenv("EXPERIMENT_CYCLE_START", "2026-09-19")
-# 実験(prompts_experiment.csv)の観測の最後の日(この日まで観測する)。空なら終わりなし(2026-10-01 追加)。
-# 設定するとその翌日から Gemini・Claude とも実験の観測が止まり、prompt_marketing の Gemini は
-# その日の残り(日次・月次を引いた分)をすべて使える(実験優先の制限が自然に外れる)。
-# 長期判定は 12/28 の週(12/28 の観測分まで含む)。日付は効果測定チャットの判断で入れる
-EXPERIMENT_OBSERVATION_END = os.getenv("EXPERIMENT_OBSERVATION_END", "")
+# 実験(prompts_experiment.csv の46本 + watch の E37)の観測の最後の日(この日まで観測する)。
+# 2026-10-01 確定:**2026-12-31 まで**観測し、2027-01-01(凍結の解放と同時)から自動で止める。
+# 長期判定に使うのは 2026-10-06〜12-28 の観測で、12/29〜12/31 は記録のみ(判定には使わない)。
+# 止まった翌日から Gemini・Claude とも実験の観測が無くなり、prompt_marketing の Gemini は
+# その日の残り(日次・月次を引いた分)をすべて使える(1月第1週に54本)。空にすると終わりなし
+EXPERIMENT_OBSERVATION_END = os.getenv("EXPERIMENT_OBSERVATION_END", "2026-12-31")
 # 1日の実験本数の上限。日次・月次のある日は実消費と予備で先に頭打ちになる(11本以下)ので、
 # 実際に効くのは月・水・金・日(余り4本)。
 EXPERIMENT_DAILY_CAP = int(os.getenv("EXPERIMENT_DAILY_CAP", "16"))

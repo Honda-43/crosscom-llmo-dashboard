@@ -104,7 +104,11 @@ def test_a_normal_week_covers_the_observations_the_protocol_needs():
     assert sum(counts) >= settings.experiment_weekly_target()
 
 
-@pytest.mark.parametrize("offset", range(120))
+# 実験の観測は 2026-12-31 まで(settings.EXPERIMENT_OBSERVATION_END)。それより後にかかる窓は見ない
+_WINDOWS = (dt.date.fromisoformat(settings.EXPERIMENT_OBSERVATION_END) - START).days - 5
+
+
+@pytest.mark.parametrize("offset", range(_WINDOWS))
 def test_every_seven_day_window_covers_94_unless_a_monthly_batch_eats_into_it(offset):
     """どこで7日を切っても97本。月次観測(第1水・第1木)を含む窓だけ減る。
 

@@ -387,10 +387,30 @@ def ended(monkeypatch):
     monkeypatch.setattr(settings, "EXPERIMENT_OBSERVATION_END", "2026-12-28")
 
 
-def test_by_default_the_experiment_never_ends(monkeypatch):
+def test_the_experiment_is_observed_until_20261231_and_stops_on_20270101(monkeypatch):
+    """2026-10-01 確定:実験の観測は 12/31 まで。1/1(凍結の解放と同時)に自動で止める。E37(watch)も同日。"""
     monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
-    assert settings.EXPERIMENT_OBSERVATION_END == ""
-    assert settings.experiment_plan("2027-01-04").get("gemini"), "既定では1月も実験優先のまま"
+    assert settings.EXPERIMENT_OBSERVATION_END == "2026-12-31"
+    last = settings.experiment_plan("2026-12-31")                      # 木曜:Gemini・Claude
+    assert set(last) == {"gemini", "claude"}
+    assert "E37" in {p["id"] for p in last["claude"]}, "watch も 12/31 までは観測する"
+    assert settings.experiment_plan("2027-01-01") == {}
+    assert settings.experiment_plan("2027-01-04") == {}                # 月曜も Claude なし
+    freeze = yaml.safe_load(open(settings.CONFIG_DIR / "experiment_freeze.yaml", encoding="utf-8"))
+    assert freeze["experiment_end"] == settings.EXPERIMENT_OBSERVATION_END, "凍結の終わりと同じ日"
+
+
+def test_an_empty_end_means_the_experiment_never_ends(monkeypatch):
+    monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
+    monkeypatch.setattr(settings, "EXPERIMENT_OBSERVATION_END", "")
+    assert settings.experiment_plan("2027-01-04").get("gemini")
+
+
+def test_the_weekly_count_does_not_warn_after_the_end(tmp_path):
+    import run_experiment
+    assert "目標" in run_experiment.weekly_count_line("2026-12-27", raw_dir=tmp_path)
+    line = run_experiment.weekly_count_line("2027-01-03", raw_dir=tmp_path)   # 12/28〜1/3
+    assert "⚠️" not in line and "2026-12-31 で終了" in line
 
 
 def test_the_experiment_is_observed_up_to_and_including_the_end_date(ended):
