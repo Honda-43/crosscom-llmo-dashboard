@@ -54,6 +54,7 @@ jobs:
         run: python run_daily.py ${{ inputs.force_llm && '--force-llm' || '' }}
 
       - name: Commit new raw LLM answers
+        id: commit
         if: always()
         run: |
           git config user.name  "github-actions[bot]"
@@ -63,6 +64,8 @@ jobs:
             echo "No new raw files to commit."
           else
             git commit -m "data: LLM raw answers $(date -u +%Y-%m-%d)"
+            # 実行が遅れて experiment.yml 等の push と重なっても弾かれないよう、取り込んでから送る
+            git pull --rebase
             git push
           fi
 
@@ -71,13 +74,31 @@ jobs:
         run: echo "::warning::One or more daily pipeline phases failed — see the job summary."
 
       # Catches failures that never reach notify_slack.py (checkout, pip install,
-      # a crash before the Python alert phase). Silently skipped when the secret
-      # is not configured.
+      # a crash before the Python alert phase) and phase failures inside
+      # run_daily.py (2026-10-01: 落ちたフェーズ名を出す。weekly.yml と同じ形).
+      # 表示用タブ(lk_*)の失敗は run_daily.py が exit 0 にするので、ここには来ない。
+      # Silently skipped when the secret is not configured.
       - name: Notify Slack on workflow failure
         if: failure() && env.SLACK_WEBHOOK_URL != ''
+        env:
+          DELIVERED: ${{ steps.pipeline.outputs.delivered }}
+          FAILED_PHASES: ${{ steps.pipeline.outputs.failed_phases }}
+          COMMIT_CONCLUSION: ${{ steps.commit.conclusion }}
         run: |
           RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
-          TEXT="*LLMO日次アラート*\n*❌ ワークフロー失敗*\n• daily.yml が異常終了しました(Python到達前の失敗の可能性あり)\n<$RUN_URL|実行ログを開く>"
+          PHASES="$FAILED_PHASES"
+          if [ "$COMMIT_CONCLUSION" = "failure" ]; then
+            PHASES="${PHASES:+$PHASES, }commit(git push)"
+          fi
+          if [ -n "$PHASES" ]; then
+            DETAIL="• daily.yml が異常終了しました\n• 落ちたフェーズ: $PHASES"
+            if [ "$DELIVERED" = "true" ]; then
+              DETAIL="$DETAIL\n• 日次アラートは配信済み"
+            fi
+          else
+            DETAIL="• daily.yml が異常終了しました(Python到達前の失敗の可能性あり)"
+          fi
+          TEXT="*LLMO日次アラート*\n*❌ ワークフロー失敗*\n$DETAIL\n<$RUN_URL|実行ログを開く>"
           printf '{"text":"%s"}' "$TEXT" > payload.json
           curl -sS -X POST -H 'Content-type: application/json' \
             --data @payload.json "$SLACK_WEBHOOK_URL" > /dev/null

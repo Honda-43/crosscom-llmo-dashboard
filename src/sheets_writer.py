@@ -206,6 +206,41 @@ KEYS_CHANGES = ["date", "prompt_id", "model", "change_type", "detail"]
 # --------------------------------------------------------------------------
 _SPREADSHEET = None
 
+# 429(1分あたりの読み取り・書き込み上限)で待つ秒数。上限は1分単位で戻るので、
+# 合計で1分を超えるまで待てば次の枠に入る(2+4+8+16+32 = 62秒)。
+QUOTA_RETRY_WAITS = (2, 4, 8, 16, 32)
+
+
+def _retrying_http_client():
+    """429 だけを待って再送する gspread の HTTP クライアント(2026-10-01)。
+
+    10/1 の日次で、write_looker_tabs が9タブを書いた直後の write_answer_pivot が
+    「Read requests per minute per user」の 429 で落ちた。日次は1回の実行で
+    Sheets を多く叩くので、1分の枠を使い切ることがある。
+
+    gspread の BackOffHTTPClient は 5xx も再送する。5xx は処理が済んでいる
+    ことがあり、append を再送すると行が二重になる。429 は受け付けられずに
+    返ったものなので、再送しても二重にならない。ここでは 429 だけを扱う。
+    """
+    import time
+
+    from gspread.exceptions import APIError
+    from gspread.http_client import HTTPClient
+
+    class QuotaRetryHTTPClient(HTTPClient):
+        def request(self, *args: Any, **kwargs: Any):
+            for wait in QUOTA_RETRY_WAITS:
+                try:
+                    return super().request(*args, **kwargs)
+                except APIError as exc:
+                    if exc.code != 429:
+                        raise
+                    print(f"[warn] Sheets API 429(利用上限) — {wait}秒待って再送します")
+                    time.sleep(wait)
+            return super().request(*args, **kwargs)
+
+    return QuotaRetryHTTPClient
+
 
 def _open_spreadsheet():
     """Open (once per process) the output spreadsheet.
@@ -221,7 +256,7 @@ def _open_spreadsheet():
 
     if not SHEET_ID:
         raise RuntimeError("SHEET_ID is not set.")
-    gc = gspread.authorize(google_credentials())
+    gc = gspread.authorize(google_credentials(), http_client=_retrying_http_client())
     _SPREADSHEET = gc.open_by_key(SHEET_ID)
     return _SPREADSHEET
 

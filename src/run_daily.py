@@ -49,6 +49,45 @@ def _job_summary(lines: List[str]) -> None:
             fh.write("\n".join(lines) + "\n")
 
 
+# 表示用タブ(board_daily・lk_*)を作る・書くフェーズ(2026-10-01)。
+# ここが落ちても観測・抽出・シート本体は書けていて、翌日の実行で作り直される。
+# 失敗は警告として日次アラートとジョブサマリに出し、run は落とさない(exit 0)。
+# 観測・抽出・シート本体の書き込みの失敗だけを exit 1 にする。
+DISPLAY_PHASES = frozenset({
+    "read_ga4", "read_gsc", "read_action_log", "read_monthly_observations",
+    "citation_rows", "verdict_contexts", "write_board_daily",
+    "build_looker_tabs", "write_looker_tabs", "write_answer_pivot",
+    "retired_url_citations",
+})
+
+
+def _phase_name(failure: str) -> str:
+    """"write_answer_pivot: APIError…" や "collect_llm(欠測 3件): …" からフェーズ名だけを取る。"""
+    return failure.split(":", 1)[0].split("(", 1)[0].strip()
+
+
+def _split_failures(failures: List[str]) -> Tuple[List[str], List[str]]:
+    """(run を落とす失敗, 警告にとどめる表示用タブの失敗)。"""
+    critical = [f for f in failures if _phase_name(f) not in DISPLAY_PHASES]
+    display = [f for f in failures if _phase_name(f) in DISPLAY_PHASES]
+    return critical, display
+
+
+def _step_outputs(delivered: bool, critical: List[str]) -> None:
+    """ワークフローの失敗通知に渡す(日次アラートが届いたか・落ちたフェーズ名)。
+
+    フェーズ名だけを渡す。例外の文面は引用符や改行を含み得て、
+    通知の JSON を壊すので載せない(文面は job summary と日次アラートにある)。
+    """
+    path = os.getenv("GITHUB_OUTPUT")
+    if not path:
+        return
+    names = list(dict.fromkeys(_phase_name(f) for f in critical))
+    with open(path, "a", encoding="utf-8") as fh:
+        fh.write(f"delivered={'true' if delivered else 'false'}\n")
+        fh.write(f"failed_phases={', '.join(names)}\n")
+
+
 def _run(name: str, fn: Callable[[], Any], failures: List[str]) -> Any:
     try:
         result = fn()
@@ -294,14 +333,18 @@ def main() -> None:
 
     # Slack alert last, so it can report failures from every preceding phase.
     # 観測しない日は、失敗か警告があったときだけ投稿する(「言及率 —」だけの通知を毎日出さない)。
+    # 表示用タブの失敗は警告として載せる(run を落とさないので「失敗」とは書かない)。
+    critical, display = _split_failures(failures)
+    warnings = warnings + [f"表示用タブの更新に失敗(翌日の実行で作り直されます): {f}"
+                           for f in display]
     notified = _run(
         "notify_slack",
         lambda: notify_slack.notify(
-            date, extractions, changes, list(failures),
+            date, extractions, changes, list(critical),
             sov_rows=sov_rows, observations=observations, warnings=warnings,
         ),
         failures,
-    ) if (llm_day or failures or warnings) else None
+    ) if (llm_day or critical or warnings) else None
 
     # Counts for the job summary
     ok_obs = sum(1 for r in extractions if not r.get("error"))
@@ -324,15 +367,20 @@ def main() -> None:
         summary_lines += ["", "### Looker 用タブ"]
         summary_lines += [f"- {tab}: {len(rows)} rows"
                           for tab, rows in sorted(looker_payload.items())]
-    if failures:
+    critical, display = _split_failures(failures)
+    if critical:
         summary_lines += ["", "### ⚠️ Failed phases"]
-        summary_lines += [f"- {f}" for f in failures]
-    else:
+        summary_lines += [f"- {f}" for f in critical]
+    if display:
+        summary_lines += ["", "### ⚠️ 表示用タブの失敗(警告・exit 0)"]
+        summary_lines += [f"- {f}" for f in display]
+    if not failures:
         summary_lines += ["", "All phases completed ✅"]
 
     _job_summary(summary_lines)
+    _step_outputs(bool(notified), critical)
 
-    sys.exit(1 if failures else 0)
+    sys.exit(1 if critical else 0)
 
 
 if __name__ == "__main__":
