@@ -19,7 +19,8 @@
 usage:
   python experiment_2x2/drift_check.py                 # 毎週月曜。初回は基準を作るだけ
   python experiment_2x2/drift_check.py --baseline      # 基準を取り直す（差分は出さない）
-  python experiment_2x2/drift_check.py --post-baseline # 処置後の基準を取る（2026-09-30 に1回だけ）
+  python experiment_2x2/drift_check.py --post-baseline # 処置後の基準を取る（2026-09-30 に1回だけ。既にあれば止まる）
+  python experiment_2x2/drift_check.py --post-baseline --force --reason "理由"  # 取り直す（日誌に記録）
 
 処置後の基準（2026-09-30 追加・効果測定チャットの指示）
 　処置（D-39・FAQ ブロック・features の1文）は 2026-09-29〜30 に入れた。前回の基準（9/28）のまま比べると、
@@ -45,6 +46,9 @@ import urllib.error
 import urllib.request
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+sys.path.insert(0, os.path.join(ROOT, 'src'))
+import force_log  # noqa: E402  標準ライブラリだけのモジュール（日誌への自動記録）
+
 HERE = os.path.join(ROOT, 'experiment_2x2')
 SNAP_DIR = os.path.join(HERE, 'drift', 'snapshots')
 MANIFEST = os.path.join(HERE, 'drift', 'manifest.json')
@@ -133,6 +137,37 @@ def targets():
     return out
 
 
+def post_baseline_exists():
+    """処置後の基準（manifest・テキスト・HTML のどれか）が既にあるか。"""
+    return os.path.exists(POST_MANIFEST) or any(
+        os.path.isdir(d) and os.listdir(d) for d in (POST_SNAP_DIR, POST_HTML_DIR))
+
+
+def post_baseline_checked():
+    """既にある処置後の基準の取得日（無ければ ''）。日誌に旧と新を並べるため。"""
+    if not os.path.exists(POST_MANIFEST):
+        return 'manifest なし' if post_baseline_exists() else ''
+    days = {v.get('checked', '') for v in json.load(io.open(POST_MANIFEST, encoding='utf-8')).values()}
+    return '・'.join(sorted(d for d in days if d)) or '不明'
+
+
+def post_baseline_guard(force, reason):
+    """処置後の基準を取り直してよいか。止めるときは理由の文、よければ None（2026-10-01）。
+
+    9/30 に取った処置後の基準は、10/5 の回で「9/29〜30 の処置による変化」と
+    「10/1 以降の想定外の変化」を分ける物差し。取り直すと今の本文が基準になり、
+    10/1 以降に起きた変化が見えなくなる。取得の途中でもファイルを書くので、取る前に止める。
+    """
+    if not post_baseline_exists():
+        return None
+    if not force:
+        return (f'★処置後の基準（{post_baseline_checked()} 取得）が既にある。取り直さない。'
+                '置き換えるときは --force と --reason "理由" を付ける')
+    if not str(reason or '').strip():
+        return '★--force には --reason "理由" が必要（日誌に残す）'
+    return None
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--baseline', action='store_true', help='基準を取り直す（差分は出さない）')
@@ -140,11 +175,19 @@ def main():
                     help='処置後の基準を drift/post_treatment/ に取る（通常の基準・差分には触れない）')
     ap.add_argument('--sleep', type=float, default=1.0)
     ap.add_argument('--out-dir', default=os.path.join(ROOT, 'output', 'reports'))
+    ap.add_argument('--force', action='store_true',
+                    help='既にある処置後の基準を取り直して置き換える（--reason 必須・日誌に記録）')
+    ap.add_argument('--reason', default='', help='--force の理由（日誌に残す）')
     a = ap.parse_args()
 
     os.makedirs(SNAP_DIR, exist_ok=True)
     today = datetime.date.today().isoformat()
     if a.post_baseline:
+        stop = post_baseline_guard(a.force, a.reason)
+        if stop:
+            print(stop, file=sys.stderr)
+            return 3
+        previous = post_baseline_checked()
         os.makedirs(POST_SNAP_DIR, exist_ok=True)
         post, bad = {}, []
         for slug, url in targets():
@@ -167,6 +210,9 @@ def main():
             return 1
         json.dump(post, io.open(POST_MANIFEST, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
         print(f'処置後の基準 {len(post)} 本 → {POST_MANIFEST}')
+        if previous:
+            force_log.record('drift_check.py', '処置後の基準（drift/post_treatment/ のハッシュと HTML）',
+                             a.reason.strip(), f'取得日 {previous} → {today}・{len(post)}本')
         return 0
     old = {}
     if os.path.exists(MANIFEST):

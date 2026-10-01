@@ -250,16 +250,34 @@ def test_the_strata_splits_all_appends_from_the_late_nine():
         assert slug in appended and slug not in late, slug
 
 
-def test_the_newer_strata_file_wins(tmp_path, monkeypatch):
-    """制作管制の表で作り直したら strata_backlink_YYYYMMDD.csv に置き換える。"""
-    monkeypatch.setattr(pool, "STRATA_GLOB", str(tmp_path / "strata_backlink_*.csv"))
-    monkeypatch.setattr(pool, "STRATA_LEGACY", str(tmp_path / "strata_backlink17.csv"))
-    (tmp_path / "strata_backlink17.csv").write_text("slug,appended_at\n", encoding="utf-8")
-    assert pool.strata_path().endswith("strata_backlink17.csv")
-    (tmp_path / "strata_backlink_20260925.csv").write_text("slug,appended_at\n", encoding="utf-8")
-    assert pool.strata_path().endswith("strata_backlink_20260925.csv")
+def test_a_newer_strata_file_is_not_adopted_automatically(tmp_path, monkeypatch):
+    """採用中の層ファイルは pool.py で名前を固定する(2026-10-01)。
+
+    新しい日付のファイルを作っても、pool.py の指定を書き換えない限り採用されない。
+    以前は最新の日付を自動で選び、確定した条件 b・e・g の入力が気づかないまま替わった。
+    """
+    adopted = tmp_path / "strata_backlink_20260925.csv"
+    adopted.write_text("slug,appended_at\n", encoding="utf-8")
+    monkeypatch.setattr(pool, "STRATA_FILE", str(adopted))
     (tmp_path / "strata_backlink_20261002.csv").write_text("slug,appended_at\n", encoding="utf-8")
-    assert pool.strata_path().endswith("strata_backlink_20261002.csv"), "日付の新しいほうを使う"
+    assert pool.strata_path() == str(adopted)
+
+
+def test_a_missing_adopted_file_stops_instead_of_falling_back(tmp_path, monkeypatch):
+    monkeypatch.setattr(pool, "STRATA_FILE", str(tmp_path / "strata_backlink_20260925.csv"))
+    (tmp_path / "strata_backlink_20261002.csv").write_text("slug,appended_at\n", encoding="utf-8")
+    with pytest.raises(FileNotFoundError):
+        pool.strata_path()
+
+
+def test_the_adopted_files_are_the_9_25_ones():
+    """今の採用中のファイル名を固定する。替えるときは pool.py と日誌とこのテストを一緒に直す。"""
+    import os
+    assert os.path.basename(pool.STRATA_FILE) == "strata_backlink_20260925.csv"
+    assert os.path.basename(pool.TITLE_CHANGE_FILE) == "title_changes_20260925.csv"
+    assert os.path.basename(pool.LATE_CHANGE_FILE) == "late_changes_20260925.csv"
+    for path in (pool.STRATA_FILE, pool.TITLE_CHANGE_FILE, pool.LATE_CHANGE_FILE):
+        assert os.path.exists(path), path
 
 
 def test_the_allocation_checks_b_and_e(monkeypatch, tmp_path, cited_csv):
@@ -373,8 +391,8 @@ def test_a_title_change_dated_9_15_joins_the_late_list(monkeypatch, tmp_path):
     一覧があるときは時刻で切った late_changes_*.csv が優先される(そちらは
     tests/test_edits_ingest.py で固定)。
     """
-    monkeypatch.setattr(pool, "LATE_CHANGE_GLOB", str(tmp_path / "late_changes_*.csv"))
-    monkeypatch.setattr(pool, "TITLE_CHANGE_GLOB", str(tmp_path / "title_changes_*.csv"))
+    monkeypatch.setattr(pool, "LATE_CHANGE_FILE", None)
+    monkeypatch.setattr(pool, "TITLE_CHANGE_FILE", None)
     before = pool.late_appended_slugs()
     assert "agentic-ai-guide" not in before, "日付が分かるまでは入れない"
     monkeypatch.setattr(pool, "TITLE_CHANGE_DATES",

@@ -39,17 +39,25 @@ CORRECTION_SLUGS = ('agentforce-vibes', 'agentforce-features')
 APPLIED_CORRECTION_SLUGS = ('agentforce-features',)
 
 
+# 実験の終わり(config/experiment_freeze.yaml の experiment_end と同じ。テストで照合)。
+# 割付はこの日まで --force でも置き換えない(allocate_47.overwrite_guard)。
+EXPERIMENT_END = '2026-12-31'
+
+# **採用中の層ファイルは名前で固定する**(2026-10-01)。以前は日付の一番新しいファイルを
+# 自動で使っていたため、make_strata.py を再実行して新しい日付のファイルができると、
+# 9/28 の割付で確定した条件 b・e・g の入力が気づかないまま差し替わった。
+# 新しいファイルを作っても、ここを書き換えない限り採用されない。書き換えるときは
+# 理由を日誌に書き、割付・判定への影響を確かめてから。指定したファイルが無ければ止まる。
+#
 # 逆リンク追記の層(くじ引きの条件 b・e とビフォー基準値に使う)。
-# 制作管制の表で作り直したら strata_backlink_YYYYMMDD.csv に置き換える。
-# 新しい名前があればそちらを使う(日付の新しいものが正)。
-STRATA_GLOB = os.path.join(HERE, 'strata_backlink_*.csv')
-STRATA_LEGACY = os.path.join(HERE, 'strata_backlink17.csv')
-# タイトル変更の日付(make_strata.py が全編集一覧から作る)。無ければ下の定数を使う。
-TITLE_CHANGE_GLOB = os.path.join(HERE, 'title_changes_*.csv')
+STRATA_FILE = os.path.join(HERE, 'strata_backlink_20260925.csv')
+STRATA_LEGACY = os.path.join(HERE, 'strata_backlink17.csv')   # 9/25 より前の版(記録として残す)
+# タイトル変更の日付(make_strata.py が全編集一覧から作る)。None なら下の定数を使う。
+TITLE_CHANGE_FILE = os.path.join(HERE, 'title_changes_20260925.csv')
 # 観測開始(2026-09-15 08:00 JST)以降に変わった記事(make_strata.py が全編集一覧から作る)。
 # 条件 e と「9/17 以降の観測だけを基準値に使う」記事の母数。これがあれば層の
-# appended_at からの推定より優先する(編集の種類を問わず、時刻で切れるため)。
-LATE_CHANGE_GLOB = os.path.join(HERE, 'late_changes_*.csv')
+# appended_at からの推定より優先する(編集の種類を問わず、時刻で切れるため)。None なら推定。
+LATE_CHANGE_FILE = os.path.join(HERE, 'late_changes_20260925.csv')
 # ビフォー期間の途中(9/15〜16)に追記が入った記事は、追記より後の観測だけを基準値に使う。
 # 追記そのものが引用されやすさを動かすので、追記前後を混ぜると基準値が実際とずれる。
 LATE_APPEND_FROM = '2026-09-15'
@@ -69,10 +77,22 @@ TITLE_CHANGED_SLUGS = (
 TITLE_CHANGE_DATES = {}
 
 
+def _adopted(path, what):
+    """採用中として指定したファイル。指定が None なら None、指定したのに無ければ止まる。
+
+    無いときに別のファイル(新しい日付・旧版)へ黙って切り替えると、確定した条件が変わる。
+    """
+    if path is None:
+        return None
+    if not os.path.exists(path):
+        raise FileNotFoundError(f'採用中の{what} {os.path.basename(path)} がありません'
+                                '(pool.py の指定を確かめること)')
+    return path
+
+
 def strata_path():
-    """逆リンク追記の層のファイル。strata_backlink_YYYYMMDD.csv があれば新しいほうを使う。"""
-    dated = sorted(glob.glob(STRATA_GLOB))
-    return dated[-1] if dated else STRATA_LEGACY
+    """逆リンク追記の層のファイル(STRATA_FILE で固定。最新の日付を自動では選ばない)。"""
+    return _adopted(STRATA_FILE, '層ファイル')
 
 
 def load_strata(path=None):
@@ -91,9 +111,8 @@ def appended_slugs(path=None):
 
 
 def title_change_path():
-    """タイトル変更の表。title_changes_YYYYMMDD.csv があれば新しいほうを使う。"""
-    dated = sorted(glob.glob(TITLE_CHANGE_GLOB))
-    return dated[-1] if dated else None
+    """タイトル変更の表(TITLE_CHANGE_FILE で固定)。None なら表なし。"""
+    return _adopted(TITLE_CHANGE_FILE, 'タイトル変更の表')
 
 
 def title_change_dates():
@@ -110,9 +129,8 @@ def title_changed_slugs():
 
 
 def late_change_path():
-    """観測開始以降に変わった記事の表。無ければ None。"""
-    dated = sorted(glob.glob(LATE_CHANGE_GLOB))
-    return dated[-1] if dated else None
+    """観測開始以降に変わった記事の表(LATE_CHANGE_FILE で固定)。None なら表なし。"""
+    return _adopted(LATE_CHANGE_FILE, '観測開始以降の変更の表')
 
 
 def late_appended_slugs(path=None):

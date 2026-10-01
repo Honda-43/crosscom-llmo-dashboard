@@ -344,7 +344,8 @@ def collect(date: Optional[str] = None,
             models: Optional[List[str]] = None,
             attempts: Optional[int] = None,
             sweep: bool = True,
-            budget: Optional[RetryBudget] = None) -> List[Dict[str, Any]]:
+            budget: Optional[RetryBudget] = None,
+            force: bool = False) -> List[Dict[str, Any]]:
     """Run all enabled models across all prompts for ``date`` (YYYY-MM-DD,
     defaults to today UTC). Returns a list of record dicts (also written to
     disk). Records with ``"error"`` set represent missing observations.
@@ -361,6 +362,10 @@ def collect(date: Optional[str] = None,
 
     ``budget`` を渡すと、再試行1回につき1本引く。0 になったらそれ以上
     取り直さない(実験の Gemini は、その日の枠の余りをこれで渡す)。
+
+    **同じ日・同じプロンプト・同じモデルで成功した raw が既にあれば、投げずにそれを使う**
+    (2026-10-01。``reused=True`` を付けて返す。呼び出し側はその行をシートに書き直さない)。
+    置き換えるのは既存が欠測の観測だけ。``force=True`` のときだけ成功した観測も取り直す。
     """
     date = date or dt.datetime.utcnow().strftime("%Y-%m-%d")
     out_dir = Path(out_dir) if out_dir is not None else DATA_RAW_DIR / date
@@ -381,6 +386,11 @@ def collect(date: Optional[str] = None,
         for model_key in models:
             model_name = MODEL_CONFIG[model_key]["model"]
             label = f"{pid}/{model_key}"
+            previous = None if force else existing_success(out_dir, pid, model_key)
+            if previous is not None:
+                print(f"[skip] {label}: {date} の成功した観測が既にあるため取り直さない")
+                records.append(previous)
+                continue
             record: Dict[str, Any] = {
                 "date": date,
                 "prompt_id": pid,
@@ -405,7 +415,7 @@ def collect(date: Optional[str] = None,
             _attempt(record, prompt["text"], attempts=(
                 1 if model_key in exhausted else (attempts or MAX_RETRIES)
             ), on_quota=lambda mk=model_key: exhausted.add(mk), budget=budget)
-            _save(record, out_dir)
+            _save(record, out_dir, force=force)
             records.append(record)
 
     if sweep:
@@ -457,18 +467,64 @@ def _attempt(record: Dict[str, Any], question: str, *, attempts: int,
         record["attempts"] = (record.get("attempts") or 0) + tries
 
 
-def _save(record: Dict[str, Any], out_dir: Path) -> None:
-    """観測を data/raw に書く。掃き直しで回復した内容もここで上書きする。"""
-    raw_path = out_dir / f"{record['prompt_id']}_{record['model']}.json"
-    payload = {k: v for k, v in record.items() if k != "raw_file"}
-    with open(raw_path, "w", encoding="utf-8") as fh:
-        json.dump(payload, fh, ensure_ascii=False, indent=2)
+def _is_success(record: Dict[str, Any]) -> bool:
+    return not str(record.get("error") or "").strip() and bool(record.get("answer"))
+
+
+def existing_success(out_dir: Path, prompt_id: str, model: str) -> Optional[Dict[str, Any]]:
+    """同じ日・同じプロンプト・同じモデルの成功した raw。無い・欠測・読めなければ None。"""
+    path = Path(out_dir) / f"{prompt_id}_{model}.json"
+    if not path.exists():
+        return None
+    try:
+        record = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    if not _is_success(record):
+        return None
+    record["reused"] = True
+    _set_raw_file(record, path)
+    return record
+
+
+def fresh(records: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """シートに書いてよいレコード。既にある成功した観測(reused・kept)は除く。
+
+    既にある行を書き直さない。成功した行を欠測で置き換えると、観測そのものが消える。
+    """
+    return [r for r in records if not (r.get("reused") or r.get("kept_existing"))]
+
+
+def _set_raw_file(record: Dict[str, Any], raw_path: Path) -> None:
     try:
         record["raw_file"] = str(raw_path.relative_to(DATA_RAW_DIR.parent.parent))
     except ValueError:
         # リポジトリ外に書いた場合(テストの一時ディレクトリなど)。
         # 表示用の値なので、ここで落として回復した観測を失うほうが悪い。
         record["raw_file"] = str(raw_path)
+
+
+def _save(record: Dict[str, Any], out_dir: Path, force: bool = False) -> None:
+    """観測を data/raw に書く。掃き直しで回復した内容もここで上書きする。
+
+    **成功した raw を欠測で上書きしない**(2026-10-01)。同じ日の再実行や、
+    枠の都合で投げなかった記録(quota_skipped)が、先に取れていた回答を消していた。
+    その場合は書かずに ``kept_existing=True`` を付ける(シートの行も書き直さない)。
+    """
+    raw_path = out_dir / f"{record['prompt_id']}_{record['model']}.json"
+    if record.get("reused"):
+        return
+    if (not force and not _is_success(record)
+            and existing_success(out_dir, record["prompt_id"], record["model"]) is not None):
+        print(f"[keep] {raw_path.name}: 成功した観測が既にあるため欠測で上書きしない")
+        record["kept_existing"] = True
+        _set_raw_file(record, raw_path)
+        return
+    record.pop("kept_existing", None)
+    payload = {k: v for k, v in record.items() if k != "raw_file"}
+    with open(raw_path, "w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
+    _set_raw_file(record, raw_path)
 
 
 def _sweep(records: List[Dict[str, Any]], prompts: List[Dict[str, Any]],
@@ -496,7 +552,9 @@ def _sweep(records: List[Dict[str, Any]], prompts: List[Dict[str, Any]],
     questions = {p["id"]: p["text"] for p in prompts}
     recovered = 0
     for index, wait in enumerate(rounds, start=1):
-        targets = [r for r in records if is_retriable(r.get("error"))]
+        # 既にある成功した観測を残した記録(kept_existing)は取り直さない
+        targets = [r for r in records
+                   if is_retriable(r.get("error")) and not r.get("kept_existing")]
         if not targets:
             break
         labels = ", ".join(f"{r['prompt_id']}/{r['model']}" for r in targets)

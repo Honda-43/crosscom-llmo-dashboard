@@ -5,7 +5,9 @@
   python make_strata.py --copy-from ../../crosscom-seo-agent/output/reports/edits_20260911_0916.csv
 「pool_class=統計46 かつ links_after > links_before の行を1行以上持つ記事」を抽出し、
 `strata_backlink_YYYYMMDD.csv` と `title_changes_YYYYMMDD.csv` を作る
-（pool.strata_path / pool.title_change_dates が新しいほうを自動で使う）。
+（**作っただけでは採用されない**。採用中のファイルは pool.py の STRATA_FILE /
+TITLE_CHANGE_FILE / LATE_CHANGE_FILE で名前を固定している（2026-10-01）。
+採用を替えるときは pool.py を書き換え、理由を日誌に書く）。
 
 **列名・列数・型が仕様と1つでも違えば、何も書かずに止める。** 推測で読むと、
 層に入るはずの記事が静かに抜け落ちて、条件 b が偏ったまま通ってしまう。
@@ -311,6 +313,8 @@ def main(argv=None):
                             a.title_out or f'title_changes_{today}.csv',
                             a.late_out or f'late_changes_{today}.csv')
     if code == 0:
+        print('★作ったファイルはまだ採用されていない。採用中は pool.py の指定'
+              f'（{os.path.basename(strata_path())} ほか）のまま')
         print('次: python experiment_2x2/allocate_47.py --cited-to <日付> で条件 a〜g を確認')
     return code
 

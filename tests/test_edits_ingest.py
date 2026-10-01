@@ -74,9 +74,11 @@ def sandbox(tmp_path, monkeypatch):
     """出力先とプールの参照を tmp に閉じ込める(リポジトリに書かない)。"""
     monkeypatch.setattr(make_strata, "HERE", str(tmp_path))
     monkeypatch.setattr(make_strata, "EDITS_COPY", str(tmp_path / "edits_20260911_0916.csv"))
-    monkeypatch.setattr(pool, "STRATA_GLOB", str(tmp_path / "strata_backlink_*.csv"))
-    monkeypatch.setattr(pool, "TITLE_CHANGE_GLOB", str(tmp_path / "title_changes_*.csv"))
-    monkeypatch.setattr(pool, "LATE_CHANGE_GLOB", str(tmp_path / "late_changes_*.csv"))
+    # 採用中のファイルは pool.py で名前を固定している。層は「前の版」(実行前に採用中のもの)と
+    # 比べるので、実行前から在るファイルを指す。タイトル変更・変更一覧は _run が書く名前を採用中にする
+    monkeypatch.setattr(pool, "STRATA_FILE", pool.STRATA_LEGACY)
+    monkeypatch.setattr(pool, "TITLE_CHANGE_FILE", str(tmp_path / "title_changes_20260927.csv"))
+    monkeypatch.setattr(pool, "LATE_CHANGE_FILE", str(tmp_path / "late_changes_20260927.csv"))
     return tmp_path
 
 
@@ -140,9 +142,11 @@ def test_the_diff_against_the_previous_stratum_is_reported(sandbox, capsys, monk
     _write(previous, [["agentforce-roi", "https://cross-com.jp/agentforce-roi/", "1",
                        "2026-09-12 00:00:00", "1", ""]],
            header=make_strata.STRATA_COLUMNS)
+    monkeypatch.setattr(pool, "STRATA_FILE", str(previous))   # 採用中の版と比べる
     assert _run(sandbox, ROWS) == 0
     text = capsys.readouterr().out
     assert "増えた記事: agentforce-rag、agentforce-subagents" in text
+    assert pool.strata_path() == str(previous), "作っただけでは採用されない"
     assert "消えた記事: agentforce-roi" in text
 
 

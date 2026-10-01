@@ -56,6 +56,7 @@ except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exa
     JST = dt.timezone(dt.timedelta(hours=9), name="JST")
 
 import collect_llm
+import force_log
 import experiment
 import notify_slack
 import sheets_writer
@@ -107,7 +108,7 @@ def observe(date: str, plan: Dict[str, List[Dict[str, Any]]], out_dir,
             failures: List[str],
             resolver: Optional[experiment.Resolver] = None,
             budget: Optional[collect_llm.RetryBudget] = None,
-            delays=EXPERIMENT_SWEEP_DELAYS) -> List[Dict[str, Any]]:
+            delays=EXPERIMENT_SWEEP_DELAYS, force: bool = False) -> List[Dict[str, Any]]:
     """計画どおりに観測し、判定列を足したレコードを返す(raw にも書き直す)。
 
     Gemini は日次・月次と20回/日の枠を分け合うので、再試行も掃き直しも
@@ -122,11 +123,11 @@ def observe(date: str, plan: Dict[str, List[Dict[str, Any]]], out_dir,
             continue
         if model == "gemini":
             got = collect_llm.collect(date, prompts=prompts, out_dir=out_dir,
-                                      models=[model], sweep=False, budget=budget)
+                                      models=[model], sweep=False, budget=budget, force=force)
             collect_llm._sweep(got, prompts, out_dir, delays=delays, budget=budget)
         else:
             got = collect_llm.collect(date, prompts=prompts, out_dir=out_dir,
-                                      models=[model])
+                                      models=[model], force=force)
         if len(got) < len(prompts):
             # 無効・鍵なしのモデルは collect が黙って飛ばす。実験では計画した
             # 観測が丸ごと消えるので、ここで失敗として積む。
@@ -134,8 +135,10 @@ def observe(date: str, plan: Dict[str, List[Dict[str, Any]]], out_dir,
                             "(モデルが無効か API キーが無い)")
         by_id = {p["id"]: p for p in prompts}
         for record in got:
+            if record.get("reused") or record.get("kept_existing"):
+                continue        # 既にある成功した観測。判定列も raw も書き直さない
             record.update(experiment.evaluate(record, by_id[record["prompt_id"]], resolver))
-            collect_llm._save(record, out_dir)
+            collect_llm._save(record, out_dir, force=force)
         records += got
     return records
 
@@ -509,6 +512,29 @@ def summary_lines(date: str, plan: Dict[str, List[Dict[str, Any]]],
     return lines
 
 
+def split_observed(plan: Dict[str, List[Dict[str, Any]]], out_dir,
+                   force: bool = False) -> Tuple[Dict[str, List[Dict[str, Any]]], List[Dict[str, Any]]]:
+    """計画から、その日に成功した観測が既にあるものを外す(2026-10-01)。
+
+    同じ日を再実行しても、成功した raw と行は置き換えない(取り直すのは欠測だけ)。
+    外したものは投げないので、Gemini の枠も使わない。返すのは (残りの計画, 既にある観測)。
+    ``force=True`` のときは外さない(成功した観測も取り直す)。
+    """
+    if force:
+        return plan, []
+    rest: Dict[str, List[Dict[str, Any]]] = {}
+    already: List[Dict[str, Any]] = []
+    for model, prompts in plan.items():
+        rest[model] = []
+        for p in prompts:
+            prev = collect_llm.existing_success(out_dir, p["id"], model)
+            if prev is None:
+                rest[model].append(p)
+            else:
+                already.append(prev)
+    return rest, already
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="LLMO effect-measurement experiment")
     ap.add_argument("--date", help="観測日 YYYY-MM-DD(既定: 当日JST)。日付で計画が決まる")
@@ -517,7 +543,11 @@ def main() -> None:
                     help="観測せず、その日の計画と Gemini の見積もりだけ表示する")
     ap.add_argument("--no-wait", action="store_true",
                     help="日次・月次の完了を待たない(手元の data/raw だけで実消費を数える)")
+    ap.add_argument("--force", action="store_true",
+                    help="その日に成功した観測も取り直して置き換える(--reason 必須・日誌に記録)")
+    ap.add_argument("--reason", help="--force の理由(日誌に残す)")
     args = ap.parse_args()
+    reason = force_log.require_reason(args.force, args.reason, "その日の成功した観測")
 
     date = args.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
     plan = experiment_plan(date)
@@ -535,6 +565,13 @@ def main() -> None:
 
     out_dir = DATA_RAW_EXPERIMENT_DIR / date
     out_dir.mkdir(parents=True, exist_ok=True)
+    plan, already = split_observed(plan, out_dir, force=args.force)
+    replaced = 0
+    if args.force:
+        replaced = sum(collect_llm.existing_success(out_dir, p["id"], m) is not None
+                       for m, ps in plan.items() for p in ps)
+    elif already:
+        print(f"[skip] {date} の成功した観測 {len(already)}件は取り直さない(置き換えるのは欠測だけ)")
 
     # 日次・月次のある日は、その Gemini が揃ってから実消費で本数を決める。
     prior_used: Optional[int] = 0
@@ -555,10 +592,13 @@ def main() -> None:
     budget = collect_llm.RetryBudget(retry_budget)
     records: List[Dict[str, Any]] = []
     try:
-        records = observe(date, sized, out_dir, failures, budget=budget)
+        records = observe(date, sized, out_dir, failures, budget=budget, force=args.force)
     except Exception as exc:  # noqa: BLE001 - 取れた分はこのあと保存する
         failures.append(f"observe: {exc}")
     records += skipped
+    records += already
+    if args.force and replaced:
+        force_log.record("run_experiment.py", f"{date} の成功した観測 {replaced}件", reason)
 
     for reason, labels in sorted(missing_by_reason(records).items()):
         line = f"欠測 {len(labels)}件({reason}): {', '.join(labels)}"
@@ -584,7 +624,8 @@ def main() -> None:
         lines.append("- Sheets: skipped (--no-sheets)")
     elif records:
         try:
-            sheets_writer.write_experiment(records)
+            # 既にある成功した行は書き直さない(欠測で上書きしない)
+            sheets_writer.write_experiment(collect_llm.fresh(records))
         except Exception as exc:  # noqa: BLE001
             failures.append(f"write_experiment: {exc}")
 

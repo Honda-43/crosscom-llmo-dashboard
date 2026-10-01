@@ -336,7 +336,7 @@ def test_observe_adds_the_experiment_columns(monkeypatch, tmp_path):
                         cited_urls=[p["url"]]) for p in prompts]
 
     monkeypatch.setattr(collect_llm, "collect", fake_collect)
-    monkeypatch.setattr(collect_llm, "_save", lambda record, out_dir: None)
+    monkeypatch.setattr(collect_llm, "_save", lambda record, out_dir, **kw: None)
     failures = []
     plan = {"claude": PROMPTS[:3]}
     records = run_experiment.observe("2026-09-17", plan, tmp_path, failures)

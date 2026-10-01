@@ -45,7 +45,7 @@ def wired(monkeypatch, tmp_path):
 
     monkeypatch.setattr(notify_slack, "notify", fake_notify)
     monkeypatch.setattr(extract, "extract_record", lambda record: dict(record))
-    monkeypatch.setattr(collect_llm, "collect", lambda d: [])
+    monkeypatch.setattr(collect_llm, "collect", lambda d, **kw: [])
     monkeypatch.setattr(collect_ga4, "collect", lambda: [])
     monkeypatch.setattr(collect_gsc, "collect", lambda: [])
     monkeypatch.setattr(collect_gsc, "collect_pages", lambda: [])

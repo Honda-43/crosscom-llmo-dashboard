@@ -106,6 +106,8 @@ def observe(date: str, model: str, prompts: List[Dict[str, Any]], out_dir: Path,
         got = collect_llm.collect(date, prompts=prompts, out_dir=out_dir, models=[model])
     by_id = {p["id"]: p for p in prompts}
     for rec in got:
+        if rec.get("reused") or rec.get("kept_existing"):
+            continue        # 同じ日に成功した観測が既にある。判定列も raw も書き直さない
         rec.update(marketing.evaluate(rec, by_id[rec["prompt_id"]], resolver, lister))
         collect_llm._save(rec, out_dir)
     return got
@@ -222,7 +224,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     lines += notes
     if recs and not a.no_sheets:
         import sheets_writer
-        sheets_writer.write_marketing(recs)
+        # 同じ日に成功した行は書き直さない(欠測や取り直しで置き換えない)
+        sheets_writer.write_marketing(collect_llm.fresh(recs))
     if not any(out_dir.iterdir()):
         out_dir.rmdir()
     run_experiment._job_summary(lines)

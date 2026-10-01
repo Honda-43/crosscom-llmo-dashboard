@@ -33,12 +33,13 @@ import citation_gap
 import collect_ga4
 import collect_gsc
 import collect_llm
+import force_log
 import extract
 import looker_tabs
 import notify_slack
 import retired_urls
 import sheets_writer
-from settings import WEEKDAY_LABELS, is_daily_llm_day
+from settings import DATA_RAW_DIR, WEEKDAY_LABELS, is_daily_llm_day, load_prompts
 
 
 def _job_summary(lines: List[str]) -> None:
@@ -128,7 +129,11 @@ def main() -> None:
     ap.add_argument("--date", help="YYYY-MM-DD for LLM observations (default: today JST)")
     ap.add_argument("--force-llm", action="store_true",
                     help="日次観測の曜日(火・木・土)でなくても7本を観測する")
+    ap.add_argument("--force", action="store_true",
+                    help="その日に成功した観測も取り直して置き換える(--reason 必須・日誌に記録)")
+    ap.add_argument("--reason", help="--force の理由(日誌に残す)")
     args = ap.parse_args()
+    reason = force_log.require_reason(args.force, args.reason, "その日の成功した観測")
     # Timezone-aware, Asia/Tokyo-based date so the daily run is keyed to the
     # Japan business day regardless of the runner's clock (GitHub Actions is UTC).
     date = args.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
@@ -146,8 +151,18 @@ def main() -> None:
                              "(GA4・GSC・Looker用タブは通常どおり)")
 
     # LLM observation -> extraction
-    records = (_run("collect_llm", lambda: collect_llm.collect(date), failures) or []
-               if llm_day else [])
+    # 同じ日に成功した観測は取り直さない(collect が raw を使い回す)。置き換えるのは欠測だけ。
+    replaced = 0
+    if llm_day and args.force:
+        replaced = sum(collect_llm.existing_success(DATA_RAW_DIR / date, p["id"], m) is not None
+                       for p in load_prompts() for m in collect_llm.enabled_models())
+    records = (_run("collect_llm", lambda: collect_llm.collect(date, force=args.force), failures)
+               or [] if llm_day else [])
+    if args.force and replaced:
+        force_log.record("run_daily.py", f"{date} の成功した日次観測 {replaced}件", reason)
+    # 既にある成功した観測(使い回し・欠測で上書きしなかったもの)の行は書き直さない
+    kept_keys = {(r["prompt_id"], r["model"]) for r in records
+                 if r.get("reused") or r.get("kept_existing")}
 
     # 収集は1件ずつ失敗を飲み込んで先に進む(1モデルの不調で全部を落とさない)。
     # そのため collect_llm 自体は例外を投げず、欠測は _run では拾えない。
@@ -213,7 +228,8 @@ def main() -> None:
                        mention_rate_pillar_b=None, negative_flag_count=None)
 
     # Write to Sheets (tabs 1, 2, 3, 5 + sov_daily / changes)
-    _run("write_llm_observations", lambda: sheets_writer.write_llm_observations(extractions), failures)
+    _run("write_llm_observations", lambda: sheets_writer.write_llm_observations(
+        [e for e in extractions if (e.get("prompt_id"), e.get("model")) not in kept_keys]), failures)
     _run("write_sov_daily", lambda: sheets_writer.write_sov_daily(sov_rows), failures)
     _run("write_changes", lambda: sheets_writer.write_changes(changes), failures)
     _run("write_ga4", lambda: sheets_writer.write_ga4(ga4_rows), failures)

@@ -55,8 +55,10 @@ import sys
 from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'src'))
+import force_log  # noqa: E402  標準ライブラリだけのモジュール（日誌への自動記録）
 from pool import (ALLOCATION_CSV, APPLIED_CORRECTION_SLUGS,  # noqa: E402
-                  CORRECTION_SLUGS, EXCLUDED,
+                  CORRECTION_SLUGS, EXCLUDED, EXPERIMENT_END,
                   appended_slugs, late_appended_slugs, load_pool, read_csv, slug,
                   strata_path, title_changed_slugs)
 
@@ -227,6 +229,38 @@ def report(arts, assign, cited, cited_src, seed, seed_start, tried, res, a):
     return lines
 
 
+def overwrite_guard(paths, force, reason, today):
+    """既にある割付表を置き換えてよいか。止めるときは理由の文、よければ None（2026-10-01）。
+
+    割付は実験の途中で変えてはいけない。9/28 に確定した割付（シード 20270135）を
+    --write の再実行で書き直すと、観測・判定・apply_gate が読む処置群が入れ替わる。
+    - 既にあれば --write でも止まる
+    - 置き換えは --force と --reason の両方が要る
+    - 実験期間中（〜EXPERIMENT_END）は --force でも止まる
+    """
+    existing = [p for p in paths if os.path.exists(p)]
+    if not existing:
+        return None
+    names = '・'.join(os.path.relpath(p, ROOT) for p in existing)
+    if not force:
+        return (f'★{names} が既にある（確定した割付）。--write でも書き直さない。'
+                '置き換えるときは --force と --reason "理由" を付ける')
+    if today <= datetime.date.fromisoformat(EXPERIMENT_END):
+        return (f'★実験期間中（〜{EXPERIMENT_END}）は割付を置き換えない（--force でも不可）。'
+                f'{names} はそのまま')
+    if not str(reason or '').strip():
+        return '★--force には --reason "理由" が必要（日誌に残す）'
+    return None
+
+
+def old_seed(path):
+    """置き換える前の割付表のシード（日誌に旧と新を並べるため）。"""
+    if not os.path.exists(path):
+        return ''
+    with io.open(path, encoding='utf-8') as f:
+        return next((r['seed'] for r in csv.DictReader(f) if r.get('seed')), '')
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--seed-start', type=int, default=20260928)
@@ -240,7 +274,16 @@ def main():
                     help='観測・判定が読む割付の表（id,url,group,seed）')
     ap.add_argument('--write', action='store_true',
                     help='割付表（md・csv）を書く。9/28 の本番実行のときだけ付ける')
+    ap.add_argument('--force', action='store_true',
+                    help='既にある割付表を置き換える（--reason 必須・実験期間中は不可・日誌に記録）')
+    ap.add_argument('--reason', default='', help='--force の理由（日誌に残す）')
     a = ap.parse_args()
+
+    if a.write:
+        stop = overwrite_guard([a.out, a.out_csv], a.force, a.reason, datetime.date.today())
+        if stop:
+            print(stop, file=sys.stderr)
+            return 3
 
     # 本番(9/28)より前に --write で書くと、apply_gate が読む処置群が本番前に決まってしまう。
     # 引用ありの判定(条件 c)も 9/27 までの観測がそろう前の値になる。
@@ -283,6 +326,8 @@ def main():
         print('\n'.join(lines[:22]))
         print('...（ドライラン。--write を付けていないので書き出していない）')
         return 0
+    replacing = [p for p in (a.out, a.out_csv) if os.path.exists(p)]
+    previous_seed = old_seed(a.out_csv)
     os.makedirs(os.path.dirname(a.out), exist_ok=True)
     io.open(a.out, 'w', encoding='utf-8').write('\n'.join(lines))
     print('wrote', a.out)
@@ -293,6 +338,10 @@ def main():
         for x in sorted(arts, key=lambda y: y['id']):
             w.writerow([x['id'], x['url'], assign[x['slug']], seed])
     print('wrote', a.out_csv)
+    if replacing:
+        force_log.record('allocate_47.py', '割付表（' + '・'.join(
+            os.path.relpath(p, ROOT) for p in replacing) + '）', a.reason.strip(),
+            f'旧シード {previous_seed or "不明"} → 新シード {seed}')
     return 0
 
 

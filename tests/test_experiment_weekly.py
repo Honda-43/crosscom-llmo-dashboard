@@ -170,3 +170,17 @@ def test_the_reference_section_uses_mentioned_v2_not_the_old_column(tmp_path):
     reference = _build(rows, tmp_path).split("## 5. 参考")[1]
     assert "mentioned_v2" in reference
     assert "Gemini: 1 / 2(50.0%) — E01" in reference
+
+
+def test_a_rebuilt_before_week_can_be_forced_blind(tmp_path):
+    """2026-10-01 の week2 の作り直し。処置前の週でも、判定日より前は組につながる数字を出さない。"""
+    rows = [_row("2026-09-22", "E01", "gemini", article=1, domain=1),
+            _row("2026-09-23", "E02", "gemini", article=0, domain=1)]
+    shown = _build(rows, tmp_path)
+    hidden = ew.build(MON, rows, pool=POOL, raw_dir=tmp_path / "raw",
+                      experiment_dir=tmp_path / "exp", monthly_dir=tmp_path / "monthly",
+                      blind=True, note="作り直した理由")
+    assert "2026-11-02 の短期判定まで出さない" not in shown
+    assert "2026-11-02 の短期判定まで出さない" in hidden
+    assert "- 作り直した理由" in hidden
+    assert "| Gemini | 2 | 0 | 2 | 1 | 50.0% |" in hidden, "46本全体の率は出す"

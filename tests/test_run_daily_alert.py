@@ -59,7 +59,7 @@ def wired(monkeypatch):
 
 
 def _run(monkeypatch, date, records):
-    monkeypatch.setattr(collect_llm, "collect", lambda d: records)
+    monkeypatch.setattr(collect_llm, "collect", lambda d, **kw: records)
     monkeypatch.setattr("sys.argv", ["run_daily.py", "--date", date])
     with pytest.raises(SystemExit) as exited:
         run_daily.main()
@@ -90,7 +90,7 @@ def test_a_single_miss_is_enough_to_alert(wired, monkeypatch):
 def test_a_quiet_day_does_not_observe_so_it_cannot_miss(wired, monkeypatch):
     """水曜は日次の観測日ではない。collect を呼ばないので欠測も起こらない。"""
     called = []
-    monkeypatch.setattr(collect_llm, "collect", lambda d: called.append(d) or [])
+    monkeypatch.setattr(collect_llm, "collect", lambda d, **kw: called.append(d) or [])
     monkeypatch.setattr("sys.argv", ["run_daily.py", "--date", QUIET_DAY])
     with pytest.raises(SystemExit):
         run_daily.main()

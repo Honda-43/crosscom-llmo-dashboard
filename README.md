@@ -280,6 +280,15 @@ seo-agent で、判定スクリプトが CSV の note 列を空で上書きし�
    (ルールより前の書き換え9件は、点検で意図した訂正と確かめて除外している)。
 3. 新しく表を書くスクリプトを足すときは、書き足した内容を入れてから再実行して
    消えないことをテストで確かめる(`tests/test_carry_forward.py` が例)。
+4. **既にある出力を置き換えるときは止まる。`--force` と `--reason "理由"` を付けたときだけ置き換え、
+   日誌に自動で1行記録する**(`src/force_log.py`。2026-10-01・`tests/test_overwrite_guards.py`)。
+   | 出力 | 既にあるとき | 置き換え |
+   |---|---|---|
+   | 観測(`data/raw` と `llm_observations`・`llm_experiment`・`llm_marketing` の行) | 同じ日・同じプロンプト・同じモデルで成功していれば投げない・書き直さない。取り直すのは欠測だけ。成功した raw を欠測で上書きしない | `run_daily.py` / `run_experiment.py` の `--force --reason` |
+   | 割付(`allocation_v1.csv`・`experiment47_allocation_v1_20260928.md`) | `--write` でも止まる | 実験期間中(〜2026-12-31)は `--force` でも不可。期間後は `--force --reason`(旧と新のシードを日誌に) |
+   | ドリフト検知の処置後の基準(`drift/post_treatment/`) | `--post-baseline` でも取り直さない | `--force --reason` |
+   | 層ファイル(`strata_backlink_*`・`title_changes_*`・`late_changes_*`) | 新しく作っても採用されない。採用中は `pool.py` の `STRATA_FILE` / `TITLE_CHANGE_FILE` / `LATE_CHANGE_FILE` で名前を固定(いまは `*_20260925.csv`) | `pool.py` の指定を書き換え、理由を日誌に書く |
+   | 実験の週次集計(`experiment47_weekN_*.md`) | 書き直さない | `experiment_weekly.py --force`(「**確定**」の行は引き継ぐ) |
 
 ---
 

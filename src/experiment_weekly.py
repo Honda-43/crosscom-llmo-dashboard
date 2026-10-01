@@ -110,8 +110,13 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
           pool: Optional[List[Dict[str, Any]]] = None,
           raw_dir: Path = DATA_RAW_DIR, experiment_dir: Path = DATA_RAW_EXPERIMENT_DIR,
           monthly_dir: Path = DATA_RAW_MONTHLY_DIR,
-          intervention_rows: Optional[List[Dict[str, Any]]] = None) -> str:
-    """週次集計の Markdown を返す。"""
+          intervention_rows: Optional[List[Dict[str, Any]]] = None,
+          blind: Optional[bool] = None, note: str = "") -> str:
+    """週次集計の Markdown を返す。
+
+    ``blind=True`` で組ごとの比較につながる数字を必ず伏せる(処置前の週を判定日より前に
+    作り直すとき。2026-10-01 の week2 の作り直しで使った)。``note`` は冒頭に1行足す。
+    """
     pool = pool if pool is not None else load_experiment_prompts()
     pool_ids = [p["id"] for p in pool]
     meta = {p["id"]: (p.get("layer", ""), p["url"].rstrip("/").rsplit("/", 1)[-1]) for p in pool}
@@ -134,7 +139,9 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
          "attempts の無い raw がある日は下限(≥)で示す"]
     if n == 2:
         L.append("- 1週目(手集計)は 9/15(火)〜9/21(月) で切ったため、9/21 は1週目と重なる")
-    blind = group_blind(report_date, end)
+    if note:
+        L.append(f"- {note}")
+    blind = group_blind(report_date, end) if blind is None else blind
     if blind:
         L.append(f"- **{GROUP_BLIND_UNTIL.isoformat()} の短期判定まで、組ごとの比較につながる数字"
                  "(記事ごとの表・引用された記事の一覧)は出さない。** 出すのは46本全体の率と欠測数だけ。"
@@ -313,13 +320,16 @@ def main() -> None:
     ap.add_argument("--print", action="store_true", help="書き出したあと本文を表示する")
     ap.add_argument("--force", action="store_true",
                     help="既にある週のファイルを作り直す(人が書き足した「確定」の行は引き継ぐ)")
+    ap.add_argument("--blind", action="store_true",
+                    help="組ごとの比較につながる数字を必ず伏せる(46本全体の率と欠測数だけ)")
+    ap.add_argument("--note", default="", help="冒頭に足す1行(作り直した理由など)")
     args = ap.parse_args()
     report_date = (dt.date.fromisoformat(args.date) if args.date
                    else dt.datetime.now(JST).date())
 
     import sheets_writer
     rows = sheets_writer._read_tab(TAB_EXPERIMENT)
-    text = build(report_date, rows)
+    text = build(report_date, rows, blind=True if args.blind else None, note=args.note)
     write_report(report_path(report_date), text, force=args.force)
     if args.print:
         print(text)
