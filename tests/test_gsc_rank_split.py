@@ -93,8 +93,11 @@ def test_estimates_intervals_and_opposite_direction(capsys):
     after, before, split = _data()
     out = summarize.gsc_rank_subgroups(after, before, split=split, today=dt.date(2026, 11, 2))
     text = capsys.readouterr().out
-    assert summarize.GSC_SUBGROUP_HEADER in text
-    assert text.index(summarize.GSC_SUBGROUP_HEADER) < text.index("上位（")
+    head = ("  探索的分析。1マスは上位で4本前後、下位で7本前後のため判定には使わない。State 項目8の参考。\n"
+            "  1マスの本数が少ないため、95%の幅（ブートストラップ）は不安定で、実際より狭く出ることがある\n")
+    assert head in text
+    assert text.index(head) < text.index("上位（")
+    assert "5〜6本" not in text
     assert out["上位"]["リード"][0] == pytest.approx(1.0)
     assert out["下位"]["リード"][0] == pytest.approx(-1.0)
     assert out["上位"]["FAQ"][0] == pytest.approx(0.0)

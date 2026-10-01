@@ -369,7 +369,9 @@ def both_ways(after, before, title=""):
 # 分け方は gsc_rank_split.py が gsc_rank_split_v1.csv に固定した（アフターを見る前）。
 # 探索的分析：推定値（差の差）と95%の幅だけを出す。p値・「効いた」の判定・再ランダム化検定は使わない。
 GSC_RANK_SPLIT_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gsc_rank_split_v1.csv")
-GSC_SUBGROUP_HEADER = "探索的分析。1マス5〜6本のため判定には使わない。State 項目8の参考"
+# 2026-10-01 に実際の本数(上位17本・下位29本)に合わせて差し替えた(旧:「1マス5〜6本のため…」)
+GSC_SUBGROUP_HEADER = ("探索的分析。1マスは上位で4本前後、下位で7本前後のため判定には使わない。State 項目8の参考。\n"
+                       "1マスの本数が少ないため、95%の幅（ブートストラップ）は不安定で、実際より狭く出ることがある")
 BOOTSTRAP_DRAWS = 10000
 BOOTSTRAP_SEED = 20261001
 
@@ -420,7 +422,8 @@ def gsc_rank_subgroups(after, before, title="", split=None, today=None):
     if today < datetime.date.fromisoformat(GROUP_BLIND_UNTIL):
         print(f"  {GROUP_BLIND_UNTIL} の短期判定まで実行しない（組ごとの比較を途中で見ないため）\n")
         return None
-    print(f"  {GSC_SUBGROUP_HEADER}")
+    for line in GSC_SUBGROUP_HEADER.splitlines():
+        print(f"  {line}")
     if not before:
         print("  ビフォーが無いため差の差を出せない\n")
         return None
