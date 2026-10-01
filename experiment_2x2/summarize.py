@@ -43,6 +43,29 @@ from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
 WATCH_FLAG = "watch"
 MODELS = ("gemini", "claude")
 
+# 判定時の補助分析(Google 順位の上位・下位で処置の効き方が違うか)に使う GSC の指標。
+# **v2 に固定する**(2026-10-01)。# 付きURL(目次アンカー)は本体に寄せ、表示回数・順位は
+# 本体の行のみ、クリックは合計(experiment_2x2/gsc_pages_v2.py)。9/14 版(seo-agent の
+# experiment47_gsc_pages_20260914.csv)は表示回数を合算・順位を加重平均していたため使わない。
+# GSC は判定そのもの(cited_article)には使わない。
+GSC_PAGES_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "output",
+                             "articles", "experiment46_gsc_pages_20260914_v2.csv")
+
+
+def read_gsc_pages(path=None):
+    """{記事ID: {'position': float|None, 'impressions': int|None, 'clicks': int|None, 'note': str}}。
+
+    表示回数・順位が「データなし」(本体の行が無い記事)は None。上位・下位の層別では外す。
+    """
+    out = {}
+    with io.open(path or GSC_PAGES_CSV, encoding="utf-8-sig") as f:
+        for r in csv.DictReader(f):
+            num = lambda v, cast: cast(v) if str(v).strip() else None  # noqa: E731
+            out[r["id"]] = {"position": num(r["平均掲載順位"], float),
+                            "impressions": num(r["表示回数"], int),
+                            "clicks": num(r["クリック数"], int), "note": r["備考"]}
+    return out
+
 
 def fisher_one_sided(a, b, c, d):
     # 表 [[a,b],[c,d]]  a=処置群引用あり b=処置群なし c=対照群あり d=対照群なし

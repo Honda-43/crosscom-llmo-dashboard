@@ -139,6 +139,17 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
   （`pool.CORRECTION_SLUGS` は2本のまま。抜くのは `pool.APPLIED_CORRECTION_SLUGS`）
 - `--probe results/<アフター>.csv [results/<ビフォー>.csv]` はプローブの結果での集計（参考。実験期間中は不使用）
 
+## GSC（補助分析のみ・2026-10-01 確定）
+- **GSC は判定に使わない。** 判定時の補助分析（Google 順位の上位・下位で処置の効き方が違うか）だけに使う。
+  読むのは `output/articles/experiment46_gsc_pages_20260914_v2.csv`（`summarize.GSC_PAGES_CSV` で固定・`read_gsc_pages()`）
+- GSC の「ページ」に別の行で出る **# 付きURL（目次アンカー `#arkb-toc-N` など）は、# より前で本体に寄せる**。
+  表示回数・平均掲載順位は本体の行のみ（同じ検索結果で本体とアンカーが同時に表示されると二重に数えるため）、
+  クリック数は本体とアンカーの合計。本体の行が無くアンカーの行だけの記事は、表示回数・順位を「データなし」とし備考に書く
+- v2 は `gsc_pages_v2.py` が `gsc_pages_export_20260914.csv`（seo-agent の 9/14 版の元データの写し）から作る。
+  9/14 版（seo-agent の `experiment47_gsc_pages_20260914.csv`・表示回数を合算、順位を加重平均）は残すが使わない。
+  旧と新で値が変わったのは E04（agentforce-observability）・E19（agentforce-usage）・E32（tableau-ai）の3本
+- ホワイトペーパーの PDF・資料DLページ（`/download-paper/…`・`/wp-content/uploads/…pdf`）は46本のどれでもないため、実験の集計に含めない
+
 ## 指標
 - cited：その記事URLが引用されたか（1/0）
 - site_cited：cross-com.jp のどれかのページが引用されたか（推奨数の代理・枝②用）
