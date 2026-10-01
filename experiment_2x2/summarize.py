@@ -35,6 +35,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
 import interventions  # noqa: E402
 import rerandomize  # noqa: E402
+from pool import GROUP_BLIND_UNTIL  # noqa: E402
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
                   LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
                   late_appended_slugs, load_allocation, multi_paragraph_slugs,
@@ -363,6 +364,90 @@ def both_ways(after, before, title=""):
 
 
 # --------------------------------------------------------------------------
+# GSC 補助分析：Google 順位の上位・下位で処置の効き方が違うか（2026-10-01 事前固定）
+# --------------------------------------------------------------------------
+# 分け方は gsc_rank_split.py が gsc_rank_split_v1.csv に固定した（アフターを見る前）。
+# 探索的分析：推定値（差の差）と95%の幅だけを出す。p値・「効いた」の判定・再ランダム化検定は使わない。
+GSC_RANK_SPLIT_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "gsc_rank_split_v1.csv")
+GSC_SUBGROUP_HEADER = "探索的分析。1マス5〜6本のため判定には使わない。State 項目8の参考"
+BOOTSTRAP_DRAWS = 10000
+BOOTSTRAP_SEED = 20261001
+
+
+def read_rank_split(path=None):
+    """{slug: '上位'|'下位'}。"""
+    with io.open(path or GSC_RANK_SPLIT_CSV, encoding="utf-8") as f:
+        return {r["slug"]: r["rank_split"] for r in csv.DictReader(f)}
+
+
+def did_interval(on_d, off_d, draws=BOOTSTRAP_DRAWS, seed=BOOTSTRAP_SEED):
+    """差の差（処置ありの Δ平均 − なしの Δ平均）と、その95%の幅（ブートストラップ・百分位）。
+
+    本数が少ない（各側4〜7本）ので正規近似は使わず、記事を側ごとに復元抽出する。
+    乱数の種は固定して、同じデータなら同じ幅が出るようにする。片側が0本なら None。
+    """
+    import random
+    if not on_d or not off_d:
+        return None
+    est = sum(on_d) / len(on_d) - sum(off_d) / len(off_d)
+    rng = random.Random(seed)
+    sims = sorted(
+        sum(rng.choice(on_d) for _ in on_d) / len(on_d)
+        - sum(rng.choice(off_d) for _ in off_d) / len(off_d)
+        for _ in range(draws))
+    return est, sims[int(0.025 * draws)], sims[int(0.975 * draws) - 1]
+
+
+def _direction(upper, lower):
+    if upper is None or lower is None:
+        return "比べられない（片方の層で推定できない）"
+    if upper[0] * lower[0] < 0:
+        return "**逆**（上位と下位で符号が違う）"
+    if upper[0] == 0 or lower[0] == 0:
+        return "どちらかが0（向きを比べられない）"
+    return "同じ"
+
+
+def gsc_rank_subgroups(after, before, title="", split=None, today=None):
+    """上位・下位それぞれの中で、リードと FAQ の主効果の差の差（推定値と95%の幅）。
+
+    11/2（短期判定）より前は実行しない（組ごとの比較につながる数字を出さないルール）。
+    """
+    import datetime
+    today = today or datetime.date.today()
+    head = "GSC 補助分析（Google 順位の上位・下位で層別）" + (f"（{title.strip()}）" if title.strip() else "")
+    print(head)
+    if today < datetime.date.fromisoformat(GROUP_BLIND_UNTIL):
+        print(f"  {GROUP_BLIND_UNTIL} の短期判定まで実行しない（組ごとの比較を途中で見ないため）\n")
+        return None
+    print(f"  {GSC_SUBGROUP_HEADER}")
+    if not before:
+        print("  ビフォーが無いため差の差を出せない\n")
+        return None
+    split = split if split is not None else read_rank_split()
+    out = {}
+    for layer in ("上位", "下位"):
+        groups = tally(after, before, {s for s in after if split.get(s) != layer})
+        n = sum(len(v) for v in groups.values())
+        res = {}
+        for name, on, off in (("リード", LEAD_ON, LEAD_OFF), ("FAQ", FAQ_ON, FAQ_OFF)):
+            on_d = [d for g in on for _, d in groups.get(g, [])]
+            off_d = [d for g in off for _, d in groups.get(g, [])]
+            res[name] = did_interval(on_d, off_d)
+            cell = f"あり {len(on_d)}本・なし {len(off_d)}本"
+            if res[name] is None:
+                print(f"  {layer}（{n}本）{name}：推定できない（{cell}）")
+            else:
+                est, lo, hi = res[name]
+                print(f"  {layer}（{n}本）{name}：差の差 {est:+.2f}（95%の幅 {lo:+.2f}〜{hi:+.2f}・{cell}）")
+        out[layer] = res
+    for name in ("リード", "FAQ"):
+        print(f"  {name}の効果の向き（上位と下位）：{_direction(out['上位'][name], out['下位'][name])}")
+    print("  ※ 推定値と幅のみ。p値と「効いた・効かない」の判定は出さない。再ランダム化検定は使わない\n")
+    return out
+
+
+# --------------------------------------------------------------------------
 # 判定期間と重なる介入(2026-10-01)
 # --------------------------------------------------------------------------
 SITE_WIDE_SCOPE = "サイト全体"
@@ -468,6 +553,7 @@ def main(argv=None):
             if missing:
                 print(f"ビフォーに観測の無い記事 {len(missing)}本（ビフォーは0として扱う）: {', '.join(missing)}")
             both_ways(after, before, f"{model} ")
+            gsc_rank_subgroups(after, before, f"{model} ")
     print("判定: 差が +25pt 以上 かつ p<0.10 で「効いた」。どちらか欠ければ「この本数では判断できない」。")
     print("p は**再ランダム化検定**を本線にする（条件 a〜g の合格率が約 1/9,200 のため、"
           "同じ条件を満たす割付の中で数える）。フィッシャー正確検定は参考。")

@@ -42,6 +42,9 @@ APPLIED_CORRECTION_SLUGS = ('agentforce-features',)
 # 実験の終わり(config/experiment_freeze.yaml の experiment_end と同じ。テストで照合)。
 # 割付はこの日まで --force でも置き換えない(allocate_47.overwrite_guard)。
 EXPERIMENT_END = '2026-12-31'
+# 短期判定の日。この日より前は組ごとの比較につながる数字を出さない
+# (src/experiment_weekly.GROUP_BLIND_UNTIL と同じ。テストで照合)。GSC 補助分析もこの日まで実行しない
+GROUP_BLIND_UNTIL = '2026-11-02'
 
 # **採用中の層ファイルは名前で固定する**(2026-10-01)。以前は日付の一番新しいファイルを
 # 自動で使っていたため、make_strata.py を再実行して新しい日付のファイルができると、
