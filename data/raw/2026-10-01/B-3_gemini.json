@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-10-01T01:08:35.588236Z",
+  "answer": "営業にAIエージェントを活用するためのツール選定に先立ち、CRMのデータ設計から支援してくれるパートナーをお探しとのこと、そのような支援を提供している企業は複数存在します。AIエージェントの効果を最大限に引き出すためには、質の高いCRMデータが不可欠であり、そのためのデータ設計は非常に重要なステップです。\n\n以下に、CRMのデータ設計からAIエージェント活用まで一貫して支援するサービスを提供している企業や、関連するコンサルティングを提供している企業をいくつかご紹介します。\n\n**CRMデータ設計からAIエージェント活用まで一貫支援が期待できるパートナー**\n\n*   **テクノデジタルコンサルティング**: CRM・データ戦略設計サービスを提供しており、顧客戦略・KPI設計・業務設計からシステム選定、運用定着までを一気通貫で支援します。特に「AI活用を前提としたデータ基盤」の設計を重視しており、AIもCDPもMAも、戦略設計の上にあってこそ本来の価値を発揮すると提唱しています。\n*   **合同会社クロスコム**: 「Agentic CRM設計支援」を提供しており、特定のCRM製品を前提とせず、AIが読み書きすることを前提としたCRMを業務設計から貴社専用に設計します。AIエージェントが入力・更新作業を自動で実行する仕組みの構築も支援しています。\n*   **株式会社日立コンサルティング**: 営業DX（CRM&生成AI活用）コンサルティングを提供しており、CRM/SFAシステムの採用だけでなく、生成AIなどの先端技術の活用を見据えた営業プロセス改革の推進を支援します。\n*   **株式会社ripla**: 業務設計からシステム構築・運用まで一気通貫で支援するDX/開発支援会社です。CRM開発においては、単なる顧客情報管理にとどまらず、営業・マーケティング・サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応しています。\n*   **ブリッジインターナショナルグループ**: AIの精度と成果を最大化するデータ基盤構築を支援し、Salesforceを基盤にAgentforceなどのAIエージェントを活用した営業活動の支援、CRM連携を提供しています。データ基盤にAIを埋め込むことで、施策の効果測定、インサイト抽出、改善アクションの立案までを自動化することが可能です。\n\n**CRMデータ設計・活用に強みを持つパートナー**\n\n*   **ナウビレッジ株式会社**: CRMの専門家として、売上・利益目標（KGI）から逆算してCRMを設計し、データ入力ルール、商談管理フロー、タスク管理方法など、明確な運用ルール設計まで伴走支援しています。MA、SFA、カスタマーサポート、AIといった様々な領域にも対応可能です。\n*   **株式会社HubOne（ハブワン）**: 顧客管理基盤整備として、顧客（コンタクト）管理の設計、顧客セグメント設計、法人番号ベースでの名寄せ・データクレンジングなどを支援し、顧客データを“活かせる基盤”へと変える一貫支援を提供しています。\n*   **株式会社トライエッジ**: HubSpotとZohoの両方を扱う認定パートナーとして、CRM/SFAの製品選定から設計、データ移行、権限設計、レクチャーを含む導入構築フェーズを支援しています。\n*   **株式会社デリバリーコンサルティング (データリテラシーエンジニアリング)**: 業務特化AIエージェントの構築を支援しており、既存のデータ基盤を活かしながら、業務データとLLMを組み合わせて分析・判断・アクションまでを自動化し、現場の意思決定をAIがリアルタイムに支援するサービスを提供しています。\n\n**AIエージェント活用に特化した支援**\n\n*   **株式会社プライムビズ**: AIとデータサイエンスの専門性を持つチームが、AIを用いた顧客管理（CRM）の最適化を支援しており、AI顧客セグメンテーション・ターゲティング、売上予測・商談成功率分析などを提供しています。\n*   **ZENFORCE（ゼンフォース）**: Salesforceの運用からAI活用まで月額固定の伴走型サポートを提供しており、Agentforce、ChatGPT、Claude、Geminiなどの最適なAIを選定・導入し、営業・マーケティング・バックオフィスの実業務に組み込む支援を行っています。\n\nこれらのパートナーは、CRMのデータ設計の重要性を認識し、AIエージェントの活用を見据えたデータ基盤の構築から、実際の運用・定着までを支援しています。パートナーを選定する際には、貴社の具体的な業務課題、目指すAIエージェントの活用イメージ、既存のCRM環境などを詳細に伝え、最適な提案を受けられる企業を選定することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFqafp1bDJnlzPreWjGMAqeI1nk9xJebuHqJ_7z-spkbH9hJZbQVEey0UvNAkCPHDioc0VHpNyoPDSv0l4YGa9fqF02AOqcv-b7jPiEqNlPopJyOLAlWXqRrpuM0v3ao_Ki5LNvakxhOS8bmTa-2DCbiX4i",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHMaWrbHe6jFSPhUoXBFL9Migol2s-kOu0zpA5QghsUhkunZveG2onaBMcheNtI-WRt5umas_BgQZ8cU_WGARn7hqhFIpmV8nLjQCN6GP9O7PuEFbGI_CRWeXtl",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQESGs09MWAx_R3jKYyCGF5HbSTHkonBec4i44HyR6aex2Ox47YDlJsa9UKxQR1r3hH1b1XVpnWXRclNsqFIx9zLx84xI3-XZEu1QIqLdDbTsobRO50UEs-PYXhTTwt8VzAdFVNOSVtq7Bm_qA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHEIBNoorWN_0pZlkcuZs61ND2pdRK1yAFR1pjouKwHciJw4XrH1y0uUpEsD84KAK-trokcucDZNVuRWLQmT2JWEqUXhDSgt4Xbtsq2_h9-zPm7bT0z_Gx5vtjmpfc6tfpJxv0bx5nfileAzarwSkoKwHS09-pi4FAZ-6tbQoH50F5RlyA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHZl5zWQ17-jb_7QYnj0lZfBB9Vn8Ev08nQXBVaXGj_P_V1BLT5eN7Lj_xtz5gn9WJIM6KXQdSLof2vZPaIEJGp8ietjZazsQwVdXRck3Jj9VmqEV-OTZUNGTSAdcSGbr5YTkh4PUc9bJWw",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHGJnN-417hASD_qX0zSdMRA9l0gppM60JBGCmYFdgoQDKIg9lFGGqbyu02HNIhtJk1qMnlrWiV5PET5RsDIfXrt7uTkC0BO2CMZkQURwjsArcSv37DzDa99H8nIX5G5F27K4oa5VMM2lq5ZcbF",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG5HucnUU2THQi3wE6zRn-TIj7DL2FFzsrmkBta-i75vQf7EE5fU8upsfedTvAyIHVALC_GeEVhJVibmS_vznJnOBUzWYi6J8e2eeDjy9y48xMiWf4FUoreh7ZPusr27z5SAew1xWycwgT_0dU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFcJzrU02vDNQEOkHaovNaht9AeIzWvUO8hCHrzNGWlBmsowAwRLTf9nlFis-8-jR9-wq2aTZR14-2_I_W-3UWFCXyNFfuS-vm91idNH2j4Cqi_HB-oH0_hkrQkfr8Q42ueJJycQ7E1",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFlLlxEmSdOeiMM5qjgRV2wQM-KEypYpwcCcl8nQxtRRBaZLuewZR1zFyLxtad-LD-4DrMRpKMl_T4IGiH7pdijpxcax-ZE6DQ8ndF8s8wVGO0PYtLZgwqP-Es8eA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFaXmBrCzNSwXA84cVoJwf9o2mr3lJxbhz5iMOv16WsP_u_6CeF0myGJpkZMMdOWVfg51y74slKFBb-5imeE9VisIuJgR45WOZOe48OIbCFa56LktOBLwPUaP-WQYVo4Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHeDhKF7M8718-OBUnd4LrVGPK8KqlpEj3D07fJbYd_a_ZWbteO2ZLQDEOWOGbFowHihix-dzm5-07qzCfQWpnE2GNMc6fuLFA8I_WXZSXZCsIf-WNhssYGGdsjKr0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQENn4GHMg-2XUZbO9kMRty4rWFpHDYiADPD_iuI6ZhQGpoKvl2d632r2HC0oD6OOcSWTE56IDRHxodAB5_geR5tOx0LRDrdlVhEbS0D5va7_cABBo8sctKUItkm9A=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

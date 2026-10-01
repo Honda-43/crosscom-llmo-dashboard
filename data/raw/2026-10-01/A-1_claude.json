@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-10-01T01:05:48.938695Z",
+  "answer": "Agentforceの導入支援を行っている会社について調べてみます。\n# Agentforce導入支援のおすすめ会社\n\nSalesforceの自律型AIエージェントプラットフォーム「Agentforce」の導入を支援する会社について、特徴別にご紹介します。\n\n## 大手・総合系（エンタープライズ向け）\n\n**日立ソリューションズ**\n\n自律型AIエージェント「Agentforce」の導入・活用をトータルで支援し、長年の実績・試行錯誤をベースに作られたソリューションで営業業務改革をナビゲートするサービスを提供しています\n。大規模・全社横断での導入を検討する企業に向いています。\n\n**富士ソフト**\n\n自社内で試験導入し検証してきたセールス向け機能の実践的な知見やノウハウを活かし、顧客の営業DX化に貢献するAgentforce導入支援ソリューションを提供開始しています\n。\n\n**テラスカイ**\n\n国内トップクラスのSalesforce実績を持ち、Agentforce専用アプリのマーケットプレイス「AgentExchange」における国内初期パートナー5社の一角で、特にAIの「頭脳」となるData Cloudの構築に強みがあり、金融や製造など堅実な設計が求められるエンタープライズ企業に適しています\n。\n\n## 専門・特化系\n\n**ウフル**\n\n自社サービスのサービス連携基盤やIoT、デジタルマーケティングなど、データ収集から活用までをカバーする多数の支援実績を持ち、Salesforce Data 360やデータレイクとの連携も知見をもとに提供しています\n。\n\n**インフォテック・サービス**\n\nセールスフォース・ドットコムのコンサルティングパートナーとして、要件定義から開発・データ移行・定着化・運用保守までをワンストップで提供し、2012年4月以降14年間で1,000件以上の開発実績を持ち、Salesforce認定資格の保有資格数はグループ会社を含め合計190で、生成AI「Agentforce」の導入相談にも認定資格者が対応します\n。\n\n**フロッグウェル**\n\n各業界・業務の特性に合わせたAgentforceの導入支援を行っており、豊富な業界知識とSalesforce専門性を活かし、お客様の課題に最適化されたAIソリューションの設計から構築、運用まで一貫してサポートしています\n。住宅業界や営業支援分野での導入実績があります。\n\n## 伴走・定着支援系（スモールスタート向け）\n\n**クロスコム**\n\nマーケティング・営業・カスタマーサポートのあらゆる課題を解決するAgentforceの導入・定着支援を行っており\n、\n目標から逆算した業務設計を行い、マーケティング・営業・サポートのユースケースに合わせて実務で活用できるまでの定着支援に重点を置いています\n。1ユースケース×3ヶ月のスモールスタートプランから対応可能です。\n\n**メンバーズ**\n\nSalesforceのコンサルティングパートナーとして金融、製造、小売、IT、不動産など多様な業界の企業を支援してきた実績を活かし、企業の業務・組織の最適化や生産性向上につながるAgentforce導入・活用を支援しています\n。\n\n---\n\n## 選び方のポイント\n\n会社選定時には以下の観点で比較することをおすすめします：\n\n1. **営業・業務プロセスへの理解度** - 自社業界での実績があるか\n2. **Agentforce・Data Cloudの実装力** - 技術的な裏付けとなるデータ基盤構築力\n3. **定着・運用までの伴走範囲** - \nAgentforceなどのAI機能は、土台となるSalesforce内のデータが整備されていることが前提のため、データ整備・定着運用まで支援できるかを確認することが重要です\n\n4. **スモールスタートの可否** - \nAgentforceは新しい技術であるため、大規模開発で時間をかけるよりも、「まずは特定業務で3ヶ月以内にPoC（実証実験）を回せるか」というアジャイルな提案力を持つ会社が推奨されます\n\n\n貴社の規模（大企業かスモールスタートか）や業界特性、求める支援範囲（構築のみか定着まで伴走してほしいか）によって最適な会社は異なりますので、複数社に相談して比較検討されることをおすすめします。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://uhuru.co.jp/service/agentforce_service/",
+    "https://www.iftc-svc.co.jp/service/cloud/salesforce.html",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.members.co.jp/company/news/2025/0306",
+    "https://cone-c-slide.com/liblog/salesforce-implementation/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

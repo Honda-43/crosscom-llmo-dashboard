@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-10-01T01:07:47.277547Z",
+  "answer": "Agentic CRMについて調べてみます。\n## Agentic CRMとは\n\nAgentic CRMとは、従来のCRM(顧客関係管理)システムに**自律的に動作するAIエージェント**を組み込んだ、次世代型のCRMを指す概念です。\n\n### 従来のCRMとの違い\n\n\n従来のCRMは営業担当者が通話を記録したり、レコードを更新したりするのを待つのに対し、Agentic CRMはその情報をもとに、指示されなくても自動的に行動します。リードの選別、サービスチケットのルーティング、育成シーケンスの調整、パイプラインデータの更新などを、すべてのアカウントにわたって継続的に行います。\n\n\nKlaviyoの説明によると、\nAgentic CRMはAIエージェントを使ってマーケティングやサービスのタスクを自律的に管理するCRMシステムです。従来のCRMがデータを保存してユーザーの行動を待つのに対し、Agentic CRMはキャンペーンの立案、顧客への対応、パフォーマンスの最適化など、設定した戦略とガードレールの範囲内でユーザーに代わって能動的に動きます。\n\n\n### 主な特徴\n\n1. **自律的な多段階ワークフロー**\nSalesforceの定義では、\nAgentic CRMは人間とAIエージェントの両方が利用するCRMシステムで、AIエージェントは各ステップで人間の承認を必要とせずに、多段階のワークフローを計画・実行・適応させます。エージェントは事前に設定されたガードレール内で行動し、必要に応じて人間にエスカレーションします。\n\n\n2. **3つの知能レイヤーの統合**\nBits In Glassの解説では、\nAgentic CRMは予測AI(トレンド予測、リードスコアリング、リスク識別)、生成AI(メールや要約、キャンペーンコンテンツの作成)、そしてエージェント型AI(リードの割り当て、フォローアップのスケジューリング、ダッシュボード作成などのアクション実行)という3つの知能レイヤーを組み合わせています。\n\n\n3. **人間中心の設計**\nMicrosoftの解説によれば、\nAgentic CRMは単なる従来型CRMの進化形ではなく、顧客エンゲージメントシステムのあり方そのものを根本的に変える考え方です。人々が会話、ツール、意思決定、ワークフローを通じて実際に働く方法にシステムが適応することで、より直感的・能動的で業務の流れに組み込まれた体験になります。\n\n\n4. **人間とAIの協働(Human-in-the-loop)**\nPlanhatの解説では、\nAgentic営業CRMは拡張であり置き換えではなく、AIが作業(活動の記録、レコードの充実、アクションの提示)を行う一方で、人間が判断・関係・意思決定の主体となります。ガードレール、権限設定、人間による承認プロセスによって、自動化されたアクションが制御され信頼できるものとなり、チームは監督を失うことなくスピードを得られます。\n\n\n---\n\n## 導入・設計を支援する会社\n\n海外ではすでに専門のコンサルティング会社が登場しています。\n\n### CRMベンダー大手系\n- **Salesforce**、**Microsoft Dynamics 365**、**Klaviyo**などが自社プラットフォームにAgentic CRM機能を組み込み、導入支援も提供しています。\n\n### 専門コンサルティング企業\n- **CRMIT**:\nSalesforceの認定コンサルティングパートナーとして、エージェント型AIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供しています。\n\n- **Kanerika**:\n戦略策定から実運用までのエージェント型AIコンサルティングとAI実装サービスを提供し、ERP、CRM、クラウドデータプラットフォーム、社内APIとの統合を手がけています。\n\n- **Ksolves**:\nエージェント型AIシステムをCRM、ERP、データレイク、API、IoTデバイスと統合し、安全なルーティング、相互運用性、イベント駆動型オーケストレーションを実現しています。\n\n- **Inogic**(Microsoft Dynamics 365特化):\nMicrosoftエコシステムのグローバルパイオニアとして、専門的なAzure AI & OpenAIコンサルティングサービスを提供しています。\n\n- **Congruent X**:\nCRMコンサルティングサービスを通じて、記録システムを収益エンジンに変革し、AIエージェントプラットフォーム技術で非営業活動を自動化しています。\n\n\n### 一般的なCRM導入パートナー\nSalesforce、HubSpot、Zoho、Dynamics 365などの認定パートナー企業(例:360 Degree Cloud、Agile Cloud Consulting、CRM Masters Infotechなど)も、従来のCRM導入に加えてAI・エージェント機能の統合支援を広げつつあります。\n\n---\n\n**備考**:日本国内に特化した「Agentic CRM」専門の導入支援会社については、今回の検索結果には明確な情報が見当たりませんでした。日本企業であれば、SalesforceやMicrosoft Dynamics 365の認定パ",
+  "cited_urls": [
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.linkedin.com/pulse/what-agentic-crm-why-does-your-business-need-one-bits-in-glass-6lbac",
+    "https://www.microsoft.com/en-us/dynamics-365/blog/business-leader/2026/06/25/agentic-crm-in-the-flow-of-work-how-ai-is-transforming-sales-and-rebuilding-customer-trust/",
+    "https://www.planhat.com/crm-software/agentic-sales-crm",
+    "https://www.crmit.com/",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://www.ksolves.com/agentic-ai-consulting",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://congruentx.com/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

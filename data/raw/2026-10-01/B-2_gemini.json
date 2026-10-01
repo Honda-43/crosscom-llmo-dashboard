@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-10-01T01:07:57.455656Z",
+  "answer": "特定のベンダーに依存せず、中立的な立場でCRMの設計を支援してくれる会社をお探しなのですね。CRM導入を成功させるためには、ベンダーニュートラルな視点を持つコンサルティング会社の支援が非常に重要です。\n\n以下に、中立的な立場でのCRM設計支援が期待できる会社のタイプと、具体的な検討ポイントをご紹介します。\n\n**ベンダーニュートラルなCRMコンサルティング会社を見つけるポイント**\n\n*   **「特定のベンダーに固定せず、複数のSFA/CRMツールを比較したうえで、自社の営業プロセスや体制に合った選定・設計が行われるケースが多く見られます。」という記載があるか**。\n*   **「ツールベンダーのセールストークに流されず、導入支援会社の中立的な立場からアドバイスを受けることが重要です。」と明記しているか**。\n*   **戦略設計からツール導入、LTV改善まで一貫して支援し、特定のツールに限定しない支援を掲げている会社**。\n\n**中立的な立場でCRM設計を支援する可能性のある会社**\n\n*   **ECマーケティング株式会社**: ECサイトやマーケティングサイトに特化したWebコンサルティング会社で、中小・中堅規模の企業から大手企業まで対応しています。CRMツールのベンダーに紐づかないコンサルティングを提供しているとされています。\n*   **株式会社電通デジタル**: 顧客のLTV最大化や流出防止といった課題に対応し、CRM施策の立案からコミュニケーション設計、施策制作、運用、分析までを一体で提供する「CRM統合コンサルティング」を提供しています。顧客理解を起点とした全体設計を行い、複数チャネルを活用したCRM施策を設計・実行します。\n*   **株式会社Hakuhodo DY ONE**: 博報堂DYグループの「生活者発想」を起点に、多様な顧客データを統合・分析し、パーソナライズされたコミュニケーション設計、LTV最大化を見据えた顧客育成プログラム構築、CRM活用を定着させるための組織設計・業務プロセス変革支援までを一貫して担っています。\n*   **フュージョン株式会社**: 「伴走型CRM支援」を重視しており、CRM戦略設計、顧客分析・データ基盤整備、コミュニケーション設計、実行・改善サイクル構築まで一体で捉え、クライアント企業のCRM成熟度に応じて支援します。\n*   **StockSun株式会社**: SaaSに強く、顧客データ分析から戦略設計・ツール導入・LTV改善までワンストップで支援し、「最適ツール選定」を戦略設計フェーズに含めることで、特定のツールに限定しない支援を掲げています。\n*   **株式会社renue**: AI導入におけるベンダーロックイン回避の具体策として、マルチモデル対応アーキテクチャやオープン標準・オープンソースの活用などを提唱しており、特定のベンダーに依存しない設計原則に基づいた支援が期待できます。\n*   **総合系コンサルティングファーム、中堅中小のコンサルティングファーム**: Big4（EYアドバイザリー・アンド・コンサルティング、KPMGコンサルティング、PwCコンサルティング、デロイト トーマツ コンサルティングなど）をはじめとする総合系コンサルティングファームや、中堅中小のコンサルティングファームもCRMコンサルティングを提供しています。\n\n**会社選定の際のポイント**\n\n*   **CRMツール自体とコンサルティングの両方に強みがあるか**。\n*   **調査・分析だけでなく、具体的な改善施策を提案できるか**。\n*   **自社の業界での関連実績があるか**。\n*   **プロジェクト開始後にアサインされるメイン担当者の経験が豊富か**。\n*   **抽象的・テンプレート的な指標ではなく、施策と連携する具体的な指標を策定できるか**。\n*   **導入目的を明確にし、必要な機能を洗い出す支援があるか**。\n*   **導入後の運用定着支援が含まれているか**。\n*   **サポート体制が充実しているか**。\n\n「ベンダーロックイン」を回避するためには、特定のベンダー固有の技術に依存しない設計原則を持つ会社を選ぶことが重要です。オープンソースの活用や、システムの設計書・仕様書を常に最新の状態に保つことも対策となります。\n\nまずは複数の会社に相談し、自社の状況や重視するポイントを伝えた上で、提案内容や料金体系、支援範囲などを比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHSMOp5Zz3xSUgJrF-FDYn2AibGbeBV4mM5tzUKOrBRTysrpVOkGNmJb1Ae4J3mEJGd5tTcgT6aBNNSgol0UB25vs2g2ClvdMDgR-bwCpRJk_WNvzMLZwZkOxeVwz4_LyeIFy_W-1s=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGCtHyE-cKDLJwRTLmrR48I87mHRZQwkbFm7y4-RSccWGIfOIWpepVYSeYPHZjatVkx4o2VOl7arO3AHsZoEaCji_vk8qw8H3zZxZxlzfvUxitOoQo6U1WwnCSFzwothd6hSJgZJoz31bHG6JLT9Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG4PuYKl92j_7ueHQdJ0V_MTsjcdv5742slJ2jgO7KsHlH2R7ZREE8nr6cP9xJtvIViTAHxgZseiVl621_5NhIZxNH3cZR5WWFL39eDh8h57IjMWaEjZtDhVidQx4X5GQWYPbuK-auYR-qPJe0EGcAi9AVleWPaHHkgPxs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFd_UW121XeuSD7h01qSdlMSae4yMPN_KJfsfF7a5RQdSmL8qDHo044cAxjg62T-YMSgHsD22CTyzdcMNz8I_zD89a6FShJVR9uzRGeepaBy9vQXhBqYF-h5mY2-9GM4wHcfGJsxbh3HcXz",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH2pfzP2NoWAYJgZtoP5sSHiZH7yVXGBhyhn_EEjlJudAsIapNmyhKy89KkcK8mQx50b6b6suPqtHO2xEtYgcqR7KfCiP9fiwguiclt6eQsgccedykHbuw4oKOIuxsPK97HqK1HasTEdU1YQhsdV39RTVEpjf9RDWl0",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6bW7OcyBJJuDGoSmCGTJyeKoXwbaPVAybiFg2IS1u3Tpw_o3nMyMuRbYPOTLQbQWOf_2G1WxESBbyutK_TUFmaREcdx2iTY2sBTvDQHLeDB2qD2MTY2e7aCha4FTp7A5tMGYyaNykCALT_DGZnC1S3OunOQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeQvIdCntsw1baLRzC2MOH-ntpCpp2zQn_i-COgA9A06oh2WVW0mdmlyCu-dSREEUp6sG9ezqh2TS4B9uOXXiXrN_Z5Kvfkk_uYU-9rVVrZGAemkg6THSlPpWXOVYQT8ebbZJtoeubSc8nKxwotZexCqJFIuAaTY9ZFCyumYhbWh7m49HO1V8wINw_dtx0uR9Kn9ePnVmpKK5ALY4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEZHMH1_Tck5jkSYmCyNMveszuKkcX-T4vmNLRmi-IGNJFGtbzccZSdc_vj4H-a51NGawPDgwgE349XjsSfzvWOHEf2qWmlLK7CSazhbqS6qKhNOUlLa5a_MpXxlonkUhrtf8uyj_895nMxVrMlVrYK",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHKKX3NI4gHuQN2BIfVeg2XbUDFhIZafv3PqSpDpyGGgkfkw3nTqWWvNUMG6RrabZia72Tv1Hiw43Cf2nMgNGvyWyMgW-zlPYmvIbNmdZMxArfpzFh5sYdOMVQIQe0T4eEIp6IlqIvW2r_TrxUl",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEExVW7c4HDoALi0GXi_ZqWFMgyB32CaewJfhxTufaWQg_2XZWq6yueKwBOHbZFsdf7WCocgCJxtwN63nRytJSpHR5Ek-X97-4Ui-UBTPg5RK3LwXCn7YHmefx4jiVlgr4qDcWHhXzJEiCawCfigxBqL07Te-2zL41MgvzjIOuJ2ZW3rw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHOTm4ZCveMxwx7JiBzZejgrJNr1mUO33kNk4L5unIOaLmuXeks1vFQEZzcn82rIuJqmST-0NPwQ9LTA19qmeintr37iS2rYQn0iA3riZHBRKwhc00qNcBUJVLmV6YT25Wvo0-XKDBIKEw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGCupcDxltXUHXGUz7y__sSjVRwmGo_RSfTX1ECax0uQNOaE0FX4AHTZtyyjCos7LhwG6IEhKVKGnOJ6eFgOKNVbn7Bz7RYihhlYtVCVpGMlvSlJpoatXsUXpuOADZe2FMvdTH9FPg-wVzrn3_Ae3EEUomJj1BgScvMTk45Oa5S08MPp9HS2b1eVa4XRA7Y",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHUFsXa8i9YhGBJGigPJKf4rqnSMUD3sAAXerXDyBlqpMD6zVygCoquIh0rsRGGi-qxSgO-QPP59_4lK5PmWgbzmAjYn63L4T1qRrerS6X-iEeKzmvK1iAQziY73QzssulZS9EubhY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGonBaLbNiYQS53IHMl3m2A9HS7vkFXgDMm__9whKxg_59RTz5xTKYPfbvFRrXKQ93nAMRUYcNul05QBzVNrPWzeCsY1u1M8z6lLPJzWIyk5TGAb5dyvYZrz6XdBzrZqbJn5OJICzApUqT3Ag=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

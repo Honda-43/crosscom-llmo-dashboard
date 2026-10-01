@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-10-01T01:07:12.541025Z",
+  "answer": "# Agentforce導入費用の相場と費用対効果を出すための進め方\n\n## 1. 費用の全体構造（4つのレイヤー）\n\nAgentforceの費用は単一の金額ではなく、複数のレイヤーで構成されています。\n\n### ① ベースとなるSalesforceライセンス費用\nAgentforceは単独では購入できず、Sales CloudやService Cloudなどの既存ライセンスへのアドオンという位置づけです。\nAgentforceは単独の製品としては購入できず、既存のService Cloudライセンスへのアドオンとしてのみ存在するため、真のコストを理解する上で最初の複雑さが生じます。\n\n\n日本円の目安としては、\nSalesforceの価格は無料のFree Suite（0円）から最上位のAgentforce 1 Sales（月額66,000円/ユーザー）まで6段階のエディションで構成されています\n。Agentforce機能が使えるのはEnterprise以上のエディションからで、\nEnterprise・21,000円/ユーザー・年間契約（Pro全機能＋Web API、Agentforce、商談スコアリング、商談インサイト）\nが一つの目安です。\n\n### ② Agentforceアドオン（社内従業員向け・使い放題）\n社内の従業員が無制限にAgentforceを使う場合のアドオンは、\nAgentforce for Serviceの価格として、業務フローに溶け込むAIと、無制限で利用できる従業員向けAIエージェントが15,000円/ユーザー/月（年間契約）\nとなっています（USD建てでは$125/ユーザー/月）。\n\n### ③ 従量課金部分（Flex Credits／会話課金）\n社外向け（顧客対応）エージェントなどを従量課金で使う場合は、2つの料金体系があります。\n- **会話単位課金**：\nAgentforceを拡張して会話単位でお支払いする場合、240円/会話1件あたり\nです。ただし\nこの会話課金モデルはレガシーな課金体系で、単純な1往復のやり取りも複雑な複数ターンのやり取りも同額で課金されるため、コストが予測しにくいと批判されています\n。\n- **Flex Credits（アクション単位課金）**：\nFlexクレジットは60,000円/100,000クレジットあたり\nで、\n標準的なAgentforceのアクションは20クレジット（約0.10ドル）を消費し、Agentforce Voiceのアクションは30クレジット（約0.15ドル）を消費します\n。なお\n会話課金とFlex Creditsは併用できず、どちらか一方を選ぶ必要があります\n。\n\n### ④ 構築・導入支援費用（見落とされがちな最大コスト要因）\nこれがROIを左右する重要なポイントです。\nSalesforceのライセンス費用は別途かかり、AIエージェント「Agentforce」など新しいアドオンを追加する場合は、その分の費用も加算されます。導入支援費用はライセンス費用に加えて必要なコストとして計画に組み込む\n必要があります。\n\n国内のパートナー費用感としては、\nスモールスタート・スピード導入型のサービスで99万円〜\nという例もあり、個別の導入案件規模によって幅があります。また海外事例では、\n50ユーザー規模の中堅企業がAgentforceライセンスに年間9万ドルを見込んでいても、導入・トレーニング・従量課金費用を含めると実際のコストは20万ドルを超えることがある\nという指摘もあり、ライセンス費用だけで予算を組むと見積もりが大きく外れるリスクがあります。\n\n### ⑤ 見落としがちな付随コスト：Data Cloud\nさらに、\nAgentforceの導入にはData360が必須で、これも課金対象です。そのため大きく2つの機能の契約が必要になります\n。海外の分析では\nAgentforceは1会話あたり約2ドル、またはFlex Creditsで10万クレジットあたり500ドルから始まるが、Data Cloud（Data 360）が年間6万ドル前後からかかる\nとされており、本格導入時の総額を見積もる際にはこのData Cloud費用を忘れないことが重要です。\n\n---\n\n## 2. 費用対効果（ROI）を出すための進め方\n\n国内のSalesforceパートナー各社が提唱するアプローチはおおむね共通しており、以下のようなステップで進めるのが王道です。\n\n### STEP1：ユースケースの発掘・課題整理\nいきなり大規模導入せず、\n現場の業務知見に基づくユースケース発掘ノウハウをもとにテーマを創出する\nことがスタートです。\nAIエージェントの活用は、課題整理から本格運用にいたるまで検討すべきことは多岐に渡ります\n。\n\n### STEP2：ユースケースの決定とROI目標の設定\n",
+  "cited_urls": [
+    "https://www.eesel.ai/blog/salesforce-service-cloud-ai-add-on-pricing",
+    "https://www.salesforce.com/jp/small-business/how-to-choose-plan/",
+    "https://www.salesforce.com/jp/service/ai/pricing/",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://www.zenml.io/blog/agentforce-pricing",
+    "https://valintry360.com/blogs/salesforce-agentforce-pricing/",
+    "https://cone-c-slide.com/liblog/salesforce-implementation/",
+    "https://blogbloggerbloggesta.hatenablog.jp/entry/agentforce-price",
+    "https://enterprisedreamin.org/articles/agentforce-pricing-explained-2026/",
+    "https://www.itis.nssol.nipponsteel.com/data/resource/salesforce-agentforce-case/",
+    "https://www.sunbridge.com/service/agentforce-implementation-package/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

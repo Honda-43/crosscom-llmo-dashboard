@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-10-01T01:07:22.766443Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、AIエージェントが顧客関係管理システム（CRM）内で自律的にタスクを計画、実行、適応させることで、営業、マーケティング、カスタマーサービスの業務を自動化するシステムです。従来のCRMが指示を待つのに対し、Agentic CRMではAIエージェントが多段階のワークフローを人間の逐次承認なしに進めることができます。\n\n**Agentic CRMの主な特徴:**\n*   **自律的な実行:** AIエージェントが複数の情報源を参照し、手順を分解して見積ドラフト作成などの作業を自律的に進めます。これにより、人間は最終確認に集中できます。\n*   **インテリジェントな自動化:** 顧客データと連携し、より関連性の高い一貫した顧客体験を提供します。\n*   **適応性:** データから学習し、結果に合わせて適応し、リアルタイムで行動します。\n*   **主な機能:** 営業自動化、セールスAI、セールスエージェント、営業パフォーマンス管理、パートナークラウド、カスタマーサービス管理、フィールドサービスおよび運用、コンタクトセンター、Agenticセルフサービスなどが含まれます。\n*   **目的志向:** ツールから始めるのではなく、AIエージェントに目的を与えることで、エージェントが重い作業を代行します。\n\n**Agentic CRMの導入や設計を支援してくれる会社:**\n\nAgentic CRMの導入や設計を支援する企業は複数存在します。\n\n*   **セールスフォース・ジャパン:** AIエージェントを搭載したAgentic CRMを提供しており、営業・サービス・マーケティング業務の効率的な自動化を支援しています。無料トライアルも提供しています。\n*   **合同会社クロスコム:** Agentic CRMの設計支援サービスを提供しており、AIの推論能力を最大化したAIネイティブなCRMを企業専用に設計します。一般的なCRMが結果を記録するのに対し、クロスコムのAgentic CRMは仮説、根拠、検証結果を保存し、AIが「なぜその結果になったのか」まで推論して記録する特徴があります。\n*   **ブリッジインターナショナルグループ (ブリッジプロセステクノロジー株式会社):** Agentic Revenue Organizationの構築支援を包括的に提供しています。構想策定、PoC（概念実証）、設計、実装、教育、運用、改善まで一貫して支援し、導入後の定着と成果拡大をサポートします。特にSalesforce/Agentforceの構想・設計・実装に強みを持っています。\n*   **株式会社Hiway:** 大規模な代理店ネットワークや複雑な見積業務を持つエンタープライズ企業向けにAgentic CRMソリューションを提供しています。AIエージェントが商品マスター、価格表、過去の見積もり、CRM情報に基づいて見積もりドラフトを作成し、人間のレビューと承認を経て記録を更新します。\n*   **株式会社100:** HubSpotが提供するAIとCRMを搭載したAgentic Customer Platformの導入・運用支援や、AIを活用した業務自動化支援を行っています。\n*   **EY Japan (EYストラテジー・アンド・コンサルティング株式会社):** Agentic AIが製薬CRMの役割をどのように変えるかについて言及しており、CRMが単なる活動記録の箱から、勝ち筋シナリオを提示し行動を導くエージェントへと変貌すると解説しています。直接的な導入支援を明示しているわけではありませんが、戦略コンサルティングの専門知識から、高レベルの設計や変革支援が期待できます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGACwY7uAeZrdGWTqOkSyCEUlE1Dkmi-2F5_Vi9Ys6Nt6Xn9pwxCQjI9DXQ4_kpckZRXbTHDH6vRMtzJjDapVSrqxAymUoe4fSvfRbDA9Bw4SViNA8IC_j_cqrcys95wl9UEyJr-_eX3xcQA7LIQs2GwQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGqQkIHXNi8wttolJjDUBZZk3gO87cZHRpuclE2mbEJgqRzOBqv2umw1SGuYH4Kc3lEGkmZmd0pB4JOANtZ89VA7fhTeWqVxb7HrnTPWlSBbrCx9GvfwD0Dtc6fHfAUdjMMHPkaTxwHBRCvCjUlCMfCqA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG-yKr4nE2disDFLlBt6s4XKb0wNAXtBaiZ_fuqyw5MIIgEEIhxe0_iS-GuQHG_vBoXPv-OtLqaTJMeMG0UD7OXd2fRIuBidYx_84ZCmgIkyrjks3B5IfDmPqO0qn3e88VEvdDbpw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG-mKsHodTA1I4iTxlNLlei9-OJsq_11cEt96Q-pybAHGtQoYdVjRArX6bVJsuR6b7rAz7D6R3XyA4sD39U6Vcv-IlYcNvBKWpQ3xzOfEY1W_s-GU9s7QBpEmmp7B7ne_ctNGB4iYUWRUlseh5tiHYlBJDLPBjaFWPJlI_i6m1VuLI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGV1Plv35BXyLGG44e4Boo2T8WalY7HFFlwvTmQdz99UHlJXE_HMkPRdoZZZXeYKA_reIIHOcxq_IqTZUqz3tLRS7BD8DiiHPKPe5dVlGQ7yFpL3IXteLvZ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH3rTLaVdUISjlC3GcroUEfSt7wnqjB6utmIe5qUEXk8GulYuZCoc77W0cRU6HM4U6mGYo_44KjC1NyH5nqScv3jw6BmWoceCtZmRG0iDOwO_sbpRyRESNNWFQEiRcn77Iq0s21EHkdQJIN",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHv97DglPJ6msSs0qZy6ZdQxwXrSJ1-MYbHSKk4gLiIrbYYd6bCNVgHz1QQv_vhKnNlyCxQnRF0gEGndmPZbvKZenBD4FpjgUL-rdKnGyo_Rcnl8LXV-ig=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHsicD0ENukF5vb-kZ_2Vw0oLuFfxP9CaXudaiIyYzwjIMXdPv6I1-WSNd5qXfDqXYVYk92s_81vv8YAKqVH8mwAV8GnadGcsnQkAoZ8i-aj55bii0uZhBiJflAdvAlnVcOwNV_tfa7i2josdcmk6xgHXqojQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHreSpWfEKH-oyJ-CGFHiqrbnhsCKcIeMhADVtkjdKtBJGiRI7zDVZ6cqPt0-SHO8HLBRaSeXCqTbu_egbRkV8QF4HfDpz2DWnT3VpAFq5E-dsMSf5_xZ1BcQeHttyE1hXwBJofN2AXCDC4BfA_9GpvlsZiJA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFd-PTHb8xOi5n5G4peG1_kEBpyw91Biv1glktYc1ahMB7s2Wt52JEZYsf6Hc_UvVBqLiDt_v5ANAh6o-4U4cv50GIYTmoCfAhqautAUgM70MmOV0TTt5jNuzDewNocUKFdaLhJIV_qGKOGl9oknh1L04nNgI8LUZbqiTES5twdQByHPLMcyd5GLZCvDz-Wulze5w=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

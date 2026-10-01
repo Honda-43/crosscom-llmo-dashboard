@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-10-01T01:09:01.985766Z",
+  "answer": "合同会社クロスコムは、BtoB領域に特化したコンサルティング会社です。SalesforceのAgentforce導入・定着支援と、Agentic CRM（エーゲンティックCRM）の設計支援を主な事業としています。\n\n**強み**\n同社は、AIエージェントを業務に組み込む際に多くの企業がつまずく「ツールの操作」ではなく、その前段階にある「業務設計」に焦点を当てています。他社にはない以下の3つの価値を提供できると述べています。\n\n*   **ツール導入の前段にある業務プロセス設計からの支援**\n*   **法人営業7年の経験に基づく、営業現場で実際に回る設計**\n*   **特定製品を前提としない、Agentic CRMの設計支援**\n\nSalesforceパートナーが多数存在する中で、業務設計から入り、かつ製品に限定されずにCRMとAIの組み合わせを設計できる点が合同会社クロスコムの強みです。実装力と設計力を掛け合わせることで、AIエージェントを業務に定着させることを目指しています。\n\n**提供サービス**\n合同会社クロスコムは、主に以下のサービスを提供しています。\n\n1.  **Agentforce導入・定着支援**\n    *   エージェント設計、トピック構成、アクション配線\n    *   導入に伴う業務プロセス設計\n    *   運用定着に向けた伴走支援\n    *   自社構築を進める企業への設計アドバイザリー\n2.  **Agentic CRM設計支援**\n    *   マーケティング、営業、カスタマーサクセスのデータ統合設計\n    *   AIエージェントを前提とした業務プロセスの再設計\n    *   ツール選定前の要件設計\n3.  **Salesforce関連**\n    *   Sales Cloudの導入・運用定着支援\n    *   Salesforce Account Engagementの導入・運用支援\n4.  **その他**\n    *   Claude CodeとMCP連携によるAgent Script開発\n    *   Agentforce Coworkerの活用設計\n\n同社は「100社100通りの購買体験を当たり前にする」ことをミッションとして掲げています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGNwWJuPYjkhr-bQsEqqRFNdKZAfbTJkGSU0g2hlY01uVFbfpaeJPeukFv_QQhLuwI08-liSqvX-oC3niDoPkRUrxFn5oDE15esv2BLTCfIPTBH8R1P-Alc-LFQPKujZnNT",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGLUSsDCxyP-oMT0nXqCGlqXCY1eJE4RXNQ8NBCkNtQZKcNxCPbss93wbjQb97oBDaw43zK6eBD4pYThlyIXserFBebyVHkut-lGfn95Ckgzw=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}
