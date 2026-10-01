@@ -8,7 +8,7 @@ The tab names and column headers are approved (§7) and must not change.
 from __future__ import annotations
 
 import json
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Sequence
 
 from settings import (
     SHEET_ID,
@@ -297,9 +297,29 @@ def _to_cell(value: Any) -> Any:
     return value
 
 
+def _carry_forward(values: List[Any], current: List[str], headers: List[str],
+                   keep_cols: Sequence[str]) -> List[Any]:
+    """後から人や別のスクリプトが書き足す列は、書く側が空なら今の値を残す(2026-10-01)。
+
+    seo-agent で判定スクリプトが CSV の note 列を空で上書きし、手書きの記録が
+    消えた。行ごと上書きする書き方は、書く側が持っていない列を空にする。
+    """
+    out = list(values)
+    for col in keep_cols:
+        pos = headers.index(col)
+        if str(out[pos]).strip() == "" and pos < len(current):
+            out[pos] = current[pos]
+    return out
+
+
 def _upsert(ss, title: str, headers: List[str], key_cols: List[str],
-            rows: List[Dict[str, Any]]) -> None:
-    """Idempotent long-format upsert keyed by ``key_cols``."""
+            rows: List[Dict[str, Any]], keep_cols: Sequence[str] = (),
+            append_only: bool = False) -> None:
+    """Idempotent long-format upsert keyed by ``key_cols``.
+
+    ``keep_cols`` … 後から書き足される列。書く側の値が空なら既存の値を残す。
+    ``append_only`` … 既にある鍵の行には触らない(人が行ごと編集するタブ)。
+    """
     if not rows:
         return
     ws = _ensure_worksheet(ss, title, headers)
@@ -313,11 +333,18 @@ def _upsert(ss, title: str, headers: List[str], key_cols: List[str],
 
     updates: List[Dict[str, Any]] = []
     appends: List[List[Any]] = []
+    kept: List[str] = []
     for d in rows:
         values = [_to_cell(d.get(h, "")) for h in headers]
         key = tuple(str(_to_cell(d.get(k, ""))) for k in key_cols)
         if key in index:
             rnum = index[key]
+            if append_only:
+                if rnum > 0:
+                    kept.append("/".join(key))
+                continue
+            if rnum > 0 and keep_cols:
+                values = _carry_forward(values, existing[rnum - 1], headers, keep_cols)
             updates.append({"range": f"A{rnum}", "values": [values]})
         else:
             appends.append(values)
@@ -328,6 +355,8 @@ def _upsert(ss, title: str, headers: List[str], key_cols: List[str],
         ws.batch_update(updates, value_input_option="USER_ENTERED")
     if appends:
         ws.append_rows(appends, value_input_option="USER_ENTERED")
+    if kept:
+        print(f"[info] {title}: 既にある {len(kept)}行は書き換えずに残しました({', '.join(kept[:10])})")
     print(f"[ok] {title}: {len(updates)} updated, {len(appends)} appended")
 
 
@@ -409,11 +438,17 @@ def read_citation_gap() -> List[Dict[str, str]]:
 
 
 def write_action_log(rows: List[Dict[str, Any]]) -> None:
-    """action_id をキーに upsert。状態列は人が編集するため上書きに注意。"""
+    """新しい action_id の行だけを追記する。既にある行には触らない(2026-10-01)。
+
+    状態・実施日・判断期限・備考は人がシートで書き足す。以前は action_id で
+    upsert していたため、初期データ(action_log.py --seed)を流し直すと
+    人が進めた状態や備考が初期値・空欄に戻っていた。既存行に1列だけ書き足す
+    処理は ``write_action_log_column`` を使う。
+    """
     if not rows:
         return
     _upsert(_open_spreadsheet(), TAB_ACTION_LOG, HEADERS_ACTION_LOG,
-            KEYS_ACTION_LOG, rows)
+            KEYS_ACTION_LOG, rows, append_only=True)
 
 
 def write_action_log_column(values: Dict[str, str], column: str) -> int:
@@ -655,6 +690,9 @@ def _monthly_row(rec: Dict[str, Any]) -> Dict[str, Any]:
     return {h: row.get(h, "") for h in HEADERS_MONTHLY}
 
 
+MONTHLY_KEEP_COLS = ("notes",)
+
+
 def write_monthly_observations(extractions: List[Dict[str, Any]]) -> None:
     """月次観測を monthly_observations に upsert(Phase 3 §2)。
 
@@ -665,7 +703,9 @@ def write_monthly_observations(extractions: List[Dict[str, Any]]) -> None:
         return
     ss = _open_spreadsheet()
     rows = [_monthly_row(r) for r in extractions]
-    _upsert(ss, TAB_MONTHLY, HEADERS_MONTHLY, KEYS_MONTHLY, rows)
+    # notes は観測からは埋まらない(人がシートで書く)。同じ月を再実行しても消さない。
+    _upsert(ss, TAB_MONTHLY, HEADERS_MONTHLY, KEYS_MONTHLY, rows,
+            keep_cols=MONTHLY_KEEP_COLS)
 
 
 def write_kbf_compare(rows: List[Dict[str, Any]]) -> None:

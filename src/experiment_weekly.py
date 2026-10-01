@@ -271,10 +271,48 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
     return "\n".join(L)
 
 
+# 人が後から書き足す行の目印。08d2927 で week1 に「- **確定: 2026-09-22**(…)」を手で足した。
+HAND_MARK = "**確定"
+
+
+def carry_forward(old: str, new: str) -> str:
+    """--force で作り直すとき、旧い版に人が書き足した行(HAND_MARK)を新しい版へ移す。
+
+    「- 集計日」の行の直後に置く(week1 で人が書いた位置)。無ければ見出しの直後。
+    """
+    hand = [l for l in old.splitlines() if HAND_MARK in l and l not in new.splitlines()]
+    if not hand:
+        return new
+    lines = new.splitlines()
+    at = next((i + 1 for i, l in enumerate(lines) if l.startswith("- 集計日")), 1)
+    return "\n".join(lines[:at] + hand + lines[at:]) + ("\n" if new.endswith("\n") else "")
+
+
+def write_report(path: Path, text: str, force: bool = False) -> bool:
+    """週次集計を書く。書いたら True(2026-10-01)。
+
+    **既にある週のファイルは書き直さない。** 終わった週の集計は確定した記録で、
+    人が「確定」の行を書き足している。作り直すと、その行が消えるうえ、
+    そのあと足した節や今のシートの値で数字も変わる。--force のときだけ作り直し、
+    人が書き足した行は引き継ぐ。
+    """
+    if path.exists():
+        if not force:
+            print(f"[skip] {path} は既にあります(確定した週の記録)。作り直すときは --force")
+            return False
+        text = carry_forward(path.read_text(encoding="utf-8"), text)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(text, encoding="utf-8")
+    print(f"[ok] wrote {path}")
+    return True
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="LLMO実験の週次集計")
     ap.add_argument("--date", help="生成日 YYYY-MM-DD(既定: 当日JST)。前の月〜日を集計する")
     ap.add_argument("--print", action="store_true", help="書き出したあと本文を表示する")
+    ap.add_argument("--force", action="store_true",
+                    help="既にある週のファイルを作り直す(人が書き足した「確定」の行は引き継ぐ)")
     args = ap.parse_args()
     report_date = (dt.date.fromisoformat(args.date) if args.date
                    else dt.datetime.now(JST).date())
@@ -282,10 +320,7 @@ def main() -> None:
     import sheets_writer
     rows = sheets_writer._read_tab(TAB_EXPERIMENT)
     text = build(report_date, rows)
-    path = report_path(report_date)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(text, encoding="utf-8")
-    print(f"[ok] wrote {path}")
+    write_report(report_path(report_date), text, force=args.force)
     if args.print:
         print(text)
 

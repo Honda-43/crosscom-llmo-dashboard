@@ -257,6 +257,30 @@ cd src && python run_weekly.py --skip-ahrefs --no-slack   # 所見だけ手元�
 > 補足:`daily_summary.ai_sessions` は GA4(前日分)、`branded_clicks` は GSC(3日前分)の当日収集値を集計。
 > LLM観測日(当日)を主キーとしたスナップショット行のため、各源の対象日付にはデータ確定遅延分のズレがある。
 
+### 記録を消さないためのルール(2026-10-01)
+
+seo-agent で、判定スクリプトが CSV の note 列を空で上書きし、手書きの記録が消えた。
+同じ型を作らないため、次をルールにする。
+
+1. **手で書き足す列・行を持つ表は、書き込むスクリプト側で引き継ぐ。**
+   行ごと上書き・ファイルごと置き換えで書くと、スクリプトが持っていない列は空になり、
+   人が足した行は消える。書く側は「自分が作る列だけを書く」か「既存の値を読んで残す」。
+   - `action_log`:既存の action_id の行には触らない(`write_action_log` は新しい行の追記だけ)。
+     既存行に書き足すのは `write_action_log_column`(1列だけ書く)
+   - `monthly_observations.notes`:書く側が空なら既存の値を残す(`_upsert` の `keep_cols`)
+   - スキーマの右側に人が足した列は、行の上書きでも消えない(書くのはスキーマの列幅だけ)
+   - 丸ごと置き換えるのは派生タブ(`lk_answers`・`lk_answers_pivot`・`sov_daily` の再生成)だけ。
+     ここには手で書き足さない
+   - 実験の週次集計 `output/reports/experiment47_weekN_*.md`:既にある週のファイルは書き直さない
+     (`experiment_weekly.py`)。`--force` で作り直すときも、人が書き足した「**確定**」の行は引き継ぐ
+2. **`output/reports/experiment47_diary.md` と `output/interventions.csv` は追記のみ。**
+   一度書いた行は消さない。訂正は、行の末尾に追記するか、新しい行を足すか、
+   取り消し線(`~~旧~~ 新`)で行う。`tests/test_append_only_records.py` が
+   作業中の変更と git の全履歴で、既存の行・セルの値が減っていないことを確かめる
+   (ルールより前の書き換え9件は、点検で意図した訂正と確かめて除外している)。
+3. 新しく表を書くスクリプトを足すときは、書き足した内容を入れてから再実行して
+   消えないことをテストで確かめる(`tests/test_carry_forward.py` が例)。
+
 ---
 
 ## 判定基準の変更履歴
