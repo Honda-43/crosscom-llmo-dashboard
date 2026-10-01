@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "M-7",
+  "pillar": "",
+  "category": "bofu_compare",
+  "target_brand": "テクノデジタルコンサルティング",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムとテクノデジタルコンサルティングのAIエージェント導入支援を比較して教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-01T01:22:35.489037Z",
+  "answer": "クロスコムとテクノデジタルコンサルティングのAIエージェント導入支援について比較します。\n\n複数の「クロスコム」という名称の企業が存在しますが、AIエージェント導入支援に関して具体的な情報が見られるのは「合同会社クロスコム」と「株式会社クロスクラウド」です。今回は、特にSalesforceのAgentforce導入支援を明記している**合同会社クロスコム**と**テクノデジタルコンサルティング**を中心に比較し、補足として他社の情報も触れます。\n\n---\n\n### 合同会社クロスコムのAIエージェント導入支援\n\n合同会社クロスコムは、Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入・定着支援に特化しています。\n\n*   **専門性**: SalesforceのAgentforceに特化しており、Salesforceを利用中、または導入を予定している中堅・中小のBtoB企業を対象としています。\n*   **ビジョン**: 「100社100通りの購買体験を当たり前にする」ことを掲げ、リアルタイムデータ、機械学習、AIエージェントを活用して、企業のパーソナライズされた体験提供を支援しています。\n*   **支援内容**: Agentforceの導入から定着までをサポートし、エージェント構築（エージェント、トピック、アクション作成、単体テスト）やアーキテクチャ構築（データ流れ図、変数・アクション・検索設計、データライブラリ整備）などを実施します。\n*   **特徴**: Salesforceの公式コンサルティングパートナーであり、Agentic CRMの設計支援も行っています。\n\n### テクノデジタルコンサルティングのAIエージェント導入支援\n\nテクノデジタルコンサルティングは、より広範なAIとデータ活用に関するコンサルティングサービスを提供しています。\n\n*   **専門性**: データ基盤構築から行動予測分析、AI活用・AIエージェント開発まで一貫した支援を提供しており、多様な業界のデータドリブン経営・マーケティング変革を支援しています。\n*   **提供技術**: 最新のLLM（大規模言語モデル、例: OpenAIのGPT-4、AnthropicのClaude 3.5）のシステム統合、RAG（検索拡張生成）アーキテクチャを用いた社内ナレッジ検索、自律型エージェントによる業務自動化などを実現しています。また、プロンプトエンジニアリング、ファインチューニング、エッジAI、AIセキュリティ＆ガバナンスなど、幅広い技術スタックに対応しています。\n*   **支援内容**: AI導入に関する構想策定から、AI駆動開発、共創型ソリューション、予測型AIマーケティング、AI駆動型UI/UXデザイン、AIインフラ基盤構築まで、包括的なソリューションを提供しています。\n*   **特徴**: データを価値に変えるプロフェッショナルとして、戦略策定から実行・定着まで一気通貫で支援する20年の実績を持つコンサルティング会社です。金融業界のエンド顧客向けコールセンターAI自動応答ソリューションの本番導入支援の実績も示唆されています。\n\n### 比較とまとめ\n\n| 比較項目           | 合同会社クロスコム                               | テクノデジタルコンサルティング                         |\n| :----------------- | :----------------------------------------------- | :----------------------------------------------------- |\n| **主な対象**       | SalesforceのAgentforce導入を検討・利用中の企業（特にBtoBの中堅・中小企業） | データ活用やAI導入を検討する多様な業界の企業 |\n| **専門領域**       | Salesforce Agentforce、Agentic CRM設計 | 広範なAI・データ活用コンサルティング、データ基盤構築、LLM統合、自律型エージェント開発、AI駆動開発、AIマーケティングなど |\n| **アプローチ**     | Agentforceに特化した導入・定着支援  | 戦略策定から実行・定着まで一貫したAI・データ活用全般の支援 |\n| **技術的範囲**     | Salesforce Agentforceプラットフォーム内でのAIエージェント構築 | 最新LLM、RAG、プロンプトエンジニアリング、エッジAI、AIセキュリティなど幅広いAI技術とプラットフォームに対応 |\n\n**合同会社クロスコム**は、もし貴社がSalesforceのユーザーであり、そのエコシステム内でAIエージェントを活用して顧客体験のパーソナライズや業務効率化を図りたいと考えているのであれば、非常に専門性の高いパートナーとなるでしょう。\n\n一方、**テクノデジタルコンサルティング**は、特定のプラットフォームに限定されず、データ基盤の構築から多様なAI技術を駆使したAIエージェントの開発、そしてそれらを活用したビジネス変革全体を支援してほしい場合に適していると言えます。\n\n---\n補足として、検索結果には「株式会社クロスクラウド」も「業務AIエージェントの開発・導入支援」を提供しているとありました。こちらは社内の資料やデータ、業務システムと連携し、情報収集、分析、成果物作成、更新まで行う業務AIエージェントの構築を支援するとのことです。また、「株式会社クロスウイング」は中小企業向けにAIを業務に組み込み、担当者が自ら修正できるような伴走型支援を提供しています。どの「クロスコム」をお探しだったかによって、適切な比較対象が変わる可能性があります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQqvd3-coc06E1gkOy9-nHbGGYltlOexBgX-TDnv3wZdrd4sCV7BHr1MqjFz4mj8JrIFjysazNKkb5qcaHH_Grbl0UdrumtIM7Z85uJu8b6pZNZvVVojuB2A_Flp-2gLLO-YX59ud8mDPTHY0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGMC1l6tnx4FhIGCsxfMH1F_K3yiQFrykTWYY9-DYA-guCxs9Uf-DWYek2keUm91op0rVZROIGc9l_0QKCyGZtogC4LuTtjbfRyfRkS1Olqgnzl5DdxT0-k3ljmUtuiSp5gA1cNCqy7JvkLMw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFDUl4snf5LE19l8cz_AmGJ0vwSuFCLByg6LZiVtUabsTsWU-CP_pLEqicoIvd3SG_vfUkKaImsxWrAfpDQs-fed7-s_pa-eyscCD6XQuK4Xw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1_sp7HfSYk0RZYmyfB_AkEjdyaO25jbiyLEuABVQpbvYCEb54QySWJG4LVaVrz9-N00fxA-SUYby_Z3BUPrm8izJoiJo-QjVb-DikyZ9dRG8C8UKBxkijDPWb",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZH7Ma-QSYG54zqkKqkhMRR0yTGoQ3JyfwmLTfCqUz3GgvMD3d7WcKQNK6w82CZ0mDEF_W4ii2ZIwmw18gkpeBgMQliYJfCaSOhGJIDXvNfb3gpO8gpEte-dEY89kQkcSrEw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG54TmEmskji8sg4x4P1yCvIaOpTXdQORo0Tmrq2MqRhGui0wCwyoQD310LXrwTAqBteKzXHilPVjVTzjtR3Xlb3M3HElqMDkzEfAj09C-yocKXcnwS2wEIJFOUnyBFTAvF",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEbyZdgW_p331RmP7pUEoR4S1ku7ptK1u0lRferaCZfZWzAxA-VB84jcah8y2X_33XuZ2CKCSVSHysDRVRMW-O-qBXhp0uV5yI1VkHDKSJRCM2GoNQ6pS3HSQ2L-Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG6XTtMah17gn39m3OWy8pOaFnI06JUNsc8KO_w_bAQikapzzoGXZXfHhxNId02OyKjkDJabGzswC9jybm41OwLHavgDO6T7ztl08dwFzYw58vH3imFSPwtLnmKu35rfovAB7q1-i0TpHECnBWhD0o1",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHHzeu7KU27aTdWINVZbA-KUnuqVMXNXJQcP4vZFxyjWY8lalwI17wRec7T2HAt4Qcr_VfHbgLFPKIe8PSOGnQCC4wbUmQpMhQ-PxhwsyUhG6vvc_hAMmfa",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEAqlbrYqq6tPuKt3OmUddxCQPSgTHw66C8aVwY5118E948qBjFjXOZhLQXl4TGlzO8iyug4VxHp1HLqNhBBmusElDTj_h5kRBrkoaC7m-eAj3lfwyU_UXWeVAdmZ3wzgJ0wCnP"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

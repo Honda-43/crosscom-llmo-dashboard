@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "M-12",
+  "pillar": "",
+  "category": "mofu_suppl",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "中堅企業におすすめのAgentic CRM設計支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-01T01:25:21.335678Z",
+  "answer": "中堅企業向けのAgentic CRM設計支援について、最新の情報を調べてみます。\n中堅企業向けの「Agentic CRM設計支援」について調べた結果をまとめます。「Agentic CRM」という言葉自体が比較的新しい概念のため、明確にこのサービス名を掲げている会社はまだ少数ですが、いくつか有力な候補が見つかりました。\n\n## 直接「Agentic CRM設計支援」を掲げる会社\n\n**合同会社クロスコム**\n\n「Agentic CRM設計支援」「Agentforce導入・定着支援」「BtoB Salesforce導入・構築支援」をサービスとして展開\nしています。代表はSalesforce認定コンサルタントで、\nBtoBマーケティングとプロダクト営業の経験から、業務フローを深く理解し、実際の運用と定着を見据えた設計を提案\nする点が強みです。\n本田正憲氏はBtoBの中小企業を中心に100社以上のマーケティング施策を支援しており、MA・CRM領域を軸に戦略設計から施策実行まで一気通貫で実施\nする実績があります。中堅企業規模との親和性が高いです。\n\n**株式会社100（100inc）**\nHubSpotのソリューションパートナーとして、\n「HubSpot × AI Agent × DX を統合する『Agentic CRM パートナー』」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシーとして、HubSpot Eliteの実装力で顧客フロント業務を再設計する\nことを掲げています。\n\n## プラットフォーム別の有力候補（導入パートナー選定の参考に）\n\nAgentic CRMの主要プラットフォームとしては以下が挙げられ、これらの認定パートナー企業に相談するのも一案です。\n\n- **Salesforce Agentforce**：\nSalesforceの既存CRMの上に構築されるエージェント層で、営業・サービス・マーケティング・商取引全体で自律エージェントの構築・展開をサポートし、事前構築済みアクションや業界テンプレート、統合機能によりガバナンスと可視性を保ちながらAIエージェント活用を拡大でき、既にSalesforceを利用している組織に特に強い\n\n- **Creatio**：\nAIがアーキテクチャレベルに組み込まれたAIネイティブなノーコードCRMプラットフォームで、すべてのデータオブジェクト・関係性・ワークフローがレイヤーとして後付けされるのではなく、エージェントがネイティブにアクセス可能\n\n\n## 中堅企業向け従来型CRMコンサルの実績企業（Agentic化の土台として）\n\nAgentic CRM専業でなくても、中堅企業支援の実績が豊富で、今後AgenticCRM設計に拡張しやすい企業として：\n\n- **アビームコンサルティング**：\n顧客理解を起点に、マーケティング／セールス／顧客サービス領域に留まらず、サプライチェーンや財務、人事など企業のバリューチェーン全体の変革を支援\n\n- **フュージョン株式会社**：\n1991年の創業以来30年以上マーケティング支援に取り組み、顧客獲得からロイヤルティ育成までのCRMプロセス全体を対象に、全体設計から具体的な施策実行までの両面から成果創出を目指す\n\n- **株式会社シーサイド**：\n2018年創業のブティックコンサルティングファームで、DXとAIを軸に経営・事業設計からCX領域まで幅広く取り組み、プライム上場企業から中小・ベンチャー企業まで多様な対応実績を持つ\n\n- **船井総合研究所**：\n比較的地方の中堅から大手企業が中心\nの導入実績を持ちます\n\n## 選定時のポイント\n\nAgentic CRM導入を検討する際は、プラットフォーム選定に加えて、\n人間の承認なしでルーティン業務を完遂できる自律的なタスク実行力、エンジニアだけでなくビジネス現場担当者が設定できるノーコード/ローコードのエージェントビルダー、営業・サービス・マーケティング・商取引を横断して専門エージェントが連携できるマルチエージェント協調、そしてエージェントの行動や判断根拠を可視化できる監査ログ機能\nを備えているかどうかを支援会社選びの基準にすると良いでしょう。\n\n中堅企業という規模感では、大手コンサル（アビーム等）は費用感が高くなりがちなため、**クロスコムのようなブティック型でSalesforce/Agentforceに特化した会社**や、**HubSpot中心の100incのような会社**の方が、予算・スピード感・伴走支援の面でフィットしやすい可能性があります。まずは自社のCRM基盤（Salesforce/HubSpotなど）に対応した認定パートランーかどうかを軸に数社に相談し、PoC（小規模な実証実験）から始めるのがおすすめです。",
+  "cited_urls": [
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://ecosystem.hubspot.com/ja/marketplace/explore/solutions-partners?eco_language=hi&eco_agency_tier=gold&eco_PROFILE_CATALOG_SERVICES=1",
+    "https://www.creatio.com/glossary/agentic-crm",
+    "https://aimultiple.com/agentic-crm",
+    "https://www.abeam.com/jp/ja/service/crm/",
+    "https://www.aspicjapan.org/asu/article/89215",
+    "https://ecmarketing.co.jp/contents/archives/2413",
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

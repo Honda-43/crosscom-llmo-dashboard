@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "M-8",
+  "pillar": "",
+  "category": "bofu_compare",
+  "target_brand": "メンバーズ",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムとメンバーズのAgentforce導入支援を比較して教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-01T01:23:07.475611Z",
+  "answer": "クロスコムとメンバーズは、どちらもSalesforceの自律型AIエージェントであるAgentforceの導入支援を提供していますが、そのアプローチや強みに違いがあります。\n\n### メンバーズのAgentforce導入支援\n\nメンバーズは、Agentforceの導入・運用・活用支援において、包括的かつ長期的な伴走支援を特徴としています。\n*   **包括的な支援範囲:** 初期導入コンサルティングから、設計・実装・運用、内製化支援、さらには社員教育支援まで、プロセス全体をカバーします。\n*   **段階的なアプローチ:** 導入前コンサルティング（例：1ヶ月〜）、Agentforce導入支援（例：2ヶ月〜）、利活用・定着化支援（例：6ヶ月〜）、業務プロセス統合支援（例：2ヶ月〜）、内製化・トレーニング・教育支援、セキュリティ・ガバナンス支援といった、明確なフェーズに分けて支援を提供します。\n*   **幅広いAgentforceエージェントへの対応:** Agentforce for Service、Marketing、Salesに加え、今後公開予定のAgentforce SDRやAgentforce Sales Coachなど、多様なエージェントタイプに対応しています。\n*   **DX推進と内製化に強み:** 高い専門スキルを持つデジタル人材によるアジャイル・内製型ローコード開発チームを提供し、企業のDX推進や内製化を強力に支援します。20以上の業界、1,000社以上の現場支援で培ったナレッジを活かしています。\n*   **「コンシェルジュBX」での支援:** Salesforceの利活用促進・セカンドオピニオンサービスである「コンシェルジュBX」を通じてもAgentforceの支援を提供しており、導入による効率化業務の可視化、リスク・課題の洗い出し、PoC実施支援、投資対効果（ROI）の試算などを行います。\n\n### クロスコムのAgentforce導入支援\n\nクロスコムは、特にBtoBの中堅・中小企業に特化し、Agentforceの実践的な導入と定着に注力した支援を提供しています。\n*   **BtoBおよび中堅・中小企業に特化:** Salesforceを利用中または導入予定の中堅・中小のBtoB企業を主な対象としています。\n*   **「導入・定着支援」を重視:** 単なる導入に留まらず、Agentforceが実務で活用できるまでしっかりと定着するまでのサポートを強調しています。\n*   **実践的なエージェント構築:** エージェント作成、トピック作成、アクション作成、単体テストの実施といった「エージェント構築」（〜4週間）と、データ流れ図、変数設計、アクション設計、検索設計、データライブラリ整備といった「アーキテクチャ構築」（〜4週間）を支援します。\n*   **具体的な課題への対応:** 「どのユースケースから始めればよいか分からない」「設定は完了したが現場に定着しない」「ナレッジ設計から一緒に考えてほしい」といった、企業が抱えがちな具体的な悩みに対応します。\n*   **スモールスタートプランの提供:** 「1ユースケース×3ヶ月のスモールスタートプラン」を提供しており、小規模からAgentforceの導入を試したい企業に適しています。\n*   **Salesforce認定アドミニストレーター在籍:** Salesforce公式パートナー企業であり、Salesforce認定アドミニストレーターが支援を行います。\n\n### 比較まとめ\n\n| 項目         | クロスコム                                                               | メンバーズ                                                                   |\n| :----------- | :----------------------------------------------------------------------- | :--------------------------------------------------------------------------- |\n| **主な対象** | BtoBの中堅・中小企業                                     | 幅広い業界の企業、DX推進を志向する企業                          |\n| **支援範囲** | エージェント構築、アーキテクチャ構築、導入から実務定着までを支援 | 初期コンサルティングから設計、実装、運用、内製化、社員教育、ガバナンスまで |\n| **強み**     | BtoB特化、実践的な導入・定着、具体的な課題解決、スモールスタート | 包括的な伴走支援、DX推進、内製化支援、多様なAgentforce対応、豊富な実績 |\n| **期間の目安** | エージェント構築・アーキテクチャ構築は約4週間、スモールスタートは3ヶ月 | 導入前コンサルティング1ヶ月〜、導入支援2ヶ月〜、利活用・定着化支援6ヶ月〜 |\n\n**どちらを選ぶべきか:**\n\n*   **クロスコム**は、特にBtoBの中堅・中小企業で、Agentforceの導入をスモールスタートで始めたい、または導入後の実務での定着に課題を感じている場合に適しています。具体的なエージェントの構築やアーキテクチャ設計において、実践的な支援を期待できます。\n*   **メンバーズ**は、Agentforceの導入を起点とした企業全体のDX推進や内製化を目指しており、戦略策定から長期的な運用、組織変革まで、包括的かつ手厚い支援を求める企業に適しています。多様なAgentforceエージェントの活用や、幅広い業界での実績も強みです。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHlQvEF31AgwrKi3UG6HOGOgmeKhILGv5CCJjSFeCDjVK1zQqgqjv-d13GaE2pCPbs1jDVdHUEHbYKEJ7zmewvJcDnmy9xqct_GYeEZ9mvfWGis4ZIQk3_0jbVayfdMoDibA7wUCnwxbp3puVLbriR7JQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEcdSMFEJjEwNxyKvA88U798tHihjvHBKM3fowZ6v5X4XQHwIAot6dvXXul0u60kwiV9nQ4Zm6JreF8BQZO0Z5IekQXynEh479QuDcSSVh5-0nAejY5mX0zXe4TidwOCP_y",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFutMoX1fHkB4vy2uYV_y7J2u_h7rayA_Ru3Zd4uWg5TWU5GaU0pRw1rAeOSBnktrtcEsS6wo_d7MTcbNL6UlRqeG5yXjVEFrp6dmC4DcOOTkcmZb75E_kF",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7qwraxUwIu6u2Xsvdo2F7QFicsuWVLbARP58QarNnVntuQo-6y7bW5X6mIq2_6tA-2CkUk6oKw4QCC5gnOitRgsojLV-XjSSMwfFrmess7ILUieJ5uyzPckWgla40ez7IYOrovk8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEZ1uhrtJv8NLhpZvXgOoY0m1nFvWjYVNCImahSlTbLXqKHEk7mJckUleiacp-wrwMcu4cAqdBWw84Qm0fL5vAlb5_gofmEUqxB2EJJnqWdn7oQGN9rps7eoBfaS1InpbETNn3YX7rz83z4aA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEWZXaUE_ABV79HCyijhlBBIH6ggCz_Uab3Wwdm0bLKw7Gt7lOYqh5IVTXHB9kLRkubfwJ4v1-pLuOfr6nZpo_PWf37SKOgqZ1xgnY7n0SwPQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFMmTy-Hv76SloGMAfzUl5tG6rfEGrvJIzLcHEkts38hp3EwXtkZnzRtC58A73Qh21vJkuS3sUt-DQ9BST6akwMoprS8S-EJKCQpWntaS66i5kgcN0iJF7EgLYtRUT-JZw4vWxiZyaXozUx",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEyBoKTjEDyAbtLJvlg2YJqxm-Jk5WTPj4khZ7IKX_olkVhmoK_6QUlRAiIbRQXFAenK3EvFdT-b5aYQYFR08BvIUpjDv9h0ggchWRhdSyC2jS67xY4UpfjBcYMW6GlDn5FqEIZ"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

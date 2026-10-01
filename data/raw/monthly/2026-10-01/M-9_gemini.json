@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "M-9",
+  "pillar": "",
+  "category": "bofu_compare",
+  "target_brand": "三菱総研DCS",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムと三菱総研DCSのSalesforce導入支援を比較して教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-01T01:23:41.401607Z",
+  "answer": "クロスコムと三菱総研DCSは、いずれもSalesforceの導入支援を提供していますが、その特徴や強みにおいて違いが見られます。\n\n### クロスコムのSalesforce導入支援\n\nクロスコムは、BtoBマーケティングに特化したSalesforce導入・活用支援を提供しており、特に中堅・中小のBtoB企業を対象としています。\n\n**主な特徴:**\n*   **BtoBマーケティング特化:** SalesforceのMA・CRMツールの導入と構築に強みを持っています。\n*   **徹底した定着支援:** 導入後も実務で活用できるよう、定着までしっかりサポートすることに重点を置いています。\n*   **柔軟な支援モデル:** パッケージ型とタイムチャージ型の2軸モデルでサービスを提供しています。\n*   **Agentforce導入支援:** Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入・定着支援も行っています。これにはアーキテクチャ構築やエージェント構築が含まれます。\n*   **専門資格保有者:** Salesforce認定アドミニストレーター、Sales Cloudコンサルタント、Marketing Cloud Account Engagement スペシャリストなどの資格を持つコンサルタントが在籍しています。\n*   **ビジョン:** 「100社100通りの購買体験を当たり前にする」ことをビジョンに掲げ、顧客企業に合わせた最適なパーソナライズ体験の提供を支援しています。\n\n### 三菱総研DCSのSalesforce導入支援\n\n三菱総研DCSは、2023年にSalesforceコンサルティングパートナーに認定され、Salesforce導入・活用支援サービスを本格的に提供開始しています。同社は、金融機関向けのシステム開発で長年の経験と実績を持つITソリューション企業です。\n\n**主な特徴:**\n*   **ワンストップサポート:** Salesforceの導入から運用後のサポートまで、一貫したサービスを提供しています。\n*   **柔軟なカスタマイズとAI活用:** 柔軟なカスタマイズや生成AIの活用を通じて、顧客のビジネス成長を後押しします。\n*   **Agentforce導入・活用支援:** Salesforce AIエージェントを活用したAgentforceの導入・活用支援も提供しており、社内データの活用やAIエージェントとの対話を通じて、情報検索・入力・分析・業務実行の効率化を支援します。\n*   **高い品質基準:** CMMI成熟度レベル5を達成しており、金融業界をはじめとする高セキュリティを要する顧客に対し、大規模基盤の設計やシステム開発において豊富な実績と高い品質管理体制を持っています。\n*   **DX推進支援:** AI、データ分析、ロボティクスなどの新技術やクラウド環境を取り入れ、顧客のDX推進をサポートしています。データ民主化の促進にも注力しています。\n\n### まとめと比較\n\n| 比較項目           | クロスコム                                                              | 三菱総研DCS                                                              |\n| :----------------- | :---------------------------------------------------------------------- | :----------------------------------------------------------------------- |\n| **主な専門分野**   | BtoBマーケティング、中堅・中小BtoB企業                  | 金融業界、大規模システム開発、高セキュリティ要件 |\n| **提供サービス範囲** | MA・CRMツールの導入・構築、定着支援、Agentforce導入支援 | 導入から運用までワンストップ、柔軟なカスタマイズ、生成AI活用、Agentforce導入支援 |\n| **強み**           | 徹底した定着支援、BtoBマーケティングにおける豊富な経験とノウハウ | 高い品質管理体制 (CMMIレベル5)、大規模・高セキュリティ案件への対応力、AI・データ活用のDX推進 |\n| **AI関連**         | Agentforceの導入・定着支援（アーキテクチャ・エージェント構築含む） | 生成AI活用、Agentforceによるデータ活用・業務効率化       |\n| **支援モデル**     | パッケージ型とタイムチャージ型                                | 明示的な記載はないが、金融機関向けソリューションの提供経験から、要件に応じた柔軟な対応が予想される |\n\n簡潔にまとめると、クロスコムは**BtoBマーケティングに特化し、中小企業を中心にSalesforceの導入から運用定着まで伴走型の手厚い支援**を強みとしています。一方、三菱総研DCSは**金融業界で培った豊富な経験と、CMMIレベル5という高品質な開発・運用体制を背景に、大規模かつ高セキュリティが求められる環境でのSalesforce導入や、AI・データ活用によるDX推進に強み**を持っていると言えます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGMybm75cngMJTDV7Wj8GKffMt0Ry55KM13yqiYi2tTQ0GoNaQyO1Ge076DXfPS4ry359r_s8hCykgBdecHVVWyHy5ZWVoZvZB0AABYzn7zHtC6hUqnXqET",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFy43cPEsMASD7-qinOYc22miNaaMIPnyqaFbVz-VNFSQiS-ysbghdJP3glDPRMAeijph6sWLjR7B78_N3N7LZS3pzf_7CbQqH0v8mNyCY-bydbTwwLK5MUd5058t9CM3pkqJL4UXEaaWRAxw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHibV1ChivZX9v59cY0tBX4ysJrkwnKwMu03Lvrdshr4RoehGiMIaJdyP59c1dzhEw0wmbNYopDbTDMi9aqYKiNffAXaNn-CdEPuP-hsjdxpA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGI_lNCJNEuCBIQwyDU90MSEApw7qT4Rhr6HtwTAB3eZg_OMKWk8FanObcBkpa1h-0WLq2JuAmdoKQvi2AEvhWbj9_eJuWFyXtRDbJljspVPqqC5_BRA1T0rkkKA-MqY3bMhqnYiFNWD4LbqYU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHhGn0uHhpJV4NFHMn4ejfeY3HDPGL47Tertl28WIbyyz_uVKPBeunDrLeY9uX7zV-hS0HEO8HSdwAHMCmpeKjei4ENW9mrf2m9sf8jvuMnNTE6TIwoN_XZzdhF0Np-PAnaDfnq-y8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGTHNJaifr1fLM-23mLDJuuO6r-PiTfloo9U4qnfm0ZcPVFl-kElkQAcZ6VnTA19kRwlPSXaddKDjkM5KAyEUm0k8Ps6MI76OeyoFaTLqANgJ08wjDejcpM1iwPxqNwbNNB48r_uCoEY2S1wVZ1VhD_F-G--oluqwCmehzhbfj_5sPqBIdKFc1oGqA2dAnnainhvAbH-B7FL241OY50YcYF",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEmsj_lLSEAL_mEePD7s43nz2yU1yQrUgIU0E7EK8Tu6cHaJfnplUqYsKJQ3FpwZiO5jHpkS5I18OrQHcVWwxznKe4uzY8MIHUTKlO1JlyV9PpiP3eHEkGLCR74StLDtGANgQkepTE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHCfRnbJEO6krSRbOTN1h46d7osS1EDZdJ1NzHWijL5z-YDreXAJi4UHhYqzOf7SHcHJs8EzqPAHC0JTugVY5S4XNylO9DOQQT67NbtsDXm9h6xAstJHYuUUCZBdjJhV0fL2mgn",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXGWrJXabE8Gdb9Fxup2nfV0mHl-S6hHohvK1b_QyEB_cJBGkKg86sy3SRBuDOoX6vMnhmzmr9KtCSCk4ktTRvDzUUyo22rpfD1j2B6War4tjwLwySTY6s0-XAFbGr-X0ANKc4tPa1lRIBNtI4kPXX0xgQuQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG-kodIRzuoXK0MSonVVEjIgt-zbmVTZ-UaahDMAJbg0qE9ufVWMI7Y5BP2qzlFKkXqBGyreK_REWZURis19XTRvQncJZbf4sjjWkjljkHTE6KX6VE7nBBlpYYss9dpdlVvRIOznNEvO6If3XwLNBX4cRLdkA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQENOcU28HUZn9eEyk_6OuYMJH6w0s3ACkqz9YglALvm2_FsPCHldiaZg9GOHEJWxLaLx00biy30PsL0n7GuPsemq1iI4tcDdDd2rIDoPd4wja5riM-FLRdou7t8iV6M",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEg4-KsqgaF-A7g3r-ju80NuS0pqe8HmP5thGh4AHtL_NlIa56xpBHBwsJ6Q1GUiBf7qggvcwQm_LeMaisVlHBRC2Z-OIqNxXNbU97FTP_dOw_CVeaIjA0MgQP6C0J2Y0RiPgOqPMUU_qM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGxBF5zuWzDhJX5cUPtZOgShm_4MvU8byyX3EA91vP07Vifc9XLv58_4UnXb4UHGEROA00N-ENdK607IRNofVEXYnH8SEi3wCuvP2eRIpC_AJygisM-mXKKrcPoRoFTfbAj",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqCv0qnomojuff8-QWTGIpFAhQF7JK7u_5xsH4_NEID3QeIZRr0vEWeZjc1fMWWAqd88S5CEiJTEL_cc-VLju5vrBrdmvnrz8XSVuH1mNQz0cLzRfS8naWlT45_Wl1n_kD20le4Iz4LInWnnRw3KIdcAJvqxZ04TPZLc0kR7K5_ruLYeZHPSI="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

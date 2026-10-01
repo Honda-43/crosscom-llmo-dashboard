@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "M-10",
+  "pillar": "",
+  "category": "mofu_suppl",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "おすすめのAgentforce導入支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-01T01:24:19.896397Z",
+  "answer": "Agentforce導入支援会社についてお調べします。\n検索結果をもとに、日本でAgentforce導入支援を行っている主な会社をご紹介します。\n\n## 日本国内のAgentforce導入支援会社\n\n### 1. 日立ソリューションズ\n\nSalesforceのコンサルティングパートナーとして、お客さまに合わせた導入支援コンサルを行っています\n。\nPoCの結果をもとにスモールスタートで導入し、段階的に利用規模を拡大するアプローチを取っており\n、金融や医療など高いセキュリティが求められる業界での支援実績もあります。\n\n### 2. 富士ソフト株式会社\n\nSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供しており\n、\n同社内で試験導入し、検証してきたセールス向け機能の実践的な知見やノウハウを生かして\n支援を行っています。PoC（概念実証）支援を中心に、要件定義から本番移行計画までを反復的に支援するのが特徴です。\n\n### 3. toBeマーケティング株式会社\n\n富士通グループならではのAgentforce先行支援・豊富な知見を持ち、最新技術であるAgentforceの活用に富士通と共にグループとして最速で着手しています\n。コールセンターのAI化など多様な業種・業務への活用モデルを確立しています。\n\n### 4. インフォテック・サービス株式会社\n\nセールスフォース・ドットコムのコンサルティングパートナーとして、要件定義から開発・データ移行・定着化・運用保守までをワンストップで提供しており、2012年4月以降14年間で1,000件以上の開発実績を持ちます\n。\n\n### 5. フロッグウェル株式会社\n\n各業界・業務の特性に合わせたAgentforceの導入支援を行っており、豊富な業界知識とSalesforce専門性を活かし、お客様の課題に最適化されたAIソリューションの設計から構築、運用まで一貫してサポートしています\n。住宅業界向けマッチングシステムなどの導入実績があります。\n\n### 6. 合同会社クロスコム\n\nSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っており\n、1ユースケース×3ヶ月のスモールスタートプランにも対応しています。\n\n---\n\n## 選び方のポイント\n\n日本市場では\nSIパートナーエコシステムがこれまでに数百のAgentforceの導入を支援し、豊富な実績を有しています\n。会社選びの際は以下の点を確認すると良いでしょう：\n\n- **業界特化の実績**：自社の業界（製造・金融・住宅・小売など）での導入実績があるか\n- **PoC（概念実証）対応**：いきなり本格導入ではなく、スモールスタートで検証できるか\n- **定着支援**：導入後の運用・改善まで伴走してくれるか\n- **認定資格者数**：Salesforce認定資格を持つ担当者が十分にいるか\n\nより詳細な比較や最新の8社リストについては、クロスコムの記事なども参考になります。どのような業種・規模での導入をご検討か教えていただければ、より具体的な会社をご提案できます。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/products/agentforce/",
+    "https://www.hitachi-solutions.co.jp/salesforce/service/agentforce/",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://tobem.jp/pardot_service/aicrm.html",
+    "https://www.iftc-svc.co.jp/service/cloud/salesforce.html",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://prtimes.jp/main/html/rd/p/000000329.000041550.html"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}
