@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "E13",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceテストセンターとは？AIエージェントの品質保証はどう設計する？",
+  "cep": null,
+  "timestamp": "2026-10-01T01:53:12.501492Z",
+  "answer": "# Agentforce Testing Centerとは\n\n**Agentforce Testing Center**は、Salesforceが2024年11月に発表した、自律型AIエージェント（Agentforce）を本番投入前に検証するための専用テストツールです。\nSalesforce AIプラットフォーム内で構築されたAIエージェントを検証するための専用環境であり、手動テストや完全に外部のQAツールに頼るのではなく、構造化されたテストを実行し、結果を追跡し、エージェントのパフォーマンスを改善するためのスケーラブルで統合されたワークスペースをチームに提供します。\n\n\n### 主な特徴\n\n**1. AI生成テストケース**\n\nAgentforceを構築するチームは、顧客がエージェントに質問したりやり取りしたりするさまざまな方法を正確にテストする必要があります。Agent Builderが備えるPlan Tracer（エージェントの推論プロセスを調査する機能）に加え、Testing Centerはトピックとアクションの選択を大規模にテストできます。\n 日本語の記事によると、\nTesting Centerは自然言語による指示を使用して、Agentforce Service Agentを利用する際に顧客が行うリクエストなど、数百の合成インタラクションを自動生成します。\n\n\n**2. バッチテストと期待値比較**\n\nAgentforceのAIエージェントを本番環境にデプロイする前に、その信頼性を検証・保証するためのSalesforceツールで、実際のユーザーの操作や会話シナリオをシミュレートした自動テストを作成・管理・実行するためのフレームワークを提供します。\n 具体的には\nバッチテスト、想定されるトピックとアクションの評価、期待される応答と実際の応答の比較を行い、エージェントのロジック、意図の理解、アクション実行を検証することをサポートします。\n\n\n**3. 「何を答えたか」だけでなく「どう考えたか」の可視化**\n\n単にエージェントが「正しい」答えを出すかどうかをチェックするだけではありません。Testing Centerは、エージェントがその答えに至るプロセス（ユーザーの意図をどう解釈するか、内部ロジックやフォールバック動作をどう適用するか、Data Cloudなどのデータソースからどう情報を取得するか）を可視化します。</cite\n\n**4. セキュアなSandbox環境との統合**\n本番データに影響を与えずに検証できる点も重要です。日本語記事では<cite index=\"12-1,12-2\">Agentforce Builderで構築したAIエージェントを安全な環境でシミュレーションできる検証ツールで、想定シナリオを即座に再現しテストすることで、開発スピードと安心感を同時に確保できると説明されています。\n\n\n### 現状の位置づけ（重要な限界）\n\n日本語の専門ブログでは興味深い指摘があります。現在のTesting Centerは\n「最低限の単体検証の第一歩」であり、完全な会話品質保証を目的としたものではないという位置づけで、Agentforceの本命である複数ターンにわたる実務エージェントの検証にはまだ発展途上\nとされています。つまり**シングルターン（単一応答）検証が中心**で、業務プロセス全体を貫くマルチターンのE2E検証までは単体ではカバーしきれない、という課題が指摘されています。\n\n---\n\n# AIエージェントの品質保証（QA）設計の考え方\n\n上記の分析を踏まえると、AIエージェントのQA設計は「**AIとしての健全性**」と「**業務システムとしての信頼性**」という2つのレイヤーに分けて考えるのが実務的です。日本語記事では次のように整理されています。\n\n> \nAgentforceの品質には、AIとしての健全性（単一応答・ガードレール・禁止表現）、または業務システムとしての信頼性（マルチターン・状態遷移・業務結果）という2つの異なるレイヤーがあり、両者は役割の異なる補完関係にあります。\n\n\nこの考え方をもとに、QA設計を以下の4層で構築することを推奨します。\n\n## 1層目：単一応答・意図理解の検証（Testing Centerの得意領域）\n- トピック分類・アクション選択が正しいか\n- プロンプトの微妙な違いによる応答のブレ\n- ハルシネーション（事実と異なる回答）の有無\n\n\nこうした「AI特有の品質・健全性」の領域はTesting Centerの得意分野であり、プロンプトの「微差」による比較検証や差別的な表現、会社の規約に反する回答といったハルシネーションを含むAIの倫理・安全性チェックには、組み込まれた評価モデル（LLMがAIを評価する仕組み）が適しています。\n\n\n**設計ポイント：**\n- 期待されるトピック/アクションをCSV等でテストケース化し、合成データで大量にカバレッジを広げる\n- ガードレール（禁止表現、コンプライアンス違反の検知）をルールベース＋LLM評価の二重チェックで実施\n- Plan Tracerでエージェントの推論過程をログ化し、原因分析をしやすくする\n\n## 2層目：マルチターン・業務完遂の検証\n単一応答が正しくても、複数ターンの対話を経て最終的に正しい業務結果（レコード作成、外部システム連携など）に至るかは別問題です。\n\n> \n検証の「深さ」と「範囲」が異なり、テストセンターは「AIが何を考えているか（推論）」の検証に",
+  "cited_urls": [
+    "https://gearset.com/blog/agentforce-testing-center/",
+    "https://www.salesforce.com/news/press-releases/2024/11/20/agentforce-testing-center-announcement/",
+    "https://cloud.watch.impress.co.jp/docs/news/1644517.html",
+    "https://phenoble.com/blogs/how-to-use-the-testing-center-in-salesforce-to-test-ai-agents",
+    "https://provar-adoc.com/blog/agentforce-ai/1245/",
+    "https://provar-adoc.com/blog/solving-agentforce-troubles-and-data-integrity/1415/",
+    "https://provar-adoc.com/blog/testing-strategy-ai-quality-job-completion-for-agentforce/1516/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E13",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-testing-center/",
+  "answer_text": "# Agentforce Testing Centerとは\n\n**Agentforce Testing Center**は、Salesforceが2024年11月に発表した、自律型AIエージェント（Agentforce）を本番投入前に検証するための専用テストツールです。\nSalesforce AIプラットフォーム内で構築されたAIエージェントを検証するための専用環境であり、手動テストや完全に外部のQAツールに頼るのではなく、構造化されたテストを実行し、結果を追跡し、エージェントのパフォーマンスを改善するためのスケーラブルで統合されたワークスペースをチームに提供します。\n\n\n### 主な特徴\n\n**1. AI生成テストケース**\n\nAgentforceを構築するチームは、顧客がエージェントに質問したりやり取りしたりするさまざまな方法を正確にテストする必要があります。Agent Builderが備えるPlan Tracer（エージェントの推論プロセスを調査する機能）に加え、Testing Centerはトピックとアクションの選択を大規模にテストできます。\n 日本語の記事によると、\nTesting Centerは自然言語による指示を使用して、Agentforce Service Agentを利用する際に顧客が行うリクエストなど、数百の合成インタラクションを自動生成します。\n\n\n**2. バッチテストと期待値比較**\n\nAgentforceのAIエージェントを本番環境にデプロイする前に、その信頼性を検証・保証するためのSalesforceツールで、実際のユーザーの操作や会話シナリオをシミュレートした自動テストを作成・管理・実行するためのフレームワークを提供します。\n 具体的には\nバッチテスト、想定されるトピックとアクションの評価、期待される応答と実際の応答の比較を行い、エージェントのロジック、意図の理解、アクション実行を検証することをサポートします。\n\n\n**3. 「何を答えたか」だけでなく「どう考えたか」の可視化**\n\n単にエージェントが「正しい」答えを出すかどうかをチェックするだけではありません。Testing Centerは、エージェントがその答えに至るプロセス（ユーザーの意図をどう解釈するか、内部ロジックやフォールバック動作をどう適用するか、Data Cloudなどのデータソースからどう情報を取得するか）を可視化します。</cite\n\n**4. セキュアなSandbox環境との統合**\n本番データに影響を与えずに検証できる点も重要です。日本語記事では<cite index=\"12-1,12-2\">Agentforce Builderで構築したAIエージェントを安全な環境でシミュレーションできる検証ツールで、想定シナリオを即座に再現しテストすることで、開発スピードと安心感を同時に確保できると説明されています。\n\n\n### 現状の位置づけ（重要な限界）\n\n日本語の専門ブログでは興味深い指摘があります。現在のTesting Centerは\n「最低限の単体検証の第一歩」であり、完全な会話品質保証を目的としたものではないという位置づけで、Agentforceの本命である複数ターンにわたる実務エージェントの検証にはまだ発展途上\nとされています。つまり**シングルターン（単一応答）検証が中心**で、業務プロセス全体を貫くマルチターンのE2E検証までは単体ではカバーしきれない、という課題が指摘されています。\n\n---\n\n# AIエージェントの品質保証（QA）設計の考え方\n\n上記の分析を踏まえると、AIエージェントのQA設計は「**AIとしての健全性**」と「**業務システムとしての信頼性**」という2つのレイヤーに分けて考えるのが実務的です。日本語記事では次のように整理されています。\n\n> \nAgentforceの品質には、AIとしての健全性（単一応答・ガードレール・禁止表現）、または業務システムとしての信頼性（マルチターン・状態遷移・業務結果）という2つの異なるレイヤーがあり、両者は役割の異なる補完関係にあります。\n\n\nこの考え方をもとに、QA設計を以下の4層で構築することを推奨します。\n\n## 1層目：単一応答・意図理解の検証（Testing Centerの得意領域）\n- トピック分類・アクション選択が正しいか\n- プロンプトの微妙な違いによる応答のブレ\n- ハルシネーション（事実と異なる回答）の有無\n\n\nこうした「AI特有の品質・健全性」の領域はTesting Centerの得意分野であり、プロンプトの「微差」による比較検証や差別的な表現、会社の規約に反する回答といったハルシネーションを含むAIの倫理・安全性チェックには、組み込まれた評価モデル（LLMがAIを評価する仕組み）が適しています。\n\n\n**設計ポイント：**\n- 期待されるトピック/アクションをCSV等でテストケース化し、合成データで大量にカバレッジを広げる\n- ガードレール（禁止表現、コンプライアンス違反の検知）をルールベース＋LLM評価の二重チェックで実施\n- Plan Tracerでエージェントの推論過程をログ化し、原因分析をしやすくする\n\n## 2層目：マルチターン・業務完遂の検証\n単一応答が正しくても、複数ターンの対話を経て最終的に正しい業務結果（レコード作成、外部システム連携など）に至るかは別問題です。\n\n> \n検証の「深さ」と「範囲」が異なり、テストセンターは「AIが何を考えているか（推論）」の検証に",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "gearset.com",
+    "salesforce.com",
+    "cloud.watch.impress.co.jp",
+    "phenoble.com",
+    "provar-adoc.com"
+  ],
+  "resolved_urls": [
+    "https://gearset.com/blog/agentforce-testing-center/",
+    "https://www.salesforce.com/news/press-releases/2024/11/20/agentforce-testing-center-announcement/",
+    "https://cloud.watch.impress.co.jp/docs/news/1644517.html",
+    "https://phenoble.com/blogs/how-to-use-the-testing-center-in-salesforce-to-test-ai-agents",
+    "https://provar-adoc.com/blog/agentforce-ai/1245/",
+    "https://provar-adoc.com/blog/solving-agentforce-troubles-and-data-integrity/1415/",
+    "https://provar-adoc.com/blog/testing-strategy-ai-quality-job-completion-for-agentforce/1516/"
+  ],
+  "unresolved_redirects": 0
+}

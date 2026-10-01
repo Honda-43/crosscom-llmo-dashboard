@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "E15",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceスペシャリスト資格の試験内容と勉強法は？",
+  "cep": null,
+  "timestamp": "2026-10-01T01:53:54.581529Z",
+  "answer": "Salesforceの「Agentforce スペシャリスト」資格について、試験内容と効果的な勉強法をまとめます。\n\n## 📋 試験の基本情報\n\n\nAgentforceスペシャリスト資格は、SalesforceのAI機能であるAgentforce の機能と、 Salesforce Platform の設定の両方の知識を証明する資格です。\n\n\n- **問題数**：\n多肢選択方式の 60 問と採点対象外の最大 5 問\n\n- **試験時間**：105分\n- **合格点**：約72〜73%\n- **言語**：\n英語、日本語、フランス語、スペイン語\n\n- **前提条件**：\nなし\n\n- **対象レベル**：\n中級（Intermediate）\n\n\n## 📊 出題範囲（最新版）\n\n試験内容は2026年に入ってから大きく更新されています。最新の出題範囲（Spring/Summer '26対応）は以下の通りです。\n\n| 分野 | 配点 |\n|---|---|\n| AI Agents | 35% |\n| Prompt Engineering | 20% |\n| Data 360 Fundamentals | 20% |\n| Testing, Deployment & Maintenance | 10% |\n| Governance & Observability | 10% |\n| Multi-Agent Orchestration | 5% |\n\n\nAI Agents: 35%、Prompt Engineering :20%、Data 360 Fundamentals :20%、Testing, Deployment, & Maintenance :10%、Governance & Observability :10%、Multi-Agent Orchestration :5%\nという配点になっており、\nAI Agentsが最も比重が大きく、Prompt EngineeringとData 360 Fundamentalsがそれぞれ20%を占めます\n。\n\n### 各分野で問われる主な内容\n\n**AI Agents（35%）**\nSalesforce公式ガイドによると、受験者は\n次世代オーサリング（NGA）を使ってAgentforceエージェントを設計し、企画・構築・テスト・デプロイ・モニタリングまでのエージェントとプロンプトテンプレートのライフサイクル全体を管理する\nことが求められます。また\nマルチエージェントなど、スケーラビリティと制御を確保するための適切なアーキテクチャを判断する\n能力も問われます。\n\n**Prompt Engineering（20%）**\n\nビジネス要件に基づいてPrompt Builderを使う適切な場面を特定し、プロンプトテンプレートへのアクセス制御、フィールド生成やフレックス型などのテンプレートタイプの考慮事項、シナリオに応じた適切なグラウンディング技術の選択、",
+  "cited_urls": [
+    "https://tech-waves.hakuhodody-one.co.jp/entry/salesforce-agentforce-certification-experience",
+    "https://trailheadacademy.salesforce.com/certificate/exam-agentforce-specialist---AI-201",
+    "https://originaldumps.com/blog/salesforceagentforce-certification",
+    "https://help.salesforce.com/s/articleView?id=005298924&language=en_US&type=1"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E15",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-certification/",
+  "answer_text": "Salesforceの「Agentforce スペシャリスト」資格について、試験内容と効果的な勉強法をまとめます。\n\n## 📋 試験の基本情報\n\n\nAgentforceスペシャリスト資格は、SalesforceのAI機能であるAgentforce の機能と、 Salesforce Platform の設定の両方の知識を証明する資格です。\n\n\n- **問題数**：\n多肢選択方式の 60 問と採点対象外の最大 5 問\n\n- **試験時間**：105分\n- **合格点**：約72〜73%\n- **言語**：\n英語、日本語、フランス語、スペイン語\n\n- **前提条件**：\nなし\n\n- **対象レベル**：\n中級（Intermediate）\n\n\n## 📊 出題範囲（最新版）\n\n試験内容は2026年に入ってから大きく更新されています。最新の出題範囲（Spring/Summer '26対応）は以下の通りです。\n\n| 分野 | 配点 |\n|---|---|\n| AI Agents | 35% |\n| Prompt Engineering | 20% |\n| Data 360 Fundamentals | 20% |\n| Testing, Deployment & Maintenance | 10% |\n| Governance & Observability | 10% |\n| Multi-Agent Orchestration | 5% |\n\n\nAI Agents: 35%、Prompt Engineering :20%、Data 360 Fundamentals :20%、Testing, Deployment, & Maintenance :10%、Governance & Observability :10%、Multi-Agent Orchestration :5%\nという配点になっており、\nAI Agentsが最も比重が大きく、Prompt EngineeringとData 360 Fundamentalsがそれぞれ20%を占めます\n。\n\n### 各分野で問われる主な内容\n\n**AI Agents（35%）**\nSalesforce公式ガイドによると、受験者は\n次世代オーサリング（NGA）を使ってAgentforceエージェントを設計し、企画・構築・テスト・デプロイ・モニタリングまでのエージェントとプロンプトテンプレートのライフサイクル全体を管理する\nことが求められます。また\nマルチエージェントなど、スケーラビリティと制御を確保するための適切なアーキテクチャを判断する\n能力も問われます。\n\n**Prompt Engineering（20%）**\n\nビジネス要件に基づいてPrompt Builderを使う適切な場面を特定し、プロンプトテンプレートへのアクセス制御、フィールド生成やフレックス型などのテンプレートタイプの考慮事項、シナリオに応じた適切なグラウンディング技術の選択、",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "tech-waves.hakuhodody-one.co.jp",
+    "trailheadacademy.salesforce.com",
+    "originaldumps.com",
+    "help.salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://tech-waves.hakuhodody-one.co.jp/entry/salesforce-agentforce-certification-experience",
+    "https://trailheadacademy.salesforce.com/certificate/exam-agentforce-specialist---AI-201",
+    "https://originaldumps.com/blog/salesforceagentforce-certification",
+    "https://help.salesforce.com/s/articleView?id=005298924&language=en_US&type=1"
+  ],
+  "unresolved_redirects": 0
+}

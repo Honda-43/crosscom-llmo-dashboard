@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "E45",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceのデータライブラリに入れる文書はどう選ぶ？社内マニュアルや議事録を読ませたい",
+  "cep": null,
+  "timestamp": "2026-10-01T02:05:26.419466Z",
+  "answer": "Agentforceのデータライブラリ（Data Library）に関する最新情報を調べて回答します。\n# Agentforceのデータライブラリに入れる文書の選び方\n\n社内マニュアルや議事録をAgentforceに読ませたい場合、以下の観点で選定・整備するのが重要です。\n\n## 1. 対応ファイル形式を確認する\n\nまず技術的な制約として、Agentforceのデータライブラリは\nKnowledge記事、Salesforce Files、URL、そしてPDF・DOCX・HTML・Markdownの直接アップロードという4つのソースタイプをサポート\nしています。\n\nファイルアップロードの場合、サイズ制限に注意が必要です。\nテキストとHTMLファイルは4MBまで、PDFは100MBまでという制限が厳格に適用されます\n。社内マニュアルや議事録はPDF化しておくと容量面で安心です。\n\n## 2. 文書の「質」が回答精度を左右する\n\nこれが最も重要なポイントです。複数の実践者が同じ注意点を挙げています。\n\n**用語の統一**：\n同じ意味なのに文書ごとに「解約」「キャンセル」「契約解除」と違う表現が使われていると、検索がぶれる\nという問題があります。社内マニュアルで用語が揺れている場合は、取り込み前に統一しておくと良いでしょう。\n\n**一文書一テーマの原則**：\n複数のテーマが一つのファイルに混在していると、関係ない情報まで拾ってしまう\nことがあるため、\n見出し構造を整えて、一ファイル・一テーマを意識する\nことが精度向上につながります。議事録のように様々な議題が混在する文書は、議題ごとに分割することを検討してください。\n\n**見出し構造の整備**：\n見出しが整理されている文書は分割もしやすく、検索精度も安定しやすくなります。逆に情報が整理されていない文書は、ここで扱いづらさが表面化します\n。チャンク化（文書を検索しやすい単位に分割する処理）の精度に直結するため、章立てや見出しタグを明確にしておくことが推奨されます。\n\n## 3. 最新性の管理\n\n古い議事録や更新されていないマニュアルは要注意です。\n古い資料と新しい資料が混在していると\n、同じ質問に対して回答がブレる原因になります。データソース選定の段階で「情報が整理されていない文書は、ここで扱いづらさが表面化します」という指摘通り、取り込み前に棚卸しをして、最新版のみを対象にすることが望ましいです。\n\n## 4. 社内マニュアル・議事録特有の注意点\n\n- **ファイル形式を統一**：社内文書が様々な形式（Word、テキストなど）で散らばっている場合は、PDF化するなど\n会社のポリシー、製品ガイド、FAQなどの文書として一貫した形式でアップロード\nするのがおすすめです。\n- **サイズ制限対策**：\n制限を超えるファイルは一部の組織バージョンで静かにアップロード失敗することがあるため、大きな文書はトピックごとに小さく分割\nするとよいでしょう。\n- **ソース種別は後から変更不可**：\nどのデータをこのライブラリで参照させるか選ぶ際、ナレッジ記事かファイルアップロードかを選択\nしますが、\nデータソースの種別は後から変更できない\nため、最初にどちらを使うか決めておく必要があります。議事録や社内マニュアルのような非構造化文書であれば「ファイルアップロード」を選ぶのが一般的です。\n\n## 実務的な選定フロー（おすすめ）\n\n1. **棚卸し**：古いバージョンや重複する議事録・マニュアルを除外\n2. **フォーマット統一**：PDF等、対応形式に変換\n3. **構造整備**：見出し・章立てを明確化、用語を統一\n4. **テーマ分割**：議事録は議題ごと、マニュアルは機能・業務ごとに分割\n5. **サイズ確認**：PDF100MB／テキスト・HTML4MBの制限内に収める\n6. **ライブラリ作成**：Setup画面から\n「Agentforce Data Library」を検索して選択し、「New Library」をクリック\nしてアップロード\n\nこの手順を踏むことで、社内マニュアルや議事録をAgentforceに読み込ませた際の回答精度を安定させやすくなります。",
+  "cited_urls": [
+    "https://salesforcedictionary.com/terms/agentforce-data-library",
+    "https://salesforcefaqs.com/assign-data-library-to-agentforce-agent/",
+    "https://zenn.dev/pacific_creator/articles/d1d85636b02054",
+    "https://www.strh.co.jp/knowledge/agentforce-data-library",
+    "https://atrium.ai/resources/data-library-agentforce-salesforce-data-cloud/",
+    "https://qiita.com/ubakichi_sr_mc_ai_06/items/1537b42a4c6674bc6c16",
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-data-library-basics/build-a-file-based-data-library-for-an-agent"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E45",
+  "experiment_flag": "pool",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-data-library/",
+  "answer_text": "Agentforceのデータライブラリ（Data Library）に関する最新情報を調べて回答します。\n# Agentforceのデータライブラリに入れる文書の選び方\n\n社内マニュアルや議事録をAgentforceに読ませたい場合、以下の観点で選定・整備するのが重要です。\n\n## 1. 対応ファイル形式を確認する\n\nまず技術的な制約として、Agentforceのデータライブラリは\nKnowledge記事、Salesforce Files、URL、そしてPDF・DOCX・HTML・Markdownの直接アップロードという4つのソースタイプをサポート\nしています。\n\nファイルアップロードの場合、サイズ制限に注意が必要です。\nテキストとHTMLファイルは4MBまで、PDFは100MBまでという制限が厳格に適用されます\n。社内マニュアルや議事録はPDF化しておくと容量面で安心です。\n\n## 2. 文書の「質」が回答精度を左右する\n\nこれが最も重要なポイントです。複数の実践者が同じ注意点を挙げています。\n\n**用語の統一**：\n同じ意味なのに文書ごとに「解約」「キャンセル」「契約解除」と違う表現が使われていると、検索がぶれる\nという問題があります。社内マニュアルで用語が揺れている場合は、取り込み前に統一しておくと良いでしょう。\n\n**一文書一テーマの原則**：\n複数のテーマが一つのファイルに混在していると、関係ない情報まで拾ってしまう\nことがあるため、\n見出し構造を整えて、一ファイル・一テーマを意識する\nことが精度向上につながります。議事録のように様々な議題が混在する文書は、議題ごとに分割することを検討してください。\n\n**見出し構造の整備**：\n見出しが整理されている文書は分割もしやすく、検索精度も安定しやすくなります。逆に情報が整理されていない文書は、ここで扱いづらさが表面化します\n。チャンク化（文書を検索しやすい単位に分割する処理）の精度に直結するため、章立てや見出しタグを明確にしておくことが推奨されます。\n\n## 3. 最新性の管理\n\n古い議事録や更新されていないマニュアルは要注意です。\n古い資料と新しい資料が混在していると\n、同じ質問に対して回答がブレる原因になります。データソース選定の段階で「情報が整理されていない文書は、ここで扱いづらさが表面化します」という指摘通り、取り込み前に棚卸しをして、最新版のみを対象にすることが望ましいです。\n\n## 4. 社内マニュアル・議事録特有の注意点\n\n- **ファイル形式を統一**：社内文書が様々な形式（Word、テキストなど）で散らばっている場合は、PDF化するなど\n会社のポリシー、製品ガイド、FAQなどの文書として一貫した形式でアップロード\nするのがおすすめです。\n- **サイズ制限対策**：\n制限を超えるファイルは一部の組織バージョンで静かにアップロード失敗することがあるため、大きな文書はトピックごとに小さく分割\nするとよいでしょう。\n- **ソース種別は後から変更不可**：\nどのデータをこのライブラリで参照させるか選ぶ際、ナレッジ記事かファイルアップロードかを選択\nしますが、\nデータソースの種別は後から変更できない\nため、最初にどちらを使うか決めておく必要があります。議事録や社内マニュアルのような非構造化文書であれば「ファイルアップロード」を選ぶのが一般的です。\n\n## 実務的な選定フロー（おすすめ）\n\n1. **棚卸し**：古いバージョンや重複する議事録・マニュアルを除外\n2. **フォーマット統一**：PDF等、対応形式に変換\n3. **構造整備**：見出し・章立てを明確化、用語を統一\n4. **テーマ分割**：議事録は議題ごと、マニュアルは機能・業務ごとに分割\n5. **サイズ確認**：PDF100MB／テキスト・HTML4MBの制限内に収める\n6. **ライブラリ作成**：Setup画面から\n「Agentforce Data Library」を検索して選択し、「New Library」をクリック\nしてアップロード\n\nこの手順を踏むことで、社内マニュアルや議事録をAgentforceに読み込ませた際の回答精度を安定させやすくなります。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "salesforcedictionary.com",
+    "salesforcefaqs.com",
+    "zenn.dev",
+    "strh.co.jp",
+    "atrium.ai",
+    "qiita.com",
+    "trailhead.salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://salesforcedictionary.com/terms/agentforce-data-library",
+    "https://salesforcefaqs.com/assign-data-library-to-agentforce-agent/",
+    "https://zenn.dev/pacific_creator/articles/d1d85636b02054",
+    "https://www.strh.co.jp/knowledge/agentforce-data-library",
+    "https://atrium.ai/resources/data-library-agentforce-salesforce-data-cloud/",
+    "https://qiita.com/ubakichi_sr_mc_ai_06/items/1537b42a4c6674bc6c16",
+    "https://trailhead.salesforce.com/content/learn/modules/agentforce-data-library-basics/build-a-file-based-data-library-for-an-agent"
+  ],
+  "unresolved_redirects": 0
+}

@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "E37",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforce Coworkerとは何？営業がどんな場面で使える？",
+  "cep": null,
+  "timestamp": "2026-10-01T02:02:39.110935Z",
+  "answer": "# Agentforce Coworkerとは\n\nAgentforce Coworkerは、Salesforceが発表したAI「同僚（チームメイト）」機能です。\nAgentforce Coworkerは、Lightningの検索バーを起点として、Slack、Microsoft Teams、ChatGPT、Claude、モバイルにまで拡張されるAIチームメイトです\n。\nCRMデータ、ワークフロー、顧客履歴、商談、ケースを横断して推論し、そのままアクションを実行します\n。\n\n## 従来の検索との違い\n\nこれまでのSalesforce検索はキーワードに一致するレコード一覧を返すだけでした。それに対し、\nAgentforce CoworkerはSalesforce内の取引先・商談・ケースなどのデータや、接続された外部ソース（Data 360、Slack、Googleドライブなど）を理解し、自然言語での質問に対して要約・分析・次のアクションの提案などを会話形式で行ってくれます\n。\n\n## 主な3つの機能\n\n1. **Find（見つける）**：\n商談・取引先・ケース・Slackの会話・ナレッジ記事・Google DriveやMicrosoft 365などの外部ソースまで、300以上のデータを横断して自然言語で検索できます\n\n\n2. **Catch up（追いつく）**：\n会議や離席中に何が変わったかをプロアクティブに教えてくれ、人と話すように続けて質問でき、会話全体を記憶しているので毎回最初からやり直す必要がありません\n\n\n3. **Plan & Act（計画して実行）**：\nAIエージェントを束ねて、同じ会話の中であなたに代わって行動します。14日間滞留しているステージ4の商談にフォローアップするよう指示すれば、実際にそれを実行します。離席している間も、頼まれるのを待たずにバックグラウンドで作業を続けます\n\n\n重要な点として、\nCoworkerはSalesforceが「チームが作成したすべてのエージェントへの単一の入り口」と呼ぶもので、専門的な作業自体を行うのではなく、既に構築済みのAgentforceエージェントをオーケストレーションし、タスクに適したエージェントを起動します\n。\n\n## 営業がどんな場面で使えるか\n\n### 1. 停滞した商談の状況確認・打開\nSalesforce公式の具体的なシナリオでは、こんな流れで使われます：\n\n- **発見**：\n停滞中の商談がある場合、営業担当者が「Edge Communications社はどうなっていますか？」とAgentforce Coworkerに尋ねると、関連データが表示され、特定の資料で新たな価格懸念により案件がリスクにあることが分かります\n\n\n- **深掘り**：\nさらに詳しく「価格の懸念について詳しく教えて」と尋ねると、立ち上げ・トレーニングコストへの懸念や1年契約を希望していることが分かり、インサイドセールス担当者が来週フォローアップミーティングを予定していることも分かります\n\n\n- **行動**：\n価格懸念への対応についてコーチングを依頼すると、Sales Coach Agentに自動的にルーティングされ、ミーティング前にパーソナライズされたコーチングを受けられます\n\n\n### 2. 商談前の事前確認\n\n「明日のこのお客様との電話の前に何を知っておくべきですか？」\nといった形で、商談前に必要な情報を一括で把握できます。\n\n### 3. 案件・引き継ぎ時の経緯確認\n日本市場向けの活用例として、\nCRMとSlackを横断して社内の情報を引き出すAIエージェントとして、営業が使う照会場面に活用されています\n。具体的には、\n営業が過去の経緯を自分で引ける状態をつくる\nことで、新任営業が配属された際に「あの案件は前回どういう経緯で決まったか」を上司に聞かずに自分で確認できるようになります。\n\n### 4. レコードの更新・フォローアップ依頼\n\nレコードの作成・更新をAgentforce Coworkerに依頼すると、自動的に権限を評価し、修正すべきフィールドを特定し、選択リストの入力内容を検証した上で、提案されたレコード作成・更新内容をレビュー用に提示してくれます\n。\n\n## 提供状況\n\n\n2026年のDreamforceでAIforceとして発表された機能の中で、Agentforce Coworkerは多くの管理者が最初に触れることになる機能で、Enterprise、Unlimited、Agentforce 1エディションで利用可能です\n。日本語環境でも2026年8月時点で利用可能になっており、日本の営業現場での活用例も出てきています。",
+  "cited_urls": [
+    "https://www.cloudsheer.com/blog/agentforce-coworker",
+    "https://successjp.salesforce.com/article/NAI-001320",
+    "https://zenn.dev/pacific_creator/articles/4163be6cd233da",
+    "https://www.salesforce.com/blog/agentforce-coworker-salesforce-ai-teammate/",
+    "https://developer.salesforce.com/docs/data/agentforce-coworker/guide/agentforce-coworker-benefits-and-use-cases.html",
+    "https://ashapurasoftech.com/blog/agentforce-coworker/",
+    "https://cross-com.jp/agentforce-coworker/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E37",
+  "experiment_flag": "watch",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-coworker/",
+  "answer_text": "# Agentforce Coworkerとは\n\nAgentforce Coworkerは、Salesforceが発表したAI「同僚（チームメイト）」機能です。\nAgentforce Coworkerは、Lightningの検索バーを起点として、Slack、Microsoft Teams、ChatGPT、Claude、モバイルにまで拡張されるAIチームメイトです\n。\nCRMデータ、ワークフロー、顧客履歴、商談、ケースを横断して推論し、そのままアクションを実行します\n。\n\n## 従来の検索との違い\n\nこれまでのSalesforce検索はキーワードに一致するレコード一覧を返すだけでした。それに対し、\nAgentforce CoworkerはSalesforce内の取引先・商談・ケースなどのデータや、接続された外部ソース（Data 360、Slack、Googleドライブなど）を理解し、自然言語での質問に対して要約・分析・次のアクションの提案などを会話形式で行ってくれます\n。\n\n## 主な3つの機能\n\n1. **Find（見つける）**：\n商談・取引先・ケース・Slackの会話・ナレッジ記事・Google DriveやMicrosoft 365などの外部ソースまで、300以上のデータを横断して自然言語で検索できます\n\n\n2. **Catch up（追いつく）**：\n会議や離席中に何が変わったかをプロアクティブに教えてくれ、人と話すように続けて質問でき、会話全体を記憶しているので毎回最初からやり直す必要がありません\n\n\n3. **Plan & Act（計画して実行）**：\nAIエージェントを束ねて、同じ会話の中であなたに代わって行動します。14日間滞留しているステージ4の商談にフォローアップするよう指示すれば、実際にそれを実行します。離席している間も、頼まれるのを待たずにバックグラウンドで作業を続けます\n\n\n重要な点として、\nCoworkerはSalesforceが「チームが作成したすべてのエージェントへの単一の入り口」と呼ぶもので、専門的な作業自体を行うのではなく、既に構築済みのAgentforceエージェントをオーケストレーションし、タスクに適したエージェントを起動します\n。\n\n## 営業がどんな場面で使えるか\n\n### 1. 停滞した商談の状況確認・打開\nSalesforce公式の具体的なシナリオでは、こんな流れで使われます：\n\n- **発見**：\n停滞中の商談がある場合、営業担当者が「Edge Communications社はどうなっていますか？」とAgentforce Coworkerに尋ねると、関連データが表示され、特定の資料で新たな価格懸念により案件がリスクにあることが分かります\n\n\n- **深掘り**：\nさらに詳しく「価格の懸念について詳しく教えて」と尋ねると、立ち上げ・トレーニングコストへの懸念や1年契約を希望していることが分かり、インサイドセールス担当者が来週フォローアップミーティングを予定していることも分かります\n\n\n- **行動**：\n価格懸念への対応についてコーチングを依頼すると、Sales Coach Agentに自動的にルーティングされ、ミーティング前にパーソナライズされたコーチングを受けられます\n\n\n### 2. 商談前の事前確認\n\n「明日のこのお客様との電話の前に何を知っておくべきですか？」\nといった形で、商談前に必要な情報を一括で把握できます。\n\n### 3. 案件・引き継ぎ時の経緯確認\n日本市場向けの活用例として、\nCRMとSlackを横断して社内の情報を引き出すAIエージェントとして、営業が使う照会場面に活用されています\n。具体的には、\n営業が過去の経緯を自分で引ける状態をつくる\nことで、新任営業が配属された際に「あの案件は前回どういう経緯で決まったか」を上司に聞かずに自分で確認できるようになります。\n\n### 4. レコードの更新・フォローアップ依頼\n\nレコードの作成・更新をAgentforce Coworkerに依頼すると、自動的に権限を評価し、修正すべきフィールドを特定し、選択リストの入力内容を検証した上で、提案されたレコード作成・更新内容をレビュー用に提示してくれます\n。\n\n## 提供状況\n\n\n2026年のDreamforceでAIforceとして発表された機能の中で、Agentforce Coworkerは多くの管理者が最初に触れることになる機能で、Enterprise、Unlimited、Agentforce 1エディションで利用可能です\n。日本語環境でも2026年8月時点で利用可能になっており、日本の営業現場での活用例も出てきています。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "cloudsheer.com",
+    "successjp.salesforce.com",
+    "zenn.dev",
+    "salesforce.com",
+    "developer.salesforce.com",
+    "ashapurasoftech.com",
+    "cross-com.jp"
+  ],
+  "resolved_urls": [
+    "https://www.cloudsheer.com/blog/agentforce-coworker",
+    "https://successjp.salesforce.com/article/NAI-001320",
+    "https://zenn.dev/pacific_creator/articles/4163be6cd233da",
+    "https://www.salesforce.com/blog/agentforce-coworker-salesforce-ai-teammate/",
+    "https://developer.salesforce.com/docs/data/agentforce-coworker/guide/agentforce-coworker-benefits-and-use-cases.html",
+    "https://ashapurasoftech.com/blog/agentforce-coworker/",
+    "https://cross-com.jp/agentforce-coworker/"
+  ],
+  "unresolved_redirects": 0
+}

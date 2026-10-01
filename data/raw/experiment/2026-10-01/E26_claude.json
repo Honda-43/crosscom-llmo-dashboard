@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "E26",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Salesforce Data 360（旧Data Cloud）はAgentforceに必要？導入すべきかの判断基準",
+  "cep": null,
+  "timestamp": "2026-10-01T01:58:11.000419Z",
+  "answer": "Salesforce Data 360とAgentforceの関係性について、最新情報を調査します。\n# Salesforce Data 360（旧Data Cloud）はAgentforceに必要か\n\n## 結論：「有効化」は必須、「本格導入」は要件次第\n\n調査結果から、この問いには二段階の答えがあります。\n\n\nSalesforce自身が、Data 360はAgentforceのために有効化（プロビジョニング）される必要があり、Agentforce Data LibraryやEinstein Trust Layerといった機能はData 360なしでは動作しないと明言しています。\n\n\n一方で、\n「有効化（enabled）」と「実装・構築（implemented）」は同じではなく、その違いが2週間のエージェント構築と2四半期かかるデータプログラムの差になります。\n\n\n## なぜAgentforceにData 360が必要なのか\n\n\nSalesforce Data 360（旧Data Cloud）は、Salesforceプラットフォーム全体を動かすリアルタイムデータエンジンであり、Agentforceにとって不可欠なデータ基盤として機能し、AIエージェントと自動化ワークフローが常に最も正確で最新の顧客コンテキストを把握できるようにします。\n\n\n背景にある設計思想として、\n単一ソースの狭い用途を超えるエージェントであれば、実質的にData 360が必要になります。Agentforceのエージェントは利用可能なデータをもとに推論するため、統合プロファイルがなければ、断片的なコンテキストから回答することになり、チャネル間で一貫性のない結果を生みます。\n\n\n## 導入レベルを判断する3つの基準\n\n調査結果では、エージェントの用途に応じてData 360の必要な深さが変わるという整理がされています。\n\n**①知識ベースの簡易エージェント（Grounding）**\n\n有効化されたData 360は、Agentforce Data Libraryとデフォルトのナレッジ検索（RAG）コンポーネントを通じて、限定的な知識ベースのユースケースをサポートできます。\n例：承認済みの記事20本から回答するFAQエージェント。\n\n**②本格的な業務エージェント（構造化＋非構造化データ）**\n\n構造化されたCRMデータ、非構造化コンテンツ、ID解決済みの顧客プロファイル、ゼロコピーソース、データグラフ、リアルタイムシグナル、ガバナンスされたアクションワークフローを横断して推論する必要があるエージェントには、実装されたData 360が必要です。\n例：資格確認・ケース履歴参照・ポリシー文書取得・返品ワークフロー実行まで行うサービスエージェント。\n\n**③判断の進め方**\n\n安全な進め方は、まずエージェントのスコープを決め、そのうえでデータの深さを選ぶことです。\nエージェントの準備状況とデータの準備状況を同時にアセスメントする方が、順番に進めるより有効です。\n\n\n## 導入判断のチェックリスト\n\n| 判断軸 | 問い |\n|---|---|\n| エージェントの範囲 | 限定的なFAQ対応か、複数システム横断の業務処理か |\n| データの分散度 | 顧客情報がSales/Service/Marketing/外部システムに散在しているか |\n| ガバナンス要件 | 監査証跡・ガードレール・権限制御が必須の業務か |\n| リアルタイム性 | 最新の在庫・取引・ステータス情報が意思決定に必要か |\n| 既存CDPの有無 | 他のCDP/DWHで同等の統合がすでにできているか |\n\n## アーキテクチャ上の位置づけ\n\n\n今回の改称はData Cloudが「Agentforce 360」という傘の下のデータ層として正式に構造的に位置づけられたことを意味し、AIエージェントが真空の中で動作することはできず、深く文脈的で統一されたデータを必要とするという原則を強化するものです。\n\n\nまた技術面では、\nModel Context Protocolを活用することで、顧客はSnowflake、Databricks、BigQueryを含むデータ資産全体にわたってセマンティクスを標準化でき、高価で手作業によるデータ複製を必要としません。\nつまり既存の他社データ基盤を持つ企業でも、ゼロコピー連携で段階的に統合できる余地があります。\n\n## 実務上の注意点\n\n- \nData 360という名称と認定資格は2025年のDreamforceで改称され、Spring '26サイクルで認定資格も改称されました。\n契約書やSetupメニュー、コンサルタントの呼称が一時的に混在する可能性があります。\n- \n価格モデルはこれまでと同様に、消費クレジット・データストレージ・プレミアムアドオンを中心に構成されています。\n名称変更であって、ライセンス体系の抜本的変更ではありません。\n\n## まとめ\n\n導入すべきかの判断は「全か無か」ではなく、**エージェントが扱う業務の複雑さに応じて投資レベルを調整する**のが実践的です。まずは有効化（Enable）して小規模なナレッジベース型エージェントから着手し、業務エージェントが構造化・非構造化データを横断して判断する必要が出てきた段階で、本格的な実装（統合・",
+  "cited_urls": [
+    "https://valintry360.com/blogs/is-data-cloud-required-for-agentforce/",
+    "https://www.salesforce.com/data/",
+    "https://inceptasolutions.com/salesforce-data-360/",
+    "https://www.techforceservices.com/blog/salesforce-data-360-guide/",
+    "https://brysa.ai/insights/salesforce-data-360-agentforce",
+    "https://www.salesforce.com/jp/data/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E26",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/salesforce-data-360/",
+  "answer_text": "Salesforce Data 360とAgentforceの関係性について、最新情報を調査します。\n# Salesforce Data 360（旧Data Cloud）はAgentforceに必要か\n\n## 結論：「有効化」は必須、「本格導入」は要件次第\n\n調査結果から、この問いには二段階の答えがあります。\n\n\nSalesforce自身が、Data 360はAgentforceのために有効化（プロビジョニング）される必要があり、Agentforce Data LibraryやEinstein Trust Layerといった機能はData 360なしでは動作しないと明言しています。\n\n\n一方で、\n「有効化（enabled）」と「実装・構築（implemented）」は同じではなく、その違いが2週間のエージェント構築と2四半期かかるデータプログラムの差になります。\n\n\n## なぜAgentforceにData 360が必要なのか\n\n\nSalesforce Data 360（旧Data Cloud）は、Salesforceプラットフォーム全体を動かすリアルタイムデータエンジンであり、Agentforceにとって不可欠なデータ基盤として機能し、AIエージェントと自動化ワークフローが常に最も正確で最新の顧客コンテキストを把握できるようにします。\n\n\n背景にある設計思想として、\n単一ソースの狭い用途を超えるエージェントであれば、実質的にData 360が必要になります。Agentforceのエージェントは利用可能なデータをもとに推論するため、統合プロファイルがなければ、断片的なコンテキストから回答することになり、チャネル間で一貫性のない結果を生みます。\n\n\n## 導入レベルを判断する3つの基準\n\n調査結果では、エージェントの用途に応じてData 360の必要な深さが変わるという整理がされています。\n\n**①知識ベースの簡易エージェント（Grounding）**\n\n有効化されたData 360は、Agentforce Data Libraryとデフォルトのナレッジ検索（RAG）コンポーネントを通じて、限定的な知識ベースのユースケースをサポートできます。\n例：承認済みの記事20本から回答するFAQエージェント。\n\n**②本格的な業務エージェント（構造化＋非構造化データ）**\n\n構造化されたCRMデータ、非構造化コンテンツ、ID解決済みの顧客プロファイル、ゼロコピーソース、データグラフ、リアルタイムシグナル、ガバナンスされたアクションワークフローを横断して推論する必要があるエージェントには、実装されたData 360が必要です。\n例：資格確認・ケース履歴参照・ポリシー文書取得・返品ワークフロー実行まで行うサービスエージェント。\n\n**③判断の進め方**\n\n安全な進め方は、まずエージェントのスコープを決め、そのうえでデータの深さを選ぶことです。\nエージェントの準備状況とデータの準備状況を同時にアセスメントする方が、順番に進めるより有効です。\n\n\n## 導入判断のチェックリスト\n\n| 判断軸 | 問い |\n|---|---|\n| エージェントの範囲 | 限定的なFAQ対応か、複数システム横断の業務処理か |\n| データの分散度 | 顧客情報がSales/Service/Marketing/外部システムに散在しているか |\n| ガバナンス要件 | 監査証跡・ガードレール・権限制御が必須の業務か |\n| リアルタイム性 | 最新の在庫・取引・ステータス情報が意思決定に必要か |\n| 既存CDPの有無 | 他のCDP/DWHで同等の統合がすでにできているか |\n\n## アーキテクチャ上の位置づけ\n\n\n今回の改称はData Cloudが「Agentforce 360」という傘の下のデータ層として正式に構造的に位置づけられたことを意味し、AIエージェントが真空の中で動作することはできず、深く文脈的で統一されたデータを必要とするという原則を強化するものです。\n\n\nまた技術面では、\nModel Context Protocolを活用することで、顧客はSnowflake、Databricks、BigQueryを含むデータ資産全体にわたってセマンティクスを標準化でき、高価で手作業によるデータ複製を必要としません。\nつまり既存の他社データ基盤を持つ企業でも、ゼロコピー連携で段階的に統合できる余地があります。\n\n## 実務上の注意点\n\n- \nData 360という名称と認定資格は2025年のDreamforceで改称され、Spring '26サイクルで認定資格も改称されました。\n契約書やSetupメニュー、コンサルタントの呼称が一時的に混在する可能性があります。\n- \n価格モデルはこれまでと同様に、消費クレジット・データストレージ・プレミアムアドオンを中心に構成されています。\n名称変更であって、ライセンス体系の抜本的変更ではありません。\n\n## まとめ\n\n導入すべきかの判断は「全か無か」ではなく、**エージェントが扱う業務の複雑さに応じて投資レベルを調整する**のが実践的です。まずは有効化（Enable）して小規模なナレッジベース型エージェントから着手し、業務エージェントが構造化・非構造化データを横断して判断する必要が出てきた段階で、本格的な実装（統合・",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "valintry360.com",
+    "salesforce.com",
+    "inceptasolutions.com",
+    "techforceservices.com",
+    "brysa.ai"
+  ],
+  "resolved_urls": [
+    "https://valintry360.com/blogs/is-data-cloud-required-for-agentforce/",
+    "https://www.salesforce.com/data/",
+    "https://inceptasolutions.com/salesforce-data-360/",
+    "https://www.techforceservices.com/blog/salesforce-data-360-guide/",
+    "https://brysa.ai/insights/salesforce-data-360-agentforce",
+    "https://www.salesforce.com/jp/data/"
+  ],
+  "unresolved_redirects": 0
+}

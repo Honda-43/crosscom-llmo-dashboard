@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "E17",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "AIエージェントのセキュリティリスクとAgentforceでの対策設計は？OWASP対応も含めて",
+  "cep": null,
+  "timestamp": "2026-10-01T01:54:40.559779Z",
+  "answer": "AIエージェントのセキュリティリスクとAgentforceでの対策設計について、最新情報を調査してお答えします。\n# AIエージェントのセキュリティリスクとAgentforceでの対策設計\n\n## 1. OWASPが定義するAIエージェント特有のリスク\n\nAIエージェントのセキュリティを論じる際、現在は2つのOWASPフレームワークを参照する必要があります。\n\n### OWASP Top 10 for LLM Applications (2025)\n\n現行の2025年版は、従来のアプリケーションセキュリティテストが及ばない障害モードを扱っており、プロンプトインジェクション、機密情報漏洩、サプライチェーン侵害、データ・モデル汚染、不適切な出力処理、過剰なエージェンシー、システムプロンプト漏洩、ベクトル・埋め込みの脆弱性、誤情報、無制限消費が含まれます。\n\n\n特にエージェント型AIに直結するのが以下の項目です。\n\n**LLM01: プロンプトインジェクション**\n\n攻撃者が制御するテキストがモデルの挙動を変えるもので、直接インジェクションはユーザー自身の入力から、間接インジェクションはモデルが読み取るコンテンツ（Webページ、文書、メールなど)に隠された指示から来ます。\n \nこれはリストの全バージョンで最上位のリスクであり続けており、信頼できる汎用的な防御策が存在しないためです。\n\n\n**LLM06: 過剰なエージェンシー（Excessive Agency)**\n\n2025年版で大幅に拡張された項目の一つで、OWASPは3つの根本原因に分解しています。エージェントがタスク範囲を超えたツールにアクセスできる「過剰な機能」、ツールが必要以上の広い権限で動作する「過剰な権限」、人間の介在なしに高インパクトな行動が進行する「過剰な自律性」です。\n\n\n**その他の重要項目**\n- **LLM07 システムプロンプト漏洩**: \nエージェントやMCPのシステムプロンプトはツールのスコープ、認証情報、ガードレールロジックを含むことが多く、これが漏洩すると攻撃者にエージェントの権限を悪用する手引きを与えることになります。\n\n- **LLM10 無制限消費**: \n暴走するエージェントのループや再帰的なツール/MCP呼び出しがサービス拒否（コスト面）を引き起こします。レート制限とツール呼び出しの監視が対策となり、過剰エージェンシー対策と重複します。\n\n\n### OWASP Top 10 for Agentic Applications\nLLM Top 10はアプリケーション中心であり、\n自律エージェントやMCP特有の脅威は部分的にしかカバーしていないため、OWASPの関連成果物（Agentic AI – Threats and Mitigations、およびAgentic Applications向けTop 10）がより深く扱っています。\n\n\n\nこのAgentic Applications向けTop 10はBlack Hat Europe 2025およびOWASP Agentic Security Summitで発表され、AIエージェントアプリケーションにとって最も重大なセキュリティリスクを代表するものです。\n 主な項目：\n\n| ID | リスク | 内容 |\n|---|---|---|\n| ASI01 | エージェント目標ハイジャック | \n攻撃者が悪意あるコンテンツによってエージェントの目的を変更\n |\n| ASI02 | ツール悪用 | \nエージェントが正規のツールを安全でない方法で使用\n |\n| ASI03 | ID・権限の悪用 | \nエージェントが高権限の認証情報を継承またはエスカレート\n |\n| ASI04 | サプライチェーン脆弱性 | \n侵害されたツール、プラグイン、外部コンポーネント\n |\n| ASI06 | メモリ汚染 | \nセッション間での永続的な不整合、エージェントが保持・再利用するコンテキスト（要約、埋め込み、システムノート、RAGインデックス）の汚染\n |\n| ASI09 | 人間-エージェント信頼の悪用 | \nエージェント経由のソーシャルエンジニアリング\n |\n\n## 2. Agentforceにおける対策設計\n\n### 中核：Einstein Trust Layer\n\nAgentforceのセキュリティの中核はEinstein Trust Layerであり、これはSalesforceの組織とエージェントを動かす大規模言語モデル(LLM)の間のすべてのやり取り(プロンプトと応答)を傍受する、組み込みのセキュリティ・プライバシー制御です。\n\n\n主な機能：\n- **ゼロデータ保持**: \nプロンプトと応答はサードパーティのLLMプロバイダーに保持されず、データがモデルの学習に使用されることもありません。\n\n- **毒性・プロンプトインジェクション検知**: \nユーザー入力とLLM出力の両方を、悪意あるコンテンツ、ヘイトスピーチ、プロンプトインジェクションで使われる一般的な攻撃ベクトルから保護します。\n\n- **データマスキング・セキュアデータリトリーバー**: \nセキュアデ",
+  "cited_urls": [
+    "https://www.bdemerson.com/article/owasp-llm-top-10",
+    "https://aembit.io/blog/owasp-top-10-llm-risks-explained/",
+    "https://anomity.ai/blog/owasp-top-10-llm-applications-guide/",
+    "https://www.promptfoo.dev/docs/red-team/owasp-agentic-ai/",
+    "https://www.humansecurity.com/learn/blog/owasp-top-10-agentic-applications/",
+    "https://help.salesforce.com/s/articleView?id=005315874&language=en_US&type=1",
+    "https://www.salesforce.com/blog/best-practices-for-secure-agentforce-implementation/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E17",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-security-risk-design/",
+  "answer_text": "AIエージェントのセキュリティリスクとAgentforceでの対策設計について、最新情報を調査してお答えします。\n# AIエージェントのセキュリティリスクとAgentforceでの対策設計\n\n## 1. OWASPが定義するAIエージェント特有のリスク\n\nAIエージェントのセキュリティを論じる際、現在は2つのOWASPフレームワークを参照する必要があります。\n\n### OWASP Top 10 for LLM Applications (2025)\n\n現行の2025年版は、従来のアプリケーションセキュリティテストが及ばない障害モードを扱っており、プロンプトインジェクション、機密情報漏洩、サプライチェーン侵害、データ・モデル汚染、不適切な出力処理、過剰なエージェンシー、システムプロンプト漏洩、ベクトル・埋め込みの脆弱性、誤情報、無制限消費が含まれます。\n\n\n特にエージェント型AIに直結するのが以下の項目です。\n\n**LLM01: プロンプトインジェクション**\n\n攻撃者が制御するテキストがモデルの挙動を変えるもので、直接インジェクションはユーザー自身の入力から、間接インジェクションはモデルが読み取るコンテンツ（Webページ、文書、メールなど)に隠された指示から来ます。\n \nこれはリストの全バージョンで最上位のリスクであり続けており、信頼できる汎用的な防御策が存在しないためです。\n\n\n**LLM06: 過剰なエージェンシー（Excessive Agency)**\n\n2025年版で大幅に拡張された項目の一つで、OWASPは3つの根本原因に分解しています。エージェントがタスク範囲を超えたツールにアクセスできる「過剰な機能」、ツールが必要以上の広い権限で動作する「過剰な権限」、人間の介在なしに高インパクトな行動が進行する「過剰な自律性」です。\n\n\n**その他の重要項目**\n- **LLM07 システムプロンプト漏洩**: \nエージェントやMCPのシステムプロンプトはツールのスコープ、認証情報、ガードレールロジックを含むことが多く、これが漏洩すると攻撃者にエージェントの権限を悪用する手引きを与えることになります。\n\n- **LLM10 無制限消費**: \n暴走するエージェントのループや再帰的なツール/MCP呼び出しがサービス拒否（コスト面）を引き起こします。レート制限とツール呼び出しの監視が対策となり、過剰エージェンシー対策と重複します。\n\n\n### OWASP Top 10 for Agentic Applications\nLLM Top 10はアプリケーション中心であり、\n自律エージェントやMCP特有の脅威は部分的にしかカバーしていないため、OWASPの関連成果物（Agentic AI – Threats and Mitigations、およびAgentic Applications向けTop 10）がより深く扱っています。\n\n\n\nこのAgentic Applications向けTop 10はBlack Hat Europe 2025およびOWASP Agentic Security Summitで発表され、AIエージェントアプリケーションにとって最も重大なセキュリティリスクを代表するものです。\n 主な項目：\n\n| ID | リスク | 内容 |\n|---|---|---|\n| ASI01 | エージェント目標ハイジャック | \n攻撃者が悪意あるコンテンツによってエージェントの目的を変更\n |\n| ASI02 | ツール悪用 | \nエージェントが正規のツールを安全でない方法で使用\n |\n| ASI03 | ID・権限の悪用 | \nエージェントが高権限の認証情報を継承またはエスカレート\n |\n| ASI04 | サプライチェーン脆弱性 | \n侵害されたツール、プラグイン、外部コンポーネント\n |\n| ASI06 | メモリ汚染 | \nセッション間での永続的な不整合、エージェントが保持・再利用するコンテキスト（要約、埋め込み、システムノート、RAGインデックス）の汚染\n |\n| ASI09 | 人間-エージェント信頼の悪用 | \nエージェント経由のソーシャルエンジニアリング\n |\n\n## 2. Agentforceにおける対策設計\n\n### 中核：Einstein Trust Layer\n\nAgentforceのセキュリティの中核はEinstein Trust Layerであり、これはSalesforceの組織とエージェントを動かす大規模言語モデル(LLM)の間のすべてのやり取り(プロンプトと応答)を傍受する、組み込みのセキュリティ・プライバシー制御です。\n\n\n主な機能：\n- **ゼロデータ保持**: \nプロンプトと応答はサードパーティのLLMプロバイダーに保持されず、データがモデルの学習に使用されることもありません。\n\n- **毒性・プロンプトインジェクション検知**: \nユーザー入力とLLM出力の両方を、悪意あるコンテンツ、ヘイトスピーチ、プロンプトインジェクションで使われる一般的な攻撃ベクトルから保護します。\n\n- **データマスキング・セキュアデータリトリーバー**: \nセキュアデ",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "bdemerson.com",
+    "aembit.io",
+    "anomity.ai",
+    "promptfoo.dev",
+    "humansecurity.com",
+    "help.salesforce.com",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://www.bdemerson.com/article/owasp-llm-top-10",
+    "https://aembit.io/blog/owasp-top-10-llm-risks-explained/",
+    "https://anomity.ai/blog/owasp-top-10-llm-applications-guide/",
+    "https://www.promptfoo.dev/docs/red-team/owasp-agentic-ai/",
+    "https://www.humansecurity.com/learn/blog/owasp-top-10-agentic-applications/",
+    "https://help.salesforce.com/s/articleView?id=005315874&language=en_US&type=1",
+    "https://www.salesforce.com/blog/best-practices-for-secure-agentforce-implementation/"
+  ],
+  "unresolved_redirects": 0
+}

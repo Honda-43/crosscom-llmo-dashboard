@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "E30",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Einstein Trust Layerとは？AIに任せる範囲と人が承認すべき場面はどう分ける？",
+  "cep": null,
+  "timestamp": "2026-10-01T01:59:48.462187Z",
+  "answer": "# Einstein Trust Layerとは\n\nEinstein Trust Layerは、Salesforceの生成AI機能（Agentforce、Prompt Builder、Einstein Copilotなど）に組み込まれた**セキュリティ・アーキテクチャ**です。別売りの製品ではなく、\nTrust Layerは購入する製品ではなく、Salesforce発のすべての生成AI呼び出しを包み込む組み込みのゲートウェイです\n。\nPrompt Builder、Agentforceのエージェントアクション、Einstein for Serviceの返信レコメンドなど、あらゆる機能がこれを経由します\n。\n\n## 主な仕組み\n\n**1. プロンプトの送信時（マスキング）**\n\nプロンプトがモデルに到達する前に、Trust Layerはメール・電話番号・社会保障番号などのPIIをマスキングし、承認済みデータソースによる動的グラウンディングを適用し、有害性をチェックし、監査のために取引全体をログに記録し、ユーザーに応答を返す前にPIIを復元します\n。\n\n**2. 信頼境界の保護**\n\nプロンプトはSalesforceの信頼境界内で処理されます。ブラウザから直接OpenAIやAnthropicに送られることはなく、まずSalesforceに送られてHyperforce内で処理され、その後初めてモデルプロバイダーに転送されます\n。\n\n**3. ゼロデータ保持契約**\n\nプロバイダー側でのゼロデータ保持契約が強制されます。SalesforceはOpenAI、Azure OpenAI、Anthropic、Googleなどと交渉し、プロンプトと応答がプロバイダー側で保存されず、モデレーション用にログも取られず、訓練にも使われない条件を結んでいます\n。\n\n**4. 固定のガードレール順序**\n\nすべてのリクエストと応答に対して固定の順序でガードレールを適用します。マスキングの強度や対象フィールドは設定可能ですが、手順自体はスキップできません\n。\n\n## Trust Layerが「できないこと」＝限界\n\nここが重要なポイントで、Trust Layerはセキュリティ・プライバシー層であり、**内容の正しさを保証するものではありません**。\n\n\nTrust Layerは幅広いリスクを軽減しますが、ハルシネーションを排除するわけではありません。グラウンディングされ、マスキングされ、有害性もクリーンな応答でも、事実として間違っている可能性があります。Trust Layerはコンテンツレビューツールでもありません。回答がブランドに沿っているか、顧客固有のポリシーに準拠しているかはチェックしません。そうしたレビューには、より厳密なプロンプト設計か、人間の関与（human in the loop）が必要です\n。\n\n---\n\n# AIに任せる範囲と人が承認すべき場面の分け方\n\n## 基本原則：「自動化できる」と「安全に委任できる」は別物\n\n\nAIアシスタントがどこで下書きを作り、どこで推奨を行い、どこで人間が行動前に承認すべきかを定義することが重要です。IAMやPAMにおけるアイデンティティガバナンスのロジックと同様に、すべてのアクションが同じ承認パスを必要とするわけではありませんが、リスクの高いアクションには明示的な監視が必要です。自律性が高いワークフローほど、ポリシー境界の重要性が増します\n。\n\n## AIに任せてよい領域（Trust Layerがカバーする範囲）\n\n- **データ保護・マスキング**：PIIの自動検出・マスキング・復元\n- **グラウンディング**：権限内のCRMデータを使った文脈付き回答生成\n- **有害コンテンツのフィルタリング**：毒性のある出力の自動検出\n- **監査ログの記録**：すべてのやり取りの自動記録\n- 定型的な下書き作成、情報検索、レコメンデーション生成など「人が最終判断する前段階」の作業\n\n## 人間が承認すべき場面\n\n**1. 外部への行動・送信を伴うアクション**\n\nHuman-in-the-Loop（HITL）は、AIシステムが機密性の高い、またはリスクの高いアクションを実行する前に人間の承認を得なければならないアーキテクチャ上のセキュリティ制御です。例えば、AIが生成したメールの送信承認、データベース変更の検証、コード実行の確認、機密記録へのアクセスレビューなどが該当します\n。\n\n**2. 業務ポリシー・ブランド基準への準拠確認**\n前述の通り、\nTrust Layerはコンテンツレビューツールではないため、回答がブランドやカスタマー固有のポリシーに準拠しているかどうかは、より厳密なプロンプト設計か人間の関与によってカバーする必要があります\n。\n\n**3. ハルシネーション（事実誤認）のリスクがある出力**\nグラウンディングされていても事実として誤っている可能性があるため、重要な意思決定に関わる出力は人間によるファクトチェックが必須です。\n\n**4. 倫理的・機微な判断を伴う領域**\n\nヘルスケアや金融など機微な領域での意思決定の自動化は倫理的な課題を生む可能性があ",
+  "cited_urls": [
+    "https://salesforcedictionary.com/blogs/salesforce-einstein-trust-layer-complete-2026-guide",
+    "https://gptfy.ai/glossary/einstein-trust-layer",
+    "https://salesforcedictionary.com/terms/einstein-trust-layer",
+    "https://nhimg.org/articles/human-in-the-loop-validation-is-the-trust-layer-ai-still-needs/",
+    "https://www.intelligentciso.com/2026/04/23/architecting-trust-why-the-human-in-the-loop-is-the-definitive-solution-to-the-ai-guardrail-trap/",
+    "https://www.getgenerative.ai/salesforce-einstein-trust-layer-cheat-sheet/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E30",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/einstein-trust-layer/",
+  "answer_text": "# Einstein Trust Layerとは\n\nEinstein Trust Layerは、Salesforceの生成AI機能（Agentforce、Prompt Builder、Einstein Copilotなど）に組み込まれた**セキュリティ・アーキテクチャ**です。別売りの製品ではなく、\nTrust Layerは購入する製品ではなく、Salesforce発のすべての生成AI呼び出しを包み込む組み込みのゲートウェイです\n。\nPrompt Builder、Agentforceのエージェントアクション、Einstein for Serviceの返信レコメンドなど、あらゆる機能がこれを経由します\n。\n\n## 主な仕組み\n\n**1. プロンプトの送信時（マスキング）**\n\nプロンプトがモデルに到達する前に、Trust Layerはメール・電話番号・社会保障番号などのPIIをマスキングし、承認済みデータソースによる動的グラウンディングを適用し、有害性をチェックし、監査のために取引全体をログに記録し、ユーザーに応答を返す前にPIIを復元します\n。\n\n**2. 信頼境界の保護**\n\nプロンプトはSalesforceの信頼境界内で処理されます。ブラウザから直接OpenAIやAnthropicに送られることはなく、まずSalesforceに送られてHyperforce内で処理され、その後初めてモデルプロバイダーに転送されます\n。\n\n**3. ゼロデータ保持契約**\n\nプロバイダー側でのゼロデータ保持契約が強制されます。SalesforceはOpenAI、Azure OpenAI、Anthropic、Googleなどと交渉し、プロンプトと応答がプロバイダー側で保存されず、モデレーション用にログも取られず、訓練にも使われない条件を結んでいます\n。\n\n**4. 固定のガードレール順序**\n\nすべてのリクエストと応答に対して固定の順序でガードレールを適用します。マスキングの強度や対象フィールドは設定可能ですが、手順自体はスキップできません\n。\n\n## Trust Layerが「できないこと」＝限界\n\nここが重要なポイントで、Trust Layerはセキュリティ・プライバシー層であり、**内容の正しさを保証するものではありません**。\n\n\nTrust Layerは幅広いリスクを軽減しますが、ハルシネーションを排除するわけではありません。グラウンディングされ、マスキングされ、有害性もクリーンな応答でも、事実として間違っている可能性があります。Trust Layerはコンテンツレビューツールでもありません。回答がブランドに沿っているか、顧客固有のポリシーに準拠しているかはチェックしません。そうしたレビューには、より厳密なプロンプト設計か、人間の関与（human in the loop）が必要です\n。\n\n---\n\n# AIに任せる範囲と人が承認すべき場面の分け方\n\n## 基本原則：「自動化できる」と「安全に委任できる」は別物\n\n\nAIアシスタントがどこで下書きを作り、どこで推奨を行い、どこで人間が行動前に承認すべきかを定義することが重要です。IAMやPAMにおけるアイデンティティガバナンスのロジックと同様に、すべてのアクションが同じ承認パスを必要とするわけではありませんが、リスクの高いアクションには明示的な監視が必要です。自律性が高いワークフローほど、ポリシー境界の重要性が増します\n。\n\n## AIに任せてよい領域（Trust Layerがカバーする範囲）\n\n- **データ保護・マスキング**：PIIの自動検出・マスキング・復元\n- **グラウンディング**：権限内のCRMデータを使った文脈付き回答生成\n- **有害コンテンツのフィルタリング**：毒性のある出力の自動検出\n- **監査ログの記録**：すべてのやり取りの自動記録\n- 定型的な下書き作成、情報検索、レコメンデーション生成など「人が最終判断する前段階」の作業\n\n## 人間が承認すべき場面\n\n**1. 外部への行動・送信を伴うアクション**\n\nHuman-in-the-Loop（HITL）は、AIシステムが機密性の高い、またはリスクの高いアクションを実行する前に人間の承認を得なければならないアーキテクチャ上のセキュリティ制御です。例えば、AIが生成したメールの送信承認、データベース変更の検証、コード実行の確認、機密記録へのアクセスレビューなどが該当します\n。\n\n**2. 業務ポリシー・ブランド基準への準拠確認**\n前述の通り、\nTrust Layerはコンテンツレビューツールではないため、回答がブランドやカスタマー固有のポリシーに準拠しているかどうかは、より厳密なプロンプト設計か人間の関与によってカバーする必要があります\n。\n\n**3. ハルシネーション（事実誤認）のリスクがある出力**\nグラウンディングされていても事実として誤っている可能性があるため、重要な意思決定に関わる出力は人間によるファクトチェックが必須です。\n\n**4. 倫理的・機微な判断を伴う領域**\n\nヘルスケアや金融など機微な領域での意思決定の自動化は倫理的な課題を生む可能性があ",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "salesforcedictionary.com",
+    "gptfy.ai",
+    "nhimg.org",
+    "intelligentciso.com",
+    "getgenerative.ai"
+  ],
+  "resolved_urls": [
+    "https://salesforcedictionary.com/blogs/salesforce-einstein-trust-layer-complete-2026-guide",
+    "https://gptfy.ai/glossary/einstein-trust-layer",
+    "https://salesforcedictionary.com/terms/einstein-trust-layer",
+    "https://nhimg.org/articles/human-in-the-loop-validation-is-the-trust-layer-ai-still-needs/",
+    "https://www.intelligentciso.com/2026/04/23/architecting-trust-why-the-human-in-the-loop-is-the-definitive-solution-to-the-ai-guardrail-trap/",
+    "https://www.getgenerative.ai/salesforce-einstein-trust-layer-cheat-sheet/"
+  ],
+  "unresolved_redirects": 0
+}

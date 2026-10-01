@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "E12",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの機能一覧を整理して教えて。360・Coworker・Voiceの違いも",
+  "cep": null,
+  "timestamp": "2026-10-01T01:52:49.326057Z",
+  "answer": "Agentforceの機能について、最新情報を調べてから整理してお伝えします。\nSalesforceの「Agentforce」関連製品について、機能一覧と「360」「Coworker」「Voice」の違いを整理します。\n\n## 1. Agentforceとは（全体像）\n\nAgentforceは、Salesforceが展開する自律型AIエージェントプラットフォームの総称です。もともとはService/Sales/Marketingなど業務別のAIエージェント（Agentforce for Service、Agentforce for Salesなど）や、それらを作るための開発基盤（Agentforce Studio＝Agent Builder・Prompt Builder・Model Builderなど）、推論エンジン（Atlas Reasoning Engine）を指していましたが、2025年以降は「Agentforce 360」という上位ブランドに再編され、その中に「Coworker」「Voice」などの個別機能が位置づけられています。\n\n## 2. Agentforce 360（プラットフォーム全体の基盤）\n\n**位置づけ：製品群全体を統合する\"土台\"**\n\n\nAgentforce 360は、AIエージェントが顧客にサービスを提供するだけでなく、従業員の能力強化、業務の効率化、そして他のAIエージェントとの連携を実現するもの\nです。構成要素として、以下の4つが統合されています。\n\n- \nAIエージェントの設計・運用基盤「Agentforce 360 Platform」\n\n- \n信頼性の高いデータ基盤「Data 360」\n\n- \n業務フローに組み込まれたAIエージェント群「Customer 360アプリ」\n\n- \n会話型インタフェースとしてナレッジ、アクション、データをリアルタイムに結びつける「Slack」\n\n\nこれにより、\nガバナンスと信頼性の高いデータに基づいてグラウンディングされたAIエージェントの展開、チームやワークフローを横断した連携、Slack上での他者や他のAIエージェントとの直接的な協働、既存のプロセス、ビジネスロジック、データインフラの活用\nが可能になります。\n\n**主な機能（日本提供分）：**\n- **オブザーバビリティ**：\n新たなダッシュボードにより、推論プロセス、精度、コンプライアンスの監視が可能\n\n- **Agent Script**：\n開発者は設定可能なAtlas推論エンジンを搭載したAgent Scriptを用いて、ガードレール、ツール使用、ロジックを定義\n\n- **Intelligent Context**：\nPDFや図表などの非構造化コンテンツにAIエージェントがアクセス可能となり、トラブルシューティングや分析などの実際の業務においてユーザーを支援\n\n- **Agentforce Revenue Management**：\nAIエージェントが見積作成、請求処理、および消費量管理を支援することで、営業、オペレーション、請求チームを強化\n\n- **豊富な外部連携**：\nBox、CrowdStrike、Google、IBM、Okta、Oracle Netsuite、Workday、Zoomなどのパートナー企業から提供される100以上の事前構築済みコネクタ、統合機能、ワークフロー\n\n\n要するに「Agentforce 360」は個別の機能というより、**AIエージェント・人・データ・業務アプリ・Slackを束ねる統合プラットフォーム（ブランド名）**です。\n\n## 3. Agentforce Coworker（社内向けAIチームメイト）\n\n**位置づけ：人が使う\"対話の入口\"となるAIアシスタント**\n\n\nAgentforce Coworkerは、CRMやSlackなど270以上のデータソースを横断検索し、根拠に基づく回答を即座に提供する自律型AIチームメイトで、日本市場でも提供開始\nされています。\n\n**できることは大きく3つ：**\n1. **Find（横断検索）**：\n商談・取引先・ケース・Slackの会話・ナレッジ記事・Google DriveやMicrosoft 365などの外部ソースまで、300以上のデータを横断して自然言語で検索\n\n2. **Catch up（状況把握）**：離席中に更新された内容をまとめて提示\n3. **Plan & Act（アクション実行）**：",
+  "cited_urls": [
+    "https://callcenter-japan.com/article/8361/1/",
+    "https://prtimes.jp/main/html/rd/p/000000328.000041550.html",
+    "https://www.salesforce.com/jp/news/press-releases/2026/08/05/agentforce-coworker-general-availability-japan/",
+    "https://zenn.dev/pacific_creator/articles/4163be6cd233da"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E12",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-features/",
+  "answer_text": "Agentforceの機能について、最新情報を調べてから整理してお伝えします。\nSalesforceの「Agentforce」関連製品について、機能一覧と「360」「Coworker」「Voice」の違いを整理します。\n\n## 1. Agentforceとは（全体像）\n\nAgentforceは、Salesforceが展開する自律型AIエージェントプラットフォームの総称です。もともとはService/Sales/Marketingなど業務別のAIエージェント（Agentforce for Service、Agentforce for Salesなど）や、それらを作るための開発基盤（Agentforce Studio＝Agent Builder・Prompt Builder・Model Builderなど）、推論エンジン（Atlas Reasoning Engine）を指していましたが、2025年以降は「Agentforce 360」という上位ブランドに再編され、その中に「Coworker」「Voice」などの個別機能が位置づけられています。\n\n## 2. Agentforce 360（プラットフォーム全体の基盤）\n\n**位置づけ：製品群全体を統合する\"土台\"**\n\n\nAgentforce 360は、AIエージェントが顧客にサービスを提供するだけでなく、従業員の能力強化、業務の効率化、そして他のAIエージェントとの連携を実現するもの\nです。構成要素として、以下の4つが統合されています。\n\n- \nAIエージェントの設計・運用基盤「Agentforce 360 Platform」\n\n- \n信頼性の高いデータ基盤「Data 360」\n\n- \n業務フローに組み込まれたAIエージェント群「Customer 360アプリ」\n\n- \n会話型インタフェースとしてナレッジ、アクション、データをリアルタイムに結びつける「Slack」\n\n\nこれにより、\nガバナンスと信頼性の高いデータに基づいてグラウンディングされたAIエージェントの展開、チームやワークフローを横断した連携、Slack上での他者や他のAIエージェントとの直接的な協働、既存のプロセス、ビジネスロジック、データインフラの活用\nが可能になります。\n\n**主な機能（日本提供分）：**\n- **オブザーバビリティ**：\n新たなダッシュボードにより、推論プロセス、精度、コンプライアンスの監視が可能\n\n- **Agent Script**：\n開発者は設定可能なAtlas推論エンジンを搭載したAgent Scriptを用いて、ガードレール、ツール使用、ロジックを定義\n\n- **Intelligent Context**：\nPDFや図表などの非構造化コンテンツにAIエージェントがアクセス可能となり、トラブルシューティングや分析などの実際の業務においてユーザーを支援\n\n- **Agentforce Revenue Management**：\nAIエージェントが見積作成、請求処理、および消費量管理を支援することで、営業、オペレーション、請求チームを強化\n\n- **豊富な外部連携**：\nBox、CrowdStrike、Google、IBM、Okta、Oracle Netsuite、Workday、Zoomなどのパートナー企業から提供される100以上の事前構築済みコネクタ、統合機能、ワークフロー\n\n\n要するに「Agentforce 360」は個別の機能というより、**AIエージェント・人・データ・業務アプリ・Slackを束ねる統合プラットフォーム（ブランド名）**です。\n\n## 3. Agentforce Coworker（社内向けAIチームメイト）\n\n**位置づけ：人が使う\"対話の入口\"となるAIアシスタント**\n\n\nAgentforce Coworkerは、CRMやSlackなど270以上のデータソースを横断検索し、根拠に基づく回答を即座に提供する自律型AIチームメイトで、日本市場でも提供開始\nされています。\n\n**できることは大きく3つ：**\n1. **Find（横断検索）**：\n商談・取引先・ケース・Slackの会話・ナレッジ記事・Google DriveやMicrosoft 365などの外部ソースまで、300以上のデータを横断して自然言語で検索\n\n2. **Catch up（状況把握）**：離席中に更新された内容をまとめて提示\n3. **Plan & Act（アクション実行）**：",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "callcenter-japan.com",
+    "prtimes.jp",
+    "salesforce.com",
+    "zenn.dev"
+  ],
+  "resolved_urls": [
+    "https://callcenter-japan.com/article/8361/1/",
+    "https://prtimes.jp/main/html/rd/p/000000328.000041550.html",
+    "https://www.salesforce.com/jp/news/press-releases/2026/08/05/agentforce-coworker-general-availability-japan/",
+    "https://zenn.dev/pacific_creator/articles/4163be6cd233da"
+  ],
+  "unresolved_redirects": 0
+}

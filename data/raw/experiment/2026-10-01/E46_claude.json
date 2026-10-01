@@ -1,0 +1,44 @@
+{
+  "date": "2026-10-01",
+  "prompt_id": "E46",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの権限セットは何を設定する？AIエージェントにどこまでデータアクセスを渡していい？",
+  "cep": null,
+  "timestamp": "2026-10-01T02:05:48.847253Z",
+  "answer": "Agentforceの権限セット（Permission Set）とデータアクセス範囲について、最新情報を確認してから回答します。\n# Agentforceの権限セットとデータアクセス設計\n\n## 1. 権限セットが設定する内容\n\n### (1) エージェントユーザー（Agent User）の権限\nAgentforce Service Agentを作成すると、\nエージェントがログインしていないユーザーにも対応するチャネルに接続する場合、エンドユーザーのユーザーレコードでアクセスを制御できないため、専用のユーザーレコード（エージェントユーザー）がデータの読み書き範囲を決定します\n。\n\nこのエージェントユーザーには以下が自動付与されます。\n\n- **権限セット**: \nAgentforce Service Agent Secure Base、[Agent_Name]_Permissions\n\n- **権限セットグループ**: \nAgentforceServiceAgentUserPsg（Agentforce Service Agent User、Data Cloud User、Prompt Template Userの各権限セットを含む）\n\n\n具体的には、\n前者（Secure Base）はCaseやContactなどのService系オブジェクトへの基本アクセスを付与し、後者（[Agent_Name]_Permissions）は完全に空で、独自のカスタム権限を追加できる\n仕組みになっています。\n\n### (2) オブジェクト権限（CRUD）\n\nエージェントユーザーは、フロー・Apex・プロンプトテンプレート経由でエージェントが操作する各オブジェクトに対して、最小限のオブジェクト権限を必要とします。新しいアクションをエージェントに追加する際は、そのアクションが参照するオブジェクトへのアクセス権をエージェントユーザーが持っているか確認する必要があります\n。\n\n### (3) 用途別の権限セット例\nユースケースに応じて、以下のような権限セットを個別に割り当てます。\n- Agentforce Service Agent Object Access\n- Agentforce Service Agent User\n- Data Cloud User\n- Platform—Flow User\n- Prompt Template User\n- Service—Knowledge Access\n\n（出典: Qiita記事「Agentforce : エージェントのアクセス権」）\n\n### (4) アクセス権限 vs 管理権限の分離\n権限セットは大きく2系統に分かれます。\n- **アクセス権限**: \n誰がそのエージェントを見て使えるか\n\n- **管理権限**: \n誰がエージェントを構築・編集・設定できるか\n\n\nこの2つは\n互換性があるものとして扱ってはならず、「管理」権限セットをエージェントユーザーに割り当てたり、「実行」権限セットを人間の管理者に割り当てたりすべきではありません。両者は関係の異なる側面を制御するものです\n。\n\n---\n\n## 2. AIエージェントにどこまでデータアクセスを渡すべきか\n\n### 原則：Zero Trust + 最小権限（Least Privilege）\nSalesforce公式の指針では、\nAgentforceのすべてのエージェントは「実行ユーザー（running user）」と紐づいており、これがエージェントが何にアクセスし何を実行できるかを決定します\n。そして重要なのは、\nアクションは参照先のApex・フロー・プロンプトテンプレートから権限を継承し、デフォルトでは新規エージェントは権限を一切持たないため、明示的に許可されたものにしかアクセスできない\nという「secure by default」設計です。\n\n同様に、\nエージェントユーザーは最小限のアクセス権で作成され、セキュアな状態がデフォルトとなっています。ユースケースに対応するため、最小権限の原則に基づいてエージェントユーザーのアクセス権を拡張していきます。管理者権限を持つSalesforceユーザーのみがエージェントユーザーを閲覧・編集できます\n。\n\n### 具体的なベストプラクティス\n\n**① まず最小構成から始める**\n\n最小アクセスプロファイルから開始し、エージェントの機能に不可欠な権限のみを付与し、ロール階層と組織全体のデフォルト設定（OWD）を定期的に見直す（意図せずアクセス範囲が広がることがあるため）\nことが推奨されています。\n\n**② エージェントごとに役割・範囲を明確に限定する**\n\n各エージェントに特定のトピックとアクションのセットを割り当て、絶対に必要な場合を除き汎用的なエージェントは避けることで、意図しないアクセスや権限の逸脱を防ぎ、エージェントのスコープを明確かつ制御可能に保てます\n。\n\n**③ 属性ベースアクセス制御（ABAC）の活用**\nAgentforceは通常のRBACに加えて、\n属性ベースのポリシーもサポートしており、「EU圏の営業担当者のみが価格設定ワークフローを実行できる」「コンプライアンスフラグがtrueでない限り医療データにアクセスできない」といったきめ細かいアクセスルールを設定できます\n。\n\n**④ 重要操作には人間の認証を必須にする**\n\nフロー・API呼び出し・データベース変更などあらゆるアクションを実行する前にユーザーの身元と権限を検証し、エージェント自身のIDのみに依存しない\nことが推奨されます。実際",
+  "cited_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_user.htm&type=5",
+    "https://www.salesforceben.com/agentforce-permissions-explained-agent-users-access-and-security/",
+    "https://www.salesforce.com/blog/best-practices-for-secure-agentforce-implementation-2/",
+    "https://www.reco.ai/hub/agentforce-security"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E46",
+  "experiment_flag": "pool",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-permission-set/",
+  "answer_text": "Agentforceの権限セット（Permission Set）とデータアクセス範囲について、最新情報を確認してから回答します。\n# Agentforceの権限セットとデータアクセス設計\n\n## 1. 権限セットが設定する内容\n\n### (1) エージェントユーザー（Agent User）の権限\nAgentforce Service Agentを作成すると、\nエージェントがログインしていないユーザーにも対応するチャネルに接続する場合、エンドユーザーのユーザーレコードでアクセスを制御できないため、専用のユーザーレコード（エージェントユーザー）がデータの読み書き範囲を決定します\n。\n\nこのエージェントユーザーには以下が自動付与されます。\n\n- **権限セット**: \nAgentforce Service Agent Secure Base、[Agent_Name]_Permissions\n\n- **権限セットグループ**: \nAgentforceServiceAgentUserPsg（Agentforce Service Agent User、Data Cloud User、Prompt Template Userの各権限セットを含む）\n\n\n具体的には、\n前者（Secure Base）はCaseやContactなどのService系オブジェクトへの基本アクセスを付与し、後者（[Agent_Name]_Permissions）は完全に空で、独自のカスタム権限を追加できる\n仕組みになっています。\n\n### (2) オブジェクト権限（CRUD）\n\nエージェントユーザーは、フロー・Apex・プロンプトテンプレート経由でエージェントが操作する各オブジェクトに対して、最小限のオブジェクト権限を必要とします。新しいアクションをエージェントに追加する際は、そのアクションが参照するオブジェクトへのアクセス権をエージェントユーザーが持っているか確認する必要があります\n。\n\n### (3) 用途別の権限セット例\nユースケースに応じて、以下のような権限セットを個別に割り当てます。\n- Agentforce Service Agent Object Access\n- Agentforce Service Agent User\n- Data Cloud User\n- Platform—Flow User\n- Prompt Template User\n- Service—Knowledge Access\n\n（出典: Qiita記事「Agentforce : エージェントのアクセス権」）\n\n### (4) アクセス権限 vs 管理権限の分離\n権限セットは大きく2系統に分かれます。\n- **アクセス権限**: \n誰がそのエージェントを見て使えるか\n\n- **管理権限**: \n誰がエージェントを構築・編集・設定できるか\n\n\nこの2つは\n互換性があるものとして扱ってはならず、「管理」権限セットをエージェントユーザーに割り当てたり、「実行」権限セットを人間の管理者に割り当てたりすべきではありません。両者は関係の異なる側面を制御するものです\n。\n\n---\n\n## 2. AIエージェントにどこまでデータアクセスを渡すべきか\n\n### 原則：Zero Trust + 最小権限（Least Privilege）\nSalesforce公式の指針では、\nAgentforceのすべてのエージェントは「実行ユーザー（running user）」と紐づいており、これがエージェントが何にアクセスし何を実行できるかを決定します\n。そして重要なのは、\nアクションは参照先のApex・フロー・プロンプトテンプレートから権限を継承し、デフォルトでは新規エージェントは権限を一切持たないため、明示的に許可されたものにしかアクセスできない\nという「secure by default」設計です。\n\n同様に、\nエージェントユーザーは最小限のアクセス権で作成され、セキュアな状態がデフォルトとなっています。ユースケースに対応するため、最小権限の原則に基づいてエージェントユーザーのアクセス権を拡張していきます。管理者権限を持つSalesforceユーザーのみがエージェントユーザーを閲覧・編集できます\n。\n\n### 具体的なベストプラクティス\n\n**① まず最小構成から始める**\n\n最小アクセスプロファイルから開始し、エージェントの機能に不可欠な権限のみを付与し、ロール階層と組織全体のデフォルト設定（OWD）を定期的に見直す（意図せずアクセス範囲が広がることがあるため）\nことが推奨されています。\n\n**② エージェントごとに役割・範囲を明確に限定する**\n\n各エージェントに特定のトピックとアクションのセットを割り当て、絶対に必要な場合を除き汎用的なエージェントは避けることで、意図しないアクセスや権限の逸脱を防ぎ、エージェントのスコープを明確かつ制御可能に保てます\n。\n\n**③ 属性ベースアクセス制御（ABAC）の活用**\nAgentforceは通常のRBACに加えて、\n属性ベースのポリシーもサポートしており、「EU圏の営業担当者のみが価格設定ワークフローを実行できる」「コンプライアンスフラグがtrueでない限り医療データにアクセスできない」といったきめ細かいアクセスルールを設定できます\n。\n\n**④ 重要操作には人間の認証を必須にする**\n\nフロー・API呼び出し・データベース変更などあらゆるアクションを実行する前にユーザーの身元と権限を検証し、エージェント自身のIDのみに依存しない\nことが推奨されます。実際",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "help.salesforce.com",
+    "salesforceben.com",
+    "salesforce.com",
+    "reco.ai"
+  ],
+  "resolved_urls": [
+    "https://help.salesforce.com/s/articleView?language=en_US&id=ai.agent_user.htm&type=5",
+    "https://www.salesforceben.com/agentforce-permissions-explained-agent-users-access-and-security/",
+    "https://www.salesforce.com/blog/best-practices-for-secure-agentforce-implementation-2/",
+    "https://www.reco.ai/hub/agentforce-security"
+  ],
+  "unresolved_redirects": 0
+}
