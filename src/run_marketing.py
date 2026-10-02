@@ -222,6 +222,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     else:
         recs, notes = run_claude(date, prompts, out_dir)
     lines += notes
+    # 社名が出たのに順位が空の観測(Haiku の失敗)を、その月のうちに埋め直す(2026-10-03)。行は消さず同じ行を上書き
+    refilled = marketing.refill_ranks(marketing.month_of(date))
+    if refilled:
+        lines.append(f"- 順位(mention_rank)を埋め直した観測: {len(refilled)}本"
+                     f"({'・'.join(r['model'] + ' ' + r['prompt_id'] for r in refilled)})")
+        recs = recs + refilled
     if recs and not a.no_sheets:
         import sheets_writer
         # 同じ日に成功した行は書き直さない(欠測や取り直しで置き換えない)

@@ -98,22 +98,72 @@ JSON の配列だけを出力してください。例: ["株式会社A", "B社"]
 {answer}"""
 
 
-def list_companies_with_haiku(question: str, answer: str) -> List[str]:
-    """回答に出てくる会社名の一覧(Haiku)。並び順は使わない(mention_rank が本文の位置で決める)。"""
-    import anthropic
-
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-    resp = client.messages.create(
-        model=EXTRACTOR_MODEL, max_tokens=1024,
-        messages=[{"role": "user", "content": _LIST_PROMPT.format(question=question, answer=answer)},
-                  {"role": "assistant", "content": "["}],
-    )
-    body = "[" + "".join(getattr(b, "text", "") for b in resp.content
-                         if getattr(b, "type", None) == "text")
-    names = json.loads(body[:body.rfind("]") + 1])
+def parse_company_list(text: str) -> List[str]:
+    """Haiku の返事から会社名の配列を取り出す。前後に余計な文字(```json など)があっても最初の [...] を読む。"""
+    start, end = text.find("["), text.rfind("]")
+    if start == -1 or end <= start:
+        raise ValueError("no JSON array in the company list")
+    names = json.loads(text[start:end + 1])
     if not isinstance(names, list):
         raise ValueError("company list is not a JSON array")
     return [str(n) for n in names if str(n).strip()]
+
+
+def list_companies_with_haiku(question: str, answer: str, attempts: int = 2) -> List[str]:
+    """回答に出てくる会社名の一覧(Haiku)。並び順は使わない(mention_rank が本文の位置で決める)。
+
+    返事の形が崩れたときは1回だけ取り直す(日次の抽出 extract.py と同じ。2026-10-03:PM-BS-05 で
+    配列として読めない返事が1件あったため)。
+    """
+    import anthropic
+
+    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    last: Optional[Exception] = None
+    for _ in range(attempts):
+        resp = client.messages.create(
+            model=EXTRACTOR_MODEL, max_tokens=1024,
+            messages=[{"role": "user", "content": _LIST_PROMPT.format(question=question, answer=answer)},
+                      {"role": "assistant", "content": "["}],
+        )
+        body = "[" + "".join(getattr(b, "text", "") for b in resp.content
+                             if getattr(b, "type", None) == "text")
+        try:
+            return parse_company_list(body)
+        except ValueError as exc:            # json.JSONDecodeError も ValueError
+            last = exc
+    raise last
+
+
+def refill_ranks(month: str, root: Path = DATA_RAW_MARKETING_DIR,
+                 lister: Optional[CompanyLister] = None) -> List[Dict[str, Any]]:
+    """その月の raw のうち、社名が出たのに順位が空の観測(Haiku が失敗した行)の順位を埋め直す。
+
+    観測そのもの(回答・日付・実行日時)は変えない。埋め直した raw を返す(シートは呼び出し側が upsert で同じ行を上書き)。
+    2026-10-03:10/1 の Claude 4本は Anthropic のクレジット切れ、10/2 の1本は返事の形の崩れで順位が空だった。
+    """
+    out = []
+    for folder in sorted(root.glob(f"{month}-*")):
+        for f in sorted(folder.glob("*.json")):
+            rec = json.loads(f.read_text(encoding="utf-8"))
+            if rec.get("error") or str(rec.get("mentioned")) != "1" or str(rec.get("mention_rank", "")) != "":
+                continue
+            try:
+                companies = (lister or list_companies_with_haiku)(rec.get("prompt") or rec.get("question", ""),
+                                                                  rec.get("answer_text") or rec.get("answer") or "")
+            except Exception as exc:  # noqa: BLE001 - 次の回にまた試す
+                rec["rank_error"] = str(exc)
+                f.write_text(json.dumps(rec, ensure_ascii=False, indent=2), encoding="utf-8")
+                continue
+            rank = mention_rank(rec.get("answer_text") or rec.get("answer") or "", companies)
+            if rank is None:
+                continue
+            if rec.get("rank_error"):
+                rec["rank_error_before_refill"] = rec.pop("rank_error")
+            rec.update(companies=companies, mention_rank=rank, is_first=int(rank == 1),
+                       rank_refilled_at=dt.datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S"))
+            f.write_text(json.dumps(rec, ensure_ascii=False, indent=2), encoding="utf-8")
+            out.append(rec)
+    return out
 
 
 def run_date_jst(record: Dict[str, Any]) -> str:

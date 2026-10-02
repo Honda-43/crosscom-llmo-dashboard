@@ -13,6 +13,7 @@ import csv
 import datetime as dt
 import hashlib
 import json
+import sys
 
 import pytest
 import yaml
@@ -498,3 +499,60 @@ def test_layer_totals_follow_the_month():
              "mentioned": "1", "cited_domain": "0", "error": ""}]
     got = marketing.layer_rates(rows, lambda m: marketing.layer_sizes(settings.marketing_prompts_for(m)))
     assert [(c["month"], c["total"], c["partial"]) for c in got] == [("2026-10", 18, True), ("2026-11", 21, True)]
+
+
+# --- 9. 順位の取り直し(2026-10-03) -------------------------------------------------------
+# 10/1 の Claude 4本は Anthropic のクレジット切れで、10/2 の1本は返事の形の崩れで、社名が出たのに順位が空だった。
+def test_the_company_list_is_read_even_with_extra_text():
+    assert marketing.parse_company_list('["a", "b"]') == ["a", "b"]
+    assert marketing.parse_company_list('```json\n["x"]\n```') == ["x"]
+    with pytest.raises(ValueError):
+        marketing.parse_company_list("[\n")
+
+
+def test_a_broken_reply_is_retried_once(monkeypatch):
+    replies = iter(["\n", '"合同会社クロスコム"]'])
+
+    class Msg:
+        def __init__(self, text):
+            self.content = [type("B", (), {"type": "text", "text": text})()]
+
+    class Client:
+        def __init__(self, **kw):
+            self.messages = self
+
+        def create(self, **kw):
+            return Msg(next(replies))
+
+    import types
+    monkeypatch.setitem(sys.modules, "anthropic", types.SimpleNamespace(Anthropic=Client))
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    assert marketing.list_companies_with_haiku("q", "a") == ["合同会社クロスコム"]
+
+
+def test_missing_ranks_are_refilled_without_touching_the_observation(tmp_path):
+    folder = tmp_path / "2026-10-01"
+    folder.mkdir()
+    rec = {"date": "2026-10-01", "model": "claude", "prompt_id": "PM-BC-01", "prompt": "q",
+           "answer_text": "株式会社ウフルと合同会社クロスコム", "run_date": "2026-10-01 10:05:00",
+           "mentioned": 1, "mention_rank": "", "is_first": "", "error": None, "rank_error": "credit"}
+    (folder / "PM-BC-01_claude.json").write_text(json.dumps(rec, ensure_ascii=False), encoding="utf-8")
+    ok = dict(rec, prompt_id="PM-BC-02", mention_rank=1, is_first=1, rank_error=None)
+    (folder / "PM-BC-02_claude.json").write_text(json.dumps(ok, ensure_ascii=False), encoding="utf-8")
+    got = marketing.refill_ranks("2026-10", tmp_path, lister=lambda q, a: ["株式会社ウフル", "合同会社クロスコム"])
+    assert [(r["prompt_id"], r["mention_rank"], r["is_first"]) for r in got] == [("PM-BC-01", 2, 0)]
+    saved = json.loads((folder / "PM-BC-01_claude.json").read_text(encoding="utf-8"))
+    assert saved["run_date"] == "2026-10-01 10:05:00" and saved["answer_text"] == rec["answer_text"]
+    assert saved["rank_error_before_refill"] == "credit" and "rank_error" not in saved
+    assert marketing.refill_ranks("2026-10", tmp_path, lister=lambda q, a: []) == [], "埋まった行は二度呼ばない"
+
+
+def test_the_upsert_reads_every_key_column_so_rewrites_land_on_the_same_row():
+    """2026-10-03:A〜C だけ読んでいて prompt_id(D列)が見えず、埋め直しが追記になった。キーの列まで読む。"""
+    assert sheets_writer.marketing_key_range_end() == "D"
+    head = sheets_writer.HEADERS_MARKETING
+    existing = [head[:4], ["2026-10-01", "2026-10-01 10:00:00", "claude", "PM-BC-01"]]
+    row = sheets_writer._marketing_row({"date": "2026-10-01", "model": "claude", "prompt_id": "PM-BC-01",
+                                        "mention_rank": 1})
+    writes = sheets_writer._plan_upsert(existing, head, sheets_writer.KEYS_MARKETING, [row])
+    assert [w["row"] for w in writes] == [2], "同じ観測は同じ行を上書きする"

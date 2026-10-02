@@ -965,6 +965,16 @@ HEADERS_MARKETING = [
 KEYS_MARKETING = ["date", "model", "prompt_id"]
 
 
+def marketing_key_range_end() -> str:
+    """llm_marketing の既存行を読むときの最後の列(キーの列のうち一番右)。"""
+    last = max(HEADERS_MARKETING.index(k) for k in KEYS_MARKETING) + 1
+    letters = ""
+    while last:
+        last, r = divmod(last - 1, 26)
+        letters = chr(65 + r) + letters
+    return letters
+
+
 def _marketing_row(rec: Dict[str, Any]) -> Dict[str, Any]:
     answer = rec.get("answer_text") or ""
     if len(answer) > CELL_CHAR_LIMIT:
@@ -988,7 +998,9 @@ def write_marketing(records: List[Dict[str, Any]]) -> int:
         return 0
     ss = _open_spreadsheet()
     ws = _ensure_worksheet(ss, TAB_MARKETING, HEADERS_MARKETING)
-    existing = ws.get(f"A1:C{ws.row_count}") or [HEADERS_MARKETING[:3]]
+    # キーの列(date・model・prompt_id)は A〜D にある(B は run_date)。A〜C だけ読むと prompt_id が見えず、
+    # 同じ観測が上書きされずに追記される(2026-10-03 の順位の埋め直しで5行が重複した)。キーの最後の列まで読む
+    existing = ws.get(f"A1:{marketing_key_range_end()}{ws.row_count}") or [HEADERS_MARKETING[:4]]
     writes = _plan_upsert(list(existing), HEADERS_MARKETING, KEYS_MARKETING,
                           [_marketing_row(r) for r in records])
     needed = max(w["row"] for w in writes)
