@@ -19,18 +19,38 @@ REPORT = """## 3. 発火パターンと推奨アクション
 
 
 @pytest.fixture
+def real_freeze():
+    return experiment_freeze.load("2026-10-05")
+
+
+@pytest.fixture
 def freeze():
-    return experiment_freeze.load("2026-09-28")
+    """仕組みのテスト用の凍結（固定）。2026-10-02 に実ファイルの凍結は統計46本だけになり、
+    pricing・ピラーが外れて「対応表で凍結ページに当たるプロンプト」が無くなった。
+    差し替え・ピラーの扱いの仕組みは、凍結ページを固定して確かめる（49本の頃と同じ形）。"""
+    return experiment_freeze.Freeze(
+        experiment_start="2026-09-29", experiment_end="2026-12-31",
+        edit_ban=frozenset({"agentforce-pricing", "agentforce-rag", "agentforce-guide", "agentic-crm"}),
+        link_ban=frozenset({"agentforce-pricing", "agentforce-rag"}),
+        prompt_pages=experiment_freeze.load_prompt_pages())
 
 
-def test_the_lists_come_from_the_seo_agent_files(freeze):
-    """一覧は書き写さず、seo-agent と同じ targets.csv・link_ban.csv を読む。"""
-    assert "agentforce-pricing" in freeze.edit_ban
-    assert "agentforce-pricing" in freeze.link_ban
-    # ピラー2本は編集禁止だが張り先にはしてよい
-    assert freeze.edit_ban - freeze.link_ban == {"agentforce-guide", "agentic-crm"}
+def test_the_lists_come_from_the_seo_agent_files(real_freeze):
+    """一覧は書き写さず、seo-agent と同じ targets.csv・link_ban.csv を読む。
+    2026-10-02：統計46本だけに縮小（pricing・ピラー2本を外した・本田さん決定）。"""
+    assert len(real_freeze.edit_ban) == 46
+    assert real_freeze.edit_ban == real_freeze.link_ban
+    assert not ({"agentforce-pricing", "agentforce-guide", "agentic-crm"} & real_freeze.edit_ban)
+    assert "agentforce-rag" in real_freeze.edit_ban
     # 2026-09-22 に実験から外した記事は凍結しない
-    assert "agentforce-coworker" not in freeze.edit_ban
+    assert "agentforce-coworker" not in real_freeze.edit_ban
+
+
+def test_since_10_02_no_daily_prompt_maps_to_a_frozen_page(real_freeze):
+    """A-3（pricing）・B-1（agentic-crm）は凍結から外れた。ページ更新の提案は差し替えない。"""
+    assert {pid for pid in real_freeze.prompt_pages if real_freeze.frozen_pages(pid)} == set()
+    line = "推奨アクション: 担当者が来週末までに /agentforce-pricing/ に費用相場の表を追記する。"
+    assert experiment_freeze.suppress_frozen(line, real_freeze)[0] == line
 
 
 @pytest.mark.parametrize("date,active", [
@@ -76,7 +96,7 @@ def test_the_note_is_not_registered_as_a_new_proposal(freeze):
 
 def test_the_prompt_carries_the_constraint_only_in_the_period(freeze):
     stats = {"date": "2026-09-28"}
-    assert "凍結対象(49本)" in generate_insight.build_user_prompt(stats, [], {}, freeze=freeze)
+    assert f"凍結対象({len(freeze.edit_ban)}本)" in generate_insight.build_user_prompt(stats, [], {}, freeze=freeze)
     assert "/agentforce-pricing/" in generate_insight.build_user_prompt(stats, [], {}, freeze=freeze)
     assert "凍結対象" not in generate_insight.build_user_prompt(stats, [], {}, freeze=None)
 

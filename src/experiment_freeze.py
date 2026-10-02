@@ -39,8 +39,8 @@ _ACTION_LINE = re.compile(
 class Freeze:
     experiment_start: str
     experiment_end: str
-    edit_ban: FrozenSet[str]    # 本文を変えない(49本)
-    link_ban: FrozenSet[str]    # 新しいリンクの張り先にしない(47本)
+    edit_ban: FrozenSet[str]    # 本文を変えない(2026-10-02 から統計46本)
+    link_ban: FrozenSet[str]    # 新しいリンクを張らない・外さない(2026-10-02 から統計46本)
     # プロンプトID -> 対応する自社ページ(先頭が主)。config/prompt_page_map.yaml
     prompt_pages: Dict[str, Tuple[str, ...]] = None  # type: ignore[assignment]
 
@@ -137,7 +137,7 @@ def _mentions(line: str, slug: str) -> bool:
 def violations(line: str, freeze: Freeze) -> List[str]:
     """推奨アクション1行が触れている凍結対象。
 
-    張り先禁止(47本)は、更新でもリンクでも名前が出た時点で違反。
+    張り先禁止(46本)は、更新でもリンクでも名前が出た時点で違反。
     ピラーは編集の動詞があるときだけ違反(張り先にするのは可)。
     """
     found = []

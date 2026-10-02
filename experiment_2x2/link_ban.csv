@@ -1,15 +1,9 @@
-# 新規リンク禁止47本・期限 2026-09-15〜2026-12-31・解放 2027-01-01 00:00 JST・変更は効果測定チャットの通知のみ
-# このファイルは【新規リンク禁止リスト（47本）】です（2026-09-25・管CI で確定）。
-#   内訳：統計の対象46本（config/prompts_experiment.csv）＋ agentforce-pricing
-#   意味：**この47本を新しいリンクの張り先にしない**（既存のリンクは外さない）。
-#         本文・タイトル・meta・スキーマを触らない「編集禁止」は targets.csv の**49本**（ピラー2本を含む）。
-#   ピラー2本（agentforce-guide／agentic-crm）：編集禁止だが**被リンクは可**。
-#         ただしピラーの本文を触って46本へ張るのは「編集」にあたるため禁止。
-#   agentforce-coworker（7003）：編集もリンクも可（2026-09-22 実験除外）。
-#         ただし publish_followup の自動追記はしない（訂正前後の引用を追跡中・2026-09-25 記事制作判定）。
-#   期間：2026-09-15 〜 2026-12-31（両端を含む）／解放：2027-01-01 00:00 JST
-#   期限の変更は効果測定チャットからの明示の通知のみ（管CH）。
-#   このファイルは targets.csv から**ピラー2本を除いて**作る。整合は publish_followup の検査で毎回確かめる。
+# 新規リンク禁止46本（統計46本のみ）・期限 2026-09-15〜2026-12-31・解放 2027-01-01 00:00 JST・2026-10-02 に47本から縮小（本田さん決定）・変更は効果測定チャットの通知のみ
+# このファイルは【新規リンク禁止リスト（46本）】です。
+#   意味：**この46本へのリンクを新しく張らない・既存のリンクを外さない**（どの記事からでも。ピラーを含む）。
+#   2026-10-02：agentforce-pricing を外した（張り先にしてよい）。編集禁止（targets.csv）も同じ46本になった。
+#   agentforce-coworker（7003）：編集もリンクも可（2026-09-22 実験除外）。publish_followup の自動追記だけは止める。
+#   このファイルは targets.csv と同じ46本。整合は publish_followup の検査で毎回確かめる。
 id,url,group,published,query
 1,https://cross-com.jp/agentforce-proposal-review/,④両方,2026-09-07,Agentforceで提案書のレビュー待ちを減らすにはどうすればいいですか？
 2,https://cross-com.jp/agentforce-permission-set/,④両方,2026-09-06,Agentforceの権限セットでは何を設定して、AIエージェントにどこまでデータアクセスを渡していいですか？
@@ -38,7 +32,6 @@ id,url,group,published,query
 26,https://cross-com.jp/agentforce-security-risk-design/,②FAQのみ,2026-08-13,AIエージェントのセキュリティリスクにはどんなものがあり、どう対策すればいいですか？
 27,https://cross-com.jp/agentforce-chatgpt-copilot-comparison/,①対照,2026-08-12,AgentforceとChatGPT・Microsoft Copilotは何が違いますか？
 28,https://cross-com.jp/agentforce-certification/,③リードのみ,2026-08-11,Agentforceスペシャリスト資格の試験内容と勉強法を教えてください。
-29,https://cross-com.jp/agentforce-pricing/,①対照,2026-08-10,Agentforceの料金はいくらで、Flex Creditsと従量課金はどう違いますか？
 30,https://cross-com.jp/agentforce-in-slack/,④両方,2026-08-08,Agentforce in Slackでは何ができて、導入手順はどうなりますか？
 31,https://cross-com.jp/agentforce-testing-center/,③リードのみ,2026-08-06,Agentforceテストセンターとは何で、AIエージェントの品質保証はどう設計しますか？
 32,https://cross-com.jp/agentforce-features/,②FAQのみ,2026-08-06,Agentforceの機能一覧を教えてください。

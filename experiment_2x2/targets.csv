@@ -1,29 +1,14 @@
-# このファイルは【編集禁止リスト（49本）】です。実験中は本文を編集しません。
-#   内訳：統計の対象46本（config/prompts_experiment.csv・2026-09-22 に E37 coworker を除外）
-#        ＋ agentforce-pricing（観測対象から外れたが、編集すると48本を母集団とした
-#          比較の前提が崩れるため残置）
-#        ＋ ピラー2本（agentforce-guide／agentic-crm）
-#          クラスターへの処置がピラーの引用へ波及していないか（漏れ）を見るため、
-#          ピラーの本文も実験中は変えない
-# 実験の正本（統計）は config/prompts_experiment.csv です（46本 ⊂ 49本）。
-# 49本で止めれば46本も必ず止まります（安全側）。
-#
-# ★agentforce-coworker（post 7003）は 2026-09-22 に**実験から除外・編集可**とした
-#   （鮮度更新の裁定。publish_followup.py の EXPERIMENT_RELEASED）。この一覧には入れない。
-#
-# ★「この49本へリンクを張る」ことは編集にあたりません。
-#   リンクを張るのは**張り元の記事の編集**で、張り先の本文は変わらないためです。
-#   止めるのは、49本の**本文を書き換える**操作（逆リンクの追記を含む）です。
-#
-# 除外の期間：2026-09-15 〜 2026-12-31（両端を含む）／解放：2027-01-01 00:00 JST から編集・リンク可
-#   （publish_followup.py の EXPERIMENT_START／EXPERIMENT_END）
-#   期限の変更は効果測定チャットからの明示の通知のみ（管CH 2026-09-25）
-# 日付付きの例外：2026-09-29〜09-30 に限り、allocation_v1 の処置群（②③④）と
-#   agentforce-vibes への適用を apply_gate が通す（publish_followup.py の EXPERIMENT_WINDOWS）。
-#   10/1 以降は再び全面禁止。publish_followup の逆リンク追記はこの例外の対象外。
+# 編集禁止46本（統計46本のみ）・期限 2026-09-15〜2026-12-31・解放 2027-01-01 00:00 JST・2026-10-02 に49本から縮小（本田さん決定）・変更は効果測定チャットの通知のみ
+# このファイルは【編集禁止リスト（46本）】です。実験中は本文・タイトル・meta・スキーマを編集しません。
+#   内訳：統計の対象46本（config/prompts_experiment.csv と同じ46本）
+#   2026-10-02：agentforce-pricing とピラー2本（agentforce-guide／agentic-crm）を外した（本田さんの判断・実験は継続）。
+#     3本は編集・リンクとも可。ただしピラーの本文から46本へのリンクを足す・外すのは引き続き止める（link_ban.csv）
+#   agentforce-coworker（7003）は 2026-09-22 から実験除外・編集可（publish_followup.py の EXPERIMENT_RELEASED）
+# 「この46本へリンクを張る」のは張り元の編集にあたるため、link_ban.csv（新規リンク禁止）で別に止める。
+# 日付付きの例外（2026-09-29〜09-30 の処置反映）は 10/1 に終了した（publish_followup.py の EXPERIMENT_WINDOWS）。
+# group 列は割付前（v0）の値のまま。組は allocation_v1.csv を正とする。
 # 読む側（publish_followup.py の _read_slugs）は # で始まる行を読み飛ばします。
-# 記録：2026-09-18（便GS §2 で注記を新設／便GT §1 で50本へ拡張）
-#       2026-09-22（coworker を外して49本へ・9/29〜30 の例外を追記）
+# 記録：2026-09-18 新設（50本）／2026-09-22 coworker を外して49本／2026-10-02 統計46本のみへ縮小
 id,url,group,published,query
 1,https://cross-com.jp/agentforce-proposal-review/,④両方,2026-09-07,Agentforceで提案書のレビュー待ちを減らすにはどうすればいいですか？
 2,https://cross-com.jp/agentforce-permission-set/,④両方,2026-09-06,Agentforceの権限セットでは何を設定して、AIエージェントにどこまでデータアクセスを渡していいですか？
@@ -52,7 +37,6 @@ id,url,group,published,query
 26,https://cross-com.jp/agentforce-security-risk-design/,②FAQのみ,2026-08-13,AIエージェントのセキュリティリスクにはどんなものがあり、どう対策すればいいですか？
 27,https://cross-com.jp/agentforce-chatgpt-copilot-comparison/,①対照,2026-08-12,AgentforceとChatGPT・Microsoft Copilotは何が違いますか？
 28,https://cross-com.jp/agentforce-certification/,③リードのみ,2026-08-11,Agentforceスペシャリスト資格の試験内容と勉強法を教えてください。
-29,https://cross-com.jp/agentforce-pricing/,①対照,2026-08-10,Agentforceの料金はいくらで、Flex Creditsと従量課金はどう違いますか？
 30,https://cross-com.jp/agentforce-in-slack/,④両方,2026-08-08,Agentforce in Slackでは何ができて、導入手順はどうなりますか？
 31,https://cross-com.jp/agentforce-testing-center/,③リードのみ,2026-08-06,Agentforceテストセンターとは何で、AIエージェントの品質保証はどう設計しますか？
 32,https://cross-com.jp/agentforce-features/,②FAQのみ,2026-08-06,Agentforceの機能一覧を教えてください。
@@ -72,5 +56,3 @@ id,url,group,published,query
 46,https://cross-com.jp/hyper-personalization/,④両方,2026-08-18,ハイパーパーソナライゼーションとは何で、BtoBではどう実装しますか？
 47,https://cross-com.jp/buyer-enablement/,①対照,2026-08-16,バイヤーイネーブルメントとは何で、BtoBの購買体験をどう変えますか？
 48,https://cross-com.jp/agentic-crm-pipeline-kpi-monitoring/,④両方,2026-07-19,Agentic CRMでパイプライン管理のKPIを自律的にモニタリングする設計はどう作りますか？
-49,https://cross-com.jp/agentforce-guide/,ピラーA,,（ピラー：編集禁止のみ。統計の対象外）
-50,https://cross-com.jp/agentic-crm/,ピラーB,,（ピラー：編集禁止のみ。統計の対象外）
