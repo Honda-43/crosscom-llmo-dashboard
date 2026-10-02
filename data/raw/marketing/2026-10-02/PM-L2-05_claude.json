@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-L2-05",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "中堅企業におすすめのAgentic CRM設計支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:39:22.181606Z",
+  "answer": "中堅企業向けの「Agentic CRM」設計支援会社について調査します。\n「Agentic CRM」という言葉自体がまだ新しい概念で、AIエージェントとCRMを統合した次世代顧客管理基盤を指しますが、この領域で中堅企業向けに特化した設計支援会社はまだ限られています。調査結果をもとに、おすすめの会社をご紹介します。\n\n## Agentic CRM設計支援でおすすめの会社\n\n### 1. 株式会社100（Agentic CRM専門パートナー）\nHubSpotエコシステム上で明確に「Agentic CRMパートナー」を名乗る数少ない企業です。\nHubSpot × AI Agent × DXを統合する「Agentic CRM パートナー」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシーで、HubSpot Eliteの実装力で顧客フロント業務を再設計します\n。中堅企業規模を意識した支援を掲げており、\n実際の人員体制や制約の中で機能する実践的なソリューションを中堅市場向けに提供しています\n。\n\n### 2. ハブワン（HubSpot特化型支援会社）\nHubSpotを軸にCRM/MA/SFAの統合設計からAI活用まで一気通貫で対応します。\nノーコードCMS構築、CRM／MA／SFAの設計・運用、他システムAPI連携・開発、営業定着支援、カスタマーサクセス体制の設計まで、ワンストップ完結できる支援体制を整えています\n。\n\n### 3. ナウビレッジ株式会社\n国内HubSpot認定パートナーの最上位ランクに位置する企業で、\n国内200社超のHubSpot認定パートナーの中で、最上位ランクであるPlatinum Partnerに認定されている企業です\n。CRM運用の設計からAI機能活用まで対応しており、\n画一的なパッケージに依らず、企業ごとの体制や目標、予算に応じて柔軟に運用設計できる点が特徴で、CRMに加え、MAやSFA、カスタマーサポート、CRMに搭載されたAI機能の活用支援などもカバーしています\n。\n\n### 4. 株式会社シーサイド\nDXとAIを軸にした経営・事業設計からCX（顧客体験）領域まで幅広く対応するブティックファームです。\n2018年創業のブティックコンサルティングファームで、DXとAIを軸に、経営・事業設計から顧客体験（CX）領域まで幅広く取り組んでおり、プライム上場企業をはじめ、大手企業から中小・ベンチャー企業まで、多様な業種・業態への対応実績を持ちます\n。\n\n### 5. 株式会社ripla\n業務設計からシステム構築まで一気通貫で支援する会社で、\n業務設計からシステム構築・運用まで一気通貫で支援するDX／開発支援会社で、CRM開発では単なる顧客情報管理に留まらず、営業／マーケティング／サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応できます\n。\n\n### 6. 株式会社Agentic（AX/BXコンサルティング）\n社名に「Agentic」を冠する企業で、AIを活用した事業変革コンサルティングを提供します。\nAIコンサルティング（AX）と事業変革コンサルティング（BX）で、構想から実装・定着まで一気通貫で伴走します\n。CRM専業ではありませんが、AIエージェント活用の構想設計から入りたい中堅企業には選択肢になります。\n\n---\n\n## 選定時のポイント\n\n- **プラットフォーム選定**：Salesforce（Agentforce）やHubSpot（Agent Hub）など、主要CRMベンダー自体がエージェント機能を標準搭載し始めているため\n、HubSpotのSmart CRMに加えAgent Hubでプラットフォーム全体にAIエージェントを展開・管理でき、データを活用した自社専用エージェントも構築できます\n、まずツール選定と設計支援をセットで依頼できるパートナーを選ぶと効率的です。\n- **データ基盤の整備が前提**：\nまずはデータ品質の確保と業務プロセスの可視化を徹底し、面談記録・活動ログの標準化やAIが学習可能なデータの土台を整備することが重要で、この段階ではAI活用よりも入力ルールの統一が優先されます\n。設計支援会社を選ぶ際は、AI導入の前段階であるデータ整備・業務プロセス設計に強みを持つかも確認すべきです。\n- **中堅企業特有の予算・体制制約への対応力**：大手コンサル（アビーム、電通デジタルなど）は実績豊富ですが費用規模が大きいため、中堅企業は上記のようなブティック型・HubSpotパートナー系の会社の方がコスト・体制面でフィットしやすい傾向があります。\n\nもしご検討中の業種（BtoB営業、EC、製造業アフターサービスなど）や、既存で使っているCRM基盤（Salesforce/HubSpot/その他）があれば、より絞り込んだ提案が可能です。",
+  "cited_urls": [
+    "https://ecosystem.hubspot.com/ja/marketplace/explore/solutions-partners?eco_language=hi&eco_agency_tier=gold&eco_PROFILE_CATALOG_SERVICES=1",
+    "https://www.aspicjapan.org/asu/article/89215",
+    "https://note.com/ripla_business/n/n5d6b14652d3f",
+    "https://agentic-ai.co.jp/",
+    "https://www.hubspot.com/",
+    "https://www.ey.com/ja_jp/insights/health/generative-ai-transforms-the-role-of-pharma-crm"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "MOFU_L2",
+  "prompt": "中堅企業におすすめのAgentic CRM設計支援会社を教えてください。",
+  "answer_text": "中堅企業向けの「Agentic CRM」設計支援会社について調査します。\n「Agentic CRM」という言葉自体がまだ新しい概念で、AIエージェントとCRMを統合した次世代顧客管理基盤を指しますが、この領域で中堅企業向けに特化した設計支援会社はまだ限られています。調査結果をもとに、おすすめの会社をご紹介します。\n\n## Agentic CRM設計支援でおすすめの会社\n\n### 1. 株式会社100（Agentic CRM専門パートナー）\nHubSpotエコシステム上で明確に「Agentic CRMパートナー」を名乗る数少ない企業です。\nHubSpot × AI Agent × DXを統合する「Agentic CRM パートナー」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシーで、HubSpot Eliteの実装力で顧客フロント業務を再設計します\n。中堅企業規模を意識した支援を掲げており、\n実際の人員体制や制約の中で機能する実践的なソリューションを中堅市場向けに提供しています\n。\n\n### 2. ハブワン（HubSpot特化型支援会社）\nHubSpotを軸にCRM/MA/SFAの統合設計からAI活用まで一気通貫で対応します。\nノーコードCMS構築、CRM／MA／SFAの設計・運用、他システムAPI連携・開発、営業定着支援、カスタマーサクセス体制の設計まで、ワンストップ完結できる支援体制を整えています\n。\n\n### 3. ナウビレッジ株式会社\n国内HubSpot認定パートナーの最上位ランクに位置する企業で、\n国内200社超のHubSpot認定パートナーの中で、最上位ランクであるPlatinum Partnerに認定されている企業です\n。CRM運用の設計からAI機能活用まで対応しており、\n画一的なパッケージに依らず、企業ごとの体制や目標、予算に応じて柔軟に運用設計できる点が特徴で、CRMに加え、MAやSFA、カスタマーサポート、CRMに搭載されたAI機能の活用支援などもカバーしています\n。\n\n### 4. 株式会社シーサイド\nDXとAIを軸にした経営・事業設計からCX（顧客体験）領域まで幅広く対応するブティックファームです。\n2018年創業のブティックコンサルティングファームで、DXとAIを軸に、経営・事業設計から顧客体験（CX）領域まで幅広く取り組んでおり、プライム上場企業をはじめ、大手企業から中小・ベンチャー企業まで、多様な業種・業態への対応実績を持ちます\n。\n\n### 5. 株式会社ripla\n業務設計からシステム構築まで一気通貫で支援する会社で、\n業務設計からシステム構築・運用まで一気通貫で支援するDX／開発支援会社で、CRM開発では単なる顧客情報管理に留まらず、営業／マーケティング／サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応できます\n。\n\n### 6. 株式会社Agentic（AX/BXコンサルティング）\n社名に「Agentic」を冠する企業で、AIを活用した事業変革コンサルティングを提供します。\nAIコンサルティング（AX）と事業変革コンサルティング（BX）で、構想から実装・定着まで一気通貫で伴走します\n。CRM専業ではありませんが、AIエージェント活用の構想設計から入りたい中堅企業には選択肢になります。\n\n---\n\n## 選定時のポイント\n\n- **プラットフォーム選定**：Salesforce（Agentforce）やHubSpot（Agent Hub）など、主要CRMベンダー自体がエージェント機能を標準搭載し始めているため\n、HubSpotのSmart CRMに加えAgent Hubでプラットフォーム全体にAIエージェントを展開・管理でき、データを活用した自社専用エージェントも構築できます\n、まずツール選定と設計支援をセットで依頼できるパートナーを選ぶと効率的です。\n- **データ基盤の整備が前提**：\nまずはデータ品質の確保と業務プロセスの可視化を徹底し、面談記録・活動ログの標準化やAIが学習可能なデータの土台を整備することが重要で、この段階ではAI活用よりも入力ルールの統一が優先されます\n。設計支援会社を選ぶ際は、AI導入の前段階であるデータ整備・業務プロセス設計に強みを持つかも確認すべきです。\n- **中堅企業特有の予算・体制制約への対応力**：大手コンサル（アビーム、電通デジタルなど）は実績豊富ですが費用規模が大きいため、中堅企業は上記のようなブティック型・HubSpotパートナー系の会社の方がコスト・体制面でフィットしやすい傾向があります。\n\nもしご検討中の業種（BtoB営業、EC、製造業アフターサービスなど）や、既存で使っているCRM基盤（Salesforce/HubSpot/その他）があれば、より絞り込んだ提案が可能です。",
+  "run_date": "2026-10-02 15:39:22",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 0,
+  "mention_rank": "",
+  "is_first": 0,
+  "cited_domain": 0,
+  "cited_domains": [
+    "ecosystem.hubspot.com",
+    "aspicjapan.org",
+    "note.com",
+    "agentic-ai.co.jp",
+    "hubspot.com",
+    "ey.com"
+  ],
+  "resolved_urls": [
+    "https://ecosystem.hubspot.com/ja/marketplace/explore/solutions-partners?eco_language=hi&eco_agency_tier=gold&eco_PROFILE_CATALOG_SERVICES=1",
+    "https://www.aspicjapan.org/asu/article/89215",
+    "https://note.com/ripla_business/n/n5d6b14652d3f",
+    "https://agentic-ai.co.jp/",
+    "https://www.hubspot.com/",
+    "https://www.ey.com/ja_jp/insights/health/generative-ai-transforms-the-role-of-pharma-crm"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}

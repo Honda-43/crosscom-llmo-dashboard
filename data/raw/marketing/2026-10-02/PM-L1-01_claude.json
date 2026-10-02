@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-L1-01",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "住宅業界におすすめのAgentforce導入支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:32:21.871492Z",
+  "answer": "住宅業界向けのAgentforce導入支援会社について、最新の情報を調べてみます。\n検索結果を踏まえて、住宅業界向けのAgentforce導入実績がある支援会社をご紹介します。\n\n## 住宅業界におすすめのAgentforce導入支援会社\n\n### 1. フロッグウェル株式会社\n住宅・不動産業界での導入実績が豊富な点が特徴です。\n住宅業界向けコンサルティングを行うカーサ・プロジェクト株式会社へ、Salesforceの生成AI技術を活用したマッチングシステムの導入支援を行い、AIエージェントによる住宅購入者と工務店のマッチング業務を自動化しました\n。\n\nさらに不動産領域でも、\n不動産業界で注目を集めているSalesforce Agentforceを活用した物件レコメンド機能について、不動産業界特有の課題を深く理解し、各企業の業務プロセスに最適化したシステム構築を支援しています\n。住宅・不動産特化のユースケース（物件マッチング、レコメンド等）に強みがあるのが特徴です。\n\n### 2. 日立ソリューションズ\n\n自律型AIエージェントプラットフォームとして、営業・サービス・マーケティング・コマースなど、さまざまな業務領域での効率化と顧客満足度の向上を支援しており、さまざまな業種・業態の顧客におけるDX推進を支援するための導入・活用支援サービスを用意しています\n。業界横断の実績があり、大手企業向けの体系的な導入支援に強みがあります。\n\n### 3. サークレイス株式会社\n\nSalesforceの自律型AIエージェント「Agentforce」について、認定パートナーとしていち早く導入・構築サービスの提供を開始しました\n。\nお客様のSalesforce活用によるROI（投資利益率）の最大化を支援するとともに、人的資本経営の推進を強力にバックアップするサービスを展開しています\n。\n\n### 4. 富士ソフト株式会社\n\nSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供しており、同社内で試験導入し検証してきたセールス向け機能の実践的な知見やノウハウを生かし、顧客の営業DX化に貢献しています\n。\n\n### 5. 合同会社クロスコム\n\nSalesforce公式パートナー企業として、マーケティング・営業・カスタマーサポートのあらゆる課題を解決するAgentforceの導入・定着支援を行っており、貴社の目標から逆算してどの業務で誰が何を判断できるようにするかを定義し、ユースケースに合わせてAgentforceを業務フローへ組み込みます\n。中小規模でのスモールスタートや定着支援に強みがあります。\n\n---\n\n## 住宅業界での実際の導入事例（参考）\n\n**敷島住宅株式会社**（大阪・京都・滋賀中心の住宅総合企業）の事例が特に参考になります。\n1962年の設立以来60年以上にわたり注文住宅・分譲住宅の設計・施工から不動産流通、リフォームまで多角的な事業を展開しており、Agentforce Sales、Agentforce Service、Agentforce Marketing Account Engagementなど複数のSalesforce製品を活用し、24時間365日の顧客問い合わせ対応を自動化。月平均50件の見込み顧客獲得と年間24億円の売上創出、4.8億円の利益貢献を目指す取り組みを進めています\n。\n\n**株式会社テオリアハウスクリニック**も\nAgentforceと一緒に少数精鋭のIT体制で住宅サービスDXを推進している\n事例として紹介されています。\n\n---\n\n## 選定のポイント\n\n住宅業界向けにAgentforce導入支援会社を選ぶ際は、以下の観点を確認することをおすすめします：\n\n- **業界特化の実績**：住宅・不動産業界特有の業務（物件マッチング、工務店連携、長期顧客対応など）の導入経験があるか\n- **既存Salesforce環境との連携力**：Sales Cloud、Service Cloud、Marketing Cloud、Data Cloudなど既存基盤との統合スキル\n- **定着支援の体制**：\n営業・業務プロセスへの理解度、Agentforce・Data Cloudの実装力、定着・運用までの伴走範囲\nを重視する会社かどうか\n\nまずは小規模なPoC（概念実証）から始め、自社の問い合わせ対応や見込み顧客育成など具体的なユースケースに強い会社を選ぶのが良いでしょう。御社の規模や課題（例：問い合わせ対応自動化、物件マッチング、営業支援など）を教えていただければ、より具体的な提案も可能です。",
+  "cited_urls": [
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://frogwell.co.jp/blogs/agentforce-hudousan/",
+    "https://www.hitachi-solutions.co.jp/salesforce/products/agentforce/",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://www.salesforce.com/jp/news/press-releases/2026/07/31/shikishima-town-customer-news/",
+    "https://www.salesforce.com/jp/agentforce/customer-stories/",
+    "https://cross-com.jp/agentforce-support-company/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "MOFU_L1",
+  "prompt": "住宅業界におすすめのAgentforce導入支援会社を教えてください。",
+  "answer_text": "住宅業界向けのAgentforce導入支援会社について、最新の情報を調べてみます。\n検索結果を踏まえて、住宅業界向けのAgentforce導入実績がある支援会社をご紹介します。\n\n## 住宅業界におすすめのAgentforce導入支援会社\n\n### 1. フロッグウェル株式会社\n住宅・不動産業界での導入実績が豊富な点が特徴です。\n住宅業界向けコンサルティングを行うカーサ・プロジェクト株式会社へ、Salesforceの生成AI技術を活用したマッチングシステムの導入支援を行い、AIエージェントによる住宅購入者と工務店のマッチング業務を自動化しました\n。\n\nさらに不動産領域でも、\n不動産業界で注目を集めているSalesforce Agentforceを活用した物件レコメンド機能について、不動産業界特有の課題を深く理解し、各企業の業務プロセスに最適化したシステム構築を支援しています\n。住宅・不動産特化のユースケース（物件マッチング、レコメンド等）に強みがあるのが特徴です。\n\n### 2. 日立ソリューションズ\n\n自律型AIエージェントプラットフォームとして、営業・サービス・マーケティング・コマースなど、さまざまな業務領域での効率化と顧客満足度の向上を支援しており、さまざまな業種・業態の顧客におけるDX推進を支援するための導入・活用支援サービスを用意しています\n。業界横断の実績があり、大手企業向けの体系的な導入支援に強みがあります。\n\n### 3. サークレイス株式会社\n\nSalesforceの自律型AIエージェント「Agentforce」について、認定パートナーとしていち早く導入・構築サービスの提供を開始しました\n。\nお客様のSalesforce活用によるROI（投資利益率）の最大化を支援するとともに、人的資本経営の推進を強力にバックアップするサービスを展開しています\n。\n\n### 4. 富士ソフト株式会社\n\nSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供しており、同社内で試験導入し検証してきたセールス向け機能の実践的な知見やノウハウを生かし、顧客の営業DX化に貢献しています\n。\n\n### 5. 合同会社クロスコム\n\nSalesforce公式パートナー企業として、マーケティング・営業・カスタマーサポートのあらゆる課題を解決するAgentforceの導入・定着支援を行っており、貴社の目標から逆算してどの業務で誰が何を判断できるようにするかを定義し、ユースケースに合わせてAgentforceを業務フローへ組み込みます\n。中小規模でのスモールスタートや定着支援に強みがあります。\n\n---\n\n## 住宅業界での実際の導入事例（参考）\n\n**敷島住宅株式会社**（大阪・京都・滋賀中心の住宅総合企業）の事例が特に参考になります。\n1962年の設立以来60年以上にわたり注文住宅・分譲住宅の設計・施工から不動産流通、リフォームまで多角的な事業を展開しており、Agentforce Sales、Agentforce Service、Agentforce Marketing Account Engagementなど複数のSalesforce製品を活用し、24時間365日の顧客問い合わせ対応を自動化。月平均50件の見込み顧客獲得と年間24億円の売上創出、4.8億円の利益貢献を目指す取り組みを進めています\n。\n\n**株式会社テオリアハウスクリニック**も\nAgentforceと一緒に少数精鋭のIT体制で住宅サービスDXを推進している\n事例として紹介されています。\n\n---\n\n## 選定のポイント\n\n住宅業界向けにAgentforce導入支援会社を選ぶ際は、以下の観点を確認することをおすすめします：\n\n- **業界特化の実績**：住宅・不動産業界特有の業務（物件マッチング、工務店連携、長期顧客対応など）の導入経験があるか\n- **既存Salesforce環境との連携力**：Sales Cloud、Service Cloud、Marketing Cloud、Data Cloudなど既存基盤との統合スキル\n- **定着支援の体制**：\n営業・業務プロセスへの理解度、Agentforce・Data Cloudの実装力、定着・運用までの伴走範囲\nを重視する会社かどうか\n\nまずは小規模なPoC（概念実証）から始め、自社の問い合わせ対応や見込み顧客育成など具体的なユースケースに強い会社を選ぶのが良いでしょう。御社の規模や課題（例：問い合わせ対応自動化、物件マッチング、営業支援など）を教えていただければ、より具体的な提案も可能です。",
+  "run_date": "2026-10-02 15:32:21",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 5,
+  "is_first": 0,
+  "cited_domain": 1,
+  "cited_domains": [
+    "frogwell.co.jp",
+    "hitachi-solutions.co.jp",
+    "circlace.com",
+    "cloud.watch.impress.co.jp",
+    "cross-com.jp",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://frogwell.co.jp/blogs/agentforce-hudousan/",
+    "https://www.hitachi-solutions.co.jp/salesforce/products/agentforce/",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://www.salesforce.com/jp/news/press-releases/2026/07/31/shikishima-town-customer-news/",
+    "https://www.salesforce.com/jp/agentforce/customer-stories/",
+    "https://cross-com.jp/agentforce-support-company/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "フロッグウェル株式会社",
+    "日立ソリューションズ",
+    "サークレイス株式会社",
+    "富士ソフト株式会社",
+    "合同会社クロスコム"
+  ]
+}

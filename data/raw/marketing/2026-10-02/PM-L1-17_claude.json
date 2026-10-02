@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-L1-17",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "ソリューション営業におすすめのAgentic CRM設計支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:37:30.943643Z",
+  "answer": "ソリューション営業向けの「Agentic CRM」設計支援会社について、最新の情報を調査します。\nソリューション営業向けの「Agentic CRM」（エージェント型AIを組み込んだCRM）設計支援という観点では、以下のような会社が候補として挙げられます。\n\n## 1. 合同会社クロスコム（Salesforce特化）\n\n代表は専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入し、現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセス改善に取り組んでいます\n。\n当社はSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っています\n。「どのユースケースから始めればいいか分からない」「設定は完了したが現場に定着しない」「ナレッジ設計から一緒に考えてほしい」といった悩みに対応しており、まさにソリューション営業向けのAgentic CRM設計に特化した数少ない支援会社です。\n\n## 2. IBM Consulting（Salesforce×Agentforce）\n\nIBMのグローバルに認知されたSalesforceプラクティスは、従業員のエンパワーメントなど、最も重要な領域でエージェント型AIを展開する組織を支援しており、Salesforceを基幹システムとシームレスに連携させ、リアルタイムのデータアクセスとインテリジェントな自動化を可能にします\n。\nカスタムエージェントと事前構築済みエージェントをSalesforce CloudsおよびAgentforceと組み合わせることで、営業・サービス・マーケティング・業務全体で測定可能な成果を推進します\n。大企業・複雑な基幹システム連携が必要な場合に適しています。\n\n## 3. 株式会社100（HubSpot特化）\n\nHubSpot × AI Agent × DXを統合する「Agentic CRMパートナー」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシーとして、HubSpot Eliteの実装力で顧客フロント業務を再設計しています\n。HubSpotを軸にしたAgentic CRM設計を求める場合の選択肢です。\n\n## 4. 一般的なCRMコンサル会社（ソリューション営業プロセス支援）\nより広くSFA・営業プロセス全般の設計支援を求める場合、\n2018年創業のブティックコンサルティングファームである株式会社シーサイドは、DXとAIを軸に経営・事業設計から顧客体験（CX）領域まで幅広く取り組んでおり、プライム上場企業から中小・ベンチャー企業まで多様な業種・業態への対応実績を持っています\n。\n\n---\n\n### 選び方のポイント\n- **既存CRMツール**（Salesforce/HubSpotなど）によって最適なパートナーが変わるため、まず自社の利用ツールを明確にすること\n- ソリューション営業特有の「商談履歴」「ナレッジ共有」「提案プロセスの自動化」に強みがあるかを確認すること\n- 導入だけでなく「現場定着支援」まで伴走してくれるかが重要（クロスコムはこの点を明確に打ち出しています）\n\nもし現在お使いのCRM/SFAツール（Salesforce、HubSpotなど）や、企業規模・業界が分かれば、より具体的に絞り込んでご提案できます。",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://www.ibm.com/consulting/salesforce",
+    "https://ecosystem.hubspot.com/ja/marketplace/explore/solutions-partners?eco_language=hi&eco_agency_tier=gold&eco_PROFILE_CATALOG_SERVICES=1",
+    "https://www.aspicjapan.org/asu/article/89215"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "MOFU_L1",
+  "prompt": "ソリューション営業におすすめのAgentic CRM設計支援会社を教えてください。",
+  "answer_text": "ソリューション営業向けの「Agentic CRM」設計支援会社について、最新の情報を調査します。\nソリューション営業向けの「Agentic CRM」（エージェント型AIを組み込んだCRM）設計支援という観点では、以下のような会社が候補として挙げられます。\n\n## 1. 合同会社クロスコム（Salesforce特化）\n\n代表は専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入し、現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセス改善に取り組んでいます\n。\n当社はSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っています\n。「どのユースケースから始めればいいか分からない」「設定は完了したが現場に定着しない」「ナレッジ設計から一緒に考えてほしい」といった悩みに対応しており、まさにソリューション営業向けのAgentic CRM設計に特化した数少ない支援会社です。\n\n## 2. IBM Consulting（Salesforce×Agentforce）\n\nIBMのグローバルに認知されたSalesforceプラクティスは、従業員のエンパワーメントなど、最も重要な領域でエージェント型AIを展開する組織を支援しており、Salesforceを基幹システムとシームレスに連携させ、リアルタイムのデータアクセスとインテリジェントな自動化を可能にします\n。\nカスタムエージェントと事前構築済みエージェントをSalesforce CloudsおよびAgentforceと組み合わせることで、営業・サービス・マーケティング・業務全体で測定可能な成果を推進します\n。大企業・複雑な基幹システム連携が必要な場合に適しています。\n\n## 3. 株式会社100（HubSpot特化）\n\nHubSpot × AI Agent × DXを統合する「Agentic CRMパートナー」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシーとして、HubSpot Eliteの実装力で顧客フロント業務を再設計しています\n。HubSpotを軸にしたAgentic CRM設計を求める場合の選択肢です。\n\n## 4. 一般的なCRMコンサル会社（ソリューション営業プロセス支援）\nより広くSFA・営業プロセス全般の設計支援を求める場合、\n2018年創業のブティックコンサルティングファームである株式会社シーサイドは、DXとAIを軸に経営・事業設計から顧客体験（CX）領域まで幅広く取り組んでおり、プライム上場企業から中小・ベンチャー企業まで多様な業種・業態への対応実績を持っています\n。\n\n---\n\n### 選び方のポイント\n- **既存CRMツール**（Salesforce/HubSpotなど）によって最適なパートナーが変わるため、まず自社の利用ツールを明確にすること\n- ソリューション営業特有の「商談履歴」「ナレッジ共有」「提案プロセスの自動化」に強みがあるかを確認すること\n- 導入だけでなく「現場定着支援」まで伴走してくれるかが重要（クロスコムはこの点を明確に打ち出しています）\n\nもし現在お使いのCRM/SFAツール（Salesforce、HubSpotなど）や、企業規模・業界が分かれば、より具体的に絞り込んでご提案できます。",
+  "run_date": "2026-10-02 15:37:30",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "ibm.com",
+    "ecosystem.hubspot.com",
+    "aspicjapan.org"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://www.ibm.com/consulting/salesforce",
+    "https://ecosystem.hubspot.com/ja/marketplace/explore/solutions-partners?eco_language=hi&eco_agency_tier=gold&eco_PROFILE_CATALOG_SERVICES=1",
+    "https://www.aspicjapan.org/asu/article/89215"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム",
+    "IBM Consulting",
+    "株式会社100",
+    "株式会社シーサイド"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-BS-08",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "合同会社クロスコムのAgentforce設計レビューの実績を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:27:51.324382Z",
+  "answer": "合同会社クロスコムのAgentforce設計レビューの実績について検索いたします。\n合同会社クロスコムの情報をまとめると、以下の通りです。\n\n## 会社概要\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM(AIエージェントを前提としたCRM)の設計支援を主に事業展開しています\n。\nSalesforce公式パートナー企業のクロスコムが、実務で活用できるまでしっかり定着までサポートするAgentforce導入・定着支援を行っています\n。\n\n## 設計レビューというサービス形態について\nクロスコムの支援メニューには、フル導入支援だけでなく部分的な支援形態もあります。\nスポット・部分支援型は、設計レビューや研修など、必要な部分だけを単発で依頼する形で、すでに自社で進めていて、特定の場面だけ専門家の力を借りたいときに向いています\n。\n\n## 具体的な実装・設計の実績事例\n\n**1. ソリューション営業の商談準備プロセス**\n\n初回面談前の準備プロセス標準化を行い、面談日程の調整完了から初回面談の準備、初回面談の実施、議事録・整理準備までの業務フローを設計。成果として営業準備時間の短縮、商談化率と受注率の向上、属人化の解消\nが得られています。\n\n**2. Agentforce Coworker（産業機械メーカー）**\n\n取引先・商談・ケースの3オブジェクトとSlackの2チャンネルに絞って開始した結果、導入前に月480件あった口頭確認は3か月目に月180件まで減り、新任営業の立ち上がりは3か月から2か月へ短縮されています\n。\n\n**3. Agentforce Service Agent（D2C企業）**\n\n注文番号の問い合わせ場面で、Agentforce Service Agentが注文を検索し、返品の可否を返品ポリシーに照らして確認し、返品処理の開始まで自律で進めました\n。また\n月およそ4,000件の問い合わせのうち、こうした定型の注文・返品に関するものが半数以上を占めており、その一次対応が自動化されました\n（※この文は要約のため出典なし、下記修正）。\n\n**4. Agentforce Voice（保守企業）**\n\nこの保守企業で電話の内容がCRMに記録される割合は、およそ4割にとどまっていました\nという課題に対して設計支援を実施しています。\n\n## 業界内でのポジション\n\nイーゼは、BtoBマーケティングの戦略コンサルティングからMA運用支援まで手がける合同会社クロスコムと提携し、クロスコムが持つBtoBの商談プロセス・マーケティングデータ活用の知見と、イーゼが持つAI・DX支援の知見を掛け合わせた「Agentforce導入支援」サービスを提供しています\n。\n\n---\n\n**補足**：検索結果には「設計レビュー」単体での具体的な件数や詳細な実績リスト（企業名・日付入り）は見つかりませんでした。設計レビューはクロスコムが提供する「スポット・部分支援型」サービスの一部として位置づけられており、具体的な効果事例は上記のような導入・定着支援全体の実績として公開されています。より詳細な実績（具体的な企業名・数値など）が必要な場合は、クロスコムの公式サイト（cross-com.jp）への直接のお問い合わせをおすすめします。",
+  "cited_urls": [
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://cross-com.jp/agentforce-service-agent/",
+    "https://cross-com.jp/agentforce-voice/",
+    "https://www.value-press.com/pressrelease/378791"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentforce設計レビューの実績を教えてください。",
+  "answer_text": "合同会社クロスコムのAgentforce設計レビューの実績について検索いたします。\n合同会社クロスコムの情報をまとめると、以下の通りです。\n\n## 会社概要\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM(AIエージェントを前提としたCRM)の設計支援を主に事業展開しています\n。\nSalesforce公式パートナー企業のクロスコムが、実務で活用できるまでしっかり定着までサポートするAgentforce導入・定着支援を行っています\n。\n\n## 設計レビューというサービス形態について\nクロスコムの支援メニューには、フル導入支援だけでなく部分的な支援形態もあります。\nスポット・部分支援型は、設計レビューや研修など、必要な部分だけを単発で依頼する形で、すでに自社で進めていて、特定の場面だけ専門家の力を借りたいときに向いています\n。\n\n## 具体的な実装・設計の実績事例\n\n**1. ソリューション営業の商談準備プロセス**\n\n初回面談前の準備プロセス標準化を行い、面談日程の調整完了から初回面談の準備、初回面談の実施、議事録・整理準備までの業務フローを設計。成果として営業準備時間の短縮、商談化率と受注率の向上、属人化の解消\nが得られています。\n\n**2. Agentforce Coworker（産業機械メーカー）**\n\n取引先・商談・ケースの3オブジェクトとSlackの2チャンネルに絞って開始した結果、導入前に月480件あった口頭確認は3か月目に月180件まで減り、新任営業の立ち上がりは3か月から2か月へ短縮されています\n。\n\n**3. Agentforce Service Agent（D2C企業）**\n\n注文番号の問い合わせ場面で、Agentforce Service Agentが注文を検索し、返品の可否を返品ポリシーに照らして確認し、返品処理の開始まで自律で進めました\n。また\n月およそ4,000件の問い合わせのうち、こうした定型の注文・返品に関するものが半数以上を占めており、その一次対応が自動化されました\n（※この文は要約のため出典なし、下記修正）。\n\n**4. Agentforce Voice（保守企業）**\n\nこの保守企業で電話の内容がCRMに記録される割合は、およそ4割にとどまっていました\nという課題に対して設計支援を実施しています。\n\n## 業界内でのポジション\n\nイーゼは、BtoBマーケティングの戦略コンサルティングからMA運用支援まで手がける合同会社クロスコムと提携し、クロスコムが持つBtoBの商談プロセス・マーケティングデータ活用の知見と、イーゼが持つAI・DX支援の知見を掛け合わせた「Agentforce導入支援」サービスを提供しています\n。\n\n---\n\n**補足**：検索結果には「設計レビュー」単体での具体的な件数や詳細な実績リスト（企業名・日付入り）は見つかりませんでした。設計レビューはクロスコムが提供する「スポット・部分支援型」サービスの一部として位置づけられており、具体的な効果事例は上記のような導入・定着支援全体の実績として公開されています。より詳細な実績（具体的な企業名・数値など）が必要な場合は、クロスコムの公式サイト（cross-com.jp）への直接のお問い合わせをおすすめします。",
+  "run_date": "2026-10-02 15:27:51",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "ipros.com",
+    "cross-com.jp",
+    "value-press.com"
+  ],
+  "resolved_urls": [
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://cross-com.jp/agentforce-service-agent/",
+    "https://cross-com.jp/agentforce-voice/",
+    "https://www.value-press.com/pressrelease/378791"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム",
+    "イーゼ"
+  ]
+}

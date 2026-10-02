@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-L2-02",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "中小企業におすすめのAgentic CRM設計支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:38:27.271435Z",
+  "answer": "中小企業向けの「Agentic CRM」設計支援会社について、最新情報を調査します。\n中小企業向けの「Agentic CRM設計支援」を具体的なサービスとして掲げている会社を中心に、調査結果をまとめます。\n\n## Agentic CRM設計支援会社（中小企業向け）\n\n### 1. 合同会社クロスコム（Salesforce / Agentforce特化）\n\n「Agentic CRM設計支援」「Agentforce導入・定着支援」「BtoB Salesforce導入・構築支援」をサービスとして掲げています\n。\nSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っています\n。\n\n特徴：\n- \n「どのユースケースから始めればいいか分からない」「設定は完了したが現場に定着しない」「ナレッジ設計から一緒に考えてほしい」といった相談に対応\n\n- \n1ユースケース×3ヶ月のスモールスタートプランから対応\n\n- \n専任の開発者がいなくても導入できる標準エージェントを活用し、ゼロから設計せず始められる点を強みとしている\n\n\n中小企業向けに段階的な導入設計を得意としており、Salesforce/Agentforceベースで本格的にAgentic CRMを構築したい企業に向いています。\n\n### 2. 株式会社100（HubSpotベース）\n\nHubSpot × AI Agent × DXを統合する「Agentic CRMパートナー」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシー\nを標榜しています。\nHubSpotを共通基盤に、AIエージェントを組み込んだ顧客フロント業務（マーケティング・営業・CS）を組織全体で設計・実装する日本のAIネイティブ・エージェンシー\nです。\n\nHubSpotを既に利用している、またはこれから導入予定の中小企業に適した選択肢です。\n\n### 3. Aiii（アイイイ）- AIネイティブCRM製品＋導入支援\n\nAIネイティブのエンタープライズグレードCRMで、商談Pipeline・リアルタイムダッシュボード・カスタムレポート・AI商談分析などSalesforce相当の主要機能を備えています\n。\n中堅・中小企業向けに設計\nされており、\nオンプレミスAI Hubと自社算力での展開もサポートし、金融・製造・政府機関などデータ主権を重視する企業にも対応\nします。\n現地チームが直接サービスを提供し、要件の打ち合わせ、導入サポート、その後のアップデートもすべて日本語で対応\nしています。\n\nデータを自社環境内に留めたい、セキュリティ重視の中小企業向けの選択肢です。\n\n---\n\n## 選定のポイント\n\n既存の基盤に応じて選ぶのが効率的です：\n\n- **Salesforceを使っている／検討中** → クロスコム（Agentforce特化）\n- **HubSpotを使っている／検討中** → 株式会社100\n- **データ主権・オンプレミス要件が強い** → Aiii CRM Agent\n\nまた、Salesforce公式の\nKey Takeaways\nとして、\nIT専任者がいない中小企業でも、既存のCRMデータとノーコード設定を使えば約1ヶ月で成果を出せる\nとされており、\n導入失敗の主な要因はコスト偏重・ビジネス価値の不明確さ・現場不在の設計であり、小さな業務からPoCで効果を確かめる段階的アプローチが成否を分ける\n点も、外部の設計支援会社を選ぶ際の重要な判断基準になります。\n\nもし御社の既存CRM環境（Salesforce/HubSpot/その他）や業種・規模感を教えていただければ、より具体的な会社をご提案できます。",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-small-business/",
+    "https://ecosystem.hubspot.com/marketplace/solutions/japan",
+    "https://www.aiii.ai/ja/crm",
+    "https://www.salesforce.com/jp/blog/jp-small-business-ai-agent-facts/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "MOFU_L2",
+  "prompt": "中小企業におすすめのAgentic CRM設計支援会社を教えてください。",
+  "answer_text": "中小企業向けの「Agentic CRM」設計支援会社について、最新情報を調査します。\n中小企業向けの「Agentic CRM設計支援」を具体的なサービスとして掲げている会社を中心に、調査結果をまとめます。\n\n## Agentic CRM設計支援会社（中小企業向け）\n\n### 1. 合同会社クロスコム（Salesforce / Agentforce特化）\n\n「Agentic CRM設計支援」「Agentforce導入・定着支援」「BtoB Salesforce導入・構築支援」をサービスとして掲げています\n。\nSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っています\n。\n\n特徴：\n- \n「どのユースケースから始めればいいか分からない」「設定は完了したが現場に定着しない」「ナレッジ設計から一緒に考えてほしい」といった相談に対応\n\n- \n1ユースケース×3ヶ月のスモールスタートプランから対応\n\n- \n専任の開発者がいなくても導入できる標準エージェントを活用し、ゼロから設計せず始められる点を強みとしている\n\n\n中小企業向けに段階的な導入設計を得意としており、Salesforce/Agentforceベースで本格的にAgentic CRMを構築したい企業に向いています。\n\n### 2. 株式会社100（HubSpotベース）\n\nHubSpot × AI Agent × DXを統合する「Agentic CRMパートナー」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシー\nを標榜しています。\nHubSpotを共通基盤に、AIエージェントを組み込んだ顧客フロント業務（マーケティング・営業・CS）を組織全体で設計・実装する日本のAIネイティブ・エージェンシー\nです。\n\nHubSpotを既に利用している、またはこれから導入予定の中小企業に適した選択肢です。\n\n### 3. Aiii（アイイイ）- AIネイティブCRM製品＋導入支援\n\nAIネイティブのエンタープライズグレードCRMで、商談Pipeline・リアルタイムダッシュボード・カスタムレポート・AI商談分析などSalesforce相当の主要機能を備えています\n。\n中堅・中小企業向けに設計\nされており、\nオンプレミスAI Hubと自社算力での展開もサポートし、金融・製造・政府機関などデータ主権を重視する企業にも対応\nします。\n現地チームが直接サービスを提供し、要件の打ち合わせ、導入サポート、その後のアップデートもすべて日本語で対応\nしています。\n\nデータを自社環境内に留めたい、セキュリティ重視の中小企業向けの選択肢です。\n\n---\n\n## 選定のポイント\n\n既存の基盤に応じて選ぶのが効率的です：\n\n- **Salesforceを使っている／検討中** → クロスコム（Agentforce特化）\n- **HubSpotを使っている／検討中** → 株式会社100\n- **データ主権・オンプレミス要件が強い** → Aiii CRM Agent\n\nまた、Salesforce公式の\nKey Takeaways\nとして、\nIT専任者がいない中小企業でも、既存のCRMデータとノーコード設定を使えば約1ヶ月で成果を出せる\nとされており、\n導入失敗の主な要因はコスト偏重・ビジネス価値の不明確さ・現場不在の設計であり、小さな業務からPoCで効果を確かめる段階的アプローチが成否を分ける\n点も、外部の設計支援会社を選ぶ際の重要な判断基準になります。\n\nもし御社の既存CRM環境（Salesforce/HubSpot/その他）や業種・規模感を教えていただければ、より具体的な会社をご提案できます。",
+  "run_date": "2026-10-02 15:38:27",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "ecosystem.hubspot.com",
+    "aiii.ai",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/agentforce-small-business/",
+    "https://ecosystem.hubspot.com/marketplace/solutions/japan",
+    "https://www.aiii.ai/ja/crm",
+    "https://www.salesforce.com/jp/blog/jp-small-business-ai-agent-facts/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム",
+    "株式会社100",
+    "Aiii"
+  ]
+}

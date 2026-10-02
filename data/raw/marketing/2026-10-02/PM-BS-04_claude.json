@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-BS-04",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "合同会社クロスコムのAgentforce活用定着支援の評判を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:26:37.845374Z",
+  "answer": "合同会社クロスコムのAgentforce活用定着支援サービスについて調べてみます。\n調べた結果、「合同会社クロスコム」のAgentforce活用定着支援サービスについて、第三者によるレビューサイト（ITreview、BOXIL、PRONIアイミツなど）での具体的な評判・口コミは見つかりませんでした。これらのレビューサイトに掲載されているのは、Salesforce社のAgentforce製品自体に対する一般ユーザーの評価であり、クロスコムという特定の導入支援会社に対するものではありません。\n\n現時点で確認できるクロスコムに関する情報は以下の通りです。\n\n## クロスコムについてわかること\n\n**会社概要・サービス内容**\n\nクロスコムは、Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までを支援し、リアルタイムデータ、機械学習、AIエージェントを駆使して企業のパーソナライズされた顧客体験の提供を推進しています。Salesforceの公式コンサルティングパートナーとして、顧客の個別課題に応じた最適なソリューションを提供しています\n。\n\n**サービスの特徴**\n\nSalesforce公式パートナー企業のクロスコムが、マーケティング・営業・カスタマーサポートのあらゆる課題を解決するAgentforceの導入・定着支援を行っています\n。公開後も\nカスタマーサクセスチームが、利用状況と出力品質を継続モニタリングしながら、目標達成に向けて活用が定着するまで伴走します\n。\n\n**強み・アプローチ**\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM（AIエージェントを前提としたCRM）の設計支援を主に事業展開しています。当社の強みは、ツールを入れる前の業務設計から支援していることです\n。\n\n**代表者について**\n代表の本田正憲氏は\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入。現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供している\n人物です。\n\n**契約形態**\n\n1ユースケース×3ヶ月のスモールスタートプランから対応しており\n、無料相談を受け付けています。\n\n## 注意点\n\n- 第三者の口コミサイト（Google口コミ、ITreview、BOXILなど）上でクロスコム単体への評価・レビューは検索時点で見当たりませんでした。\n- 現在見つかる情報の大部分は自社サイト（cross-com.jp）や企業データベース（compalyze、KnockList、ipros）からのもので、客観的な第三者評価とは言えません。\n- より具体的な評判を知りたい場合は、Google ビジネスプロフィールの口コミ、実際の導入企業へのヒアリング、商談時に紹介実績や顧客の声を直接依頼することをおすすめします。\n\nもしさらに詳しい情報（特定の導入事例や料金体系など）が必要であれば、お知らせください。",
+  "cited_urls": [
+    "https://compalyze.co.jp/company/8011003016891",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/author/cross-com/",
+    "https://cross-com.jp/agentforce-support-company/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentforce活用定着支援の評判を教えてください。",
+  "answer_text": "合同会社クロスコムのAgentforce活用定着支援サービスについて調べてみます。\n調べた結果、「合同会社クロスコム」のAgentforce活用定着支援サービスについて、第三者によるレビューサイト（ITreview、BOXIL、PRONIアイミツなど）での具体的な評判・口コミは見つかりませんでした。これらのレビューサイトに掲載されているのは、Salesforce社のAgentforce製品自体に対する一般ユーザーの評価であり、クロスコムという特定の導入支援会社に対するものではありません。\n\n現時点で確認できるクロスコムに関する情報は以下の通りです。\n\n## クロスコムについてわかること\n\n**会社概要・サービス内容**\n\nクロスコムは、Salesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までを支援し、リアルタイムデータ、機械学習、AIエージェントを駆使して企業のパーソナライズされた顧客体験の提供を推進しています。Salesforceの公式コンサルティングパートナーとして、顧客の個別課題に応じた最適なソリューションを提供しています\n。\n\n**サービスの特徴**\n\nSalesforce公式パートナー企業のクロスコムが、マーケティング・営業・カスタマーサポートのあらゆる課題を解決するAgentforceの導入・定着支援を行っています\n。公開後も\nカスタマーサクセスチームが、利用状況と出力品質を継続モニタリングしながら、目標達成に向けて活用が定着するまで伴走します\n。\n\n**強み・アプローチ**\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM（AIエージェントを前提としたCRM）の設計支援を主に事業展開しています。当社の強みは、ツールを入れる前の業務設計から支援していることです\n。\n\n**代表者について**\n代表の本田正憲氏は\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入。現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供している\n人物です。\n\n**契約形態**\n\n1ユースケース×3ヶ月のスモールスタートプランから対応しており\n、無料相談を受け付けています。\n\n## 注意点\n\n- 第三者の口コミサイト（Google口コミ、ITreview、BOXILなど）上でクロスコム単体への評価・レビューは検索時点で見当たりませんでした。\n- 現在見つかる情報の大部分は自社サイト（cross-com.jp）や企業データベース（compalyze、KnockList、ipros）からのもので、客観的な第三者評価とは言えません。\n- より具体的な評判を知りたい場合は、Google ビジネスプロフィールの口コミ、実際の導入企業へのヒアリング、商談時に紹介実績や顧客の声を直接依頼することをおすすめします。\n\nもしさらに詳しい情報（特定の導入事例や料金体系など）が必要であれば、お知らせください。",
+  "run_date": "2026-10-02 15:26:37",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "compalyze.co.jp",
+    "cross-com.jp",
+    "ipros.com"
+  ],
+  "resolved_urls": [
+    "https://compalyze.co.jp/company/8011003016891",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/author/cross-com/",
+    "https://cross-com.jp/agentforce-support-company/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム"
+  ]
+}

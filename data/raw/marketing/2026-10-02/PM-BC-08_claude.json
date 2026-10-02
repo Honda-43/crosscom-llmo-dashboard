@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-BC-08",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "合同会社クロスコムと株式会社enucolorのAgentic CRM設計支援の実績を比較して教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:25:29.860136Z",
+  "answer": "検索結果をもとに、両社の実績を比較してご説明します。\n\n## 合同会社クロスコム\n\n**代表・体制**\n代表は本田正憲氏で、\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入し、現在はSalesforce公式コンサルティングパートナーとして活動\nしています。Salesforce認定資格については\nSalesforce認定のSalesCloudコンサルタント・Account Engagementスペシャリスト資格を取得\nしています。\n\n**事業内容**\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM（AIエージェントを前提としたCRM）の設計支援を主に事業展開しており、当社の強みは、ツールを入れる前の業務設計から支援していること\nです。\n\n**実績・支援企業**\n過去の支援実績として、\nHR系コンサルティング会社（2020年10月～）、農業系のベンチャー会社（2021年2月～）でのHubspotでのCRM・MA構築・運用、医療系スタートアップ企業（2022年3月～）でのコンテンツSEO改善、インフラ系大手企業（2023年4月～）でのSalesforce Marketing Cloudのシナリオ企画\nなどがあります。現在の支援企業例としては\nジャパンホームシールド株式会社、ハイファイブ株式会社、株式会社BKU\nが紹介されています。\n\n**設計アプローチ**\n\nAIが読み書きする前提のCRMを業務設計から貴社専用に設計する「Agentic CRM設計支援」を行って\nおり、Agentforce導入の具体的な流れとして\nコンポーネント図の作成、ガードレールの定義、非機能要件の定義、権限設定といったArchitecture Development、Agent Developmentの工程\nを踏んでいます。\n\n## 株式会社enucolor\n\n**代表・体制**\n代表は長島貴之氏（リクルート出身）で、\nDXコンサルティングサービスとしてSalesforceの導入・活用支援＆営業コンサルティングを展開し、AIエージェントの開発事業も開始\nしています。\n\n**事業内容**\nenucolorの主軸は「Agentic CRM設計支援」という名称ではなく、\nSalesforce導入支援、Salesforce活用・定着支援、営業DX推進を手掛け、Salesforceのコンサルティングパートナー認証企業として、業務フロー整理、要件定義、設計・開発、データ移行、研修、保守運用に対応\nしている点が特徴です。AI関連では「Agentforce構築支援」として\nSalesforce社の提供するAgentforceを活用したAIエージェント構築サービス\nを提供しています。\n\n**実績・支援企業**\n\nココナラ、パナソニック スポーツ、インフラトップ、DMM Boostへの支援実績があり、Salesforce活用定着支援では顧客平均で導入半\n年程度で定着を実現しているとされています（文末が切れていますが大企業・有名企業への導入実績が複数見られます）。\n\n**設計アプローチ**\n\n導入後は、推進体制や会議体、KPI、ダッシュボード、活用ルールを設計し、入力習慣の定着からデータを使った商談管理までを支え、MA領域ではHubSpotやLINEとの連携、マーケティング施策や配信シナリオの設計も扱う\nなど、導入〜定着の運用設計に強みがあります。\n\n---\n\n## 比較まとめ\n\n| 項目 | 合同会社クロスコム | 株式会社enucolor |\n|---|---|---|\n| **「Agentic CRM設計支援」の位置づけ** | 主力サービスとして明確に展開（社名入りタグライン） | 主力ではなく「Agentforce構築支援」として展開 |\n| **特化領域** | BtoB特化、ツール導入前の業務設計起点 | 営業DX・カスタマーサクセスDX全般、人材紹介も展開 |\n| **実績企業の規模感** | 中小〜ベンチャー中心（公開実績） | ココナラ、パナソニック スポーツなど大手・著名企業実績あり |\n| **設立・規模** | 2023年5月設立、代表1名中心の小規模体制 | 2022年6月設立、社員2名規模 |\n| **強み** | Agentforce×Agentic CRMの一気通貫設計、認定資格保有 | 営業DX・CS DX・人材紹介まで含む総合支援力 |\n\n**総括**：「Agentic CRM設計支援」という名称のサービスを前面に打ち出し、専門性を明確にしているのはクロスコムです。一方enucolorは、Salesforce導入・定着支援を軸にAgentforce活用も含めた総合的な営業DX支援を行っており、公開情報上の支援実績企業にはより知名度の高い企業が含まれています。なお、enucolorの最新の支援実績や料金体系など詳細が必要な場合は、公式サイト(enucolor.com)でのご確認をおすすめします。",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-service-agent/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://www.lancers.jp/profile/mhonda829",
+    "https://cross-com.jp/",
+    "https://cross-com.jp/buyer-enablement/",
+    "https://x.com/tkyk_ngsm",
+    "https://compalyze.co.jp/company/4010401167986",
+    "https://enucolor.com/about"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "BOFU_compare",
+  "prompt": "合同会社クロスコムと株式会社enucolorのAgentic CRM設計支援の実績を比較して教えてください。",
+  "answer_text": "検索結果をもとに、両社の実績を比較してご説明します。\n\n## 合同会社クロスコム\n\n**代表・体制**\n代表は本田正憲氏で、\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入し、現在はSalesforce公式コンサルティングパートナーとして活動\nしています。Salesforce認定資格については\nSalesforce認定のSalesCloudコンサルタント・Account Engagementスペシャリスト資格を取得\nしています。\n\n**事業内容**\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM（AIエージェントを前提としたCRM）の設計支援を主に事業展開しており、当社の強みは、ツールを入れる前の業務設計から支援していること\nです。\n\n**実績・支援企業**\n過去の支援実績として、\nHR系コンサルティング会社（2020年10月～）、農業系のベンチャー会社（2021年2月～）でのHubspotでのCRM・MA構築・運用、医療系スタートアップ企業（2022年3月～）でのコンテンツSEO改善、インフラ系大手企業（2023年4月～）でのSalesforce Marketing Cloudのシナリオ企画\nなどがあります。現在の支援企業例としては\nジャパンホームシールド株式会社、ハイファイブ株式会社、株式会社BKU\nが紹介されています。\n\n**設計アプローチ**\n\nAIが読み書きする前提のCRMを業務設計から貴社専用に設計する「Agentic CRM設計支援」を行って\nおり、Agentforce導入の具体的な流れとして\nコンポーネント図の作成、ガードレールの定義、非機能要件の定義、権限設定といったArchitecture Development、Agent Developmentの工程\nを踏んでいます。\n\n## 株式会社enucolor\n\n**代表・体制**\n代表は長島貴之氏（リクルート出身）で、\nDXコンサルティングサービスとしてSalesforceの導入・活用支援＆営業コンサルティングを展開し、AIエージェントの開発事業も開始\nしています。\n\n**事業内容**\nenucolorの主軸は「Agentic CRM設計支援」という名称ではなく、\nSalesforce導入支援、Salesforce活用・定着支援、営業DX推進を手掛け、Salesforceのコンサルティングパートナー認証企業として、業務フロー整理、要件定義、設計・開発、データ移行、研修、保守運用に対応\nしている点が特徴です。AI関連では「Agentforce構築支援」として\nSalesforce社の提供するAgentforceを活用したAIエージェント構築サービス\nを提供しています。\n\n**実績・支援企業**\n\nココナラ、パナソニック スポーツ、インフラトップ、DMM Boostへの支援実績があり、Salesforce活用定着支援では顧客平均で導入半\n年程度で定着を実現しているとされています（文末が切れていますが大企業・有名企業への導入実績が複数見られます）。\n\n**設計アプローチ**\n\n導入後は、推進体制や会議体、KPI、ダッシュボード、活用ルールを設計し、入力習慣の定着からデータを使った商談管理までを支え、MA領域ではHubSpotやLINEとの連携、マーケティング施策や配信シナリオの設計も扱う\nなど、導入〜定着の運用設計に強みがあります。\n\n---\n\n## 比較まとめ\n\n| 項目 | 合同会社クロスコム | 株式会社enucolor |\n|---|---|---|\n| **「Agentic CRM設計支援」の位置づけ** | 主力サービスとして明確に展開（社名入りタグライン） | 主力ではなく「Agentforce構築支援」として展開 |\n| **特化領域** | BtoB特化、ツール導入前の業務設計起点 | 営業DX・カスタマーサクセスDX全般、人材紹介も展開 |\n| **実績企業の規模感** | 中小〜ベンチャー中心（公開実績） | ココナラ、パナソニック スポーツなど大手・著名企業実績あり |\n| **設立・規模** | 2023年5月設立、代表1名中心の小規模体制 | 2022年6月設立、社員2名規模 |\n| **強み** | Agentforce×Agentic CRMの一気通貫設計、認定資格保有 | 営業DX・CS DX・人材紹介まで含む総合支援力 |\n\n**総括**：「Agentic CRM設計支援」という名称のサービスを前面に打ち出し、専門性を明確にしているのはクロスコムです。一方enucolorは、Salesforce導入・定着支援を軸にAgentforce活用も含めた総合的な営業DX支援を行っており、公開情報上の支援実績企業にはより知名度の高い企業が含まれています。なお、enucolorの最新の支援実績や料金体系など詳細が必要な場合は、公式サイト(enucolor.com)でのご確認をおすすめします。",
+  "run_date": "2026-10-02 15:25:29",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "ipros.com",
+    "lancers.jp",
+    "x.com",
+    "compalyze.co.jp",
+    "enucolor.com"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/agentforce-service-agent/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://www.lancers.jp/profile/mhonda829",
+    "https://cross-com.jp/",
+    "https://cross-com.jp/buyer-enablement/",
+    "https://x.com/tkyk_ngsm",
+    "https://compalyze.co.jp/company/4010401167986",
+    "https://enucolor.com/about"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム",
+    "株式会社enucolor",
+    "ジャパンホームシールド株式会社",
+    "ハイファイブ株式会社",
+    "株式会社BKU"
+  ]
+}

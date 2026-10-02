@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-BC-07",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "合同会社クロスコムと株式会社enucolorのAgentic CRM設計支援の評判を比較して教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:25:09.007463Z",
+  "answer": "ご質問について、両社の評判を調べてみます。\n## 合同会社クロスコムとenucolorの比較\n\n両社とも第三者口コミサイト(転職会議、Googleレビューなど)に明確な評価件数は見当たらず、「評判」は主に企業概要・実績・SNS発信内容から判断する形になります。\n\n### 合同会社クロスコム\n\n**概要・体制**\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM（AIエージェントを前提としたCRM）の設計支援を主に事業展開しています。当社の強みは、ツールを入れる前の業務設計から支援していることです。\n 2023年設立で従業員数1名の小規模事業者です。\n\n**強み**\n\nSalesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までを支援し、リアルタイムデータ、機械学習、AIエージェントを駆使して企業のパーソナライズされた顧客体験の提供を推進しています。\n代表はSalesforce公式コンサルティングパートナーとして、\n顧客の個別課題に応じた最適なソリューションを提供し、ビジネスパートナーとの協業も積極的に行っています。\n\n\n\n同社の強みは、BtoB営業経験が長い代表によるマーケティングと営業双方の視点を取り入れた戦略設計、商談数を高める独自のメソッド、そして累計100社以上のプロモーション戦略支援で培った顧客導線設計力にあります。\n\n\n**実績・評判の手がかり**\nフリーランス案件プラットフォームLancersでの実績では\n満足 21 件 残念 0 件\nと、高い評価を得ています（ただしこれはマーケティング関連業務全般の評価で、Agentic CRM特化の評価件数ではありません）。\n\n主要取引先としては\n株式会社BKU 株式会社フルネス ジャパンホームシールド株式会社 ハイファイブ株式会社 株式会社キャッチアップ\nなどが挙げられています。\n\n**情報発信**\n代表自らnote・X・自社サイトでAgentic CRM/Agentforceに関する専門コンテンツを継続的に発信しており、第三者メディア(NSSスマートコンサルティング等)にも紹介実績があります。\n\n---\n\n### 株式会社enucolor\n\n**概要・体制**\n\n株式会社enucolorは、Salesforce導入支援、Salesforce活用・定着支援、営業DX推進、カスタマーサクセス企画支援、人材紹介を手掛ける。Salesforceのコンサルティングパートナー認証企業として、業務フロー整理、要件定義、設計・開発、データ移行、研修、保守運用に対応し、Sales Cloud、Service Cloud、Pardotなどの導入を支援する。\n 2022年設立、従業員数は2名程度とこちらも小規模です。\n\n**強み**\n\nDXツールの導入部分から営業企画推進部分までを網羅的に把握し推進ができるのが当社の強み\nとされており、\n導入前後の設計をまとめて相談しやすい点が特徴です。\n\n\n独自サービスとして\nSalesforce上で稼働する「Sales AI Booster」も展開し、AIロープレ、商談フィードバック、Google Meet・Zoom・Microsoft Teamsの会議データ連携、活動記録や項目マッピングの自動化、評価結果のレポート表示を実現する。Agentforceを用いたAIエージェント構築にも対応するほか、営業・カスタマーサクセス人材に特化した職業紹介を行う。\n\n\n**実績・評判の手がかり**\n第三者比較メディアでは\nSalesforce導入支援サービスを提供する企業を比較する記事で、紙やExcelから乗り換えて全体の業務効率を向上するなら「enucolor」、営業の課題に応じた設計・運用を依頼したいなら「enucolor」と紹介されており\n、同記事では\nSalesforceの新規導入からその後の活用支援まで、一気通貫でサポートします。特に、営業組織のDX推進において、現場の実態を正確に把握し、実効性の高いアプローチを提供\nしている点が評価されています。\n\n導入事例としては\n株式会社インフラトップのセールスフォース再構築支援事例\nなどが公開されています。社員口コミサイト(転職会議・カイシャの評判)には現時点で評価データは登録されていません。\n\n---\n\n### 比較まとめ\n\n| 項目 | クロスコム | enucolor |\n|---|---|---|\n| 設立 | 2023年5月 | 2022年6月 |\n| 規模 | 1名体制 | 2名程度 |\n| 得意領域 | BtoBマーケ×営業視点でのAgentic CRM/Agentforce設計、業務設計から支援 | Salesforce導入〜活用定着〜営業DX・CS企画まで一気通貫、独自AIツール「Sales AI Booster」展開 |\n| 評判の裏付け | Lancersでの高評価実績(満足21件/残念0件)、メディア掲載実績 | 第三者比較メディアで複数カテゴリで紹介、具体的な導入事例公開 |\n| 発信力 | 代表個人がnote/X/自社ブログで専門性の高い記事を頻繁に発信 | CEO自らXで発信、独自プロダ",
+  "cited_urls": [
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://compalyze.co.jp/company/8011003016891",
+    "https://www.lancers.jp/profile/mhonda829",
+    "https://compalyze.co.jp/company/4010401167986",
+    "https://enucolor.com/about",
+    "https://www.shopowner-support.net/attracting_customers/btob-business/enucolor/",
+    "https://www.shopowner-support.net/attracting_customers/btob-business/salesforce-implementation-consulting/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "BOFU_compare",
+  "prompt": "合同会社クロスコムと株式会社enucolorのAgentic CRM設計支援の評判を比較して教えてください。",
+  "answer_text": "ご質問について、両社の評判を調べてみます。\n## 合同会社クロスコムとenucolorの比較\n\n両社とも第三者口コミサイト(転職会議、Googleレビューなど)に明確な評価件数は見当たらず、「評判」は主に企業概要・実績・SNS発信内容から判断する形になります。\n\n### 合同会社クロスコム\n\n**概要・体制**\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM（AIエージェントを前提としたCRM）の設計支援を主に事業展開しています。当社の強みは、ツールを入れる前の業務設計から支援していることです。\n 2023年設立で従業員数1名の小規模事業者です。\n\n**強み**\n\nSalesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までを支援し、リアルタイムデータ、機械学習、AIエージェントを駆使して企業のパーソナライズされた顧客体験の提供を推進しています。\n代表はSalesforce公式コンサルティングパートナーとして、\n顧客の個別課題に応じた最適なソリューションを提供し、ビジネスパートナーとの協業も積極的に行っています。\n\n\n\n同社の強みは、BtoB営業経験が長い代表によるマーケティングと営業双方の視点を取り入れた戦略設計、商談数を高める独自のメソッド、そして累計100社以上のプロモーション戦略支援で培った顧客導線設計力にあります。\n\n\n**実績・評判の手がかり**\nフリーランス案件プラットフォームLancersでの実績では\n満足 21 件 残念 0 件\nと、高い評価を得ています（ただしこれはマーケティング関連業務全般の評価で、Agentic CRM特化の評価件数ではありません）。\n\n主要取引先としては\n株式会社BKU 株式会社フルネス ジャパンホームシールド株式会社 ハイファイブ株式会社 株式会社キャッチアップ\nなどが挙げられています。\n\n**情報発信**\n代表自らnote・X・自社サイトでAgentic CRM/Agentforceに関する専門コンテンツを継続的に発信しており、第三者メディア(NSSスマートコンサルティング等)にも紹介実績があります。\n\n---\n\n### 株式会社enucolor\n\n**概要・体制**\n\n株式会社enucolorは、Salesforce導入支援、Salesforce活用・定着支援、営業DX推進、カスタマーサクセス企画支援、人材紹介を手掛ける。Salesforceのコンサルティングパートナー認証企業として、業務フロー整理、要件定義、設計・開発、データ移行、研修、保守運用に対応し、Sales Cloud、Service Cloud、Pardotなどの導入を支援する。\n 2022年設立、従業員数は2名程度とこちらも小規模です。\n\n**強み**\n\nDXツールの導入部分から営業企画推進部分までを網羅的に把握し推進ができるのが当社の強み\nとされており、\n導入前後の設計をまとめて相談しやすい点が特徴です。\n\n\n独自サービスとして\nSalesforce上で稼働する「Sales AI Booster」も展開し、AIロープレ、商談フィードバック、Google Meet・Zoom・Microsoft Teamsの会議データ連携、活動記録や項目マッピングの自動化、評価結果のレポート表示を実現する。Agentforceを用いたAIエージェント構築にも対応するほか、営業・カスタマーサクセス人材に特化した職業紹介を行う。\n\n\n**実績・評判の手がかり**\n第三者比較メディアでは\nSalesforce導入支援サービスを提供する企業を比較する記事で、紙やExcelから乗り換えて全体の業務効率を向上するなら「enucolor」、営業の課題に応じた設計・運用を依頼したいなら「enucolor」と紹介されており\n、同記事では\nSalesforceの新規導入からその後の活用支援まで、一気通貫でサポートします。特に、営業組織のDX推進において、現場の実態を正確に把握し、実効性の高いアプローチを提供\nしている点が評価されています。\n\n導入事例としては\n株式会社インフラトップのセールスフォース再構築支援事例\nなどが公開されています。社員口コミサイト(転職会議・カイシャの評判)には現時点で評価データは登録されていません。\n\n---\n\n### 比較まとめ\n\n| 項目 | クロスコム | enucolor |\n|---|---|---|\n| 設立 | 2023年5月 | 2022年6月 |\n| 規模 | 1名体制 | 2名程度 |\n| 得意領域 | BtoBマーケ×営業視点でのAgentic CRM/Agentforce設計、業務設計から支援 | Salesforce導入〜活用定着〜営業DX・CS企画まで一気通貫、独自AIツール「Sales AI Booster」展開 |\n| 評判の裏付け | Lancersでの高評価実績(満足21件/残念0件)、メディア掲載実績 | 第三者比較メディアで複数カテゴリで紹介、具体的な導入事例公開 |\n| 発信力 | 代表個人がnote/X/自社ブログで専門性の高い記事を頻繁に発信 | CEO自らXで発信、独自プロダ",
+  "run_date": "2026-10-02 15:25:09",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 0,
+  "cited_domains": [
+    "ipros.com",
+    "compalyze.co.jp",
+    "lancers.jp",
+    "enucolor.com",
+    "shopowner-support.net"
+  ],
+  "resolved_urls": [
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://compalyze.co.jp/company/8011003016891",
+    "https://www.lancers.jp/profile/mhonda829",
+    "https://compalyze.co.jp/company/4010401167986",
+    "https://enucolor.com/about",
+    "https://www.shopowner-support.net/attracting_customers/btob-business/enucolor/",
+    "https://www.shopowner-support.net/attracting_customers/btob-business/salesforce-implementation-consulting/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム",
+    "株式会社enucolor",
+    "NSSスマートコンサルティング",
+    "株式会社BKU",
+    "株式会社フルネス",
+    "ジャパンホームシールド株式会社",
+    "ハイファイブ株式会社",
+    "株式会社キャッチアップ",
+    "株式会社インフラトップ"
+  ]
+}

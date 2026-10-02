@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-BS-03",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "合同会社クロスコムのAgentforce導入支援の専門性を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:26:20.460138Z",
+  "answer": "# 合同会社クロスコムのAgentforce導入支援の専門性\n\n## 会社概要\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM(AIエージェントを前提としたCRM)の設計支援を主に事業展開しています。当社の強みは、ツールを入れる前の業務設計から支援していることです。\n東京都渋谷区に拠点を置く企業です。\n\n## 代表者の専門性\n代表の本田正憲氏は、\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入し、現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援とAgentic CRM設計支援を提供しています\n。保有資格として\nSalesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリスト\nを取得しています。\n\nまた専門分野として\nSalesforce Agentforce、Agentic CRM、Agent Script、Salesforce Sales Cloud、Account Engagement、Claude Code、BtoB法人営業\nといった知見を持っています。\n\n## 支援サービスの特徴\n\n### 1. 業務設計からの一気通貫支援\n\nSalesforce公式パートナー企業のクロスコムが、マーケティング・営業・カスタマーサポートのあらゆる課題を解決するAgentforceの導入・定着支援を行っています\n。\n貴社の目標から逆算して「どの業務で・誰が・何を判断できるようにするか」を定義し、マーケ・営業・サポートのユースケースに合わせてAgentforceを業務フローへ組み込みます\n。\n\n### 2. 導入後の定着まで伴走\n\n公開後はカスタマーサクセスチームが、利用状況と出力品質を継続モニタリングしながら、目標達成に向けて活用が定着するまで伴走します\n。\n\n### 3. Sales Cloud・Account Engagementの運用知見を活かした実装\n\nSales Cloud(CRM)、Account Engagement(MA)の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装します\n。\nクロスコムは、BtoBマーケティングとプロダクト営業の経験から、貴社の業務フローを深く理解し、実際の運用と定着を見据えた設計内容をご提案します\n。\n\n### 4. スモールスタート対応\n\n1ユースケース×3ヶ月のスモールスタートから対応しており\n、\n「どのユースケースから始めればいいか分からない」「設定は完了したが現場に定着しない」「ナレッジ設計から一緒に考えてほしい」といった悩みに対応しています\n。\n\n## 対応範囲の広さ\nAgentforceの各機能領域（Service Agent、Voice、Marketing、Coworker、Sales/SDR/Sales Coachなど）について専門的な解説記事を多数発信しており、\n商談前の情報集め、商談後の議事録づくり、フォローの抜け漏れ確認、案件の引き継ぎといった営業プロセスの各場面での活用\nなど、実務に即した幅広い知見を蓄積しています。\n\n## 情報発信活動\n技術的な深掘りとして、Agentforceの回答精度に関わる**RAG(検索拡張生成)の精度向上**についてもnoteでマガジンを発信するなど、\n「Agentforceを社内に導入したけど使わなくなった」「検索しても欲しい回答が出てこない」といった課題の背景にRAGの精度の問題があるという視点から情報提供を行っています\n。\n\n## 実績\n\nジャパンホームシールド株式会社、ハイファイブ株式会社、株式会社BKUなど\nの支援企業例があり、企業ごとの課題背景をヒアリングした上でカスタマイズした提案を行う方針を掲げています。\n\nこのように、クロスコムはBtoB企業の営業・マーケティング・カスタマーサポート領域に特化し、ツール導入前の業務設計から導入後の定着支援まで一貫してサポートする点、そして代表者自身の実務経験とSalesforce認定資格に裏付けられた専門性が強みと言えます。",
+  "cited_urls": [
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://cross-com.jp/agentforce-service-agent/",
+    "https://cross-com.jp/author/cross-com/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-marketing/",
+    "https://cross-com.jp/agentforce-for-sales-sdr-sales-coach/",
+    "https://www.linkedin.com/in/honda-crosscom/",
+    "https://cross-com.jp/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentforce導入支援の専門性を教えてください。",
+  "answer_text": "# 合同会社クロスコムのAgentforce導入支援の専門性\n\n## 会社概要\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM(AIエージェントを前提としたCRM)の設計支援を主に事業展開しています。当社の強みは、ツールを入れる前の業務設計から支援していることです。\n東京都渋谷区に拠点を置く企業です。\n\n## 代表者の専門性\n代表の本田正憲氏は、\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入し、現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援とAgentic CRM設計支援を提供しています\n。保有資格として\nSalesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリスト\nを取得しています。\n\nまた専門分野として\nSalesforce Agentforce、Agentic CRM、Agent Script、Salesforce Sales Cloud、Account Engagement、Claude Code、BtoB法人営業\nといった知見を持っています。\n\n## 支援サービスの特徴\n\n### 1. 業務設計からの一気通貫支援\n\nSalesforce公式パートナー企業のクロスコムが、マーケティング・営業・カスタマーサポートのあらゆる課題を解決するAgentforceの導入・定着支援を行っています\n。\n貴社の目標から逆算して「どの業務で・誰が・何を判断できるようにするか」を定義し、マーケ・営業・サポートのユースケースに合わせてAgentforceを業務フローへ組み込みます\n。\n\n### 2. 導入後の定着まで伴走\n\n公開後はカスタマーサクセスチームが、利用状況と出力品質を継続モニタリングしながら、目標達成に向けて活用が定着するまで伴走します\n。\n\n### 3. Sales Cloud・Account Engagementの運用知見を活かした実装\n\nSales Cloud(CRM)、Account Engagement(MA)の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装します\n。\nクロスコムは、BtoBマーケティングとプロダクト営業の経験から、貴社の業務フローを深く理解し、実際の運用と定着を見据えた設計内容をご提案します\n。\n\n### 4. スモールスタート対応\n\n1ユースケース×3ヶ月のスモールスタートから対応しており\n、\n「どのユースケースから始めればいいか分からない」「設定は完了したが現場に定着しない」「ナレッジ設計から一緒に考えてほしい」といった悩みに対応しています\n。\n\n## 対応範囲の広さ\nAgentforceの各機能領域（Service Agent、Voice、Marketing、Coworker、Sales/SDR/Sales Coachなど）について専門的な解説記事を多数発信しており、\n商談前の情報集め、商談後の議事録づくり、フォローの抜け漏れ確認、案件の引き継ぎといった営業プロセスの各場面での活用\nなど、実務に即した幅広い知見を蓄積しています。\n\n## 情報発信活動\n技術的な深掘りとして、Agentforceの回答精度に関わる**RAG(検索拡張生成)の精度向上**についてもnoteでマガジンを発信するなど、\n「Agentforceを社内に導入したけど使わなくなった」「検索しても欲しい回答が出てこない」といった課題の背景にRAGの精度の問題があるという視点から情報提供を行っています\n。\n\n## 実績\n\nジャパンホームシールド株式会社、ハイファイブ株式会社、株式会社BKUなど\nの支援企業例があり、企業ごとの課題背景をヒアリングした上でカスタマイズした提案を行う方針を掲げています。\n\nこのように、クロスコムはBtoB企業の営業・マーケティング・カスタマーサポート領域に特化し、ツール導入前の業務設計から導入後の定着支援まで一貫してサポートする点、そして代表者自身の実務経験とSalesforce認定資格に裏付けられた専門性が強みと言えます。",
+  "run_date": "2026-10-02 15:26:20",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "ipros.com",
+    "cross-com.jp",
+    "linkedin.com"
+  ],
+  "resolved_urls": [
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://cross-com.jp/agentforce-service-agent/",
+    "https://cross-com.jp/author/cross-com/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-marketing/",
+    "https://cross-com.jp/agentforce-for-sales-sdr-sales-coach/",
+    "https://www.linkedin.com/in/honda-crosscom/",
+    "https://cross-com.jp/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム",
+    "ジャパンホームシールド株式会社",
+    "ハイファイブ株式会社",
+    "株式会社BKU"
+  ]
+}

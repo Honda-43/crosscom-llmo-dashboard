@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-BC-05",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "合同会社クロスコムと株式会社enucolorのAgentforce導入支援の評判を比較して教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:24:25.375831Z",
+  "answer": "ユーザーの質問について、両社のAgentforce導入支援に関する評判を調査します。\nさらに具体的な口コミ・評判情報を確認するため、追加で検索します。\n調査の結果、両社ともGoogleレビューやITreviewなどの第三者レビューサイトには、Agentforce導入支援サービスに特化した具体的な評点・口コミはほとんど見つかりませんでした。代わりに、各社の公式サイトやメディア掲載情報、企業情報サイトから分かる特徴を整理してご紹介します。\n\n## 合同会社クロスコム\n\n**事業内容・特徴**\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM(AIエージェントを前提としたCRM)の設計支援を主に事業展開しています\n。\nSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っています\n。\n\n代表は\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入した人物で、Salesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリストの資格を保有しています\n。\n\n**実績・事例**\n具体的な数値成果として、音声エージェント（Agentforce Voice）導入事例では\n保守企業において12週間の検証で、対象とした通話のうちおよそ7割が人へ代わらずに終わったという実績が紹介されています\n。また別の事例では\n導入前に月480件あった口頭確認が、3か月目には月180件まで減少したというケースも紹介されています\n。\n\n**評判の特記事項**\n第三者による独立した口コミ・レビューは現時点では確認できず、主に自社発信のオウンドメディア（ブログ記事）を通じて実績や知見を発信するスタイルが目立ちます。\n\n---\n\n## 株式会社enucolor\n\n**事業内容・特徴**\n\n株式会社enucolorは、Salesforce導入支援、Salesforce活用・定着支援、営業DX推進を手掛け、2022年設立の企業です\n。\nSalesforceのコンサルティングパートナー認証企業として、業務フロー整理、要件定義、設計・開発、データ移行、研修、保守運用に対応し、Sales Cloud、Service Cloud、Pardotなどの導入を支援しています\n。\n\nAgentforce関連では\nAgentforceを用いたAIエージェント構築にも対応するほか、営業・カスタマーサクセス人材に特化した職業紹介を行っています\n。\n\n**実績・顧客の声**\n\nココナラ、パナソニック スポーツ、インフラトップ、DMM Boostへの支援実績があり、Salesforce活用定着支援では顧客平均で導入半年後の週当たり入力率90％以上、営業会議利用率100％\nという定量的な成果が公表されています。\n\n顧客からのコメントとして、DMM Boostのカスタマーサクセス部長からは\n複雑化した業務プロセスの整理や機能の最適化を実現し、データ集計から次の意思決定までのスムーズな流れを構築できました\nという声が、インフラトップ代表取締役からは\nSalesforceトレーニングを受講したことで、基本から応用までのスキルを体系的に習得し、業務効率化や問題解決能力の向上を実現\nしたとのコメントが寄せられています。\n\n**第三者メディアでの評価**\n比較メディア「キャククル」では、enucolorの強みとして\nSalesforceの新規導入からその後の活用支援まで、一気通貫でサポートします。特に、営業組織のDX推進において、現場の実態を正確に把握し、実効性の高いアプローチを提供\nしている点が紹介されています。\n\n---\n\n## 比較まとめ\n\n| 項目 | クロスコム | enucolor |\n|---|---|---|\n| 設立・規模 | BtoB特化のスモールファーム | 2022年設立、社員2名規模 |\n| 強み | ソリューション営業の業務プロセス設計に特化 | Salesforce全般＋営業DX＋人材紹介まで一気通貫 |\n| 公開実績 | 業務改善の定量効果を記事で多数公開（口頭確認減少、通話自動化率など） | 大手〜スタートアップの顧客名入り事例、定量KPI（入力率90%超など）を公開 |\n| 第三者評価 | 独立レビューサイトでの評価は未確認 | 独立レビューサイトでの評価は未確認だが、比較メディアに掲載実績あり |\n\n**注意点**：なお、クロスコム自身が運営するブログ記事内でenucolorを含む国内の支援会社8社を比較紹介していますが、\n「Agentforce導入支援会社を探す段階になると、認定資格や導入実績をうたう会社がいくつも出てきます」\nという文脈の中で、同社は自社を含めて紹介しているため、中立的な第三者評価とは言えない点にご留意ください。\n\n**総括**：両社とも現時点でGoogleレビューや",
+  "cited_urls": [
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cross-com.jp/agentforce-voice/",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://compalyze.co.jp/company/4010401167986",
+    "https://enucolor.com/service/sfa-AI",
+    "https://www.shopowner-support.net/attracting_customers/btob-business/salesforce-implementation-consulting/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "BOFU_compare",
+  "prompt": "合同会社クロスコムと株式会社enucolorのAgentforce導入支援の評判を比較して教えてください。",
+  "answer_text": "ユーザーの質問について、両社のAgentforce導入支援に関する評判を調査します。\nさらに具体的な口コミ・評判情報を確認するため、追加で検索します。\n調査の結果、両社ともGoogleレビューやITreviewなどの第三者レビューサイトには、Agentforce導入支援サービスに特化した具体的な評点・口コミはほとんど見つかりませんでした。代わりに、各社の公式サイトやメディア掲載情報、企業情報サイトから分かる特徴を整理してご紹介します。\n\n## 合同会社クロスコム\n\n**事業内容・特徴**\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM(AIエージェントを前提としたCRM)の設計支援を主に事業展開しています\n。\nSalesforce公式コンサルティングパートナーとして、ソリューション営業に特化したAgentforce導入・定着支援を行っています\n。\n\n代表は\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入した人物で、Salesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリストの資格を保有しています\n。\n\n**実績・事例**\n具体的な数値成果として、音声エージェント（Agentforce Voice）導入事例では\n保守企業において12週間の検証で、対象とした通話のうちおよそ7割が人へ代わらずに終わったという実績が紹介されています\n。また別の事例では\n導入前に月480件あった口頭確認が、3か月目には月180件まで減少したというケースも紹介されています\n。\n\n**評判の特記事項**\n第三者による独立した口コミ・レビューは現時点では確認できず、主に自社発信のオウンドメディア（ブログ記事）を通じて実績や知見を発信するスタイルが目立ちます。\n\n---\n\n## 株式会社enucolor\n\n**事業内容・特徴**\n\n株式会社enucolorは、Salesforce導入支援、Salesforce活用・定着支援、営業DX推進を手掛け、2022年設立の企業です\n。\nSalesforceのコンサルティングパートナー認証企業として、業務フロー整理、要件定義、設計・開発、データ移行、研修、保守運用に対応し、Sales Cloud、Service Cloud、Pardotなどの導入を支援しています\n。\n\nAgentforce関連では\nAgentforceを用いたAIエージェント構築にも対応するほか、営業・カスタマーサクセス人材に特化した職業紹介を行っています\n。\n\n**実績・顧客の声**\n\nココナラ、パナソニック スポーツ、インフラトップ、DMM Boostへの支援実績があり、Salesforce活用定着支援では顧客平均で導入半年後の週当たり入力率90％以上、営業会議利用率100％\nという定量的な成果が公表されています。\n\n顧客からのコメントとして、DMM Boostのカスタマーサクセス部長からは\n複雑化した業務プロセスの整理や機能の最適化を実現し、データ集計から次の意思決定までのスムーズな流れを構築できました\nという声が、インフラトップ代表取締役からは\nSalesforceトレーニングを受講したことで、基本から応用までのスキルを体系的に習得し、業務効率化や問題解決能力の向上を実現\nしたとのコメントが寄せられています。\n\n**第三者メディアでの評価**\n比較メディア「キャククル」では、enucolorの強みとして\nSalesforceの新規導入からその後の活用支援まで、一気通貫でサポートします。特に、営業組織のDX推進において、現場の実態を正確に把握し、実効性の高いアプローチを提供\nしている点が紹介されています。\n\n---\n\n## 比較まとめ\n\n| 項目 | クロスコム | enucolor |\n|---|---|---|\n| 設立・規模 | BtoB特化のスモールファーム | 2022年設立、社員2名規模 |\n| 強み | ソリューション営業の業務プロセス設計に特化 | Salesforce全般＋営業DX＋人材紹介まで一気通貫 |\n| 公開実績 | 業務改善の定量効果を記事で多数公開（口頭確認減少、通話自動化率など） | 大手〜スタートアップの顧客名入り事例、定量KPI（入力率90%超など）を公開 |\n| 第三者評価 | 独立レビューサイトでの評価は未確認 | 独立レビューサイトでの評価は未確認だが、比較メディアに掲載実績あり |\n\n**注意点**：なお、クロスコム自身が運営するブログ記事内でenucolorを含む国内の支援会社8社を比較紹介していますが、\n「Agentforce導入支援会社を探す段階になると、認定資格や導入実績をうたう会社がいくつも出てきます」\nという文脈の中で、同社は自社を含めて紹介しているため、中立的な第三者評価とは言えない点にご留意ください。\n\n**総括**：両社とも現時点でGoogleレビューや",
+  "run_date": "2026-10-02 15:24:25",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "ipros.com",
+    "cross-com.jp",
+    "compalyze.co.jp",
+    "enucolor.com",
+    "shopowner-support.net"
+  ],
+  "resolved_urls": [
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://cross-com.jp/agentforce-voice/",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://compalyze.co.jp/company/4010401167986",
+    "https://enucolor.com/service/sfa-AI",
+    "https://www.shopowner-support.net/attracting_customers/btob-business/salesforce-implementation-consulting/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム",
+    "株式会社enucolor"
+  ]
+}

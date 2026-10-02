@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-L0-03",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "おすすめのAgentforce設計レビュー会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:29:56.614608Z",
+  "answer": "Agentforceの設計レビューを専門に行う企業についてお調べします。\nAgentforce（Salesforceのエージェント構築プラットフォーム）の設計レビュー・導入支援を行える企業をご紹介します。「設計レビュー」単体のサービスというより、導入支援・コンサルティングの一環として設計レビューを提供している企業が中心です。\n\n## 日本国内の企業\n\n**クロスコム（CROSSCOM）**\nAgentforce導入支援会社をまとめた記事を公開しており、業界動向の把握に役立ちます。選定基準として\n「Agentforce導入支援会社を選ぶ際、資格や実績だけで判断すると現場で使われずに終わるケースが少なくありません」\nと指摘しており、現場定着まで見据えたパートナー選びの視点を提供しています。\n\n**フロッグウェル株式会社**\n\nSalesforce AI導入支援としてEinsteinやAgentforceの設定・活用を支援し、業務プロセスのヒアリングと可視化から始め、AI基盤の設計、プロンプト設計、ユーザートレーニング、運用サポートまでを一貫して提供\nしています。設計段階からのレビューが期待できます。\n\n**株式会社メンバーズ サースプラスカンパニー**\n\nAgentforce導入・運用支援として、導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバー\nしています。\n\n**ウフル**\n\nデータ活用とIoTに強みを持つパートナーで、最短3ヶ月でAgentforceを導入するクイック支援サービスを展開。マーケティングとカスタマーサービスの両領域に対応でき、複数のチャネルを横断した顧客体験の設計が得意\nです。\n\n## グローバル企業（大規模・複雑な設計レビューが必要な場合）\n\n**Noltic**\n\nSalesforceの深い経験、技術力、ビジネス理解を兼ね備えたパートナーで、400以上の認定資格（うちAgentforceスペシャリスト認定11件）、アーキテクト8名、AppExchange評価4.9を持つSummit階層パートナー\nです。\n\n**Coastal Cloud**\n\n2012年設立で、米国・英国・カナダ・チリ・デンマーク・ドイツ・イスラエル・日本・マレーシア・オランダ・プエルトリコ・スイスに拠点を持ち\n、日本にも展開しているため国際的な設計レビューにも対応可能です。\n\n**K2 Partnering Solutions**\n\nAgentforce Partner Networkのメンバーとして、AIの専門知識と数十年のSalesforce経験を活かしたカスタマイズコンサルティングを提供\nしており、\n本格導入前に実環境シナリオでテストするカスタムPoCを迅速に提供\nするサービスもあります。\n\n**大手コンサルティングファーム**\nCapgemini、IBM Consulting、Infosys、Deloitte Digital、Accenture/NeuraFlashなども\nSalesforce検証済みの実績（FDEメンバーシップや2027年の受賞歴など）でトップクラスにランクされており\n、エンタープライズ規模の設計レビューに強みがあります。\n\n## 選定時のポイント\n\nパートナー選びでは\nSalesforce自体が、パートナーエコシステムがAgentforce導入のおよそ70%を主導していると2026年3月のパートナープログラム発表で述べており、選ぶ企業がプラットフォーム自体以上に結果を左右する\nとしています。また、複数国展開を検討する場合は\nマルチカントリー展開において、1つのエージェント設計をローカライズするのか、複数の設計をゆるく束ねるのかを確認すべきで、後者は2年目あたりで費用がかさみやすい\nという点も要確認です。\n\n---\n\n**おすすめの進め方**：貴社の規模・業種・課題（顧客サービス向けか社内業務効率化向けかなど）によって最適なパートナーが異なります。まずは2〜3社から無料相談やPoC提案を受けて、設計思想や過去の実績（特に御社と近い業種での導入事例）を比較されることをおすすめします。\n\nもし特定の業界（製造業、金融、小売など）や予算規模が決まっていれば、それに合わせてさらに絞り込んだご提案も可能です。",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://noltic.com/stories/top-10-salesforce-agentforce-implementation-partners",
+    "https://ascendix.com/blog/agentforce-consulting-partners/",
+    "https://k2partnering.com/consulting/practice-areas/salesforce-consulting-services/agentforce-consulting-services/",
+    "https://valintry360.com/blogs/top-agentforce-consulting-partners/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "MOFU_L0",
+  "prompt": "おすすめのAgentforce設計レビュー会社を教えてください。",
+  "answer_text": "Agentforceの設計レビューを専門に行う企業についてお調べします。\nAgentforce（Salesforceのエージェント構築プラットフォーム）の設計レビュー・導入支援を行える企業をご紹介します。「設計レビュー」単体のサービスというより、導入支援・コンサルティングの一環として設計レビューを提供している企業が中心です。\n\n## 日本国内の企業\n\n**クロスコム（CROSSCOM）**\nAgentforce導入支援会社をまとめた記事を公開しており、業界動向の把握に役立ちます。選定基準として\n「Agentforce導入支援会社を選ぶ際、資格や実績だけで判断すると現場で使われずに終わるケースが少なくありません」\nと指摘しており、現場定着まで見据えたパートナー選びの視点を提供しています。\n\n**フロッグウェル株式会社**\n\nSalesforce AI導入支援としてEinsteinやAgentforceの設定・活用を支援し、業務プロセスのヒアリングと可視化から始め、AI基盤の設計、プロンプト設計、ユーザートレーニング、運用サポートまでを一貫して提供\nしています。設計段階からのレビューが期待できます。\n\n**株式会社メンバーズ サースプラスカンパニー**\n\nAgentforce導入・運用支援として、導入前のコンサルティングからPoC、カスタムエージェントの設計・実装、定着化、内製化トレーニングまでを幅広くカバー\nしています。\n\n**ウフル**\n\nデータ活用とIoTに強みを持つパートナーで、最短3ヶ月でAgentforceを導入するクイック支援サービスを展開。マーケティングとカスタマーサービスの両領域に対応でき、複数のチャネルを横断した顧客体験の設計が得意\nです。\n\n## グローバル企業（大規模・複雑な設計レビューが必要な場合）\n\n**Noltic**\n\nSalesforceの深い経験、技術力、ビジネス理解を兼ね備えたパートナーで、400以上の認定資格（うちAgentforceスペシャリスト認定11件）、アーキテクト8名、AppExchange評価4.9を持つSummit階層パートナー\nです。\n\n**Coastal Cloud**\n\n2012年設立で、米国・英国・カナダ・チリ・デンマーク・ドイツ・イスラエル・日本・マレーシア・オランダ・プエルトリコ・スイスに拠点を持ち\n、日本にも展開しているため国際的な設計レビューにも対応可能です。\n\n**K2 Partnering Solutions**\n\nAgentforce Partner Networkのメンバーとして、AIの専門知識と数十年のSalesforce経験を活かしたカスタマイズコンサルティングを提供\nしており、\n本格導入前に実環境シナリオでテストするカスタムPoCを迅速に提供\nするサービスもあります。\n\n**大手コンサルティングファーム**\nCapgemini、IBM Consulting、Infosys、Deloitte Digital、Accenture/NeuraFlashなども\nSalesforce検証済みの実績（FDEメンバーシップや2027年の受賞歴など）でトップクラスにランクされており\n、エンタープライズ規模の設計レビューに強みがあります。\n\n## 選定時のポイント\n\nパートナー選びでは\nSalesforce自体が、パートナーエコシステムがAgentforce導入のおよそ70%を主導していると2026年3月のパートナープログラム発表で述べており、選ぶ企業がプラットフォーム自体以上に結果を左右する\nとしています。また、複数国展開を検討する場合は\nマルチカントリー展開において、1つのエージェント設計をローカライズするのか、複数の設計をゆるく束ねるのかを確認すべきで、後者は2年目あたりで費用がかさみやすい\nという点も要確認です。\n\n---\n\n**おすすめの進め方**：貴社の規模・業種・課題（顧客サービス向けか社内業務効率化向けかなど）によって最適なパートナーが異なります。まずは2〜3社から無料相談やPoC提案を受けて、設計思想や過去の実績（特に御社と近い業種での導入事例）を比較されることをおすすめします。\n\nもし特定の業界（製造業、金融、小売など）や予算規模が決まっていれば、それに合わせてさらに絞り込んだご提案も可能です。",
+  "run_date": "2026-10-02 15:29:56",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "cx-guide.com",
+    "noltic.com",
+    "ascendix.com",
+    "k2partnering.com",
+    "valintry360.com"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://www.cx-guide.com/aiagent/agentforce.html",
+    "https://noltic.com/stories/top-10-salesforce-agentforce-implementation-partners",
+    "https://ascendix.com/blog/agentforce-consulting-partners/",
+    "https://k2partnering.com/consulting/practice-areas/salesforce-consulting-services/agentforce-consulting-services/",
+    "https://valintry360.com/blogs/top-agentforce-consulting-partners/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "クロスコム",
+    "フロッグウェル株式会社",
+    "株式会社メンバーズ サースプラスカンパニー",
+    "ウフル",
+    "Noltic",
+    "Coastal Cloud",
+    "K2 Partnering Solutions"
+  ]
+}

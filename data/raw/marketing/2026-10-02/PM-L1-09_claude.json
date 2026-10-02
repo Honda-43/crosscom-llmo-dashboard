@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-L1-09",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "IT業界におすすめのSalesforce導入支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:34:49.777848Z",
+  "answer": "Salesforce導入支援会社について、最新の情報を確認してから回答いたします。\n# IT業界におすすめのSalesforce導入支援会社\n\n検索結果をもとに、特徴ごとに整理しておすすめの企業をご紹介します。\n\n## 大規模・実績重視の企業\n\n### 株式会社テラスカイ\n\nテラスカイは2006年の創業以来、Salesforceに特化した支援を続けてきた国内トップクラスのコンサルティングパートナーです。金融・保険・製造・医療など業界を問わず導入・開発実績は16,000件以上に上り、Salesforceの最高難易度資格「テクニカルアーキテクト」の保有者数も国内最大となっています。\n\n\n### 株式会社サンブリッジ\n\nサンブリッジは、日本で最初にSalesforce認定コンサルティングパートナーとなった企業です。\n また、\nSalesforceの最高難易度資格である「テクニカルアーキテクト」を保有するエンジニアの存在が強み\nとなっています。\n\n## 大手SIer・コンサルティングファーム\n\n### NTTデータ / NTTテクノクロス\n\nNTTデータは国内外27か国でSalesforceのコンサルティング・導入支援を展開しています。国内のSalesforceライセンス販売実績は顧客企業向けでNo.1です。\n グループ会社のNTTテクノクロスも\nSalesforce分野では公式の認定資格を保持する技術者が多数存在しており、認定ServiceCloudコンサルタントだけでも10名は在籍しています。15年以上の実績もあるため、はじめてSalesforceを導入する企業は安心して任せられるベンダー\nです。\n\n### 日立ソリューションズ\n\n日立ソリューションズは、Salesforceのコンサルティングパートナーとして200件を超える導入実績を持ち、導入検討段階から設計・開発・運用に至るすべてのフェーズで支援を提供しています。\n\n\n### アクセンチュア株式会社\n\nアクセンチュアは、「Salesforce Japan Partner Award 2025」の成長部門においてJapan Partner of the Year（Consulting Partners）を受賞した、世界最大級のコンサルティングファームです。グローバル規模でのSalesforce導入実績と、業界変革レベルのコンサルティング力を組み合わせた支援が特徴です。\n\n\n## 業界特化・ニッチな強みを持つ企業\n\n### 株式会社ソデック\n\n株式会社ソデックは、製造業、物流業、小売・即売業、教育業など、多様な業界に対応した業界特化のSalesforce導入支援が強みで、要件定義、開発、実装、運用まで一貫サポートが可能です。\n また、\n予約システム「SmartBooking for Salesforce」、予実管理システム「TaskCreator for Salesforce」などの独自ツールも提供\nしています。\n\n### IT FORCE株式会社\n\nIT FORCE株式会社は、東京と中国に拠点を置くシステム開発・システムコンサルティング会社で、2014年よりSalesforceのコンサルティングパートナーとして、150社以上に及ぶ企業のSalesforceの導入を支援しています。\n\n\n### サークレイス株式会社\n\nサークレイスは東京都中央区に本社を構え、Salesforceの導入＆改修に関するコンサルティングから、システム導入、開発、導入後のカスタマイズ、さらに運用支援、活用・定着化支援まで一気通貫で支援\nします。\n\n## 選び方のポイント\n\n各記事のまとめを参考にすると、\nriplaは一気通貫、テラスカイは大規模実績に強みがあります。NTTデータ／NTTテクノクロスは大手・官公庁に向いています。サンブリッジは長年の実績、日立ソリューションズは業種知識が特徴です。アクセンチュアはグローバル支援を得意とします。\n\n\n---\n\n**選定時のアドバイス：**\n- **初めての導入**なら、豊富な実績とサポート体制を持つテラスカイやサンブリッジがおすすめです\n- **大手・官公庁案件**ならNTTデータ系やアクセンチュアなど大手ファームが安心です\n- **業界特化のニーズ**があるなら、ソデックのように特定業界に強い企業を検討すると良いでしょう\n- **コストを抑えたい**場合は、IT FORCEやサークレイスなど中堅のSalesforce専業企業も選択肢になります\n\n貴社の規模・予算・業界特性に応じて、複数社から見積もりを取り比較することをおすすめします。",
+  "cited_urls": [
+    "https://blog.ripla.co.jp/dx-consulting/salesforce-implementation-companies/",
+    "https://www.ripla.co.jp/blog/dx-consulting/salesforce-implementation-companies/",
+    "https://cloudfit.co.jp/article/243",
+    "https://system-kanji.com/posts/salesforce-development",
+    "https://ageless.co.jp/media/29220",
+    "https://imitsu.jp/list/web-system/customize-salesforce/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "MOFU_L1",
+  "prompt": "IT業界におすすめのSalesforce導入支援会社を教えてください。",
+  "answer_text": "Salesforce導入支援会社について、最新の情報を確認してから回答いたします。\n# IT業界におすすめのSalesforce導入支援会社\n\n検索結果をもとに、特徴ごとに整理しておすすめの企業をご紹介します。\n\n## 大規模・実績重視の企業\n\n### 株式会社テラスカイ\n\nテラスカイは2006年の創業以来、Salesforceに特化した支援を続けてきた国内トップクラスのコンサルティングパートナーです。金融・保険・製造・医療など業界を問わず導入・開発実績は16,000件以上に上り、Salesforceの最高難易度資格「テクニカルアーキテクト」の保有者数も国内最大となっています。\n\n\n### 株式会社サンブリッジ\n\nサンブリッジは、日本で最初にSalesforce認定コンサルティングパートナーとなった企業です。\n また、\nSalesforceの最高難易度資格である「テクニカルアーキテクト」を保有するエンジニアの存在が強み\nとなっています。\n\n## 大手SIer・コンサルティングファーム\n\n### NTTデータ / NTTテクノクロス\n\nNTTデータは国内外27か国でSalesforceのコンサルティング・導入支援を展開しています。国内のSalesforceライセンス販売実績は顧客企業向けでNo.1です。\n グループ会社のNTTテクノクロスも\nSalesforce分野では公式の認定資格を保持する技術者が多数存在しており、認定ServiceCloudコンサルタントだけでも10名は在籍しています。15年以上の実績もあるため、はじめてSalesforceを導入する企業は安心して任せられるベンダー\nです。\n\n### 日立ソリューションズ\n\n日立ソリューションズは、Salesforceのコンサルティングパートナーとして200件を超える導入実績を持ち、導入検討段階から設計・開発・運用に至るすべてのフェーズで支援を提供しています。\n\n\n### アクセンチュア株式会社\n\nアクセンチュアは、「Salesforce Japan Partner Award 2025」の成長部門においてJapan Partner of the Year（Consulting Partners）を受賞した、世界最大級のコンサルティングファームです。グローバル規模でのSalesforce導入実績と、業界変革レベルのコンサルティング力を組み合わせた支援が特徴です。\n\n\n## 業界特化・ニッチな強みを持つ企業\n\n### 株式会社ソデック\n\n株式会社ソデックは、製造業、物流業、小売・即売業、教育業など、多様な業界に対応した業界特化のSalesforce導入支援が強みで、要件定義、開発、実装、運用まで一貫サポートが可能です。\n また、\n予約システム「SmartBooking for Salesforce」、予実管理システム「TaskCreator for Salesforce」などの独自ツールも提供\nしています。\n\n### IT FORCE株式会社\n\nIT FORCE株式会社は、東京と中国に拠点を置くシステム開発・システムコンサルティング会社で、2014年よりSalesforceのコンサルティングパートナーとして、150社以上に及ぶ企業のSalesforceの導入を支援しています。\n\n\n### サークレイス株式会社\n\nサークレイスは東京都中央区に本社を構え、Salesforceの導入＆改修に関するコンサルティングから、システム導入、開発、導入後のカスタマイズ、さらに運用支援、活用・定着化支援まで一気通貫で支援\nします。\n\n## 選び方のポイント\n\n各記事のまとめを参考にすると、\nriplaは一気通貫、テラスカイは大規模実績に強みがあります。NTTデータ／NTTテクノクロスは大手・官公庁に向いています。サンブリッジは長年の実績、日立ソリューションズは業種知識が特徴です。アクセンチュアはグローバル支援を得意とします。\n\n\n---\n\n**選定時のアドバイス：**\n- **初めての導入**なら、豊富な実績とサポート体制を持つテラスカイやサンブリッジがおすすめです\n- **大手・官公庁案件**ならNTTデータ系やアクセンチュアなど大手ファームが安心です\n- **業界特化のニーズ**があるなら、ソデックのように特定業界に強い企業を検討すると良いでしょう\n- **コストを抑えたい**場合は、IT FORCEやサークレイスなど中堅のSalesforce専業企業も選択肢になります\n\n貴社の規模・予算・業界特性に応じて、複数社から見積もりを取り比較することをおすすめします。",
+  "run_date": "2026-10-02 15:34:49",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 0,
+  "mention_rank": "",
+  "is_first": 0,
+  "cited_domain": 0,
+  "cited_domains": [
+    "blog.ripla.co.jp",
+    "ripla.co.jp",
+    "cloudfit.co.jp",
+    "system-kanji.com",
+    "ageless.co.jp",
+    "imitsu.jp"
+  ],
+  "resolved_urls": [
+    "https://blog.ripla.co.jp/dx-consulting/salesforce-implementation-companies/",
+    "https://www.ripla.co.jp/blog/dx-consulting/salesforce-implementation-companies/",
+    "https://cloudfit.co.jp/article/243",
+    "https://system-kanji.com/posts/salesforce-development",
+    "https://ageless.co.jp/media/29220",
+    "https://imitsu.jp/list/web-system/customize-salesforce/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}

@@ -1,0 +1,46 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-BS-10",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "合同会社クロスコムのAgentic CRM設計支援の評判を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:28:25.464040Z",
+  "answer": "合同会社クロスコムの「Agentic CRM設計支援」について、検索結果からわかる情報をまとめます。\n\n## 会社概要・サービス内容\n\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM(AIエージェントを前提としたCRM)の設計支援を主に事業展開しています\n。\n当社の強みは、ツールを入れる前の業務設計から支援していることです\n。\n\n代表は本田正憲氏で、\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入し、現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供しています\n。認定資格として、Salesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリストを保有しています（cross-com.jp情報より）。\n\n## サービスの特徴\n\n\nAIエージェントの導入は、ツールの操作ではなく、その手前の業務設計とデータ設計でつまずくケースが少なくないとし、何を自動化し、何を人が担うのかを設計したうえで、運用が定着するまで伴走する\n姿勢を打ち出しています。また、\n自社で構築を進める企業向けには、設計が適切かどうかを検証する設計アドバイザリーも提供しています\n。\n\nサービスラインナップとしては、\nAgentic CRM設計支援、Agentforce導入・定着支援、BtoB Salesforce導入・構築支援\nの3本柱で展開しています。\n\n## 第三者プラットフォームでの評価\n\nクラウドソーシングサイト「ランサーズ」上のプロフィールでは、\n満足21件、残念0件\nという実績評価がついており、マーケティング関連業務（広告運用など）における評価は良好です。ただし、この評価は主に過去のマーケティング支援実績（HR系コンサル会社やMeta広告運用など）に基づくもので、「Agentic CRM設計支援」サービス自体に特化したレビューとは言い切れない点に注意が必要です。\n\n## まとめ\n\n検索結果からは、Agentic CRM設計支援という比較的新しいサービス（Salesforce AgentforceやAI前提のCRM設計を扱う領域）について、第三者による具体的な口コミ・評判（Google口コミ、比較サイトのレビューなど）は現時点では見つかりませんでした。確認できたのは、同社の公式サイトでの自己紹介・サービス説明と、ランサーズでの過去のマーケティング業務に関する高評価のみです。Agentic CRM設計支援という事業領域自体が新しく、本格展開を始めたのも最近（2026年前後）であることから、独立した第三者評判がまだ蓄積されていない可能性があります。より詳細な評判を知りたい場合は、無料相談を利用して直接問い合わせるか、クライアント企業の声（導入事例）を公式サイトで確認することをおすすめします。",
+  "cited_urls": [
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/author/cross-com/",
+    "https://cross-com.jp/case/",
+    "https://www.lancers.jp/profile/mhonda829"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentic CRM設計支援の評判を教えてください。",
+  "answer_text": "合同会社クロスコムの「Agentic CRM設計支援」について、検索結果からわかる情報をまとめます。\n\n## 会社概要・サービス内容\n\n\n合同会社クロスコムは、BtoB領域に特化して、Salesforce Agentforceの導入・定着支援と、Agentic CRM(AIエージェントを前提としたCRM)の設計支援を主に事業展開しています\n。\n当社の強みは、ツールを入れる前の業務設計から支援していることです\n。\n\n代表は本田正憲氏で、\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入し、現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供しています\n。認定資格として、Salesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリストを保有しています（cross-com.jp情報より）。\n\n## サービスの特徴\n\n\nAIエージェントの導入は、ツールの操作ではなく、その手前の業務設計とデータ設計でつまずくケースが少なくないとし、何を自動化し、何を人が担うのかを設計したうえで、運用が定着するまで伴走する\n姿勢を打ち出しています。また、\n自社で構築を進める企業向けには、設計が適切かどうかを検証する設計アドバイザリーも提供しています\n。\n\nサービスラインナップとしては、\nAgentic CRM設計支援、Agentforce導入・定着支援、BtoB Salesforce導入・構築支援\nの3本柱で展開しています。\n\n## 第三者プラットフォームでの評価\n\nクラウドソーシングサイト「ランサーズ」上のプロフィールでは、\n満足21件、残念0件\nという実績評価がついており、マーケティング関連業務（広告運用など）における評価は良好です。ただし、この評価は主に過去のマーケティング支援実績（HR系コンサル会社やMeta広告運用など）に基づくもので、「Agentic CRM設計支援」サービス自体に特化したレビューとは言い切れない点に注意が必要です。\n\n## まとめ\n\n検索結果からは、Agentic CRM設計支援という比較的新しいサービス（Salesforce AgentforceやAI前提のCRM設計を扱う領域）について、第三者による具体的な口コミ・評判（Google口コミ、比較サイトのレビューなど）は現時点では見つかりませんでした。確認できたのは、同社の公式サイトでの自己紹介・サービス説明と、ランサーズでの過去のマーケティング業務に関する高評価のみです。Agentic CRM設計支援という事業領域自体が新しく、本格展開を始めたのも最近（2026年前後）であることから、独立した第三者評判がまだ蓄積されていない可能性があります。より詳細な評判を知りたい場合は、無料相談を利用して直接問い合わせるか、クライアント企業の声（導入事例）を公式サイトで確認することをおすすめします。",
+  "run_date": "2026-10-02 15:28:25",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "ipros.com",
+    "cross-com.jp",
+    "lancers.jp"
+  ],
+  "resolved_urls": [
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/author/cross-com/",
+    "https://cross-com.jp/case/",
+    "https://www.lancers.jp/profile/mhonda829"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム"
+  ]
+}

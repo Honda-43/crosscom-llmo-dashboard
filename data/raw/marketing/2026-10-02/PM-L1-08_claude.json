@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-L1-08",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "IT業界におすすめのAgentic CRM設計支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:34:32.670157Z",
+  "answer": "IT業界向けのAgentic CRM設計支援を行う企業について、最新の情報を確認します。\n# IT業界向けAgentic CRM設計支援会社\n\n検索結果から、「Agentic CRM設計支援」を専門に掲げる企業をいくつかご紹介します。\n\n## 1. 合同会社クロスコム\n\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入し、現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供している\n企業です。代表はSalesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagementスペシャリストの資格を保有しています。主なサービスは\nAgentic CRM設計支援、Agentforce導入・定着支援、BtoB Salesforce導入・構築支援\nの3本柱で、BtoB特化型のコンサルティングを行っています。\n\n## 2. 株式会社100（100inc）\nHubSpotエコシステム上で活動する企業で、\n「HubSpot × AI Agent × DX を統合する『Agentic CRM パートナー』」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシーを掲げ、HubSpot Eliteの実装力で顧客フロント業務の再設計\nを行っています。\n\n## 3. IBM コンサルティング（Salesforce領域）\nグローバル規模で\nAgentforceを単なる技術ではなく全社変革の触媒と位置づけ、AI・データ・CRMをマインフレームからクラウドまで、あらゆるシステム間で接続することで、真にAgenticな組織への変革を支援\nしています。大企業・エンタープライズ向けの大規模導入に強みがあります。\n\n## 4. 周辺の大手CRMコンサルティング会社（Agentic AI対応含む）\nAgentic CRM専業ではないものの、AI機能を取り込んだCRM支援を行う会社として以下も選択肢になります。\n- **株式会社シーサイド**：\n2018年創業のブティックコンサルティングファームで、DXとAIを軸に経営・事業設計から顧客体験（CX）領域まで幅広く取り組み、プライム上場企業から中小・ベンチャー企業まで対応実績を持つ\n企業。\n- **ナウビレッジ株式会社**：\n画一的なパッケージに依らず、企業ごとの体制や目標、予算に応じて柔軟に運用設計できる点が特徴で、CRM搭載のAI機能の活用支援などもカバー\nしています。\n\n## 選定時のポイント\n\n「Agentic CRM」という言葉自体がまだ新しい概念で、\nAIネイティブCRMは「データがAIによって自然に集まる前提で設計されているか」という設計思想を指すのに対し、Agentic CRMは「AIが自律的に手順を進めて作業するか」という動作のあり方に重心がある\nとされており、会社選びの際はこの違いを理解した上で提案力があるかを見極めることが重要です。\n\nIT業界向けであれば、BtoB営業プロセスへの深い理解とSalesforce/HubSpotなど主要プラットフォームへの専門性を持つ**クロスコム**や**株式会社100**のような専業型パートナー、大規模なシステム統合が必要な場合は**IBM**のような大手ベンダー系コンサルティングが有力な選択肢となるでしょう。\n\nより詳細な比較や見積もりが必要な場合は、各社の公式サイトから直接問い合わせることをおすすめします。",
+  "cited_urls": [
+    "https://cross-com.jp/agentforce-guide/",
+    "https://ecosystem.hubspot.com/ja/marketplace/explore/solutions-partners?eco_language=hi&eco_agency_tier=gold&eco_PROFILE_CATALOG_SERVICES=1",
+    "https://www.ibm.com/consulting/salesforce",
+    "https://www.aspicjapan.org/asu/article/89215",
+    "https://product.hiway.app/blog/agentic-crm/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "MOFU_L1",
+  "prompt": "IT業界におすすめのAgentic CRM設計支援会社を教えてください。",
+  "answer_text": "IT業界向けのAgentic CRM設計支援を行う企業について、最新の情報を確認します。\n# IT業界向けAgentic CRM設計支援会社\n\n検索結果から、「Agentic CRM設計支援」を専門に掲げる企業をいくつかご紹介します。\n\n## 1. 合同会社クロスコム\n\n専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入し、現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供している\n企業です。代表はSalesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagementスペシャリストの資格を保有しています。主なサービスは\nAgentic CRM設計支援、Agentforce導入・定着支援、BtoB Salesforce導入・構築支援\nの3本柱で、BtoB特化型のコンサルティングを行っています。\n\n## 2. 株式会社100（100inc）\nHubSpotエコシステム上で活動する企業で、\n「HubSpot × AI Agent × DX を統合する『Agentic CRM パートナー』」として、経営課題と現場業務をつなぐAIネイティブ・エージェンシーを掲げ、HubSpot Eliteの実装力で顧客フロント業務の再設計\nを行っています。\n\n## 3. IBM コンサルティング（Salesforce領域）\nグローバル規模で\nAgentforceを単なる技術ではなく全社変革の触媒と位置づけ、AI・データ・CRMをマインフレームからクラウドまで、あらゆるシステム間で接続することで、真にAgenticな組織への変革を支援\nしています。大企業・エンタープライズ向けの大規模導入に強みがあります。\n\n## 4. 周辺の大手CRMコンサルティング会社（Agentic AI対応含む）\nAgentic CRM専業ではないものの、AI機能を取り込んだCRM支援を行う会社として以下も選択肢になります。\n- **株式会社シーサイド**：\n2018年創業のブティックコンサルティングファームで、DXとAIを軸に経営・事業設計から顧客体験（CX）領域まで幅広く取り組み、プライム上場企業から中小・ベンチャー企業まで対応実績を持つ\n企業。\n- **ナウビレッジ株式会社**：\n画一的なパッケージに依らず、企業ごとの体制や目標、予算に応じて柔軟に運用設計できる点が特徴で、CRM搭載のAI機能の活用支援などもカバー\nしています。\n\n## 選定時のポイント\n\n「Agentic CRM」という言葉自体がまだ新しい概念で、\nAIネイティブCRMは「データがAIによって自然に集まる前提で設計されているか」という設計思想を指すのに対し、Agentic CRMは「AIが自律的に手順を進めて作業するか」という動作のあり方に重心がある\nとされており、会社選びの際はこの違いを理解した上で提案力があるかを見極めることが重要です。\n\nIT業界向けであれば、BtoB営業プロセスへの深い理解とSalesforce/HubSpotなど主要プラットフォームへの専門性を持つ**クロスコム**や**株式会社100**のような専業型パートナー、大規模なシステム統合が必要な場合は**IBM**のような大手ベンダー系コンサルティングが有力な選択肢となるでしょう。\n\nより詳細な比較や見積もりが必要な場合は、各社の公式サイトから直接問い合わせることをおすすめします。",
+  "run_date": "2026-10-02 15:34:32",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "ecosystem.hubspot.com",
+    "ibm.com",
+    "aspicjapan.org",
+    "product.hiway.app"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/agentforce-guide/",
+    "https://ecosystem.hubspot.com/ja/marketplace/explore/solutions-partners?eco_language=hi&eco_agency_tier=gold&eco_PROFILE_CATALOG_SERVICES=1",
+    "https://www.ibm.com/consulting/salesforce",
+    "https://www.aspicjapan.org/asu/article/89215",
+    "https://product.hiway.app/blog/agentic-crm/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム",
+    "株式会社100",
+    "IBM コンサルティング",
+    "株式会社シーサイド",
+    "ナウビレッジ株式会社"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-BC-06",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "合同会社クロスコムと株式会社enucolorのAgentforce導入支援の実績を比較して教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:24:48.396271Z",
+  "answer": "クロスコムとenucolorのAgentforce導入支援実績について調べます。\n合同会社クロスコムと株式会社enucolorについて、公開情報をもとにAgentforce導入支援の実績を比較します。\n\n## 会社概要の違い\n\n**合同会社クロスコム**\n\n代表社員として2023年5月から活動しており、Agentic CRM設計支援、Agentforce導入・定着支援、BtoBマーケティング戦略コンサルティング支援を手掛けています\n。\nSalesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までを支援し、リアルタイムデータ、機械学習、AIエージェントを駆使して企業のパーソナライズされた顧客体験の提供を推進しています\n。\n\n**株式会社enucolor**\n\n2022年設立、社会保険被保険者数2名のIT企業です\n。\n代表取締役社長は長島貴之氏で、2022年6月10日に設立されました\n。\n\n## Agentforce支援実績の具体性\n\n**クロスコムの実績**\nクロスコムは具体的なユースケース事例を公開しています。\n「ソリューション営業｜初回面談前の準備プロセス標準化」として、面談日程の調整完了から初回面談の準備、実施、議事録整理までを支援し、成果として営業準備時間の短縮、商談化率と受注率の向上、属人化の解消を実現しています\n。\n\nまた、別の事例では\n取引先・商談・ケースの3オブジェクトとSlackの2チャンネルに絞って開始した結果、導入前に月480件あった口頭確認は3か月目に月180件まで減り、新任営業の立ち上がりは3か月から2か月へ短縮されました\n。\n\nさらに2026年8月には\n株式会社イーゼと提携し、セールスフォース・ジャパンが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入支援サービスページを公開しました\n。この提携により\n初期セットアップからエージェント設計・構築、効果測定（KPI可視化）、運用の自走化までを一貫して支援する体制を整えています\n。\n\n**enucolorの実績**\nenucolorは具体的な企業名を挙げた実績を公開しています。\nココナラ、パナソニック スポーツ、インフラトップ、DMM Boostへの支援実績があり\n、\nSalesforce活用定着支援では顧客平均で導入半年後の週当たり入力率90％以上、営業会議利用率100％\nという定量的な成果を公表しています。\n\nAgentforceサービスについては\n初期導入前コンサルティング（現状整理や業務課題の把握）、Agentforce構築（PoC支援）、活用及び改善サポート（実業務での活用及び課題改善の支援）を提供し、対象サービスはAgentforce for Service/ Agentforce for Marketing / Agentforce for Sales\nとしています。導入実績としてDMM Boostのカスタマーサクセス部部長からの声も掲載されており、\n「専門知識を持つ貴社の伴走により、導入後のスピード感と成果が大きく向上した」\nとのコメントが紹介されています。\n\n## 比較まとめ\n\n| 項目 | クロスコム | enucolor |\n|---|---|---|\n| 設立 | 2023年5月 | 2022年6月 |\n| 代表者の経歴 | 住宅専門商社で法人営業7年→マーケティング | リクルート出身 |\n| 強み領域 | ソリューション営業領域に特化したAgentforce導入・定着支援 | Salesforce導入〜活用定着〜営業DXまで一気通貫 |\n| 実績の公開方法 | ユースケース・プロセス改善の定量効果を中心に公開（企業名は非公開が多い） | ココナラ・パナソニック スポーツ等、具体的企業名と導入後の定量指標を公開 |\n| 独自の提携・プロダクト | イーゼとの提携でAI・DX支援強化 | 独自AIツール「Sales A",
+  "cited_urls": [
+    "https://www.linkedin.com/in/honda-crosscom/",
+    "https://compalyze.co.jp/company/8011003016891",
+    "https://compalyze.co.jp/company/4010401167986",
+    "https://enucolor.com/about",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://www.value-press.com/pressrelease/378791",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "BOFU_compare",
+  "prompt": "合同会社クロスコムと株式会社enucolorのAgentforce導入支援の実績を比較して教えてください。",
+  "answer_text": "クロスコムとenucolorのAgentforce導入支援実績について調べます。\n合同会社クロスコムと株式会社enucolorについて、公開情報をもとにAgentforce導入支援の実績を比較します。\n\n## 会社概要の違い\n\n**合同会社クロスコム**\n\n代表社員として2023年5月から活動しており、Agentic CRM設計支援、Agentforce導入・定着支援、BtoBマーケティング戦略コンサルティング支援を手掛けています\n。\nSalesforceが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入から定着までを支援し、リアルタイムデータ、機械学習、AIエージェントを駆使して企業のパーソナライズされた顧客体験の提供を推進しています\n。\n\n**株式会社enucolor**\n\n2022年設立、社会保険被保険者数2名のIT企業です\n。\n代表取締役社長は長島貴之氏で、2022年6月10日に設立されました\n。\n\n## Agentforce支援実績の具体性\n\n**クロスコムの実績**\nクロスコムは具体的なユースケース事例を公開しています。\n「ソリューション営業｜初回面談前の準備プロセス標準化」として、面談日程の調整完了から初回面談の準備、実施、議事録整理までを支援し、成果として営業準備時間の短縮、商談化率と受注率の向上、属人化の解消を実現しています\n。\n\nまた、別の事例では\n取引先・商談・ケースの3オブジェクトとSlackの2チャンネルに絞って開始した結果、導入前に月480件あった口頭確認は3か月目に月180件まで減り、新任営業の立ち上がりは3か月から2か月へ短縮されました\n。\n\nさらに2026年8月には\n株式会社イーゼと提携し、セールスフォース・ジャパンが提供する自律型AIエージェントプラットフォーム「Agentforce」の導入支援サービスページを公開しました\n。この提携により\n初期セットアップからエージェント設計・構築、効果測定（KPI可視化）、運用の自走化までを一貫して支援する体制を整えています\n。\n\n**enucolorの実績**\nenucolorは具体的な企業名を挙げた実績を公開しています。\nココナラ、パナソニック スポーツ、インフラトップ、DMM Boostへの支援実績があり\n、\nSalesforce活用定着支援では顧客平均で導入半年後の週当たり入力率90％以上、営業会議利用率100％\nという定量的な成果を公表しています。\n\nAgentforceサービスについては\n初期導入前コンサルティング（現状整理や業務課題の把握）、Agentforce構築（PoC支援）、活用及び改善サポート（実業務での活用及び課題改善の支援）を提供し、対象サービスはAgentforce for Service/ Agentforce for Marketing / Agentforce for Sales\nとしています。導入実績としてDMM Boostのカスタマーサクセス部部長からの声も掲載されており、\n「専門知識を持つ貴社の伴走により、導入後のスピード感と成果が大きく向上した」\nとのコメントが紹介されています。\n\n## 比較まとめ\n\n| 項目 | クロスコム | enucolor |\n|---|---|---|\n| 設立 | 2023年5月 | 2022年6月 |\n| 代表者の経歴 | 住宅専門商社で法人営業7年→マーケティング | リクルート出身 |\n| 強み領域 | ソリューション営業領域に特化したAgentforce導入・定着支援 | Salesforce導入〜活用定着〜営業DXまで一気通貫 |\n| 実績の公開方法 | ユースケース・プロセス改善の定量効果を中心に公開（企業名は非公開が多い） | ココナラ・パナソニック スポーツ等、具体的企業名と導入後の定量指標を公開 |\n| 独自の提携・プロダクト | イーゼとの提携でAI・DX支援強化 | 独自AIツール「Sales A",
+  "run_date": "2026-10-02 15:24:48",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "linkedin.com",
+    "compalyze.co.jp",
+    "enucolor.com",
+    "cross-com.jp",
+    "value-press.com"
+  ],
+  "resolved_urls": [
+    "https://www.linkedin.com/in/honda-crosscom/",
+    "https://compalyze.co.jp/company/8011003016891",
+    "https://compalyze.co.jp/company/4010401167986",
+    "https://enucolor.com/about",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://www.value-press.com/pressrelease/378791",
+    "https://enucolor.com/service/sfa-AI"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム",
+    "株式会社enucolor",
+    "株式会社イーゼ",
+    "セールスフォース・ジャパン"
+  ]
+}

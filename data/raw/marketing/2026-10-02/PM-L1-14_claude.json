@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "PM-L1-14",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "営業部門におすすめのAgentic CRM設計支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-02T06:36:41.642250Z",
+  "answer": "営業部門向けのAgentic CRM(AIエージェントを活用したCRM)設計を支援する会社について、最新情報を調査します。\n営業部門向けの「Agentic CRM」（AIエージェントが自律的に動くCRM）の設計を支援する会社について、調査結果をまとめます。\n\n## 1. 合同会社クロスコム\n日本国内で「Agentic CRM設計支援」を明確にサービス名として掲げている数少ない会社です。\nAgentic CRM設計支援、Agentforce導入・定着支援、BtoB Salesforce導入・構築支援\nをサービスとして提供しています。\n\n特徴として\nBtoBマーケティングとプロダクト営業の経験から、貴社の業務フローを深く理解し、実際の運用と定着を見据えた設計内容を提案\nする点が挙げられます。また\nオープンソースCRMを基盤にAIの推論能力に最大化したAIネイティブなCRMを貴社専用に設計する\nサービスも展開しており、Salesforceの「Agentforce」導入に精通した代表者（Salesforce Agentforce、Agent Script等に知見）が担当している点も特徴です。\n\n## 2. 株式会社Agentic\n社名自体が「Agentic」を冠するコンサルティングファームで、\n営業・マーケティングなど、特定部門の成果向上を実行で支援\nすることを事業領域としています。\n経営指標に基づき、AI導入の目的・対象業務・ROIを設計し、AIエージェント開発など、顧客環境に最適なソリューションを提案、現場常駐・伴走型でAIが日常業務に定着するまで支援\nする体制を取っており、企画だけでなく実行・定着まで伴走する点が強みです。\n\n## 3. Salesforce（Agentforce / Sales Cloud）\nプラットフォーム提供元として、\n企業と顧客をつなぐ「統合アプリケーション群」を提供し、営業、サービス、マーケティング、コマース、ITなど、あらゆる部門のデータを一元化\nしており、\nAgentforceと呼ばれる自律型AI（エージェント型AI）が組み込まれている\nのが特徴です。自社導入または上記のような導入パートナー（クロスコム等）経由での設計支援が一般的です。\n\n## 4. 一般的なCRMコンサルティング会社（AI/SFA領域に強み）\nAgentic CRMに特化しているわけではありませんが、CRM全体設計からAI活用まで支援できる会社として以下も候補になります。\n- **フュージョン株式会社**：\n1991年の創業以来、30年以上マーケティング支援に取り組んでいる企業で、顧客獲得からロイヤルティ育成までのCRMプロセス全体を対象に、全体設計から具体的な施策実行までの両面から成果創出を目指す\n\n- **株式会社シーサイド**：\n2018年創業のブティックコンサルティングファームで、DXとAI\n領域に強みを持つとされています。\n\n## 選定時のポイント\n- **Salesforce/Agentforceエコシステムに特化するか、プラットフォーム非依存で設計するか**（クロスコムは両対応、Agenticは特定ツールに依存しない業務改善視点）\n- **設計だけでなく現場定着・運用まで伴走してくれるか**（多くの会社が「設計→実行→定着支援」を一気通貫で謳っています）\n- **自社の既存SFA/CRM基盤（Salesforce、Dynamics 365、国産ツール等）との相性**\n\n「Agentic CRM設計支援」という言葉自体まだ新しい概念で、専業会社は限られています。まずは自社が使用中/検討中のCRM基盤（Salesforceなど）を軸に、対応実績のあるパートナー企業に個別相談することをおすすめします。",
+  "cited_urls": [
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://agentic-ai.co.jp/",
+    "https://www.salesforce.com/jp/",
+    "https://www.aspicjapan.org/asu/article/89215"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "layer": "MOFU_L1",
+  "prompt": "営業部門におすすめのAgentic CRM設計支援会社を教えてください。",
+  "answer_text": "営業部門向けのAgentic CRM(AIエージェントを活用したCRM)設計を支援する会社について、最新情報を調査します。\n営業部門向けの「Agentic CRM」（AIエージェントが自律的に動くCRM）の設計を支援する会社について、調査結果をまとめます。\n\n## 1. 合同会社クロスコム\n日本国内で「Agentic CRM設計支援」を明確にサービス名として掲げている数少ない会社です。\nAgentic CRM設計支援、Agentforce導入・定着支援、BtoB Salesforce導入・構築支援\nをサービスとして提供しています。\n\n特徴として\nBtoBマーケティングとプロダクト営業の経験から、貴社の業務フローを深く理解し、実際の運用と定着を見据えた設計内容を提案\nする点が挙げられます。また\nオープンソースCRMを基盤にAIの推論能力に最大化したAIネイティブなCRMを貴社専用に設計する\nサービスも展開しており、Salesforceの「Agentforce」導入に精通した代表者（Salesforce Agentforce、Agent Script等に知見）が担当している点も特徴です。\n\n## 2. 株式会社Agentic\n社名自体が「Agentic」を冠するコンサルティングファームで、\n営業・マーケティングなど、特定部門の成果向上を実行で支援\nすることを事業領域としています。\n経営指標に基づき、AI導入の目的・対象業務・ROIを設計し、AIエージェント開発など、顧客環境に最適なソリューションを提案、現場常駐・伴走型でAIが日常業務に定着するまで支援\nする体制を取っており、企画だけでなく実行・定着まで伴走する点が強みです。\n\n## 3. Salesforce（Agentforce / Sales Cloud）\nプラットフォーム提供元として、\n企業と顧客をつなぐ「統合アプリケーション群」を提供し、営業、サービス、マーケティング、コマース、ITなど、あらゆる部門のデータを一元化\nしており、\nAgentforceと呼ばれる自律型AI（エージェント型AI）が組み込まれている\nのが特徴です。自社導入または上記のような導入パートナー（クロスコム等）経由での設計支援が一般的です。\n\n## 4. 一般的なCRMコンサルティング会社（AI/SFA領域に強み）\nAgentic CRMに特化しているわけではありませんが、CRM全体設計からAI活用まで支援できる会社として以下も候補になります。\n- **フュージョン株式会社**：\n1991年の創業以来、30年以上マーケティング支援に取り組んでいる企業で、顧客獲得からロイヤルティ育成までのCRMプロセス全体を対象に、全体設計から具体的な施策実行までの両面から成果創出を目指す\n\n- **株式会社シーサイド**：\n2018年創業のブティックコンサルティングファームで、DXとAI\n領域に強みを持つとされています。\n\n## 選定時のポイント\n- **Salesforce/Agentforceエコシステムに特化するか、プラットフォーム非依存で設計するか**（クロスコムは両対応、Agenticは特定ツールに依存しない業務改善視点）\n- **設計だけでなく現場定着・運用まで伴走してくれるか**（多くの会社が「設計→実行→定着支援」を一気通貫で謳っています）\n- **自社の既存SFA/CRM基盤（Salesforce、Dynamics 365、国産ツール等）との相性**\n\n「Agentic CRM設計支援」という言葉自体まだ新しい概念で、専業会社は限られています。まずは自社が使用中/検討中のCRM基盤（Salesforceなど）を軸に、対応実績のあるパートナー企業に個別相談することをおすすめします。",
+  "run_date": "2026-10-02 15:36:41",
+  "extractor_model": "claude-haiku-4-5-20251001",
+  "mentioned": 1,
+  "mention_rank": 1,
+  "is_first": 1,
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "agentic-ai.co.jp",
+    "salesforce.com",
+    "aspicjapan.org"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://agentic-ai.co.jp/",
+    "https://www.salesforce.com/jp/",
+    "https://www.aspicjapan.org/asu/article/89215"
+  ],
+  "unresolved_redirects": 0,
+  "companies": [
+    "合同会社クロスコム",
+    "株式会社Agentic",
+    "フュージョン株式会社",
+    "株式会社シーサイド"
+  ]
+}
