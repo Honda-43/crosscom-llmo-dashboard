@@ -17,7 +17,13 @@ experiment_end: "2026-12-31"
 # ビフォー観測が始まった 9/15 から本文を変えていないので、所見もこの日から縛る。
 freeze_start: "2026-09-15"
 
-# 編集禁止(本文・タイトル・meta・スキーマ・逆リンクの追記を含む)。49本。
+# 凍結範囲の縮小(2026-10-02・本田さん決定)。統計46本の外(agentforce-pricing・ピラー2本
+# agentforce-guide／agentic-crm)の凍結を解いた。実験は継続し、46本の比較とリンク増減の禁止は 12/31 まで維持。
+scope_reduced_on: "2026-10-02"
+scope_reduced_reason: "事業上の改善を優先（本田さん決定）。46本の比較は維持"
+
+# 編集禁止(本文・タイトル・meta・スキーマ・逆リンクの追記を含む)。2026-10-02 から統計46本(それまで49本)。
+# 一覧は seo-agent が持つ。縮小(49→46)も seo-agent 側が targets.csv を書き換えて行う(dashboard は読むだけ)。
 edit_ban_file: experiment_2x2/targets.csv
-# 新規リンクの張り先にしない。47本(edit_ban からピラー2本を除いたもの)。
+# 新しいリンクを張らない・外さない。2026-10-02 から統計46本(それまで47本)。同じく seo-agent の一覧を読む。
 link_ban_file: experiment_2x2/link_ban.csv

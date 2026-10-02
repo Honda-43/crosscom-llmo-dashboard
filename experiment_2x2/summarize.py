@@ -34,6 +34,7 @@ from math import comb
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
 import interventions  # noqa: E402
+import pillar  # noqa: E402
 import rerandomize  # noqa: E402
 from pool import GROUP_BLIND_UNTIL  # noqa: E402
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
@@ -541,6 +542,8 @@ def main(argv=None):
         if not groups:
             sys.exit("allocation_v1.csv が無い（9/28 の割付の前）。組が決まってから判定する")
         print_site_wide_interventions(a.before, a.after)
+        pillar_lines, pillar_parts = pillar.report_lines(_span(a.after))
+        print("\n".join(pillar_lines))
         rows = read_llm_experiment(a.csv)
         pool = pool_slugs()
         late = late_appended_slugs()
@@ -556,6 +559,11 @@ def main(argv=None):
             if missing:
                 print(f"ビフォーに観測の無い記事 {len(missing)}本（ビフォーは0として扱う）: {', '.join(missing)}")
             both_ways(after, before, f"{model} ")
+            # ピラー編集が 10/6 以降に完了した場合は、アフターをその前後に分けた結果も並べる
+            for label, span in pillar_parts:
+                part = period(rows, span, model, groups, pool)
+                print(f"##### {model}（アフター {span[0]}〜{span[1]}・{label} / ビフォー {a.before}）")
+                both_ways(part, before, f"{model} {label} ")
             gsc_rank_subgroups(after, before, f"{model} ")
     print("判定: 差が +25pt 以上 かつ p<0.10 で「効いた」。どちらか欠ければ「この本数では判断できない」。")
     print("p は**再ランダム化検定**を本線にする（条件 a〜g の合格率が約 1/9,200 のため、"

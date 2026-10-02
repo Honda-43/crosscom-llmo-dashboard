@@ -29,3 +29,4 @@ date,intervention_id,description,scope,executor,touches_pool46,note
 2026-09-26,I-15,B-32 自作フォームの認知経路の選択肢「AI検索」の表示ラベルを「AI検索(ChatGPT・Gemini・Claude等)」に変更（表示のみ・保存される値 AI検索 は不変）,固定ページ4件（68 /contact/・1891 /download-paper/company-service/・5702 /download-paper/agentforce-support/・5801 /agentforce-business-partner/）,記事制作,no,L4（問い合わせ）の計測に関わる変更。実験の判定には使わない
 2026-09-30,I-16,B-32 自作フォームの認知経路の選択肢「AI検索」の表示ラベルを「AI検索(ChatGPT・Gemini・Claude等)」に変更（表示のみ・保存される値 AI検索 は不変）,固定ページ3件（2231 /service/salesforce-implementation/・6443 /service/agentic-crm-design/・5706 /service/agentforce-support/）,記事制作,no,L4（問い合わせ）の計測に関わる変更。実験の判定には使わない
 2026-09-30,I-17,導線是正：1337 の旧事業フォームを撤去し、現行サービスへの誘導を設置,固定ページ1件（1337 /service/btob-marketing-strategy/）,制作管制,no,L4（問い合わせ）の計測に関わる変更。実験の判定には使わない
+2026-10-02,I-18,凍結範囲の縮小（編集禁止49本→46本・新規リンク禁止47本→46本。agentforce-pricing・ピラー2本〈agentforce-guide／agentic-crm〉の凍結を解除）,サイト全体,本田さん決定,no,46本本体は不変（46本の比較・リンク増減の禁止は 12/31 まで維持）。理由：事業上の改善を優先（本田さん決定）
