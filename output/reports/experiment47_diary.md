@@ -960,3 +960,15 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
   判定ではアフターを分けない（注記のみ）。偏り2（横取り）は、強の重なりが1本も張られていないため対象外
 - `output/interventions.csv` に I-20〜I-23（4操作。touches_pool46=yes。note に最終状態と 10/5 以前に完了したこと）
 - `experiment_2x2/pillar.py` を新しい記録の形（action＝add/remove）に合わせた：最終状態の本数と最後の操作の日時を判定レポートに出す
+
+---
+
+## 2026-10-02（続き）／I-23（sales-enablement の保留）の決定者の確定（追記）
+
+- 上の「ピラー編集の確定」の項の「本田さんの判断で agentic-crm-sales-enablement を保留に加え」は**正しかった**。
+  seo-agent の調査（af2e9cd）と本田さんへの確認で、決定者は本田さんと確定した
+- 経路：2026-10-02 13:09 に別セッション（-14）が sales-dependency と強く重なると判定 → 便PU（制作管制）で「保留14本・本田さん確認済み」→
+  本田さんが効果測定チャットで本人確認済み → 9d が 13:34:55 にピラーBから削除
+- **sales-enablement の保留は効果測定チャットの指示ではない**（効果測定チャットが保留にしたのは「強」の13本のみ）。
+  seo-agent の重なりの判定では「弱」（E41 agentforce-sales-dependency）
+- `output/interventions.csv` の I-23 の note に決定者を追記（既存の記述は消さず追記のみ）
