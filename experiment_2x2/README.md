@@ -44,9 +44,9 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
 | 解放 | 2027-01-01 00:00 JST |
 
 - 長期判定は 12/28 の週で確定（戦略管制塔の台帳の「12月中旬」は修正依頼済み）
-- 凍結明けは リンク張り直し → 次実験のビフォー。1月第1週に prompt_marketing の Gemini 54本を観測する（リンク張り直し中）
+- 凍結明けは リンク張り直し → 次実験のビフォー。1月第1週に prompt_marketing の Gemini 全本数（57本）を観測する（リンク張り直し中）
 - 実験の観測の終わりは `settings.EXPERIMENT_OBSERVATION_END = "2026-12-31"`（2026-10-01 確定・`config/experiment_freeze.yaml` の
-  experiment_end と同じ日。テストで一致を確認）。1/1 から実験の Gemini の枠が空くので、prompt_marketing の Gemini 54本は 1/1〜1/4 で終わる
+  experiment_end と同じ日。テストで一致を確認）。1/1 から実験の Gemini の枠が空くので、prompt_marketing の Gemini 57本は 1/1〜1/4 で終わる
 - 長期判定の summarize は `--after 2026-10-06:2026-12-28` で実行する（12/29〜12/31 の観測は入れない）
 
 ## アフター期間の運用：途中で組ごとの数字を見ない（2026-09-30）

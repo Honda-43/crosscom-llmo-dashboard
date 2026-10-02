@@ -35,7 +35,7 @@ from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, Optional, Set
 
 import experiment
-from settings import (DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MARKETING_DIR,
+from settings import (DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MARKETING_DIR, marketing_prompt_active,
                       MARKETING_QUOTA_SKIPPED, MARKETING_WINDOW_LAST_DAY)
 
 MODELS = ("gemini", "claude")
@@ -208,6 +208,7 @@ def pending(prompts: List[Dict[str, Any]], month: str, model: str,
             root: Path = DATA_RAW_MARKETING_DIR) -> List[Dict[str, Any]]:
     """その月・そのモデルでまだ終わっていないプロンプト(投げる順)。"""
     done = done_ids(month, model, root)
+    prompts = [p for p in prompts if marketing_prompt_active(p, month)]      # 初回の月より前のプロンプトは入れない
     ordered = gemini_order(prompts) if model == "gemini" else sorted(prompts, key=lambda p: p["id"])
     return [p for p in ordered if p["id"] not in done]
 
@@ -273,11 +274,12 @@ def layer_sizes(prompts: Iterable[Dict[str, Any]]) -> Dict[str, int]:
     return out
 
 
-def layer_rates(rows: Iterable[Dict[str, Any]],
-                sizes: Optional[Dict[str, int]] = None) -> List[Dict[str, Any]]:
+def layer_rates(rows: Iterable[Dict[str, Any]], sizes=None) -> List[Dict[str, Any]]:
     """[{month, layer, model, n, total, partial, mentioned, cited_domain}]。
 
     n は観測できた本数(率の分母)、total は層の全本数。n < total の層は partial(一部観測)。
+    ``sizes`` は {層: 本数} か、月を受けて {層: 本数} を返す関数(月によって含むプロンプトが違うため。
+    2026-11 から MOFU_L1 は18本→21本)。
     """
     cells: Dict[tuple, Dict[str, Any]] = {}
     for r in latest_observations(rows):
@@ -288,7 +290,8 @@ def layer_rates(rows: Iterable[Dict[str, Any]],
         c["mentioned"] += str(r.get("mentioned", "")).strip() == "1"
         c["cited_domain"] += str(r.get("cited_domain", "")).strip() == "1"
     for c in cells.values():
-        c["total"] = (sizes or {}).get(c["layer"], c["n"])
+        month_sizes = sizes(c["month"]) if callable(sizes) else (sizes or {})
+        c["total"] = month_sizes.get(c["layer"], c["n"])
         c["partial"] = c["n"] < c["total"]
     order = {k: i for i, k in enumerate(LAYER_ORDER)}
     return sorted(cells.values(), key=lambda c: (c["month"], order.get(c["layer"], 99), c["model"]))

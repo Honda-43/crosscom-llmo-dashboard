@@ -28,27 +28,47 @@ PROMPTS = settings.load_marketing_prompts()
 MORNING = dt.datetime(2026, 10, 2, 11, 0, tzinfo=JST)
 
 
-# --- 1. 54本と凍結 ---------------------------------------------------------------
-# 2026-10 の初回実行後は文言を変えない。変えるなら戦略管制塔・効果測定チャットの判断を経て
-# このハッシュごと更新する(月をまたいだ比較が切れることを日誌に残す)
-FROZEN_SHA256 = "189e81d6f2721faa000439ed66c24b94a325b45e580b6b9dad7dc31798f667d6"
+# --- 1. 57本と凍結 ---------------------------------------------------------------
+# 最初の54本は 2026-10 の初回実行後に凍結(文言を変えない)。2026-10-02 に MOFU_L1 へ IT研修業界3本を
+# **末尾に追加**(戦略管制塔の依頼・本田さん承認)。既存54本は1文字も変えず、追加は末尾だけ許す。
+# 追加3本は 2026-11 の初回実行後に凍結。変えるなら戦略管制塔・効果測定チャットの判断を経て
+# ハッシュごと更新する(月をまたいだ比較が切れることを日誌に残す)
+FROZEN_SHA256 = "189e81d6f2721faa000439ed66c24b94a325b45e580b6b9dad7dc31798f667d6"          # 最初の54本
+FROZEN_ADDED_SHA256 = "f5b749f6c4177014e82537d51cbc15f9207d9d1e50603662a953cb28a29476be"    # 追加3本(PM-L1-19〜21)
+ADDED_IDS = ["PM-L1-19", "PM-L1-20", "PM-L1-21"]
 
 
-def test_the_54_prompts_are_frozen():
-    rows = "".join(f"{p['id']}\t{p['layer']}\t{p['prompt']}\n" for p in PROMPTS)
-    assert hashlib.sha256(rows.encode("utf-8")).hexdigest() == FROZEN_SHA256, \
-        "prompts_marketing.csv の文言は初回実行後に凍結している"
+def _hash(rows):
+    text = "".join(f"{p['id']}\t{p['layer']}\t{p['prompt']}\n" for p in rows)
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def test_the_54_prompts_have_the_agreed_shape():
-    assert len(PROMPTS) == 54 and len({p["id"] for p in PROMPTS}) == 54
+def test_the_first_54_prompts_are_frozen_and_only_appending_is_allowed():
+    assert _hash(PROMPTS[:54]) == FROZEN_SHA256, "既存54本の文言・順は初回実行後に凍結している"
+    assert [p["id"] for p in PROMPTS[54:57]] == ADDED_IDS, "追加は末尾だけ"
+
+
+def test_the_three_added_prompts_are_frozen():
+    assert _hash(PROMPTS[54:57]) == FROZEN_ADDED_SHA256, "追加3本の文言は 2026-11 の初回実行後に凍結"
+
+
+def test_the_57_prompts_have_the_agreed_shape():
+    assert len(PROMPTS) == 57 and len({p["id"] for p in PROMPTS}) == 57
     counts = {}
     for p in PROMPTS:
         counts[p["layer"]] = counts.get(p["layer"], 0) + 1
-    assert counts == {"MOFU_L0": 10, "MOFU_L1": 18, "MOFU_L2": 6,
+    assert counts == {"MOFU_L0": 10, "MOFU_L1": 21, "MOFU_L2": 6,
                       "BOFU_single": 12, "BOFU_compare": 8}
+    assert all("IT研修業界" in p["prompt"] for p in PROMPTS[54:57])
     with open(settings.PROMPTS_MARKETING_FILE, encoding="utf-8", newline="") as fh:
         assert next(csv.reader(fh)) == ["id", "layer", "prompt"]
+
+
+def test_the_added_three_start_in_november():
+    """10月は既に走っているので、追加3本は 2026-11 の月次実行から。"""
+    assert len(settings.marketing_prompts_for("2026-10")) == 54
+    assert len(settings.marketing_prompts_for("2026-11")) == 57
+    assert not {p["id"] for p in settings.marketing_prompts_for("2026-10")} & set(ADDED_IDS)
 
 
 def test_marketing_prompts_are_not_in_the_experiment_pool():
@@ -58,27 +78,46 @@ def test_marketing_prompts_are_not_in_the_experiment_pool():
 
 
 # 2026-10-01 改訂:Gemini は層ブロック順(L0 → BOFU_single → BOFU_compare → L1 → L2)。各層の中は id 順。
-# 毎月まったく同じ順にする(月によって変えない)
+# 毎月まったく同じ順にする(月によって変えない)。2026-11 から PM-L1-19〜21 は MOFU_L1 ブロックの末尾(PM-L1-18 の次)
 GEMINI_ORDER = ([f"PM-L0-{i:02d}" for i in range(1, 11)] + [f"PM-BS-{i:02d}" for i in range(1, 13)]
-                + [f"PM-BC-{i:02d}" for i in range(1, 9)] + [f"PM-L1-{i:02d}" for i in range(1, 19)]
+                + [f"PM-BC-{i:02d}" for i in range(1, 9)] + [f"PM-L1-{i:02d}" for i in range(1, 22)]
                 + [f"PM-L2-{i:02d}" for i in range(1, 7)])
+GEMINI_ORDER_OCT = [i for i in GEMINI_ORDER if i not in ADDED_IDS]
 
 
 def test_gemini_runs_in_fixed_layer_blocks():
     assert marketing.GEMINI_LAYER_ORDER == ("MOFU_L0", "BOFU_single", "BOFU_compare",
                                             "MOFU_L1", "MOFU_L2")
     assert [p["id"] for p in marketing.gemini_order(PROMPTS)] == GEMINI_ORDER
+    assert GEMINI_ORDER.index("PM-L1-19") == GEMINI_ORDER.index("PM-L1-18") + 1
 
 
 def test_the_order_is_the_same_every_month(tmp_path):
-    months = ["2026-10", "2026-11", "2027-01", "2027-06"]
-    orders = {m: [p["id"] for p in marketing.pending(PROMPTS, m, "gemini", tmp_path)] for m in months}
-    assert all(o == GEMINI_ORDER for o in orders.values())
+    assert [p["id"] for p in marketing.pending(PROMPTS, "2026-10", "gemini", tmp_path)] == GEMINI_ORDER_OCT
+    for m in ["2026-11", "2026-12", "2027-01", "2027-06"]:
+        assert [p["id"] for p in marketing.pending(PROMPTS, m, "gemini", tmp_path)] == GEMINI_ORDER, m
 
 
-def test_claude_runs_all_54_in_id_order(tmp_path):
-    got = [p["id"] for p in marketing.pending(PROMPTS, "2026-10", "claude", tmp_path)]
-    assert got == sorted(p["id"] for p in PROMPTS)
+def test_claude_runs_every_prompt_of_the_month_in_id_order(tmp_path):
+    oct_ = [p["id"] for p in marketing.pending(PROMPTS, "2026-10", "claude", tmp_path)]
+    nov = [p["id"] for p in marketing.pending(PROMPTS, "2026-11", "claude", tmp_path)]
+    assert len(oct_) == 54 and len(nov) == 57 and nov == sorted(p["id"] for p in PROMPTS)
+
+
+def test_in_november_gemini_still_stays_within_20_a_day(monkeypatch, tmp_path):
+    """57本でも、実験優先・残り枠のみのルールは同じ(1日20回以下)。"""
+    calls = _fake_gemini(monkeypatch)
+    total = 0
+    for day in range(1, 15):
+        date = f"2026-11-{day:02d}"
+        q = settings.gemini_requests_on(date)
+        used = q["daily"] + q["monthly"] + q["experiment"]
+        before = len(calls)
+        _gemini(tmp_path, date=date, used=used, now=dt.datetime(2026, 11, day, 11, 0, tzinfo=JST))
+        made = len(calls) - before
+        assert used + made <= 20, date
+        total += made
+    assert total <= 57 and len(marketing.pending(PROMPTS, "2026-11", "gemini", tmp_path / "marketing")) == 0
 
 
 # --- 2. 判定 ---------------------------------------------------------------------
@@ -237,8 +276,8 @@ def test_the_last_window_day_records_the_rest_as_quota_skipped(monkeypatch, tmp_
     assert len(calls) == 4
     skipped = [r for r in recs if str(r["error"]).startswith("quota_skipped")]
     assert len(skipped) == 50 and not any(r.get("attempts") for r in skipped)
-    assert [r["prompt_id"] for r in recs[:4]] == GEMINI_ORDER[:4]
-    assert [r["prompt_id"] for r in skipped] == GEMINI_ORDER[4:], "残りは順番の後ろから記録"
+    assert [r["prompt_id"] for r in recs[:4]] == GEMINI_ORDER_OCT[:4]
+    assert [r["prompt_id"] for r in skipped] == GEMINI_ORDER_OCT[4:], "残りは順番の後ろから記録(10月は追加3本を含まない)"
     assert marketing.pending(PROMPTS, "2026-10", "gemini", tmp_path / "marketing") == []
 
 
@@ -254,7 +293,7 @@ def test_a_missed_last_day_is_closed_on_the_next_run_without_calls(monkeypatch, 
 def test_nothing_is_carried_over_to_the_next_month(monkeypatch, tmp_path):
     _fake_gemini(monkeypatch)
     _gemini(tmp_path, date="2026-10-16", used=0)
-    assert len(marketing.pending(PROMPTS, "2026-11", "gemini", tmp_path / "marketing")) == 54
+    assert len(marketing.pending(PROMPTS, "2026-11", "gemini", tmp_path / "marketing")) == 57
 
 
 def test_before_the_first_month_nothing_happens(tmp_path, capsys):
@@ -432,19 +471,30 @@ def test_while_the_experiment_is_scheduled_it_keeps_priority(monkeypatch):
     assert settings.marketing_gemini_allowance(q["daily"] + q["monthly"]) == 20
 
 
-def test_after_the_end_all_54_fit_in_the_first_week_of_january(ended):
+def test_after_the_end_all_57_fit_in_the_first_week_of_january(ended):
     done, day = 0, dt.date(2027, 1, 1)
-    while day <= dt.date(2027, 1, 7) and done < 54:
+    while day <= dt.date(2027, 1, 7) and done < 57:
         q = settings.gemini_requests_on(day.isoformat())
         used = q["daily"] + q["monthly"] + q["experiment"]
         extra = settings.marketing_gemini_allowance(used)
         assert q["experiment"] == 0 and used + extra <= 20
         done += extra
         day += dt.timedelta(days=1)
-    assert done >= 54 and day <= dt.date(2027, 1, 5), "1/4 までに54本"
+    assert done >= 57 and day <= dt.date(2027, 1, 5), "1/4 までに57本(2026-11 から57本)"
 
 
 def test_after_the_end_the_marketing_day_needs_no_experiment_raw(ended):
     used, note = run_marketing.gemini_used_today("2027-01-04", experiment_records=[], prior=[],
                                                  marketing_dir=settings.ROOT_DIR / "no-such-dir")
     assert used == 0 and "実験0" in note
+
+
+
+def test_layer_totals_follow_the_month():
+    """MOFU_L1 は 2026-10 は18本、2026-11 から21本。セルの「観測 n/全本数」は月ごとの全本数で出す。"""
+    rows = [{"date": "2026-10-05", "prompt_id": "PM-L1-01", "model": "claude", "layer": "MOFU_L1",
+             "mentioned": "1", "cited_domain": "0", "error": ""},
+            {"date": "2026-11-05", "prompt_id": "PM-L1-01", "model": "claude", "layer": "MOFU_L1",
+             "mentioned": "1", "cited_domain": "0", "error": ""}]
+    got = marketing.layer_rates(rows, lambda m: marketing.layer_sizes(settings.marketing_prompts_for(m)))
+    assert [(c["month"], c["total"], c["partial"]) for c in got] == [("2026-10", 18, True), ("2026-11", 21, True)]

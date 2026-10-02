@@ -14,7 +14,7 @@ import streamlit as st
 import common
 import data_source
 import marketing
-from settings import TAB_MARKETING, load_marketing_prompts
+from settings import TAB_MARKETING, marketing_prompts_for
 
 common.page_header("P6 第3観測層(購買検討・指名の観測)",
                    "54本・月1回。層 × モデル の社名の出現率と cross-com.jp の引用率")
@@ -24,8 +24,8 @@ if not data_source.sheets_available():
     st.stop()
 
 rows = data_source.tab(TAB_MARKETING)
-sizes = marketing.layer_sizes(load_marketing_prompts())
-rates = marketing.layer_rates(rows, sizes)
+# 月によって含むプロンプトが違う(2026-11 から MOFU_L1 に IT研修業界3本)ので、層の全本数は月ごとに数える
+rates = marketing.layer_rates(rows, lambda m: marketing.layer_sizes(marketing_prompts_for(m)))
 if not rates:
     common.empty_state("`llm_marketing` にまだ観測がありません(初回は 2026年10月第1週)。")
     st.stop()
@@ -33,6 +33,7 @@ if not rates:
 months = sorted({c["month"] for c in rates}, reverse=True)
 month = st.selectbox("月", months, key="p6_month")
 cells = [c for c in rates if c["month"] == month]
+sizes = marketing.layer_sizes(marketing_prompts_for(month))
 layers = [l for l in marketing.LAYER_ORDER if any(c["layer"] == l for c in cells)]
 models = [m for m in marketing.MODELS if any(c["model"] == m for c in cells)]
 lookup = {(c["layer"], c["model"]): c for c in cells}
@@ -89,7 +90,9 @@ with by_layer:
         "**1プロンプト月1回の観測のため、層単位の率で読む。** セルは その月に観測できた本数を分母にした率と、"
         "「観測 本数/層の全本数」。全本数に満たない層は「一部観測」(欠測・枠不足で見送った分は分母に入れない)。"
         "Gemini は月に約28本しか回らず、層ブロック順(L0→BOFU単体→BOFU比較→L1→L2)で毎月固定のため、"
-        "L1・L2 は観測されない月が多い(Claude は毎月54本)。BOFU は社名を質問に含むので出現率が高いのが前提。"
+        "L1・L2 は観測されない月が多い(Claude は毎月全本数)。BOFU は社名を質問に含むので出現率が高いのが前提。"
+        "**2026年11月から MOFU_L1 に IT研修業界3本(`PM-L1-19`〜`21`)を追加(18本→21本)。**"
+        "月ごとの層の率は月によって含むプロンプトが異なる。前月との差は両月で観測したプロンプトのみで計算。"
     )
 
     previous = marketing.previous_month(month)

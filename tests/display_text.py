@@ -32,7 +32,7 @@ PRODUCT_NAMES = {
 # ③ 定着済み略語
 #   MOFU / BOFU: 観測設計の区分名(検討段階 / 購買直前)。Phase 3 の月次観測は
 #   この区分で設計しており、訳すと設計上の区分との対応が切れる。KBF・CEP と同じ扱い。
-ABBREVIATIONS = {"AI", "KBF", "CEP", "URL", "MOFU", "BOFU"}
+ABBREVIATIONS = {"AI", "IT", "KBF", "CEP", "URL", "MOFU", "BOFU"}   # IT:業界名(IT研修業界)
 
 # 「成果指標(KGI)」の初出併記でのみ使う。2回目以降は使わない
 # (1画面に1回までであることは tests/test_app_labels.py で固定している)。

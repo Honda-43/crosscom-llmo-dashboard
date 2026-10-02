@@ -432,6 +432,24 @@ MARKETING_QUOTA_SKIPPED = "quota_skipped"
 MARKETING_GEMINI_CUTOFF_JST = (15, 30)
 
 
+# プロンプトごとの初回の月(ここに無いものは MARKETING_FIRST_MONTH から)。2026-10-02 戦略管制塔の依頼(本田さん承認)で
+# MOFU_L1 に IT研修業界3本を追加(54本→57本)。10月は既に走っているため 11月の月次実行から入れる
+MARKETING_PROMPT_FIRST_MONTH = {
+    "PM-L1-19": "2026-11", "PM-L1-20": "2026-11", "PM-L1-21": "2026-11",
+}
+
+
+def marketing_prompt_active(prompt: Dict[str, Any], month: str) -> bool:
+    """そのプロンプトを ``month``(YYYY-MM)の観測に含めるか。"""
+    return str(month)[:7] >= MARKETING_PROMPT_FIRST_MONTH.get(prompt["id"], MARKETING_FIRST_MONTH)
+
+
+def marketing_prompts_for(month: str, prompts: Optional[List[Dict[str, Any]]] = None) -> List[Dict[str, Any]]:
+    """``month`` に観測するプロンプト(10月は54本・11月から57本)。"""
+    prompts = load_marketing_prompts() if prompts is None else prompts
+    return [p for p in prompts if marketing_prompt_active(p, month)]
+
+
 def load_marketing_prompts() -> List[Dict[str, Any]]:
     """第3観測層の54本(id, layer, prompt)。CSV の値は加工しない。``text`` に prompt を写す。"""
     if not PROMPTS_MARKETING_FILE.exists():
