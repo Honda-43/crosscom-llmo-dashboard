@@ -1,0 +1,17 @@
+# 孤児（46本以外）のうち、46本の実験用プロンプトに「強」で重なるもの（主な問いにそのまま答える）。13本・13組。
+# 出典：crosscom-seo-agent/output/reports/pillar_release_balance_20261001.md §2 の写し（タイトルと H2 による判断・機械判定ではない）。
+# 2026-10-02 本田さん決定：この13本はピラーから今は張らない（2027-01-01 以降）。横取りを避けるため。
+orphan,pillar,prompt_slug,group
+agentforce-action-design,agentforce-guide,agentforce-no-code-scope,①対照
+agentforce-error-tolerance,agentforce-guide,agentforce-testing-center,②FAQのみ
+agentforce-extra-cost,agentforce-guide,agentforce-roi,③リードのみ
+agentforce-topic-design,agentforce-guide,agentforce-subagents,③リードのみ
+call-center-ai,agentforce-guide,agentforce-voice,③リードのみ
+customer-support-ai-agent,agentforce-guide,agentforce-service-agent,①対照
+inside-sales-ai,agentforce-guide,agentforce-for-sales-sdr-sales-coach,②FAQのみ
+multi-agent,agentforce-guide,agentforce-subagents,③リードのみ
+sales-ai-agent,agentforce-guide,agentforce-for-sales-sdr-sales-coach,②FAQのみ
+slackbot,agentforce-guide,agentforce-in-slack,③リードのみ
+agentic-crm-abm-revops-integration,agentic-crm,revops-guide,③リードのみ
+agentic-crm-effect-measurement,agentic-crm,agentforce-roi,③リードのみ
+agentic-crm-pipeline-forecast-accuracy,agentic-crm,agentic-crm-pipeline-kpi-monitoring,①対照

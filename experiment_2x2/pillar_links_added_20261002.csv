@@ -1,0 +1,21 @@
+﻿date,wp_modified,pillar,post_id,target_slug,anchor
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-topic-design,業務の単位で分けておく
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,multi-agent,1つのエージェント
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-action-design,許可されたアクション
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-grid,Agentforce Grid
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-delivery-answer,納期回答
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,quote-ai,見積作成
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-extra-cost,追加費用
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,sales-ai-agent,商談のどの工程を任せるのか
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-similar-deals,過去のやり取りと取引状況をまとめる
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,inside-sales-ai,見込み客への初期接触を継続する工程
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,call-center-ai,問い合わせ対応にAIを入れる
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,customer-support-ai-agent,一次回答をどこまで担わせ、どこから人が引き取るか
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-error-tolerance,合格の基準を人が先に決めておく
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,appexchange,AppExchange
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,slackbot,Slackbot
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,claudeforce,Claudeforce
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,ai-agent-implementation-support,外部に依頼するかどうか
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,salesforce-operation-maintenance,公開後に回答を見直す作業
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,salesforce-partner,依頼先のタイプごとの違い
+2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-japanese,日本語で高い精度が出ること

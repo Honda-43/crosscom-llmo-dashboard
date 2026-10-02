@@ -1,0 +1,31 @@
+# ピラー2本 → 統計46本の既存の発リンク（凍結解除の前・2026-10-02 実測）。
+# 出典：crosscom-seo-agent/output/reports/pillar_release_balance_20261001.md §1 の「リンク先の一覧」の写し。
+# 46本へのリンクの増減は link_ban で止めているので、実験の終わりまで変わらない前提。
+pillar,slug,group,links
+agentforce-guide,agentforce-marketing,①対照,1
+agentforce-guide,agentforce-service-agent,①対照,3
+agentforce-guide,agentforce-einstein-difference,①対照,4
+agentforce-guide,agentforce-security-risk-design,①対照,3
+agentforce-guide,agentforce-usecase-selection,①対照,3
+agentforce-guide,agentforce-observability,①対照,2
+agentforce-guide,agentforce-usage,②FAQのみ,4
+agentforce-guide,agentforce-mcp,②FAQのみ,2
+agentforce-guide,agentforce-use-cases,②FAQのみ,3
+agentforce-guide,agentforce-chatgpt-copilot-comparison,②FAQのみ,2
+agentforce-guide,agentforce-for-sales-sdr-sales-coach,②FAQのみ,1
+agentforce-guide,agentforce-testing-center,②FAQのみ,3
+agentforce-guide,agentforce-certification,②FAQのみ,1
+agentforce-guide,agentforce-features,③リードのみ,4
+agentforce-guide,agentforce-in-slack,③リードのみ,2
+agentforce-guide,agentforce-roi,③リードのみ,1
+agentforce-guide,agentforce-voice,③リードのみ,1
+agentforce-guide,agentforce-rag,④両方,4
+agentforce-guide,agentforce-small-business,④両方,2
+agentforce-guide,agentforce-agent-script,④両方,1
+agentforce-guide,agentforce-vibes,④両方,1
+agentic-crm,agentic-ai-guide,①対照,1
+agentic-crm,agentic-crm-pipeline-kpi-monitoring,①対照,1
+agentic-crm,revops-guide,③リードのみ,1
+agentic-crm,hyper-personalization,④両方,1
+agentic-crm,agentic-crm-pipeline-stagnation-detection,④両方,1
+agentic-crm,buyer-enablement,④両方,1

@@ -137,6 +137,8 @@ def _outcome_rows(monkeypatch, pool_rows, multi_csv=None):
     import pool
     monkeypatch.setattr(pool, "MULTI_PARAGRAPH_GLOBS",
                         (str(multi_csv),) if multi_csv else ("__none__/faq_multiparagraph_*.csv",))
+    # ピラーの既存リンク先(6通り目・2026-10-02)はここでは見ない(tests/test_pillar.py で確かめる)
+    monkeypatch.setattr(summarize.pillar, "linked_articles", lambda path=None: None)
     monkeypatch.setattr(summarize.rerandomize, "load", lambda path=None: pool_rows)
     groups = {a["slug"]: rerandomize.GROUPS[i % 4] for i, a in enumerate(ARTS)}
     monkeypatch.setattr(summarize, "load_allocation", lambda: groups)

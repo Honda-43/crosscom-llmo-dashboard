@@ -243,7 +243,7 @@ def randomization(after, exclude=()):
 
 
 def variants():
-    """感度分析の4通り（表があれば5通り）。(見出し, 除く記事) を返す。
+    """感度分析の4通り（表があれば5通り・6通り）。(見出し, 除く記事) を返す。
 
     9/15〜16 に逆リンク追記が入った9本と、鮮度更新の訂正が入る記事は、どちらも
     処置以外の理由で本文が変わっている。片方だけ抜いた結果も並べないと、
@@ -266,6 +266,11 @@ def variants():
     multi = multi_paragraph_slugs()
     if multi is not None:
         out.append((f"複数段落回答抜き（{len(multi[0])}本・全組）", set(multi[0])))
+    # 6通り目（2026-10-02）：ピラーA・ピラーBのどちらかから既存リンクを受けている46本を全組から抜く。
+    # 凍結を解いたピラーに孤児へのリンクが足され、既存リンクの重みが薄まる（①②に多い）ため
+    linked = pillar.linked_articles()
+    if linked is not None:
+        out.append((f"ピラーの既存リンク先抜き（{len(linked)}本・全組）", set(linked)))
     return out
 
 

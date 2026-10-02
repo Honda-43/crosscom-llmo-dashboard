@@ -907,3 +907,23 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - 参考：seo-agent 便PP（2026-10-02・測定のみ）では、ピラーA の既存リンクは ①②に厚く ③④に薄い（記事数 6・7・4・4、有意差なし）。
   pillar_release_balance が届いたら、判定レポートの冒頭で「偏りあり」と出る見込み（差3本）
 - 週次ドリフト検知（drift_check.py）の対象は config/prompts_experiment.csv の46本のみ。ピラー・pricing の変化は報告されない（確認済み）
+
+---
+
+## 2026-10-02（続き）／ピラー編集の範囲の決定（強の重なり13本は除外）と、実施記録との食い違い
+
+- **決定（本田さん）**：ピラー2本への孤児リンクは35本のうち「強」の重なり（46本の実験用プロンプトにそのまま答える）13本を除いた
+  22本だけを今張る。13本は 2027-01-01 以降。理由：孤児が強くなると AI が46本の代わりに孤児を引用する（横取り）おそれがあり、
+  その13本が③に偏っていたため（強の組み合わせ ①3・②3・③7・④0）。seo-agent への書き込みは元のセッションに一本化（-14 は書き込み停止）
+- **★実施記録との食い違い（2026-10-02 dashboard 側で確認）**：seo-agent の pillar_links_added_20261002.csv では、
+  ピラーA（agentforce-guide）へ 13:09:58 に20本を差し込み済みで、**強の重なり10本が含まれている**
+  （agentforce-action-design・agentforce-error-tolerance・agentforce-extra-cost・agentforce-topic-design・call-center-ai・
+  customer-support-ai-agent・inside-sales-ai・multi-agent・sales-ai-agent・slackbot。重なる46本の組：①2・②3・③5・④0）。
+  決定の「22本のみ」とは一致しない。ピラーB はまだ記録が無い
+- このため **interventions.csv への「孤児リンク22本の追加」の記録は保留**（実際に張られた内容が決まってから転記する）
+- 判定への反映（`experiment_2x2/pillar.py`）：判定レポートの冒頭に 偏り1（薄まり：既存リンクを受ける46本の記事数 ピラーA ①6・②7・③4・④4、
+  A・Bのどちらか ①8・②7・③5・④7。偏りあり。①②が多くリードの効果が大きめに見える方向）と、偏り2（横取り：強の13本のうち
+  実際に張られた本数と組）を出す。いまは「10本が張られている」と出る。張られていなければ「対象外」と出る
+- 感度分析に6通り目「ピラーの既存リンク先抜き（27本・全組）」を追加（再ランダム化検定も同じ除外）
+- 表の写し：experiment_2x2/pillar_existing_links_20261002.csv・pillar_strong_overlap_20261002.csv（seo-agent の
+  pillar_release_balance_20261001.md の写し）・pillar_links_added_20261002.csv（seo-agent の実施記録の写し）
