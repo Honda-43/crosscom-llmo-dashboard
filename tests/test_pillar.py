@@ -58,7 +58,7 @@ def test_the_completion_is_read_per_pillar_from_seo_agent_records(tmp_path):
     got = pillar.pillar_edit(path)
     assert got["done"] == dt.date(2026, 10, 8) and got["count"] == 2
     assert got["by_pillar"] == {"agentforce-guide": dt.date(2026, 10, 2), "agentic-crm": dt.date(2026, 10, 8)}
-    assert got["targets"] == ["quote-ai", "agentic-crm-role-design"]
+    assert got["targets"] == ["agentic-crm-role-design", "quote-ai"]
 
 
 # --- 2. 偏り1(薄まり) ----------------------------------------------------------------
@@ -150,10 +150,26 @@ def test_the_judgement_report_shows_both_biases_and_splits_a_late_edit(monkeypat
     assert "アフター 2026-10-10〜2026-11-01・ピラー編集後" in out
 
 
-def test_the_real_record_shows_the_strong_orphans_linked_on_1002():
-    """2026-10-02 13:09 のピラーA の差し込み20本には、強の重なりの孤児が10本含まれている(決定では除外のはず)。"""
+def test_add_and_remove_rows_give_the_final_state_and_the_last_operation(tmp_path):
+    """2026-10-02 改訂の記録(action=add/remove)。最終状態と最後の操作の日時をピラー編集の完了とする。"""
+    path = tmp_path / "pillar_links_added_y.csv"
+    path.write_text("applied_at_jst,pillar_slug,target_slug,action,target_group,overlap_level\n"
+                    "2026-10-02 13:09:58,agentforce-guide,slackbot,add,対象外,強\n"
+                    "2026-10-02 13:09:58,agentforce-guide,quote-ai,add,対象外,なし\n"
+                    "2026-10-08 13:22:57,agentforce-guide,slackbot,remove,対象外,強\n", encoding="utf-8")
+    got = pillar.pillar_edit(str(path))
+    assert got["targets"] == ["quote-ai"] and got["final"] == {"agentforce-guide": 1}
+    assert got["last"] == dt.datetime(2026, 10, 8, 13, 22, 57) and got["done"] == dt.date(2026, 10, 8)
+    assert pillar.poaching(got)["linked"] == [], "外した強の孤児は横取りに数えない"
+    assert pillar.split_after(AFTER, got["done"])[0] == "split", "最後の操作が 10/6 以降なら分ける"
+
+
+def test_the_real_record_ends_with_18_links_and_no_strong_orphan():
+    """2026-10-02：-14 が 13:09 に強10本を含む20本を追加 → 9d が 13:22 に強10本を外し、13:24 にピラーB へ9本、
+    13:34 に sales-enablement を外した。最終状態は A10・B8 の18本・強は0本・完了は 10/5 以前。"""
     edit = pillar.pillar_edit()
-    assert edit["by_pillar"].get("agentforce-guide") == dt.date(2026, 10, 2)
-    got = pillar.poaching(edit)
-    assert len(got["linked"]) == 10
-    assert got["by_group"] == {"①対照": 2, "②FAQのみ": 3, "③リードのみ": 5, "④両方": 0}
+    assert edit["final"] == {"agentforce-guide": 10, "agentic-crm": 8} and len(edit["targets"]) == 18
+    assert edit["last"] == dt.datetime(2026, 10, 2, 13, 34, 55)
+    assert (edit["added"], edit["removed"]) == (29, 11)
+    assert pillar.poaching(edit)["linked"] == []
+    assert pillar.split_after(AFTER, edit["done"]) == ("before_after", [])

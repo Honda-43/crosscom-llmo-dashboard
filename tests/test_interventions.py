@@ -76,7 +76,8 @@ def test_the_real_log_parses_and_keeps_the_agreed_columns():
     pool = [r for r in rows if r["touches_pool46"] == "yes"]
     # ビフォー期間中の編集(9/11 の一括反映・9/11〜14 のリンク増・9/15〜16 の追記)と
     # 9/29 の処置反映がプール46本に触れる
-    assert [r["intervention_id"] for r in pool] == ["I-11", "I-12", "I-09", "I-07", "I-14"]
+    assert [r["intervention_id"] for r in pool] == ["I-11", "I-12", "I-09", "I-07", "I-14",
+                                                    "I-20", "I-21", "I-22", "I-23"]
     by_id = {r["intervention_id"]: r for r in rows}
     # 9/29 に入れる訂正は1本(E37 は 9/22 に実験外で適用済み。
     # agentforce-vibes は 2026-09-26 に訂正見送り —— 戦略管制塔の裁定で凍結明けへ)

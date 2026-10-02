@@ -1,21 +1,41 @@
-﻿date,wp_modified,pillar,post_id,target_slug,anchor
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-topic-design,業務の単位で分けておく
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,multi-agent,1つのエージェント
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-action-design,許可されたアクション
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-grid,Agentforce Grid
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-delivery-answer,納期回答
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,quote-ai,見積作成
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-extra-cost,追加費用
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,sales-ai-agent,商談のどの工程を任せるのか
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-similar-deals,過去のやり取りと取引状況をまとめる
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,inside-sales-ai,見込み客への初期接触を継続する工程
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,call-center-ai,問い合わせ対応にAIを入れる
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,customer-support-ai-agent,一次回答をどこまで担わせ、どこから人が引き取るか
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-error-tolerance,合格の基準を人が先に決めておく
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,appexchange,AppExchange
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,slackbot,Slackbot
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,claudeforce,Claudeforce
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,ai-agent-implementation-support,外部に依頼するかどうか
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,salesforce-operation-maintenance,公開後に回答を見直す作業
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,salesforce-partner,依頼先のタイプごとの違い
-2026-10-02,2026-10-02T13:09:58,agentforce-guide,6698,agentforce-japanese,日本語で高い精度が出ること
+applied_at_jst,pillar_slug,target_slug,action,target_group,overlap_level
+2026-10-02 13:09:58,agentforce-guide,agentforce-topic-design,add,対象外,強
+2026-10-02 13:09:58,agentforce-guide,multi-agent,add,対象外,強
+2026-10-02 13:09:58,agentforce-guide,agentforce-action-design,add,対象外,強
+2026-10-02 13:09:58,agentforce-guide,agentforce-grid,add,対象外,弱
+2026-10-02 13:09:58,agentforce-guide,agentforce-delivery-answer,add,対象外,なし
+2026-10-02 13:09:58,agentforce-guide,quote-ai,add,対象外,なし
+2026-10-02 13:09:58,agentforce-guide,agentforce-extra-cost,add,対象外,強
+2026-10-02 13:09:58,agentforce-guide,sales-ai-agent,add,対象外,強
+2026-10-02 13:09:58,agentforce-guide,agentforce-similar-deals,add,対象外,なし
+2026-10-02 13:09:58,agentforce-guide,inside-sales-ai,add,対象外,強
+2026-10-02 13:09:58,agentforce-guide,call-center-ai,add,対象外,強
+2026-10-02 13:09:58,agentforce-guide,customer-support-ai-agent,add,対象外,強
+2026-10-02 13:09:58,agentforce-guide,agentforce-error-tolerance,add,対象外,強
+2026-10-02 13:09:58,agentforce-guide,appexchange,add,対象外,なし
+2026-10-02 13:09:58,agentforce-guide,slackbot,add,対象外,強
+2026-10-02 13:09:58,agentforce-guide,claudeforce,add,対象外,弱
+2026-10-02 13:09:58,agentforce-guide,ai-agent-implementation-support,add,対象外,なし
+2026-10-02 13:09:58,agentforce-guide,salesforce-operation-maintenance,add,対象外,なし
+2026-10-02 13:09:58,agentforce-guide,salesforce-partner,add,対象外,なし
+2026-10-02 13:09:58,agentforce-guide,agentforce-japanese,add,対象外,なし
+2026-10-02 13:22:57,agentforce-guide,agentforce-topic-design,remove,対象外,強
+2026-10-02 13:22:57,agentforce-guide,multi-agent,remove,対象外,強
+2026-10-02 13:22:57,agentforce-guide,agentforce-action-design,remove,対象外,強
+2026-10-02 13:22:57,agentforce-guide,agentforce-extra-cost,remove,対象外,強
+2026-10-02 13:22:57,agentforce-guide,sales-ai-agent,remove,対象外,強
+2026-10-02 13:22:57,agentforce-guide,inside-sales-ai,remove,対象外,強
+2026-10-02 13:22:57,agentforce-guide,call-center-ai,remove,対象外,強
+2026-10-02 13:22:57,agentforce-guide,customer-support-ai-agent,remove,対象外,強
+2026-10-02 13:22:57,agentforce-guide,agentforce-error-tolerance,remove,対象外,強
+2026-10-02 13:22:57,agentforce-guide,slackbot,remove,対象外,強
+2026-10-02 13:24:32,agentic-crm,agentic-crm-lead-follow,add,対象外,なし
+2026-10-02 13:24:32,agentic-crm,agentic-crm-cs-handback,add,対象外,なし
+2026-10-02 13:24:32,agentic-crm,agentic-crm-customer-experience-design,add,対象外,弱
+2026-10-02 13:24:32,agentic-crm,agentic-crm-churn-signal,add,対象外,なし
+2026-10-02 13:24:32,agentic-crm,agentic-crm-role-design,add,対象外,なし
+2026-10-02 13:24:32,agentic-crm,agentic-crm-data-deduplication,add,対象外,弱
+2026-10-02 13:24:32,agentic-crm,agentic-crm-behavior-data,add,対象外,弱
+2026-10-02 13:24:32,agentic-crm,agentic-crm-abm-implementation-midsize,add,対象外,なし
+2026-10-02 13:24:32,agentic-crm,agentic-crm-sales-enablement,add,対象外,弱
+2026-10-02 13:34:55,agentic-crm,agentic-crm-sales-enablement,remove,対象外,強

@@ -37,8 +37,9 @@ BIAS_GAP = 2                              # 組間の差がこの本数以上な
 GROUPS = ('①対照', '②FAQのみ', '③リードのみ', '④両方')
 PILLARS = ('agentforce-guide', 'agentic-crm')
 PILLAR_LABEL = {'agentforce-guide': 'ピラーA（agentforce-guide）', 'agentic-crm': 'ピラーB（agentic-crm）'}
-DATE_COLUMNS = ('wp_modified', 'applied_at', 'added_at', 'datetime', 'date')
+DATE_COLUMNS = ('applied_at_jst', 'wp_modified', 'applied_at', 'added_at', 'datetime', 'date')
 TARGET_COLUMNS = ('target_slug', 'target', 'slug')
+PILLAR_COLUMNS = ('pillar_slug', 'pillar')
 
 
 def find(name_glob):
@@ -73,23 +74,53 @@ def _slug(text):
 # --------------------------------------------------------------------------
 # 実施の記録
 # --------------------------------------------------------------------------
+def _when(text):
+    """'2026-10-02 13:09:58' などを datetime に。日付だけなら 00:00。読めなければ None。"""
+    text = str(text or '').strip().replace('T', ' ').replace('/', '-')
+    for fmt, size in (('%Y-%m-%d %H:%M:%S', 19), ('%Y-%m-%d %H:%M', 16), ('%Y-%m-%d', 10)):
+        try:
+            return dt.datetime.strptime(text[:size], fmt)
+        except ValueError:
+            continue
+    return None
+
+
 def pillar_edit(path=None):
-    """{'done', 'count', 'targets', 'by_pillar': {ピラー: 最後の実施日}, 'path'}。表が無ければ None。"""
+    """ピラー編集の記録(seo-agent の pillar_links_added_*.csv)を読む。表が無ければ None。
+
+    2026-10-02 改訂：行ごとに action(add/remove)がある。追加と除去を順に当てはめた**最終状態**と、
+    最後の操作の日時(=ピラー編集の完了)を返す。
+    {'done': 完了日, 'last': 最後の操作の日時, 'count': 行数, 'targets': 最終状態でリンクされている孤児,
+     'final': {ピラー: 本数}, 'added': 追加の行数, 'removed': 除去の行数, 'by_pillar': {ピラー: 最後の操作日}, 'path'}
+    """
     path = path or find('pillar_links_added_*.csv')
     if not path or not os.path.exists(path):
         return None
     rows = _rows(path)
-    dcol = next((c for c in DATE_COLUMNS if rows and c in rows[0]), None)
-    tcol = next((c for c in TARGET_COLUMNS if rows and c in rows[0]), None)
-    by_pillar = {}
-    for r in rows:
-        d = _date_of(r.get(dcol)) if dcol else None
-        p = r.get('pillar', '')
-        if d and (p not in by_pillar or d > by_pillar[p]):
-            by_pillar[p] = d
-    return {'done': max(by_pillar.values()) if by_pillar else None, 'count': len(rows),
-            'targets': [_slug(r.get(tcol)) for r in rows] if tcol else [],
-            'by_pillar': by_pillar, 'path': path}
+    head = rows[0] if rows else {}
+    dcol = next((c for c in DATE_COLUMNS if c in head), None)
+    tcol = next((c for c in TARGET_COLUMNS if c in head), None)
+    pcol = next((c for c in PILLAR_COLUMNS if c in head), None)
+    linked, by_pillar, last = {}, {}, None
+    added = removed = 0
+    for r in sorted(rows, key=lambda r: str(r.get(dcol) or '')):
+        when = _when(r.get(dcol)) if dcol else None
+        pillar_slug = r.get(pcol, '') if pcol else ''
+        target = _slug(r.get(tcol)) if tcol else ''
+        if str(r.get('action', 'add')).strip().lower() == 'remove':
+            linked.pop((pillar_slug, target), None)
+            removed += 1
+        else:
+            linked[(pillar_slug, target)] = True
+            added += 1
+        if when:
+            last = when if last is None or when > last else last
+            if pillar_slug not in by_pillar or when.date() > by_pillar[pillar_slug]:
+                by_pillar[pillar_slug] = when.date()
+    final = collections.Counter(p for p, _ in linked)
+    return {'done': last.date() if last else None, 'last': last, 'count': len(rows),
+            'targets': sorted({t for _, t in linked}), 'final': dict(final),
+            'added': added, 'removed': removed, 'by_pillar': by_pillar, 'path': path}
 
 
 def split_after(after, done, lag_until=LAG_UNTIL):
@@ -174,9 +205,11 @@ def report_lines(after):
         mode, parts = 'none', []
     else:
         mode, parts = split_after(after, edit['done'])
-        per = '・'.join(f"{PILLAR_LABEL.get(p, p)} {d}" for p, d in sorted(edit['by_pillar'].items()))
+        final = '・'.join(f"{PILLAR_LABEL.get(p, p)} {edit['final'].get(p, 0)}本" for p in PILLARS)
         missing = [PILLAR_LABEL[p] for p in PILLARS if p not in edit['by_pillar']]
-        lines.append(f"- ピラー編集の実施：追加 {edit['count']}本（{per}）"
+        last = edit['last'].strftime('%Y-%m-%d %H:%M:%S') if edit['last'] else '日時が読めない'
+        lines.append(f"- ピラー編集の完了：{last}（最後の操作）。最終状態 {final}"
+                     f"（追加 {edit['added']}行・除去 {edit['removed']}行・{os.path.basename(edit['path'])}）"
                      + (f"。**{'・'.join(missing)} はまだ記録が無い**" if missing else ''))
         lines.append({
             'none': '- 実施日が読めないため、アフターの切り分けはしない',
