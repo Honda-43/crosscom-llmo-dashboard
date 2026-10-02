@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "E37",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Coworkerとは何？営業がどんな場面で使える？",
+  "cep": null,
+  "timestamp": "2026-10-02T01:58:01.539001Z",
+  "answer": "Agentforce Coworkerは、Salesforceが提供するAIチームメイト（AIエージェント）です。SalesforceのCRMデータや社内のあらゆる関連データを活用し、ユーザーと対話しながら自律的に業務を進めます。自然言語での質問を通じて、データの要約、分析、次のアクションの提案などを行います。CRMを「入力するツール」から「対話するパートナー」へと変革することを目指しており、Salesforceのデスクトップやモバイル、Teamsチャット、ChatGPT、Claudeなど、様々なプラットフォームで利用可能です。また、ユーザーの依頼内容に応じて適切なAIエージェントを呼び出す「司令塔」のような役割も果たし、実行はユーザーの権限の範囲内で行われます。\n\n営業担当者がAgentforce Coworkerを活用できる場面は多岐にわたります。\n\n*   **商談・訪問前の事前準備:**\n    *   次回の訪問先に関する最新の商談状況、進行中のサポートケース、活動履歴などをまとめて要約して提示します。これにより、営業担当者は訪問前に押さえるべきポイントや懸念事項を効率的に把握できます。\n    *   過去のメールや商談履歴に基づき、「明日10時にA社と商談があるので、押さえておくべきポイントと懸念点を3つ教えて」といった具体的な質問に回答します。\n    *   アポイント取得のためのドラフトメール作成も可能です。\n    *   カレンダー、パイプライン、メール、ドキュメントなど横断的に確認し、その日重要なタスクを優先順位付けし、次に何をすべきかを提示します。\n    *   顧客の取引履歴、最近のメール、関連文書を収集し、類似の成功事例と比較して、リスクや関係性のギャップを特定し、どこに焦点を当てるべきかを助言します。\n    *   見落としがちな未解決のサービスケースや請求に関する問題などを事前に把握し、顧客とのミーティングに臨む際に完全な情報を持っている状態を実現します。\n\n*   **商談状況の把握と次のアクションの特定:**\n    *   「今週対応が必要な商談は？」と質問することで、更新が停滞している商談や受注日が近い商談を抽出し、対応を促します。\n    *   優先度の高い商談に対して、具体的なアプローチ方法や次にやるべきことの示唆を与えます。\n    *   営業担当者が自ら確認する前に、停滞している商談や期日が近い対応を先回りして通知します。\n\n*   **情報照会と引き継ぎの効率化:**\n    *   前任者に確認することなく、「A社の直近1年の商談経緯を教えて」といった質問に対し、取引先、商談、ケースを横断した情報を根拠となるレコードのリンクとともに返します。\n    *   類似案件の進め方や提案内容、着地点を過去の商談データから探し出すことができます。例えば、「同じ業種で、同じくらいの規模で、値引き交渉があった案件」といった条件で過去事例を検索し、ベテラン営業に聞かなくても情報を引き出すことが可能です。\n    *   CRMデータだけでなく、Slackのやり取りや添付ドキュメントなど、社内のあらゆる関連情報から知識を集約し、回答します。\n\n*   **商談後の作業効率化:**\n    *   商談がうまくいった際に、同じ会話の流れでSlackのキャンバス作成や見積もりの作成を指示することができます。\n\nこのように、Agentforce Coworkerは営業活動のさまざまなフェーズにおいて、情報収集、状況把握、次の行動提案、さらには一部の事務作業までをAIがサポートすることで、営業担当者の業務効率を大幅に向上させ、より戦略的な営業活動に集中できる環境を提供します。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEaDd1Tf-9NVrRcFfTaAjnqP_qj3o4xrpTx1uuWnwR0Q51GLXNPnB_RPQveDfJXOvXIwO7pD_cg3vt7h0yID8VL2QM7nZ9HlmWvfZbYEiE6i1JnThsy7tqdLftRjGTMxTtp2KQMjagjVI9iTxQsfg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHT6qTFQy7gH3PludUCn1H1qMkadp1oY_yHo1_qds3EGTTRR9ffveeCQKTcxesRjOFiMdSkxuoo511sThY3HhBZkjP1TW6J5pduP79YhMc3G2mAqZQ3ekQx5SwwSJ2PrV1SwxDxWsj1-Wtazqax4EJolWwawRULUPkVQXdXOcZ9G-UMtXPCufMGBA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJMAJaye1BhrnYkKygpvKeMA6DdbwRaGzjbIWHm4OqSpsqUHVGaC54uxhbmOYmNWvDNCCWIEuIkFOFT3U0XJ41mp3V2ioKLfuU1PDvoLlpXpZU4ibocCycai0HQqF9suQmiOIkHEc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGTzCMsH0VkXOeFI8wdYMA8JS3ndKZD3cXgTeNLCN8Wa2P6U-0HKfExdV21dJv2e8a8AkVk-7v9Buj1zkB5hPNcV0H8Po79yk0EE8_jn_IzXjvjdXLnQJPOvqniPcnMwr0Y12XS0kxpIPX-etRR9Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHYD-t8o9JygQmFs7JzUH1UmIOTZ4txbnqCOXobBmth7PnoTU9G5GLvdF4aikXCPysMotn0sdKOR0KbYXsPEUr4L40urDgITij2Vto5MznbwKEp4wH1fljulYMSeNmABJiNAJIFJ1Z0Ypl7i6_fUiPyNrjNFvfXttD5GQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHSW8ws1kOLKHpl8hWgQ1DYjJL_fRGwNnGYsGhIKfhWMqA-8il7VYtQ2FG3ObwhRpQPSV5Gs6V1ygxSzv-OVVzJy2cQRtAQVYQ7hDDSq3oEevlU7flMRfbGVErwQsnq1Oz-U4a8"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E37",
+  "experiment_flag": "watch",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-coworker/",
+  "answer_text": "Agentforce Coworkerは、Salesforceが提供するAIチームメイト（AIエージェント）です。SalesforceのCRMデータや社内のあらゆる関連データを活用し、ユーザーと対話しながら自律的に業務を進めます。自然言語での質問を通じて、データの要約、分析、次のアクションの提案などを行います。CRMを「入力するツール」から「対話するパートナー」へと変革することを目指しており、Salesforceのデスクトップやモバイル、Teamsチャット、ChatGPT、Claudeなど、様々なプラットフォームで利用可能です。また、ユーザーの依頼内容に応じて適切なAIエージェントを呼び出す「司令塔」のような役割も果たし、実行はユーザーの権限の範囲内で行われます。\n\n営業担当者がAgentforce Coworkerを活用できる場面は多岐にわたります。\n\n*   **商談・訪問前の事前準備:**\n    *   次回の訪問先に関する最新の商談状況、進行中のサポートケース、活動履歴などをまとめて要約して提示します。これにより、営業担当者は訪問前に押さえるべきポイントや懸念事項を効率的に把握できます。\n    *   過去のメールや商談履歴に基づき、「明日10時にA社と商談があるので、押さえておくべきポイントと懸念点を3つ教えて」といった具体的な質問に回答します。\n    *   アポイント取得のためのドラフトメール作成も可能です。\n    *   カレンダー、パイプライン、メール、ドキュメントなど横断的に確認し、その日重要なタスクを優先順位付けし、次に何をすべきかを提示します。\n    *   顧客の取引履歴、最近のメール、関連文書を収集し、類似の成功事例と比較して、リスクや関係性のギャップを特定し、どこに焦点を当てるべきかを助言します。\n    *   見落としがちな未解決のサービスケースや請求に関する問題などを事前に把握し、顧客とのミーティングに臨む際に完全な情報を持っている状態を実現します。\n\n*   **商談状況の把握と次のアクションの特定:**\n    *   「今週対応が必要な商談は？」と質問することで、更新が停滞している商談や受注日が近い商談を抽出し、対応を促します。\n    *   優先度の高い商談に対して、具体的なアプローチ方法や次にやるべきことの示唆を与えます。\n    *   営業担当者が自ら確認する前に、停滞している商談や期日が近い対応を先回りして通知します。\n\n*   **情報照会と引き継ぎの効率化:**\n    *   前任者に確認することなく、「A社の直近1年の商談経緯を教えて」といった質問に対し、取引先、商談、ケースを横断した情報を根拠となるレコードのリンクとともに返します。\n    *   類似案件の進め方や提案内容、着地点を過去の商談データから探し出すことができます。例えば、「同じ業種で、同じくらいの規模で、値引き交渉があった案件」といった条件で過去事例を検索し、ベテラン営業に聞かなくても情報を引き出すことが可能です。\n    *   CRMデータだけでなく、Slackのやり取りや添付ドキュメントなど、社内のあらゆる関連情報から知識を集約し、回答します。\n\n*   **商談後の作業効率化:**\n    *   商談がうまくいった際に、同じ会話の流れでSlackのキャンバス作成や見積もりの作成を指示することができます。\n\nこのように、Agentforce Coworkerは営業活動のさまざまなフェーズにおいて、情報収集、状況把握、次の行動提案、さらには一部の事務作業までをAIがサポートすることで、営業担当者の業務効率を大幅に向上させ、より戦略的な営業活動に集中できる環境を提供します。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "successjp.salesforce.com",
+    "salesforce.com",
+    "youtube.com",
+    "cross-com.jp"
+  ],
+  "resolved_urls": [
+    "https://successjp.salesforce.com/article/NAI-001332",
+    "https://www.salesforce.com/jp/news/stories/video/agentforce-coworker-briefing/",
+    "https://www.youtube.com/watch?v=mJZisgD--Hc",
+    "https://successjp.salesforce.com/article/NAI-001320",
+    "https://www.salesforce.com/jp/blog/jp-coworker-first-step-vol2/",
+    "https://cross-com.jp/agentforce-coworker/"
+  ],
+  "unresolved_redirects": 0
+}

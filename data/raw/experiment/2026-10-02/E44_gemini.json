@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-02",
+  "prompt_id": "E44",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "CRMのデータが少ない会社でもAgentforceは使える？始める前に確認すべき条件",
+  "cep": null,
+  "timestamp": "2026-10-02T01:59:21.480095Z",
+  "answer": "はい、CRMデータが少ない会社でもAgentforceを利用することは可能です。ただし、その効果は参照できるデータの質と量に左右されるため、導入前にはいくつかの条件を確認することが重要です。\n\n### CRMデータが少ない会社でもAgentforceは使えるか？\n\nAgentforceの回答精度は、参照できるデータに依存します。そのため、CRMデータが少ない場合は、エージェントの品質もそれに伴って限定される可能性があります。実際に、Agentforce導入におけるよくある課題として「参照させるデータがCRMに揃っていない」という点が挙げられています。エージェントの品質はデータ次第であるため、統一された顧客プロファイルや整理されたナレッジ記事などが成功の前提条件となります。\n\n一方で、2026年4月にはSalesforceの中堅・中小企業向けCRM全プランにAgentforceが統合され、初期費用や高度な設定なしでAI機能がすぐに利用できる環境が整いました。これは、これまでコストや専門性の壁に阻まれていた中小企業でもAI活用が現実的になることを示唆しています。\n\nまた、AgentforceはSalesforce CRMデータだけでなく、Data Cloudのデータや非構造化データも活用できるため、CRM以外のデータソースを連携することで対応範囲を広げることが可能です。\n\n### 始める前に確認すべき条件\n\nAgentforceを導入する前に、以下の条件を確認することをお勧めします。\n\n1.  **Salesforce組織と管理者アクセス権:** Agentforceを有効化し、権限を設定し、統合を管理するために、管理者アクセス権を持つSalesforce組織が必要です。\n2.  **Data Cloudの有効化:** Agentforceは、一般的な学習データではなく、実際の顧客レコードからデータを取得する「グラウンディング」のためにData Cloudに依存しています。Data Cloudがない場合、エージェントは自信を持って誤った回答をする可能性があります。SalesforceのEnterprise以上のライセンスには、Data Cloudのクレジットが一部含まれている場合があります。\n3.  **クリーンで構造化されたCRMデータ:** エージェントの品質はデータに大きく左右されます。たとえデータ量が少なくても、統一された顧客プロファイル、整理されたナレッジ記事、適切な個人情報（PII）のマスク処理など、データの品質と構造化が成功の前提条件となります。\n4.  **対象業務の明確化:** 導入の際は、まず1つの対象業務を決めてからエージェントを構築することが推奨されています。\n5.  **コストモデルの理解:** Agentforceのコストは実行量によって変動するため、事前に費用を把握しておくことが重要です。AgentforceのSKUには、Data CloudとEinstein AIのリクエストが含まれています。\n6.  **既存のSalesforceシステムとの互換性:** 既存のSalesforceシステムとの互換性を確認し、必要に応じて機能やライセンスの追加導入を検討する必要があります。\n7.  **日本語対応の状況:** Agentforce Voiceは日本語の音声基盤モデル「Koto」を採用していますが、AgentExchangeにおけるセマンティック検索の日本語対応は未定です。\n\nこれらの条件を確認し、自社の状況に合わせてAgentforceの導入を検討することが成功への鍵となります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEidTDBKIYHNsiYke76aYjv9WBdzJHbdkby0wM0fXXnnW9-2whAwOjg467eXjBYTezPlAuExdpkTr3sZh-89nJnyhUdqtM9Fi9TQViy5kETVtwCFA4ZyHGAzt4w9Wm2HMx6OCxcBvg4f_wC",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEhlDqMMZkcdv6uIXc5STpalquw4WYrY7T7aRLh7yJqeg2LcTg9qINbZdnHEiC4VFG7Gof88o16yK6UeniHiYYhBzJOzxhp3iVHUp4CTH9Ehtl-vx_CQTZovtGqACQNJArpMszrWyxkzx4Wb3p7J7FV0r2huRYmjSi10BZ3it4vNWYz",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcyLd2vsEySllVBx35YmwiXDCoPOpqlMM7pBoXaI141ft3QOgaVmXFmqAUi3l0bV1iahOY1Ny-wlL0kYTmmjZ9u4zQ-09ZDuAhr9xu528h16vQDlQyp53urDOVczoFhowZiDoJYx-i97TVpok=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEebYWosaVj9DD7r75ORbhRh32bTqHicw-w2RBmN034yY2WteJy9LFdcixwl7bVQgsLfM6yonpDW6c64rMwOhewtPbeL8y5qoIT2kRNsH2Nb1CTOokkFAgGndx1U9WAs2y5PCnKnMro4fE3uVX2mR8D6-X9Jw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEpWa4xA5MNTyU3jYkyLSTMF1gtsYsbh1_vbiPJeGmKJx7lPsgn4A1JlUWn8OiwC2WmnTsGYFIE045FgLH2lTIHT7tJmFjLpE_-0WlbHlQntb7p4eNaS6NMywHFUA8-rY0tJ9dZ1nOzeb758AAkE_aV7l8eWK8SMw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGFRnmQThvJCiuc1-IL0MBYCwdHz-boWO4rfCwb2IzqnQDESx05dz9935qJO4y5yFzjU0tKSA79Y6cfasn3Gw5lpq5HqgKWVocMOVvqeL7O067rr3b1nTHdeUUDFCTNq4l3dLgteRsqDiNzkQNYl4q_qEL07AOOFASOa_glJ7m7YPVQeYN_iK5nf2CWeiKg1s4UCf_Fl9i-rMnqLtk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGYTJbihxtoZGGbfJ64jDYGGXIp2pVyIDmEKDAMbvFssAy1e7NNVEKHdBpLxnvkr_OgfRXliqBwr4rpAb5OBGBP7vXNMfSdSLzdPxfw5nUSW66QD2mJrF1Y7D6yqPIIVwY98h6GnME7Z1veqDs4h_Ix"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "experiment_id": "E44",
+  "experiment_flag": "pool",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-data-volume/",
+  "answer_text": "はい、CRMデータが少ない会社でもAgentforceを利用することは可能です。ただし、その効果は参照できるデータの質と量に左右されるため、導入前にはいくつかの条件を確認することが重要です。\n\n### CRMデータが少ない会社でもAgentforceは使えるか？\n\nAgentforceの回答精度は、参照できるデータに依存します。そのため、CRMデータが少ない場合は、エージェントの品質もそれに伴って限定される可能性があります。実際に、Agentforce導入におけるよくある課題として「参照させるデータがCRMに揃っていない」という点が挙げられています。エージェントの品質はデータ次第であるため、統一された顧客プロファイルや整理されたナレッジ記事などが成功の前提条件となります。\n\n一方で、2026年4月にはSalesforceの中堅・中小企業向けCRM全プランにAgentforceが統合され、初期費用や高度な設定なしでAI機能がすぐに利用できる環境が整いました。これは、これまでコストや専門性の壁に阻まれていた中小企業でもAI活用が現実的になることを示唆しています。\n\nまた、AgentforceはSalesforce CRMデータだけでなく、Data Cloudのデータや非構造化データも活用できるため、CRM以外のデータソースを連携することで対応範囲を広げることが可能です。\n\n### 始める前に確認すべき条件\n\nAgentforceを導入する前に、以下の条件を確認することをお勧めします。\n\n1.  **Salesforce組織と管理者アクセス権:** Agentforceを有効化し、権限を設定し、統合を管理するために、管理者アクセス権を持つSalesforce組織が必要です。\n2.  **Data Cloudの有効化:** Agentforceは、一般的な学習データではなく、実際の顧客レコードからデータを取得する「グラウンディング」のためにData Cloudに依存しています。Data Cloudがない場合、エージェントは自信を持って誤った回答をする可能性があります。SalesforceのEnterprise以上のライセンスには、Data Cloudのクレジットが一部含まれている場合があります。\n3.  **クリーンで構造化されたCRMデータ:** エージェントの品質はデータに大きく左右されます。たとえデータ量が少なくても、統一された顧客プロファイル、整理されたナレッジ記事、適切な個人情報（PII）のマスク処理など、データの品質と構造化が成功の前提条件となります。\n4.  **対象業務の明確化:** 導入の際は、まず1つの対象業務を決めてからエージェントを構築することが推奨されています。\n5.  **コストモデルの理解:** Agentforceのコストは実行量によって変動するため、事前に費用を把握しておくことが重要です。AgentforceのSKUには、Data CloudとEinstein AIのリクエストが含まれています。\n6.  **既存のSalesforceシステムとの互換性:** 既存のSalesforceシステムとの互換性を確認し、必要に応じて機能やライセンスの追加導入を検討する必要があります。\n7.  **日本語対応の状況:** Agentforce Voiceは日本語の音声基盤モデル「Koto」を採用していますが、AgentExchangeにおけるセマンティック検索の日本語対応は未定です。\n\nこれらの条件を確認し、自社の状況に合わせてAgentforceの導入を検討することが成功への鍵となります。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "upward.jp",
+    "eesel.ai",
+    "plus-web3.com",
+    "salesforce.com",
+    "ctc-g.co.jp",
+    "reddit.com",
+    "fsi.co.jp"
+  ],
+  "resolved_urls": [
+    "https://upward.jp/weblog/salesforce-agentforce/",
+    "https://www.eesel.ai/ja/blog/salesforce-agentforce-implementation-guide",
+    "https://plus-web3.com/media/latestnews_1000_8555/",
+    "https://www.salesforce.com/jp/blog/jp-what-is-agentforce/",
+    "https://www.ctc-g.co.jp/keys/blog/detail/agentforce-use-case",
+    "https://www.reddit.com/r/salesforce/comments/1gx9am0/does_agentforce_comes_with_data_cloud/?tl=ja",
+    "https://www.fsi.co.jp/Salesforce/column/column17.html"
+  ],
+  "unresolved_redirects": 0
+}
