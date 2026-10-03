@@ -1016,6 +1016,17 @@ Gemini(gemini-2.5-flash・検索接続ON)と Claude で**月1回・毎月第1週
 実験(`llm_experiment`・46本)とは別の層で、タブは `llm_marketing`、raw は `data/raw/marketing/<日付>/`。
 **文言は初回(2026-10)の実行後に凍結**(`tests/test_marketing.py` のハッシュで止める)。
 
+- **2026-10-03 から Claude 部分を停止(費用削減・本田さん決定・`output/interventions.csv` I-24)**:
+  - Claude の観測(`marketing.yml`)を止めた。ジョブは Repository variables の `MARKETING_CLAUDE_ENABLED` が `'1'` のときだけ走り、
+    `run_marketing.py --model claude` も同じ変数(`settings.MARKETING_CLAUDE_ENABLED`。既定は停止)を見る。停止中は
+    何も投げず、`quota_skipped` も書かない。**10月の Claude は全54本を観測済み(10/1〜10/2)**
+  - is_first / mention_rank の Haiku 抽出も止めた(`MARKETING_RANK_ENABLED`。既定は停止)。停止中の行は
+    `is_first`・`mention_rank` が空、`extractor_model` は「停止中」。順位の埋め直し(`refill_ranks`)もしない
+  - **Gemini は続ける**(無料枠・実験優先・層ブロック順のまま)。記録するのは mentioned・cited_domain・cited_domains・answer_text
+  - 途中切れ7本の取り直しと max_tokens の 4096 への引き上げは**取り消し**(max_tokens は 2048 のまま)。
+    `stop_reason`(Claude の stop_reason・Gemini の finish_reason)は raw に記録する(費用がかからないため。`collect_llm`)
+  - 再開は変数を `'1'` にするだけ(コードの変更は要らない)。ダッシュボードの第3観測層のページの先頭に停止を表示
+
 - **2026-10-02 追加(戦略管制塔の依頼・本田さん承認)**:MOFU_L1 に IT研修業界3本(PM-L1-19〜21。Agentforce 導入支援・
   Agentic CRM 設計支援・Salesforce 導入支援)を CSV の末尾に追加(54本→57本・MOFU_L1 は18本→21本)。**既存54本の文言は不変**
   (テストは「既存54本は不変・末尾への追加は可」)。**初回は 2026年11月の月次実行**(10月は既に走っているため含めない。
@@ -1042,11 +1053,13 @@ Gemini(gemini-2.5-flash・検索接続ON)と Claude で**月1回・毎月第1週
 - **列 `run_date`**:実際に API を呼んだ日時(JST)。`date`(観測の日付)とは別。Gemini と Claude で実行日がずれるため
 - **停止**:その月に実験の観測で 429 PerDay の欠測が1回でも出たら、Gemini の残りを止めて
   (`quota_skipped`)実験日誌に自動で1回記録する。Claude は Gemini の枠と無関係なので止めない
-- **Claude**:`marketing.yml`(毎日 10:00 JST・期間外は何もしない)。期間の初日にその月の全本数、欠測は期間内の次の日に取り直す
+- **Claude**:`marketing.yml`(毎日 10:00 JST・期間外は何もしない)。期間の初日にその月の全本数、欠測は期間内の次の日に取り直す。
+  **2026-10-03 から停止中**(上記)
 - **判定列**:`mentioned` は社名の6表記(`experiment.MENTION_TERMS_V2`)の文字列照合。
   `mention_rank` は回答に出てくる会社の中で社名が何番目か — 会社名の一覧だけを Haiku に挙げさせ、
   **並び順は本文での初出の位置**で決める(LLM に順位を決めさせない)。`is_first` は rank が1か。
-  社名が出ない回答では Haiku を呼ばない。`cited_domain` は引用元に cross-com.jp の URL があるか
+  社名が出ない回答では Haiku を呼ばない。`cited_domain` は引用元に cross-com.jp の URL があるか。
+  **2026-10-03 から順位の抽出は停止中**(is_first・mention_rank は空、extractor_model は「停止中」)
 - **抽出モデルは固定**:`claude-haiku-4-5-20251001`(`marketing.EXTRACTOR_MODEL`。環境変数では変えない)。
   列 `extractor_model` に毎行記録する。**モデル名を変える場合は、この README と実験日誌に日付と理由を書いてから変える**
   (rank の月次比較が切れるため)

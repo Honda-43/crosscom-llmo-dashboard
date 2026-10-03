@@ -431,6 +431,16 @@ MARKETING_QUOTA_SKIPPED = "quota_skipped"
 # 翌日の枠を食い、翌朝の日次・実験と合わせて20を超えうる。余裕を見てこの時刻で打ち切る
 MARKETING_GEMINI_CUTOFF_JST = (15, 30)
 
+# 費用のかかる部分の停止(2026-10-03・本田さん決定・費用削減)。Gemini(無料枠)は続ける。
+# - MARKETING_CLAUDE_ENABLED … prompt_marketing の Claude の観測。止めている間 run_marketing.py --model claude は何もしない
+# - MARKETING_RANK_ENABLED   … is_first / mention_rank の Haiku 抽出。止めている間は両列を空、extractor_model は
+#   MARKETING_EXTRACTOR_STOPPED。社名が出たのに順位が空の観測の埋め直し(refill_ranks)もしない
+# 再開は環境変数を 1 にする(GitHub の Repository variables の同名の変数。marketing.yml / experiment.yml が渡す)
+MARKETING_CLAUDE_ENABLED = os.getenv("MARKETING_CLAUDE_ENABLED", "0").strip().lower() in ("1", "true", "yes", "on")
+MARKETING_RANK_ENABLED = os.getenv("MARKETING_RANK_ENABLED", "0").strip().lower() in ("1", "true", "yes", "on")
+MARKETING_EXTRACTOR_STOPPED = "停止中"
+MARKETING_STOPPED_ON = "2026-10-03"
+
 
 # プロンプトごとの初回の月(ここに無いものは MARKETING_FIRST_MONTH から)。2026-10-02 戦略管制塔の依頼(本田さん承認)で
 # MOFU_L1 に IT研修業界3本を追加(54本→57本)。10月は既に走っているため 11月の月次実行から入れる

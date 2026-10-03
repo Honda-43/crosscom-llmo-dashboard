@@ -972,3 +972,17 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - **sales-enablement の保留は効果測定チャットの指示ではない**（効果測定チャットが保留にしたのは「強」の13本のみ）。
   seo-agent の重なりの判定では「弱」（E41 agentforce-sales-dependency）
 - `output/interventions.csv` の I-23 の note に決定者を追記（既存の記述は消さず追記のみ）
+
+---
+
+## 2026-10-03／第3観測層の Claude 部分を停止（費用削減・本田さん決定）
+
+- **prompt_marketing の Claude の観測を停止**（`marketing.yml` はリポジトリ変数 `MARKETING_CLAUDE_ENABLED='1'` のときだけ走る。
+  `run_marketing.py --model claude` も同じ設定を見る）。10月の Claude は全54本を観測済み（10/1 は50本がクレジット残高不足で欠測→10/2 に取り直し）
+- **is_first / mention_rank の Haiku 抽出を停止**（`MARKETING_RANK_ENABLED`）。停止中の行は両列が空、`extractor_model` は「停止中」。
+  順位の月次比較は 2026-10 の Claude 分（54本）だけが基準として残る
+- **Gemini は継続**（無料枠・実験優先・層ブロック順は不変）。記録は mentioned・cited_domain・cited_domains・answer_text
+- 前回依頼の「途中切れ7本（BC-02/05/06/07、L1-02/10/11）の取り直し」と「max_tokens を 4096 に」は**取り消し**。
+  `stop_reason` の記録のみ続ける（費用ゼロ。raw の stop_reason。10月分の7本は記録前のため理由は不明のまま）
+- **実験（llm_experiment）は変更なし**。実験の Claude 観測（月・木 47本）・日次・月次の観測はそのまま
+- 再開は変数を '1' にするだけ。`output/interventions.csv` に I-24（scope=measurement・touches_pool46=no）

@@ -63,8 +63,11 @@ jobs:
       # 3回以上の日だけ、1本1回で残りの本数まで投げる。毎月1〜14日のほかは何もしない
       # (15日以降の最初の回だけ、終わらなかった分を quota_skipped として記録する)。
       # 実験の観測が失敗した日は走らない(実消費が数えきれないため)。
+      # 2026-10-03 から is_first / mention_rank の Haiku 抽出は停止中(費用削減)。再開は変数 MARKETING_RANK_ENABLED='1'
       - name: Run prompt_marketing (Gemini) within the day's remaining quota
         working-directory: src
+        env:
+          MARKETING_RANK_ENABLED: ${{ vars.MARKETING_RANK_ENABLED }}
         run: |
           python run_marketing.py --model gemini ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
 

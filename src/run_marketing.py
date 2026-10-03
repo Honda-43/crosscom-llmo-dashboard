@@ -13,6 +13,8 @@ Gemini(--model gemini。experiment.yml の実験の観測の**あと**に同じ�
     (残りは error=quota_skipped。日誌 output/reports/experiment47_diary.md に1回だけ記録)
 Claude(--model claude。marketing.yml)
   - Gemini の枠と無関係。期間の初日にまとめて回し、欠測は期間内の次の日に取り直す
+  - **2026-10-03 から停止中**(費用削減・本田さん決定)。settings.MARKETING_CLAUDE_ENABLED が偽の間は何も投げない。
+    is_first / mention_rank の Haiku 抽出も止めている(MARKETING_RANK_ENABLED)。Gemini は続ける
 期間(1〜14日)
   - 第1週(1〜7日)で終わらなければ第2週(8〜14日)まで延長。14日の回のあと(または15日以降の
     最初の回)に、終わっていないものを error=quota_skipped として記録する。翌月に持ち越さない
@@ -36,8 +38,8 @@ import collect_llm
 import marketing
 import run_experiment
 from settings import (DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MARKETING_DIR, GEMINI_DAILY_REQUEST_LIMIT,
-                      MARKETING_FIRST_MONTH, MARKETING_GEMINI_CUTOFF_JST,
-                      MARKETING_WINDOW_LAST_DAY, ROOT_DIR,
+                      MARKETING_CLAUDE_ENABLED, MARKETING_FIRST_MONTH, MARKETING_GEMINI_CUTOFF_JST,
+                      MARKETING_STOPPED_ON, MARKETING_WINDOW_LAST_DAY, ROOT_DIR,
                       experiment_plan, in_marketing_window, load_marketing_prompts,
                       marketing_gemini_allowance)
 
@@ -189,6 +191,10 @@ def run_gemini(date: str, prompts: List[Dict[str, Any]], out_dir: Path,
 
 def run_claude(date: str, prompts: List[Dict[str, Any]], out_dir: Path,
                lister=None) -> Tuple[List[Dict[str, Any]], List[str]]:
+    if not MARKETING_CLAUDE_ENABLED:
+        # 停止中は投げず、quota_skipped も書かない(止めた月の行を欠測に見せないため)
+        return [], [f"- Claude: 停止中({MARKETING_STOPPED_ON} から・費用削減)。"
+                    f"再開は MARKETING_CLAUDE_ENABLED=1"]
     rest = marketing.pending(prompts, marketing.month_of(date), "claude", out_dir.parent)
     if not rest:
         return [], [f"- Claude: 今月の {len(prompts)}本は終わっている"]
@@ -222,7 +228,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     else:
         recs, notes = run_claude(date, prompts, out_dir)
     lines += notes
-    # 社名が出たのに順位が空の観測(Haiku の失敗)を、その月のうちに埋め直す(2026-10-03)。行は消さず同じ行を上書き
+    # 社名が出たのに順位が空の観測(Haiku の失敗)を、その月のうちに埋め直す(2026-10-03)。行は消さず同じ行を上書き。
+    # 順位の抽出を止めている間(2026-10-03〜)は何もしない
     refilled = marketing.refill_ranks(marketing.month_of(date))
     if refilled:
         lines.append(f"- 順位(mention_rank)を埋め直した観測: {len(refilled)}本"

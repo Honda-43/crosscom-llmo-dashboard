@@ -198,3 +198,40 @@ def test_missing_observations_are_listed():
 
 def test_no_missing_observations_when_all_succeeded():
     assert collect_llm.missing_observations([_record()]) == []
+
+
+# --- stop_reason の記録(2026-10-03) ------------------------------------------------
+def test_the_stop_reason_is_recorded_when_the_model_returns_it(monkeypatch, tmp_path):
+    """途中で切れた回答を後から見分けるため。記録するだけで、観測の手順は変えない。"""
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini",
+                        lambda txt, model: ("途中で切れた回答", [], "max_tokens"))
+    records = [_record(GEMINI_503)]
+    collect_llm._sweep(records, PROMPTS, tmp_path, cooldown=0)
+    assert records[0]["stop_reason"] == "max_tokens" and records[0]["answer"] == "途中で切れた回答"
+
+
+def test_a_model_without_a_stop_reason_records_it_blank(monkeypatch, tmp_path):
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini", lambda txt, model: ("回答", []))
+    records = [_record(GEMINI_503)]
+    collect_llm._sweep(records, PROMPTS, tmp_path, cooldown=0)
+    assert records[0]["stop_reason"] == ""
+
+
+def test_the_claude_stop_reason_comes_from_the_response(monkeypatch):
+    import sys
+    import types
+
+    class Block:
+        type, text, citations = "text", "答え", []
+
+    class Client:
+        def __init__(self, api_key):
+            self.messages = self
+
+        def create(self, **kw):
+            assert kw["max_tokens"] == 2048, "max_tokens は変えない(2026-10-03 取り消し)"
+            return types.SimpleNamespace(content=[Block()], stop_reason="max_tokens")
+
+    monkeypatch.setitem(sys.modules, "anthropic", types.SimpleNamespace(Anthropic=Client))
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    assert collect_llm._query_claude("q", "m") == ("答え", [], "max_tokens")

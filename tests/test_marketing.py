@@ -29,6 +29,12 @@ PROMPTS = settings.load_marketing_prompts()
 MORNING = dt.datetime(2026, 10, 2, 11, 0, tzinfo=JST)
 
 
+@pytest.fixture
+def ranking_on(monkeypatch):
+    """順位の Haiku 抽出を動かす(2026-10-03 から既定は停止中。再開したときの動きを確かめる)。"""
+    monkeypatch.setattr(marketing, "MARKETING_RANK_ENABLED", True)
+
+
 # --- 1. 57本と凍結 ---------------------------------------------------------------
 # 最初の54本は 2026-10 の初回実行後に凍結(文言を変えない)。2026-10-02 に MOFU_L1 へ IT研修業界3本を
 # **末尾に追加**(戦略管制塔の依頼・本田さん承認)。既存54本は1文字も変えず、追加は末尾だけ許す。
@@ -136,7 +142,7 @@ def _rec(answer="", error=None, urls=()):
             "cited_urls": list(urls), "error": error}
 
 
-def test_evaluate_fills_the_columns():
+def test_evaluate_fills_the_columns(ranking_on):
     calls = []
 
     def lister(question, answer):
@@ -151,13 +157,13 @@ def test_evaluate_fills_the_columns():
     assert got["layer"] == "MOFU_L0" and got["prompt"] == PROMPTS[0]["prompt"] and calls
 
 
-def test_no_mention_means_no_rank_and_no_llm_call():
+def test_no_mention_means_no_rank_and_no_llm_call(ranking_on):
     got = marketing.evaluate(_rec("株式会社ウフルがおすすめ"), PROMPTS[0],
                              lister=lambda q, a: pytest.fail("社名が無ければ呼ばない"))
     assert (got["mentioned"], got["mention_rank"], got["is_first"]) == (0, "", 0)
 
 
-def test_a_failed_company_list_keeps_the_observation():
+def test_a_failed_company_list_keeps_the_observation(ranking_on):
     def boom(q, a):
         raise RuntimeError("haiku down")
     got = marketing.evaluate(_rec("クロスコム"), PROMPTS[0], lister=boom)
@@ -326,6 +332,7 @@ def test_a_per_minute_429_does_not_stop_the_month(tmp_path):
 
 
 def test_claude_runs_all_on_the_first_day_and_is_not_stopped(monkeypatch, tmp_path):
+    monkeypatch.setattr(run_marketing, "MARKETING_CLAUDE_ENABLED", True)     # 再開したときの動き
     monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
     calls = []
     monkeypatch.setitem(collect_llm._QUERY_FUNCS, "claude",
@@ -381,7 +388,7 @@ def test_run_date_is_when_the_api_was_called_in_jst():
     assert skipped["run_date"] == "", "投げていない行は空"
 
 
-def test_the_extractor_model_is_pinned_and_recorded_on_every_row(monkeypatch):
+def test_the_extractor_model_is_pinned_and_recorded_on_every_row(monkeypatch, ranking_on):
     assert marketing.EXTRACTOR_MODEL == "claude-haiku-4-5-20251001"
     monkeypatch.setenv("EXTRACT_MODEL", "something-else")
     assert marketing.evaluate(_rec("答え"), PROMPTS[0])["extractor_model"] == marketing.EXTRACTOR_MODEL
@@ -530,7 +537,7 @@ def test_a_broken_reply_is_retried_once(monkeypatch):
     assert marketing.list_companies_with_haiku("q", "a") == ["合同会社クロスコム"]
 
 
-def test_missing_ranks_are_refilled_without_touching_the_observation(tmp_path):
+def test_missing_ranks_are_refilled_without_touching_the_observation(tmp_path, ranking_on):
     folder = tmp_path / "2026-10-01"
     folder.mkdir()
     rec = {"date": "2026-10-01", "model": "claude", "prompt_id": "PM-BC-01", "prompt": "q",
@@ -556,3 +563,77 @@ def test_the_upsert_reads_every_key_column_so_rewrites_land_on_the_same_row():
                                         "mention_rank": 1})
     writes = sheets_writer._plan_upsert(existing, head, sheets_writer.KEYS_MARKETING, [row])
     assert [w["row"] for w in writes] == [2], "同じ観測は同じ行を上書きする"
+
+
+# --- 8. Claude 部分の停止(2026-10-03・費用削減・本田さん決定) ----------------------------------
+def test_claude_and_the_rank_extraction_are_stopped_by_default(monkeypatch):
+    import os
+    import subprocess
+    code = "import settings as s; print(s.MARKETING_CLAUDE_ENABLED, s.MARKETING_RANK_ENABLED)"
+
+    def flags(**env):
+        base = {k: v for k, v in os.environ.items() if not k.startswith("MARKETING_")}
+        out = subprocess.run([sys.executable, "-c", code], cwd=settings.ROOT_DIR / "src",
+                             env=dict(base, **env), capture_output=True, text=True, check=True)
+        return out.stdout.split()
+
+    assert flags() == ["False", "False"]
+    assert flags(MARKETING_CLAUDE_ENABLED="1", MARKETING_RANK_ENABLED="1") == ["True", "True"], "設定で再開できる"
+
+
+def test_a_stopped_claude_sends_nothing_and_writes_nothing(monkeypatch, tmp_path):
+    monkeypatch.setattr(run_marketing, "MARKETING_CLAUDE_ENABLED", False)
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "claude",
+                        lambda text, model: pytest.fail("停止中は Claude を呼ばない"))
+    out = tmp_path / "marketing" / "2026-10-20"
+    out.mkdir(parents=True)
+    recs, notes = run_marketing.run_claude("2026-10-20", PROMPTS, out)
+    assert recs == [] and not any(out.iterdir()), "停止中は quota_skipped も書かない"
+    assert "停止中" in notes[0]
+
+
+def test_a_stopped_rank_leaves_the_rank_blank_and_records_the_stop(monkeypatch):
+    monkeypatch.setattr(marketing, "MARKETING_RANK_ENABLED", False)
+    got = marketing.evaluate(_rec("株式会社ウフルと合同会社クロスコム", urls=["https://www.cross-com.jp/a/"]),
+                             PROMPTS[0], lister=lambda q, a: pytest.fail("停止中は Haiku を呼ばない"))
+    assert (got["mentioned"], got["cited_domain"], got["cited_domains"]) == (1, 1, ["cross-com.jp"])
+    assert got["is_first"] == got["mention_rank"] == "" and got["extractor_model"] == "停止中"
+    assert got["answer_text"]
+    no = marketing.evaluate(_rec("株式会社ウフル"), PROMPTS[0])
+    assert (no["mentioned"], no["is_first"], no["mention_rank"]) == (0, "", "")
+    row = sheets_writer._marketing_row(dict(got, date="2026-10-03", model="gemini", prompt_id="PM-L0-01"))
+    assert row["extractor_model"] == "停止中" and row["is_first"] == row["mention_rank"] == ""
+
+
+def test_a_stopped_rank_does_not_refill(monkeypatch, tmp_path):
+    monkeypatch.setattr(marketing, "MARKETING_RANK_ENABLED", False)
+    _raw(tmp_path / "2026-10-01", "PM-BC-01_claude.json",
+         {"prompt_id": "PM-BC-01", "mentioned": 1, "mention_rank": "", "answer_text": "クロスコム", "error": None})
+    assert marketing.refill_ranks("2026-10", tmp_path, lister=lambda q, a: pytest.fail("呼ばない")) == []
+
+
+def test_the_claude_workflow_is_off_unless_the_variable_says_so():
+    mk = yaml.safe_load(open(settings.ROOT_DIR / ".github/workflows/marketing.yml", encoding="utf-8"))
+    job = mk["jobs"]["marketing"]
+    assert job["if"] == "vars.MARKETING_CLAUDE_ENABLED == '1'"
+    assert job["env"]["MARKETING_CLAUDE_ENABLED"] == "${{ vars.MARKETING_CLAUDE_ENABLED }}"
+    wf = yaml.safe_load(open(settings.ROOT_DIR / ".github/workflows/experiment.yml", encoding="utf-8"))
+    step = next(s for s in wf["jobs"]["experiment"]["steps"]
+                if s.get("name") == "Run prompt_marketing (Gemini) within the day's remaining quota")
+    assert step["env"]["MARKETING_RANK_ENABLED"] == "${{ vars.MARKETING_RANK_ENABLED }}"
+    assert "MARKETING" not in json.dumps(wf["jobs"]["experiment"]["env"]), "実験のジョブの環境は変えない"
+
+
+def test_the_dashboard_says_claude_is_stopped():
+    page = (settings.ROOT_DIR / "app" / "views" / "p6_marketing.py").read_text(encoding="utf-8")
+    assert "2026-10-03 から Claude 側を停止（費用削減）。Gemini のみ。順位（is_first・mention_rank）は記録なし" in page
+    assert "st.warning(STOP_NOTICE)" in page
+
+
+def test_the_stop_is_in_the_intervention_log():
+    rows = [r for r in csv.reader(open(settings.ROOT_DIR / "output" / "interventions.csv", encoding="utf-8"))
+            if r and not r[0].startswith("#")]
+    hit = [r for r in rows if r[0] == "2026-10-03" and "Claude 部分を停止" in r[2]]
+    assert len(hit) == 1 and hit[0][3] == "measurement" and hit[0][5] == "no"
+

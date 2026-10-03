@@ -2,7 +2,7 @@ name: marketing
 
 on:
   schedule:
-    # 第3観測層 prompt_marketing の Claude(2026-10-01)。Gemini は experiment.yml の中で、
+    # 第3観測層 prompt_marketing の Claude(2026-10-01)。**2026-10-03 から停止中**(下の if)。Gemini は experiment.yml の中で、
     # 実験の観測のあとに走る(枠を数えるため)。Claude は Gemini の枠と無関係なので別に回す。
     # 毎日走るが、run_marketing.py が「毎月1〜14日で、その月にまだ終わっていない分」だけを投げる。
     # 期間の初日にまとめて54本、欠測は期間内の次の日に取り直す。15日以降の最初の回だけ、
@@ -25,6 +25,9 @@ concurrency:
 
 jobs:
   marketing:
+    # 2026-10-03 から停止中(費用削減・本田さん決定)。Repository variables の MARKETING_CLAUDE_ENABLED を
+    # '1' にすると再開する(run_marketing.py も同じ変数を見る。順位の抽出は MARKETING_RANK_ENABLED)
+    if: vars.MARKETING_CLAUDE_ENABLED == '1'
     runs-on: ubuntu-latest
     timeout-minutes: 180   # Claude 54本(web 検索つき)
     env:
@@ -32,6 +35,8 @@ jobs:
       GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
       SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      MARKETING_CLAUDE_ENABLED: ${{ vars.MARKETING_CLAUDE_ENABLED }}
+      MARKETING_RANK_ENABLED: ${{ vars.MARKETING_RANK_ENABLED }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

@@ -229,7 +229,9 @@ def _merge_urls(answer_text: str, native_citations: List[str]) -> List[str]:
 
 
 # --------------------------------------------------------------------------
-# Per-model query functions -> (answer_text, native_citation_urls)
+# Per-model query functions -> (answer_text, native_citation_urls[, stop_reason])
+# stop_reason(2026-10-03)… 応答が終わった理由(Claude の stop_reason・Gemini の finish_reason)。
+#   max_tokens などで途中で切れた回答を後から見分けるため。記録するだけで観測の手順は変えない
 # --------------------------------------------------------------------------
 def _query_chatgpt(prompt_text: str, model: str) -> Tuple[str, List[str]]:
     from openai import OpenAI
@@ -251,7 +253,7 @@ def _query_chatgpt(prompt_text: str, model: str) -> Tuple[str, List[str]]:
     return answer, citations
 
 
-def _query_gemini(prompt_text: str, model: str) -> Tuple[str, List[str]]:
+def _query_gemini(prompt_text: str, model: str) -> Tuple[str, List[str], str]:
     from google import genai
     from google.genai import types
 
@@ -265,17 +267,21 @@ def _query_gemini(prompt_text: str, model: str) -> Tuple[str, List[str]]:
     )
     answer = getattr(resp, "text", "") or ""
     citations: List[str] = []
+    stop_reason = ""
     for cand in getattr(resp, "candidates", []) or []:
+        reason = getattr(cand, "finish_reason", None)
+        if reason is not None and not stop_reason:
+            stop_reason = str(getattr(reason, "name", reason))
         meta = getattr(cand, "grounding_metadata", None)
         for chunk in getattr(meta, "grounding_chunks", []) or []:
             web = getattr(chunk, "web", None)
             uri = getattr(web, "uri", None)
             if uri:
                 citations.append(uri)
-    return answer, citations
+    return answer, citations, stop_reason
 
 
-def _query_claude(prompt_text: str, model: str) -> Tuple[str, List[str]]:
+def _query_claude(prompt_text: str, model: str) -> Tuple[str, List[str], str]:
     import anthropic
 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
@@ -295,7 +301,7 @@ def _query_claude(prompt_text: str, model: str) -> Tuple[str, List[str]]:
                 url = getattr(cit, "url", None)
                 if url:
                     citations.append(url)
-    return "\n".join(answer_parts), citations
+    return "\n".join(answer_parts), citations, str(getattr(resp, "stop_reason", "") or "")
 
 
 def _query_perplexity(prompt_text: str, model: str) -> Tuple[str, List[str]]:
@@ -446,10 +452,12 @@ def _attempt(record: Dict[str, Any], question: str, *, attempts: int,
         return _QUERY_FUNCS[record["model"]](question, record["model_name"])
 
     try:
-        answer, native_cits = _with_retry(
+        got = _with_retry(
             call, label=label, attempts=attempts,
             on_quota=on_quota, budget=budget,
         )
+        answer, native_cits = got[0], got[1]
+        record["stop_reason"] = got[2] if len(got) > 2 else ""
         record["answer"] = answer
         record["cited_urls"] = _merge_urls(answer, native_cits)
         record["error"] = None

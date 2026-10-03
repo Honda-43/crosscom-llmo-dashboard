@@ -17,6 +17,10 @@ mention_rank の数え方:会社名の一覧だけを Haiku に挙げさせ(本�
 一覧を挙げるモデルは EXTRACTOR_MODEL に固定し、毎行 extractor_model に記録する。
 
 Gemini の実行順は層ブロック順(GEMINI_LAYER_ORDER)で毎月固定。Claude は毎月54本すべて(id 順)。
+
+2026-10-03 から Claude の観測と Haiku の順位抽出を停止(費用削減・本田さん決定。settings の
+MARKETING_CLAUDE_ENABLED / MARKETING_RANK_ENABLED)。停止中は is_first・mention_rank を空にし、
+extractor_model に「停止中」(MARKETING_EXTRACTOR_STOPPED)を記録する。
 """
 from __future__ import annotations
 
@@ -36,7 +40,8 @@ from typing import Any, Callable, Dict, Iterable, List, Optional, Set
 
 import experiment
 from settings import (DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MARKETING_DIR, marketing_prompt_active,
-                      MARKETING_QUOTA_SKIPPED, MARKETING_WINDOW_LAST_DAY)
+                      MARKETING_EXTRACTOR_STOPPED, MARKETING_QUOTA_SKIPPED, MARKETING_RANK_ENABLED,
+                      MARKETING_WINDOW_LAST_DAY)
 
 MODELS = ("gemini", "claude")
 PERDAY_MARKER = "PerDay"
@@ -134,13 +139,21 @@ def list_companies_with_haiku(question: str, answer: str, attempts: int = 2) -> 
     raise last
 
 
+def rank_enabled() -> bool:
+    """is_first / mention_rank の Haiku 抽出を動かすか(2026-10-03 から停止中)。"""
+    return MARKETING_RANK_ENABLED
+
+
 def refill_ranks(month: str, root: Path = DATA_RAW_MARKETING_DIR,
                  lister: Optional[CompanyLister] = None) -> List[Dict[str, Any]]:
     """その月の raw のうち、社名が出たのに順位が空の観測(Haiku が失敗した行)の順位を埋め直す。
 
     観測そのもの(回答・日付・実行日時)は変えない。埋め直した raw を返す(シートは呼び出し側が upsert で同じ行を上書き)。
     2026-10-03:10/1 の Claude 4本は Anthropic のクレジット切れ、10/2 の1本は返事の形の崩れで順位が空だった。
+    順位の抽出を止めている間(rank_enabled() が False)は何もしない。
     """
+    if not rank_enabled():
+        return []
     out = []
     for folder in sorted(root.glob(f"{month}-*")):
         for f in sorted(folder.glob("*.json")):
@@ -184,12 +197,16 @@ def run_date_jst(record: Dict[str, Any]) -> str:
 def evaluate(record: Dict[str, Any], prompt: Dict[str, Any],
              resolver: Optional[experiment.Resolver] = None,
              lister: Optional[CompanyLister] = None) -> Dict[str, Any]:
-    """collect_llm のレコードに足す llm_marketing の列。欠測は判定列を空にする。"""
+    """collect_llm のレコードに足す llm_marketing の列。欠測は判定列を空にする。
+
+    順位の抽出を止めている間は Haiku を呼ばず、is_first・mention_rank を空、extractor_model を「停止中」にする。
+    """
+    ranking = rank_enabled()
     fields: Dict[str, Any] = {
         "layer": prompt.get("layer", ""), "prompt": prompt["prompt"],
         "answer_text": record.get("answer") or "",
         "run_date": run_date_jst(record),
-        "extractor_model": EXTRACTOR_MODEL,
+        "extractor_model": EXTRACTOR_MODEL if ranking else MARKETING_EXTRACTOR_STOPPED,
     }
     if record.get("error"):
         fields.update(mentioned="", is_first="", mention_rank="", cited_domain="",
@@ -205,8 +222,8 @@ def evaluate(record: Dict[str, Any], prompt: Dict[str, Any],
     mentioned = experiment.is_mentioned_v2(answer)
     companies: List[str] = []
     rank: Any = ""                       # 社名が出ない回答は空
-    is_first: Any = 0
-    if mentioned:
+    is_first: Any = 0 if ranking else ""
+    if mentioned and ranking:
         try:
             companies = (lister or list_companies_with_haiku)(prompt["prompt"], answer)
             rank = mention_rank(answer, companies)

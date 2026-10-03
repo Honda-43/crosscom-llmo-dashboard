@@ -4,6 +4,7 @@
 **層単位の率で読む。** 1本ごとの表は参考として別のタブに置く。
 Gemini は月に約28本しか回らない(層ブロック順で毎月固定)ので、層によっては一部だけの観測になる。
 前月との差は、**両方の月で観測できたプロンプトだけ**で出す(marketing.compare_months)。
+2026-10-03 から Claude 側と順位(is_first・mention_rank)の抽出を停止(費用削減)。ページの先頭に常に表示する。
 """
 from __future__ import annotations
 
@@ -16,8 +17,12 @@ import data_source
 import marketing
 from settings import TAB_MARKETING, marketing_prompts_for
 
+# 2026-10-03 本田さん決定(費用削減)。文言は依頼のまま。tests/test_marketing.py が表示を確かめる
+STOP_NOTICE = "2026-10-03 から Claude 側を停止（費用削減）。Gemini のみ。順位（is_first・mention_rank）は記録なし"
+
 common.page_header("P6 第3観測層(購買検討・指名の観測)",
                    "54本・月1回。層 × モデル の社名の出現率と cross-com.jp の引用率")
+st.warning(STOP_NOTICE)
 
 if not data_source.sheets_available():
     data_source.missing_credentials_notice()
@@ -90,7 +95,7 @@ with by_layer:
         "**1プロンプト月1回の観測のため、層単位の率で読む。** セルは その月に観測できた本数を分母にした率と、"
         "「観測 本数/層の全本数」。全本数に満たない層は「一部観測」(欠測・枠不足で見送った分は分母に入れない)。"
         "Gemini は月に約28本しか回らず、層ブロック順(L0→BOFU単体→BOFU比較→L1→L2)で毎月固定のため、"
-        "L1・L2 は観測されない月が多い(Claude は毎月全本数)。BOFU は社名を質問に含むので出現率が高いのが前提。"
+        "L1・L2 は観測されない月が多い(Claude は 2026-10-03 から停止中。10月は全54本を観測済み)。BOFU は社名を質問に含むので出現率が高いのが前提。"
         "**2026年11月から MOFU_L1 に IT研修業界3本(`PM-L1-19`〜`21`)を追加(18本→21本)。**"
         "月ごとの層の率は月によって含むプロンプトが異なる。前月との差は両月で観測したプロンプトのみで計算。"
     )
