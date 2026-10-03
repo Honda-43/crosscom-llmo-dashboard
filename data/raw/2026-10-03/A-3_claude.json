@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-03",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-10-03T00:58:34.829987Z",
+  "answer": "# Agentforce導入費用の相場と費用対効果を出すための進め方\n\n## 1. 費用構造の全体像\n\nAgentforceの費用は「①ライセンス基盤」「②利用料（従量課金）」「③初期構築費用」の3層で構成されます。\n\n### ① ベースとなるSalesforceライセンス\nAgentforceを使うには、まずSalesforce本体のライセンスが必要です。\nAgentforceの利用料だけでなく、Salesforceライセンス費用と初期の構築コスト（プロンプト設計・テスト・日本語チューニング）も合わせて考える必要があります\n。参考までに、\nStarterプランは月額/ユーザー3,000円、Pro Suiteは12,000円、Enterpriseは21,000円\nという価格帯です。\n\n### ② Agentforce利用料（従量課金）\n2025年5月以降、料金モデルが整理され、現在は主に2つの選択肢があります（同一組織内では併用不可）。\n\n**会話課金モデル**\n\nAgentforceを拡張しても会話単位でのお支払いとなり、1会話あたり240円（約2ドル）\nです。\n1回の会話は、ユーザーまたは顧客とエージェント間の24時間セッションとして定義され、このモデルは予測可能な顧客対応トラフィックには最もシンプルですが、規模が大きくなると積み上がります\n。\n\n**Flexクレジットモデル（新モデル）**\n\nAgentforceを拡張してもアクション単位でのお支払いで、60,000円（JPY）/100,000クレジットあたり\nとなります。\n1アクションあたり20クレジット（約12円/0.10ドル相当）を消費します\n。\n\nどちらが有利かはアクション数次第で、\nFAQ・ナレッジ検索のような1アクション程度の単純な問い合わせではFlexクレジットが95%安く済み、逆に35アクション以上の複雑なSDRアウトリーチでは会話課金の方が有利\nになります。一般に\n損益分岐点は1会話あたり約20アクション前後\nとされています。\n\n**従業員向けアドオン（定額制）**\n社内利用を無制限にしたい場合は、\nAgentforce for Serviceとして、業務フローに溶け込むAIと無制限で利用できる従業員向けAIエージェントがユーザーあたり月額15,000円（年間契約）\nで提供されています。\n\n### ③ 初期構築費用（最も見落とされがちなコスト）\n日本国内では、ライセンス費用以上にこの部分が総コストを左右します。\n初期構築コストはプロンプト設計・テスト・日本語調整・パートナー委託費用の積み上げによる参考値であり、プロジェクト規模や要件により大きく異なります\n。海外事例ではありますが、\nAgentforceは本格稼働前にData Cloudサブスクリプション（年間108,000ドル以上）、導入支援サービス、ナレッジベース整備が必須になる\nとされており、ライセンス外の付帯コストが大きいことが分かります。\n\nまた実装期間も軽視できません。\n多くの企業で本番稼働まで5〜11ヶ月を要し、Salesforceの既存顧客のうちパイロットを超えて本格展開できているのは1割未満\nというデータもあり、「導入すれば即効果が出る」わけではない点に注意が必要です。\n\n---\n\n## 2. 費用対効果（ROI）を出すための進め方\n\n### ステップ1：適用領域を絞り込む\n\n全領域を一気に切り替えるのではなく、最初の30日で適用領域を絞り込み、60日でSandbox検証、120日で本番投入し、その後ROI測定と追加領域への横展開へ進む\nという段階的アプローチが有効です。各フェーズの終了時点で成果を残す設計にすることが、PoCで終わらせないための鍵です。\n\n### ステップ2：ナレッジ・データ基盤を先に整備する\n\n既存のフローやApexと共存可能で、作り直しは不要ですが、エージェントの回答精度はナレッジの充実度に直結するため、未整備なら先にナレッジを整える工数を計画に含める\n必要があります。精度の低いナレッジのまま導入すると、誤回答（ハルシネーション）が発生し、かえって信頼を損ないます。実際、失敗要因として\nデータ基盤の弱さによる自信満々のハルシネーションと、信頼レイヤーの設定を立ち上げ週のチェックボックス扱いにしてしまうことが典型的な躓きポイント\nとして挙げられています。\n\n### ステップ3：費用対効果が出やすいユースケースから着手する\n実績ベースでROIが出やすいのは特定のパターンに集中しています。\n一次窓口のサービス対応の肩代わり、インバウンド営業のリード選別、Slack連携のIT社内サポートの3パターンでライセンス費用を回収できており、それ以外の領域ではまだ実証例が薄い\nとされています。実例としては、\nWileyが213%のROIを達成し季節対応エージェントのオンボーディングを50%高速化、Fisher & Paykelはセルフサービス率を40%",
+  "cited_urls": [
+    "https://ai-industry.jp/salesforce-agentforce-japan/",
+    "https://boxil.jp/service/197/",
+    "https://www.salesforce.com/jp/agentforce/pricing/",
+    "https://enterprisedreamin.org/articles/agentforce-pricing-explained-2026/",
+    "https://ai-market.jp/services/salesforce-agent-force/",
+    "https://worxwide.com/insights/salesforce-agentforce-pricing/",
+    "https://www.salesforce.com/jp/service/ai/pricing/",
+    "https://estarei.io/blog/agentforce-pricing-explained-2026/",
+    "https://myaskai.com/blog/salesforce-agentforce-complete-guide-2026",
+    "https://hatenabase.jp/agentforce/",
+    "https://www.onemetric.io/blog/how-to-get-agentforce-right-use-cases-costs-and-what-drives-roi"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

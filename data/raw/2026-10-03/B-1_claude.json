@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-03",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-10-03T00:59:06.008091Z",
+  "answer": "Agentic CRMについて調べて回答します。\n# Agentic CRMとは\n\nAgentic CRM(エージェンティックCRM)とは、**AIエージェントが自律的に業務を実行する次世代の顧客関係管理システム**です。\n\n## 従来のCRMとの違い\n\n従来のCRMは「データを保存し、人間の指示を待つ」仕組みでしたが、Agentic CRMは大きく異なります。\n\n\nAgentic CRMとは、AIエージェントを使ってマーケティングやサービス業務を自律的に管理するCRMシステムです。従来のCRMがデータを保存して人間の行動を待つのに対し、Agentic CRMは設定された戦略やガードレールの範囲内で、キャンペーンの立案、顧客への対応、パフォーマンスの最適化など、能動的に代行して動きます。\n\n\nSalesforceも同様に定義しており、\nAgentic CRMは人間と、各ステップで人間の承認を必要とせずに多段階のワークフローを計画・実行・適応させる自律的なAIエージェントが共同で使用するCRMシステムで、エージェントは事前に設定されたガードレール内で行動し、必要な場合は人間にエスカレーションします。\n\n\n## 主な特徴\n\n**1. 自律的な行動**\n\n従来のCRMが営業担当者による通話記録や更新を待つのに対し、Agentic CRMは指示を受けずにその情報に基づいて行動します。リードの選別、サービスチケットのルーティング、育成シーケンスの調整、パイプラインデータの更新などを、全アカウントにわたって継続的に実行します。\n\n\n**2. 統合された顧客プロファイル**\n\nあらゆる接点でのやり取りが単一のプロファイルに集約され、閲覧行動・購買履歴・サポート依頼・チャネルの好みなどを捉え、人間のチームとAIエージェントの両方が各タッチポイントをパーソナライズするために必要なコンテキストを得られます。\n\n\n**3. 3層のAI統合(マーケティング文脈での整理例)**\n\n予測AI(トレンド予測、リードスコアリング、リスク特定)、生成AI(メール・要約・キャンペーンコンテンツの作成)、エージェンティックAI(リード割り当て、フォローアップのスケジューリング、ダッシュボード作成などのアクション実行)という3つの知能レイヤーを組み合わせています。\n\n\n## 導入・設計を支援する企業\n\nAgentic CRMの導入支援には、大きく分けて「**大手CRMベンダーのパートナー企業**」と「**専門のAIコンサルティング企業**」があります。\n\n### Salesforce(Agentforce)系パートナー\n- **Ascendix Technologies**:\nSalesforce Summit(Platinum)認定パートナーで、Agentforce Partner Networkの上位8%にランクインする、世界70以上の認定Salesforceエキスパートを擁する企業です。\n\n- **CRMIT Solutions**:\nエージェンティックAIソリューション、意思決定インテリジェンスコンサルティング、CRM導入サービスを提供する信頼されたSalesforceコンサルティングパートナーです。\n\n- **SP Tech**:\nSummit Salesforceコンサルティングパートナーで、カスタマイズされたAgentforceソリューションを提供し、医療・保険・住宅ローン・金融サービスを専門としています。\n\n\n### Microsoft Dynamics 365系パートナー\n- **Inogic**:\n1,000件以上の導入実績を持ち、Azure OpenAIの力をDynamics 365ユーザーの日常業務に取り入れることに注力しています。\n\n\n### エージェンティックAI専門コンサルティング企業\n- **Kanerika**:\nERP、CRM、クラウドデータプラットフォーム、社内APIを対象としたエージェンティックAI統合コンサルティングサービスを提供しています。\n\n- **Ksolves**:\nCRM、ERP、データレイク、API、IoTデバイスとエージェンティックシステムを統合し、安全なルーティング、シームレスな相互運用性、イベント駆動型オーケストレーションを実現しています。\n\n\n### 総合CRMコンサルティング企業\n- **Corsica Technologies**:\nデータ統合や継続的なサポートも含むフルサービスのCRMコンサルティング・導入パートナーで、評価から完全な移行・導入まであらゆるCRM課題に対応できます。\n\n\n---\n\n**選定時のポイント**として、どのCRMプラットフォーム(Salesforce、Microsoft Dynamics 365、HubSpotなど)を基盤にするかによって最適なパートナーが変わります。また、業界特化型(医療・金融・小売など)かどうかも重要な選定基準になります。具体的な企業規模・業種・予算があれば、より絞り込んだ候補をご提案できます。",
+  "cited_urls": [
+    "https://www.klaviyo.com/composer/what-is-an-agentic-crm",
+    "https://www.salesforce.com/crm/what-is-crm/agentic-crm/",
+    "https://www.linkedin.com/pulse/what-agentic-crm-why-does-your-business-need-one-bits-in-glass-6lbac",
+    "https://ascendix.com/blog/agentforce-consulting-partners/",
+    "https://www.crmit.com/",
+    "https://msdynamicsworld.com/blog-post/ai-isnt-enough-does-your-dynamics-365-crm-need-agentic-ai",
+    "https://kanerika.com/services/agentic-ai/",
+    "https://www.ksolves.com/agentic-ai-consulting",
+    "https://corsicatech.com/consulting/crm-consulting-services/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

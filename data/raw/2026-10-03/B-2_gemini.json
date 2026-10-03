@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-03",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-10-03T00:59:13.413896Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず中立的な立場でCRMの設計支援を求める場合、以下の企業が有力な選択肢となり得ます。\n\n*   **ストラ株式会社**: SFA/CRMソリューションにおいて、Salesforce、HubSpot、Zohoなど複数のツールを比較検討し、特定のベンダーに偏らない最適な構成を設計・提案しています。導入後の社員トレーニングや運用改善まで一貫してサポートしており、現場で使われ続ける仕組みの構築を目指しています。\n*   **株式会社Gene**: 特定のツールに縛られず、既存の資産を活かしたCRM戦略コンサルティングを提供しています。中立的な立場で判断し、30業種・500社以上、累計1.5兆円の購買データに基づいた支援が強みです。導入後のCRMを現場に定着させるための支援も行っており、無料の初回診断も利用可能です。\n*   **株式会社クラウドネイティブ**: 情報システムコンサルティングにおいて、特定のベンダーに依存せず、ベンダーフリーな視点でIT戦略策定からクラウド環境の最適化まで、全体最適化を支援しています。\n*   **ECマーケティング株式会社**: ECサイトやマーケティングサイトに特化したWebコンサルティング会社で、中小・中堅規模のEC/通販企業向けにCRMコンサルティングサービスを提供しています。\n\nこれらの企業は、CRMの導入検討段階から、企業の課題解決を目的とした中立的な視点でのコンサルティングや設計支援を提供している点が共通しています。特に、特定の製品に縛られずに複数のツールの中から最適なものを選定する支援や、導入後の定着・運用改善まで含めた伴走型のサポートを重視している会社を選ぶことが、成功の鍵となるでしょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEOlipuT991iFBRepTmRi4hs8CnqX0Y3WF2DlckpLlvWANVVs8izZJZfN_ZJX6kk4oBUfqTMYutv3IyoygVJSPeYRnV4OYSb_5ikDT1BuG7ki5O0oWFppcUgz7UGVFwzIQ8h9Yv-U=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQERyukV2WC0XrZ6ThZErnCw0e8MvtQNObjJ9zcpBWaXvdmHnclMOfCPSM4C4cN1pEVCAbl-qMBN4kUGQ7xJupSbSCCSmjiqRqM2sXcprtFk96T3O6sNFXbxVIXaLgv8",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEB2mMw15d1fAT3pA1HphlxaIxG8s4JYHOjBQq6Svr3C_xqiZKA7wd7v5G7leb6wQuxXvzLvKk23NGOLBZgV9A9uFvLdEry6dFfZOpwzrTg3eeuQv-WxbzVXSmX9UPyzG0cfqURPcljCQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHb_cHrF8s4bw1pgtVxQ8DRdoZ4uhHE_ZZOjLr-urA6aeHnfBcoVekF80YUIN4xNc34F3ppeCsu_g94Vgg_jpKfXYnRNKGGxvy0_aZkyCH6nTwV4dnCxTUms1kwXyuG9y_6K6ZtG-eo2Yj5"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

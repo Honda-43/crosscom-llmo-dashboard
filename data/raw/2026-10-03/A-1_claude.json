@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-03",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-10-03T00:57:28.027840Z",
+  "answer": "Agentforceの導入支援を行っている企業について調べてみます。\n# Agentforce導入支援のおすすめ企業\n\nSalesforceの自律型AIエージェントプラットフォーム「Agentforce」の導入支援を行っている企業を、タイプ別にご紹介します。\n\n## 大手SIer・コンサルティングファーム\n\n**日立ソリューションズ**\n\n導入ご検討支援、導入支援、定着支援、運用・活用支援まで一貫したラインナップを展開しており、営業デジタル改革ソリューションやAI売上予測ソリューション、導入・活用支援サービス for Agentforceを提供しています。\n 金融や医療など高いセキュリティが求められる業界での支援にも対応しています。\n\n**富士ソフト**\n\nSalesforceのAIエージェントプラットフォーム「Agentforce」の導入支援ソリューションを提供しており\n、\n価格は個別見積もり\nとなっています。\n営業・マーケティングなどフロントオフィス業務全般を支援するAIエージェントを、自然言語での対話型操作で作成できる\n点を活かした支援が特徴です。\n\n**日鉄ソリューションズ（NSSOL）**\n\nNSSOLはSalesforce社のパートナーであり、Agentforceについてもソリューション化に向けた企画開発や検証を進めており、Agentforce国内No.1パートナーを目指しています\n。実際の構築ノウハウを公開するなど、技術検証に積極的な点が特徴です。\n\n**KPMGコンサルティング**\n\nビジネストランスフォーメーション、テクノロジートランスフォーメーション、リスク&コンプライアンスの3分野から企業を支援し\n、金融・保険・製造など幅広い業界向けにAgentforce導入を支援しています。\n\n## 専門特化型パートナー\n\n**toBeマーケティング**\n\n富士通グループならではのAgentforce先行支援・豊富な知見を持ち、最新技術であるAgentforceの活用に、富士通と共にグループとして最速で着手しています\n。日本で最初にAgentforceライセンスを取得した富士通との連携が強みです。\n\n**サークレイス**\n\nSalesforceが2024年10月30日より日本市場で提供を開始した自律型AIエージェント「Agentforce」について、認定パートナーとしていち早く、同年11月より導入・構築サービスの提供を開始しました\n。先行者としての実績があります。\n\n**クロスコム**\n\nSalesforce公式パートナー企業として、マーケティング・営業・カスタマーサポートのあらゆる課題を解決するAgentforceの導入・定着支援を行っており\n、\n「1ユースケース×3ヶ月のスモールスタートプラン」\nからの対応が可能です。ソリューション営業領域に特化している点が特徴です。\n\n**フロッグウェル**\n\n各業界・業務の特性に合わせたAgentforceの導入支援を行っており、豊富な業界知識とSalesforce専門性を活かし、お客様の課題に最適化されたAIソリューションの設計から構築、運用まで一貫してサポートしています\n。住宅業界向けマッチングシステムなど実績が公開されています。\n\n**インフォテック・サービス**\n\nセールスフォース・ドットコムのコンサルティングパートナーとして、要件定義から開発・データ移行・定着化・運用保守までをワンストップで提供し、2012年4月以降14年間で1,000件以上の開発実績を持ち、Salesforce認定資格の保有資格数はグループ会社を含め合計190を誇ります\n。\n\n## 選び方のポイント\n\nSalesforce社自身も、\nAgentforceを安心して導入・拡張するための信頼できるエキスパートとして、コンサルティングパートナーがコンプライアンスやガバナンスを維持しながらビジネス成果を生み出すAIエージェントのコンサルティングやアドバイザリー、導入や実装、稼働をサポートする体制を構築している\nとしています。\n\n選定の際は以下の観点がおすすめです：\n- **業務理解度**：自社の業界・業務プロセスへの理解があるか\n- **実装力**：Data CloudやAgent Builderなど技術的な実装実績\n- **定着支援**：導入後の運用・定着までサポートしてくれるか（「設定は完了したが現場に定着しない」というケースも多いため）\n- **スモールスタート対応**：PoCなど小規模から始められるか\n\n会社の規模や予算、既存のSalesforce活用状況によって最適な支援会社は異なりますので、まずは複数社に相談して自社の業務課題に合った提案を比較されることをおすすめします。",
+  "cited_urls": [
+    "https://www.hitachi-solutions.co.jp/salesforce/products/agentforce/",
+    "https://cloud.watch.impress.co.jp/docs/news/2071326.html",
+    "https://note.com/nssol_note/n/n1839fa740632",
+    "https://kpmg.com/jp/ja/media/press-releases/2025/10/kc-salesforce-agentforce.html",
+    "https://tobem.jp/pardot_service/aicrm.html",
+    "https://www.circlace.com/about/news/release_20241219",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/agentforce-support-company/",
+    "https://frogwell.co.jp/blogs/agentforce/",
+    "https://www.iftc-svc.co.jp/service/cloud/salesforce.html",
+    "https://www.salesforce.com/jp/news/press-releases/2025/11/20/agentforce-world-tour-tokyo/"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}

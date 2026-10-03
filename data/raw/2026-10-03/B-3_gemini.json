@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-03",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-10-03T00:59:36.273067Z",
+  "answer": "AIエージェントを営業に活用するにあたり、ツール選定よりも前のCRMデータ設計から支援してくれるパートナーは複数存在します。これらのパートナーは、データ活用の成果を最大化するために、戦略設計から導入・運用まで一貫したサポートを提供しています。\n\n具体的な支援内容としては、以下のようなものがあります。\n\n*   **CRM・データ戦略設計**：顧客戦略やKPI設計、データ統合方針、活用設計、運用定着まで含めた設計を支援します。これにより、「何のために、誰のデータを、どう活用するか」といった上流設計を行い、CRMやAIが本来の価値を発揮できるようにします。\n*   **顧客データ分析・セグメント設計**：顧客データから購買行動や顧客属性を分析し、顧客が動く理由を構造として読み解くCRM分析コンサルティングを提供しています。\n*   **業務設計とデータ活用基盤設計**：営業、マーケティング、サポートの業務プロセス設計と連動した顧客データの活用基盤設計まで対応可能です。\n*   **AI前提の設計・構築**：AIエージェントの活用を見据え、初期のCRM設計段階からAIによる入力補助、商談の自動要約、問い合わせの自動分類などを組み込むことを提案している企業もあります。\n*   **運用ルール設計と定着支援**：CRMを現場がスムーズに使いこなせるよう、データ入力ルール、商談管理フロー、タスク管理の方法など、明確な運用ルール設計から定着支援まで行います。\n*   **AIエージェントコンサルティング**：AIの導入可能性診断から、社内データの活用方法、PoCでの効果検証、運用定着までを支援し、業務を「やり切る」AIの構築をサポートします。\n\nこれらのサービスを提供する企業・コンサルティングファームの例としては、以下のようなものがあります。\n\n*   **テクノデジタルコンサルティング**：CRM・データ戦略設計サービスを提供しており、20年以上の実績があります。\n*   **株式会社サイカ**：CRM・購買データ分析コンサルティングを提供しており、顧客データ分析、セグメント設計、LTV向上を支援します。\n*   **合同会社クロスコム**：「Agentic CRM設計支援」として、特定のCRM製品に縛られず、AIが読み書きすることを前提としたCRMを業務設計から支援しています。\n*   **株式会社ripla**：業務設計からシステム構築・運用まで一貫して支援するDX／開発支援会社で、CRM開発において顧客データの活用基盤設計まで対応しています。\n*   **HeyKnot**：Zoho CRM・HubSpotの導入と設計を支援しており、AI機能の組み込みも設計段階から考慮しています。\n*   **ナウビレッジ株式会社**：CRM導入・構築支援サービスを提供し、売上・利益目標（KGI）から逆算したCRM設計や徹底した定着化支援を強みとしています。\n*   **StockSun株式会社**：CRMコンサルティングとして、戦略設計からツール選定、データ整備、運用改善までを伴走支援しています。\n*   **株式会社トライエッジ**：Zoho CRMの導入・運用支援を行っており、業務システム全体の設計まで担当します。\n*   **株式会社Hakuhodo DY ONE**：CRMコンサルティングとして、データ戦略の策定や顧客セグメンテーション設計（AI活用含む）などを支援しています。\n\nこれらのパートナーは、CRMが単なるツール導入ではなく、顧客との継続的な関係構築につなげるための戦略であることを重視しており、KPI・業務・データ統合・運用定着まで含めた設計を支援することで、データ活用を成果につなげることを目指しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH3uL_Jy6AZswZZ8PCSM4e2jyOfQA7j-gci-FkWYt8SxhCcupuXqMVvwEhYooxJEY-Dds8RDfNWedxwjU7YBwcf45EuW5QDS0l2X9SIsvrbhqBjKh0c1R3zKvompXq-3z64EAihQ8jcTq3PpYzCYfy57g9g",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHrRuHl7XZwnYmhoG7I465V3fLd8inlgTmpXaFvzZwK2SB5zZANkEfvECtuhz7TbjSZzROa7KWX0NeYRqLRstYHr4Zousq6oOFzPOn9sLkoZ4DWGOTMU7WzPYBDnbrF-V9gGr4fYKBHbIoipg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHjzmNhdfsSjYpnmQ5K5s0bvqdHahG8kHeUr-VkwwCjPibTuC0DUZQg88m5r70vQPOARuAPXGgERlBsVSj3yArGq4jb29vziVx2EqN9qBUTTpkjPnWJRSL_QX26l8xyyhictKnyUOVfoo5i",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGsmAvwgIa8H_Esg4zPfAEP87KCDANn7NPahUn5kQTbyo8YRTFtAtJmp2-FBbQ_Bwcu_rTPMq4aEQQCo3b8sLGy_2xfElAGgN7EKFK0BGG17E6clMCS3Fz_wAOFPOjcMpnCpsvMn9RE6kk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQETriWzRGA6aScuqvWqLUteSuXsSZfOK0eBpTFq-kZEOkXRwV0aSUTjBxuZVL5C378_AirCBiJkP2BBOiHd5SMY02ajBPUmr3aJSvPz1DdOXjAM1lycZ0rdXCF6CMo-zb4VgdMydpn97S2APu0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHJjXPuKWWsKCYBlkUuZcwwnIxrQGp3XXmwZAqISfPdskx1lzoAeZWQPv4terJJTwG6JDlo4YFmPnw2poujsvMZyA20ppF4zjLl__oE9B8MI8YoSPqY7hFsivvaSrxHKobXLo8Mn3g=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFVRDaMsCqh3TnPEnymHPHXaeh3zXbyJx1h_VzsR0MDZy7wx0scZUls5XraO1ro3Td-FFgklc9XrExqjB9OL_0NzF1zlhJDS8G9YretVgih5TnN9De2vmHqduHEAXFhvGg6NWD767zaEy3HGQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFnnlsRW__Widbuig3QNwyQz1ySqMzj5IHTV9N3ft08sZ4M-apuIjvDeDtYgleZSB2g76zI7JmGg3vsmQWLNNB_8w1xS0GOqkA_-cNM2Tx8mJnsUPRTlgoiAyvwTA4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGCZLqfj-h8oeMKT9tce6n7lJc2w-CCUgRr6JG-iNP1CoEry_dzCEprIWNq5G8MjMkzSuw72SP64R2qdcgAV6iHmxbl3KeORgMiIEvbo50ABLbfh9tE",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEKJPUEg9XBYF7hX1jEJYYzvWVIYKj4PeosmohaGMf1neceIQPtffJI8xhk2TDSN1IYT5b7QC8a297TZaH40ZGI45jQUEcnrMRSwnrXNeHHPtTJwQEmgSRqg2Dp-3qn-OckmJ0u0717usXSQgIM-6nnvsHfASjx-y0qMm8qjG5wy-mS25cWKA=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1
+}
