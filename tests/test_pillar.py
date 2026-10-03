@@ -7,6 +7,7 @@
 4. 感度分析の6通り目:ピラーの既存リンク先(27本)を全組から抜く
 5. 判定レポートの冒頭に出て、分けたときは summarize が前・後の結果も並べる
 """
+import os
 import csv
 import datetime as dt
 import sys
@@ -104,6 +105,7 @@ def test_when_no_strong_orphan_is_linked_poaching_is_out_of_scope(monkeypatch, t
     real = pillar.find
     monkeypatch.setattr(pillar, "find",
                         lambda name: added if name.startswith("pillar_links_added") else real(name))
+    monkeypatch.setattr(pillar, "find_all", lambda name: [added])
     lines, _ = pillar.report_lines(AFTER)
     assert any("強の重なり13本は今回張らないため、対象外" in l for l in lines)
 
@@ -118,6 +120,7 @@ def test_the_sixth_variant_drops_every_article_a_pillar_already_links_to():
 # --- 5. 判定レポート -----------------------------------------------------------------
 def test_without_the_files_the_report_says_so(monkeypatch):
     monkeypatch.setattr(pillar, "find", lambda name: None)
+    monkeypatch.setattr(pillar, "find_all", lambda name: [])
     lines, parts = pillar.report_lines(AFTER)
     assert parts == []
     assert any("pillar_links_added_*.csv）はまだ無い" in l for l in lines)
@@ -130,6 +133,7 @@ def test_the_judgement_report_shows_both_biases_and_splits_a_late_edit(monkeypat
     real = pillar.find
     monkeypatch.setattr(pillar, "find",
                         lambda name: added if name.startswith("pillar_links_added") else real(name))
+    monkeypatch.setattr(pillar, "find_all", lambda name: [added])
     rag = "https://cross-com.jp/agentforce-rag/"
     monkeypatch.setattr(summarize, "load_allocation", lambda: {"agentforce-rag": "④両方"})
     path = tmp_path / "e.csv"
@@ -164,12 +168,34 @@ def test_add_and_remove_rows_give_the_final_state_and_the_last_operation(tmp_pat
     assert pillar.split_after(AFTER, got["done"])[0] == "split", "最後の操作が 10/6 以降なら分ける"
 
 
-def test_the_real_record_ends_with_18_links_and_no_strong_orphan():
+def test_the_real_record_ends_with_19_articles_and_no_strong_orphan():
     """2026-10-02：-14 が 13:09 に強10本を含む20本を追加 → 9d が 13:22 に強10本を外し、13:24 にピラーB へ9本、
-    13:34 に sales-enablement を外した。最終状態は A10・B8 の18本・強は0本・完了は 10/5 以前。"""
+    13:34 に sales-enablement を外した(A10・B8 の18本)。
+    2026-10-03 15:08：seo-agent(便QG)がピラーB に46本の外の3本へのリンクを追加(pillar_links_added_20261003.csv)。
+    うち cs-handback・role-design は 10/02 にリンク済みの記事(2本目のリンク)、migration-decision だけが新しい。
+    最終状態は A10・B9 の19本・強は0本・完了は 10/5 以前。日ごとのファイルを全部合わせて読む。"""
     edit = pillar.pillar_edit()
-    assert edit["final"] == {"agentforce-guide": 10, "agentic-crm": 8} and len(edit["targets"]) == 18
-    assert edit["last"] == dt.datetime(2026, 10, 2, 13, 34, 55)
-    assert (edit["added"], edit["removed"]) == (29, 11)
+    assert [os.path.basename(p) for p in edit["paths"]][:2] == ["pillar_links_added_20261002.csv",
+                                                               "pillar_links_added_20261003.csv"]
+    assert edit["final"] == {"agentforce-guide": 10, "agentic-crm": 9} and len(edit["targets"]) == 19
+    assert "agentic-crm-migration-decision" in edit["targets"]
+    assert edit["last"] == dt.datetime(2026, 10, 3, 15, 8, 33)
+    assert (edit["added"], edit["removed"]) == (32, 11)
     assert pillar.poaching(edit)["linked"] == []
     assert pillar.split_after(AFTER, edit["done"]) == ("before_after", [])
+
+
+def test_records_of_several_days_are_read_together(tmp_path, monkeypatch):
+    """一番新しい日のファイルだけを読むと、前の日の追加・除去が抜ける(2026-10-03 に起きた)。"""
+    head = "applied_at_jst,pillar_slug,target_slug,action\n"
+    (tmp_path / "pillar_links_added_20261002.csv").write_text(
+        head + "2026-10-02 13:00:00,agentforce-guide,a,add\n2026-10-02 13:10:00,agentforce-guide,b,add\n",
+        encoding="utf-8")
+    (tmp_path / "pillar_links_added_20261003.csv").write_text(
+        head + "2026-10-03 15:00:00,agentforce-guide,a,remove\n2026-10-03 15:00:00,agentic-crm,c,add\n",
+        encoding="utf-8")
+    monkeypatch.setattr(pillar, "SEO_AGENT", str(tmp_path / "none"))
+    monkeypatch.setattr(pillar, "HERE", str(tmp_path))
+    edit = pillar.pillar_edit()
+    assert edit["final"] == {"agentforce-guide": 1, "agentic-crm": 1} and edit["targets"] == ["b", "c"]
+    assert (edit["added"], edit["removed"]) == (3, 1) and edit["done"] == dt.date(2026, 10, 3)

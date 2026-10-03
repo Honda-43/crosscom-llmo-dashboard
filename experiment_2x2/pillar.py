@@ -54,6 +54,19 @@ def find(name_glob):
     return best[max(best)] if best else None
 
 
+def find_all(name_glob):
+    """find と同じ優先順で、日付ごとの表をすべて(ファイル名の順に)返す。
+
+    実施の記録(pillar_links_added_*.csv)は日ごとに別ファイルになる(2026-10-03 に seo-agent が
+    20261003 版を出した)。一番新しいファイルだけを読むと、前の日の追加・除去が抜けて最終状態がずれる。
+    """
+    best = {}
+    for folder in (os.path.join(SEO_AGENT, 'reports'), os.path.join(SEO_AGENT, 'experiment'), HERE):
+        for path in glob.glob(os.path.join(folder, name_glob)):
+            best[os.path.basename(path)] = path
+    return [best[k] for k in sorted(best)]
+
+
 def _rows(path):
     with io.open(path, encoding='utf-8-sig') as f:
         return list(csv.DictReader(line for line in f if not line.startswith('#')))
@@ -88,22 +101,29 @@ def _when(text):
 def pillar_edit(path=None):
     """ピラー編集の記録(seo-agent の pillar_links_added_*.csv)を読む。表が無ければ None。
 
+    2026-10-03 改訂：``path`` を渡さなければ、日付ごとのファイルを**すべて**合わせて時刻順に当てはめる
+    (以前は一番新しいファイルだけを読んでいた)。'path' は一番新しいファイル、'paths' は読んだ全ファイル。
+
     2026-10-02 改訂：行ごとに action(add/remove)がある。追加と除去を順に当てはめた**最終状態**と、
     最後の操作の日時(=ピラー編集の完了)を返す。
     {'done': 完了日, 'last': 最後の操作の日時, 'count': 行数, 'targets': 最終状態でリンクされている孤児,
      'final': {ピラー: 本数}, 'added': 追加の行数, 'removed': 除去の行数, 'by_pillar': {ピラー: 最後の操作日}, 'path'}
     """
-    path = path or find('pillar_links_added_*.csv')
-    if not path or not os.path.exists(path):
+    paths = [path] if path else find_all('pillar_links_added_*.csv')
+    paths = [p for p in paths if p and os.path.exists(p)]
+    if not paths:
         return None
-    rows = _rows(path)
-    head = rows[0] if rows else {}
-    dcol = next((c for c in DATE_COLUMNS if c in head), None)
-    tcol = next((c for c in TARGET_COLUMNS if c in head), None)
-    pcol = next((c for c in PILLAR_COLUMNS if c in head), None)
+    rows = []
+    for p in paths:
+        part = _rows(p)
+        head = part[0] if part else {}
+        dcol = next((c for c in DATE_COLUMNS if c in head), None)
+        tcol = next((c for c in TARGET_COLUMNS if c in head), None)
+        pcol = next((c for c in PILLAR_COLUMNS if c in head), None)
+        rows += [(str(r.get(dcol) or '') if dcol else '', r, dcol, tcol, pcol) for r in part]
     linked, by_pillar, last = {}, {}, None
     added = removed = 0
-    for r in sorted(rows, key=lambda r: str(r.get(dcol) or '')):
+    for _, r, dcol, tcol, pcol in sorted(rows, key=lambda x: x[0]):
         when = _when(r.get(dcol)) if dcol else None
         pillar_slug = r.get(pcol, '') if pcol else ''
         target = _slug(r.get(tcol)) if tcol else ''
@@ -120,7 +140,8 @@ def pillar_edit(path=None):
     final = collections.Counter(p for p, _ in linked)
     return {'done': last.date() if last else None, 'last': last, 'count': len(rows),
             'targets': sorted({t for _, t in linked}), 'final': dict(final),
-            'added': added, 'removed': removed, 'by_pillar': by_pillar, 'path': path}
+            'added': added, 'removed': removed, 'by_pillar': by_pillar, 'path': paths[-1],
+            'paths': paths}
 
 
 def split_after(after, done, lag_until=LAG_UNTIL):
@@ -209,7 +230,7 @@ def report_lines(after):
         missing = [PILLAR_LABEL[p] for p in PILLARS if p not in edit['by_pillar']]
         last = edit['last'].strftime('%Y-%m-%d %H:%M:%S') if edit['last'] else '日時が読めない'
         lines.append(f"- ピラー編集の完了：{last}（最後の操作）。最終状態 {final}"
-                     f"（追加 {edit['added']}行・除去 {edit['removed']}行・{os.path.basename(edit['path'])}）"
+                     f"（追加 {edit['added']}行・除去 {edit['removed']}行・{'・'.join(os.path.basename(p) for p in edit['paths'])}）"
                      + (f"。**{'・'.join(missing)} はまだ記録が無い**" if missing else ''))
         lines.append({
             'none': '- 実施日が読めないため、アフターの切り分けはしない',

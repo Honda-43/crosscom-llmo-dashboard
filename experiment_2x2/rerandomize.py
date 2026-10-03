@@ -22,6 +22,9 @@
 results/rerandomization_pool.checkpoint に残す形にした（全件をメモリに溜めない）。
 100件ごとに件数・経過時間・現在のシードを出す。途中で止まっても、それまでの行は有効。
 既存のプールがあるときの --build は止まる（捨てて作り直すなら --restart を足す）。
+2026-10-03：作成中は <プール>.lock を置き、ロックがあれば2つ目の --build / --resume は起動せずに終わる
+（同じファイルへ2つのプロセスが追記すると行が混ざるため）。ロックを置いたプロセスがもう動いていなければ
+（強制終了などで残ったロック）、置き換えて続ける。
 """
 import argparse
 import csv
@@ -207,6 +210,81 @@ class ResumeError(Exception):
     pass
 
 
+# --------------------------------------------------------------------------
+# 二重起動の防止（2026-10-03）
+# --------------------------------------------------------------------------
+class PoolLocked(Exception):
+    """同じプールを別のプロセスが作っている。"""
+
+
+def lock_path(out=POOL_FILE):
+    return out + '.lock'
+
+
+def pid_alive(pid):
+    """そのプロセスがまだ動いているか。Windows では os.kill(pid, 0) がプロセスを終了させてしまうので使わない。"""
+    if pid <= 0:
+        return False
+    if os.name == 'nt':
+        import ctypes
+        kernel32 = ctypes.windll.kernel32
+        handle = kernel32.OpenProcess(0x1000, False, pid)      # PROCESS_QUERY_LIMITED_INFORMATION
+        if not handle:
+            return False
+        try:
+            code = ctypes.c_ulong()
+            kernel32.GetExitCodeProcess(handle, ctypes.byref(code))
+            return code.value == 259                            # STILL_ACTIVE
+        finally:
+            kernel32.CloseHandle(handle)
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    return True
+
+
+def acquire_lock(out=POOL_FILE, log=print):
+    """ロックファイルを作る。別のプロセスが作成中なら PoolLocked。動いていないプロセスのロックは置き換える。"""
+    path = lock_path(out)
+    os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
+    info = {'pid': os.getpid(), 'started': time.strftime('%Y-%m-%d %H:%M:%S'),
+            'argv': ' '.join(sys.argv)}
+    for _ in range(2):
+        try:
+            fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        except FileExistsError:
+            try:
+                with io.open(path, encoding='utf-8') as f:
+                    held = json.load(f)
+            except (OSError, ValueError):
+                held = {}
+            if pid_alive(int(held.get('pid') or 0)):
+                raise PoolLocked(f'{path} がある：プロセス {held.get("pid")}（{held.get("started", "?")} 開始・'
+                                 f'{held.get("argv", "")}）が同じプールを作成中。2つ目は起動しない')
+            log(f'[warn] 動いていないプロセス {held.get("pid")} のロックが残っていたので置き換える: {path}')
+            os.remove(path)
+            continue
+        with os.fdopen(fd, 'w', encoding='utf-8') as f:
+            json.dump(info, f, ensure_ascii=False)
+        return path
+    raise PoolLocked(f'{path} を作れない')
+
+
+def release_lock(out=POOL_FILE):
+    """自分のロックだけを消す。"""
+    path = lock_path(out)
+    try:
+        with io.open(path, encoding='utf-8') as f:
+            held = json.load(f)
+    except (OSError, ValueError):
+        return
+    if int(held.get('pid') or 0) == os.getpid():
+        os.remove(path)
+
+
 def build_to_file(arts, cited, actual, out=POOL_FILE, checkpoint=CHECKPOINT_FILE,
                   target=POOL_SIZE, seed_start=SEED_START, resume=False, meta=None,
                   progress=PROGRESS_EVERY, checkpoint_every=CHECKPOINT_EVERY,
@@ -382,6 +460,11 @@ def main(argv=None):
             'excluded_actual': actual,
             'progress': f'目標件数・最後に試したシード・完成かどうかは {os.path.basename(a.checkpoint)}'}
     try:
+        acquire_lock(a.out)
+    except PoolLocked as e:
+        print(f'★ {e}', file=sys.stderr)
+        return 2
+    try:
         state = build_to_file(arts, cited, actual, a.out, a.checkpoint, a.target,
                               a.seed_start, resume=a.resume, meta=meta)
     except ResumeError as e:
@@ -392,6 +475,8 @@ def main(argv=None):
         print(f'\n中断：{state.get("count", 0)} 件まで保存済み（シード {state.get("next_seed")} から再開）。'
               '続きは --resume', file=sys.stderr)
         return 130
+    finally:
+        release_lock(a.out)
     print(f'{state["count"]} 通り（{state["tried"]:,}回試行・経過 {_hms(state["elapsed_sec"])}）'
           f'→ {a.out}')
     return 0

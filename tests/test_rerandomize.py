@@ -9,6 +9,7 @@
 5. 判定の出力に再ランダム化とフィッシャーの p が並ぶこと。プールが無ければ「—」
 """
 import io
+import os
 import sys
 from pathlib import Path
 
@@ -454,3 +455,66 @@ def test_the_stratified_comparison_is_part_of_the_judgement_output(monkeypatch, 
     out = capsys.readouterr().out
     assert "FAQ の主効果（複数段落回答で層別）（claude）" in out
     assert "複数段落なし（39本）" in out
+
+
+# --- 8. 二重起動の防止(2026-10-03) -----------------------------------------------------
+# 同じプールに2つのプロセスが追記すると行が混ざる。作成中は <プール>.lock を置き、
+# ロックがあれば2つ目は起動しない。動いていないプロセスのロック(強制終了の残り)は置き換える
+def _main_without_sheets(monkeypatch, tmp_path):
+    import argparse
+    monkeypatch.setattr(rerandomize.allocate_47, "load_articles", lambda: (ARTS, None))
+    monkeypatch.setattr(rerandomize, "load_allocation",
+                        lambda: {a["slug"]: rerandomize.GROUPS[i % 4] for i, a in enumerate(ARTS)})
+    monkeypatch.setattr(rerandomize.allocate_47, "load_cited", lambda a: (CITED, "test"))
+    monkeypatch.setattr(rerandomize, "fast_ok", _pure_ok)
+    return ["--out", str(tmp_path / "pool.csv"), "--checkpoint", str(tmp_path / "pool.checkpoint"),
+            "--target", "3"]
+
+
+def test_a_second_build_does_not_start_while_the_first_is_running(monkeypatch, tmp_path):
+    args = _main_without_sheets(monkeypatch, tmp_path)
+    lock = tmp_path / "pool.csv.lock"
+    import json as _json
+    lock.write_text(_json.dumps({"pid": os.getpid(), "started": "2026-10-03 12:15:49",
+                                 "argv": "rerandomize.py --resume"}), encoding="utf-8")
+    called = []
+    monkeypatch.setattr(rerandomize, "build_to_file", lambda *a, **k: called.append(1))
+    assert rerandomize.main(["--build"] + args) == 2
+    assert rerandomize.main(["--resume"] + args) == 2
+    assert not called, "ロックを置いたプロセスが動いている間は作らない"
+    assert lock.exists(), "他のプロセスのロックは消さない"
+
+
+def test_the_lock_is_held_while_building_and_released_after(monkeypatch, tmp_path):
+    args = _main_without_sheets(monkeypatch, tmp_path)
+    lock = tmp_path / "pool.csv.lock"
+    real = rerandomize.build_to_file
+    seen = []
+
+    def spy(*a, **k):
+        seen.append(lock.exists())
+        return real(*a, **k)
+
+    monkeypatch.setattr(rerandomize, "build_to_file", spy)
+    assert rerandomize.main(["--build"] + args) == 0
+    assert seen == [True] and not lock.exists()
+    assert len(rerandomize.load(str(tmp_path / "pool.csv"))) == 3
+
+
+def test_a_lock_left_by_a_dead_process_is_replaced(monkeypatch, tmp_path):
+    args = _main_without_sheets(monkeypatch, tmp_path)
+    lock = tmp_path / "pool.csv.lock"
+    lock.write_text('{"pid": 999999999, "started": "2026-10-01 00:00:00"}', encoding="utf-8")
+    assert not rerandomize.pid_alive(999999999)
+    assert rerandomize.main(["--build"] + args) == 0
+    assert not lock.exists()
+
+
+def test_show_is_not_blocked_by_the_lock(monkeypatch, tmp_path):
+    path = rerandomize.save([(20290105, "1" * 46)], ARTS, {}, str(tmp_path / "pool.csv"))
+    (tmp_path / "pool.csv.lock").write_text('{"pid": %d}' % os.getpid(), encoding="utf-8")
+    assert rerandomize.main(["--show", "--out", path, "--checkpoint", str(tmp_path / "c")]) == 0
+
+
+def test_the_running_process_is_seen_as_alive():
+    assert rerandomize.pid_alive(os.getpid())
