@@ -16,6 +16,7 @@
 import csv
 import datetime as dt
 import hashlib
+import json
 import sys
 
 import pytest
@@ -1014,3 +1015,73 @@ def test_mentioned_v2_is_blank_on_a_miss_and_reaches_the_sheet():
 
 def test_mention_hits_point_at_each_occurrence():
     assert experiment.mention_hits_v2("aクロスコムb cross-com") == [(1, 6), (8, 17)]
+
+
+# --- Claude を週2回→週1回(月曜のみ)に(2026-10-03・本田さん決定) -----------------------------
+def test_claude_is_observed_on_monday_only_from_20261005(monkeypatch):
+    monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
+    assert "claude" in settings.experiment_plan("2026-09-28")            # 月(ビフォー)
+    assert "claude" in settings.experiment_plan("2026-10-01")            # 木(切り替え前)
+    assert "claude" in settings.experiment_plan("2026-10-05")            # 月(この日から週1回)
+    for thursday in ("2026-10-08", "2026-10-15", "2026-12-31"):
+        plan = settings.experiment_plan(thursday)
+        assert "claude" not in plan and "gemini" in plan, "木曜は Claude を止め、Gemini は変えない"
+    monday = settings.experiment_plan("2026-10-12")
+    ids = {p["id"] for p in monday["claude"]}
+    assert "E37" in ids and len(ids) == 47, "watch(E37)も月曜に観測する"
+
+
+def test_the_gemini_plan_does_not_change_with_the_claude_schedule(monkeypatch):
+    """Claude の曜日を変えても、Gemini の巡回(本数と割当)は1本も変わらない。"""
+    monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
+    before = {d: [p["id"] for p in settings.experiment_plan(d).get("gemini", [])]
+              for d in ("2026-10-05", "2026-10-08", "2026-11-19", "2026-12-31")}
+    monkeypatch.setattr(settings, "EXPERIMENT_CLAUDE_WEEKLY_FROM", "2099-01-01")   # 月・木のままだったら
+    monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
+    after = {d: [p["id"] for p in settings.experiment_plan(d).get("gemini", [])] for d in before}
+    assert before == after
+
+
+def _claude_raw(folder, ids, error=None):
+    folder.mkdir(parents=True, exist_ok=True)
+    for pid in ids:
+        (folder / f"{pid}_claude.json").write_text(
+            json.dumps({"prompt_id": pid, "error": error}), encoding="utf-8")
+
+
+def test_the_weekly_claude_target_is_46_from_20261005(tmp_path):
+    pool = [p["id"] for p in settings.load_experiment_prompts()]
+    _claude_raw(tmp_path / "2026-10-05", pool + ["E37"])                 # watch は数えない
+    line = run_experiment.weekly_claude_count_line("2026-10-12", tmp_path)   # 窓 10/05〜10/11
+    assert line == "- 実験の Claude 観測(10/05〜10/11): 週46本(目標46本)", line
+    assert "⚠️" not in line
+
+
+def test_the_weekly_claude_target_was_92_before_the_switch(tmp_path):
+    pool = [p["id"] for p in settings.load_experiment_prompts()]
+    _claude_raw(tmp_path / "2026-09-28", pool)
+    _claude_raw(tmp_path / "2026-10-01", pool[:40])
+    _claude_raw(tmp_path / "2026-10-01", pool[40:], error="overloaded")
+    line = run_experiment.weekly_claude_count_line("2026-10-05", tmp_path)   # 窓 9/28〜10/04
+    assert "週86本で、目標92本を下回りました" in line and "⚠️" in line
+
+
+def test_the_weekly_claude_count_skips_todays_unfinished_run(tmp_path):
+    """週次は月曜の朝に走る。その日の Claude はまだ終わっていないので、前の週(月〜日)で数える。"""
+    pool = [p["id"] for p in settings.load_experiment_prompts()]
+    _claude_raw(tmp_path / "2026-10-12", pool[:3])                       # 当日・途中
+    _claude_raw(tmp_path / "2026-10-05", pool)
+    assert run_experiment.weekly_claude_count("2026-10-12", tmp_path) == (46, 46)
+
+
+def test_the_weekly_report_has_the_claude_line():
+    src = (settings.ROOT_DIR / "src" / "run_weekly.py").read_text(encoding="utf-8")
+    assert "run_experiment.weekly_claude_count_line(date)" in src
+
+
+def test_the_switch_is_in_the_intervention_log():
+    rows = [r for r in csv.reader(open(settings.ROOT_DIR / "output" / "interventions.csv", encoding="utf-8"))
+            if r and not r[0].startswith("#")]
+    hit = [r for r in rows if r[0] == "2026-10-05" and "週2回→週1回" in r[2]]
+    assert len(hit) == 1 and hit[0][3] == "measurement" and hit[0][5] == "no"
+    assert "Gemini（主指標）は不変" in hit[0][6]

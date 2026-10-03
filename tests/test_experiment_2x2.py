@@ -445,3 +445,103 @@ def test_the_judgement_report_starts_with_the_site_wide_interventions(monkeypatc
     head = out.split("#####")[0]
     assert "判定期間（2026-09-15〜2026-11-01）と重なる介入" in head
     assert "I-14 B-33" in head and "I-04" in head
+
+
+# --- 9. Claude は観測1回あたりの率で比べる(2026-10-03・本田さん決定) ----------------------
+# Claude の観測は 2026-10-05 から週2回→週1回(月曜のみ)。ビフォー(週2回)とアフター(週1回)で
+# 回数が違うので、「1回でも引用されたか」の二値ではなく、記事ごとの cited_article=1 の率で比べる。
+# Gemini は「1回でも」のまま変えない
+def test_claude_is_judged_by_the_rate_per_observation_and_gemini_by_any():
+    rag = "https://cross-com.jp/agentforce-rag/"
+    rows = [{"date": d, "model": m, "target_url": rag, "cited_article": c, "error": "",
+             "experiment_flag": "pool"}
+            for d, m, c in [("2026-09-21", "claude", "1"), ("2026-09-24", "claude", "0"),
+                            ("2026-09-28", "claude", "0"), ("2026-10-01", "claude", "0"),
+                            ("2026-09-21", "gemini", "1"), ("2026-09-24", "gemini", "0")]]
+    groups = {"agentforce-rag": "①対照"}
+    span = ("2026-09-15", "2026-09-28")
+    pool_ = {"agentforce-rag"}
+    claude = summarize.period(rows, span, "claude", groups, pool_)
+    gemini = summarize.period(rows, span, "gemini", groups, pool_)
+    assert claude["agentforce-rag"] == ("①対照", 1 / 3), "3回中1回 → 率 1/3(二値なら1)"
+    assert gemini["agentforce-rag"] == ("①対照", 1), "Gemini は1回でも引用されたら1"
+    assert summarize.RATE_MODELS == ("claude",)
+
+
+def test_the_rate_does_not_reward_more_observations():
+    """同じ引用されやすさでも、回数が多い期間ほど「1回でも」は1になりやすい。率ならそうならない。"""
+    rag = "https://cross-com.jp/agentforce-rag/"
+    groups, pool_ = {"agentforce-rag": "①対照"}, {"agentforce-rag"}
+    before = [("2026-09-21", "1"), ("2026-09-24", "0"), ("2026-09-25", "0"), ("2026-09-28", "0")]
+    after = [("2026-10-12", "0"), ("2026-10-19", "1"), ("2026-10-26", "0"), ("2026-11-02", "0")]
+    rows = [{"date": d, "model": "claude", "target_url": rag, "cited_article": c, "error": "",
+             "experiment_flag": "pool"} for d, c in before + after]
+    b = summarize.period(rows, ("2026-09-15", "2026-09-28"), "claude", groups, pool_)
+    a = summarize.period(rows, ("2026-10-06", "2026-11-02"), "claude", groups, pool_)
+    groups_t = summarize.tally(a, b)
+    assert groups_t["①対照"] == [(0.25, 0.0)], "率が同じなら変化(差の差の材料)は0"
+
+
+def test_the_claude_judgement_shows_rates_and_no_fisher(monkeypatch, tmp_path, capsys):
+    rag = "https://cross-com.jp/agentforce-rag/"             # ③リードのみ
+    feat = "https://cross-com.jp/agentforce-features/"       # ①対照
+    monkeypatch.setattr(summarize, "load_allocation",
+                        lambda: {"agentforce-rag": "③リードのみ", "agentforce-features": "①対照"})
+    path = tmp_path / "e.csv"
+    _exp_csv(path, [
+        # ビフォー:週2回(rag は4回中1回、features は4回中0回)
+        ["2026-09-21", "E06", "claude", rag, "1", "", "pool"],
+        ["2026-09-24", "E06", "claude", rag, "0", "", "pool"],
+        ["2026-09-25", "E06", "claude", rag, "0", "", "pool"],
+        ["2026-09-28", "E06", "claude", rag, "0", "", "pool"],
+        ["2026-09-21", "E12", "claude", feat, "0", "", "pool"],
+        ["2026-09-28", "E12", "claude", feat, "0", "", "pool"],
+        # アフター:週1回(rag は2回中1回、features は2回中0回。欠測1件は分母に入れない)
+        ["2026-10-12", "E06", "claude", rag, "1", "", "pool"],
+        ["2026-10-19", "E06", "claude", rag, "0", "", "pool"],
+        ["2026-10-26", "E06", "claude", rag, "", "overloaded", "pool"],
+        ["2026-10-12", "E12", "claude", feat, "0", "", "pool"],
+        ["2026-10-19", "E12", "claude", feat, "0", "", "pool"],
+    ])
+    assert summarize.main(["--before", "2026-09-15:2026-09-28", "--after", "2026-10-06:2026-10-27",
+                           "--csv", str(path), "--model", "claude"]) == 0
+    out = capsys.readouterr().out
+    assert "記事ごとの引用率の平均" in out
+    assert "③リードのみ: 平均 50%（1本）   Δ平均 +0.25" in out, "率 1/2 − ビフォーの率 1/4"
+    assert "①対照: 平均 0%（1本）   Δ平均 +0.00" in out
+    assert "片側p(フィッシャー)=—（率のため対象外）" in out
+    import re
+    both = re.split(r"\s{2,}", [ln for ln in out.splitlines() if ln.startswith("両方込み")][0])
+    assert both[2] == "平均0%（1本）" and both[4] == "平均50%（1本）", both
+    assert both[8] == "—" and both[11] == "—", "率ではフィッシャーの列は空"
+    assert "※ Claude は記事ごとの率" in out
+
+
+def test_gemini_judgement_is_unchanged(monkeypatch, tmp_path, capsys):
+    rag = "https://cross-com.jp/agentforce-rag/"
+    monkeypatch.setattr(summarize, "load_allocation", lambda: {"agentforce-rag": "③リードのみ"})
+    path = tmp_path / "e.csv"
+    _exp_csv(path, [
+        ["2026-09-20", "E06", "gemini", rag, "0", "", "pool"],
+        ["2026-10-10", "E06", "gemini", rag, "1", "", "pool"],
+        ["2026-10-12", "E06", "gemini", rag, "0", "", "pool"],
+    ])
+    summarize.main(["--before", "2026-09-15:2026-09-28", "--after", "2026-10-08:2026-10-27",
+                    "--csv", str(path), "--model", "gemini"])
+    out = capsys.readouterr().out
+    assert "③リードのみ: 1/1 = 100%   Δ平均 +1.00" in out, "Gemini は1回でも引用されたら1"
+    assert "率のため対象外" not in out and "※ Claude は記事ごとの率" not in out
+
+
+def test_the_randomization_test_takes_rates_as_they_are():
+    import rerandomize
+    arts = [{"slug": "a"}, {"slug": "b"}, {"slug": "c"}]
+    assert rerandomize.outcomes_for(arts, {"a": 0.25, "b": 1, "c": 0}) == [0.25, 1, 0]
+    assert isinstance(rerandomize.outcomes_for(arts, {"a": 1})[0], int), "0/1 は整数のまま"
+    # 率でも「実際の差以上」の割付を数える(同じ並びは必ず数える。足し算の誤差で落とさない)
+    labels = [0, 1, 2, 3]
+    outcomes = [0.1, 0.2, 0.3, 0.7]
+    flipped = "3412"
+    got = rerandomize.p_values([(1, "1234"), (2, flipped)], labels, outcomes)
+    assert got["lead_diff"] == pytest.approx(0.35)
+    assert got["lead_p"] == pytest.approx(0.5), "同じ並びの1通りだけが実際以上"

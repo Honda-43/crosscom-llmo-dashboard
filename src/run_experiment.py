@@ -62,7 +62,7 @@ import notify_slack
 import sheets_writer
 from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DIR,
                       EXPERIMENT_JOURNAL_FILE, EXPERIMENT_OBSERVATION_END,
-                      experiment_ended, experiment_weekly_target,
+                      experiment_claude_on, experiment_ended, experiment_weekly_target,
                       load_experiment_prompts,
                       GEMINI_DAILY_REQUEST_LIMIT, ROOT_DIR, WEEKDAY_LABELS,
                       experiment_gemini_allowance, experiment_plan, gemini_requests_on,
@@ -479,6 +479,52 @@ def weekly_count_line(date: str, raw_dir: Optional[Path] = None,
         return (f"- ⚠️ 実験の Gemini 観測が週{count}本で、目標{target}本"
                 f"({pool_size}本×週2回)を下回りました{reason}")
     return f"- 実験の Gemini 観測: 週{count}本(目標{target}本)"
+
+
+def claude_week_window(date: str) -> Tuple[dt.date, dt.date]:
+    """Claude の週の本数を数える7日(``date`` の前日までの月〜日)。
+
+    週次は月曜の朝に走り、その日の Claude(08:00 JST から46本)はまだ終わっていないことが多い。
+    当日を窓に入れると、週1回(月曜のみ)になった 10/5 以降は毎週0本に見えるため、前の週で数える。
+    """
+    end = dt.date.fromisoformat(str(date)[:10]) - dt.timedelta(days=1)
+    return end - dt.timedelta(days=6), end
+
+
+def weekly_claude_count(date: str, raw_dir: Optional[Path] = None) -> Tuple[int, int]:
+    """(取れた実験の Claude 観測の本数(欠測を除く), 目標本数)。窓は claude_week_window。
+
+    目標 = プールの本数 × 窓の中の Claude の観測日の数(settings.experiment_claude_on)。
+    2026-10-05 から月曜のみなので、10/5 以降の週は46本(それまでは月・木で92本)。
+    プールに無い記事(watch の E37)は数えない。
+    """
+    raw_dir = Path(raw_dir if raw_dir is not None else DATA_RAW_EXPERIMENT_DIR)
+    pool = {p["id"] for p in load_experiment_prompts()}
+    start, end = claude_week_window(date)
+    total = days = 0
+    day = start
+    while day <= end:
+        d = day.isoformat()
+        days += experiment_claude_on(d)
+        folder = raw_dir / d
+        for f in folder.glob("*_claude.json") if folder.exists() else []:
+            rec = json.loads(f.read_text(encoding="utf-8"))
+            if rec.get("prompt_id", f.name.split("_")[0]) in pool and not rec.get("error"):
+                total += 1
+        day += dt.timedelta(days=1)
+    return total, len(pool) * days
+
+
+def weekly_claude_count_line(date: str, raw_dir: Optional[Path] = None) -> str:
+    """週次サマリの Claude の1行(2026-10-03)。目標を下回った週だけ警告にする。"""
+    count, target = weekly_claude_count(date, raw_dir)
+    start, end = claude_week_window(date)
+    span = f"{start:%m/%d}〜{end:%m/%d}"
+    if not target:
+        return f"- 実験の Claude 観測({span}): 週{count}本(この週は観測日なし)"
+    if count < target:
+        return f"- ⚠️ 実験の Claude 観測({span})が週{count}本で、目標{target}本を下回りました"
+    return f"- 実験の Claude 観測({span}): 週{count}本(目標{target}本)"
 
 
 def summary_lines(date: str, plan: Dict[str, List[Dict[str, Any]]],

@@ -11,7 +11,7 @@ on:
     # run_experiment が origin の data/raw/<日付>・data/raw/monthly/<日付> を最大90分ポーリングし、揃わなければ
     # その日の Gemini は投げずに欠測(skipped)として記録する。
     # 曜日ごとのID範囲は持たないので、ここに書き写す表も無い。
-    # Claude は 月・木 に47本(Gemini の枠と無関係)。
+    # Claude は 月・木 に47本(Gemini の枠と無関係)。**2026-10-05 から月曜のみ**(費用削減・settings.experiment_claude_weekdays)。
     # 08:00 JST = 前日 23:00 UTC。毎日走る。
     # 日次(07:00 JST)・月次(07:30 JST)のあとに走らせ、git push がぶつからないようにする。
     - cron: '0 23 * * *'

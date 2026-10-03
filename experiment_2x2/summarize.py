@@ -14,7 +14,11 @@
 数える記事
 - プール46本（pool.py）だけ。llm_experiment の experiment_flag=watch の行（E37 など、観測は
   続けるが統計に入れない記事）と、プール外の記事の行は自動で除く
-- 欠測の行（error あり）は数えない。記事ごとに「期間中に1回でも cited_article=1」を 1 とする
+- 欠測の行（error あり）は数えない。**Gemini** は記事ごとに「期間中に1回でも cited_article=1」を 1 とする
+- **Claude は記事ごとの率**（cited_article=1 の回数 ÷ 観測できた回数）で比べる（2026-10-03・本田さん決定）。
+  Claude の観測は 2026-10-05 から週2回→週1回（月曜のみ）になり、ビフォー（週2回）とアフター（週1回）で
+  回数が違う。「1回でも」の二値は回数が多いほど1になりやすく、回数の差が処置の差に見えるため。
+  変化（差の差）も率の差で出す。率は0/1ではないのでフィッシャー検定は使わない（再ランダム化検定は率の平均の差で行う）
 - 組は allocation_v1.csv（9/28 の割付）から引く。9/28 の割付で組が変わるので、
   ビフォーとアフターは記事（URL）で突き合わせる
 
@@ -44,6 +48,8 @@ from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
 
 WATCH_FLAG = "watch"
 MODELS = ("gemini", "claude")
+# 記事ごとの値を「観測1回あたりの率」にするモデル（2026-10-03）。ほかは「1回でも引用されたか」の 0/1
+RATE_MODELS = ("claude",)
 
 # 判定時の補助分析(Google 順位の上位・下位で処置の効き方が違うか)に使う GSC の指標。
 # **v2 に固定する**(2026-10-01)。# 付きURL(目次アンカー)は本体に寄せ、表示回数・順位は
@@ -105,8 +111,10 @@ def counted(row, pool):
             and not str(row.get("error", "")).strip())
 
 
-def period(rows, span, model, groups, pool):
-    """{slug: (組, 期間中に1回でも cited_article=1 なら1)}
+def period(rows, span, model, groups, pool, rate=None):
+    """{slug: (組, 値)}。値は Gemini が「期間中に1回でも cited_article=1 なら1」、
+    Claude（RATE_MODELS）が「cited_article=1 の回数 ÷ 観測できた回数」の率（0〜1 の小数）。
+    ``rate`` を渡すとモデルに関係なくどちらかに決める。
 
     9/15〜16 に逆リンク追記が入った9本は、追記より前(9/16 まで)の観測を使わない
     (pool.baseline_start)。追記そのものが引用されやすさを動かすので、追記前後を
@@ -124,6 +132,9 @@ def period(rows, span, model, groups, pool):
         if limit and str(r.get("date", ""))[:10] < limit:
             continue
         cited[s].append(str(r.get("cited_article", "")).strip() == "1")
+    rate = model in RATE_MODELS if rate is None else rate
+    if rate:
+        return {s: (groups.get(s, "（割付なし）"), sum(v) / len(v)) for s, v in cited.items()}
     return {s: (groups.get(s, "（割付なし）"), int(any(v))) for s, v in cited.items()}
 
 
@@ -163,15 +174,36 @@ def cells(groups, g):
     return sum(vs), len(vs) - sum(vs)
 
 
+def is_rate(groups):
+    """記事の値が率（0/1 でない小数）か。Claude の判定（RATE_MODELS）がこれ。"""
+    return any(isinstance(v, float) for xs in groups.values() for v, _ in xs)
+
+
+def share(hit, n, rate=False):
+    """本数の表示。0/1 なら「引用/本数」、率なら「平均の率（本数）」。"""
+    if not n:
+        return "—"
+    return f"平均{hit / n:.0%}（{n}本）" if rate else f"{hit}/{n}"
+
+
+def pval(p):
+    return "—（率のため対象外）" if p is None else f"{p:.3f}"
+
+
 def effect(groups, on_groups, off_groups):
-    """主効果。(あり引用, あり本数, なし引用, なし本数, 差, 片側p)。"""
+    """主効果。(あり引用, あり本数, なし引用, なし本数, 差, 片側p)。
+
+    率（Claude）のときは「引用」が率の合計、差は記事ごとの率の平均の差。フィッシャー検定は
+    0/1 の表にしか使えないので p は None。
+    """
     a = sum(cells(groups, g)[0] for g in on_groups)
     b = sum(cells(groups, g)[1] for g in on_groups)
     c = sum(cells(groups, g)[0] for g in off_groups)
     d = sum(cells(groups, g)[1] for g in off_groups)
     pa = a / (a + b) if a + b else 0
     pc = c / (c + d) if c + d else 0
-    return a, a + b, c, c + d, pa - pc, fisher_one_sided(a, b, c, d)
+    p = None if is_rate(groups) else fisher_one_sided(a, b, c, d)
+    return a, a + b, c, c + d, pa - pc, p
 
 
 LEAD_ON, LEAD_OFF = ("③リードのみ", "④両方"), ("①対照", "②FAQのみ")
@@ -180,14 +212,24 @@ FAQ_ON, FAQ_OFF = ("②FAQのみ", "④両方"), ("①対照", "③リードの�
 
 def summarize(after, before, exclude=(), label=""):
     groups = tally(after, before, exclude)
+    rate = is_rate(groups)
     n = sum(len(x) for x in groups.values())
     print(f"=== {label}（{n}本） ===")
-    print("組別 引用率（アフター） / 平均変化（差の差用）")
+    if rate:
+        print("組別 記事ごとの引用率の平均（アフター。観測1回あたりの率） / 率の平均変化（差の差用）")
+    else:
+        print("組別 引用率（アフター） / 平均変化（差の差用）")
     for g in sorted(groups):
         vs = [v for v, _ in groups[g]]; ds = [d for _, d in groups[g]]
-        print(f"  {g}: {sum(vs)}/{len(vs)} = {sum(vs)/len(vs):.0%}   Δ平均 {sum(ds)/len(ds):+.2f}")
+        head = (f"平均 {sum(vs)/len(vs):.0%}（{len(vs)}本）" if rate
+                else f"{sum(vs)}/{len(vs)} = {sum(vs)/len(vs):.0%}")
+        print(f"  {g}: {head}   Δ平均 {sum(ds)/len(ds):+.2f}")
     def line(name, on, off):
         a, an, c, cn, diff, p = effect(groups, on, off)
+        if rate:
+            print(f"{name}: あり 平均{a/an if an else 0:.0%}（{an}本）  なし 平均{c/cn if cn else 0:.0%}（{cn}本）"
+                  f"  差 {diff:+.0%}  片側p(フィッシャー)={pval(p)}")
+            return
         print(f"{name}: あり {a}/{an}={a/an if an else 0:.0%}  なし {c}/{cn}={c/cn if cn else 0:.0%}"
               f"  差 {diff:+.0%}  片側p={p:.3f}")
     print("主効果")
@@ -291,20 +333,21 @@ def sensitivity_table(after, before, title=""):
     rows = []
     for label, exclude in variants():
         groups = tally(after, before, exclude)
+        rate = is_rate(groups)
         n = sum(len(x) for x in groups.values())
         rates = []
         for g in ("①対照", "②FAQのみ", "③リードのみ", "④両方"):
             hit, miss = cells(groups, g)
-            rates.append(f"{hit}/{hit + miss}" if hit + miss else "—")
+            rates.append(share(hit, len(groups.get(g, [])), rate))
         _, _, _, _, lead_diff, lead_p = effect(groups, LEAD_ON, LEAD_OFF)
         _, _, _, _, faq_diff, faq_p = effect(groups, FAQ_ON, FAQ_OFF)
         rr = randomization(after, exclude)
         ok = tested(rr)
         rows.append([label, str(n)] + rates
                     + [f"{lead_diff:+.0%}",
-                       f"{rr['lead_p']:.3f}" if ok else "—", f"{lead_p:.3f}",
+                       f"{rr['lead_p']:.3f}" if ok else "—", "—" if lead_p is None else f"{lead_p:.3f}",
                        f"{faq_diff:+.0%}",
-                       f"{rr['faq_p']:.3f}" if ok else "—", f"{faq_p:.3f}"])
+                       f"{rr['faq_p']:.3f}" if ok else "—", "—" if faq_p is None else f"{faq_p:.3f}"])
     head = ["感度分析" + (f"（{title.strip()}）" if title.strip() else ""), "本数",
             "①対照", "②FAQのみ", "③リードのみ", "④両方",
             "リード差", "p(再ランダム化)", "p(フィッシャー)",
@@ -317,6 +360,10 @@ def sensitivity_table(after, before, title=""):
     for r in rows:
         print(row(r))
     print(f"使用した割付数：{rr['n']:,}" if tested(rr) else pool_note(rr))
+    if is_rate(tally(after, before)):
+        print("※ Claude は記事ごとの率（cited_article=1 の回数 ÷ 観測できた回数）の平均で比べる。"
+              "組のマスは「平均の率（本数）」。率のためフィッシャー検定は出さない（—）。"
+              "再ランダム化検定は率の平均の差で行う")
     note = multi_paragraph_note()
     if note:
         print(note)
@@ -352,8 +399,9 @@ def faq_by_multi_paragraph(after, before, title=""):
         on_d = [d for g in FAQ_ON for _, d in groups.get(g, [])]
         off_d = [d for g in FAQ_OFF for _, d in groups.get(g, [])]
         did = sum(on_d) / len(on_d) - sum(off_d) / len(off_d)
-        print(f"  {name}（{n}本）：②④ {a}/{an}={a / an:.0%}  ①③ {c}/{cn}={c / cn:.0%}"
-              f"  差 {diff:+.0%}  片側p(フィッシャー)={p:.3f}"
+        rate = is_rate(groups)
+        print(f"  {name}（{n}本）：②④ {share(a, an, rate)}={a / an:.0%}  ①③ {share(c, cn, rate)}={c / cn:.0%}"
+              f"  差 {diff:+.0%}  片側p(フィッシャー)={pval(p)}"
               + (f"  差の差（Δ平均の差）{did:+.2f}" if before else ""))
         out[name] = {"n": n, "on": (a, an), "off": (c, cn), "diff": diff, "p": p,
                      "did": did if before else None}

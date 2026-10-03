@@ -438,9 +438,11 @@ def test_the_experiment_is_observed_until_20261231_and_stops_on_20270101(monkeyp
     """2026-10-01 確定:実験の観測は 12/31 まで。1/1(凍結の解放と同時)に自動で止める。E37(watch)も同日。"""
     monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
     assert settings.EXPERIMENT_OBSERVATION_END == "2026-12-31"
-    last = settings.experiment_plan("2026-12-31")                      # 木曜:Gemini・Claude
-    assert set(last) == {"gemini", "claude"}
-    assert "E37" in {p["id"] for p in last["claude"]}, "watch も 12/31 までは観測する"
+    last = settings.experiment_plan("2026-12-31")                      # 木曜:Gemini のみ(Claude は 10/5 から月曜のみ)
+    assert set(last) == {"gemini"}
+    monday = settings.experiment_plan("2026-12-28")                    # 最後の月曜:Gemini・Claude
+    assert set(monday) == {"gemini", "claude"}
+    assert "E37" in {p["id"] for p in monday["claude"]}, "watch も最後まで観測する"
     assert settings.experiment_plan("2027-01-01") == {}
     assert settings.experiment_plan("2027-01-04") == {}                # 月曜も Claude なし
     freeze = yaml.safe_load(open(settings.CONFIG_DIR / "experiment_freeze.yaml", encoding="utf-8"))

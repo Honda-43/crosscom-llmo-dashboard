@@ -213,6 +213,11 @@ def main() -> None:
                         lambda: run_experiment.weekly_count_line(date), failures)
     if weekly_count:
         lines.append(weekly_count)
+    # 実験の Claude(2026-10-05 から月曜のみ・週46本。それまでは月・木で92本)
+    claude_count = _run("experiment_weekly_claude_count",
+                        lambda: run_experiment.weekly_claude_count_line(date), failures)
+    if claude_count:
+        lines.append(claude_count)
 
     if failures:
         lines += ["", "### ⚠️ Failed phases"] + [f"- {f}" for f in failures]

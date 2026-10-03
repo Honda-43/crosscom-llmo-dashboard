@@ -11,7 +11,7 @@ import datetime as dt
 import json
 import os
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
 import yaml
 
@@ -218,7 +218,12 @@ MONTHLY_BATCH_SIZE = 6
 GEMINI_DAILY_REQUEST_LIMIT = 20
 WEEKDAY_LABELS = ("月", "火", "水", "木", "金", "土", "日")
 
-EXPERIMENT_CLAUDE_WEEKDAYS = (0, 3)             # 月・木(Claude は Gemini の枠と無関係)
+EXPERIMENT_CLAUDE_WEEKDAYS = (0, 3)             # 月・木(Claude は Gemini の枠と無関係)。2026-10-04 まで
+# 2026-10-05(月)から Claude は週1回・月曜のみ(費用削減・本田さん決定・interventions I-25)。
+# アフター観測(10/6〜)の開始前に切り替える。ビフォー(〜9/28)の週2回の記録はそのまま残す。
+# Gemini の観測は変えない。watch(E37)の Claude も同じく月曜のみ(plan["claude"] は観測する全記事)
+EXPERIMENT_CLAUDE_WEEKLY_FROM = "2026-10-05"
+EXPERIMENT_CLAUDE_WEEKDAYS_WEEKLY = (0,)        # 月
 # 実験の巡回はこの日から始まる。ここを動かすと以降の割当が丸ごとずれるので、
 # 実験期間の途中では変えない。2026-09-19 にしたのは、旧割当が 09-18 まで走って
 # おり、09-21 始まりだと 09-19・09-20 の Gemini 観測が0本になるため
@@ -250,6 +255,19 @@ def experiment_weekly_target() -> int:
 
 def _weekday(date: str) -> int:
     return dt.date.fromisoformat(str(date)[:10]).weekday()
+
+
+def experiment_claude_weekdays(date: str) -> Tuple[int, ...]:
+    """その日に有効な実験の Claude の観測曜日。2026-10-05 から月曜のみ(それまでは月・木)。"""
+    if str(date)[:10] >= EXPERIMENT_CLAUDE_WEEKLY_FROM:
+        return EXPERIMENT_CLAUDE_WEEKDAYS_WEEKLY
+    return EXPERIMENT_CLAUDE_WEEKDAYS
+
+
+def experiment_claude_on(date: str) -> bool:
+    """その日に実験の Claude を観測するか(巡回の開始〜観測の終わりの間の、観測曜日)。"""
+    return (_weekday(date) in experiment_claude_weekdays(date)
+            and str(date)[:10] >= EXPERIMENT_CYCLE_START and not experiment_ended(date))
 
 
 def is_daily_llm_day(date: str) -> bool:
@@ -409,8 +427,7 @@ def experiment_plan(date: str) -> Dict[str, List[Dict[str, Any]]]:
         start = experiment_cursor(date)
         total = len(prompts)
         plan["gemini"] = [prompts[(start + i) % total] for i in range(count)]
-    if (_weekday(date) in EXPERIMENT_CLAUDE_WEEKDAYS
-            and str(date)[:10] >= EXPERIMENT_CYCLE_START and not experiment_ended(date)):
+    if experiment_claude_on(date):
         plan["claude"] = list(prompts)
     return plan
 

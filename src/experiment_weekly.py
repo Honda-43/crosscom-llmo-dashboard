@@ -34,7 +34,8 @@ except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exa
     JST = dt.timezone(dt.timedelta(hours=9), name="JST")
 
 import interventions
-from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DIR, ROOT_DIR,
+from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DIR,
+                      EXPERIMENT_CLAUDE_WEEKLY_FROM, ROOT_DIR,
                       TAB_EXPERIMENT, WEEKDAY_LABELS, load_experiment_prompts)
 
 REPORTS_DIR = ROOT_DIR / "output" / "reports"
@@ -49,6 +50,8 @@ AFTER_FROM = dt.date(2026, 10, 6)
 # 出さない(2026-09-30)。途中で覗くと、偶然の上下を見て判断してしまうため。
 # 組は割付表(allocation_v1.csv)と記事IDで引けるので、記事ごとの数字も伏せる
 GROUP_BLIND_UNTIL = dt.date(2026, 11, 2)
+# 実験の Claude が週2回→週1回(月曜のみ)になった日(settings.EXPERIMENT_CLAUDE_WEEKLY_FROM)
+CLAUDE_WEEKLY_FROM = dt.date.fromisoformat(EXPERIMENT_CLAUDE_WEEKLY_FROM)
 GEMINI_DAILY_LIMIT = 20
 
 
@@ -170,6 +173,11 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
     order = lambda ids: sorted(ids, key=pool_ids.index)              # noqa: E731
     L.append(f"- **記事URLが1回でも出た記事: {len(arts_any)}本 / {len(pool_ids)}本**"
              f"(Gemini {len(arts_g)}本・Claude {len(arts_c)}本・両方 {len(arts_g & arts_c)}本)")
+    if end >= CLAUDE_WEEKLY_FROM:
+        # 2026-10-05 から Claude は週1回(月曜のみ)。週2回だった週と「1回でも」の本数を比べると、
+        # 観測回数の差がそのまま本数の差に見える。週をまたいで比べるのは 1 の記事引用率(観測1回あたり)
+        L.append("  - Claude は 2026-10-05 から週1回(月曜のみ)。週2回だった週とは本数で比べず、"
+                 "上の表の記事引用率(観測1回あたり)で比べる")
     if arts_any and not blind:
         L.append("  - " + "、".join(f"{i}({meta[i][1]})" for i in order(arts_any)))
     dom_any = hit(None, "cited_domain")

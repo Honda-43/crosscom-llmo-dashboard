@@ -184,3 +184,11 @@ def test_a_rebuilt_before_week_can_be_forced_blind(tmp_path):
     assert "2026-11-02 の短期判定まで出さない" in hidden
     assert "- 作り直した理由" in hidden
     assert "| Gemini | 2 | 0 | 2 | 1 | 50.0% |" in hidden, "46本全体の率は出す"
+
+
+def test_the_weekly_report_warns_not_to_compare_claude_counts_across_the_switch():
+    """2026-10-05 から Claude は週1回。「1回でも出た記事」の本数を週2回の週と比べない注記を出す。"""
+    after = ew.build(dt.date(2026, 10, 12), [], pool=[], intervention_rows=[])
+    before = ew.build(dt.date(2026, 9, 28), [], pool=[], intervention_rows=[])
+    assert "Claude は 2026-10-05 から週1回" in after
+    assert "Claude は 2026-10-05 から週1回" not in before

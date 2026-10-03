@@ -305,10 +305,13 @@ def p_values(pool, actual_labels, outcomes):
     """片側p。実際の差以上の差が、同じ条件を満たす割付の何割で出るか。"""
     lead_actual, faq_actual = effects(actual_labels, outcomes)
     lead_hits = faq_hits = 0
+    # 率(Claude。2026-10-03)は足す順で末尾の桁がずれるので、同じ差を取りこぼさない幅を持たせる。
+    # 0/1 の差は 1/(本数×本数) 以上離れるので、この幅で結果は変わらない
+    tol = 1e-9
     for _, text in pool:
         lead, faq = effects(labels_of(text), outcomes)
-        lead_hits += lead >= lead_actual
-        faq_hits += faq >= faq_actual
+        lead_hits += lead >= lead_actual - tol
+        faq_hits += faq >= faq_actual - tol
     n = len(pool)
     return {
         'n': n,
@@ -318,9 +321,15 @@ def p_values(pool, actual_labels, outcomes):
 
 
 def outcomes_for(arts, cited_any, exclude=()):
-    """記事の並び順の 0/1。観測が無い記事と ``exclude`` は None（数えない）。"""
+    """記事の並び順の値。観測が無い記事と ``exclude`` は None（数えない）。
+
+    0/1（Gemini。1回でも引用されたか）は整数に、率（Claude。2026-10-03 から観測1回あたりの率）は
+    小数のまま渡す。effects は組ごとの平均を取るので、どちらでも「平均の差」になる。
+    """
+    def value(v):
+        return float(v) if isinstance(v, float) else int(v)
     return [None if (a['slug'] in exclude or a['slug'] not in cited_any)
-            else int(cited_any[a['slug']]) for a in arts]
+            else value(cited_any[a['slug']]) for a in arts]
 
 
 def main(argv=None):
