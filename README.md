@@ -173,8 +173,14 @@ crosscom-llmo-dashboard/
   実行を失敗にして Slack に知らせる(記録の commit のあと。**Gemini の観測には影響しない**:Gemini の呼び出しは上限を通らない)
 - 1回の呼び出しの量(2026-10-03 確認。変えていない):観測(実験・日次・月次・prompt_marketing の Claude)は max_tokens 2048・
   Web 検索は1回あたり最大5回(実験の設定なので変えない)。Haiku の抽出は max_tokens 2048、順位の抽出は 1024(どちらも検索なし)。
-  週次所見は 16000(切れたときだけ1回 32000 で取り直す)。引用プローブ(`experiment_2x2/llmo_probe.py`。実験期間中は不使用・
-  手動のみ)は max_tokens 1500・検索最大5回で、この上限を通らない
+  週次所見は 16000(切れたときだけ1回 32000 で取り直す)。引用プローブ(`experiment_2x2/llmo_probe.py`・`resume_probe.py`)は
+  max_tokens 1500・検索最大5回
+- **引用プローブ(2026-10-03 追加)**:実験期間中(`config/experiment_freeze.yaml` の experiment_end = 2026-12-31 まで)は、
+  実行しても API を呼ばずに終わる(`--force` でも呼ばない。結果ファイルも作らない。`resume_probe.py` も同じ)。
+  2027-01-01 以降は Claude の呼び出しが `claude_budget.guard()` を通る(ジョブ名 `probe`。400 の本文を読んでクレジット不足も止める)
+- **Anthropic の API を直接呼ぶ処理は、すべて `claude_budget` を通る**(2026-10-03 にリポジトリ全体を検索。SDK の `messages.create` を
+  呼ぶのは `claude_budget.create` だけ、HTTP で `api.anthropic.com` を呼ぶのは引用プローブだけ)。
+  新しく足した処理が素通りするとテスト(`tests/test_experiment_2x2.py`)が落ちる
 - Anthropic の SDK は 429・5xx・接続エラーを内部で最大2回取り直す(400 は取り直さない)。この内部の取り直しは回数に入らない
   (失敗したリクエストは課金されない)
 

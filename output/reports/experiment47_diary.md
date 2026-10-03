@@ -1015,3 +1015,14 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - クレジット不足（400）は再試行せず、その日の Claude 呼び出しをすべて止める（credit_exhausted）。10/1 のように50本すべてに投げることはなくなる
 - 止まったら各ワークフローの最後の「Check Claude daily cap」が実行を失敗にし、Slack に通知する。Gemini の観測は影響を受けない
 - 実験の設定（max_tokens 2048・Web 検索 最大5回）は変えていない（確認のみ）
+
+---
+
+## 2026-10-03（続き）／引用プローブの上限漏れを塞いだ
+
+- 引用プローブ（`experiment_2x2/llmo_probe.py`）は API を HTTP で直接呼んでおり、`claude_budget` の上限を通っていなかった
+- **実験期間中（〜2026-12-31・experiment_freeze.yaml の experiment_end）は、実行しても API を呼ばずに終了**（--force でも呼ばない）。
+  `resume_probe.py`（中断した観測の続き）も同じ。これまでは probe.yml の期間チェックだけで、手元で直接実行すれば呼べた
+- 2027-01-01 以降は Claude の呼び出しが `claude_budget.guard()` を通る（1日の上限・400 のクレジット不足で即停止）
+- リポジトリ全体を検索した結果、Anthropic を直接呼ぶ処理はほかに無い（観測・Haiku 抽出・週次所見・順位の抽出は bb50486 で上限を通っている。
+  `reextract_negative.py` と `tests/manual_extract_negative_check.py` は extract.py 経由で上限を通る）。素通りする処理が増えたらテストで落ちる

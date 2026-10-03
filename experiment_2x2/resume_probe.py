@@ -9,7 +9,8 @@ run_date は元の観測日のまま（ビフォー観測は1点として扱う�
 """
 import argparse, csv, io, os, sys, time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from llmo_probe import MODELS, norm, SITE_DOMAIN, load_targets
+from llmo_probe import MODELS, norm, SITE_DOMAIN, load_targets, blocked, experiment_end
+import claude_budget  # noqa: E402  (llmo_probe が src を import パスに足している)
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--date", required=True, help="続きを足す results/<date>.csv")
@@ -18,6 +19,11 @@ ap.add_argument("--models", default="claude")
 ap.add_argument("--sleep", type=float, default=1.0)
 ap.add_argument("--retries", type=int, default=3, help="タイムアウト時の再試行回数")
 a = ap.parse_args()
+if blocked():
+    # 実験期間中は呼ばない（2026-10-03。llmo_probe.py と同じ）
+    print(f"[skip] 実験期間中（〜{experiment_end()}）のため引用プローブは API を呼ばずに終了する")
+    sys.exit(0)
+claude_budget.start("probe")
 
 out = f"results/{a.date}.csv"
 rows = load_targets()

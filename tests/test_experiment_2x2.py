@@ -10,6 +10,7 @@
 import csv
 import datetime
 import io
+import os
 import sys
 from pathlib import Path
 
@@ -545,3 +546,95 @@ def test_the_randomization_test_takes_rates_as_they_are():
     got = rerandomize.p_values([(1, "1234"), (2, flipped)], labels, outcomes)
     assert got["lead_diff"] == pytest.approx(0.35)
     assert got["lead_p"] == pytest.approx(0.5), "同じ並びの1通りだけが実際以上"
+
+
+# --- 10. 引用プローブの上限漏れを塞ぐ(2026-10-03) -------------------------------------------
+# 実験期間中(〜2026-12-31)は API を呼ばずに終わる(--force でも)。2027-01-01 以降は Claude の呼び出しが
+# src/claude_budget.py の1日の上限・クレジット不足での停止を通る
+def test_the_probe_is_blocked_until_the_experiment_ends():
+    assert llmo_probe.experiment_end() == "2026-12-31"
+    assert llmo_probe.blocked("2026-10-03") and llmo_probe.blocked("2026-12-31")
+    assert not llmo_probe.blocked("2027-01-01")
+
+
+def test_the_probe_calls_no_api_during_the_experiment_even_with_force(monkeypatch, tmp_path, capsys):
+    monkeypatch.setattr(llmo_probe, "today_jst", lambda: "2026-10-03")
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    monkeypatch.setenv("PERPLEXITY_API_KEY", "x")
+    monkeypatch.setattr(llmo_probe, "post_json", lambda *a, **k: pytest.fail("実験期間中は呼ばない"))
+    monkeypatch.setattr(llmo_probe, "RESULTS_DIR", str(tmp_path))
+    monkeypatch.setattr(sys, "argv", ["llmo_probe.py", "--models", "claude,perplexity", "--force"])
+    assert llmo_probe.main() == 0
+    assert list(tmp_path.iterdir()) == [], "結果ファイルも作らない"
+    assert "--force でも呼ばない" in capsys.readouterr().out
+    for ask in (llmo_probe.ask_claude, llmo_probe.ask_perplexity):
+        with pytest.raises(llmo_probe.ProbeBlocked):
+            ask("質問")                       # resume_probe.py が直接呼んでも止まる
+
+
+def test_resume_probe_also_stops_during_the_experiment(tmp_path):
+    import subprocess
+    if not llmo_probe.blocked():
+        pytest.skip("実験期間が終わったあと")
+    env = dict(os.environ, ANTHROPIC_API_KEY="x", PYTHONIOENCODING="utf-8")
+    out = subprocess.run([sys.executable, str(ROOT / "experiment_2x2" / "resume_probe.py"),
+                          "--date", "2099-01-01"], cwd=tmp_path, env=env,
+                         capture_output=True, text=True, encoding="utf-8")
+    assert out.returncode == 0 and "API を呼ばずに終了" in out.stdout
+    assert not (tmp_path / "results").exists()
+
+
+def _after_the_experiment(monkeypatch):
+    monkeypatch.setattr(llmo_probe, "today_jst", lambda: "2027-01-05")
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+
+
+def test_after_the_experiment_the_probe_goes_through_the_daily_cap(monkeypatch):
+    import claude_budget
+    _after_the_experiment(monkeypatch)
+    monkeypatch.setenv("CLAUDE_DAILY_CAP", "1")
+    sent = []
+    monkeypatch.setattr(llmo_probe, "post_json",
+                        lambda *a, **k: sent.append(1) or {"content": "https://cross-com.jp/a/"})
+    assert llmo_probe.ask_claude("質問") == {"https://cross-com.jp/a/"}
+    with pytest.raises(claude_budget.ClaudeStopped, match="^daily_cap"):
+        llmo_probe.ask_claude("質問")
+    assert len(sent) == 1, "上限を超えた分は投げない"
+
+
+def test_a_credit_400_from_the_probe_stops_the_day(monkeypatch):
+    import urllib.error
+    import claude_budget
+    _after_the_experiment(monkeypatch)
+    body = (b'{"type":"error","error":{"type":"invalid_request_error",'
+            b'"message":"Your credit balance is too low to access the Anthropic API."}}')
+    sent = []
+
+    def post(*a, **k):
+        sent.append(1)
+        raise urllib.error.HTTPError("https://api.anthropic.com/v1/messages", 400, "Bad Request", {},
+                                     io.BytesIO(body))
+
+    monkeypatch.setattr(llmo_probe, "post_json", post)
+    with pytest.raises(RuntimeError, match="credit balance is too low"):
+        llmo_probe.ask_claude("質問")
+    with pytest.raises(claude_budget.ClaudeStopped, match="^credit_exhausted"):
+        llmo_probe.ask_claude("質問")
+    assert len(sent) == 1 and claude_budget.status()["stopped"] == "credit_exhausted"
+
+
+def test_nothing_in_the_repo_calls_anthropic_without_the_daily_cap():
+    """Anthropic の API を直接呼ぶ処理は claude_budget を通るものだけ(2026-10-03 にリポジトリ全体を検索)。
+
+    - SDK の messages.create を呼んでいいのは claude_budget.create だけ(ほかは claude_budget.create(client, …))
+    - HTTP で api.anthropic.com を呼ぶのは引用プローブだけで、claude_budget.guard を通る
+    """
+    import re
+    files = [p for d in ("src", "experiment_2x2", "scripts", "app")
+             for p in (ROOT / d).rglob("*.py") if "__pycache__" not in p.parts]
+    sdk = [p.relative_to(ROOT).as_posix() for p in files
+           if re.search(r"\.messages\.(create|stream)\(", p.read_text(encoding="utf-8"))]
+    assert sdk == ["src/claude_budget.py"], sdk
+    http = [p for p in files if "api.anthropic.com" in p.read_text(encoding="utf-8")]
+    assert [p.relative_to(ROOT).as_posix() for p in http] == ["experiment_2x2/llmo_probe.py"]
+    assert "claude_budget.guard(" in http[0].read_text(encoding="utf-8")

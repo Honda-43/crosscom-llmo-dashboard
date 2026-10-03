@@ -14,11 +14,17 @@ LLMO 引用観測プローブ（自前計測）
   PERPLEXITY_API_KEY     Perplexity sonar
   GEMINI_API_KEY         Gemini（Google検索グラウンディング）※任意
 実行:  python3 llmo_probe.py --runs 3
+
+**実験期間中（config/experiment_freeze.yaml の experiment_end ＝ 2026-12-31 まで）は API を呼ばずに終わる**
+（--force でも呼ばない。2026-10-03）。判定は llm_experiment のみ（2026-09-22 決定）。
+2027-01-01 以降は、Claude の呼び出しが src/claude_budget.py の1日の上限・クレジット不足での停止を通る。
 """
-import argparse, csv, datetime, json, os, re, sys, time, urllib.parse, urllib.request
+import argparse, csv, datetime, json, os, re, sys, time, urllib.error, urllib.parse, urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "src"))
 from pool import load_allocation, load_pool  # noqa: E402
+import claude_budget  # noqa: E402
 
 CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-5")
 PPLX_MODEL   = os.environ.get("PPLX_MODEL", "sonar")
@@ -38,19 +44,66 @@ def post_json(url, headers, body, timeout=120):
 
 URL_RE = re.compile(r"https?://[^\s\"'<>\\)\]]+")
 
+
+# --------------------------------------------------------------------------
+# 実験期間中は呼ばない（2026-10-03）
+# --------------------------------------------------------------------------
+FREEZE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "config",
+                           "experiment_freeze.yaml")
+
+
+class ProbeBlocked(RuntimeError):
+    """実験期間中のため API を呼ばない。"""
+
+
+def experiment_end():
+    """実験の終わりの日（config/experiment_freeze.yaml の experiment_end。環境変数では変えない）。"""
+    import yaml
+    with open(FREEZE_FILE, encoding="utf-8") as fh:
+        return str(yaml.safe_load(fh)["experiment_end"])
+
+
+def today_jst():
+    return (datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=9)).date().isoformat()
+
+
+def blocked(today=None):
+    """実験期間中（終わりの日まで）か。"""
+    return (today or today_jst()) <= experiment_end()
+
+
+def ensure_allowed():
+    """API を呼ぶ直前に通る。実験期間中なら ProbeBlocked（呼ばない）。resume_probe.py もここを通る。"""
+    if blocked():
+        raise ProbeBlocked(f"実験期間中（〜{experiment_end()}）のため引用プローブは API を呼ばない")
+
+
 def ask_claude(q):
     key = os.environ.get("ANTHROPIC_API_KEY")
     if not key: return None
+    ensure_allowed()
     body = {"model": CLAUDE_MODEL, "max_tokens": 1500,
             "messages": [{"role": "user", "content": q}],
             "tools": [{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}]}
-    data = post_json("https://api.anthropic.com/v1/messages",
-                     {"x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"}, body)
+    # 1日の上限・クレジット不足での停止（src/claude_budget.py）を通す。止めていれば ClaudeStopped（呼ばない）
+    claude_budget.guard("引用プローブ")
+    try:
+        data = post_json("https://api.anthropic.com/v1/messages",
+                         {"x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"}, body)
+    except urllib.error.HTTPError as e:
+        # 400 の本文（"credit balance is too low" など）を例外の文面に入れて、クレジット不足を見分ける
+        err = RuntimeError(f"HTTP {e.code}: {e.read().decode('utf-8', 'replace')}")
+        claude_budget.failed(err)
+        raise err from e
+    except Exception as e:  # noqa: BLE001
+        claude_budget.failed(e)
+        raise
     return set(URL_RE.findall(json.dumps(data, ensure_ascii=False)))
 
 def ask_perplexity(q):
     key = os.environ.get("PERPLEXITY_API_KEY")
     if not key: return None
+    ensure_allowed()
     body = {"model": PPLX_MODEL, "messages": [{"role": "user", "content": q}]}
     data = post_json("https://api.perplexity.ai/chat/completions",
                      {"Authorization": f"Bearer {key}", "Content-Type": "application/json"}, body)
@@ -62,6 +115,7 @@ def ask_perplexity(q):
 def ask_gemini(q):
     key = os.environ.get("GEMINI_API_KEY")
     if not key: return None
+    ensure_allowed()
     url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={key}"
     body = {"contents": [{"parts": [{"text": q}]}], "tools": [{"google_search": {}}]}
     data = post_json(url, {"Content-Type": "application/json"}, body)
@@ -108,7 +162,15 @@ def main():
     # これまでの観測(results/2026-09-17.csv)は claude のみで、枠は消費していない。
     ap.add_argument("--models", default="claude,perplexity")
     ap.add_argument("--sleep", type=float, default=1.0)
+    ap.add_argument("--force", action="store_true",
+                    help="（実験期間中は付けても API を呼ばない）")
     a = ap.parse_args()
+    if blocked():
+        # 実験期間中は --force でも呼ばない（2026-10-03）。結果ファイルも作らない
+        print(f"[skip] 実験期間中（〜{experiment_end()}）のため引用プローブは API を呼ばずに終了する"
+              + ("（--force でも呼ばない）" if a.force else "") + "。判定は llm_experiment のみ")
+        return 0
+    claude_budget.start("probe")
     today = datetime.date.today().isoformat()
     rows = load_targets()
     models = runnable_models([m.strip() for m in a.models.split(",") if m.strip()])
