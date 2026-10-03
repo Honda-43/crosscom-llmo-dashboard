@@ -199,3 +199,14 @@ def test_records_of_several_days_are_read_together(tmp_path, monkeypatch):
     edit = pillar.pillar_edit()
     assert edit["final"] == {"agentforce-guide": 1, "agentic-crm": 1} and edit["targets"] == ["b", "c"]
     assert (edit["added"], edit["removed"]) == (3, 1) and edit["done"] == dt.date(2026, 10, 3)
+
+
+def test_the_judgement_report_shows_the_edit_finished_on_20261003_with_19():
+    """2026-10-03：判定レポートのピラー編集の欄は「完了 2026-10-03 15:08・最終状態 A10・B9（19本）」(interventions I-26)。"""
+    lines, parts = pillar.report_lines(AFTER)
+    line = next(l for l in lines if l.startswith("- ピラー編集の完了"))
+    assert "2026-10-03 15:08:33" in line
+    assert "ピラーA（agentforce-guide） 10本・ピラーB（agentic-crm） 9本（計19本）" in line
+    assert "pillar_links_added_20261002.csv・pillar_links_added_20261003.csv" in line
+    assert parts == [], "10/5 以前に完了したのでアフターは分けない"
+

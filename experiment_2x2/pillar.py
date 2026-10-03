@@ -226,7 +226,8 @@ def report_lines(after):
         mode, parts = 'none', []
     else:
         mode, parts = split_after(after, edit['done'])
-        final = '・'.join(f"{PILLAR_LABEL.get(p, p)} {edit['final'].get(p, 0)}本" for p in PILLARS)
+        final = ('・'.join(f"{PILLAR_LABEL.get(p, p)} {edit['final'].get(p, 0)}本" for p in PILLARS)
+                 + f"（計{sum(edit['final'].values())}本）")
         missing = [PILLAR_LABEL[p] for p in PILLARS if p not in edit['by_pillar']]
         last = edit['last'].strftime('%Y-%m-%d %H:%M:%S') if edit['last'] else '日時が読めない'
         lines.append(f"- ピラー編集の完了：{last}（最後の操作）。最終状態 {final}"
