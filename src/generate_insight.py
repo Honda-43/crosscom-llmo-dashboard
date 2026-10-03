@@ -24,6 +24,7 @@ import json
 import os
 from typing import Any, Dict, List, Optional, Sequence
 
+import claude_budget
 import experiment_freeze
 import insight_style
 from settings import (
@@ -300,7 +301,8 @@ def _call_model(system: str, user: str, model: str,
     import anthropic
 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-    response = client.messages.create(
+    response = claude_budget.create(   # 1日の上限・クレジット不足での停止(2026-10-03)
+        client, label="週次所見",
         model=model,
         max_tokens=max_tokens,
         system=system,

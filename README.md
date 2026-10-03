@@ -152,6 +152,32 @@ crosscom-llmo-dashboard/
 - **chatgpt / Perplexity 有効化は「キー登録 + `ENABLE_CHATGPT=true` / `ENABLE_PERPLEXITY=true`」のみでコード変更不要**。`OPENAI_API_KEY` / `PERPLEXITY_API_KEY` 未設定でもパイプラインはエラーにならない。
 - モデル名は `OPENAI_MODEL` / `GEMINI_MODEL` / `ANTHROPIC_MODEL` / `EXTRACT_MODEL` で上書き可能。
 
+### Claude API の呼び出し上限(2026-10-03・暴走防止)
+
+**自動チャージは使わない。1日の呼び出し上限と 400(クレジット不足)での即停止で暴走を防ぐ。
+残高は 10/25・11/25 ごろに本田さんが手動で確認・チャージする(目安 $35)。**
+
+- Claude API を呼ぶすべての処理(実験・日次・月次の観測、Haiku の抽出、週次所見、prompt_marketing)は、
+  呼ぶ直前に `src/claude_budget.py` の `guard()` を通る。数えるのは API へのリクエスト1回(再試行も1回)。1日は JST
+- **1日の上限**は `config/claude_budget.yaml`(その日の予定回数 + 再試行の余裕):実験の Claude の日(月曜)60回、
+  それ以外の日 30回、月次の日(第1水・第1木)は +25回、prompt_marketing の Claude・順位の抽出を再開した月の1〜14日は +130回。
+  **値を変えるときは、この節に日付と理由を書いてから変える。** 手動の取り直しなどで一時的に上げるときは、
+  その実行だけ環境変数 `CLAUDE_DAILY_CAP` で上書きできる
+- 上限に達したら、その日の残りの Claude 呼び出しは投げずに `error=daily_cap…` として記録する
+- **クレジット不足(400 "credit balance is too low")は再試行しない**。1回目で、その日の Claude 呼び出しをすべて止める
+  (`credit_exhausted`。2026-10-01 は50本すべてに投げて50回とも 400 だった)
+- 回数はジョブごとに `data/claude_usage/<日付>/<ジョブ>.json` に残して commit する。後から走るジョブは origin の先のジョブの
+  回数を足す(同時に走る月曜の実験と週次は互いの途中の回数が見えないため、上限に余裕を持たせてある)。
+  先のジョブがクレジット不足を見ていれば、後のジョブも最初から止まる
+- 各ワークフローの最後の「Check Claude daily cap」(`python claude_budget.py --check --job …`)が、止まっていれば
+  実行を失敗にして Slack に知らせる(記録の commit のあと。**Gemini の観測には影響しない**:Gemini の呼び出しは上限を通らない)
+- 1回の呼び出しの量(2026-10-03 確認。変えていない):観測(実験・日次・月次・prompt_marketing の Claude)は max_tokens 2048・
+  Web 検索は1回あたり最大5回(実験の設定なので変えない)。Haiku の抽出は max_tokens 2048、順位の抽出は 1024(どちらも検索なし)。
+  週次所見は 16000(切れたときだけ1回 32000 で取り直す)。引用プローブ(`experiment_2x2/llmo_probe.py`。実験期間中は不使用・
+  手動のみ)は max_tokens 1500・検索最大5回で、この上限を通らない
+- Anthropic の SDK は 429・5xx・接続エラーを内部で最大2回取り直す(400 は取り直さない)。この内部の取り直しは回数に入らない
+  (失敗したリクエストは課金されない)
+
 ### 収集の再試行と掃き直し
 
 観測が取れなかった日は、その prompt_id × model が丸ごと欠測になる。

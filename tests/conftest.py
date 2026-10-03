@@ -8,3 +8,17 @@ ROOT = Path(__file__).resolve().parent.parent
 for directory in (ROOT / "src", ROOT / "app"):
     if str(directory) not in sys.path:
         sys.path.insert(0, str(directory))
+
+
+import pytest  # noqa: E402
+
+
+@pytest.fixture(autouse=True)
+def _claude_budget_isolated(tmp_path, monkeypatch):
+    """Claude の1日の上限(claude_budget)の回数をテストごとに数え直し、repo の data/claude_usage に書かない。"""
+    import claude_budget
+    monkeypatch.setattr(claude_budget, "USAGE_DIR", tmp_path / "claude_usage")
+    monkeypatch.delenv("CLAUDE_DAILY_CAP", raising=False)
+    claude_budget.reset()
+    yield
+    claude_budget.reset()

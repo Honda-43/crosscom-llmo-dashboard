@@ -26,6 +26,7 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+import claude_budget
 from settings import BRAND_ALIASES, DATA_RAW_DIR, EXTRACT_MODEL
 
 # --- Approved schema constants (§4) -----------------------------------------
@@ -174,7 +175,8 @@ def _call_model(prompt: str) -> str:
     # JSON object — this eliminates conversational preambles and the
     # "no JSON object found in response" failure entirely. We prepend the "{"
     # back before parsing.
-    resp = client.messages.create(
+    resp = claude_budget.create(       # 1日の上限・クレジット不足での停止(2026-10-03)
+        client, label="抽出",
         model=EXTRACT_MODEL,
         max_tokens=2048,
         messages=[

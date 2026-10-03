@@ -12,6 +12,7 @@ while the remaining phases still run. Two deliberate asymmetries:
 """
 from __future__ import annotations
 
+import claude_budget
 import argparse
 import datetime as dt
 import json
@@ -103,6 +104,8 @@ def main() -> None:
     ap.add_argument("--no-slack", action="store_true", help="build the report but do not post")
     args = ap.parse_args()
     date = args.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
+    # Claude API の1日の呼び出し上限(2026-10-03)。回数は実際に呼ぶ日(JST の今日)で数える
+    claude_budget.start('weekly')
 
     failures: List[str] = []
     lines: List[str] = [f"## LLMO weekly pipeline — {date}", ""]

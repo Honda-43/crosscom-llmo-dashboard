@@ -60,6 +60,7 @@ jobs:
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/raw
+          if [ -d data/claude_usage ]; then git add data/claude_usage; fi  # Claude の1日の呼び出し回数
           if git diff --cached --quiet; then
             echo "No new raw files to commit."
           else
@@ -68,6 +69,13 @@ jobs:
             git pull --rebase
             git push
           fi
+
+      # Claude API の1日の呼び出し上限・クレジット不足(claude_budget。2026-10-03)。
+      # 止まっていたら失敗にして Slack に知らせる(記録の commit のあと。Gemini の観測には影響しない)。
+      - name: Check Claude daily cap
+        if: always()
+        working-directory: src
+        run: python claude_budget.py --check --job daily
 
       - name: Report failure
         if: failure()

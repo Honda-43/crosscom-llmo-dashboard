@@ -81,6 +81,7 @@ jobs:
           # prompt_marketing の raw と、実験の PerDay 欠測で止めたときの日誌の記録
           if [ -d data/raw/marketing ]; then git add data/raw/marketing; fi
           git add output/reports/experiment47_diary.md
+          if [ -d data/claude_usage ]; then git add data/claude_usage; fi  # Claude の1日の呼び出し回数
           if git diff --cached --quiet; then
             echo "No new experiment answers to commit."
           else
@@ -89,6 +90,13 @@ jobs:
             git pull --rebase
             git push
           fi
+
+      # Claude API の1日の呼び出し上限・クレジット不足(claude_budget。2026-10-03)。
+      # 止まっていたら失敗にして Slack に知らせる(記録の commit のあと。Gemini の観測には影響しない)。
+      - name: Check Claude daily cap
+        if: always()
+        working-directory: src
+        run: python claude_budget.py --check --job experiment --job marketing_gemini
 
       - name: Notify Slack on workflow failure
         if: failure() && env.SLACK_WEBHOOK_URL != ''

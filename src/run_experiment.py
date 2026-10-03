@@ -55,6 +55,7 @@ try:
 except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exact.
     JST = dt.timezone(dt.timedelta(hours=9), name="JST")
 
+import claude_budget
 import collect_llm
 import force_log
 import experiment
@@ -597,6 +598,8 @@ def main() -> None:
 
     date = args.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
     plan = experiment_plan(date)
+    # Claude API の1日の呼び出し上限(2026-10-03)。回数は実際に呼ぶ日(JST の今日)で数える
+    claude_budget.start("experiment")
     # failures は exit 1、warnings は exit 0(警告だけ出して正常終了)。
     failures: List[str] = []
     warnings: List[str] = []

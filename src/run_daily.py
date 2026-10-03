@@ -12,6 +12,7 @@ failed so the run is visibly red, while the workflow's commit step uses
 """
 from __future__ import annotations
 
+import claude_budget
 import argparse
 import datetime as dt
 import os
@@ -137,6 +138,8 @@ def main() -> None:
     # Timezone-aware, Asia/Tokyo-based date so the daily run is keyed to the
     # Japan business day regardless of the runner's clock (GitHub Actions is UTC).
     date = args.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
+    # Claude API の1日の呼び出し上限(2026-10-03)。回数は実際に呼ぶ日(JST の今日)で数える
+    claude_budget.start('daily')
 
     failures: List[str] = []
     summary_lines: List[str] = [f"## LLMO daily pipeline — {date}", ""]

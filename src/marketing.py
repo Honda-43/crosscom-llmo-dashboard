@@ -38,6 +38,7 @@ except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exa
 from pathlib import Path
 from typing import Any, Callable, Dict, Iterable, List, Optional, Set
 
+import claude_budget
 import experiment
 from settings import (DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MARKETING_DIR, marketing_prompt_active,
                       MARKETING_EXTRACTOR_STOPPED, MARKETING_QUOTA_SKIPPED, MARKETING_RANK_ENABLED,
@@ -125,7 +126,8 @@ def list_companies_with_haiku(question: str, answer: str, attempts: int = 2) -> 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
     last: Optional[Exception] = None
     for _ in range(attempts):
-        resp = client.messages.create(
+        resp = claude_budget.create(   # 1日の上限・クレジット不足での停止(2026-10-03)
+            client, label="順位の抽出",
             model=EXTRACTOR_MODEL, max_tokens=1024,
             messages=[{"role": "user", "content": _LIST_PROMPT.format(question=question, answer=answer)},
                       {"role": "assistant", "content": "["}],

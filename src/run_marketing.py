@@ -34,6 +34,7 @@ try:
 except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exact.
     JST = dt.timezone(dt.timedelta(hours=9), name="JST")
 
+import claude_budget
 import collect_llm
 import marketing
 import run_experiment
@@ -213,6 +214,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     ap.add_argument("--no-sheets", action="store_true")
     a = ap.parse_args(argv)
     date = a.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
+    # Claude API の1日の呼び出し上限(2026-10-03)。回数は実際に呼ぶ日(JST の今日)で数える
+    claude_budget.start(f"marketing_{a.model}")
     lines = [f"## prompt_marketing {date}({a.model})"]
     if marketing.month_of(date) < MARKETING_FIRST_MONTH:
         print("\n".join(lines + [f"- 初回の月({MARKETING_FIRST_MONTH})より前のため何もしない"]))

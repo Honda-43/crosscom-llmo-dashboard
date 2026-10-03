@@ -34,6 +34,7 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
+import claude_budget
 from settings import (
     BACKOFF_BASE_SECONDS,
     DATA_RAW_DIR,
@@ -56,6 +57,8 @@ URL_RE = re.compile(r"https?://[^\s\)\]\"'<>]+")
 _PERMANENT_MARKERS = (
     "insufficient_quota", "invalid_api_key", "PERMISSION_DENIED",
     "UNAUTHENTICATED", "API key not valid", "invalid_request_error",
+    # Claude の1日の上限・クレジット不足でその日の呼び出しを止めている(claude_budget。2026-10-03)
+    "daily_cap", "credit_exhausted", "credit balance is too low",
 )
 _PERMANENT_CODES = ("400", "401", "403", "404")
 
@@ -285,7 +288,9 @@ def _query_claude(prompt_text: str, model: str) -> Tuple[str, List[str], str]:
     import anthropic
 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-    resp = client.messages.create(
+    # 1日の上限・クレジット不足での停止を通す(claude_budget。2026-10-03)
+    resp = claude_budget.create(
+        client, label="観測",
         model=model,
         max_tokens=2048,
         messages=[{"role": "user", "content": prompt_text}],
