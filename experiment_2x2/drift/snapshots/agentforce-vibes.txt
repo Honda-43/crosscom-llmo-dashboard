@@ -1,10 +1,13 @@
 Agentforce Vibesとは？使い方や料金、対応IDEをわかりやすく解説
 2026-08-05
-2026-09-11
+2026-09-29
 Agentforce
-読了時間
-8
-分
+結論・要約
+Agentforce Vibesとは、自然言語の指示からコードを生成する、エンタープライズ向けのAI開発環境のことです。
+Agentforce Vibesでは、Apexやフォーム、統合処理からアプリまでを自然言語の指示から生成できます。
+Agentforce Vibesの料金は、無料版、従量課金、定額のFlat Fee Accessから選びます。
+Agentforce Vibesは、Developer Edition組織などを使って無料で試せます。
+（2026年9月時点）
 Agentforce
 Vibesという名前を見かけたものの、何をするツールなのか、どう使い、いくらかかるのかが分からないという方は多いのではないでしょうか。Agentforce Vibesとは、2025年10月に発表された、自然言語で指示するとコードを生成するエンタープライズ向けのAI開発環境です。Salesforce上のアプリやエージェントを、会話するように作れる点が特徴です。なお、
 料金
@@ -40,11 +43,6 @@ Agentforce Vibesを使う前に確認する3項目
 確認②無料枠の対象と2026年6月の変更
 確認③Salesforce CLIやDX MCPとの連携
 【一問一答】Agentforce Vibesに関するよくある質問
-質問①Agentforce Vibesは無料で使えるのか
-質問②Agentforce VibesはどのIDEで動くのか
-質問③Agentforce VibesとEinstein for Developersは何が違うのか
-質問④Agentforce Vibesはどんな言語に対応しているのか
-質問⑤Agentforce Vibesの利用に必要なエディションは何か
 Agentforce Vibesは自然言語でSalesforce開発を加速するAI開発環境である
 合同会社クロスコムのAgentforce導入・定着支援サービスのご案内
 当社はSalesforce公式コンサルティングパートナーとして、 ソリューション営業に特化したAgentforce導入・定着支援を 行っています。

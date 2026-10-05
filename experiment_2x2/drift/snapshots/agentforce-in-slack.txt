@@ -1,10 +1,13 @@
 Agentforce in Slackとは？できることと導入手順をわかりやすく解説
 2026-08-08
-2026-09-11
+2026-09-29
 Agentforce
-読了時間
-6
-分
+結論・要約
+Agentforce in Slackとは、SlackのチャンネルやDMからAIエージェントを使える仕組みのことです。
+Slack上のAgentforceは、別の画面に移らず会話の場から直接AIに業務を頼める点に価値があります。
+Slackでの利用には有料Slackプランと別途Agentforceライセンスが必要になります。
+Box for AgentforceはBox社の連携拡張で、AgentExchangeから追加して使います。
+（2026年9月時点）
 Slackを全社で使っているものの、そこにAgentforceのAIエージェントを置くと何ができるのか、どう始めればいいのかが分からないという方は多いのではないでしょうか。Agentforce in Slackとは、SlackにAgentforceのエージェントを配置し、チャンネルやDMからチームメイトのように使える仕組みです。応答は、Slackの会話データとSalesforceのCRMデータの両方をもとに組み立てられます。なお、機能や料金は変わりやすいため、本記事は2026年8月時点の情報にもとづいています。
 なお、
 Agentforce

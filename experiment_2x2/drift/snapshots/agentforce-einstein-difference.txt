@@ -2,9 +2,6 @@ Salesforce Einsteinとは？Agentforceとの違いと使い分けの判断軸
 2026-08-01
 2026-09-15
 Agentforce
-読了時間
-6
-分
 SalesforceのAIを調べると、
 Agentforce
 とEinsteinという2つの名前が並んで出てきて、機能の一覧を見比べても違いをつかめない、という方は多いのではないでしょうか。結論から言うと、AgentforceとEinsteinを分けているのは、搭載している

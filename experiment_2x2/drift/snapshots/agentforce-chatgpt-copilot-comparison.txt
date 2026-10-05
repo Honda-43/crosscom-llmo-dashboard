@@ -1,10 +1,7 @@
 AgentforceはChatGPT・Copilotと何が違う？機能と設計思想の比較
 2026-08-12
-2026-09-11
+2026-09-29
 Agentforce
-読了時間
-7
-分
 AIエージェントの導入を検討していると、
 Agentforce
 とChatGPT、Microsoft Copilotが比較対象に挙がり、どれも似たようなAIに見えて選び方が分からない、という方は多いのではないでしょうか。3つのツールを分けているのは、応答の賢さの差ではありません。CRMデータとどこまで統合するか、そしてAIにどこまで自律的な実行を任せるかという、設計思想の違いです。Agentforceはこの2点に特化して設計され、ChatGPTは用途を限定しない汎用性、Microsoft CopilotはMicrosoft 365との統合を軸に設計されています。
@@ -43,11 +40,6 @@ ChatGPT・Copilotが向いている企業の特徴3つ
 注意点②Agentforceへの移行にはSalesforceのデータ基盤整備が先決だ
 注意点③移行後の定着には運用設計とユースケースの再設計が必要になる
 【一問一答】AgentforceとChatGPT・Copilotの比較に関するよくある質問
-質問①AgentforceとChatGPTは同時に使えるのか
-質問②SalesforceユーザーがMicrosoft Copilotを使うことはできるのか
-質問③Agentforce・ChatGPT・Copilotの料金を比較するとどうなるのか
-質問④AgentforceからChatGPT APIを呼び出すことはできるのか
-質問⑤中堅企業がAgentforceを選ぶ理由は何か
 AgentforceとChatGPT・Copilotの違いはCRMデータとの統合深度と自律実行の設計思想にある
 合同会社クロスコムのAgentforce導入・定着支援サービスのご案内
 当社はSalesforce公式コンサルティングパートナーとして、 ソリューション営業に特化したAgentforce導入・定着支援を 行っています。
