@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-05",
+  "prompt_id": "E35",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "商談メモが後から読まれない。読まれる商談メモの項目はどう決める？",
+  "cep": null,
+  "timestamp": "2026-10-05T01:47:36.887961Z",
+  "answer": "商談メモが後から読まれるようにするためには、記載する項目を工夫し、構造的で分かりやすいメモを作成することが重要です。以下の項目を意識してメモを作成することで、後からの振り返りや情報共有がスムーズになり、効果的な活用につながります。\n\n**読まれる商談メモの必須項目**\n\n1.  **基本情報**\n    *   **日時・場所:** 商談が行われた日時と場所（対面かオンラインか）を明確に記載します。\n    *   **参加者:** 自社および顧客側の参加者の氏名、所属、役職を記録します。誰がどのような立場で発言したかを後から把握するために重要です。\n    *   **商談目的・議題:** 今回の商談の目的や、話し合うべきテーマを明確に記載します。これにより、メモ全体が何に焦点を当てているかが一目で分かります。\n\n2.  **顧客情報**\n    *   **顧客の課題・ニーズ:** 顧客が抱えている課題、解決したいこと、求めているものを具体的に記録します。\n    *   **顧客の反応・感情:** 提案に対する顧客の興味度、懸念点、意見、さらには発言のトーンや表情から読み取れる感情などもメモしておくと、本質的な理解につながります。\n    *   **好反応だったポイント:** 顧客が特に良い反応を示した点や、興味を持ったサービス・機能などを具体的に記録します。\n    *   **予算・決裁プロセス・決裁者:** 予算感、決裁フロー、キーパーソンとなる決裁者の情報などを把握し記載します。\n\n3.  **商談内容**\n    *   **提案内容:** 自社がどのような製品・サービスを提案したか、そのメリット、価格などを簡潔に記載します。\n    *   **質疑応答:** 顧客からの質問とそれに対する回答を記録します。\n    *   **議論の要旨:** 各議題において交わされた議論の主要なポイントをまとめます。発言者名を添えて記録すると、議論の流れが分かりやすくなります。\n\n4.  **決定事項とネクストアクション**\n    *   **決定事項:** 商談で合意に至った内容を正確な表現で記録します。具体的な行動計画、期日、責任者を含めることが重要です。\n    *   **ネクストアクション:** 次に誰が何を、いつまでに行うのかを明確に記載します。自社側と顧客側の双方のアクションと期日を明確にすることで、認識のズレや対応漏れを防ぎます。次回の打ち合わせ日時、場所、参加者、議題なども含めます。\n    *   **保留・検討事項:** その場で結論が出なかった事項や、持ち帰って検討が必要な課題を記録します。保留になった理由や、誰がいつまでに何を確認するのかも記載すると良いでしょう。\n\n5.  **所感・温度感**\n    *   **受注確度:** 商談後の感触として、受注につながる可能性を評価します。\n    *   **競合状況:** 競合他社の存在や、顧客が競合について言及した内容などを記録します。\n\n**読まれる商談メモにするための作成のコツ**\n\n*   **テンプレートの活用:** 事前に上記の項目を盛り込んだテンプレートを作成しておくと、商談中に記入漏れを防ぎ、効率的にメモを取ることができます。\n*   **簡潔に要点をまとめる:** 全ての会話を一言一句記録するのではなく、キーワードやポイントに絞って簡潔に記載します。箇条書きや図なども活用すると視覚的に分かりやすくなります。\n*   **5W1Hを意識:** 「誰が（Who）、いつ（When）、どこで（Where）、何を（What）、なぜ（Why）、どのように（How）」を意識して記録することで、情報が整理され、誰が読んでも理解しやすいメモになります。\n*   **商談中のメモの取り方:**\n    *   話の切れ間や顧客が考え込んでいるタイミングでメモを取るようにし、会話に集中することを優先します。\n    *   聞き取れなかった場合は、正直に聞き直すことで正確な情報を記録できます。\n*   **商談後の整理と共有:**\n    *   商談後、時間が経たないうちに（できれば24時間以内、30分以内が理想）メモを清書し、関係者と共有しましょう。\n    *   デジタルツール（CRM、SFA、クラウドサービスなど）を活用すると、情報の整理、検索、共有が効率的に行えます。\n    *   必要に応じて、書いたメモの内容を顧客に確認することで、認識の齟齬を防ぎ、信頼関係を深めることにもつながります。\n\nこれらの項目とコツを実践することで、後から誰もが読みやすく、次のアクションにつながる効果的な商談メモを作成できるでしょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXGf3tt51eZxrBybD7WFZYMJG4FPBwiTVPYqU-T_mGAIdhJaXbI7g91_9qtJlVt9dGHIyB7vP2Fa2r5frx9hjotUgrQLqKWpQbcys-06tx5fnCltjV_gJjRNtQus-A2sX5B9ii7WIlYYHW8W87hkD_N7m2iju-WptWUXlRZg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-aoCztO08L82wzkcWt8oMWIbsB603cey5WmLdftdPTTF70L8kMpZ7sPQ0t6B1DKHR_r8CZ9RNBEQrRdKym6cjwTNo7cuQneEz0xsIuYFki-qllJ0LMpOZPxBhpEgeaxfAuY79C8E6dxNM2g6vrECjhmQ-CWBmtadw34g=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEyOGVcwXAz_0pKNfNQNRWXWomkIv5dNpy1J_Z6iaVy7PCNa6sn8fV5ryl1iYWLcNCDsslpsyn9x6OJiWTqefPd7p9toD9oS7Yw3VHEdRRd2fBviTB1HTj0Tp7mJ4Axt0sQi20EUn1cZG1bYgtpFPheYF8vbl-_mBpjkA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHY7ARYSrNU6ZEd9DUJ7-1S4OuBQkvSYbddY1n2qrgxF-ElQqwxpIp9H-xmF4LBzETrc-j0BW3mynrHi2b4rU0F5W8WOadchzuMxkCWpr8C66bqKlecqgSQ8lYvqGftUoO81p7js_NXD0hq7_BI",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9NcraigrMpTJXbjtiiGys6F0_F020sQa3DM-PiTOOa9-jPNk7MqfkiWhIHYc3aDkO5bXz7s6eDXDh_VqwfpNPQatFAQfmUdckz0EQD85cQwUyVB_A8awSmTxXfbo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGYnuaKDd_6InRzpvAgKIxH90DmCLWdO1ZpY1oyCDKlNk8rS4Jdkts8jtb5JWe3NQ83Hf-KJhDoziUk8fFvLKX7n-tIs1podw5lxWBPxbkvVNNVNbGXZugsFdWeo7-T85khb7yRLw24UkBUDQg_2lE249my7rUC",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFU-OOArCdY57L1jUN9K2rPfdfNJkggKJmG5-oKDXmDvelYw1HL4sbZKMveczoERHNaqTM4W1jIOslFmoOhictrCFJRKtNyUvLGV8-g2jOF4MTf_JDrN89IMIsH2RUD9SWUAR0RqadZ1g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpYO7oabOBBvLMhmNwM_bMPIXBNKsBGqPukGBHHF7RcshGG6ZpRpCKT8xsYXKP_9qZT8uSGOjpo6wlw5D8tA_9d8nF2b1AORV1H4Ir30Jk7MLlongcOSsk1TTEwgWUqzvY6pgETzYWNkcFSLnZKoaDKoJ6c1xgUw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFr6QoeeSeTQZWeEXz-71oIIzKIv3xC6QIhXHEqgPThlZko_1u2MJ5i2FoDEXn_t8SFt4j2opyUx8iOPk6bl4BZqe60JIiUg3dYOCcYmFGWcauqPIQwH4zT3ILiQ41pSFN-Bd-XkYwr1JezspsMNW9DzjHYsJ02uOI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFyqNz7_FlyKxceB6Y3JOx92cEA6h-U5u7BllMHa0BehmNzF3nlFmp9w9F4gj1eZTUJaATXrf6y0hOi4YkVUga8LtZSnaOnDTOAd5tg_PggTlPiBVRJLOiJ3HjCpPly6xV_EldgisBALGOFfbJfJ_8aHkO6XaKw22i114Pq",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEzUwY6Z6WX3LlyfjezZ9SZIGC3L3JMarUlzehmMcVbKxg7vKmxsJZ6gCeRB4dk22HLRPH4TcB0N425Wp4ovzhvTzwyGOXzo2WRPvvCjS2mBEPVxTOOc3e7kS68h1AYLQIUMSDZX1_m9djieqabDk8-hZ9heerBCK9xRlSN-5E=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpf119a8u5lHoIxVFM20BU0uql5v4WYkMcYmXvi7iNrp8oIjXRDtpm2NeMQAQmtXhmYGE-vxjKTkzjnWdzH_ltoOKAQEm6a0WIJRDT-ncwH4U7kKudyDdZs86BphufvhmZ2EKGJncIqGMh9gg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHX3aJk4ZSAQt8ET0VKkxvit2BiZq-gna9pQfzYgPaMliZIgqIz3N2netwEYQX1QZ6fSQcyofdyjgF-Oot2ILDU6frSowo4X47q-_AujOKzBtl0fuFbdkOF-6EJxMypv4r4A7h_cg=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

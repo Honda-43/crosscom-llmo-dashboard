@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-05",
+  "prompt_id": "E30",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Einstein Trust Layerとは？AIに任せる範囲と人が承認すべき場面はどう分ける？",
+  "cep": null,
+  "timestamp": "2026-10-05T01:43:51.505035Z",
+  "answer": "Einstein Trust Layerは、Salesforceプラットフォームに組み込まれた安全なAIアーキテクチャであり、生成AIソリューションを企業秘密や顧客データと共に安全に利用するための契約、セキュリティ技術、データ、およびプライバシー制御の集合体です。\n\nこのレイヤーは、AIが安全かつ信頼性の高い方法で機能するために、以下の主要な機能を提供します。\n\n*   **ゼロデータ保持ポリシー**: 顧客データはサードパーティのLLM（大規模言語モデル）プロバイダーによって保持されず、AIモデルのトレーニングや製品改善には使用されません。\n*   **安全なデータ取得と動的グラウンディング**: プロンプトを実行するユーザーの権限に基づき、SalesforceレコードやTableauデータソースなどから関連情報を安全に取得し、AIの応答にコンテキストを提供します。これにより、ユーザーの権限設定や項目レベルのセキュリティが維持されます。\n*   **データマスキング**: 機密データがLLMに送信される前に自動的に検出され、マスキング（匿名化）されます。\n*   **プロンプト防御**: システムポリシーによってハルシネーション（AIの誤った情報生成）を制限し、LLMが意図しない、または有害な出力を生成する可能性を低減します。\n*   **有害性スコアリング**: コンテンツの有害性をスコアリングし、監査証跡の一部としてログに記録されます。\n*   **監査証跡**: AIによる活動の各ステップが詳細に記録され、後から何が起こり、なぜそうなったのかを再構築できるため、説明責任と監査可能性が保証されます。\n\n### AIに任せる範囲と人が承認すべき場面の分け方\n\nEinstein Trust LayerはAIの安全な利用を促進しますが、AIにすべてを任せるのではなく、人間による承認と監視が不可欠です。\n\n**AIに任せる範囲**:\nEinstein Trust Layerの機能により、AIはデータのプライバシーとセキュリティが保護された状態で、以下のタスクを実行できます。\n\n*   企業データや顧客データに基づいた情報検索と要約\n*   定型的な応答の生成やデータ分析の支援\n*   機密情報がマスキングされた状態でのデータ処理\n*   有害なコンテンツのフィルタリング\n\n**人が承認すべき場面**:\nAIの機能には限界があり、特に以下のような場面では人間の承認や介入が強く推奨されます。\n\n*   **重要なアクションの実行前**: AIエージェントは、特定のアクションを実行する前に、人間による承認を必要とするように設定できます。\n*   **出力の検証**: AIが生成した応答が正確であるか、バイアスがないか、信頼できるものであるかを人間が検証する必要があります。特に、根拠データが古い場合や質問が曖昧な場合は、人が回答と元のデータを確認する余地が残ります。\n*   **機密性の高い情報を含む業務**: Einstein Trust Layerはデータ保護の仕組みを提供しますが、情報漏洩を自動でゼロにするものではないため、機密性の高いデータを扱う場合は、最終的な人間の確認が重要です。\n*   **経営判断や責任が伴う業務**: 企業はAI導入前に、扱えるデータ区分、利用できる職種、記録の保存方針、誤回答時の責任者を明確に定める必要があります。\n\nSalesforceは、AIと信頼はトレードオフではなく、両立するように設計されていると強調しており、Einstein Trust Layerはその基盤となります。しかし、AIの機能を最大限に活用しつつリスクを管理するためには、組織が明確なポリシーを定め、人間がAIの活動を監視し、必要に応じて介入・承認する体制を構築することが重要です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFuWr1y196-lxG4tafal1tpIv1HbxuNbofM1FcgLLdqLjKK_pYv8a_9Jz83su9DGMMlfxQHpmevpHJTdR1LnftbrS2r42V0TMsVJrdaUSABfpfFJoQ-31y__Zy2Uih_-G3nrvC7qObSlsj8RHh_Phm_PmaKCqM47Bx0_uyhhLLDTJvf57S1I3eWOgm8KQyPNs3PxnvHP7A6srZ9",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFN4HSZp5jonMx_RaFJ6pDODxGvxJEQCRiSTTR-DhYjukBHqdcAK36v3M99XeGGsSveDV2tfWpSzRsiNrk9sUvPV7CWtolG-rdN3wcGnWmPqnjS-44J9nkajV1GFcDHsd7ydtjL3GBGgx8qxYTQ1NUL85yFAw2QmPq8Bv51qNgl3j75PNZ0hVWH0y9IghQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtkTfoRdIMez-fldPyKmnzcijbPjYYFMt-GN15TLurlaM721-BQwu9rFepcyLOYqfeOU83iP-y9APDFLKzEepl71sXIF5YgTJK6_pE8G11AmrfVxNpihw4Iznu-vgBgUm8aTHIU-Zzhw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHHPgLSkaNGbyR9SuAJ3MDuG9c3rURlpO8L5XEJoQpog8gyOCHU9vp6Eis9_2EEAeF800FwYbJSts8YMuNcOmJ3l5jnWD0frNl-n7a-66bwaMySnKyrpbk51jnPZ5Km505zmhYzwhxrzF7Hlweov4Zny8UC",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEMLBvn7jAk1hs3TZGwuQUp0HxhcoAu2Ba8JLcyWqjVrVakMkaTgM9b6GNjcodxE7e56rPjMRJkZLhUyVm81V1YGPDK0FgOZkkfAX4G4Ibk7Wjka7-oskb-9Wx6uAkBRrMYe6QAMFFBZqEWLvPi9xs-qIY6r9zRPo-jTdrc7VzwErFzhuzWqM9oUlMuItJtOQjXe3jiP-xHv66iVJAZsQwb2c70Vup7lg_Sqw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHD1d5xiZJ7Ok_U5M8qyUhXmbH0AYAsw2kRwl_aStJiQ2lNKUFPtdc1KuO0IKKkK1eDjiaRdj1Frp7HuxOHLx45uOk4po4tENJBzxUQ6_7rw_BNnMO3BbxcA3mAC_gBuyzN5JdsT5IZz2eAPyAP20FZ55f5-iBhjCtb97VGZJCN_BEe60m_ZkDJ0Ziy8Bot7JiV66F7E7wLbSA2NL-Z75cLwKZnkz08M7c8gO8UIHSGfpiKH7b5gfa1DwCZ1IDodc4QruKwntA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG5l_oYqTpRbz_T9Oqr0Vf79I919mXaQ__twVm1UKi0nMyqg1RosuZTncKcnjkeNOX23bKZbiTn7KjKmZi2aMVLpFYhvz-m5FHMDJPaFJPZkhBd4FGlGVGpU0bzfIuckwAW0cRm2vuUOFhkfYHbOibO4vsXpN6KZDxFNJoaqMDo3mEQ8Cce",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGVnjKT7wm5-AjCOlYLDGxCrTGCgO8iu0khOkEmlxXKNUthMS9Z2rf9l-3K8paPIpaEQ-Z55U6XzLBevbyOfNcpApocR2eqT-asSkfMxdI8DlCCRtszw_ZebvAuRdrb10xZc5s8tAXnFqgPOuaU0YI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHZVPTddB1Tfot7QlD8UUhT324rxBngyk_Qk2T_UX6g7SpGEz-L7V2GKEdhvXB14fBWIbrPms-E3SArDOoVdBAIbs9vRSGiy_hSVj5mfwk3KP9tZJaBS7Rwsn9Lchf7X5dy98SeBA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG9kj05DjytOrcaboNw0O_fI_9F2nRNgDCnH6xiRxH0mk-EQDq4gDbpD8evZpAtyywUleG8vsVI73jggTM-f_oTTVu5T7XdnCeyvExtFs68FQRjRIPYYrkN-bVtT_1Uk0yUsckSrnPsLQiqsg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3EEDFypnu_rEl8zEFQKTnSiqOhtm9JHUizbqSS-jGTMjTG5sksh7ZrpKEwnVfyRJWzA30UQbHonZyOIDEszFhSlB1-k1SURa56kCybIYKpKr80wxu1hNOuu0IPbqPIABptSVec1FLAuBgH-_N398GgaNb_OPfuN3ZycuwYHYiSNG6VHZTZwT5RZTcjJC_5787PTUO"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

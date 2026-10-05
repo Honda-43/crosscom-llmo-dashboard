@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-05",
+  "prompt_id": "E36",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Voiceで電話業務のどこまでを任せられる？対応チャネルと費用も知りたい",
+  "cep": null,
+  "timestamp": "2026-10-05T01:47:47.211019Z",
+  "answer": "Agentforce Voiceは、AIを活用した音声エージェントで、電話業務において多岐にわたるタスクを自動化できます。\n\n**電話業務で任せられる範囲**\nAgentforce Voiceは、カスタマーサービスにおける定型的な問い合わせや反復的な業務を自動化することで、人間の担当者がより複雑な問題や共感を必要とするサポートに集中できるように設計されています。具体的には以下の業務を任せることが可能です。\n\n*   日常的な電話対応とリアルタイムでの会話応答。\n*   自然言語処理（NLP）を利用した顧客の意図理解。\n*   CRMデータの更新、担当者へのエスカレーション、注文処理、予約変更などの必要な業務の自律的な実行。\n*   通話内容の分析、要約、リアルタイムでの回答提案。\n*   従来のIVRシステムとは異なり、固定されたスクリプトにとらわれず、会話の文脈を理解し、関連するSalesforceデータにアクセスして最適なアクションを動的に判断します。\n\n**対応チャネル**\nAgentforce Voiceは主に電話チャネルでの利用を想定していますが、マルチチャネルでの展開も可能です。\n\n*   **電話チャネル**: クラウドテレフォニープラットフォームとの連携をサポートしており、国内ではGenesys、およびコムデザインのクラウドCTIサービス「CT-e1/SaaS」との連携を開始しています。Amazon Connect、Five9、NICE、VonageなどのCCaaS（Contact Center as a Service）プロバイダーとも互換性があります。\n*   **デジタルチャネル**: 2026年6月のSummer '26リリースより、WebサイトやモバイルアプリなどのデジタルチャネルにもAgentforce Voiceを組み込むことが可能になり、一度構築した音声エージェントをあらゆるチャネルで展開し、一貫性のある顧客体験を提供できます。\n\n**費用**\nAgentforce Voiceの料金体系は、主に「会話単位」のモデルと「Flex Credit（消費量）モデル」があります。\n\n*   **会話単位のモデル**: 1会話（24時間のセッション）あたり約240円（または2USドル）です。 このモデルは、トラフィックが予測可能な場合に費用を見積もりやすい特徴があります。\n*   **Flex Creditモデル**: 10万Flex Creditあたり約500USドルで、標準アクションあたり約0.10USドル、音声アクションあたり約0.15USドルとなります。\n\nただし、Agentforceの費用は、エージェントの利用料、Data Cloud / Data 360といったデータレイヤーの費用、そして知識設定、統合、プロフェッショナルサービスなどの導入レイヤーの費用という3つの層で構成されることに注意が必要です。特にData 360のStarter SKUは年間約60,000USドルかかる場合があり、購入者が過小評価しがちな項目とされています。 また、会話単位の料金例には、Data 360クレジットやその他の従量課金制サービスなどの費用は含まれていません。\n\nAgentforce Voiceは、Agentforce Service（旧Service Cloud）およびAgentforce Sales（旧Sales Cloud）のアドオンライセンスとして提供されます。\n\nなお、Agentforce Voiceの日本語版は一般提供が開始されており、Kotoba Technologies, Inc.の音声基盤モデル「Koto」を採用することで、日本語特有の敬語やニュアンスに対応した低遅延で自然な音声対話を実現しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHF3IGIk6Nt6oyAerI-VWFzQXj2uQl1Auc2kfhanXGOU4V3VmG_kxgbFr5DlP5VaLzHL3gV9YyvH2RKB5CXFj9c4rt-oDqxiHIZTB8w6XuSMtayGh_1sOg15pJheNy3R0orVujTD7v7QcCx",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF27F4aHfUuOypEEt0iAACBiKv3RYZ7fraCd-fyKH1nPanwoUUXwlp0nT6wSxdVOkzFSAfWE3Qjvy-Bp0veCkHXtksxFwIPD1A64HGDajzSJfHYu9sGkPULe-vYt_VY-eTafkX3EOHN667z6uUM9sLwwcdbQo7HVcYNxyZ2X1XkXJFVbRuHbQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGrmDHxhe4ULO3JTlwBuv_-VUiNdSw0trsBGmydpPwFV6thQYvvkE8uMCIg1e8TUJN_AQA9w675wSO_85-0akeFJY6l8knaTKjlVooCSzqjbsKmD5EOHOxlXRevpVigLc2KgB1WhIvaslyWYL7FJLo59MFNxxFkxw01g4UZlGLXuO2yrJ8p3MJmnuY6IRfiKgG8",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGYYDkTIVj-8K1GqdRzpU0ieO5Ui-eNs6a3chhEOlZiV6ir9cKPOxctk-wbuN-Tp_zhWjVNlAsTMfoWbHbCMtqzhykkSyM3x-stg2x5DsLTgUejK1DxV1XBlqa8pcoqe0w1d_-JBfcdtEgRLDn-ytQtevNjPfk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbs5RTOp-gjhOFR9cKP7MGiQ4oaLe0BMG24pIgZLrOWXALJO9dmcdc1mV2SWzKmJKbBBmUlss3OG5isiftDkWAEvkfYeecJMnnzpd6C6TjTUUj8TBO3Qs2zNqOiHEbimuELljnASmHH769vbDjcMrYUu_4Zyik",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQElmN5OHvDGV_1C3KQ_Jo1-WwZ8fgGPYZvhY-RzGJWOwfnHtQh2RSBUS2mXYjJY97IiTJTN5NKnFHN50-EyX20R_Wy_fofnv6iCpxzYKSkdBeuIOsEpT5LJ6d4nERRQTPgnsVwcwe3Z",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHuvA325e1LEE-1itH7Uo8U4vzcB5wjgHakJh8NUDtx7tmWD9ZcbprhPuyLvj4lRY1TRh2kEli2dkXQSeVh2PijZJe2pVIHUcCg8nr549Rpr1hegr5uZ8bik6gHkgSkf1AIT94Yjo04W0gpF54mkGVR-uoWgqTh7ab803U=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHP7MGL7ajRXvdaD5ALRlO9ZI0xP3DtQE9e8hggCcV0iBSuqLM7wCh-KYzIHtRwg5gub5MUofVFrF0XvDqCsmVDFBTamVc6MDxzutOK7QxHDoBFx54W2OXTQ8kTCFxRzc8OLSKz7swCGrsoqhjHW9Cqc6uV9o2PhU47OL3RZFiOXP8eWeA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG6JUMzkT01xr88jDq2G7mfYuh2xZtA1126d22GHtVzgQ6k43EkHbn3x8UtuAmWDz36H0jSkVt7fw4XFrLIBS9GH7cDyqrsycicoMwEVtXuLkWSzABXj4kte3hGiolQ2qoMIaBfdMQaM15amQs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFjQLP3JOOdjy685um9CgQswJT1oKOuqRmeeT7bpeyx5xPVlCQ55ajG8FmOFOnXRKlCcackXeDfmSOPlmyOPUd36GvPjNjwyfHVMRyxaUGhiJc9lPpwlaKivtTeHV9BTyuZbBGKren0AM3SbQU5r2otAwjeBBYvmIaO9PO6RjJ3TKSJ5G8uoUd8x05ebkUUg2onUvCk8aFknoGFbw=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

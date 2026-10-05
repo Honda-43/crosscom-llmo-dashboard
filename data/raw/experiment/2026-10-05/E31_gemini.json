@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-05",
+  "prompt_id": "E31",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？",
+  "cep": null,
+  "timestamp": "2026-10-05T01:44:00.296961Z",
+  "answer": "Agentforce Employee Agentは、Salesforceが提供する従業員向けのAIエージェントで、社内からの問い合わせ対応や業務支援を自動化するために設計されています。従業員の自己解決を促進し、部門間のコミュニケーション効率を高めることで、対応部門と利用者双方の負担を大幅に軽減することを目的としています。 Salesforce内の顧客情報、商談情報、ケース履歴、FAQ、製品データなどを活用し、さらにData 360と連携することで、社内に散在する様々なデータを横断的に扱うことが可能です。 Slackなどのコミュニケーションプラットフォームとも連携できます。\n\nAgentforce Employee Agentに任せられる社内問い合わせの範囲は多岐にわたります。具体的には以下の業務を自動化・支援できます。\n\n*   **定型的な問い合わせへの即時回答:** よくある質問（FAQ）に対して、ナレッジベースやマニュアル、規定情報を参照して即座に回答します。\n*   **申請業務のサポート:** 従業員が申請業務をスムーズに開始できるようガイドしたり、Slackなどのプラットフォームから申請手続きを開始したりできます。\n*   **情報の検索と提供:** 従業員が情報を検索し、必要な情報を提供します。\n*   **ToDoの完了支援:** 従業員がToDoを完了するための支援を行います。\n*   **パーソナライズされたサポート:** ログインユーザーのコンテキストで実行され、チャネルを横断したパーソナライズされたサポートを提供します。\n*   **担当部門への自動エスカレーション:** 自己解決できない複雑な問い合わせは、適切な担当部門へ自動でエスカレーションします。\n*   **過去の問い合わせ履歴やデータの活用:** 過去の問い合わせ履歴や製品情報、契約情報などを参照し、問い合わせ内容に応じた対応を行います。\n*   **業務プロセスの実行:** 問い合わせ内容を理解し、回答だけでなく、状況に応じた手続きや処理（レコードの作成・更新、文書の要約、独自の処理の実行など）まで自律的に実行できます。\n*   **複数のアクションの組み合わせ:** 複数のアクションを組み合わせてユーザーの依頼に対応することができ、例えば、失注した商談の記録を取得し、受注モデルケースと比較してフィードバックを生成し、それを営業担当者にSlackで通知するといった一連の業務も可能です。\n\nただし、Agentforce Employee Agentの導入にあたっては、以下の点に留意する必要があります。\n\n*   **データ品質の重要性:** Agentforceの精度はSalesforce内のデータの質に大きく左右されるため、データクレンジングとData Cloudの整備が不可欠です。\n*   **日本語と商習慣への適応:** 日本語特有の敬語や商習慣への適応には、入念なプロンプト設計と人間の監視による品質検証が求められます。\n*   **AIと人間の境界線の設定:** どこまでAIに任せ、どのような条件で人間に引き継ぐかといったエスカレーションルールを明確に設計することが重要です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFvCNLa_MX79DkG7G30-8hKsFoMCYPYap8bwhTVwGrcsCRChSRckxa2sB6Z0ehlV6FBYgtFEuPTlz9ExkgfPEgkrS94cAj23QVVs2HCWL1Fll1MGRKwALRx31pvs0Ba1UqF5LTyeKk5lgskjI6moGfpbFYEhfQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHca4_JwP7v2yrD5r5aJBo7ITIGXCtIt1_cA3Q8rw1KanPZdfK3mv69FyO5mMBpn0vn8jJTLX9UtIGmkv6qRV_VHfHUl14PC6S7x4OiajmPkwT0mUGANTaGdbGLIwd1JP3BZz2TwZvbItIGnQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEMUbP_ATGu4q0IeFToy9YebH149Vv9pRMrPsHNlvwkfp4pZ_oBWL16w8GqO7A1pBI235BSI8bREVaFR31GDNsNZSWkVNgbH9pTsCIdifLobThcFoMSutMmfnR4c2SVGtmRZ7SwQMvkGizPI0HrJn2iARVaLrvvbCejuj_xHNybzKzuta_qgVPmC6s=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHZE5z7lkGa-7iNX6dV0kgHXgbLAVq-yEn1Fml7hLSQGZLgBqHxj4yUaj0c7pY2gNp_EImaVABWFo277uEN0UcgV3Tms-402W3bDQby74oLv2hWx2ztzPRRMgG-m5Wxw3eK",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8d8FOsz7zBrSF-7V_1N4EIVhfvYmL8h02c53Im1bG_JAf0N5onh63OWq3iGkUanpp-ZSQ94NFOJRvvDMtYqkth07oB17JhLtu4PsdCJh9__pMqedNXni9XJQCNfi5zaVNVa0_G_G-T2w1-g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEq-NNQywk3c4tFqT0R752pOYw9FZX3gQeIPbZrFdenccxxE08HepXuNSNyy_IhdsghvzYlAXmR66x1sReG7ESh1uQGbXv7hNQeWVmoh89NmduHIhgLKWf3HV3TgNpMzk3SWUJ6URSo",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH5on1B3YAXJSm1u7dIHFIMddDNRqg2iv9PAP-7EGBB1PrWWq1YHNSlld0TuzWh0IR_vfPmOsaWn3xGZAaTVV1zOnzWQNWkB8fqOUWqGYPuFLjDWOW_-g9-gQcST8UeTlHPYSf7cOH0s9M="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}
