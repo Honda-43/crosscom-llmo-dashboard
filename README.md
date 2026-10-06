@@ -152,6 +152,27 @@ crosscom-llmo-dashboard/
 - **chatgpt / Perplexity 有効化は「キー登録 + `ENABLE_CHATGPT=true` / `ENABLE_PERPLEXITY=true`」のみでコード変更不要**。`OPENAI_API_KEY` / `PERPLEXITY_API_KEY` 未設定でもパイプラインはエラーにならない。
 - モデル名は `OPENAI_MODEL` / `GEMINI_MODEL` / `ANTHROPIC_MODEL` / `EXTRACT_MODEL` で上書き可能。
 
+### Claude API の全停止(2026-10-06・費用ゼロ方針・本田さん決定)【計画の変更】
+
+**2026-10-06 Claude 観測を停止（費用ゼロ方針・本田さん決定）。アフター期間（10/6〜）の Claude データは0本のため、Claude は判定対象外とする。主指標は事前登録どおり Gemini のみで変更なし。この変更はアフター期間の実験データを見る前に行った。**
+
+- 停止は `config/claude_budget.yaml` の `planned_stop_from: "2026-10-06"`(この日の JST から上限0)。
+  **再開は null にするだけ**(1日の上限・400 での即停止はそのまま効く)。残高切れによる失敗に任せず、日付で止める
+- 止まるもの:実験の Claude 観測(46本＋E37 watch)、日次・月次の Claude 観測、Haiku の抽出・順位抽出、週次所見(Sonnet)、
+  引用プローブ、その他 `claude_budget` を通るすべて。`claude_budget.guard()` が `planned_stop` で止め、API は呼ばない
+- **停止中の Claude の観測は行を作らない**(`settings.enabled_models()` から claude を外す。raw も llm_* の行も無い)。
+  欠測(error の行)とは区別がつき、欠測にも数えない。実験の計画(`experiment_plan`)にも Claude が入らない
+- 停止中は失敗の通知・上限の警告を出さない(`planned_stop` は「止めた記録」を残さないので「Check Claude daily cap」は通る)
+- **週次所見は数値の表だけで出す**(`generate_insight` が Claude を呼ばず、`source=numbers_only`。週次は失敗にしない)
+- **抽出(日次・月次の Gemini の回答)は「抽出保留」**として台帳(data/extract_pending)に残る。抽出を Gemini に移すまで、
+  日次・月次の言及率・言及シェアなどの指標は空になる(0% ではない)。台帳の分は抽出できるようになった時点でまとめて埋める
+- 実験の判定(`experiment_2x2/summarize.py`):Claude は判定・感度分析・補助分析から外し、「Claude:アフター期間の観測なし
+  (2026-10-06 に計画的停止・費用ゼロ方針)。判定対象外」と出す。冒頭に「結論は Gemini（検索接続あり）での結果。Claude ではアフター期間の観測がないため、他のAIへの一般化は確認できていない」。
+  Gemini の判定(主指標・再ランダム化検定・感度分析)は1文字も変えない(テストで確認)。ビフォーの Claude データは残す
+- ダッシュボード:Looker 用のタブ(lk_heatgrid・lk_mention_grid 等)とアプリは観測の行から作るので、Claude のセルは7日・28日の窓から外れると消える
+  (0 にはならない)。実験の週次集計は Claude の列が0行になり「計画的に停止(欠測ではない)」と注記する。第3観測層のページは 10/03 から Claude 停止を表示済み
+- `output/interventions.csv` I-27・`config/experiment_freeze.yaml` の plan_changes に記録
+
 ### Claude が止まっても Gemini の観測を続ける(2026-10-06)
 
 - **Gemini の1回の呼び出しは180秒で打ち切る**(`settings.GEMINI_CALL_TIMEOUT_SECONDS`。SDK の HTTP の時間切れと、

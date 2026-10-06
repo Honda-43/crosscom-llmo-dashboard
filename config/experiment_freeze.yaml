@@ -27,3 +27,9 @@ scope_reduced_reason: "事業上の改善を優先（本田さん決定）。46�
 edit_ban_file: experiment_2x2/targets.csv
 # 新しいリンクを張らない・外さない。2026-10-02 から統計46本(それまで47本)。同じく seo-agent の一覧を読む。
 link_ban_file: experiment_2x2/link_ban.csv
+
+# 計画の変更(記録。所見・判定のコードはこの欄を読まない。2026-10-06 追加)
+plan_changes:
+  - date: "2026-10-06"
+    change: "2026-10-06 Claude 観測を停止（費用ゼロ方針・本田さん決定）。アフター期間（10/6〜）の Claude データは0本のため、Claude は判定対象外とする。主指標は事前登録どおり Gemini のみで変更なし。この変更はアフター期間の実験データを見る前に行った"
+    note: "ビフォー期間（9/15〜9/28）の Claude データは消さずに記録として残す。interventions I-27・config/claude_budget.yaml の planned_stop_from"

@@ -528,6 +528,13 @@ def generate(stats: Dict[str, Any], model: Optional[str] = None,
     ``actions`` は action_log の行。``None`` ならシートから読む(§A)。
     """
     model = model or INSIGHT_MODEL
+    if claude_budget.claude_stopped():
+        # 2026-10-06 から Claude を計画的に停止(費用ゼロ方針)。所見の文章は作らず、数値の表だけで出す。
+        # 想定どおりなので error は空(週次を失敗にしない)
+        note = (f"> ※ {claude_budget.claude_planned_stop_from()} から Claude API を計画的に停止(費用ゼロ方針・本田さん決定)。"
+                "所見の文章は作らず、数値の表だけを出す。\n\n")
+        return {"report_md": note + fallback_report(stats), "source": "numbers_only", "error": None,
+                "suppressed": [], "frozen": [], "warnings": [], "settled_lines": []}
     actions = list(actions) if actions is not None else _load_actions()
     try:
         # 期間内で凍結対象が読めないときは例外 → 数値だけの所見に落とす。

@@ -265,9 +265,13 @@ def experiment_claude_weekdays(date: str) -> Tuple[int, ...]:
 
 
 def experiment_claude_on(date: str) -> bool:
-    """その日に実験の Claude を観測するか(巡回の開始〜観測の終わりの間の、観測曜日)。"""
+    """その日に実験の Claude を観測するか(巡回の開始〜観測の終わりの間の、観測曜日)。
+
+    2026-10-06 から Claude を計画的に止めている間(claude_stopped)は観測しない。
+    """
     return (_weekday(date) in experiment_claude_weekdays(date)
-            and str(date)[:10] >= EXPERIMENT_CYCLE_START and not experiment_ended(date))
+            and str(date)[:10] >= EXPERIMENT_CYCLE_START and not experiment_ended(date)
+            and not claude_stopped(date))
 
 
 def is_daily_llm_day(date: str) -> bool:
@@ -570,9 +574,41 @@ MODEL_CONFIG: Dict[str, Dict[str, Any]] = {
 }
 
 
+# --------------------------------------------------------------------------
+# Claude の計画的停止(2026-10-06・費用ゼロ方針・本田さん決定)
+# --------------------------------------------------------------------------
+# config/claude_budget.yaml の planned_stop_from の日(JST)から Claude を一切呼ばない。
+# 停止中は Claude を「有効なモデル」から外す(観測の行を作らない・欠測に数えない)。再開は null にするだけ
+CLAUDE_BUDGET_FILE = CONFIG_DIR / "claude_budget.yaml"
+
+
+def claude_planned_stop_from(path: Optional[Path] = None) -> str:
+    """Claude を止めた日(YYYY-MM-DD)。止めていなければ空文字。"""
+    try:
+        with open(path or CLAUDE_BUDGET_FILE, encoding="utf-8") as fh:
+            value = (yaml.safe_load(fh) or {}).get("planned_stop_from")
+    except OSError:
+        return ""
+    return str(value)[:10] if value else ""
+
+
+def _today_jst() -> str:
+    return dt.datetime.now(dt.timezone(dt.timedelta(hours=9))).strftime("%Y-%m-%d")
+
+
+def claude_stopped(date: Optional[str] = None) -> bool:
+    """その日(既定: 今日の JST)に Claude を計画的に止めているか。"""
+    start = claude_planned_stop_from()
+    return bool(start) and str(date or _today_jst())[:10] >= start
+
+
 def enabled_models() -> List[str]:
-    """Ordered list of currently enabled model keys."""
-    return [k for k, v in MODEL_CONFIG.items() if v["enabled"]]
+    """Ordered list of currently enabled model keys.
+
+    Claude を計画的に止めている間(claude_stopped)は claude を外す(2026-10-06)。
+    """
+    return [k for k, v in MODEL_CONFIG.items()
+            if v["enabled"] and not (k == "claude" and claude_stopped())]
 
 
 # --------------------------------------------------------------------------

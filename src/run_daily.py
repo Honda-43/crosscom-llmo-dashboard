@@ -195,8 +195,10 @@ def main() -> None:
                     lambda: extract_pending.save("daily", date, pending), failures)
         by_model = ", ".join(f"{m} {sum(1 for e in pending if e.get('model') == m)}件"
                              for m in sorted({e.get("model") for e in pending}))
-        summary_lines.append(f"- ⏸ 抽出保留 {len(pending)}件({by_model}):Claude が止まっているため。"
-                             f"回答は保存済みで、Claude が使える日にまとめて抽出する(台帳 {left}件)")
+        why = ("Claude を計画的に停止中(費用ゼロ方針)" if claude_budget.claude_stopped()
+               else "Claude が止まっているため")
+        summary_lines.append(f"- ⏸ 抽出保留 {len(pending)}件({by_model}):{why}。"
+                             f"回答は保存済みで、抽出できるようになったらまとめて抽出する(台帳 {left}件)")
 
     # Analysis phases (Phase 1 §2 / §3). analyze_diff compares today's
     # extractions against the previous observation day still stored in Sheets,

@@ -63,7 +63,8 @@ import notify_slack
 import sheets_writer
 from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DIR,
                       EXPERIMENT_JOURNAL_FILE, EXPERIMENT_OBSERVATION_END,
-                      experiment_claude_on, experiment_ended, experiment_weekly_target,
+                      claude_planned_stop_from, experiment_claude_on, experiment_ended,
+                      experiment_weekly_target,
                       load_experiment_prompts,
                       GEMINI_DAILY_REQUEST_LIMIT, ROOT_DIR, WEEKDAY_LABELS,
                       experiment_gemini_allowance, experiment_plan, gemini_requests_on,
@@ -521,6 +522,10 @@ def weekly_claude_count_line(date: str, raw_dir: Optional[Path] = None) -> str:
     count, target = weekly_claude_count(date, raw_dir)
     start, end = claude_week_window(date)
     span = f"{start:%m/%d}〜{end:%m/%d}"
+    stop = claude_planned_stop_from()
+    if not target and stop and end.isoformat() >= stop:
+        # 2026-10-06 から計画的停止(費用ゼロ方針)。想定どおりなので警告にしない
+        return f"- 実験の Claude 観測({span}): 週{count}本({stop} から計画的に停止中・費用ゼロ方針)"
     if not target:
         return f"- 実験の Claude 観測({span}): 週{count}本(この週は観測日なし)"
     if count < target:

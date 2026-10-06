@@ -52,7 +52,9 @@ def fake_anthropic(monkeypatch):
 def test_the_caps_come_from_the_config_file():
     cfg = yaml.safe_load(open(settings.CONFIG_DIR / "claude_budget.yaml", encoding="utf-8"))
     assert cfg == {"experiment_day": 60, "other_day": 30, "monthly_batch_extra": 25,
-                   "marketing_extra": 130}
+                   "marketing_extra": 130, "planned_stop_from": "2026-10-06"}   # 2026-10-06 から計画的停止
+    assert claude_budget.load_config() == {"experiment_day": 60, "other_day": 30,
+                                           "monthly_batch_extra": 25, "marketing_extra": 130}
 
 
 @pytest.mark.parametrize("date, cap", [

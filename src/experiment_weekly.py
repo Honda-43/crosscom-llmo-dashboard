@@ -35,7 +35,7 @@ except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exa
 
 import interventions
 from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DIR,
-                      EXPERIMENT_CLAUDE_WEEKLY_FROM, ROOT_DIR,
+                      EXPERIMENT_CLAUDE_WEEKLY_FROM, ROOT_DIR, claude_planned_stop_from,
                       TAB_EXPERIMENT, WEEKDAY_LABELS, load_experiment_prompts)
 
 REPORTS_DIR = ROOT_DIR / "output" / "reports"
@@ -173,7 +173,11 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
     order = lambda ids: sorted(ids, key=pool_ids.index)              # noqa: E731
     L.append(f"- **記事URLが1回でも出た記事: {len(arts_any)}本 / {len(pool_ids)}本**"
              f"(Gemini {len(arts_g)}本・Claude {len(arts_c)}本・両方 {len(arts_g & arts_c)}本)")
-    if end >= CLAUDE_WEEKLY_FROM:
+    stop = claude_planned_stop_from()
+    if stop and end.isoformat() >= stop:
+        # 2026-10-06 から Claude を計画的に停止(費用ゼロ方針)。Claude の0行は欠測ではない
+        L.append(f"  - Claude は {stop} から計画的に停止（費用ゼロ方針・本田さん決定）。この週の Claude の観測は無い（欠測ではない）")
+    elif end >= CLAUDE_WEEKLY_FROM:
         # 2026-10-05 から Claude は週1回(月曜のみ)。週2回だった週と「1回でも」の本数を比べると、
         # 観測回数の差がそのまま本数の差に見える。週をまたいで比べるのは 1 の記事引用率(観測1回あたり)
         L.append("  - Claude は 2026-10-05 から週1回(月曜のみ)。週2回だった週とは本数で比べず、"

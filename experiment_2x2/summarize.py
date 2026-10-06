@@ -48,6 +48,26 @@ from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
 
 WATCH_FLAG = "watch"
 MODELS = ("gemini", "claude")
+# 2026-10-06：Claude 観測を計画的に停止（費用ゼロ方針・本田さん決定）。アフター期間（10/6〜）の Claude は0本のため、
+# Claude は判定・感度分析・補助分析の対象から外す（欠測を0＝引用なしとして数えない）。主指標（Gemini）は不変。
+# 停止日は config/claude_budget.yaml の planned_stop_from（settings.claude_planned_stop_from）
+GENERALIZATION_NOTE = ("結論は Gemini（検索接続あり）での結果。Claude ではアフター期間の観測がないため、"
+                       "他のAIへの一般化は確認できていない")
+
+
+def claude_stop_date():
+    from settings import claude_planned_stop_from
+    return claude_planned_stop_from()
+
+
+def model_excluded(model, after_span):
+    """判定から外すモデルか（Claude を止めた日がアフター期間の終わりまでにあれば外す）。"""
+    stop = claude_stop_date()
+    return model == "claude" and bool(stop) and after_span[1] >= stop
+
+
+def excluded_line(model):
+    return (f"Claude：アフター期間の観測なし（{claude_stop_date()} に計画的停止・費用ゼロ方針）。判定対象外")
 # 記事ごとの値を「観測1回あたりの率」にするモデル（2026-10-03）。ほかは「1回でも引用されたか」の 0/1
 RATE_MODELS = ("claude",)
 
@@ -594,6 +614,8 @@ def main(argv=None):
         groups = load_allocation()
         if not groups:
             sys.exit("allocation_v1.csv が無い（9/28 の割付の前）。組が決まってから判定する")
+        if model_excluded("claude", _span(a.after)):
+            print(f"**{GENERALIZATION_NOTE}**\n")
         print_site_wide_interventions(a.before, a.after)
         pillar_lines, pillar_parts = pillar.report_lines(_span(a.after))
         print("\n".join(pillar_lines))
@@ -605,6 +627,10 @@ def main(argv=None):
         watch = sum(1 for r in rows if str(r.get("experiment_flag", "")).strip() == WATCH_FLAG)
         print(f"llm_experiment {len(rows)}行（watch {watch}行とプール外・欠測は数えない）\n")
         for model in ([a.model] if a.model else MODELS):
+            if model_excluded(model, _span(a.after)):
+                # 欠測を0（引用なし）として数えない。ビフォー（9/15〜9/28）の Claude データは消さずに記録として残す
+                print(f"##### {model}\n{excluded_line(model)}\n")
+                continue
             after = period(rows, _span(a.after), model, groups, pool)
             before = period(rows, _span(a.before), model, groups, pool)
             missing = sorted(set(after) - set(before))

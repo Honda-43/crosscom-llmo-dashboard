@@ -41,7 +41,8 @@ except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exa
 import yaml
 
 from settings import (CONFIG_DIR, MARKETING_CLAUDE_ENABLED, MARKETING_RANK_ENABLED, ROOT_DIR,
-                      experiment_claude_on, in_marketing_window, monthly_batch_on)
+                      claude_planned_stop_from, claude_stopped, experiment_claude_on,
+                      in_marketing_window, monthly_batch_on)
 
 CONFIG_FILE = CONFIG_DIR / "claude_budget.yaml"
 USAGE_DIR = ROOT_DIR / "data" / "claude_usage"
@@ -54,8 +55,15 @@ CREDIT_EXHAUSTED = "credit_exhausted"
 CREDIT_MARKERS = ("credit balance is too low",)
 
 
+PLANNED_STOP = "planned_stop"
+
+
 class ClaudeStopped(RuntimeError):
-    """その日の Claude 呼び出しを止めている。文面は daily_cap / credit_exhausted で始まる。"""
+    """その日の Claude 呼び出しを止めている。文面は daily_cap / credit_exhausted / planned_stop で始まる。"""
+
+
+class ClaudePlannedStop(ClaudeStopped):
+    """計画的停止(2026-10-06・費用ゼロ方針)。想定どおりの停止なので、失敗の通知も記録の印も付けない。"""
 
 
 _STATE: Dict[str, Any] = {}
@@ -79,12 +87,16 @@ def today() -> str:
 # 上限
 # --------------------------------------------------------------------------
 def load_config(path: Path = CONFIG_FILE) -> Dict[str, int]:
+    """1日の上限(数の項目だけ。planned_stop_from は settings.claude_planned_stop_from が読む)。"""
     with open(path, encoding="utf-8") as fh:
-        return {k: int(v) for k, v in (yaml.safe_load(fh) or {}).items()}
+        return {k: int(v) for k, v in (yaml.safe_load(fh) or {}).items()
+                if isinstance(v, int) and not isinstance(v, bool)}
 
 
 def cap_for(date: str, config: Optional[Dict[str, int]] = None) -> int:
     """その日の上限。環境変数 CLAUDE_DAILY_CAP があればそれ(その実行だけの一時的な上書き)。"""
+    if claude_stopped(date):
+        return 0                                   # 計画的停止中は上限0(CLAUDE_DAILY_CAP でも上げない)
     override = os.getenv("CLAUDE_DAILY_CAP")
     if override:
         return int(override)
@@ -198,6 +210,10 @@ def guard(label: str = "") -> None:
     """Claude を1回呼ぶ直前に通る。止めている・上限に達していれば ClaudeStopped を上げる(投げない)。"""
     if _STATE["date"] is None:                 # start() を呼ばない実行(テスト・手元の単発)
         _STATE.update(date=today())
+    if claude_stopped(_STATE["date"]):
+        # 計画的停止(2026-10-06)。止めた記録(stopped)は残さない:ワークフローの確認を失敗にせず、通知も出さない
+        raise ClaudePlannedStop(f"{PLANNED_STOP}: {claude_planned_stop_from()} から Claude を計画的に停止中"
+                                "(費用ゼロ方針・本田さん決定)" + (f"。{label} は投げていない" if label else ""))
     if _STATE["cap"] is None:
         _STATE["cap"] = cap_for(_STATE["date"])
     if _STATE["stopped"]:

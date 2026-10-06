@@ -59,7 +59,7 @@ _PERMANENT_MARKERS = (
     "insufficient_quota", "invalid_api_key", "PERMISSION_DENIED",
     "UNAUTHENTICATED", "API key not valid", "invalid_request_error",
     # Claude の1日の上限・クレジット不足でその日の呼び出しを止めている(claude_budget。2026-10-03)
-    "daily_cap", "credit_exhausted", "credit balance is too low",
+    "daily_cap", "credit_exhausted", "credit balance is too low", "planned_stop",
 )
 _PERMANENT_CODES = ("400", "401", "403", "404")
 
