@@ -8,6 +8,7 @@ import streamlit as st
 import board
 import common
 import data_source
+import observation_notes
 import verdicts
 
 board.face_header("R3", "ネガ検知", "検知が「止まった日」が施策の効果を示す")
@@ -72,5 +73,8 @@ st.caption(
 )
 if legend:
     st.caption(legend)
+if observation_notes.r_p7_note_active():
+    # 2026-10-06:Claude 停止後の R-P7 の誤読防止(週次所見 §5・Looker の使い方ページと同じ文言)
+    st.caption(f"**⚠️ {observation_notes.R_P7_NOTE}**")
 
 board.verdict_panel("R3", board.build_context("R3"))

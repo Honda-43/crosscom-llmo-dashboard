@@ -637,9 +637,26 @@ def negative_rows(date: str, observations: Sequence[Dict[str, Any]],
 # --------------------------------------------------------------------------
 # lk_events — 重要な変化
 # --------------------------------------------------------------------------
+MEASUREMENT_CHANGE = "measurement_change"
+
+
+def measurement_events(date: str) -> List[Dict[str, Any]]:
+    """計測の変更(2026-10-06)。Looker の折れ線には注釈を描けないので、重要な変化の表に1行出す。"""
+    import observation_notes
+    if date != observation_notes.DENOMINATOR_CHANGE_DATE:
+        return []
+    return [{
+        "date": date, "event_type": MEASUREMENT_CHANGE, "event_name": "計測の変更",
+        "place": "日次の言及率・言及シェア(全プロンプト)",
+        "detail": f"{observation_notes.DENOMINATOR_SHORT}:{observation_notes.DENOMINATOR_NOTE}。"
+                  f"{observation_notes.R_P7_NOTE}",
+        "playbook_ref": "README「Claude をやめて失うもの」",
+    }]
+
+
 def event_rows(date: str, changes: Sequence[Dict[str, Any]],
                sov_rows: Sequence[Dict[str, Any]] = ()) -> List[Dict[str, Any]]:
-    """判断に効く変化だけを日本語名で並べる。"""
+    """判断に効く変化だけを日本語名で並べる。計測の変更(measurement_events)も入れる。"""
     top = share_table(sov_rows, date, WINDOW_DAYS)["ranking"][:COMPETITOR_TOP_N] \
         if sov_rows else []
 
@@ -662,7 +679,7 @@ def event_rows(date: str, changes: Sequence[Dict[str, Any]],
             "playbook_ref": PLAYBOOK_REFS[change_type],
         })
     rows.sort(key=lambda r: (r["event_name"], r["place"], r["detail"]))
-    return rows
+    return measurement_events(date) + rows
 
 
 # --------------------------------------------------------------------------

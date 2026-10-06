@@ -26,6 +26,7 @@ from typing import Any, Dict, List, Optional, Sequence
 
 import claude_budget
 import experiment_freeze
+import observation_notes
 import insight_style
 from settings import (
     INSIGHT_MAX_CHARS,
@@ -479,6 +480,8 @@ def fallback_report(stats: Dict[str, Any],
             f"- ノイズ域(週計 {insight_style.count_text(floor)} 未満)の指標: "
             f"{', '.join(noisy)} — 増減は判断材料にしない"
         )
+    # 観測の変更に伴う誤読防止(2026-10-06。R-P7 は Gemini のみ・言及率の母数 14→7本)
+    lines += observation_notes.weekly_section5_lines(str(stats.get("date") or ""))
     return "\n".join(lines).strip()
 
 
@@ -587,6 +590,10 @@ def generate(stats: Dict[str, Any], model: Optional[str] = None,
             # Well past the instructed limit — keep it, but say so.
             print(f"[warn] insight is {len(report)} chars, over the {INSIGHT_MAX_CHARS} target")
         result = postprocess(report, stats, actions, freeze=freeze)
+        # §5 の固定の注記(2026-10-06)はモデルに任せず、必ず入れる
+        fixed = observation_notes.weekly_section5_lines(str(stats.get("date") or ""))
+        if fixed:
+            result["report_md"] = observation_notes.ensure_section5(result["report_md"], fixed)
         for warning in result["warnings"]:
             print(f"[warn] 記述ルール: {warning}")
         for note in result["suppressed"]:
