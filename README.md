@@ -163,15 +163,43 @@ crosscom-llmo-dashboard/
 - **停止中の Claude の観測は行を作らない**(`settings.enabled_models()` から claude を外す。raw も llm_* の行も無い)。
   欠測(error の行)とは区別がつき、欠測にも数えない。実験の計画(`experiment_plan`)にも Claude が入らない
 - 停止中は失敗の通知・上限の警告を出さない(`planned_stop` は「止めた記録」を残さないので「Check Claude daily cap」は通る)
-- **週次所見は数値の表だけで出す**(`generate_insight` が Claude を呼ばず、`source=numbers_only`。週次は失敗にしない)
-- **抽出(日次・月次の Gemini の回答)は「抽出保留」**として台帳(data/extract_pending)に残る。抽出を Gemini に移すまで、
-  日次・月次の言及率・言及シェアなどの指標は空になる(0% ではない)。台帳の分は抽出できるようになった時点でまとめて埋める
+- **週次所見は 2026-10-06 から Gemini(gemini-3.5-flash)で書く**(下の「抽出と週次所見の Gemini への移行」)。
+  所見のモデルを Claude に戻したまま停止している場合だけ、数値の表だけで出す(`source=numbers_only`・失敗にしない)
+- **抽出(日次・月次の回答の社名・否定の判定)は 2026-10-06 から Gemini(gemini-3.5-flash-lite)**。抽出保留の台帳
+  (data/extract_pending)の 10/06 の分は同日に抽出してシートを埋めた
 - 実験の判定(`experiment_2x2/summarize.py`):Claude は判定・感度分析・補助分析から外し、「Claude:アフター期間の観測なし
   (2026-10-06 に計画的停止・費用ゼロ方針)。判定対象外」と出す。冒頭に「結論は Gemini（検索接続あり）での結果。Claude ではアフター期間の観測がないため、他のAIへの一般化は確認できていない」。
   Gemini の判定(主指標・再ランダム化検定・感度分析)は1文字も変えない(テストで確認)。ビフォーの Claude データは残す
 - ダッシュボード:Looker 用のタブ(lk_heatgrid・lk_mention_grid 等)とアプリは観測の行から作るので、Claude のセルは7日・28日の窓から外れると消える
   (0 にはならない)。実験の週次集計は Claude の列が0行になり「計画的に停止(欠測ではない)」と注記する。第3観測層のページは 10/03 から Claude 停止を表示済み
 - `output/interventions.csv` I-27・`config/experiment_freeze.yaml` の plan_changes に記録
+
+### 抽出と週次所見の Gemini への移行(2026-10-06・本田さん承認)
+
+- **抽出**:`settings.EXTRACT_MODEL = gemini-3.5-flash-lite`(`extract._call_gemini`。JSON だけを返させる・検索なし・呼び出しの間を4.5秒空ける)。
+  **週次所見**:`settings.INSIGHT_MODEL = gemini-3.5-flash`。どちらも Claude を呼ばない(計画的停止と無関係に動く)
+- **枠**:無料枠の1日の上限は**モデルごと**(429 の `quotaDimensions: {model: gemini-2.5-flash}`・`limit: 20`)。抽出・所見は観測
+  (gemini-2.5-flash)と別のモデルなので、観測の1日20回を使わない。gemini-3.5-flash-lite は 2026-10-06 の検証で100回続けて呼んで
+  429 が1回も出なかった(1日の上限は100回以上。正確な値は未確認)。必要なのは日次の日7回・第1水木 +6回・台帳の後日抽出の分。
+  gemini-2.5-flash-lite は「新規の利用者には提供終了」(404)で使えなかった。1日の枠を使い切った抽出は「抽出保留」にして翌日以降に回す
+- **精度の検証**(`output/reports/extract_gemini_validation_20261006.csv`):過去の回答100本(2026-08-25〜10-05。Claude・Gemini の回答50本ずつ、
+  否定あり20本を含む層別・seed 20261006)で、既存の Haiku の抽出と突き合わせた。**mention 100/100(100%)・negative_or_outdated 99/100(99%)**
+  で基準(95%以上)を満たした。食い違いの1本は E-1 の Claude の回答で、Gemini が「BtoB MA導入・運用支援」を現在形で語る記述を true にした
+  (Haiku は false)。参考:mention_type 96/100、rank 55/60(両方が言及ありの60本)
+- **検証の注意**:実測に使った鍵は手元の GEMINI_API_KEY。GitHub Actions の鍵が同じプロジェクトかは確かめていない(違えば上限も別)
+
+### Claude をやめて失うもの(2026-10-06 時点の一覧)
+
+| 失うもの | 内容と読み方 |
+|---|---|
+| **モデル間の比較** | 日次・月次・実験とも Claude の観測が無くなり、Claude と Gemini の違い(言及率・言及シェア・引用)を比べられない。実験の結論は Gemini(検索接続あり)だけの結果で、他の AI への一般化は確認できない |
+| **実験の Claude(副指標)** | アフター期間(10/6〜)の Claude は0本。10/05(月)の47本も Gemini の応答待ちで取れていない。Claude は判定対象外(ビフォーの記録は残す) |
+| **日次の指標の母数が半分** | 10/06 から日次の観測は Gemini の7本だけ(それまで Claude と合わせて14本)。言及率・言及シェアは1本あたりの振れが倍になる。**10/06 の前後で言及率・言及シェアの水準を直接比べない**(前は2モデルの平均) |
+| **否定の検知(R-P7)が止まって見える** | **9/22〜10/03 の否定の検知はすべて Claude の E-1 の回答**(Gemini の最後の検知は 9/19)。Claude を止めたので、10/06 以降に R-P7 が発火しなくなっても、**古い情報が解消したとは読まない**(観測するモデルが減った結果) |
+| **抽出のモデルが変わる** | Haiku → gemini-3.5-flash-lite。100本の検証で mention・否定の判定はほぼ一致(100%・99%)だが、mention_type・rank は数本ずつ違う。判定基準の変更点として 10/06 を記録(8/24 と同じ扱い。前後の細かい差は抽出のモデルの違いを含む) |
+| **週次所見の書き手が変わる** | Sonnet → gemini-3.5-flash。記述ルール(insight_style)の後処理は同じ。文体・踏み込み方は変わりうる |
+| **第3観測層の Claude と順位** | 10/03 から停止済み(Claude 54本・is_first / mention_rank)。順位の抽出(Haiku)は Gemini に移していない(停止のまま) |
+| **引用プローブの Claude** | 実験期間中は不使用。2027-01-01 以降も Claude では動かない(Claude を再開するまで) |
 
 ### Claude が止まっても Gemini の観測を続ける(2026-10-06)
 

@@ -1,7 +1,10 @@
 """extract.py — structured extraction from raw LLM answers (§4).
 
-Each stored answer is passed to a cheap Anthropic model (Haiku class) and
-reduced to the approved JSON schema below. One answer = one extraction call.
+Each stored answer is passed to a cheap model and reduced to the approved JSON
+schema below. One answer = one extraction call.
+2026-10-06 から Gemini(settings.EXTRACT_MODEL = gemini-3.5-flash-lite)。それまでは Claude Haiku。
+観測(gemini-2.5-flash)と別のモデルなので、観測の1日20回の枠は使わない。過去の回答100本の突き合わせで
+mention 100%・negative_or_outdated 99% 一致(README「Claude API の全停止」)。
 On JSON-validation failure the extraction is retried exactly once; a second
 failure produces an ``error`` record for that row.
 
@@ -27,7 +30,8 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 import claude_budget
-from settings import BRAND_ALIASES, DATA_RAW_DIR, EXTRACT_MODEL
+from settings import (BRAND_ALIASES, DATA_RAW_DIR, EXTRACT_MODEL, GEMINI_CALL_TIMEOUT_SECONDS,
+                      GEMINI_EXTRACT_MIN_INTERVAL_SECONDS)
 
 # --- Approved schema constants (§4) -----------------------------------------
 MENTION_TYPES = {"recommended_list", "mentioned_only", "none"}
@@ -167,7 +171,45 @@ def _validate(obj: Dict[str, Any]) -> Dict[str, Any]:
     return obj
 
 
+def provider_of(model: str) -> str:
+    """抽出モデルの提供元(model 名の先頭で決める)。"""
+    return "gemini" if str(model).startswith(("gemini", "gemma")) else "claude"
+
+
+_LAST_GEMINI_CALL = [0.0]
+
+
+def _call_gemini(prompt: str, model: str) -> str:
+    """Gemini で抽出する(2026-10-06。Claude を計画的に停止したため)。
+
+    観測(gemini-2.5-flash)と**別のモデル**にする:無料枠の1日の上限はモデルごとに数えられる
+    (429 の quotaDimensions が model 単位)。JSON だけを返させる(response_mime_type)。検索は使わない。
+    1分あたりの上限に当たらないよう、呼び出しの間を GEMINI_EXTRACT_MIN_INTERVAL_SECONDS 空ける。
+    """
+    import time
+
+    import collect_llm
+    from google import genai
+    from google.genai import types
+
+    wait = _LAST_GEMINI_CALL[0] + GEMINI_EXTRACT_MIN_INTERVAL_SECONDS - time.monotonic()
+    if wait > 0:
+        time.sleep(wait)
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"],
+                          http_options=types.HttpOptions(timeout=int(GEMINI_CALL_TIMEOUT_SECONDS * 1000)))
+    try:
+        resp = collect_llm._with_deadline(lambda: client.models.generate_content(
+            model=model, contents=prompt,
+            config=types.GenerateContentConfig(response_mime_type="application/json", temperature=0),
+        ), GEMINI_CALL_TIMEOUT_SECONDS + collect_llm.DEADLINE_SLACK_SECONDS, label="Gemini 抽出")
+    finally:
+        _LAST_GEMINI_CALL[0] = time.monotonic()
+    return getattr(resp, "text", "") or ""
+
+
 def _call_model(prompt: str) -> str:
+    if provider_of(EXTRACT_MODEL) == "gemini":
+        return _call_gemini(prompt, EXTRACT_MODEL)
     import anthropic
 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
@@ -192,6 +234,22 @@ def _call_model(prompt: str) -> str:
 
 # 抽出保留(2026-10-06)。Claude が使えない日の抽出結果に付ける印(error の先頭と、同名の True の項目)
 PENDING = "extraction_pending"
+
+
+def _is_gemini_daily_quota(exc: Exception) -> bool:
+    text = str(exc)
+    return "429" in text[:40] and ("PerDay" in text or "per_day" in text.lower())
+
+
+def _pause_after_minute_quota(exc: Exception) -> None:
+    """1分あたりの上限(429・PerDay 以外)なら、次の試行の前に待つ(最大65秒)。"""
+    import re
+    import time
+    text = str(exc)
+    if "429" not in text[:40] or _is_gemini_daily_quota(exc):
+        return
+    m = re.search(r"retry in ([0-9.]+)s", text) or re.search(r"'retryDelay': '([0-9.]+)s'", text)
+    time.sleep(min(float(m.group(1)) + 1 if m else 30.0, 65.0))
 
 
 def is_pending(rec: Dict[str, Any]) -> bool:
@@ -231,14 +289,19 @@ def extract_record(record: Dict[str, Any]) -> Dict[str, Any]:
             obj["all_cited_urls"] = all_urls
             obj["cited_crosscom_urls"] = crosscom_urls
             return {**base, **obj, "error": None}
-        except claude_budget.ClaudeStopped as exc:
-            # Claude を止めている日(クレジット不足・1日の上限。2026-10-06)。取り直さず「抽出保留」にする。
-            # 回答(raw)は残っているので、Claude が使える日に extract_pending がまとめて抽出する
-            print(f"[warn] extract {base['prompt_id']}/{base['model']}: 抽出保留 — {exc}")
-            return {**base, "error": f"{PENDING}: {exc}", PENDING: True}
-        except Exception as exc:  # noqa: BLE001
+        except Exception as exc:  # noqa: BLE001 - 種類で振り分ける
+            # Claude を止めている日(計画的停止・クレジット不足・1日の上限)と、Gemini の抽出モデルの1日の枠を
+            # 使い切った日は、取り直さず「抽出保留」にする(回答は data/raw にあり、extract_pending が後日まとめて抽出する)
+            if _is_gemini_daily_quota(exc):
+                # 抽出モデルの1日の枠を使い切った(Gemini)。取り直さず保留にし、翌日以降にまとめて抽出する
+                print(f"[warn] extract {base['prompt_id']}/{base['model']}: 抽出保留(Gemini の1日の枠) — {exc}")
+                return {**base, "error": f"{PENDING}: gemini_daily_quota: {str(exc)[:200]}", PENDING: True}
+            if isinstance(exc, claude_budget.ClaudeStopped):
+                print(f"[warn] extract {base['prompt_id']}/{base['model']}: 抽出保留 — {exc}")
+                return {**base, "error": f"{PENDING}: {exc}", PENDING: True}
             last_err = str(exc)
             print(f"[warn] extract {base['prompt_id']}/{base['model']} attempt {attempt} failed: {exc}")
+            _pause_after_minute_quota(exc)
 
     print(f"[error] extract {base['prompt_id']}/{base['model']}: {last_err}")
     return {**base, "error": last_err}

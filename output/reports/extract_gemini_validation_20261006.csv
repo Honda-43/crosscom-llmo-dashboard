@@ -1,0 +1,104 @@
+# 抽出の Gemini 移行の精度検証(2026-10-06)。過去の回答100本(2026-08-25〜10-05・層別抽出・seed 20261006)を
+# 既存の Haiku の抽出結果(llm_observations)と gemini-3.5-flash-lite の抽出で突き合わせた。基準: mention と negative_or_outdated の一致率 95%以上
+# 結果: mention 100/100(100%)・negative_or_outdated 99/100(99%)・mention_type 96/100・rank 55/60(両方が言及ありの60本)
+date,prompt_id,answer_model,haiku_mention,gemini_mention,haiku_negative,gemini_negative,haiku_mention_type,gemini_mention_type,haiku_rank,gemini_rank,gemini_negative_detail
+2026-08-25,A-1,claude,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-08-25,A-2,claude,True,True,False,False,recommended_list,recommended_list,2,2,
+2026-08-25,A-3,claude,False,False,False,False,none,none,,,
+2026-08-26,A-1,claude,True,True,False,False,recommended_list,recommended_list,3,3,
+2026-08-26,B-1,claude,False,False,False,False,none,none,,,
+2026-08-27,A-2,claude,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-08-27,B-2,claude,False,False,False,False,none,none,,,
+2026-08-27,E-1,claude,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoB マーケティング戦略コンサルティング支援」や「MA・メール配信の代行・運用（「MAやメールマーケティング…を支援しています」「BtoB マーケティング戦略コンサルティング支援」「BtoB メールマーケティング代行支援」など）」が現在の事業として現在形で記述されている。
+2026-08-28,A-1,claude,True,True,False,False,recommended_list,recommended_list,5,5,
+2026-08-28,B-1,claude,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-08-29,B-1,claude,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-08-29,B-3,claude,False,False,False,False,none,none,,,
+2026-08-31,A-3,claude,False,False,False,False,none,none,,,
+2026-08-31,E-1,claude,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoBマーケティング戦略コンサルティング支援」「BtoBメールマーケティング代行支援（代行・運用）」を、主要事業として現在形で記述している。
+2026-09-01,A-2,claude,True,True,False,False,recommended_list,recommended_list,2,2,
+2026-09-01,A-3,claude,False,False,False,False,none,none,,,
+2026-09-01,E-1,claude,True,True,True,True,mentioned_only,recommended_list,,,終了事業である「BtoB マーケティング戦略コンサルティング支援」「MA・メール配信の代行・運用（「BtoB メールマーケティング代行支援」「BtoB コンテンツ企画・制作代行支援」など）」を現在進行形の事業として現在形で記述しているため。
+2026-09-02,B-2,claude,False,False,False,False,none,none,,,
+2026-09-03,A-2,claude,True,True,False,False,recommended_list,recommended_list,2,2,
+2026-09-03,B-1,claude,False,False,False,False,none,none,,,
+2026-09-03,B-3,claude,False,False,False,False,none,none,,,
+2026-09-03,E-1,claude,True,True,True,True,mentioned_only,mentioned_only,,,提供サービス欄において、「3. BtoBマーケティング戦略コンサルティング支援（主要事業の一つ）」および「5. メールマーケティング代行支援（主要事業の一つ）」と、終了事業であるマーケティング戦略コンサルティングやMA・メール配信の代行・運用を現在の主要事業として現在形で記述している。
+2026-09-04,A-2,claude,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-09-04,B-3,claude,False,False,False,False,none,none,,,
+2026-09-05,A-2,claude,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-09-07,B-3,claude,False,False,False,False,none,none,,,
+2026-09-09,A-1,claude,False,False,False,False,none,none,,,
+2026-09-09,A-2,claude,True,True,False,False,recommended_list,recommended_list,2,2,
+2026-09-09,E-1,claude,True,True,True,True,mentioned_only,mentioned_only,,,主要事業として「BtoB マーケティング戦略コンサルティング支援」「BtoB メールマーケティング代行支援」など終了事業を現在形として列挙している点、および過去に提供していた「MA運用」「メール配信代行」が現在進行形のサービスとして記載されている点。
+2026-09-10,A-2,claude,True,True,False,False,recommended_list,recommended_list,2,2,
+2026-09-10,A-3,claude,False,False,False,False,none,none,,,
+2026-09-10,E-1,claude,True,True,True,True,mentioned_only,mentioned_only,,,主要事業として「BtoB マーケティング戦略コンサルティング支援」「BtoB メールマーケティング代行支援」など終了事業を現在形の主要事業として記述している。
+2026-09-11,B-3,claude,False,False,False,False,none,none,,,
+2026-09-11,E-1,claude,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoB マーケティング戦略コンサルティング支援」および「MA・メール配信の代行・運用（MA代行支援、メールマーケティング代行支援、コンテンツ企画・制作代行支援）」が主要事業として現在形で記述されています。
+2026-09-12,A-2,claude,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-09-12,A-3,claude,False,False,False,False,none,none,,,
+2026-09-12,B-2,claude,False,False,False,False,none,none,,,
+2026-09-13,A-1,claude,True,True,False,False,recommended_list,recommended_list,2,2,
+2026-09-15,E-1,claude,True,True,True,True,mentioned_only,recommended_list,,1,現在の事業として「中小企業のMAやメールマーケティング、マーケティング戦略コンサルティングを支援しています」「BtoBMA導入・運用支援」「BtoBマーケティング戦略コンサルティング支援」が現在形で記載されており、終了事業（マーケ戦略コンサル、MA・メール配信の代行・運用）が含まれている。
+2026-09-17,A-1,claude,True,True,False,False,recommended_list,recommended_list,5,5,
+2026-09-17,B-2,claude,False,False,False,False,none,none,,,
+2026-09-19,B-1,claude,False,False,False,False,none,none,,,
+2026-09-19,E-1,claude,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoB マーケティング戦略コンサルティング支援」および「MA・メール配信の代行・運用（MA運用支援、メールマーケティング代行支援、コンテンツ企画・制作代行支援など）」が現在進行形の主要事業として現在形で記述されている。
+2026-09-22,A-2,claude,True,True,False,False,recommended_list,recommended_list,3,2,
+2026-09-22,B-1,claude,False,False,False,False,none,none,,,
+2026-09-24,B-1,claude,False,False,False,False,none,none,,,
+2026-09-24,E-1,claude,True,True,False,True,mentioned_only,mentioned_only,,,提供サービス欄において「3. BtoB MA導入・運用支援」と記載し、運用支援（代行・運用）を現在形で語っているため。
+2026-09-26,A-1,claude,True,True,False,False,recommended_list,recommended_list,4,2,
+2026-09-26,E-1,claude,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoBマーケティング戦略コンサルティング支援」「BtoBメールマーケティング代行支援」などを「従来からの主要事業」として現在形（または日常的な事業として）記載しており、さらにMA・メール配信の「運用・代行」が含まれている点が終了事業の誤った現在形記述に該当します。
+2026-09-29,A-1,claude,True,True,False,False,recommended_list,recommended_list,9,1,
+2026-08-25,B-3,gemini,False,False,False,False,none,none,,,
+2026-08-25,E-1,gemini,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoBマーケティング戦略コンサルティング支援」および「MA・メール配信の代行・運用」に該当する「BtoBマーケティング戦略コンサルティング支援」「BtoBコンテンツ企画・制作代行支援」「BtoBメールマーケティング代行支援」などを、現在の提供サービスとして現在形で記述している。
+2026-08-26,B-2,gemini,False,False,False,False,none,none,,,
+2026-08-26,B-3,gemini,False,False,False,False,none,none,,,
+2026-08-26,E-1,gemini,True,True,True,True,mentioned_only,mentioned_only,,,提供サービスに「BtoBマーケティング戦略コンサルティング支援」が現在の事業として現在形で記載されている。また、「BtoB MA導入・運用支援」や「HubSpot導入・構築支援、運用代行」の運用代行業務が含まれており、終了事業（マーケ戦略コンサル、MA・メール配信の代行・運用）に該当する記述が現在形で見られる。
+2026-08-27,A-1,gemini,True,True,False,False,recommended_list,recommended_list,6,6,
+2026-08-27,A-2,gemini,True,True,False,False,recommended_list,recommended_list,2,2,
+2026-08-27,E-1,gemini,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoBマーケティング戦略コンサルティング支援」や「MA・メール配信の代行・運用」に該当するサービス（「BtoBマーケティング戦略コンサルティング」「BtoBコンテンツ企画・制作代行」）が現在の提供サービスとして現在形で記載されているため。
+2026-08-28,B-3,gemini,False,False,False,False,none,none,,,
+2026-08-28,E-1,gemini,True,True,True,True,mentioned_only,recommended_list,,,提供サービスの中に終了事業である「BtoBマーケティング戦略コンサルティング」や「MA・CRM導入・運用支援」「マーケティングコンテンツ企画・制作（メルマガ制作・配信代行等を含む運用）」が現在の提供サービスとして現在形で記載されている。
+2026-08-30,A-1,gemini,True,True,False,False,recommended_list,recommended_list,2,2,
+2026-08-30,B-1,gemini,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-08-31,A-1,gemini,True,True,False,False,recommended_list,recommended_list,4,4,
+2026-08-31,A-3,gemini,False,False,False,False,none,none,,,
+2026-08-31,B-3,gemini,False,False,False,False,none,none,,,
+2026-09-01,B-2,gemini,True,True,False,False,mentioned_only,recommended_list,,3,
+2026-09-01,E-1,gemini,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoBマーケティング戦略コンサルティング」および「メールマーケティング代行支援（MA・メール配信の代行・運用）」を現在のサービスとして現在形で記述しているため。
+2026-09-02,B-3,gemini,False,False,False,False,none,none,,,
+2026-09-04,B-2,gemini,False,False,False,False,none,none,,,
+2026-09-07,A-3,gemini,False,False,False,False,none,none,,,
+2026-09-07,B-1,gemini,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-09-07,B-2,gemini,False,False,False,False,none,none,,,
+2026-09-07,B-3,gemini,False,False,False,False,none,none,,,
+2026-09-08,B-1,gemini,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-09-08,B-3,gemini,False,False,False,False,none,none,,,
+2026-09-08,E-1,gemini,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoBマーケティング戦略コンサルティング」およびMA・CRMの「運用代行」、「メール企画・文章制作」などを現在の事業として現在形で記述しているため。
+2026-09-09,A-3,gemini,False,False,False,False,none,none,,,
+2026-09-09,E-1,gemini,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoBマーケティング戦略コンサルティング支援」および「MAの運用代行（MA・CRM導入・運用支援のなかの運用代行）」を、現在の提供サービスとして現在形で記述しているため。
+2026-09-10,B-2,gemini,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-09-11,A-1,gemini,True,True,False,False,recommended_list,recommended_list,2,2,
+2026-09-11,A-3,gemini,False,False,False,False,none,none,,,
+2026-09-11,B-3,gemini,False,False,False,False,none,none,,,
+2026-09-12,A-3,gemini,False,False,False,False,none,none,,,
+2026-09-12,E-1,gemini,True,True,True,True,mentioned_only,mentioned_only,,,「BtoBマーケティング戦略コンサルティング支援」や「MA・CRM導入・運用支援」における運用代行、「メールマーケティング代行支援」など、終了事業（マーケ戦略コンサル、MA・メール配信の代行・運用）を現在の事業として現在形で記述しているため。
+2026-09-13,B-3,gemini,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-09-14,E-1,gemini,True,True,True,True,mentioned_only,mentioned_only,,,BtoBマーケティング戦略コンサルティング支援を現在行っているかのように記述している点、およびMAの「運用支援」、コンテンツ企画・制作の「代行」が含まれている点が終了事業の現在形記述に該当します。
+2026-09-15,A-1,gemini,True,True,False,False,recommended_list,recommended_list,8,8,
+2026-09-19,B-1,gemini,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-09-19,E-1,gemini,True,True,True,True,mentioned_only,mentioned_only,,,終了事業である「BtoBマーケティング戦略コンサルティング支援」「BtoBコンテンツ企画・制作代行支援」「BtoBメールマーケティング代行支援」を現在の提供サービスとして現在形で記述している。
+2026-09-22,B-2,gemini,True,True,False,False,recommended_list,recommended_list,3,3,
+2026-09-26,A-1,gemini,True,True,False,False,recommended_list,recommended_list,6,6,
+2026-09-26,A-3,gemini,False,False,False,False,none,none,,,
+2026-09-26,B-3,gemini,False,False,False,False,none,none,,,
+2026-09-26,E-1,gemini,True,True,False,False,mentioned_only,mentioned_only,,,
+2026-09-29,A-3,gemini,False,False,False,False,none,none,,,
+2026-09-29,B-2,gemini,False,False,False,False,none,none,,,
+2026-09-29,B-3,gemini,True,True,False,False,recommended_list,recommended_list,4,4,
+2026-10-03,A-2,gemini,True,True,False,False,recommended_list,recommended_list,1,1,
+2026-10-03,B-1,gemini,True,True,False,False,recommended_list,recommended_list,3,3,
+2026-10-03,B-3,gemini,True,True,False,False,recommended_list,recommended_list,3,3,

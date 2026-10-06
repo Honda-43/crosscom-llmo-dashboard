@@ -296,8 +296,40 @@ class TruncatedResponse(RuntimeError):
     """
 
 
+def _call_gemini(system: str, user: str, model: str, max_tokens: int) -> str:
+    """Gemini で所見を書く(2026-10-06。Claude を計画的に停止したため)。
+
+    観測(gemini-2.5-flash)と別のモデルにする(無料枠の1日の上限はモデルごと)。週1回・1〜2回の呼び出し。
+    finish_reason が MAX_TOKENS なら TruncatedResponse(Claude の max_tokens と同じ扱い)。
+    """
+    import os
+
+    import collect_llm
+    from google import genai
+    from google.genai import types
+    from settings import GEMINI_CALL_TIMEOUT_SECONDS
+
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"],
+                          http_options=types.HttpOptions(timeout=int(GEMINI_CALL_TIMEOUT_SECONDS * 1000)))
+    resp = collect_llm._with_deadline(lambda: client.models.generate_content(
+        model=model, contents=user,
+        config=types.GenerateContentConfig(system_instruction=system, max_output_tokens=max_tokens),
+    ), GEMINI_CALL_TIMEOUT_SECONDS + collect_llm.DEADLINE_SLACK_SECONDS, label="Gemini 所見")
+    text = (getattr(resp, "text", "") or "").strip()
+    reason = ""
+    for cand in getattr(resp, "candidates", []) or []:
+        reason = str(getattr(getattr(cand, "finish_reason", None), "name", getattr(cand, "finish_reason", "")))
+        break
+    print(f"[ok] _call_model(gemini): finish_reason={reason} max_tokens={max_tokens} chars={len(text)}")
+    if reason == "MAX_TOKENS":
+        raise TruncatedResponse(f"応答が max_output_tokens={max_tokens} で打ち切られました(本文 {len(text)}字)")
+    return text
+
+
 def _call_model(system: str, user: str, model: str,
                 max_tokens: int = INSIGHT_MAX_TOKENS) -> str:
+    if str(model).startswith("gemini"):
+        return _call_gemini(system, user, model, max_tokens)
     import anthropic
 
     client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
@@ -528,7 +560,7 @@ def generate(stats: Dict[str, Any], model: Optional[str] = None,
     ``actions`` は action_log の行。``None`` ならシートから読む(§A)。
     """
     model = model or INSIGHT_MODEL
-    if claude_budget.claude_stopped():
+    if not str(model).startswith("gemini") and claude_budget.claude_stopped():
         # 2026-10-06 から Claude を計画的に停止(費用ゼロ方針)。所見の文章は作らず、数値の表だけで出す。
         # 想定どおりなので error は空(週次を失敗にしない)
         note = (f"> ※ {claude_budget.claude_planned_stop_from()} から Claude API を計画的に停止(費用ゼロ方針・本田さん決定)。"

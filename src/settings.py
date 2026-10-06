@@ -614,12 +614,18 @@ def enabled_models() -> List[str]:
 # --------------------------------------------------------------------------
 # Extraction model (§4) — cheapest current Anthropic model (Haiku class).
 # --------------------------------------------------------------------------
-EXTRACT_MODEL = os.getenv("EXTRACT_MODEL", "claude-haiku-4-5-20251001")
+# 2026-10-06 から Gemini(Claude を計画的に停止したため)。観測(gemini-2.5-flash)と別のモデルにして、
+# 観測の1日20回の枠を使わない(無料枠の上限はモデルごと)。gemini-2.5-flash-lite は「新規の利用者には提供終了」(404)
+# のため 3.5 Flash Lite。2026-10-06 に過去の回答100本で Haiku と突き合わせ、mention 100%・negative_or_outdated 99% 一致
+EXTRACT_MODEL = os.getenv("EXTRACT_MODEL", "gemini-3.5-flash-lite")
+# Gemini で抽出するときの呼び出しの間隔(秒。1分あたりの上限に当たらないように。2026-10-06)
+GEMINI_EXTRACT_MIN_INTERVAL_SECONDS = float(os.getenv("GEMINI_EXTRACT_MIN_INTERVAL_SECONDS", "4.5"))
 
 # --------------------------------------------------------------------------
 # Weekly insight model (Phase 2 §3) — Sonnet class, one call per week.
 # --------------------------------------------------------------------------
-INSIGHT_MODEL = os.getenv("INSIGHT_MODEL", "claude-sonnet-5")
+# 週次所見も 2026-10-06 から Gemini(観測・抽出と別のモデル。週1〜2回)
+INSIGHT_MODEL = os.getenv("INSIGHT_MODEL", "gemini-3.5-flash")
 INSIGHT_MAX_CHARS = int(os.getenv("INSIGHT_MAX_CHARS", "2000"))
 
 # 出力トークンの上限。INSIGHT_MAX_CHARS(本文の字数)とは別物で、こちらは

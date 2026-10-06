@@ -29,6 +29,10 @@ def _claude_budget_isolated(tmp_path, tmp_path_factory, monkeypatch):
     import extract_pending
     monkeypatch.setattr(extract_pending, "PENDING_DIR", tmp_path_factory.mktemp("extract_pending"))
     monkeypatch.delenv("CLAUDE_DAILY_CAP", raising=False)
+    # テストから本物の API を呼ばない(2026-10-06:抽出を Gemini に移したあと、手元の GEMINI_API_KEY で
+    # 本物の抽出が走りかけた)。鍵が要るテストは monkeypatch.setenv で偽の鍵を入れ、呼び出しも差し替える
+    for key in ("GEMINI_API_KEY", "ANTHROPIC_API_KEY", "OPENAI_API_KEY", "PERPLEXITY_API_KEY"):
+        monkeypatch.delenv(key, raising=False)
     claude_budget.reset()
     yield
     claude_budget.reset()

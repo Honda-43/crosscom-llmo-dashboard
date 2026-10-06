@@ -117,7 +117,8 @@ def test_the_guard_stops_every_call_without_marking_a_failure(claude_stop, tmp_p
     assert ok, "計画的停止はワークフローを失敗にしない(Slack の失敗通知・上限の警告を出さない)"
 
 
-def test_extraction_is_held_as_pending_with_the_reason(claude_stop, no_anthropic):
+def test_extraction_is_held_as_pending_with_the_reason(claude_stop, no_anthropic, monkeypatch):
+    monkeypatch.setattr(extract, "EXTRACT_MODEL", "claude-haiku-4-5-20251001")   # Claude の抽出の経路を確かめる
     got = extract.extract_record({"date": "2026-10-08", "prompt_id": "A-1", "model": "gemini",
                                   "answer": "本文", "cited_urls": []})
     assert extract.is_pending(got) and got["error"].startswith("extraction_pending: planned_stop")
@@ -125,7 +126,7 @@ def test_extraction_is_held_as_pending_with_the_reason(claude_stop, no_anthropic
 
 def test_the_weekly_insight_is_numbers_only_and_not_a_failure(claude_stop, no_anthropic, monkeypatch):
     monkeypatch.setattr(generate_insight, "fallback_report", lambda stats: "## 数値")
-    got = generate_insight.generate({"date": "2026-10-12"})
+    got = generate_insight.generate({"date": "2026-10-12"}, model="claude-sonnet-5")   # Claude の所見の経路
     assert got["source"] == "numbers_only" and got["error"] is None
     assert "計画的に停止" in got["report_md"] and got["report_md"].endswith("## 数値")
 

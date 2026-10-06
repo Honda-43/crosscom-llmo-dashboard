@@ -151,6 +151,7 @@ def test_a_credit_stop_seen_by_an_earlier_job_stops_later_jobs(tmp_path, fake_an
 
 
 def test_extraction_and_the_weekly_insight_go_through_the_cap(monkeypatch, tmp_path, fake_anthropic):
+    monkeypatch.setattr(extract, "EXTRACT_MODEL", "claude-haiku-4-5-20251001")   # Claude の抽出の経路を確かめる
     claude_budget.start("daily", "2026-10-13", usage_dir=tmp_path, read_origin=False)
     FakeClient.fail = CREDIT_400
     got = extract.extract_record({"prompt_id": "A-1", "model": "gemini", "answer": "本文",

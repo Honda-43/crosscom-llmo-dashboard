@@ -118,6 +118,7 @@ def test_wait_only_waits_and_observes_nothing(monkeypatch):
 
 # --- 2. 抽出保留 -------------------------------------------------------------------------
 def _stop_claude(monkeypatch, tmp_path):
+    monkeypatch.setattr(extract, "EXTRACT_MODEL", "claude-haiku-4-5-20251001")   # Claude の抽出の経路を確かめる
     monkeypatch.setenv("CLAUDE_DAILY_CAP", "0")
     claude_budget.start("daily", "2026-10-13", usage_dir=tmp_path / "usage", read_origin=False)
     class NoCall:
