@@ -36,6 +36,7 @@ import collect_gsc
 import collect_llm
 import force_log
 import extract
+import extract_pending
 import looker_tabs
 import notify_slack
 import retired_urls
@@ -185,6 +186,17 @@ def main() -> None:
         lambda: [extract.extract_record(r) for r in records],
         failures,
     ) or []
+    # Claude を止めている日(クレジット不足・1日の上限)は抽出を「保留」にする(2026-10-06)。
+    # 保留した観測はシートに書かず、その日の言及率・言及シェアにも入れない(Gemini の回答が空の行・0% にならない)。
+    # 回答は data/raw にあり、台帳(data/extract_pending)を見て Claude が使える日にまとめて抽出する
+    extractions, pending = extract_pending.split(extractions)
+    if pending:
+        left = _run("save_extract_pending",
+                    lambda: extract_pending.save("daily", date, pending), failures)
+        by_model = ", ".join(f"{m} {sum(1 for e in pending if e.get('model') == m)}件"
+                             for m in sorted({e.get("model") for e in pending}))
+        summary_lines.append(f"- ⏸ 抽出保留 {len(pending)}件({by_model}):Claude が止まっているため。"
+                             f"回答は保存済みで、Claude が使える日にまとめて抽出する(台帳 {left}件)")
 
     # Analysis phases (Phase 1 §2 / §3). analyze_diff compares today's
     # extractions against the previous observation day still stored in Sheets,
@@ -240,6 +252,13 @@ def main() -> None:
     _run("write_gsc_pages", lambda: sheets_writer.write_gsc_pages(gsc_page_rows), failures)
     if summary is not None:
         _run("write_daily_summary", lambda: sheets_writer.write_daily_summary(summary), failures)
+
+    # 前の日までの抽出保留を、Claude が使えれば抽出してシートに書く(2026-10-06)。
+    # 今日の抽出を先に済ませてから(1日の上限を今日の分に先に使う)。Claude がまだ止まっていれば何もしない
+    if extract_pending.count():
+        caught = _run("extract_catch_up", lambda: extract_pending.catch_up(), failures)
+        if caught:
+            summary_lines.append(f"- 抽出保留の後日抽出: {caught['done']}件(残り {caught['left']}件)")
 
     # ------------------------------------------------------------------
     # Looker Studio 用の表示タブ(Phase 6 §1・§2)

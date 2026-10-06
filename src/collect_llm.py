@@ -38,6 +38,7 @@ import claude_budget
 from settings import (
     BACKOFF_BASE_SECONDS,
     DATA_RAW_DIR,
+    GEMINI_CALL_TIMEOUT_SECONDS,
     MAX_RETRIES,
     MODEL_CONFIG,
     RETRY_DELAY_CAP_SECONDS,
@@ -256,18 +257,58 @@ def _query_chatgpt(prompt_text: str, model: str) -> Tuple[str, List[str]]:
     return answer, citations
 
 
+# SDK の HTTP の時間切れより少し長く待ってから、全体を打ち切る(秒)
+DEADLINE_SLACK_SECONDS = 5.0
+
+
+class GeminiTimeout(RuntimeError):
+    """Gemini の応答が時間内に返らなかった。文面は 503 で始まり、503 と同じ扱いで取り直す。"""
+
+
+def _with_deadline(fn, seconds: float, label: str = "Gemini"):
+    """``fn()`` を別スレッドで動かし、``seconds`` 秒で返らなければ GeminiTimeout(2026-10-06)。
+
+    SDK の HTTP の時間切れ(http_options.timeout)に加えて、全体の時間をここで必ず区切る
+    (10/05 は応答が返らないまま4時間止まった)。待ちきれなかったスレッドは結果を捨てて放っておく。
+    """
+    import threading
+
+    box: Dict[str, Any] = {}
+
+    def run() -> None:
+        try:
+            box["value"] = fn()
+        except BaseException as exc:  # noqa: BLE001 - 呼び出し側でそのまま上げ直す
+            box["error"] = exc
+
+    worker = threading.Thread(target=run, name=f"{label}-call", daemon=True)
+    worker.start()
+    worker.join(seconds)
+    if worker.is_alive():
+        raise GeminiTimeout(f"503 UNAVAILABLE (時間切れ): {label} の応答が {seconds:.0f}秒以内に返らなかった")
+    if "error" in box:
+        exc = box["error"]
+        if "timeout" in type(exc).__name__.lower() or "timed out" in str(exc).lower():
+            # SDK・HTTP の時間切れ(httpx.ReadTimeout など)も 503 と同じ扱いにする
+            raise GeminiTimeout(f"503 UNAVAILABLE (時間切れ): {type(exc).__name__}: {exc}") from exc
+        raise exc
+    return box.get("value")
+
+
 def _query_gemini(prompt_text: str, model: str) -> Tuple[str, List[str], str]:
     from google import genai
     from google.genai import types
 
-    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
-    resp = client.models.generate_content(
+    timeout = GEMINI_CALL_TIMEOUT_SECONDS
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"],
+                          http_options=types.HttpOptions(timeout=int(timeout * 1000)))  # ミリ秒
+    resp = _with_deadline(lambda: client.models.generate_content(
         model=model,
         contents=prompt_text,
         config=types.GenerateContentConfig(
             tools=[types.Tool(google_search=types.GoogleSearch())],
         ),
-    )
+    ), timeout + DEADLINE_SLACK_SECONDS)
     answer = getattr(resp, "text", "") or ""
     citations: List[str] = []
     stop_reason = ""

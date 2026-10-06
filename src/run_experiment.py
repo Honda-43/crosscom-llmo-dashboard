@@ -593,11 +593,23 @@ def main() -> None:
     ap.add_argument("--force", action="store_true",
                     help="その日に成功した観測も取り直して置き換える(--reason 必須・日誌に記録)")
     ap.add_argument("--reason", help="--force の理由(日誌に残す)")
+    ap.add_argument("--wait-only", action="store_true",
+                    help="日次・月次の Gemini が揃うまで待つだけで終わる(観測しない。experiment.yml の待ちジョブ)")
     args = ap.parse_args()
     reason = force_log.require_reason(args.force, args.reason, "その日の成功した観測")
 
     date = args.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
     plan = experiment_plan(date)
+    if args.wait_only:
+        # 2026-10-06:待ちを観測と別のジョブに分けた。観測のジョブは1時間で打ち切るので、
+        # 日次・月次の完了待ち(最大90分)はここで済ませる。API は呼ばない。揃わなくても失敗にしない
+        # (観測のジョブがもう一度短く待ち、揃わなければ従来どおり Gemini を投げずに記録する)
+        if plan.get("gemini") and has_prior_gemini_run(date):
+            used = wait_for_prior_runs(date)
+            print(f"[info] 待ち終わり: {'揃わない' if used is None else f'実消費 {used}回'}")
+        else:
+            print("[info] この日は日次・月次を待つ必要がない")
+        return
     # Claude API の1日の呼び出し上限(2026-10-03)。回数は実際に呼ぶ日(JST の今日)で数える
     claude_budget.start("experiment")
     # failures は exit 1、warnings は exit 0(警告だけ出して正常終了)。

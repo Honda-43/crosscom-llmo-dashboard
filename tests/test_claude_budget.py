@@ -153,7 +153,8 @@ def test_extraction_and_the_weekly_insight_go_through_the_cap(monkeypatch, tmp_p
     FakeClient.fail = CREDIT_400
     got = extract.extract_record({"prompt_id": "A-1", "model": "gemini", "answer": "本文",
                                   "cited_urls": []})
-    assert got["error"].startswith("credit_exhausted"), "2回目の試行は投げずに止まる"
+    # 2回目の試行は投げずに止まり、抽出保留になる(2026-10-06。後日 extract_pending がまとめて抽出する)
+    assert got["error"].startswith("extraction_pending: credit_exhausted") and extract.is_pending(got)
     assert FakeClient.calls == 1
     with pytest.raises(claude_budget.ClaudeStopped):
         generate_insight._call_model("s", "u", "m")

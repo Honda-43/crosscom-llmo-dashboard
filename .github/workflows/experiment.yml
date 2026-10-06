@@ -30,15 +30,45 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  experiment:
+  # 日次・月次の完了待ち(2026-10-06 に観測のジョブから分けた)。API は呼ばず、origin を見て待つだけ。
+  # 観測のジョブを1時間で打ち切れるようにするため(10/05 は Gemini の応答待ちで4時間止まり、気づくのが遅れた)。
+  wait:
     runs-on: ubuntu-latest
-    timeout-minutes: 240   # 日次待ち(最大90分)+ Claude 47本
+    timeout-minutes: 100   # 日次・月次待ち(最大90分)+ 準備
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Wait for the daily and monthly Gemini runs
+        working-directory: src
+        run: |
+          python run_experiment.py --wait-only \
+            ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
+
+  experiment:
+    needs: wait
+    if: ${{ !cancelled() }}   # 待ちのジョブが落ちても観測はする(観測のジョブがもう一度短く待つ)
+    runs-on: ubuntu-latest
+    # 観測だけの制限時間(2026-10-06:4時間→1時間)。月曜の Gemini 16本 + Claude 47本で約30分。
+    # Gemini の1回の呼び出しは180秒で打ち切って取り直す(collect_llm)ので、止まっても1時間で気づける
+    timeout-minutes: 60
     env:
       GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
       GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
       SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
       SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      # 待ちは前のジョブで済ませてある。ここでは短く確かめ直すだけ(揃わなければ従来どおり Gemini を投げずに記録)
+      EXPERIMENT_DAILY_WAIT_MINUTES: '10'
     steps:
       - name: Checkout
         uses: actions/checkout@v4

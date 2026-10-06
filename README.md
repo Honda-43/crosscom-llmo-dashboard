@@ -152,6 +152,26 @@ crosscom-llmo-dashboard/
 - **chatgpt / Perplexity 有効化は「キー登録 + `ENABLE_CHATGPT=true` / `ENABLE_PERPLEXITY=true`」のみでコード変更不要**。`OPENAI_API_KEY` / `PERPLEXITY_API_KEY` 未設定でもパイプラインはエラーにならない。
 - モデル名は `OPENAI_MODEL` / `GEMINI_MODEL` / `ANTHROPIC_MODEL` / `EXTRACT_MODEL` で上書き可能。
 
+### Claude が止まっても Gemini の観測を続ける(2026-10-06)
+
+- **Gemini の1回の呼び出しは180秒で打ち切る**(`settings.GEMINI_CALL_TIMEOUT_SECONDS`。SDK の HTTP の時間切れと、
+  全体を区切る見張りの両方)。打ち切りは `503 UNAVAILABLE (時間切れ)` として、503 と同じ規則で取り直す。
+  2026-10-05 の実験は Gemini の応答が返らないまま4時間制限まで止まり、Claude の観測まで進まなかった
+- **実験のワークフローは2つのジョブに分けた**:`wait`(日次・月次の Gemini の完了待ち。最大90分・API は呼ばない・制限100分)→
+  `experiment`(観測。**制限1時間**。前のジョブで待ち終わっているので、ここでは10分だけ確かめ直す)。
+  止まった場合に1時間で気づける。待ちのジョブが落ちても観測のジョブは走る
+- **抽出保留**:抽出は Claude(Haiku)なので、Claude が止まった日(クレジット不足・1日の上限)は Gemini の回答も抽出できない。
+  2026-10-06 はこれで Gemini の行が空のまま llm_observations に入り、daily_summary の言及率が 0% になった。今後は
+  - Claude が止まっている日の抽出は「抽出保留」(`extract.PENDING`)にして取り直さない。保留した観測はシートに書かず、
+    その日の言及率・言及シェアにも入れない。回答は data/raw にあり、台帳 `data/extract_pending/<daily|monthly>_<日付>.json` に残す
+  - 次の日次の実行で、Claude が使えれば台帳の観測を抽出してシートに書く(`extract_pending.catch_up()`。今日の抽出のあと)。
+    日次は llm_observations の行と、その日の daily_summary の言及率・否定の件数、sov_daily を作り直す。月次は monthly_observations に書く。
+    手動では `python src/extract_pending.py`(`--list` で台帳の確認)
+  - 有効な観測が1件も無い日の言及率・否定の件数は空にする(以前は 0 と書いていた)
+  - 10/06 の Gemini 7本は台帳に手で登録した。チャージ後の最初の日次で抽出され、10/06 の行と言及率が直る
+- 収集はもともとモデルごとに失敗を切り分けている(Claude が止まっても Gemini は取れる)。実験は文字列照合で判定するので抽出が無く、
+  Claude が止まっても Gemini の行はそのまま書かれる
+
 ### Claude API の呼び出し上限(2026-10-03・暴走防止)
 
 **自動チャージは使わない。1日の呼び出し上限と 400(クレジット不足)での即停止で暴走を防ぐ。

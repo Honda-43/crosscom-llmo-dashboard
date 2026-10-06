@@ -190,6 +190,14 @@ def _call_model(prompt: str) -> str:
     return "{" + body
 
 
+# 抽出保留(2026-10-06)。Claude が使えない日の抽出結果に付ける印(error の先頭と、同名の True の項目)
+PENDING = "extraction_pending"
+
+
+def is_pending(rec: Dict[str, Any]) -> bool:
+    return bool(rec.get(PENDING))
+
+
 def extract_record(record: Dict[str, Any]) -> Dict[str, Any]:
     """Extract one raw record to the §4 schema. Returns a dict that always has
     ``prompt_id``/``model``; on unrecoverable failure it carries ``error``."""
@@ -223,6 +231,11 @@ def extract_record(record: Dict[str, Any]) -> Dict[str, Any]:
             obj["all_cited_urls"] = all_urls
             obj["cited_crosscom_urls"] = crosscom_urls
             return {**base, **obj, "error": None}
+        except claude_budget.ClaudeStopped as exc:
+            # Claude を止めている日(クレジット不足・1日の上限。2026-10-06)。取り直さず「抽出保留」にする。
+            # 回答(raw)は残っているので、Claude が使える日に extract_pending がまとめて抽出する
+            print(f"[warn] extract {base['prompt_id']}/{base['model']}: 抽出保留 — {exc}")
+            return {**base, "error": f"{PENDING}: {exc}", PENDING: True}
         except Exception as exc:  # noqa: BLE001
             last_err = str(exc)
             print(f"[warn] extract {base['prompt_id']}/{base['model']} attempt {attempt} failed: {exc}")

@@ -536,6 +536,11 @@ def _flag(name: str, default: bool) -> bool:
     return raw.strip().lower() in ("1", "true", "yes", "on")
 
 
+# Gemini の1回の呼び出しの時間切れ(秒。2026-10-06)。10/05 の実験で応答が返らないまま
+# ジョブの4時間制限まで止まり、Claude の観測まで進まなかった。超えたら 503 と同じ扱いで取り直す
+GEMINI_CALL_TIMEOUT_SECONDS = float(os.getenv("GEMINI_CALL_TIMEOUT_SECONDS", "180"))
+
+
 MODEL_CONFIG: Dict[str, Dict[str, Any]] = {
     "chatgpt": {
         # Disabled by default (same treatment as Perplexity). Register

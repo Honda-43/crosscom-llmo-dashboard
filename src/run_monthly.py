@@ -36,6 +36,7 @@ except Exception:  # tzdata missing — JST has no DST, so a fixed offset is exa
 
 import collect_llm
 import extract
+import extract_pending
 import kbf_compare
 import looker_tabs
 import retired_urls
@@ -199,6 +200,13 @@ def main() -> None:
         lambda: [extract.extract_record(r) for r in records],
         failures,
     ) or []
+
+    # Claude を止めている日の抽出は保留にして台帳に残す(2026-10-06。日次の実行が後日まとめて抽出する)。
+    # 保留した観測は monthly_observations に空の行として書かない
+    extractions, pending = extract_pending.split(extractions)
+    if pending:
+        _run("save_extract_pending", lambda: extract_pending.save("monthly", date, pending), failures)
+        lines.append(f"- ⏸ 抽出保留 {len(pending)}件:Claude が止まっているため。日次の実行が後日まとめて抽出する")
 
     # 収集時のメタ(category / target_brand)は抽出結果に残らないので戻す。
     # シートの列と月次サマリの両方がこれを見る。

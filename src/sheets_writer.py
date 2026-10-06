@@ -636,11 +636,14 @@ def build_summary(extractions: List[Dict[str, Any]], ga4_rows: List[Dict[str, An
     mention_rate denominators use the count of *valid* (non-error) observations,
     excluding the E-1 entity prompt — so they scale with the number of enabled
     models rather than any hardcoded value.
+
+    有効な観測が1件も無ければ言及率は空(None)にする(2026-10-06)。以前は 0.0 にしていたため、
+    10/06 のクレジット切れで抽出がすべて失敗した日が「言及率 0%」として記録された。
     """
     def rate(records: List[Dict[str, Any]]) -> Optional[float]:
         valid = [r for r in records if not r.get("error")]
         if not valid:
-            return 0.0
+            return None
         hits = sum(1 for r in valid if r.get("mention") is True)
         return round(hits / len(valid), 4)
 
@@ -650,7 +653,7 @@ def build_summary(extractions: List[Dict[str, Any]], ga4_rows: List[Dict[str, An
 
     negative_flag_count = sum(
         1 for r in extractions if not r.get("error") and r.get("negative_or_outdated") is True
-    )
+    ) if any(not r.get("error") for r in extractions) else None   # 有効な観測が無い日は空(0件ではない)
     ai_sessions = sum(int(r.get("sessions", 0) or 0) for r in ga4_rows)
     branded_clicks = sum(int(r.get("clicks", 0) or 0) for r in gsc_rows)
 
