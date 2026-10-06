@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-06",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-10-06T02:05:07.402110Z",
+  "answer": null,
+  "cited_urls": [],
+  "error": "credit_exhausted: その日の Claude 呼び出しは止めている(Anthropic のクレジット残高が不足(400)。残高を確認・チャージするまで止める)",
+  "miss_reason": "permanent",
+  "attempts": 1
+}

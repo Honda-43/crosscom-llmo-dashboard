@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-06",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-10-06T02:04:49.162928Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、人間のオペレーター、自律型AIエージェント、およびそれらが動作するプラットフォームが連携し、顧客の成功を推進する顧客関係管理システムです。従来のCRMがデータの保存と人間による解釈・行動を目的としていたのに対し、Agentic CRMはAIエージェントが自律的にマルチステップのワークフローを計画、実行、適応させることを特徴としています。これにより、人間が各ステップで承認する必要がなく、設定された範囲内でエージェントが行動し、必要に応じて人間にエスカレートすることが可能です。\n\nAgentic CRMの主な特徴は以下の通りです。\n*   **自律的なタスク実行**：AIエージェントが顧客の状況を解釈し、目標達成に必要なステップを計画し、承認されたツールを使用して行動を起こします。例えば、新しい営業問い合わせがあった場合、アカウント調査、リードの適格性判断、記録の充実、会議概要の作成などをエージェントが実行できます。\n*   **コンテキスト理解と学習**：Agentic CRMは、パターン、過去のやり取り、顧客の好み、リアルタイムのシグナルに基づいて継続的に学習し、より関連性の高いインサイトやレコメンデーションを提供します。\n*   **人間中心のUX**：システム側のデータ構造ではなく、ユーザーの目標を中心に設計されており、会話、ツール、意思決定、ワークフロー全体で人が実際に作業する方法に適応します。\n*   **マーケティングとカスタマーサービスへの応用**：AIマーケティングエージェントがマーケティング戦略の策定、キャンペーンやフローの作成を支援したり、顧客対応AIエージェントがウェブチャット、SMS、メール、WhatsAppで質問への回答、注文追跡、返品処理、製品推奨などを行ったりできます。\n\nAgentic CRMを導入・設計を支援してくれる会社は複数存在します。以下に例を挙げます。\n\n*   **株式会社Hiway**：Agentic CRMである「Hiway CRM」を提供しており、AIが顧客情報や商談履歴などを読み取り、営業担当者に代わって一次処理や下書き作成を行うことを前提に設計されています。導入支援も行っています。\n*   **合同会社クロスコム**：Agentic CRMの設計支援を提供しており、商談の議事録や顧客からのメールなどをAIが読み取り、CRMへの入力・更新作業を自動で実行するシステムを構築します。\n*   **ブリッジインターナショナルグループ**：Agentic Revenue Organization構築支援を提供しており、構想策定からPoC（概念実証）、設計、実装、教育、運用、改善までを一貫して支援し、Salesforceを中心としたCRM/SFAの構築・運用やAIエージェントの設計・実装をサポートします。\n*   **Forsys**：Salesforce CRM上でのAgentic AIの実装を専門としており、ワークフローの自動化とデータ統合を支援します。\n*   **May4s Technology**：Agentic OSの立ち上げ支援やCRM導入プロセスの支援を行っています。\n*   **Salesforce**：Agentic CRMの概念を提唱しており、そのプラットフォーム上で人間、AIエージェント、プラットフォームが協調して動作するソリューションを提供しています。実装はパートナー企業と連携して行われることが多いです。\n*   **Klaviyo**：インテリジェントな自動化と顧客データを組み合わせたAgentic CRMを提供し、より関連性の高い顧客体験を一貫して提供することを目指しています。\n*   **Microsoft Dynamics 365**：Agentic CRMの考え方を導入し、AIエージェントが会話やシグナルからデータを自動的に取得、充実させ、更新することで、販売担当者が顧客エンゲージメントに集中できるよう支援しています。\n\nこれらの企業は、Agentic CRMの構想策定、システム設計、導入、そして導入後の定着化と運用改善まで、幅広いフェーズで支援を提供しています。導入を検討する際は、自社のビジネスモデルや課題に合わせて、最適なパートナーを選定することが重要です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFX3wkSxGLIQBm0wtP8gNfOVf7e2utjvVQf50fBGagUM7ze6kGcyYf8KIJE-aFonJIezjgtzg_thxbp8ejQqjNONfYzGSruWrHjeicvtJLA99lNUayS5PHFMdg4ZbO-FmAhmdDpAMCLQLGueJsVv3_4H-A=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFvw-Tt5UGB1vyYvqM_1ElQ1Zuz6QbqXgYnCAcQY6xIwlKvM35xVL4Yv6AnOVVoNryp0Phv_oaWvza9dFWRFtptm_FLyXKaDnFz6fU-gbwy04uSeWrNS7SEYbwdYUK3-jmGiDb215sqnE7dLPAreCR2WMg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHYKFllGzXc-aTqylqZl3GfiJq40dYihiKKK_mxmsznzj-ljeLXdjs39EP6zbgaf2r0un26v0HcdLBIH-WDcxJwYE9Q02s0kdhh2boDdJnvX8-Se-YHNBAMnTkYpOwEBAACyA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHAJ-MeTSSfGVJT-RdjbVLRccRAJqsl3zqsf6FCc5tdAMjWGfJ3UxQznChHColUvjtLhaSf8D6NwPQeWcJjqHFwbyJFcmjlj6kvX0vF8FVGwbJqwY6mlNV0STuGmJGTsV4S0XFK8lU9cTwdfg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFmFCOl615Bbx_azXDucr1xcPn_d8fsQFlGuDzZ-AtKQVHd6jFFuqL2UMFLcbxWyYKI0moihVjMHYM3JQZHLWp9gX2kFWf-ZgZZmzDw9Ecx4tmSeIX8QywZN222EvAhag07_U22Kqq_Tw5HBubIOB-jig5E2nQzCB5C3ZGp4y4_vf0AisAgIeCWPgFHU9deA-cOppcMHdJlQuyHcSm8i8QPPwVNSmjDtqw8E52-ISP9HxihbWmFeji-IIO-nSkTWH23nQBZRG_Rj5bgLSg0L13dDy-NeR4MQLhSWXblWOyObRxRh9g=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHKeXS0YSGeh7hmCdSzgQGwvQlKdXRaEPTgMFsqxMeKTAc0qCeiegqgB77kTERvlTeItRe6uTW0vWA3hRHeGC3GwyK1VugDWYGIWKpFxnkZOfQ8S5jlkkNAqpD_lEHkuaSBWzCH-_Y=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF1CeYmpGS3OwePlC1VoZGeDlQ8LsTMaojotlclPS1u07qUq572A4ILJqlBxdlC2FZ730wIBg-qszXSblPyDANbyyKVglcgsWBwsinvsQIhVcFrQeIq7mvayg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEZ5HIEtWmbx33nfmCKF501mQDbPI4LF6BeHDQ9uOvtcgCdjT5X2OhJiMss8-1P9pq_qrDbj6n-JMsVtTfqwsyWbaRSG7sAAeiwyaLycAm-aBy-mDgFCxjIMgMpFOwSqjof-4O45iGgB3d7qQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFrTN2QrqPI2maoqnoPvZ7ungOCiQgM5nIoAIhzLbgjMkSEhxEQ_nrtd9CDOhclSevFQUHNV-ksYrYjctxTQaZmEz5Nj0wX6oDieKXz0IDs2w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFQ3ekj8Lga_E3jANBEKMlvy4JYEYuSJYVoEr-J9nN8C91OkEov43N5KiUa6WnpApAmRWQySwyKK_6FLGIGRG0G8qeeCFFwpCN1pH-DKsJ--w9FiGA9KvqPvSddrbKfw9IGJvnr8H11bvs7HB5hmUXRdTjb9Z4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEoZiT0E1qULNdIPDLC6d1iGmp5CAcu7gBvTfrvctEvWq66zvvxClvsCvTTNpuQWpY3JYeqod4jqD2ErB353oDlp8FHBDbNICBwFU-nJuQh-zA1GGW9J9Cw7yrlfvCuGPnB_IwQQfm_yEoyZrQbkVip4YhloBRfcMM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_Uzf6s_WOKHoOR16Ez_naNUqoeBp-AL4dl5FsA0GsTK1uSO8p1EPjrAJ0_iW9C-odqieDrhT1-NDFZ6iWFF_Tmtpkijw6M6JHiXJwerAK6PU0Osfzrbfo"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

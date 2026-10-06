@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-06",
+  "prompt_id": "A-3",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "Agentforceの導入費用の相場と、費用対効果を出すための進め方を教えてください",
+  "cep": "料金比較・稟議準備",
+  "timestamp": "2026-10-06T02:04:38.575982Z",
+  "answer": null,
+  "cited_urls": [],
+  "error": "credit_exhausted: その日の Claude 呼び出しは止めている(Anthropic のクレジット残高が不足(400)。残高を確認・チャージするまで止める)",
+  "miss_reason": "permanent",
+  "attempts": 1
+}

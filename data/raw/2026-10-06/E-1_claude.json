@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-06",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "category": "",
+  "target_brand": "",
+  "model": "claude",
+  "model_name": "claude-sonnet-5",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-10-06T02:05:07.567474Z",
+  "answer": null,
+  "cited_urls": [],
+  "error": "credit_exhausted: その日の Claude 呼び出しは止めている(Anthropic のクレジット残高が不足(400)。残高を確認・チャージするまで止める)",
+  "miss_reason": "permanent",
+  "attempts": 1
+}

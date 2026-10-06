@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-06",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-10-06T02:04:57.932632Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず、中立的な立場でCRMの設計支援を求める場合、以下のような企業が考えられます。これらの企業は、お客様のビジネス目標に合致した最適なCRM戦略とツールの選定を支援することに重点を置いています。\n\n**特定ベンダーに依存しないCRM設計支援会社**\n\n*   **StockSun株式会社**\n    StockSun株式会社は、CRM支援において「ツールへの中立性が成果を分けます」と明言しており、一般的なCRM支援会社との違いとして中立性を強調しています。顧客データの分析に基づいたCRM戦略の策定や、最適なツールの選定を支援しています。\n\n*   **スマートプラス株式会社**\n    スマートプラス株式会社は、「どのツールの味方でもなく、御社の側に立ちます」というスタンスで、ベンダー中立のITコンサルティングを提供しています。CRMやMAツールの選定から定着まで、お客様の状況に合わせた相談に応じています。\n\n*   **株式会社ID インフォメーション・ディベロプメント**\n    ID インフォメーション・ディベロプメントは、ITコンサルティングにおける「中立性」の重要性を深く掘り下げています。パッケージ製品やクラウドサービス選定において、「どの製品・サービスを売るか」ではなく、「クライアントにとって何が最も適しているか」を基準に選定を行うと説明しています。\n\n*   **株式会社ripla**\n    株式会社riplaは、CRM開発において、既存のERPや販売管理、マーケティング基盤との全体最適設計を重視し、顧客データの統合・分析・活用による業務革新まで支援しています。ベンダーロックインを回避し、お客様の独自の業務プロセスを反映したCRM設計に対応しています。\n\n*   **アーカス・ジャパン株式会社（Arcuss Japan Inc.）**\n    アーカス・ジャパン株式会社は、中堅・中小企業向けにCRM導入・定着化支援を行っており、特定のベンダーに依存しない中立的な立場で、CRMシステム導入・設定・運用支援業務を提供していると謳っています。\n\nこれらの企業は、CRMツールの選定ありきではなく、まずお客様の課題や目的を明確にし、そこから最適な戦略やツールを検討するアプローチをとることが期待されます。ベンダーロックインを避けるためには、オープンな技術や標準規格の採用、データのポータビリティ確保などが重要となります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGji_SxFIEsAXzeRpsnnpg4AD6-b-sUEO9IgO-vvPFdPbBf2vPS3UWXB67L4Y8d0_82LPW2c7P7XCfGaG1hQQfc94JuHSdxiDGxUVqSCsaai7iIqEQuDGYnPdrHRrM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGeXShYVmVCQa8YfJazYdprXVq7bu6X1YP3ZoyCVdyV42A0ltQoRq-LgfdCvoLbMc3BeSp0X7rhNn-1y0RKZzxKqKrs8Q4JFash9zT8R7l8uuV18JI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGWoUqQXS4A89bCfHCXtv0LLm4Ls3kySaHCXCDgJTQpVvKV5vMZK6y1OPdej2fjQoy7ZODAIvJlyVoXXy2d2cQORi4_-Cu3sUp69nP1MIdbbEBl5vqJQmA4WQfzfRfAFqSNHFtBRw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqj2EyWvNJiA4g06oorMX63XFs5mIt5ZHdiA4nTC6cLNJJobM0WY4QRZuGexH2IStNNXhxNBKu-H_w1xX4j9F6yY3hupHVuiz92lh8cG2o2JchoYNc9JPsnn4UMc_u0JuriuOky4v_8sc3",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9rsWXiV8ZRvd4U5WKo_X1-yK0cbaj_ynASLBZP_hCUYNVyZxaM_gdlimIg-WZNkINih8QhcsuLCio-vot7KPr6E4GZFVEjpV8vOCBF8ZfLOnhf-JaZcnLqYxV5R8r3FGbgQ8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE2-EwxFJwxDbu8hoC4_AbqH85-guo5T2Bx5YxJ5Xst-4unYfrrxW-k0bsYK_8JTxThwSvOJKKmNPcOXZciOBkLF4Z0HDShwsoddi8tcKoMv-6yFNZ0yDz-Mgc8sYg9aclX-WaFykSqCUFzIR_qfwk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGxaDHQ5HYfCnY2VBZlXfWbM6ZUk_AB023iyVlQRNjhZGKTBWbe5zJgfTWOgykKe72gwQzcBsbw4yK_lISqyaeR36cfMBaXWtRCiDHVJ1hUUQ0BoIsNAhEueSHIJFGWpS0NSmiOAH-NVTY3SOZ0MxI_qNfh",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHOuisehO3OO2oN6PfxQFSRhnXUHYosxDSwWOWxXk80CTSvqlR7tfvQC3_J-vGHWWekKknjAKKz3LS3i40l_6BEBqg5oTBBR4tMacHQn2Dhng5Jwu-fYnDXmHZAm6oiLyWTjb-lK_Eq",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEhWnCSvOa8D2_E6u_4BDMhefaxgnwRd5oxUhDOZxqNeEB-XDHIfDfDr3foTd37SRYO28XdwBJ0FbwaXd0lVBXaLN2V9XsgDgHfqVIy49lkeMgEEgVqj0SoBrvTF3-ymT9Zug4PlV5DoDJvEmGOT8q9F0PTjrlgpTzQNu2fnvAWeGSKeSCX9oBd9HODEGsJ9M6AU3-yH_Xw6GCo_MG8"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}
