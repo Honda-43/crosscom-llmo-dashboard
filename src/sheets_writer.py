@@ -8,6 +8,7 @@ The tab names and column headers are approved (§7) and must not change.
 from __future__ import annotations
 
 import json
+import os
 from typing import Any, Dict, List, Optional, Sequence
 
 from settings import (
@@ -211,6 +212,42 @@ _SPREADSHEET = None
 QUOTA_RETRY_WAITS = (2, 4, 8, 16, 32)
 
 
+_SHEET_403_NOTIFIED = [False]
+
+
+def notify_sheet_unavailable(exc: Exception) -> None:
+    """Sheets が 403(権限なし)を返したら、Slack に「シートの共有を確認」と1回だけ知らせる(2026-10-07)。
+
+    10/07 に共有設定が変わり、サービスアカウントがシートを読み書きできなくなった。各フェーズの失敗としては
+    見えるが原因が分かりにくいので、原因の候補を名指しした通知を別に出す。観測の raw は先に保存されているので、
+    共有を直したあと backfill_experiment_sheet.py などで書き戻せる。
+    """
+    if _SHEET_403_NOTIFIED[0]:
+        return
+    _SHEET_403_NOTIFIED[0] = True
+    import json as _json
+    try:
+        email = _json.loads(os.environ.get("GCP_SERVICE_ACCOUNT_JSON") or "{}").get("client_email", "")
+    except ValueError:
+        email = ""
+    text = ("*LLMO シートのアラート*\n*⛔ シートの共有を確認(Sheets API 403)*\n"
+            f"• サービスアカウント {email or '(GCP_SERVICE_ACCOUNT_JSON のもの)'} がスプレッドシートを読み書きできません\n"
+            "• スプレッドシートの共有にこのアカウントが「編集者」で入っているか確認してください\n"
+            "• 観測の生データ(data/raw)は保存済みです。直したあと書き戻せます\n"
+            f"• {str(exc)[:200]}")
+    print(f"[error] Sheets API 403 — シートの共有を確認: {exc}")
+    webhook = os.environ.get("SLACK_WEBHOOK_URL")
+    if not webhook:
+        return
+    try:
+        import notify_slack
+        run = (f"{os.getenv('GITHUB_SERVER_URL', '')}/{os.getenv('GITHUB_REPOSITORY', '')}"
+               f"/actions/runs/{os.getenv('GITHUB_RUN_ID', '')}")
+        notify_slack._post(text + (f"\n<{run}|実行ログを開く>" if os.getenv("GITHUB_RUN_ID") else ""), webhook)
+    except Exception as err:  # noqa: BLE001 - 通知の失敗で処理を落とさない
+        print(f"[warn] Slack 通知に失敗: {err}")
+
+
 def _retrying_http_client():
     """429 だけを待って再送する gspread の HTTP クライアント(2026-10-01)。
 
@@ -233,6 +270,8 @@ def _retrying_http_client():
                 try:
                     return super().request(*args, **kwargs)
                 except APIError as exc:
+                    if exc.code == 403:
+                        notify_sheet_unavailable(exc)       # 共有設定の変更など(2026-10-07)
                     if exc.code != 429:
                         raise
                     print(f"[warn] Sheets API 429(利用上限) — {wait}秒待って再送します")

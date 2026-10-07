@@ -11,6 +11,60 @@ date,experiment_id,model,reason,detail,attempts
 2026-09-19,E13,gemini,quota,"429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ",1
 2026-10-01,E30,gemini,skipped,skipped: 日次・月次の実消費15回で枠が足りず実行せず,0
 2026-10-01,E31,gemini,skipped,skipped: 日次・月次の実消費15回で枠が足りず実行せず,0
+2026-10-05,E01,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E02,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E03,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E04,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E05,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E06,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E07,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E08,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E09,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E10,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E11,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E12,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E13,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E14,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E15,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E16,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E17,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E18,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E19,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E20,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E21,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E22,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E23,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E24,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E25,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E26,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E27,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E28,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E29,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E30,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E31,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E32,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E33,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E34,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E35,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E36,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E37,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E37,gemini,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E38,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E38,gemini,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E39,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E39,gemini,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E40,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E40,gemini,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E41,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E41,gemini,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E42,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E42,gemini,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E43,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E43,gemini,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E44,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E45,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E46,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
+2026-10-05,E47,claude,skipped,job_timeout: 2026-10-05 の実験ジョブが Gemini の応答待ちで止まり、4時間の制限で打ち切られたため観測していない（10:47 以降）,0
 2026-10-07,E08,gemini,unavailable,"503 UNAVAILABLE (時間切れ): ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'The request timed out. Please try again.', 'status': 'DEADLINE_EXCEEDED'}}",3
 2026-10-07,E09,gemini,unavailable,"503 UNAVAILABLE (時間切れ): ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'The request timed out. Please try again.', 'status': 'DEADLINE_EXCEEDED'}}",1
 2026-10-07,E11,gemini,unavailable,"503 UNAVAILABLE (時間切れ): ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'The request timed out. Please try again.', 'status': 'DEADLINE_EXCEEDED'}}",1

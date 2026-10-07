@@ -1146,3 +1146,22 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
   10/07 23:06 に Windows の独立したプロセスとして再開（ロックは新しいプロセスに置き換わった）。条件 c はシートを読み直さず checkpoint の値を使うように変更
 - **シートが読めない**：10/07 夜、サービスアカウント llmo-collector@crosscom-llmo.iam.gserviceaccount.com がスプレッドシートを読めなくなっている（403・PermissionError）
 - interventions.csv の scope は「括弧より前・末尾の数字＋件を除く」でまとめる（固定ページ4件／1件／3件 → 固定ページ）。今後は scope に件数を入れない
+
+---
+
+## 2026-10-07（続き）／シートの 403（共有設定）と書き戻し
+
+- **403 の期間**：始まりは 2026-10-07 11:22 JST（実験の Actions がシートに書けた最後）より後、23:05 JST（手元で最初に 403）より前。
+  終わりは 23:27 JST の確認時点で読み書きできた（本田さんが共有を直した）。原因は共有設定（サービスアカウント llmo-collector@crosscom-llmo.iam.gserviceaccount.com の権限）
+- **この期間に Actions がシートに書く予定は無かった**（日次・月次・実験は朝に書き終えていた）。data/raw とシートを 9/15 以降で突き合わせ、
+  **403 で失われた観測は0件**（llm_observations・llm_marketing・monthly_observations は raw の全件がシートにある）
+- 突き合わせで見つかった別の欠け：**llm_experiment の 10/05**。原因は 403 ではなく、10/05 の実験ジョブが Gemini の応答待ちで4時間制限に達したこと
+  （raw は保存済み・シートに書く前に打ち切られた）。`backfill_experiment_sheet.py` で書き戻した：
+  - raw からの書き戻し **9行**（Gemini E28〜E36。判定列を付け直し、リダイレクトは全件解決できた）
+  - **本当に欠けた観測 54行**（raw も無い）：**Gemini E37〜E43（7本。プール46本では E38〜E43 の6本・E37 は watch）**、Claude E01〜E47（47本）。
+    error=job_timeout として raw・シート・実験日誌に記録（403 ではないので sheet_unavailable にはしない）
+  - 10/05 は反映ラグ（10/1〜10/5）で判定には使わない
+- 既存の行は消さず、重複も無い（llm_experiment 518行→581行・同じ鍵の行は0）
+- 再発防止：観測は raw に先に保存してからシートに書く順になっている（collect が1件ごとに raw を保存・シートは呼び出し側があと）。
+  Sheets が 403 を返したら Slack に「シートの共有を確認」と1回だけ通知する（sheets_writer の HTTP クライアント）
+- 参考：10/07 の実験の Gemini の欠測5件（E08・E09・E11 は Gemini 側の時間切れ、E17 は 503、E18 は 429）は朝の実行時の provider 側の欠測で、403 とは無関係
