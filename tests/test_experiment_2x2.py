@@ -672,6 +672,8 @@ def test_the_real_log_lists_the_form_changes_i15_to_i17():
 
 def _judge_out(monkeypatch, tmp_path, capsys, rows_iv, after):
     import interventions
+    # 作成中の再ランダム化プールを読まない(2回の出力を比べるので、その間にプールが増えると出力が変わる)
+    monkeypatch.setattr(summarize.rerandomize, "load", lambda path=None: [])
     rag = "https://cross-com.jp/agentforce-rag/"
     feat = "https://cross-com.jp/agentforce-features/"
     monkeypatch.setattr(summarize, "load_allocation",

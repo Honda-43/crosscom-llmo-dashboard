@@ -20,6 +20,12 @@ def _claude_budget_isolated(tmp_path, tmp_path_factory, monkeypatch):
     import collect_llm
     import settings
     collect_llm.set_deadline(None)      # 観測ジョブの時間の予算はテストごとに外す(2026-10-08)
+    # 作成中の再ランダム化プール(experiment_2x2/results/rerandomization_pool.csv)を既定では読まない(2026-10-08)。
+    # 作成中は行が増え続け、2,000件を超えると判定の出力が変わるため、テストの結果が実行の時刻で揺れる。
+    # パスを渡して読むテスト(test_rerandomize)には影響しない
+    rr = sys.modules.get("rerandomize")
+    if rr is not None:
+        monkeypatch.setattr(rr.load, "__defaults__", (str(tmp_path_factory.mktemp("no_pool") / "none.csv"),))
     monkeypatch.setattr(claude_budget, "USAGE_DIR", tmp_path / "claude_usage")
     # Claude の計画的停止(2026-10-06)は既定で外す(既存のテストは再開したときの動きを確かめる)。
     # 停止中の動きは tests/test_claude_stop.py が claude_stop で入れて確かめる

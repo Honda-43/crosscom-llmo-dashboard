@@ -160,6 +160,9 @@ EXP_HEAD = ["date", "experiment_id", "model", "target_url", "cited_article", "er
 
 
 def _judge(monkeypatch, tmp_path, capsys, rows, *extra):
+    # 作成中の再ランダム化プール(results/rerandomization_pool.csv)を読まない。2回の出力を比べるので、
+    # その間にプールが1行増えると出力が変わってしまう(2026-10-08 に1回だけ落ちた)
+    monkeypatch.setattr(summarize.rerandomize, "load", lambda path=None: [])
     monkeypatch.setattr(summarize, "load_allocation",
                         lambda: {"agentforce-rag": "③リードのみ", "agentforce-features": "①対照"})
     path = tmp_path / "e.csv"
