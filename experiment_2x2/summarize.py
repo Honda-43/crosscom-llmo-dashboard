@@ -525,24 +525,19 @@ def gsc_rank_subgroups(after, before, title="", split=None, today=None):
 
 
 # --------------------------------------------------------------------------
-# 判定期間と重なる介入(2026-10-01)＝交絡候補の一覧(2026-10-07 に範囲を拡大)
+# 判定期間中のサイト施策一覧＝交絡候補(2026-10-01 新設・2026-10-07 に全介入へ拡大)
 # --------------------------------------------------------------------------
-SITE_WIDE_SCOPE = "サイト全体"
-# 一覧に載せる scope(2026-10-07・本田さん決定)。interventions.csv の scope を書き換えず、ここで拾う範囲を決める。
-# 括弧より前で比べる(「ピラーA（agentforce-guide）」は「ピラーA」)。touches_pool46 の値に関係なく載せる。
-# 変えるときは README「判定期間中のサイト全体施策一覧」も直す
-CONFOUNDER_SCOPES = ("サイト全体", "site_hygiene", "cta", "ピラーA", "ピラーB", "measurement")
-CONFOUNDER_HEADING = "アフター期間中のサイト全体施策一覧（判定の交絡候補）"
+# interventions.csv の**全行**のうち、判定期間(ビフォーの初日〜その判定のアフターの最終日)に日付が重なるものを載せる
+# (scope で絞らない。2026-10-07 本田さん決定)。表示は scope の括弧より前でまとめ、touches_pool46=yes の行を含む
+# scope を先にする(その中は日付順)。日付が定まらない行(「〜より前」など)は末尾に「日付不確定」として載せる。
+# 表示だけで、判定の数値(差の差・p値・感度分析)には使わない。interventions.csv の scope は書き換えない
+CONFOUNDER_HEADING = "判定期間（ビフォー〜アフター）中のサイト施策一覧（判定の交絡候補）"
 
 
 def scope_key(scope):
-    """scope の括弧より前(英字は小文字)。「ピラーA（agentforce-guide）」→「ピラーA」。"""
+    """scope の括弧より前。「ピラーA（agentforce-guide）」→「ピラーA」。"""
     import re
-    return re.split(r"[（(]", str(scope or ""))[0].strip().lower()
-
-
-def is_confounder_scope(scope):
-    return scope_key(scope) in {s.lower() for s in CONFOUNDER_SCOPES}
+    return re.split(r"[（(]", str(scope or ""))[0].strip() or "（scope なし）"
 
 
 def intervention_end(row):
@@ -564,22 +559,35 @@ def intervention_end(row):
 
 
 def site_wide_interventions(start, end, rows=None):
-    """(期間と重なる交絡候補の介入, 日付が未確定の交絡候補の介入)。start・end は date。
+    """(期間と重なる介入, 日付が定まらない介入)。start・end は date。interventions.csv の全行が対象。
 
-    対象は scope が CONFOUNDER_SCOPES のどれか(2026-10-07 までは「サイト全体」だけ)。
-    サイト全体の介入は全記事に一様に効くので、組の差ではなく全組共通のベースラインの変化として読む。
-    判定のたびに冒頭に並べ、処置の効果と取り違えないようにする。判定の数値には使わない(表示だけ)。
+    介入は処置以外の理由で引用されやすさを動かしうる。判定のたびに冒頭に並べ、処置の効果と取り違えないようにする。
     """
     rows = interventions.load() if rows is None else rows
-    site = [r for r in rows if is_confounder_scope(r.get("scope", ""))]
     overlap = []
-    for r in site:
+    for r in rows:
         if r.get("date") is None:
             continue
         stop = intervention_end(r)
         if r["date"] <= end and (stop is None or stop >= start):
             overlap.append(r)
-    return overlap, [r for r in site if r.get("date") is None]
+    return overlap, [r for r in rows if r.get("date") is None]
+
+
+def group_by_scope(rows):
+    """[(scope の括弧より前, 行)]。touches_pool46=yes の行を含む scope を先、同じ扱いの中は最初の日付順。行は日付順。"""
+    groups = {}
+    for r in rows:
+        groups.setdefault(scope_key(r.get("scope")), []).append(r)
+    for key in groups:
+        groups[key].sort(key=lambda r: (r["date"], str(r.get("intervention_id"))))
+    touches = lambda rs: any(str(r.get("touches_pool46", "")).strip() == "yes" for r in rs)  # noqa: E731
+    return sorted(groups.items(), key=lambda kv: (not touches(kv[1]), kv[1][0]["date"], kv[0]))
+
+
+def _line(r, date_text=None):
+    return (f"  - {date_text or r.get('raw_date', '')}｜{r['intervention_id']}｜{r['description']}"
+            f"｜scope={r.get('scope', '')}｜touches_pool46={r.get('touches_pool46', '')}")
 
 
 def print_site_wide_interventions(before, after, rows=None):
@@ -588,16 +596,19 @@ def print_site_wide_interventions(before, after, rows=None):
     end = _dt.date.fromisoformat(_span(after)[1])
     overlap, undated = site_wide_interventions(start, end, rows)
     print(f"## {CONFOUNDER_HEADING}")
-    print(f"判定期間（{start}〜{end}）と重なる介入（interventions.csv・scope={'／'.join(CONFOUNDER_SCOPES)}）")
+    print(f"判定期間（{start}〜{end}）に日付が重なる interventions.csv の全行（scope ごと・プール46本に触れる行を含む scope が先）")
     if not overlap and not undated:
         print("なし\n")
         return overlap
-    for r in overlap:
-        print(f"- {r['raw_date']}｜{r['intervention_id']}｜{r['description']}｜scope={r.get('scope', '')}"
-              f"｜touches_pool46={r.get('touches_pool46', '')}")
-    for r in undated:
-        print(f"- 日付未確定（{r.get('raw_date', '')}）｜{r['intervention_id']}｜{r['description']}"
-              f"｜scope={r.get('scope', '')}｜touches_pool46={r.get('touches_pool46', '')}")
+    for key, group in group_by_scope(overlap):
+        mark = "（プール46本に触れる行あり）" if any(str(r.get("touches_pool46", "")).strip() == "yes" for r in group) else ""
+        print(f"- {key}{mark}")
+        for r in group:
+            print(_line(r))
+    if undated:
+        print("- 日付不確定（期間と重なるか判定できない）")
+        for r in undated:
+            print(_line(r))
     print("※ 全記事に一様にかかる介入は、組の差ではなく全組共通のベースラインの変化として読む\n")
     return overlap
 

@@ -430,7 +430,8 @@ def test_site_wide_interventions_that_overlap_the_judgement_are_listed():
             _iv("2026-09-30", "B33"), _iv("2026-11-05", "LATER"),
             _iv("2026-09-30", "ARTICLE", scope="サイト(記事)"), _iv("", "UNDATED")]
     overlap, undated = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 11, 1), rows)
-    assert [r["intervention_id"] for r in overlap] == ["RANGE_IN", "ONGOING", "B33"]
+    # 2026-10-07 から scope で絞らない(サイト(記事)の ARTICLE も載る)。期間外(OLD・RANGE_OUT・LATER)は載らない
+    assert [r["intervention_id"] for r in overlap] == ["RANGE_IN", "ONGOING", "B33", "ARTICLE"]
     assert [r["intervention_id"] for r in undated] == ["UNDATED"]
 
 
@@ -444,7 +445,7 @@ def test_the_judgement_report_starts_with_the_site_wide_interventions(monkeypatc
                     "--csv", str(path), "--model", "gemini"])
     out = capsys.readouterr().out
     head = out.split("#####")[0]
-    assert "判定期間（2026-09-15〜2026-11-01）と重なる介入" in head
+    assert "判定期間（2026-09-15〜2026-11-01）に日付が重なる interventions.csv の全行" in head
     assert "｜I-14｜B-33" in head and "｜I-04｜" in head
 
 
@@ -640,20 +641,33 @@ def test_nothing_in_the_repo_calls_anthropic_without_the_daily_cap():
     assert "claude_budget.guard(" in http[0].read_text(encoding="utf-8")
 
 
-# --- 11. 交絡候補の一覧の範囲(2026-10-07・本田さん決定) ---------------------------------------
-# scope が「サイト全体」だけでなく site_hygiene／cta／ピラーA／ピラーB／measurement の介入も載せる
-# (括弧より前で比べる)。touches_pool46 に関係なく載せる。判定の数値は一切変えない
-def test_the_confounder_list_takes_the_agreed_scopes_within_the_period():
+# --- 11. 交絡候補の一覧(2026-10-07・本田さん決定で全介入に拡大) -----------------------------------
+# interventions.csv の全行のうち判定期間(ビフォーの初日〜アフターの最終日)に日付が重なるものを、scope ごとに載せる。
+# touches_pool46=yes の行を含む scope が先。日付が定まらない行は末尾に「日付不確定」。判定の数値は一切変えない
+def test_every_intervention_in_the_period_is_listed_whatever_its_scope():
     import datetime as dt
-    rows = [_iv("2026-10-20", "HYG", scope="site_hygiene"), _iv("2026-10-21", "CTA", scope="cta"),
-            _iv("2026-10-02", "PA", scope="ピラーA（agentforce-guide）"), _iv("2026-10-03", "PB", scope="ピラーB"),
-            _iv("2026-10-06", "MEAS", scope="measurement"), _iv("2026-09-30", "SITE"),
-            _iv("2026-09-30", "ARTICLE", scope="サイト(記事)"), _iv("2026-09-26", "FORM", scope="固定ページ4件"),
-            _iv("2027-01-05", "LATE_HYG", scope="site_hygiene"), _iv("2026-08-01", "EARLY_PB", scope="ピラーB")]
-    rows[0]["touches_pool46"] = "no"
-    overlap, _ = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 12, 28), rows)
-    assert [r["intervention_id"] for r in overlap] == ["HYG", "CTA", "PA", "PB", "MEAS", "SITE"]
-    assert summarize.CONFOUNDER_SCOPES == ("サイト全体", "site_hygiene", "cta", "ピラーA", "ピラーB", "measurement")
+    rows = [_iv("2026-10-20", "HYG", scope="site_hygiene"), _iv("2026-09-26", "FORM", scope="固定ページ4件（68 /contact/）"),
+            _iv("2026-09-30", "ARTICLE", scope="サイト(記事)"), _iv("2026-09-20", "EXT", scope="外部(エンティティ)"),
+            _iv("2027-01-05", "LATE", scope="site_hygiene"), _iv("2026-09-11", "EARLY", scope="プール46本"),
+            _iv("2026-09-15より前", "BEFORE", scope="サイト(メタ)")]
+    for r in rows:
+        r["touches_pool46"] = "no"
+    rows[2]["touches_pool46"] = "yes"
+    overlap, undated = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 12, 28), rows)
+    assert sorted(r["intervention_id"] for r in overlap) == ["ARTICLE", "EXT", "FORM", "HYG"]
+    assert [r["intervention_id"] for r in undated] == ["BEFORE"], "「〜より前」は日付不確定"
+    groups = summarize.group_by_scope(overlap)
+    assert [k for k, _ in groups] == ["サイト", "外部", "固定ページ4件", "site_hygiene"],         "プール46本に触れる行を含む scope が先、その後は日付順"
+    assert not hasattr(summarize, "CONFOUNDER_SCOPES"), "scope で絞らない"
+
+
+def test_the_real_log_lists_the_form_changes_i15_to_i17():
+    import datetime as dt
+    overlap, undated = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 11, 1))
+    ids = {r["intervention_id"] for r in overlap}
+    assert {"I-15", "I-16", "I-17"} <= ids, "scope が「固定ページ…」でも載る"
+    assert not ids & {"I-11", "I-12"}, "9/14 までに終わった介入は判定期間の外"
+    assert "I-05" in {r["intervention_id"] for r in undated}
 
 
 def _judge_out(monkeypatch, tmp_path, capsys, rows_iv, after):
@@ -673,14 +687,13 @@ def _judge_out(monkeypatch, tmp_path, capsys, rows_iv, after):
 
 
 def test_the_list_is_in_both_judgements_and_changes_no_number(monkeypatch, tmp_path, capsys):
-    rows_iv = [_iv("2026-10-20", "I-90", scope="site_hygiene"), _iv("2026-10-03", "I-91", scope="ピラーB")]
+    rows_iv = [_iv("2026-10-20", "I-90", scope="site_hygiene"), _iv("2026-09-26", "I-91", scope="固定ページ4件")]
     for after in ("2026-10-06:2026-11-01", "2026-10-06:2026-12-28"):     # 短期判定・長期判定
         with_list = _judge_out(monkeypatch, tmp_path, capsys, rows_iv, after)
         without = _judge_out(monkeypatch, tmp_path, capsys, [], after)
         head = with_list.split("#####")[0]
-        assert "## アフター期間中のサイト全体施策一覧（判定の交絡候補）" in head
-        assert "- 2026-10-20｜I-90｜I-90 の内容｜scope=site_hygiene｜touches_pool46=yes" in head
+        assert "## 判定期間（ビフォー〜アフター）中のサイト施策一覧（判定の交絡候補）" in head
+        assert "  - 2026-10-20｜I-90｜I-90 の内容｜scope=site_hygiene｜touches_pool46=yes" in head
         assert "｜I-91｜" in head
         # 一覧の部分を除くと1文字も変わらない(差の差・p値・感度分析は同じ)
         assert with_list.split("#####", 1)[1] == without.split("#####", 1)[1]
-
