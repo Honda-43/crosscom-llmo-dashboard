@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-07",
+  "prompt_id": "M-4",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムのAgentic CRM設計支援の評判を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-07T01:42:56.288541Z",
+  "answer": "合同会社クロスコムのAgentic CRM設計支援は、AIが読み書きすることを前提としたCRMを企業向けに設計するサービスです。特定のCRM製品に限定せず、中堅・中小のBtoB企業を対象としています。このサービスは、顧客ごとの情報を構造的に整理し、情報間のつながりや意味関係を図解に変換することで、担当者が数分で全体像を把握し、商談準備に入れるように支援することを目的としています。仮説、根拠、検証結果まで記録するデータ構造により、トップセールスの手法を組織全体に展開することを目指しています。\n\nクロスコムは、SalesforceのAIエージェントプラットフォーム「Agentforce」の導入・定着支援も手掛けるBtoB特化のコンサルティング会社です。 代表の本田正憲氏は、BtoBの中小企業を中心に100社以上のマーケティング施策を支援し、MA・CRM領域において戦略設計から施策実行まで一貫して実施する専門知識を持っています。\n\n現在のところ、合同会社クロスコムのAgentic CRM設計支援に関する具体的な顧客の評判やレビューを直接的に示す情報は確認できませんでした。検索結果には、サービスの概要や目的、対象企業についての説明が主であり、顧客からの評価や口コミといった具体的な「評判」は含まれていませんでした。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHciroBucAsfNJG50PHQU7R98DofgJ8xaL0fv1C3_ZB4CZQgr9jjF1hCQqvCpvFRpscQYC5i41L_KFgN05fJNrqx-dB885vKP2bwmoVXm3ElsuTSv_YpuUBFdj8a2PN9xBUJk06Y-8esZEpcw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVYsoCA0UVKX4abII1rx8GFpOUDOCUpGlxM2FjfSjet-I0Zp3xeo3IV_RpCDFnY7pDXbRt4ZumLUf2t6EZyxQqpxUtk3nItxS4icYdrxKk-Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFyGqq4iCqPVtRVW81hqqx57AeXwr7UHAH0h0zBtxTHHkoHnEumQrijK6y_zyV6wI357wTmY-KSok4ok0Q6ZbOvOIQe76wB6a6I6JAEWbsTspYfjRC88K-_UGf6oxU8wwjdnNt5qX0ylrVFUg=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

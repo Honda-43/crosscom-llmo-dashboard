@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-07",
+  "prompt_id": "M-2",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムのAgentforce導入支援の費用を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-07T01:42:45.983476Z",
+  "answer": "クロスコムが提供するAgentforce導入支援の費用は、一律の料金ではなく、Agentforceの利用モデルや導入範囲によって変動します。\n\nAgentforceの費用体系には、主に以下の3種類があります。\n*   **Flex Credits**: アクション単位の従量課金.\n*   **会話単位課金**: 会話の件数に応じた課金.\n*   **ユーザーライセンス**: 利用人数に応じた課金.\n\nこれらのAgentforce本体の費用に加えて、導入支援費用には以下のような要素が影響します。\n*   **必要なSalesforceエディション**: AgentforceはSalesforce CRM（Sales CloudやService Cloud）のEnterprise Edition以上で動作するため、その費用が前提となります.\n*   **Data Cloud（Data 360）の利用**: Agentforceがデータ参照に多用するData Cloudの費用が別途発生する場合があります.これはしばしば「隠れたコスト」として認識されています.\n*   **導入支援の内容**: ナレッジの設定、連携、ガバナンス、デプロイメントの範囲によって費用が異なります.\n*   **継続的な運用コスト**: 年間の調整やメンテナンス費用も考慮する必要があります.\n\n合同会社クロスコムは、Agentforceの導入費用を試算できる「Agentforce 導入費用シミュレーター」を無料で提供しています。利用製品、用途、想定件数を入力することで、概算費用を算出することができます。\n\n他社の情報では、初期実装費用として100万円〜300万円程度、月額運用費用として10万円〜30万円程度という目安も挙げられています。\n\n正確な導入支援費用については、クロスコムの提供するシミュレーターを利用するか、直接問い合わせて見積もりを取得することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGRAhI9I-IFZGg2_wUc_qq-GAUuoIj35ddeJahVYHqHrNRqOJLq-fYU6-sl7Ci-lW-NDx0fi5iWkBPj4MTaEnWmqXJtnNmhlOl7I6Bz2gs5xlpTbZS2gOZ91ZlowCKz-LQkmTo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGsoDNGrvPHAhsv2nvWa6zJvZcmezRtf_21gHBUpCqns2qABaRiffCyiMy9GLmCiiTlBZ7uolrIs0a__23MRz0KsDUuQlRmZtQTY5yYrcHijBrTXnTMs4xalp1W4aa4Ol_x",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJfoeCHpUTwOp8GdwKtKNAW2oMWffQtOa_ykIBcWAT2PxppPV9OEJMK475PK-vfB7YccZOvcOSFmBxglwdALw-F2QoyUnE2nLWMsuDKQmBy6l2Hdr-SrT_yV1NHl_0IJ4H8WLqEunY30rxZ9yV_xjQNQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHb1kpZnQ7cfIKldDW7qyD7YWdsx1A0uFV7dSbwCeOmZcsTfJWxh0Rs-D-g5afuRBZlAo3QycfBevSalr75SGqq9l6m_9KTvMMvrjzQp2RTUCtdGvR4IYDVDTSsb3bEG7Ank42z_ZP3CURLGu01auDjp7Re7tLqVgTMAvCoN0pNMjh1lWo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH5k0vShEKo3B9tTL8YHJFRwHO2M_ChmXxR60EBaA8nPps0naZgbWndCenlS0SkvkDkIZaXx493LDWium4Xb7C1xwSkDaIQAkSJdzv7H0x_ayLnRqlZipJJbedxbPvImgwAj4JGjmsDCBXuU37FdvHtoOMGaRw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8bUpzV0gP9oAxiF8D0FwuQ5w1-ZciN-2dT6ojrt6wCV0q5qFPKaEcpO0TsQOTMM-CYa0AizCVbNYYZQjcWMMoPy555_qle_3wWmpzSnSKyEzj6ZPG34fvnoqWgj0V2aWMcChsxez8TtnPi-NgMqdagRBtp7SexO8k2IU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHRXBPNeZdjiaq91Wv_mLhRsQHRMqp4X-EFY8vN8ydnrqcYTCwynet84XBaMV8RV2vmjNyqD_mGK0e5VOrC8O8VPC-0qsGDugJvYxsNGz8I86S77kxdoWUEO3e9TzblFli6_59xKA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFj1fjWdkQLQLSiLJMMYMzAyqtkOMBgfKCk00WNyZ4TMEEjpwZ0JTwX6RdB8huMFVDoCTkgP1rElbbMRosnmQjQQWnhbANjDLHhlEgrP9lbcw2sM0LcCKISxzmwARHFAPqa1ZCWsEMXQb-1r27EMblwtUfG"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-07",
+  "prompt_id": "M-6",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムのAgentforce定着支援について教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-07T01:43:09.005492Z",
+  "answer": "クロスコムが提供するAgentforceの定着支援は、「Agentforce導入・定着支援」というサービス名で、Salesforceを導入済み、または導入予定の中堅・中小BtoB企業を対象としています。このサービスは、企業がAgentforceを実務で活用し、業務にしっかりと定着させることを目的としています。\n\n主な支援内容は以下の通りです。\n*   **伴走支援:** カスタマーサクセスチームが、最低3ヶ月間、利用状況と評価指標を継続的に確認しながら、目標達成に向けて活用が定着するまで伴走します。\n*   **ロードマップ設定と初期設定サポート:** 貴社の目標から逆算して「どの業務で・誰が・何を判断できるようにするか」を定義し、初期設定をサポートします。\n*   **業務フローへの組み込み:** マーケティング・営業・サポートのユースケースに合わせてAgentforceを業務フローへ組み込みます。\n*   **プレイブック共有:** 活用を促進するためのプレイブックを提供します。\n*   **効果測定とレビュー・振り返り:** 導入後の効果測定を行い、レビューと振り返りを通じて改善を支援します。\n*   **ビジネス理解に基づく設計:** クロスコムが持つBtoBマーケティングとプロダクト営業の経験に基づき、貴社の業務フローを深く理解し、実際の運用と定着を見据えた設計内容を提案します。\n*   **Salesforce運用知見:** Sales Cloud（CRM）やAccount Engagement（MA）の運用支援経験から、現場のSalesforce理解に基づいたAgentforceの活用を実装します。\n\nこの定着支援により、営業準備時間の短縮、商談化率と受注率の向上、属人化の解消といった成果が期待されます。 また、エージェント設計・構築から効果測定、運用の自走化まで一貫して支援することで、導入効果の最大化を図ります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHvfqY-BdJHjsOzXdJFPaiEMxDVs-sIgcpap4skLM7D_OM_kt_XhSNXpQXtdHQ6hOnCzEEmEvECGKibQABS-BXIJ5h9Kr3GTMjFmFgbIulx54CPjA-w1hNDE1FI5BOcFWJUaDCzvOkvXfTUbg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHspyiwyjTgomiNOJOYP5hfkByN5QGKZxsL5eaJrLS_ZdM_MxLLncsh1N2NJ3h5p1E3KZ7DkXQD7AbG5rpp6BnR8oqfpQ1UlgLK3FpT10jzSzJ_gB2wx37e",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEcpYGd7xe_O7UCxNAEBYLQEx_HLckb1gFA-0bNnT-sEEihEPrTBkEaY5qXvlxZJgZLxu_claZMcyV_dI4sJ7t24bCKxaY_8IaS1xW77bRmGfG3MiYoDgvCWuJxCSAsyjHRtC3_G_2kCU8J",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcZZxetDVZuByPwZWpVfsETFrPIrLWUHvjBJb2FqQF4QiBOrQzygVuOawTE4tvziB614bysldW7IWLTbvj84_nFslQ1jsLbF-sb8V_MrnMc3PXh7foi9PN7Fxp07jOeqNQ2exhjCiFpaauVZ1pLw=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

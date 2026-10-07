@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-07",
+  "prompt_id": "M-5",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムのCRMデータ設計の専門性を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-07T01:43:02.244367Z",
+  "answer": "合同会社クロスコムは、AIを活用したCRMデータ設計において高い専門性を持っています。特に、「Agentic CRM設計支援」を提供しており、これはAIが読み書きすることを前提としたCRMを企業向けに設計するものです。\n\nクロスコムのCRMデータ設計の専門性は以下の点に集約されます。\n\n*   **AIネイティブなCRMの設計**：オープンソースCRMを基盤とし、AIの推論能力を最大限に引き出すAIネイティブなCRMを、各企業専用に設計します。\n*   **AIによる自動化**：AIが入力・更新作業を自動で実行し、活用するほどにデータの学習が進み、AIの提案・実行精度が向上する設計を行います。これにより、手動での入力、分析、教育が不要なCRMを実現します。\n*   **データ構造の最適化**：仮説、根拠、検証結果まで記録するデータ構造を設計することで、トップセールスのノウハウを組織全体に展開することを可能にします。\n*   **Salesforceに関する専門知識**：Salesforce Agentforceの導入・定着支援や、BtoB Salesforceの導入・構築支援も手掛けています。\n*   **BtoBに特化したコンサルティング**：BtoBに特化したコンサルティング会社として、戦略コンサルティングから施策実行までを一貫して支援しています。\n\nこれらの専門性により、クロスコムは、企業がデータを入力・分析・教え込むことなく、AIが自動でデータ活用を推進するCRMシステムの構築を支援しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFB548VbulxxtpE2k-hdmMNxGnLBYnkQI5gzRqEci034SZ0wMiIzI6qNnV5wOmwCF12dngmXF4o_Atl7Z_iCAT9kv4uUyRchsyoQAeNkrUjnA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7G22aqF0eemYiQraiPmKF6xbnMXRbDNeuL2004dM00z06JlRzls89LRo_DOEoeOafl6VtRnrRAM6G2c8tB_7kvDGs6tRAbxvBOFuVTIVzjjIdYRVNGXAh",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFV_AELMDpFogMW-7LGRqYgtnptlMWdH6x3C0Vho5rzs-E3Oc65gCKlWDY0WNh2zecrJbnHt-o8fyZs0pl8b1BbmorETcant9F5069HsBk6hOBiEjZTaAjctCH1-JxYxeYtOGj0KdihVKSTHw=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-07",
+  "prompt_id": "M-1",
+  "pillar": "",
+  "category": "bofu_single",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "クロスコムの評判を教えてください。",
+  "cep": null,
+  "timestamp": "2026-10-07T01:42:39.683936Z",
+  "answer": "「クロスコム」という名称で検索すると、主に以下の2つの企業に関する情報が見受けられます。それぞれ事業内容が異なるため、評判も分野によって異なります。\n\n### 読広クロスコム（YOMIKO Crosscom）の評判\n\n読売広告社グループの一員である読広クロスコムは、プロモーション領域全般を手掛ける統合プロモーション会社です。クリエイティブ、セールスプロモーション、イベント、デジタルソリューションなどをワンストップで提供しています。\n\nOpenWorkやエン転職の社員クチコミによると、以下のような評判が見られます。\n\n*   **総合評価**: OpenWorkでは3.86と比較的高い評価を得ています。待遇面の満足度3.3、社員の士気3.6、風通しの良さ3.8、社員の相互尊重3.7、20代成長環境3.8、人材の長期育成3.5、法令順守意識4.0、人事評価の適正感3.9となっています。\n*   **働きがい・成長**: プロモーション制作進行のプロになれる環境であるという意見があります。宣伝会議の講座を会社負担で受講できる制度もありますが、多忙のため時間を確保しにくいという声も聞かれます。新卒2年目くらいまでは手厚い研修がある一方で、それ以外の社員には自己成長が求められる傾向があるようです。\n*   **ワークライフバランス**: 仕事量が多いため、残業や徹夜が常態化しているという意見が見られます。年俸制のため残業代がなく、タクシー帰宅が自己負担になることもあるようです。ただし、部署によっては忙しくない時期に休みが取得できる場合もあります。土日祝は休みであるため、イベント会社などと比較すると年間休日は多いという声もあります。\n*   **企業文化・社風**: 風通しの良さや社員の相互尊重については比較的評価が高い傾向にあります。\n\n### クロス・コミュニケーション（Cross Communication Inc.）の評判\n\nクロス・コミュニケーションは、アプリ開発、Web開発、UI・UXデザイン、検証・テスト、AI駆動開発などを手掛ける企業です。リサーチから分析、戦略策定、開発・構築、運用・保守まで一貫した総合的なマーケティング支援を行っています。\n\n評判としては、品質管理に力を入れている点が挙げられます。品質向上のためのプロジェクト計画策定、開発実績に基づくノウハウを用いた品質監査、顧客のビジネス環境に応じた非機能要件の可視化という3つの要素から品質管理を行っており、高品質なサービス提供を目指しているとされています。\n\n「クロスコム」と一口に言っても、上記のように事業内容が異なる企業が存在します。より具体的な情報が必要な場合は、どちらのクロスコムについてか明記することで、より的確な情報が得られるでしょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEvSw9Bve3KVGF4PtVWao_8B8kl9Rw9QwpnBl2a6Gp6wd_Dc0WG24iuzl3zmFj-QCprXCpQja711Aat4nPhUEboMG9hWNqQDb3z2cNGJrsmwqs05suCEQHoTW40ftZ_jeQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEP22I0iENgKdBgY3uyEWGMtaqoC6JYI5zNhTlwyAHjuPYbxSiDkIpcJ28vfSdpSk1DRk3DKkmHjiANk-c9stOMCWYYn50jnYPUN17eat0BnlHfHbgovrOQFgrHWvSGKYg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF8qVW6pU0L2wymR4ZMXF_BRhzdBSpuROl4yl7Ax7ty3Ikx1W1pk19f7LB4TDdfa-n8yYd_wNihLSXTT7e-L8mQEWYE6yWv1TKoK1APwhAvK_uzmlkJi5ylC1JCm6e_LIRuOi43nhKkGVAkqUzrPaazhuLQ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG30xSE6FezaiJ4umf24i3Zy7RxxWktYm-B0qbKK4z-nUwSTNNdRSIlYTE2kznLDMwDrR504JCIquuRKPWU7e6pgdfdxE5VGsOaN_Nt7jYAKjKWehmWB7M4Op-_brO3AB5j0fxkQwk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHGE919_OCnyatBP4vEwlD_C09lMvbgG5IHUSswcrsWtDsW57LPwKBrPqOSEdkIlCCa4bqBq0eIF8pld5I1ZNAvZB1ZNhU1goxWsZZ8QEvX8XKNdyph50pjXk4OvbuqHUvtBRcZ1oWyc45rH9rQKZ93",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGU92cCPvRXoqddEKqlwu40qY0lOYGlCbS22L5zvhyvLCO6MXzNZg983A_equCldZzqM0_ED-n3sCy_mZK4izhRhlgUjJjJyhkRsc8blHQPC52Ofef0N7_rsyoZpuDx4zE9MXTYw4T_-wldlZRC5twZoJlVUg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQErOKWM6X8diM-4W1azmp5dswspclC51NlnAPPfbQHWJgV57yknmWvmiVEqoqqfoazE3HHzuVnPv6zV4fRzFcJtVep1GQ4QjhbG3TVv2vscICUdIg9N",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEjvZhhFhqujl4mgisNBo2GF30WJBdClhyWh1ZUU3t_Ejs-g1nPL279plWX7CXQym9zjvkxxZop0D6oGDWs78AdXBUPhysreAVda1LC9XrPIgifojEw9_7BFgIuW1g7crtxHSQ="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}
