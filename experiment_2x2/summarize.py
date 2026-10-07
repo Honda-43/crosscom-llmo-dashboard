@@ -438,6 +438,85 @@ def both_ways(after, before, title=""):
 
 
 # --------------------------------------------------------------------------
+# 早期解放の判定（2026-10-01 事前登録・2026-10-07 実装。短期判定のデータを見る前に固定）
+# --------------------------------------------------------------------------
+# 短期判定（2026-11-02 の週。アフター 10/06〜11/01）でのみ出す。Gemini のみ（Claude は観測停止で対象外）。
+# 施策ごとに、次の3つをすべて満たしたら「解放可」：
+#   (1) Gemini の cited_article（記事単位・主指標と同じ定義）の差の差が +20ポイント以上
+#   (2) 再ランダム化検定（判定の本線と同じ）の片側 p値が 0.005 未満。プールが2,000件未満なら判定しない
+#   (3) 感度分析の全パターン（variants() の全通り）で差の差の向きが同じ（すべて正）
+# 境目：(1) ちょうど +20ポイントは合格（以上）、(2) ちょうど 0.005 は不合格（未満）
+SHORT_JUDGEMENT_AFTER = ("2026-10-06", "2026-11-01")
+EARLY_RELEASE_DID_PT = 20.0
+EARLY_RELEASE_P = 0.005
+EARLY_RELEASE_TREATMENTS = (("リード（③＋④ 対 ①＋②）", LEAD_ON, LEAD_OFF, "lead_p"),
+                            ("FAQ（②＋④ 対 ①＋③）", FAQ_ON, FAQ_OFF, "faq_p"))
+EARLY_RELEASE_YES = ("この施策のみ、残りの記事（その施策を受けていない組）に入れてよい。"
+                     "その他の編集（リライト・画像・リンク）は 12/31 まで禁止のまま")
+EARLY_RELEASE_NO = "12/28 の週の長期判定まで継続（遅れて効く可能性があるため、効いていないことによる打ち切りはしない）"
+EARLY_RELEASE_POOL_SHORT = "プール不足のため判定不能"
+
+
+def did_of(after, before, on_groups, off_groups, exclude=()):
+    """差の差(ポイント)。あり側・なし側どちらかに記事が無ければ None。"""
+    groups = tally(after, before, exclude)
+    on_d = [d for g in on_groups for _, d in groups.get(g, [])]
+    off_d = [d for g in off_groups for _, d in groups.get(g, [])]
+    if not on_d or not off_d:
+        return None
+    return round((sum(on_d) / len(on_d) - sum(off_d) / len(off_d)) * 100, 6)
+
+
+def early_release(after, before, rr=None, variant_list=None):
+    """施策ごとの早期解放の判定。[{name, did, did_ok, p, n, p_ok, signs, signs_ok, verdict, text}]。
+
+    ``rr`` は再ランダム化検定の結果（省略時は randomization(after)）。``variant_list`` は感度分析の通り（省略時は variants()）。
+    """
+    rr = randomization(after) if rr is None else rr
+    variant_list = variants() if variant_list is None else variant_list
+    out = []
+    for name, on, off, key in EARLY_RELEASE_TREATMENTS:
+        did = did_of(after, before, on, off)
+        did_ok = did is not None and did >= EARLY_RELEASE_DID_PT
+        pool_ok = tested(rr)
+        p = rr.get(key) if pool_ok else None
+        p_ok = pool_ok and p is not None and p < EARLY_RELEASE_P
+        signs = [(label, did_of(after, before, on, off, exclude)) for label, exclude in variant_list]
+        signs_ok = bool(signs) and all(v is not None and v > 0 for _, v in signs)
+        if not pool_ok:
+            verdict, text = EARLY_RELEASE_POOL_SHORT, EARLY_RELEASE_NO
+        elif did_ok and p_ok and signs_ok:
+            verdict, text = "解放可", EARLY_RELEASE_YES
+        else:
+            verdict, text = "解放不可", EARLY_RELEASE_NO
+        out.append({"name": name, "did": did, "did_ok": did_ok, "p": p,
+                    "n": (rr or {}).get("n", 0), "p_ok": p_ok, "signs": signs, "signs_ok": signs_ok,
+                    "verdict": verdict, "text": text})
+    return out
+
+
+def is_short_judgement(after_span):
+    return tuple(after_span) == SHORT_JUDGEMENT_AFTER
+
+
+def print_early_release(after, before, rr=None, variant_list=None):
+    ok = lambda b: "合格" if b else "不合格"  # noqa: E731
+    print("## 早期解放の判定（短期判定のみ・Gemini・2026-10-01 事前登録）")
+    for r in early_release(after, before, rr, variant_list):
+        print(f"### {r['name']}")
+        did = "計算できない" if r["did"] is None else f"{r['did']:+.1f}ポイント"
+        print(f"- (1) 差の差 {did}（基準 +{EARLY_RELEASE_DID_PT:.0f}ポイント以上）→ {ok(r['did_ok'])}")
+        if r["verdict"] == EARLY_RELEASE_POOL_SHORT:
+            print(f"- (2) 再ランダム化検定：{EARLY_RELEASE_POOL_SHORT}（プール {r['n']:,}件／下限{rerandomize.POOL_MIN:,}件）")
+        else:
+            print(f"- (2) 再ランダム化検定 片側p={r['p']:.4f}（基準 {EARLY_RELEASE_P} 未満・割付 {r['n']:,}件）→ {ok(r['p_ok'])}")
+        shown = "・".join(f"{label} {'—' if v is None else f'{v:+.1f}'}" for label, v in r["signs"])
+        print(f"- (3) 感度分析の全{len(r['signs'])}通りで向きが同じ（すべて正）：{shown} → {ok(r['signs_ok'])}")
+        print(f"- **判定：{r['verdict']}**　{r['text']}")
+    print("※ Claude は観測停止のため対象外。この欄は短期判定でのみ出す（長期判定・週次レポートには出さない）\n")
+
+
+# --------------------------------------------------------------------------
 # GSC 補助分析：Google 順位の上位・下位で処置の効き方が違うか（2026-10-01 事前固定）
 # --------------------------------------------------------------------------
 # 分け方は gsc_rank_split.py が gsc_rank_split_v1.csv に固定した（アフターを見る前）。
@@ -535,9 +614,11 @@ CONFOUNDER_HEADING = "判定期間（ビフォー〜アフター）中のサイ�
 
 
 def scope_key(scope):
-    """scope の括弧より前。「ピラーA（agentforce-guide）」→「ピラーA」。"""
+    """scope の括弧より前から、末尾の「数字＋件」を除いたもの。
+    「ピラーA（agentforce-guide）」→「ピラーA」、「固定ページ4件（68 /contact/…）」→「固定ページ」(2026-10-07)。"""
     import re
-    return re.split(r"[（(]", str(scope or ""))[0].strip() or "（scope なし）"
+    base = re.split(r"[（(]", str(scope or ""))[0].strip()
+    return re.sub(r"\s*[0-9０-９]+件$", "", base).strip() or "（scope なし）"
 
 
 def intervention_end(row):
@@ -673,6 +754,8 @@ def main(argv=None):
                 print(f"##### {model}（アフター {span[0]}〜{span[1]}・{label} / ビフォー {a.before}）")
                 both_ways(part, before, f"{model} {label} ")
             gsc_rank_subgroups(after, before, f"{model} ")
+            if model == "gemini" and is_short_judgement(_span(a.after)):
+                print_early_release(after, before)
     print("判定: 差が +25pt 以上 かつ p<0.10 で「効いた」。どちらか欠ければ「この本数では判断できない」。")
     print("p は**再ランダム化検定**を本線にする（条件 a〜g の合格率が約 1/9,200 のため、"
           "同じ条件を満たす割付の中で数える）。フィッシャー正確検定は参考。")

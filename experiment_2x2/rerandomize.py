@@ -452,8 +452,14 @@ def main(argv=None):
               '実際の割付が決まってからプールを作る', file=sys.stderr)
         return 2
     actual = ''.join(str(GROUPS.index(groups[a_['slug']]) + 1) for a_ in arts)
-    cited, src = allocate_47.load_cited(argparse.Namespace(
-        cited_csv=a.cited_csv, cited_from=a.cited_from, cited_to=a.cited_to))
+    saved = read_checkpoint(a.checkpoint) if a.resume else None
+    if saved and saved.get('cited') is not None and not a.cited_csv:
+        # 2026-10-07：続きを作るときの条件 c は checkpoint と同じでなければならない（違えば ResumeError）。
+        # シートを読み直さず checkpoint の値を使う（シートが読めない日でも続きを作れる）
+        cited, src = set(saved['cited']), f'{os.path.basename(a.checkpoint)} に保存した値'
+    else:
+        cited, src = allocate_47.load_cited(argparse.Namespace(
+            cited_csv=a.cited_csv, cited_from=a.cited_from, cited_to=a.cited_to))
     print(f'条件 c の引用あり: {len(cited)}本（{src}）')
     meta = {'seed_start': a.seed_start,
             'cited': f'{a.cited_from}〜{a.cited_to}（{len(cited)}本）',

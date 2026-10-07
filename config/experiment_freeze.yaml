@@ -33,3 +33,10 @@ plan_changes:
   - date: "2026-10-06"
     change: "2026-10-06 Claude 観測を停止（費用ゼロ方針・本田さん決定）。アフター期間（10/6〜）の Claude データは0本のため、Claude は判定対象外とする。主指標は事前登録どおり Gemini のみで変更なし。この変更はアフター期間の実験データを見る前に行った"
     note: "ビフォー期間（9/15〜9/28）の Claude データは消さずに記録として残す。interventions I-27・config/claude_budget.yaml の planned_stop_from"
+
+# 早期解放ルール(記録。判定は experiment_2x2/summarize.py の early_release が行う。2026-10-07 追加)
+early_release_rule:
+  implemented_on: "2026-10-07"
+  note: "早期解放ルール：2026-10-07 に実装（短期判定のデータを見る前）。条件の内容は 2026-10-01 の事前登録どおり"
+  conditions: "施策ごと（リード ③＋④ 対 ①＋②／FAQ ②＋④ 対 ①＋③）。(1) Gemini の cited_article の差の差 +20ポイント以上 (2) 再ランダム化検定の片側 p 0.005 未満（プール2,000件未満は判定不能）(3) 感度分析の全通りで向きが同じ。3つすべてで解放可"
+

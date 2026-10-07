@@ -657,7 +657,7 @@ def test_every_intervention_in_the_period_is_listed_whatever_its_scope():
     assert sorted(r["intervention_id"] for r in overlap) == ["ARTICLE", "EXT", "FORM", "HYG"]
     assert [r["intervention_id"] for r in undated] == ["BEFORE"], "「〜より前」は日付不確定"
     groups = summarize.group_by_scope(overlap)
-    assert [k for k, _ in groups] == ["サイト", "外部", "固定ページ4件", "site_hygiene"],         "プール46本に触れる行を含む scope が先、その後は日付順"
+    assert [k for k, _ in groups] == ["サイト", "外部", "固定ページ", "site_hygiene"],         "プール46本に触れる行を含む scope が先、その後は日付順"
     assert not hasattr(summarize, "CONFOUNDER_SCOPES"), "scope で絞らない"
 
 
@@ -697,3 +697,16 @@ def test_the_list_is_in_both_judgements_and_changes_no_number(monkeypatch, tmp_p
         assert "｜I-91｜" in head
         # 一覧の部分を除くと1文字も変わらない(差の差・p値・感度分析は同じ)
         assert with_list.split("#####", 1)[1] == without.split("#####", 1)[1]
+
+
+def test_scopes_with_a_count_are_grouped_together():
+    """「固定ページ4件」「固定ページ1件」「固定ページ3件」は「固定ページ」にまとめる(2026-10-07)。"""
+    assert summarize.scope_key("固定ページ4件（68 /contact/・1891 /download-paper/）") == "固定ページ"
+    assert summarize.scope_key("固定ページ1件") == "固定ページ"
+    assert summarize.scope_key("ピラーA（agentforce-guide）") == "ピラーA"
+    assert summarize.scope_key("measurement") == "measurement"
+    import datetime as dt
+    overlap, _ = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 11, 1))
+    groups = dict(summarize.group_by_scope(overlap))
+    assert sorted(r["intervention_id"] for r in groups["固定ページ"]) == ["I-15", "I-16", "I-17"]
+

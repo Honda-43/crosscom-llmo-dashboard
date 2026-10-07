@@ -518,3 +518,14 @@ def test_show_is_not_blocked_by_the_lock(monkeypatch, tmp_path):
 
 def test_the_running_process_is_seen_as_alive():
     assert rerandomize.pid_alive(os.getpid())
+
+
+def test_resume_takes_condition_c_from_the_checkpoint_without_the_sheet(monkeypatch, tmp_path):
+    """2026-10-07：シートが読めない日(403)でも続きを作れる。条件 c は checkpoint と同じでなければならないので、そこから読む。"""
+    args = _main_without_sheets(monkeypatch, tmp_path)
+    assert rerandomize.main(["--build"] + args) == 0
+    monkeypatch.setattr(rerandomize.allocate_47, "load_cited",
+                        lambda a: (_ for _ in ()).throw(PermissionError("403")))
+    assert rerandomize.main(["--resume"] + args[:-1] + ["6"]) == 0
+    assert len(rerandomize.load(str(tmp_path / "pool.csv"))) == 6
+
