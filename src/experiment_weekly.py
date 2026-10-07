@@ -46,6 +46,10 @@ WEEK1_MONDAY = dt.date(2026, 9, 14)
 TREATMENT_FROM = dt.date(2026, 9, 29)
 TREATMENT_LAG_UNTIL = dt.date(2026, 10, 5)
 AFTER_FROM = dt.date(2026, 10, 6)
+# 組ごとの欠測の監視(2026-10-08)。割付表と、組の間の欠測の差がこの本数以上なら警告
+ALLOCATION_FILE = ROOT_DIR / "experiment_2x2" / "allocation_v1.csv"
+GROUPS = ("①対照", "②FAQのみ", "③リードのみ", "④両方")
+MISS_GAP_WARN = 3
 # 短期判定の日。この日より前の週次では組ごとの比較につながる数字(記事ごとの表・記事の一覧)を
 # 出さない(2026-09-30)。途中で覗くと、偶然の上下を見て判断してしまうため。
 # 組は割付表(allocation_v1.csv)と記事IDで引けるので、記事ごとの数字も伏せる
@@ -53,6 +57,55 @@ GROUP_BLIND_UNTIL = dt.date(2026, 11, 2)
 # 実験の Claude が週2回→週1回(月曜のみ)になった日(settings.EXPERIMENT_CLAUDE_WEEKLY_FROM)
 CLAUDE_WEEKLY_FROM = dt.date.fromisoformat(EXPERIMENT_CLAUDE_WEEKLY_FROM)
 GEMINI_DAILY_LIMIT = 20
+
+
+def load_allocation(path: Path = ALLOCATION_FILE) -> Dict[str, str]:
+    """{記事ID: 組}(9/28 の割付)。表が無ければ空。"""
+    import csv
+    if not Path(path).exists():
+        return {}
+    with open(path, encoding="utf-8") as fh:
+        return {r["id"]: r["group"] for r in csv.DictReader(fh) if r.get("id")}
+
+
+def gemini_misses_by_group(rows: Iterable[Dict[str, Any]], start: dt.date, end: dt.date,
+                           allocation: Dict[str, str]) -> Dict[str, int]:
+    """期間(start〜end)の実験の Gemini の欠測(error のある行)の本数を組ごとに。割付の無い記事(watch など)は数えない。"""
+    out = {g: 0 for g in GROUPS}
+    s, e = start.isoformat(), end.isoformat()
+    for r in rows:
+        day = str(r.get("date", ""))[:10]
+        group = allocation.get(str(r.get("experiment_id", "")))
+        if (s <= day <= e and r.get("model") == "gemini" and group in out
+                and str(r.get("error") or "").strip()):
+            out[group] += 1
+    return out
+
+
+def missing_by_group_lines(rows: Iterable[Dict[str, Any]], start: dt.date, end: dt.date,
+                           allocation: Optional[Dict[str, str]] = None) -> List[str]:
+    """週次の「組ごとの欠測」の節(Gemini・本数だけ)。アフター期間の累計で組の間の差が MISS_GAP_WARN 以上なら警告。"""
+    allocation = load_allocation() if allocation is None else allocation
+    rows = list(rows)
+    L = ["## 1-2. 組ごとの欠測(実験の Gemini・本数のみ)", ""]
+    if not allocation:
+        return L + ["割付表(allocation_v1.csv)が無いため出していない", ""]
+    week = gemini_misses_by_group(rows, start, end, allocation)
+    L += ["欠測(error のある行)の本数だけを出す。引用率・差は出さない(11/2 まで組ごとの結果を見ないルール)。", "",
+          "| 期間 | " + " | ".join(GROUPS) + " | 組の間の差 |", "|---|" + "---:|" * (len(GROUPS) + 1)]
+    gap = lambda c: max(c.values()) - min(c.values())  # noqa: E731
+    L.append(f"| この週({start:%m/%d}〜{end:%m/%d}) | " + " | ".join(str(week[g]) for g in GROUPS)
+             + f" | {gap(week)} |")
+    if end >= AFTER_FROM:
+        total = gemini_misses_by_group(rows, AFTER_FROM, end, allocation)
+        L.append(f"| アフター期間の累計({AFTER_FROM:%m/%d}〜{end:%m/%d}) | "
+                 + " | ".join(str(total[g]) for g in GROUPS) + f" | {gap(total)} |")
+        L.append("")
+        if gap(total) >= MISS_GAP_WARN:
+            L.append(f"- ⚠️ **アフター期間の累計で、組の間の欠測の差が{gap(total)}本(警告は{MISS_GAP_WARN}本以上)。**"
+                     "欠測が特定の組に偏ると、組の比較の母数がずれる。欠測の理由(第2節)と、取り直しの枠を確かめる")
+    L.append("")
+    return L
 
 
 def week_window(report_date: dt.date) -> Tuple[dt.date, dt.date]:
@@ -114,7 +167,8 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
           raw_dir: Path = DATA_RAW_DIR, experiment_dir: Path = DATA_RAW_EXPERIMENT_DIR,
           monthly_dir: Path = DATA_RAW_MONTHLY_DIR,
           intervention_rows: Optional[List[Dict[str, Any]]] = None,
-          blind: Optional[bool] = None, note: str = "") -> str:
+          blind: Optional[bool] = None, note: str = "",
+          allocation: Optional[Dict[str, str]] = None) -> str:
     """週次集計の Markdown を返す。
 
     ``blind=True`` で組ごとの比較につながる数字を必ず伏せる(処置前の週を判定日より前に
@@ -192,6 +246,11 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
     if unobserved:
         L.append(f"- Gemini の有効観測が0回の記事: {len(unobserved)}本({'、'.join(unobserved)})")
     L.append("")
+
+    # ---- 1-2. 組ごとの欠測(2026-10-08) -----------------------------------------
+    # 欠測の本数だけを組ごとに出す(引用率・差は出さない。11/2 まで組ごとの結果を見ないルールは維持)。
+    # 欠測が特定の組に偏ると、組の比較の母数がずれる。アフター期間の累計で組の間の差が3本以上なら警告
+    L += missing_by_group_lines(rows, start, end, allocation=allocation)
 
     # ---- 2. Gemini の呼び出しと欠測 ------------------------------------------
     L += ["## 2. Gemini の1日あたり呼び出し数と欠測", "",

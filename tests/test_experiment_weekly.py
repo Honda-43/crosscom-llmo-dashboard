@@ -192,3 +192,40 @@ def test_the_weekly_report_warns_not_to_compare_claude_counts_across_the_switch(
     before = ew.build(dt.date(2026, 9, 28), [], pool=[], intervention_rows=[])
     assert "Claude は 2026-10-05 から週1回" in after
     assert "Claude は 2026-10-05 から週1回" not in before
+
+
+# --- 組ごとの欠測(2026-10-08) ------------------------------------------------------
+ALLOC = {"E01": "①対照", "E02": "②FAQのみ", "E03": "③リードのみ", "E04": "④両方"}
+
+
+def _miss(date, eid, model="gemini", error="503 UNAVAILABLE"):
+    return {"date": date, "experiment_id": eid, "model": model, "error": error}
+
+
+def test_misses_are_counted_per_group_for_gemini_only():
+    rows = [_miss("2026-10-06", "E01"), _miss("2026-10-07", "E01"), _miss("2026-10-07", "E02"),
+            _miss("2026-10-07", "E03", error=""),                  # 欠測でない
+            _miss("2026-10-07", "E04", model="claude"),             # Claude は数えない
+            _miss("2026-10-07", "E37"),                             # 割付の無い記事(watch)は数えない
+            _miss("2026-10-13", "E01")]                             # 週の外
+    got = ew.gemini_misses_by_group(rows, dt.date(2026, 10, 5), dt.date(2026, 10, 11), ALLOC)
+    assert got == {"①対照": 2, "②FAQのみ": 1, "③リードのみ": 0, "④両方": 0}
+
+
+def test_a_gap_of_3_or_more_in_the_after_period_is_warned():
+    rows = [_miss(f"2026-10-{d:02d}", "E01") for d in (6, 7, 8)]
+    lines = ew.missing_by_group_lines(rows, dt.date(2026, 10, 5), dt.date(2026, 10, 11), ALLOC)
+    text = "\n".join(lines)
+    assert "| この週(10/05〜10/11) | 3 | 0 | 0 | 0 | 3 |" in text
+    assert "| アフター期間の累計(10/06〜10/11) | 3 | 0 | 0 | 0 | 3 |" in text
+    assert "⚠️" in text and "3本" in text
+    two = ew.missing_by_group_lines(rows[:2], dt.date(2026, 10, 5), dt.date(2026, 10, 11), ALLOC)
+    assert "⚠️" not in "\n".join(two), "差2本は警告しない"
+
+
+def test_the_section_shows_counts_only_even_while_blind():
+    rows = [_miss("2026-10-07", "E01")]
+    text = ew.build(dt.date(2026, 10, 12), rows, pool=[], intervention_rows=[], allocation=ALLOC)
+    section = text.split("## 1-2. 組ごとの欠測")[1].split("## 2.")[0]
+    assert "| 1 | 0 | 0 | 0 |" in section
+    assert "率" not in section.replace("引用率・差は出さない", ""), "引用率などの結果は出さない"
