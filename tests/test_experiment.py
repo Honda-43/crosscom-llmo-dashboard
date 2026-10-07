@@ -173,12 +173,13 @@ def test_nothing_is_planned_before_the_cycle_starts():
 
 def test_the_assignment_follows_the_cycle_start_with_no_manual_table():
     """開始日から、その日までに回した本数ぶんだけ輪が進む。それだけで決まる。"""
-    assert _gemini_ids(START)[0] == "E01"
+    # 2026-10-08 からその日の中の順番は日付で並べ替える。割り当て(どの記事か)は輪のまま
+    assert "E01" in _gemini_ids(START)
     running = 0
     for day in THREE_WEEKS:
         assert settings.experiment_cursor(day.isoformat()) == running % len(OBS_IDS), day
         ids = _gemini_ids(day)
-        assert ids == [OBS_IDS[(running + i) % len(OBS_IDS)] for i in range(len(ids))], day
+        assert sorted(ids) == sorted(OBS_IDS[(running + i) % len(OBS_IDS)] for i in range(len(ids))), day
         running += settings.experiment_daily_count(day.isoformat())
 
 
@@ -186,16 +187,18 @@ def test_moving_the_cycle_start_moves_the_whole_assignment(monkeypatch):
     """割当は開始日だけで決まる。曜日ごとの表を手で直す余地が無いことの裏。"""
     monkeypatch.setattr(settings, "EXPERIMENT_CYCLE_START", (START + dt.timedelta(days=1)).isoformat())
     monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
-    assert _gemini_ids(START + dt.timedelta(days=1))[0] == "E01"
+    assert "E01" in _gemini_ids(START + dt.timedelta(days=1))
 
 
 def test_the_cycle_wraps_without_skipping_or_repeating_a_prompt():
     """輪を1周する間に、観測する47本(プール46 + watch1)が漏れなく1回ずつ出る。"""
     seen, day = [], START
     while len(seen) < len(OBS_IDS):
-        seen += _gemini_ids(day)
+        last = _gemini_ids(day)
+        seen += last
         day += dt.timedelta(days=1)
-    assert sorted(seen[:len(OBS_IDS)]) == OBS_IDS
+    assert set(seen) == set(OBS_IDS), "1周で全部が出る"
+    assert len(seen) - len(set(seen)) < len(last), "重なるのは2周目に入った最後の日の分だけ"
 
 
 def test_a_prompt_is_never_observed_twice_on_the_same_day():
@@ -1085,3 +1088,67 @@ def test_the_switch_is_in_the_intervention_log():
     hit = [r for r in rows if r[0] == "2026-10-05" and "週2回→週1回" in r[2]]
     assert len(hit) == 1 and hit[0][3] == "measurement" and hit[0][5] == "no"
     assert "Gemini（主指標）は不変" in hit[0][6]
+
+
+# --- 観測順の並べ替えと時間の予算(2026-10-08) ------------------------------------------
+def test_the_order_within_a_day_is_shuffled_by_the_date(monkeypatch):
+    monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
+    a = [p["id"] for p in settings.experiment_plan("2026-10-12")["gemini"]]
+    b = [p["id"] for p in settings.experiment_plan("2026-10-12")["gemini"]]
+    assert a == b, "同じ日なら何度実行しても同じ順番"
+    import random
+    rotation = sorted(a, key=lambda i: OBS_IDS.index(i))
+    assert a != rotation, "輪の順のままではない"
+    # 割り当ての順番(輪の順)を日付(YYYYMMDD)の種で並べ替えたものと一致する
+    start = settings.experiment_cursor("2026-10-12")
+    expected = [OBS_IDS[(start + i) % len(OBS_IDS)] for i in range(len(a))]
+    random.Random(20261012).shuffle(expected)
+    assert a == expected
+
+
+def test_a_different_date_gives_a_different_order_but_the_same_assignment(monkeypatch):
+    monkeypatch.setattr(settings, "_EXPERIMENT_CURSOR", {})
+    for day in THREE_WEEKS:
+        d = day.isoformat()
+        ids = [p["id"] for p in settings.experiment_plan(d).get("gemini", [])]
+        start = settings.experiment_cursor(d)
+        assert sorted(ids) == sorted(OBS_IDS[(start + i) % len(OBS_IDS)] for i in range(len(ids))), d
+        assert len(ids) == settings.experiment_daily_count(d), "本数は変わらない"
+        assert len(ids) <= settings.GEMINI_DAILY_REQUEST_LIMIT
+    orders = {tuple(p["id"] for p in settings.experiment_plan(d.isoformat()).get("gemini", []))
+              for d in THREE_WEEKS}
+    assert len(orders) == len(THREE_WEEKS), "日付が変われば順番も変わる"
+
+
+def test_after_the_time_budget_no_new_call_is_made_and_the_rest_is_recorded(monkeypatch, tmp_path):
+    monkeypatch.setenv("GEMINI_API_KEY", "x")
+    calls = []
+
+    def answer(text, model):
+        calls.append(text)
+        if len(calls) == 2:
+            collect_llm.set_deadline(0)              # 2本目のあとで締め切りを過ぎた
+        return "答え", []
+
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini", answer)
+    prompts = [{"id": f"E{i:02d}", "text": f"Q{i}"} for i in range(1, 6)]
+    recs = collect_llm.collect("2026-10-12", prompts=prompts, out_dir=tmp_path, models=["gemini"])
+    assert len(calls) == 2, "締め切りを過ぎたら新しい呼び出しをしない"
+    late = [r for r in recs if r["error"]]
+    assert [r["prompt_id"] for r in late] == ["E03", "E04", "E05"]
+    assert all(r["error"].startswith("time_budget") and r["attempts"] == 0 for r in late)
+    assert all(r["miss_reason"] == collect_llm.REASON_SKIPPED for r in late), "欠測の理由は skipped(失敗にしない)"
+    assert all((tmp_path / f"{r['prompt_id']}_gemini.json").exists() for r in late), "raw にも残す"
+    assert collect_llm.REASON_SKIPPED in run_experiment.WARN_ONLY_REASONS, "ジョブは正常終了(exit 0)"
+
+
+def test_the_time_budget_is_40_minutes_from_the_job_start(monkeypatch):
+    import yaml
+    cfg = yaml.safe_load(open(settings.CONFIG_DIR / "experiment_job.yaml", encoding="utf-8"))
+    assert cfg["time_budget_minutes"] == 40 == settings.EXPERIMENT_TIME_BUDGET_MINUTES
+    monkeypatch.setenv("EXPERIMENT_JOB_STARTED_AT", "1000")
+    assert settings.experiment_job_deadline() == 1000 + 40 * 60
+    wf = yaml.safe_load(open(settings.ROOT_DIR / ".github/workflows/experiment.yml", encoding="utf-8"))
+    first = wf["jobs"]["experiment"]["steps"][0]
+    assert "EXPERIMENT_JOB_STARTED_AT" in first["run"], "ジョブの最初に開始時刻を記録する"
+

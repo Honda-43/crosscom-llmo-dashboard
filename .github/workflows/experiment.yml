@@ -70,6 +70,10 @@ jobs:
       # 待ちは前のジョブで済ませてある。ここでは短く確かめ直すだけ(揃わなければ従来どおり Gemini を投げずに記録)
       EXPERIMENT_DAILY_WAIT_MINUTES: '10'
     steps:
+      # 観測ジョブの時間の予算(2026-10-08・config/experiment_job.yaml の40分)の起点。実験と prompt_marketing が同じ締め切りを使う
+      - name: Record the job start time
+        run: echo "EXPERIMENT_JOB_STARTED_AT=$(date +%s)" >> "$GITHUB_ENV"
+
       - name: Checkout
         uses: actions/checkout@v4
 

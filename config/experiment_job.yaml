@@ -1,0 +1,7 @@
+# 実験の観測ジョブ(experiment.yml の experiment ジョブ)の時間の予算(2026-10-08・本田さん決定)。src/settings.py が読む。
+#
+# ジョブの開始(EXPERIMENT_JOB_STARTED_AT)からこの分数を超えたら、新しい Gemini 呼び出し(取り直し・掃き直しを含む)をやめる。
+# 残りの計画分は error=time_budget として raw・シート・実験日誌に記録し、シートへの書き込みまで済ませて正常に終わる。
+# ジョブの制限時間(60分)より前に必ず書き終えるため。1回あたりの時間切れ(180秒・GEMINI_CALL_TIMEOUT_SECONDS)はそのまま。
+# **値を変えるときは README の「観測ジョブの時間の予算と観測順」に日付と理由を書いてから変える**
+time_budget_minutes: 40

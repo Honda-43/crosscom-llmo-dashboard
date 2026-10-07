@@ -41,7 +41,8 @@ import run_experiment
 from settings import (DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MARKETING_DIR, GEMINI_DAILY_REQUEST_LIMIT,
                       MARKETING_CLAUDE_ENABLED, MARKETING_FIRST_MONTH, MARKETING_GEMINI_CUTOFF_JST,
                       MARKETING_STOPPED_ON, MARKETING_WINDOW_LAST_DAY, ROOT_DIR,
-                      experiment_plan, in_marketing_window, load_marketing_prompts,
+                      experiment_job_deadline, experiment_plan, in_marketing_window,
+                      load_marketing_prompts,
                       marketing_gemini_allowance)
 
 DIARY_FILE = ROOT_DIR / "output" / "reports" / "experiment47_diary.md"
@@ -224,10 +225,15 @@ def main(argv: Optional[List[str]] = None) -> int:
     out_dir = DATA_RAW_MARKETING_DIR / date
     out_dir.mkdir(parents=True, exist_ok=True)
     if a.model == "gemini":
+        # 実験と同じジョブで走るので、同じ時間の予算(2026-10-08)。締め切りを過ぎていれば投げない(期間内の次の日に回る)
+        collect_llm.set_deadline(experiment_job_deadline())
         used, note = (None, "")
         if in_marketing_window(date):
             used, note = gemini_used_today(date)
-        recs, notes = run_gemini(date, prompts, out_dir, used=used, used_note=note)
+        if collect_llm.past_deadline():
+            recs, notes = [], ["- Gemini: 観測ジョブの時間の予算を超えたため投げない(期間内の次の日に回る)"]
+        else:
+            recs, notes = run_gemini(date, prompts, out_dir, used=used, used_note=note)
     else:
         recs, notes = run_claude(date, prompts, out_dir)
     lines += notes

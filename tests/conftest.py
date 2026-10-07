@@ -17,7 +17,9 @@ import pytest  # noqa: E402
 def _claude_budget_isolated(tmp_path, tmp_path_factory, monkeypatch):
     """Claude の1日の上限(claude_budget)の回数をテストごとに数え直し、repo の data/claude_usage に書かない。"""
     import claude_budget
+    import collect_llm
     import settings
+    collect_llm.set_deadline(None)      # 観測ジョブの時間の予算はテストごとに外す(2026-10-08)
     monkeypatch.setattr(claude_budget, "USAGE_DIR", tmp_path / "claude_usage")
     # Claude の計画的停止(2026-10-06)は既定で外す(既存のテストは再開したときの動きを確かめる)。
     # 停止中の動きは tests/test_claude_stop.py が claude_stop で入れて確かめる

@@ -64,6 +64,7 @@ import sheets_writer
 from settings import (DATA_RAW_DIR, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MONTHLY_DIR,
                       EXPERIMENT_JOURNAL_FILE, EXPERIMENT_OBSERVATION_END,
                       claude_planned_stop_from, experiment_claude_on, experiment_ended,
+                      experiment_job_deadline,
                       experiment_weekly_target,
                       load_experiment_prompts,
                       GEMINI_DAILY_REQUEST_LIMIT, ROOT_DIR, WEEKDAY_LABELS,
@@ -617,6 +618,9 @@ def main() -> None:
         return
     # Claude API の1日の呼び出し上限(2026-10-03)。回数は実際に呼ぶ日(JST の今日)で数える
     claude_budget.start("experiment")
+    # 観測ジョブの時間の予算(2026-10-08)。締め切りを過ぎたら新しい呼び出しをせず、残りは error=time_budget で記録して
+    # シートへの書き込みまで済ませる(ジョブの60分の制限で打ち切られないように)
+    collect_llm.set_deadline(experiment_job_deadline())
     # failures は exit 1、warnings は exit 0(警告だけ出して正常終了)。
     failures: List[str] = []
     warnings: List[str] = []

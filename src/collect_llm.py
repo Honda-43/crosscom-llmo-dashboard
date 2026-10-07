@@ -60,6 +60,8 @@ _PERMANENT_MARKERS = (
     "UNAUTHENTICATED", "API key not valid", "invalid_request_error",
     # Claude の1日の上限・クレジット不足でその日の呼び出しを止めている(claude_budget。2026-10-03)
     "daily_cap", "credit_exhausted", "credit balance is too low", "planned_stop",
+    # 観測ジョブの時間の予算を超えた(2026-10-08)。取り直さない
+    "time_budget",
 )
 _PERMANENT_CODES = ("400", "401", "403", "404")
 
@@ -121,9 +123,12 @@ def miss_reason(error: Any) -> str:
 
     順番に意味がある。429 のうち課金切れ(insufficient_quota)は待っても
     戻らないので permanent、枠切れは quota。503 は unavailable。
+    時間の予算(time_budget)で投げなかったものは skipped(2026-10-08)。
     """
     if error in (None, ""):
         return ""
+    if str(error).startswith(TIME_BUDGET):
+        return REASON_SKIPPED
     exc = error if isinstance(error, BaseException) else Exception(str(error))
     if is_permanent(exc):
         return REASON_PERMANENT
@@ -478,6 +483,24 @@ def collect(date: Optional[str] = None,
     return records
 
 
+# 観測ジョブの時間の予算(2026-10-08)。締め切り(UNIX 時刻)を過ぎたら新しい呼び出しをしない
+TIME_BUDGET = "time_budget"
+_DEADLINE: List[Optional[float]] = [None]
+
+
+class TimeBudgetExceeded(RuntimeError):
+    """観測ジョブの時間の予算を超えたので投げなかった。文面は time_budget で始まる。"""
+
+
+def set_deadline(epoch: Optional[float]) -> None:
+    """この実行の締め切り(UNIX 時刻)。None で外す。"""
+    _DEADLINE[0] = epoch
+
+
+def past_deadline(now: Optional[float] = None) -> bool:
+    return _DEADLINE[0] is not None and (now if now is not None else time.time()) >= _DEADLINE[0]
+
+
 def _attempt(record: Dict[str, Any], question: str, *, attempts: int,
              on_quota=None, budget: Optional[RetryBudget] = None) -> bool:
     """1観測を取って ``record`` を埋める。成功したら True。
@@ -494,6 +517,9 @@ def _attempt(record: Dict[str, Any], question: str, *, attempts: int,
 
     def call():
         nonlocal tries
+        if past_deadline():
+            # 取り直し・掃き直しも含めて、締め切りを過ぎたら投げない(2026-10-08)
+            raise TimeBudgetExceeded(f"{TIME_BUDGET}: 観測ジョブの開始から時間の予算を超えたため投げていない")
         tries += 1
         return _QUERY_FUNCS[record["model"]](question, record["model_name"])
 
@@ -612,6 +638,9 @@ def _sweep(records: List[Dict[str, Any]], prompts: List[Dict[str, Any]],
         if not targets:
             break
         labels = ", ".join(f"{r['prompt_id']}/{r['model']}" for r in targets)
+        if past_deadline(time.time() + wait):
+            print(f"[warn] 掃き直し{index}: 待つと時間の予算を超えるため掃き直さない ({labels})")
+            break
         print(f"[info] 掃き直し{index}/{len(rounds)}: {len(targets)}件を "
               f"{wait:.0f}秒後に再取得します ({labels})")
         time.sleep(wait)

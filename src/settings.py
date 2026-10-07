@@ -10,6 +10,7 @@ import csv
 import datetime as dt
 import json
 import os
+import random
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -257,6 +258,18 @@ def _weekday(date: str) -> int:
     return dt.date.fromisoformat(str(date)[:10]).weekday()
 
 
+def experiment_job_deadline(now: Optional[float] = None) -> float:
+    """観測ジョブの締め切り(UNIX 時刻)= ジョブの開始 + 時間の予算(2026-10-08)。
+
+    開始は experiment.yml が最初のステップで入れる EXPERIMENT_JOB_STARTED_AT(UNIX 時刻)。無ければ今
+    (手元の実行など)。prompt_marketing の Gemini も同じジョブで走るので、同じ締め切りを使う。
+    """
+    import time as _time
+    started = os.getenv("EXPERIMENT_JOB_STARTED_AT")
+    base = float(started) if started else (now if now is not None else _time.time())
+    return base + EXPERIMENT_TIME_BUDGET_MINUTES * 60
+
+
 def experiment_claude_weekdays(date: str) -> Tuple[int, ...]:
     """その日に有効な実験の Claude の観測曜日。2026-10-05 から月曜のみ(それまでは月・木)。"""
     if str(date)[:10] >= EXPERIMENT_CLAUDE_WEEKLY_FROM:
@@ -433,6 +446,11 @@ def experiment_plan(date: str) -> Dict[str, List[Dict[str, Any]]]:
         plan["gemini"] = [prompts[(start + i) % total] for i in range(count)]
     if experiment_claude_on(date):
         plan["claude"] = list(prompts)
+    # その日の中の観測順を、日付(YYYYMMDD)を種にした乱数で並べ替える(2026-10-08)。どの記事をどの日に観測するか
+    # (巡回の割り当て)は変えない。時間切れ・枠不足で末尾が欠けるとき、欠けが特定の組に偏らないようにするため
+    rng = random.Random(int(str(date)[:10].replace("-", "")))
+    for model in plan:
+        rng.shuffle(plan[model])
     return plan
 
 
@@ -539,6 +557,17 @@ def _flag(name: str, default: bool) -> bool:
         return default
     return raw.strip().lower() in ("1", "true", "yes", "on")
 
+
+# 実験の観測ジョブの時間の予算(分。2026-10-08・config/experiment_job.yaml)。
+def _experiment_job_config() -> Dict[str, Any]:
+    try:
+        with open(CONFIG_DIR / "experiment_job.yaml", encoding="utf-8") as fh:
+            return yaml.safe_load(fh) or {}
+    except OSError:
+        return {}
+
+
+EXPERIMENT_TIME_BUDGET_MINUTES = float(_experiment_job_config().get("time_budget_minutes", 40))
 
 # Gemini の1回の呼び出しの時間切れ(秒。2026-10-06)。10/05 の実験で応答が返らないまま
 # ジョブの4時間制限まで止まり、Claude の観測まで進まなかった。超えたら 503 と同じ扱いで取り直す

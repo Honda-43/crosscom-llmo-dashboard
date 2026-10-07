@@ -229,3 +229,18 @@ def test_the_section_shows_counts_only_even_while_blind():
     section = text.split("## 1-2. 組ごとの欠測")[1].split("## 2.")[0]
     assert "| 1 | 0 | 0 | 0 |" in section
     assert "率" not in section.replace("引用率・差は出さない", ""), "引用率などの結果は出さない"
+
+
+def test_misses_are_also_shown_by_kind():
+    """欠測の種類(time_budget／job_timeout／503／429 など)ごとの本数も組ごとに出す(2026-10-08)。"""
+    assert ew.miss_kind("time_budget: 予算を超えた") == "time_budget"
+    assert ew.miss_kind("job_timeout: 4時間") == "job_timeout"
+    assert ew.miss_kind("503 UNAVAILABLE (時間切れ): ServerError: 504 DEADLINE_EXCEEDED") == "503"
+    assert ew.miss_kind("429 RESOURCE_EXHAUSTED") == "429"
+    assert ew.miss_kind("skipped: 日次・月次の実消費で枠が足りず") == "枠不足"
+    rows = [_miss("2026-10-07", "E01", error="time_budget: x"), _miss("2026-10-07", "E02", error="429 RESOURCE"),
+            _miss("2026-10-08", "E02", error="time_budget: x")]
+    text = "\n".join(ew.missing_by_group_lines(rows, dt.date(2026, 10, 5), dt.date(2026, 10, 11), ALLOC))
+    assert "| この週(10/05〜10/11) | time_budget | 1 | 1 | 0 | 0 | 2 |" in text
+    assert "| この週(10/05〜10/11) | 429 | 0 | 1 | 0 | 0 | 1 |" in text
+    assert "| アフター期間の累計(10/06〜10/11) | time_budget | 1 | 1 | 0 | 0 | 2 |" in text

@@ -68,6 +68,40 @@ def load_allocation(path: Path = ALLOCATION_FILE) -> Dict[str, str]:
         return {r["id"]: r["group"] for r in csv.DictReader(fh) if r.get("id")}
 
 
+MISS_KINDS = ("time_budget", "job_timeout", "503", "429", "枠不足", "その他")
+
+
+def miss_kind(error: Any) -> str:
+    """欠測の種類(週次の組ごとの欠測の内訳。2026-10-08)。"""
+    text = str(error or "").strip()
+    if text.startswith("time_budget"):
+        return "time_budget"
+    if text.startswith("job_timeout"):
+        return "job_timeout"
+    if text.startswith(("skipped", "quota_skipped")):
+        return "枠不足"
+    head = text[:40]
+    if "429" in head:
+        return "429"
+    if any(code in head for code in ("503", "504")) or "UNAVAILABLE" in text or "DEADLINE_EXCEEDED" in text:
+        return "503"
+    return "その他"
+
+
+def gemini_misses_by_kind(rows: Iterable[Dict[str, Any]], start: dt.date, end: dt.date,
+                          allocation: Dict[str, str]) -> Dict[str, Dict[str, int]]:
+    """{種類: {組: 本数}}。期間の実験の Gemini の欠測を種類と組で数える。"""
+    out = {k: {g: 0 for g in GROUPS} for k in MISS_KINDS}
+    s, e = start.isoformat(), end.isoformat()
+    for r in rows:
+        day = str(r.get("date", ""))[:10]
+        group = allocation.get(str(r.get("experiment_id", "")))
+        error = str(r.get("error") or "").strip()
+        if s <= day <= e and r.get("model") == "gemini" and group in GROUPS and error:
+            out[miss_kind(error)][group] += 1
+    return out
+
+
 def gemini_misses_by_group(rows: Iterable[Dict[str, Any]], start: dt.date, end: dt.date,
                            allocation: Dict[str, str]) -> Dict[str, int]:
     """期間(start〜end)の実験の Gemini の欠測(error のある行)の本数を組ごとに。割付の無い記事(watch など)は数えない。"""
@@ -104,6 +138,21 @@ def missing_by_group_lines(rows: Iterable[Dict[str, Any]], start: dt.date, end: 
         if gap(total) >= MISS_GAP_WARN:
             L.append(f"- ⚠️ **アフター期間の累計で、組の間の欠測の差が{gap(total)}本(警告は{MISS_GAP_WARN}本以上)。**"
                      "欠測が特定の組に偏ると、組の比較の母数がずれる。欠測の理由(第2節)と、取り直しの枠を確かめる")
+    # 欠測の種類ごとの本数(2026-10-08)。time_budget(観測ジョブの時間の予算)・job_timeout(ジョブの打ち切り)・
+    # 503(Gemini の混雑・時間切れ)・429(枠切れ)・枠不足(日次・月次の実消費で投げなかった)
+    L += ["", "欠測の種類ごと(本数):", "",
+          "| 期間 | 種類 | " + " | ".join(GROUPS) + " | 計 |", "|---|---|" + "---:|" * (len(GROUPS) + 1)]
+    spans = [(f"この週({start:%m/%d}〜{end:%m/%d})", start)]
+    if end >= AFTER_FROM:
+        spans.append((f"アフター期間の累計({AFTER_FROM:%m/%d}〜{end:%m/%d})", AFTER_FROM))
+    for label, since in spans:
+        kinds = gemini_misses_by_kind(rows, since, end, allocation)
+        shown = [k for k in MISS_KINDS if sum(kinds[k].values())]
+        if not shown:
+            L.append(f"| {label} | なし | " + " | ".join("0" for _ in GROUPS) + " | 0 |")
+        for k in shown:
+            L.append(f"| {label} | {k} | " + " | ".join(str(kinds[k][g]) for g in GROUPS)
+                     + f" | {sum(kinds[k].values())} |")
     L.append("")
     return L
 
