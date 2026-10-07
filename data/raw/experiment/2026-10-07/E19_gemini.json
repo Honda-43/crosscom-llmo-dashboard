@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-07",
+  "prompt_id": "E19",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceで最初のエージェントを1体作るまでの設定手順を教えて",
+  "cep": null,
+  "timestamp": "2026-10-07T02:19:48.210996Z",
+  "answer": "Agentforceで最初のAIエージェントを作成するには、いくつかの設定手順が必要です。まず、SalesforceのEinstein機能とAgentforce自体を有効にし、その後にエージェントを作成して設定します。\n\n以下に、Agentforceで最初のエージェントを1体作成するまでの設定手順を説明します。\n\n**ステップ1：前提条件とEinsteinの有効化**\nエージェントを作成する前に、以下の前提条件を確認し、Einsteinを有効にする必要があります。\n1.  SalesforceライセンスにSalesforce EinsteinおよびAgentforce機能へのアクセスが含まれていることを確認します。\n2.  高品質なデータが準備されていることを確認します。AIのパフォーマンスは、クリーンで構造化された完全なデータセットに依存します。\n3.  管理者権限が必要です。AI設定を構成し、機能をワークフローに統合するには、管理者レベルのアクセスが必要です。\n4.  Salesforceにログインし、「設定」に移動します。\n5.  クイック検索ボックスで「Einstein」と検索し、「Einstein設定」を選択します。\n6.  「Einsteinをオンにする」トグルをクリックしてオンにし、ブラウザをリフレッシュします。\n7.  関連するEinstein機能（Einstein Prediction Builder、Einstein Bots、Einstein Discoveryなど）を有効にします。\n8.  プロンプトビルダーのグローバル言語サポート、およびプロンプトテンプレートのデプロイもオンにします。\n\n**ステップ2：Agentforceの有効化**\n次に、Agentforce機能を有効にします。\n1.  「設定」のクイック検索ボックスで「Agentforceエージェント」と検索し、選択します。\n2.  Agentforceエージェントページの上部にあるAgentforceトグルをクリックして「オン」に設定します。\n3.  「Agentforce (デフォルト) エージェントを有効にする」トグルをクリックして「オン」に設定します。\n4.  正しい権限セット（例：Agentforce 360 Service Agent Builder）が割り当てられていることを確認します。\n5.  データセキュリティのためにEinstein Trust Layerが有効になっていることを確認します。\n\n**ステップ3：エージェントの作成**\nいよいよ、新しいエージェントを作成します。\n1.  「設定」のクイック検索ボックスで「Agentforceエージェント」を検索し、選択します。\n2.  「+ 新規エージェント」ボタンをクリックします。このボタンが表示されない場合は、表示されるまでページをリフレッシュしてください。\n3.  種類として「Agentforceサービスエージェント」を選択し、「次へ」をクリックします。\n4.  エージェントのトピックを選択する画面で、デフォルトで追加されているすべてのトピックの「追加済み」をクリックして削除し、「+追加」ボタンが表示されるようにします。\n5.  「次へ」をクリックします。\n6.  エージェントの「名前」と「API参照名」を入力します。例えば、名前を「Get Order Status」とします。\n7.  「次へ」をクリックし、最後に「作成」をクリックします。\n\n**ステップ4：エージェントの設定（トピックとアクション）**\nエージェントが実行できるタスクを定義するために、トピックとアクションを設定します。\n1.  クイック検索ボックスで「エージェント」と検索し、作成したエージェントをクリックして「ビルダーで開く」をクリックします。\n2.  「トピック」タブをクリックし、「新規トピック」をクリックしてカスタムトピックを追加できます。\n3.  トピックラベル、分類説明、範囲、指示などを設定します。\n4.  トピックにアクションを追加するには、「このトピックのアクション」サブタブをクリックします。\n5.  「新規」をクリックし、「アクションを追加」を選択します。アクションの種類として「Apex」を選択し、参照アクションを選択します。\n6.  アクションラベルとAPI参照名を確認し、指示（例：「注文番号に基づいて注文のステータスを返す」）や読み込みテキスト（例：「注文の詳細を取得中」）を入力します。\n7.  入力セクションの指示フィールドに「ユーザーが提供する注文番号」と入力し、「入力必須」チェックボックスを選択します。\n\n**ステップ5：エージェントのデプロイ（任意）**\nエージェントをコミュニティサイトにデプロイして顧客が利用できるようにします。\n1.  「すべてのサイト」に移動し、「新規」ボタンをクリックします。\n2.  「カスタマーサービス」テンプレートを選択し、「使用を開始」をクリックします。\n3.  名前とURLを入力し、「作成」をクリックします。\n4.  「管理」セクションを選択し、「設定」をクリックして「有効化」ボタンをクリックします。\n5.  ビルダーに移動し、「コンポーネント」ボタンをクリックします。\n6.  「組み込みメッセージング」を検索し、ページにドラッグアンドドロップします。\n7.  「公開」を2回クリックし、「了解」をクリックします。\n8.  クイック検索ボックスで「組み込み」と検索し、「組み込みサービス展開」を選択します。\n9.  以前に作成したレコードを開き、「設定」の下の「設定を編集」をクリックして、必要に応じて調整します。\n\nこれらの手順で、Agentforceで最初のAIエージェントを構築し、設定することができます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0zSpNP36F0Yr9Wxfi1sUR0UO484X0AoZfmeZCM24i1V13O4IG5YjKiv7z8ms2PnzrMRTMJw6vb1KyKqLvM5qbwptwZJvWaNJ6RUOjvFmtEav3birrd3qUMf-CKSTh_XIlag1JKrcdTG21KesEdu2h6rFC9ejxWrhW7DGhKUxj",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFA5efGLtZyLkfu1Iiy3zTbZdY2a5s0HKhkzhZ_gRlwy3YEv8_gEkzk5rohXeuHvnmCl6hVXbc9z5bxR4wlBPxsuHe3DEl5redOgS8HT0QB9kYH_2uASkMRsg7qEupEjumFa9rOeWoi4yKDBokd0S7-oQbrFoE78z_CtEEtOjCgD3VawAis3JhQd2Gmazu0S4F3v1odjayoI6bQx3OnfxhwI41hx28k",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHzBQ3jAwuV_s29bGLcy1JCOyLrMzMqgEFfft4zhA5bndv5lK9oAXpKbVQj4t-THqh-Ps4jbh5WzlnnfU4NrWW-IcCR6reY7tW2PudA7lxfqIW9GGPt8nyA5alKDdqZmcejWIkpa0wZ_Ac5QaYJn8FjqrvYX2WGTOj0U8iou4VhAwSNFQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFk71T_cGAXG5KJmwuB5Txnz6ImdhKeC1NL0kzSvqBIpUnzmn4iO-2wiVHWmU9RHxuQM8yRQo30Xicfv1oCA0OBOiUfgUqZiXaIVi825_6wjkCKWcVRjC_gAwq7AFh976spKulIkZ1e32Pltb8NMtzgIH12adV4zruD842zKn6oeBlsZpgLonKI9B7bkQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwWjoh5_pgvoc4vD5n9UtAl-5P9wiKBvjqBO69Svtmu69wWffbpMVDrDCE_aXqGqU7W4X8LyeG8Ny65rWt3vitQRjRPUWi1rJG6itdb1SohmxzTNTXWe1IIkgq8ikDGQJWQIuOaaQ8aXcs6J54DWPCw2QJneLRRhAu6sR4n3896yKtZVQKSUg0xtVMhjPmEa0UtX8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFDLRYyYEiegm1yJ8aJsrwZS7aXLrP-L3QN48XCZBBLjOjNAOiZ9Jj_k-ljhyhcnTRTNtPxI22eGMx_zdR5-Akc5E52L8oyhM1FQJmdBpEZdqcVxILYt3X5k6EW7h_tyoZoClP2gdCGEOBUtrDgSoXuwpzlHIV_jtyvjq2J7B56waAbVkMOMqn8xbl4UxiOTz8="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E19",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-usage/",
+  "answer_text": "Agentforceで最初のAIエージェントを作成するには、いくつかの設定手順が必要です。まず、SalesforceのEinstein機能とAgentforce自体を有効にし、その後にエージェントを作成して設定します。\n\n以下に、Agentforceで最初のエージェントを1体作成するまでの設定手順を説明します。\n\n**ステップ1：前提条件とEinsteinの有効化**\nエージェントを作成する前に、以下の前提条件を確認し、Einsteinを有効にする必要があります。\n1.  SalesforceライセンスにSalesforce EinsteinおよびAgentforce機能へのアクセスが含まれていることを確認します。\n2.  高品質なデータが準備されていることを確認します。AIのパフォーマンスは、クリーンで構造化された完全なデータセットに依存します。\n3.  管理者権限が必要です。AI設定を構成し、機能をワークフローに統合するには、管理者レベルのアクセスが必要です。\n4.  Salesforceにログインし、「設定」に移動します。\n5.  クイック検索ボックスで「Einstein」と検索し、「Einstein設定」を選択します。\n6.  「Einsteinをオンにする」トグルをクリックしてオンにし、ブラウザをリフレッシュします。\n7.  関連するEinstein機能（Einstein Prediction Builder、Einstein Bots、Einstein Discoveryなど）を有効にします。\n8.  プロンプトビルダーのグローバル言語サポート、およびプロンプトテンプレートのデプロイもオンにします。\n\n**ステップ2：Agentforceの有効化**\n次に、Agentforce機能を有効にします。\n1.  「設定」のクイック検索ボックスで「Agentforceエージェント」と検索し、選択します。\n2.  Agentforceエージェントページの上部にあるAgentforceトグルをクリックして「オン」に設定します。\n3.  「Agentforce (デフォルト) エージェントを有効にする」トグルをクリックして「オン」に設定します。\n4.  正しい権限セット（例：Agentforce 360 Service Agent Builder）が割り当てられていることを確認します。\n5.  データセキュリティのためにEinstein Trust Layerが有効になっていることを確認します。\n\n**ステップ3：エージェントの作成**\nいよいよ、新しいエージェントを作成します。\n1.  「設定」のクイック検索ボックスで「Agentforceエージェント」を検索し、選択します。\n2.  「+ 新規エージェント」ボタンをクリックします。このボタンが表示されない場合は、表示されるまでページをリフレッシュしてください。\n3.  種類として「Agentforceサービスエージェント」を選択し、「次へ」をクリックします。\n4.  エージェントのトピックを選択する画面で、デフォルトで追加されているすべてのトピックの「追加済み」をクリックして削除し、「+追加」ボタンが表示されるようにします。\n5.  「次へ」をクリックします。\n6.  エージェントの「名前」と「API参照名」を入力します。例えば、名前を「Get Order Status」とします。\n7.  「次へ」をクリックし、最後に「作成」をクリックします。\n\n**ステップ4：エージェントの設定（トピックとアクション）**\nエージェントが実行できるタスクを定義するために、トピックとアクションを設定します。\n1.  クイック検索ボックスで「エージェント」と検索し、作成したエージェントをクリックして「ビルダーで開く」をクリックします。\n2.  「トピック」タブをクリックし、「新規トピック」をクリックしてカスタムトピックを追加できます。\n3.  トピックラベル、分類説明、範囲、指示などを設定します。\n4.  トピックにアクションを追加するには、「このトピックのアクション」サブタブをクリックします。\n5.  「新規」をクリックし、「アクションを追加」を選択します。アクションの種類として「Apex」を選択し、参照アクションを選択します。\n6.  アクションラベルとAPI参照名を確認し、指示（例：「注文番号に基づいて注文のステータスを返す」）や読み込みテキスト（例：「注文の詳細を取得中」）を入力します。\n7.  入力セクションの指示フィールドに「ユーザーが提供する注文番号」と入力し、「入力必須」チェックボックスを選択します。\n\n**ステップ5：エージェントのデプロイ（任意）**\nエージェントをコミュニティサイトにデプロイして顧客が利用できるようにします。\n1.  「すべてのサイト」に移動し、「新規」ボタンをクリックします。\n2.  「カスタマーサービス」テンプレートを選択し、「使用を開始」をクリックします。\n3.  名前とURLを入力し、「作成」をクリックします。\n4.  「管理」セクションを選択し、「設定」をクリックして「有効化」ボタンをクリックします。\n5.  ビルダーに移動し、「コンポーネント」ボタンをクリックします。\n6.  「組み込みメッセージング」を検索し、ページにドラッグアンドドロップします。\n7.  「公開」を2回クリックし、「了解」をクリックします。\n8.  クイック検索ボックスで「組み込み」と検索し、「組み込みサービス展開」を選択します。\n9.  以前に作成したレコードを開き、「設定」の下の「設定を編集」をクリックして、必要に応じて調整します。\n\nこれらの手順で、Agentforceで最初のAIエージェントを構築し、設定することができます。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "thefurygroup.com",
+    "phenoble.com",
+    "salesforce.com",
+    "developer.salesforce.com",
+    "kb.bullhorn.com",
+    "cloudearly.com"
+  ],
+  "resolved_urls": [
+    "https://www.thefurygroup.com/set-up-ai-agent-in-salesforce-agentforce/",
+    "https://phenoble.com/blogs/getting-started-with-salesforce-agentforce-enable-create-and-deploy-service-agents",
+    "https://www.salesforce.com/en-us/wp-content/uploads/sites/4/Agentforce.pdf",
+    "https://developer.salesforce.com/workshops/agentforce-workshop/agents/1-get-started",
+    "https://kb.bullhorn.com/bh4sf/Content/BH4SF/Topics/agentforceInstallationConfiguration.htm",
+    "https://www.cloudearly.com/blog/create-your-first-agentforce-agent-a-step-by-step-guide"
+  ],
+  "unresolved_redirects": 0
+}

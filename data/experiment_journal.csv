@@ -11,3 +11,8 @@ date,experiment_id,model,reason,detail,attempts
 2026-09-19,E13,gemini,quota,"429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ",1
 2026-10-01,E30,gemini,skipped,skipped: 日次・月次の実消費15回で枠が足りず実行せず,0
 2026-10-01,E31,gemini,skipped,skipped: 日次・月次の実消費15回で枠が足りず実行せず,0
+2026-10-07,E08,gemini,unavailable,"503 UNAVAILABLE (時間切れ): ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'The request timed out. Please try again.', 'status': 'DEADLINE_EXCEEDED'}}",3
+2026-10-07,E09,gemini,unavailable,"503 UNAVAILABLE (時間切れ): ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'The request timed out. Please try again.', 'status': 'DEADLINE_EXCEEDED'}}",1
+2026-10-07,E11,gemini,unavailable,"503 UNAVAILABLE (時間切れ): ServerError: 504 DEADLINE_EXCEEDED. {'error': {'code': 504, 'message': 'The request timed out. Please try again.', 'status': 'DEADLINE_EXCEEDED'}}",1
+2026-10-07,E17,gemini,unavailable,"503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}",1
+2026-10-07,E18,gemini,quota,"429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. ",1
