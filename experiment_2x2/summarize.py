@@ -525,9 +525,24 @@ def gsc_rank_subgroups(after, before, title="", split=None, today=None):
 
 
 # --------------------------------------------------------------------------
-# 判定期間と重なる介入(2026-10-01)
+# 判定期間と重なる介入(2026-10-01)＝交絡候補の一覧(2026-10-07 に範囲を拡大)
 # --------------------------------------------------------------------------
 SITE_WIDE_SCOPE = "サイト全体"
+# 一覧に載せる scope(2026-10-07・本田さん決定)。interventions.csv の scope を書き換えず、ここで拾う範囲を決める。
+# 括弧より前で比べる(「ピラーA（agentforce-guide）」は「ピラーA」)。touches_pool46 の値に関係なく載せる。
+# 変えるときは README「判定期間中のサイト全体施策一覧」も直す
+CONFOUNDER_SCOPES = ("サイト全体", "site_hygiene", "cta", "ピラーA", "ピラーB", "measurement")
+CONFOUNDER_HEADING = "アフター期間中のサイト全体施策一覧（判定の交絡候補）"
+
+
+def scope_key(scope):
+    """scope の括弧より前(英字は小文字)。「ピラーA（agentforce-guide）」→「ピラーA」。"""
+    import re
+    return re.split(r"[（(]", str(scope or ""))[0].strip().lower()
+
+
+def is_confounder_scope(scope):
+    return scope_key(scope) in {s.lower() for s in CONFOUNDER_SCOPES}
 
 
 def intervention_end(row):
@@ -549,13 +564,14 @@ def intervention_end(row):
 
 
 def site_wide_interventions(start, end, rows=None):
-    """(期間と重なるサイト全体の介入, 日付が未確定のサイト全体の介入)。start・end は date。
+    """(期間と重なる交絡候補の介入, 日付が未確定の交絡候補の介入)。start・end は date。
 
+    対象は scope が CONFOUNDER_SCOPES のどれか(2026-10-07 までは「サイト全体」だけ)。
     サイト全体の介入は全記事に一様に効くので、組の差ではなく全組共通のベースラインの変化として読む。
-    判定のたびに冒頭に並べ、処置の効果と取り違えないようにする。
+    判定のたびに冒頭に並べ、処置の効果と取り違えないようにする。判定の数値には使わない(表示だけ)。
     """
     rows = interventions.load() if rows is None else rows
-    site = [r for r in rows if str(r.get("scope", "")).strip() == SITE_WIDE_SCOPE]
+    site = [r for r in rows if is_confounder_scope(r.get("scope", ""))]
     overlap = []
     for r in site:
         if r.get("date") is None:
@@ -571,15 +587,17 @@ def print_site_wide_interventions(before, after, rows=None):
     start = _dt.date.fromisoformat(_span(before)[0])
     end = _dt.date.fromisoformat(_span(after)[1])
     overlap, undated = site_wide_interventions(start, end, rows)
-    print(f"## 判定期間（{start}〜{end}）と重なる介入（interventions.csv・scope=サイト全体）")
+    print(f"## {CONFOUNDER_HEADING}")
+    print(f"判定期間（{start}〜{end}）と重なる介入（interventions.csv・scope={'／'.join(CONFOUNDER_SCOPES)}）")
     if not overlap and not undated:
         print("なし\n")
         return overlap
     for r in overlap:
-        print(f"- {r['raw_date']} {r['intervention_id']} {r['description']}"
-              f"（プール46本に触れる: {r.get('touches_pool46', '')}）")
+        print(f"- {r['raw_date']}｜{r['intervention_id']}｜{r['description']}｜scope={r.get('scope', '')}"
+              f"｜touches_pool46={r.get('touches_pool46', '')}")
     for r in undated:
-        print(f"- 日付未確定 {r['intervention_id']} {r['description']}")
+        print(f"- 日付未確定（{r.get('raw_date', '')}）｜{r['intervention_id']}｜{r['description']}"
+              f"｜scope={r.get('scope', '')}｜touches_pool46={r.get('touches_pool46', '')}")
     print("※ 全記事に一様にかかる介入は、組の差ではなく全組共通のベースラインの変化として読む\n")
     return overlap
 

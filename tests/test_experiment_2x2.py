@@ -445,7 +445,7 @@ def test_the_judgement_report_starts_with_the_site_wide_interventions(monkeypatc
     out = capsys.readouterr().out
     head = out.split("#####")[0]
     assert "判定期間（2026-09-15〜2026-11-01）と重なる介入" in head
-    assert "I-14 B-33" in head and "I-04" in head
+    assert "｜I-14｜B-33" in head and "｜I-04｜" in head
 
 
 # --- 9. Claude は観測1回あたりの率で比べる(2026-10-03・本田さん決定) ----------------------
@@ -638,3 +638,49 @@ def test_nothing_in_the_repo_calls_anthropic_without_the_daily_cap():
     http = [p for p in files if "api.anthropic.com" in p.read_text(encoding="utf-8")]
     assert [p.relative_to(ROOT).as_posix() for p in http] == ["experiment_2x2/llmo_probe.py"]
     assert "claude_budget.guard(" in http[0].read_text(encoding="utf-8")
+
+
+# --- 11. 交絡候補の一覧の範囲(2026-10-07・本田さん決定) ---------------------------------------
+# scope が「サイト全体」だけでなく site_hygiene／cta／ピラーA／ピラーB／measurement の介入も載せる
+# (括弧より前で比べる)。touches_pool46 に関係なく載せる。判定の数値は一切変えない
+def test_the_confounder_list_takes_the_agreed_scopes_within_the_period():
+    import datetime as dt
+    rows = [_iv("2026-10-20", "HYG", scope="site_hygiene"), _iv("2026-10-21", "CTA", scope="cta"),
+            _iv("2026-10-02", "PA", scope="ピラーA（agentforce-guide）"), _iv("2026-10-03", "PB", scope="ピラーB"),
+            _iv("2026-10-06", "MEAS", scope="measurement"), _iv("2026-09-30", "SITE"),
+            _iv("2026-09-30", "ARTICLE", scope="サイト(記事)"), _iv("2026-09-26", "FORM", scope="固定ページ4件"),
+            _iv("2027-01-05", "LATE_HYG", scope="site_hygiene"), _iv("2026-08-01", "EARLY_PB", scope="ピラーB")]
+    rows[0]["touches_pool46"] = "no"
+    overlap, _ = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 12, 28), rows)
+    assert [r["intervention_id"] for r in overlap] == ["HYG", "CTA", "PA", "PB", "MEAS", "SITE"]
+    assert summarize.CONFOUNDER_SCOPES == ("サイト全体", "site_hygiene", "cta", "ピラーA", "ピラーB", "measurement")
+
+
+def _judge_out(monkeypatch, tmp_path, capsys, rows_iv, after):
+    import interventions
+    rag = "https://cross-com.jp/agentforce-rag/"
+    feat = "https://cross-com.jp/agentforce-features/"
+    monkeypatch.setattr(summarize, "load_allocation",
+                        lambda: {"agentforce-rag": "③リードのみ", "agentforce-features": "①対照"})
+    monkeypatch.setattr(interventions, "load", lambda *a, **k: rows_iv)
+    path = tmp_path / "e.csv"
+    _exp_csv(path, [["2026-09-18", "E06", "gemini", rag, "0", "", "pool"],
+                    ["2026-10-10", "E06", "gemini", rag, "1", "", "pool"],
+                    ["2026-09-18", "E12", "gemini", feat, "0", "", "pool"],
+                    ["2026-10-11", "E12", "gemini", feat, "0", "", "pool"]])
+    summarize.main(["--before", "2026-09-15:2026-09-28", "--after", after, "--csv", str(path), "--model", "gemini"])
+    return capsys.readouterr().out
+
+
+def test_the_list_is_in_both_judgements_and_changes_no_number(monkeypatch, tmp_path, capsys):
+    rows_iv = [_iv("2026-10-20", "I-90", scope="site_hygiene"), _iv("2026-10-03", "I-91", scope="ピラーB")]
+    for after in ("2026-10-06:2026-11-01", "2026-10-06:2026-12-28"):     # 短期判定・長期判定
+        with_list = _judge_out(monkeypatch, tmp_path, capsys, rows_iv, after)
+        without = _judge_out(monkeypatch, tmp_path, capsys, [], after)
+        head = with_list.split("#####")[0]
+        assert "## アフター期間中のサイト全体施策一覧（判定の交絡候補）" in head
+        assert "- 2026-10-20｜I-90｜I-90 の内容｜scope=site_hygiene｜touches_pool46=yes" in head
+        assert "｜I-91｜" in head
+        # 一覧の部分を除くと1文字も変わらない(差の差・p値・感度分析は同じ)
+        assert with_list.split("#####", 1)[1] == without.split("#####", 1)[1]
+

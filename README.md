@@ -201,6 +201,18 @@ crosscom-llmo-dashboard/
 | **第3観測層の Claude と順位** | 10/03 から停止済み(Claude 54本・is_first / mention_rank)。順位の抽出(Haiku)は Gemini に移していない(停止のまま) |
 | **引用プローブの Claude** | 実験期間中は不使用。2027-01-01 以降も Claude では動かない(Claude を再開するまで) |
 
+### 判定期間中のサイト全体施策一覧(交絡候補・2026-10-07 に範囲を拡大)
+
+判定レポート(`experiment_2x2/summarize.py`)の冒頭に「アフター期間中のサイト全体施策一覧（判定の交絡候補）」を出す。
+短期判定(11/2 の週)・長期判定(12/28 の週)のどちらにも出る。判定期間(ビフォーの初日〜アフターの最終日)と重なる介入を、
+日付・ID・内容・scope・touches_pool46 で並べる。**表示だけで、判定の数値(差の差・p値・感度分析)には使わない**(テストで確認)。
+
+- 拾う scope(`summarize.CONFOUNDER_SCOPES`):**サイト全体／site_hygiene／cta／ピラーA／ピラーB／measurement**。
+  括弧より前で比べる(「ピラーA（agentforce-guide）」は「ピラーA」)。touches_pool46 の値に関係なく載せる。
+  interventions.csv の scope は書き換えない(以前は「サイト全体」と完全一致する行だけだった)
+- 載らない scope の例:サイト(記事)・サイト(メタ)・固定ページ…(I-15〜I-17 のフォームの表示ラベルの変更)・外部・プール46本・実験外
+- seo-agent のサイト整理(26行)は実行記録が届いたら scope=site_hygiene で追記する(この一覧に載る)
+
 ### R-P7 と言及率の誤読防止(2026-10-06)
 
 - **R-P7(ネガティブ/古い情報)**:Claude を計画的に停止している間、次の注記を固定で出す(`src/observation_notes.py` の `R_P7_NOTE`)。
