@@ -1191,3 +1191,13 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - その月の実験の観測で 429 PerDay の欠測が出たため、Gemini の prompt_marketing の残り 52本を error=quota_skipped として記録し、今月はこれ以上投げない（run_marketing.py）
 - 実験の PerDay 欠測: 2026-10-07 E18
 - Claude の prompt_marketing は Gemini の枠と無関係のため止めない
+
+---
+
+## 2026-10-08（続き）／MA 移設に伴う感度分析の追加（記録の準備）
+
+- 本田さん決定で MA・メールマーケ28本を note へ移設（実施時期は戦略管制塔が確定）。凍結46本のうち buyer-enablement（E23）の被リンク4本・hyper-personalization（E27）の1本が減る
+- **E23・E27 とも ④両方。被リンク減は④のみに起きるため、リード・FAQの効果とも小さめに出る方向（保守的）**（allocation_v1 で確認）
+- 感度分析に「リンク減2本抜き」と、9本抜き・複数段落回答抜きとの組み合わせを追加（2本とも両方に含まれるので組み合わせは元の通りと同じ記事を抜く）。
+  再ランダム化検定・早期解放の条件(3)も含む。experiment_flag は維持・主分析は46本のまま
+- 実施日時が seo-agent から届いたら interventions.csv に scope=site_structure で追記する。判定レポートの注記（アフター期間中の被リンク減）と交絡候補一覧には自動で載る

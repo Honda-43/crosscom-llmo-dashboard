@@ -41,6 +41,7 @@ import interventions  # noqa: E402
 import pillar  # noqa: E402
 import rerandomize  # noqa: E402
 from pool import GROUP_BLIND_UNTIL  # noqa: E402
+from pool import LINK_LOSS_IDS, LINK_LOSS_SCOPE, LINK_LOSS_SLUGS  # noqa: E402
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
                   LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
                   late_appended_slugs, load_allocation, multi_paragraph_slugs,
@@ -333,7 +334,36 @@ def variants():
     linked = pillar.linked_articles()
     if linked is not None:
         out.append((f"ピラーの既存リンク先抜き（{len(linked)}本・全組）", set(linked)))
+    # 7通り目〜(2026-10-08)：MA・メールマーケ28本の note 移設で内部被リンクが減る2本（E23・E27。どちらも④）を抜く。
+    # 9本抜き・複数段落回答抜きとの組み合わせも出す（重なる記事は1回だけ抜く。2本とも両方に含まれるので、
+    # 組み合わせは元の通りと同じ記事になる）。早期解放の条件(3)・再ランダム化検定もこの通りを含む
+    loss = set(LINK_LOSS_SLUGS)
+    out.append((f"リンク減2本抜き（{'・'.join(LINK_LOSS_IDS)}）", loss))
+    out.append(("9本抜き＋リンク減2本", set(late) | loss))
+    if multi is not None:
+        out.append(("複数段落回答抜き＋リンク減2本", set(multi[0]) | loss))
     return out
+
+
+def link_loss_date(rows=None):
+    """移設で E23・E27 の被リンクが減った日（interventions.csv の scope=site_structure の行の日付）。記録が無ければ None。"""
+    rows = interventions.load() if rows is None else rows
+    hits = [r for r in rows if scope_key(r.get("scope")) == LINK_LOSS_SCOPE and r.get("date") is not None
+            and any(s in str(r.get("description", "")) for s in LINK_LOSS_SLUGS)]
+    return min(r["date"] for r in hits) if hits else None
+
+
+def print_link_loss_note(after, rows=None):
+    """アフター期間中に E23・E27 の被リンク減があれば注記（短期判定は 11/1 までに起きた場合だけ・長期判定は期間内なら）。"""
+    import datetime as _dt
+    day = link_loss_date(rows)
+    start, end = (_dt.date.fromisoformat(x) for x in _span(after))
+    if day is None or not (start <= day <= end):
+        return False
+    print(f"**アフター期間中に E23・E27 の被リンク減あり（{day}）**：MA・メールマーケ28本の note 移設で buyer-enablement（E23・④）の被リンク4本・"
+          "hyper-personalization（E27・④）の1本が消えた。被リンク減は④のみのため、リード・FAQ の効果とも小さめに出る方向（保守的）。"
+          "感度分析の「リンク減2本抜き」を参照\n")
+    return True
 
 
 def multi_paragraph_note():
@@ -727,6 +757,7 @@ def main(argv=None):
         if model_excluded("claude", _span(a.after)):
             print(f"**{GENERALIZATION_NOTE}**\n")
         print_site_wide_interventions(a.before, a.after)
+        print_link_loss_note(a.after)
         pillar_lines, pillar_parts = pillar.report_lines(_span(a.after))
         print("\n".join(pillar_lines))
         rows = read_llm_experiment(a.csv)

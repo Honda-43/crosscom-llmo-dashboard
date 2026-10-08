@@ -322,8 +322,9 @@ def test_the_four_variants_are_the_agreed_ones():
     labels = [label for label, _ in summarize.variants()]
     # 2026-09-29：複数段落回答の表があれば5通り目が末尾に付く(tests/test_rerandomize.py で確認)
     assert labels[0] == "両方込み" and labels[3] == "9本＋features 抜き"
-    assert len(labels) == 6 and labels[4].startswith("複数段落回答抜き")
+    assert len(labels) == 9 and labels[4].startswith("複数段落回答抜き")
     assert labels[5].startswith("ピラーの既存リンク先抜き（27本")              # 2026-10-02 追加
+    assert labels[6:] == ["リンク減2本抜き（E23・E27）", "9本抜き＋リンク減2本", "複数段落回答抜き＋リンク減2本"]  # 2026-10-08
     assert "9本抜き" in labels[1] and labels[2] == "features 抜き（訂正対象）"
     by_label = dict(summarize.variants())
     applied = set(pool.APPLIED_CORRECTION_SLUGS)
@@ -334,7 +335,7 @@ def test_the_four_variants_are_the_agreed_ones():
     assert by_label["9本＋features 抜き"] == pool.late_appended_slugs() | applied
 
 
-def test_the_judgement_prints_one_table_with_six_rows(monkeypatch, tmp_path, capsys):
+def test_the_judgement_prints_one_table_with_nine_rows(monkeypatch, tmp_path, capsys):
     rag = "https://cross-com.jp/agentforce-rag/"          # 追記なし・訂正対象でない
     revops = "https://cross-com.jp/revops-guide/"         # 9/15〜16 追記の9本
     feat = "https://cross-com.jp/agentforce-features/"    # 訂正対象(features の1本のみ)
@@ -356,14 +357,15 @@ def test_the_judgement_prints_one_table_with_six_rows(monkeypatch, tmp_path, cap
     import re
     table = [re.split(r"\s{2,}", ln)
              for ln in out.splitlines()
-             if ln.startswith(("両方込み", "9本抜き", "features 抜き", "9本＋features",
+             if ln.startswith(("両方込み", "9本抜き", "features 抜き", "9本＋features", "リンク減2本抜き",
                                "複数段落回答抜き", "ピラーの既存リンク先抜き"))]
-    assert len(table) == 6, out
+    assert len(table) == 9, out
     # 3本 → 9本を抜くと2本、features を抜くと2本、両方抜くと1本。
     # 3本とも複数段落回答ではないので、5通り目は3本のまま。3本ともピラーの既存リンク先なので6通り目は0本
-    assert [r[1] for r in table] == ["3", "2", "2", "1", "3", "0"], table
+    # 7〜9通り目(2026-10-08):3本とも E23・E27 ではないのでリンク減抜きは3本、9本＋リンク減は revops を抜いて2本
+    assert [r[1] for r in table] == ["3", "2", "2", "1", "3", "0", "3", "2", "3"], table
     assert "感度分析（gemini）" in out, "見出しに余分な空白を入れない"
-    assert out.count("=== gemini ") == 6, "6通りそれぞれの内訳も出す"
+    assert out.count("=== gemini ") == 9, "9通りそれぞれの内訳も出す"
 
 
 # --- 8. 条件 g: タイトル変更3本(2026-09-25) ----------------------------------------
@@ -712,3 +714,58 @@ def test_scopes_with_a_count_are_grouped_together():
     groups = dict(summarize.group_by_scope(overlap))
     assert sorted(r["intervention_id"] for r in groups["固定ページ"]) == ["I-15", "I-16", "I-17"]
 
+
+
+# --- 12. MA 移設でリンクが減る2本(E23・E27)の感度分析(2026-10-08・本田さん決定) -------------------------
+LOSS = {"buyer-enablement", "hyper-personalization"}
+
+
+def test_the_two_link_loss_articles_are_both_in_group_4():
+    groups = pool.load_allocation()
+    assert {groups[s] for s in LOSS} == {"④両方"}
+    assert set(pool.LINK_LOSS_SLUGS) == LOSS and pool.LINK_LOSS_IDS == ("E23", "E27")
+    assert not LOSS & set(pool.APPLIED_CORRECTION_SLUGS), "鮮度訂正(features)と重ならない"
+    assert LOSS <= pool.late_appended_slugs(), "9/15〜16 追記の9本に含まれる"
+    assert LOSS <= set(pool.multi_paragraph_slugs()[0]), "複数段落回答の7本に含まれる"
+
+
+def test_the_link_loss_variants_drop_each_article_once():
+    by = dict(summarize.variants())
+    assert by["リンク減2本抜き（E23・E27）"] == LOSS
+    assert by["9本抜き＋リンク減2本"] == pool.late_appended_slugs() | LOSS == by["9本抜き（9/15〜16 追記）"]
+    assert by["複数段落回答抜き＋リンク減2本"] == set(pool.multi_paragraph_slugs()[0]) | LOSS
+
+
+def test_the_early_release_rule_and_the_randomization_use_the_new_variants(monkeypatch):
+    seen = []
+    monkeypatch.setattr(summarize, "randomization", lambda after, exclude=(): seen.append(set(exclude)) or None)
+    after = {s: ("④両方", 1) for s in LOSS} | {"agentforce-rag": ("①対照", 0)}
+    summarize.sensitivity_table(after, {})
+    assert LOSS in seen, "再ランダム化検定も同じ除外で"
+    rows = summarize.early_release(after, {}, {"n": 2500, "lead_p": 0.001, "faq_p": 0.001})
+    labels = [label for label, _ in rows[0]["signs"]]
+    assert "リンク減2本抜き（E23・E27）" in labels and len(labels) == len(summarize.variants())
+
+
+def _loss_row(raw_date):
+    return _iv(raw_date, "I-90", scope="site_structure") | {
+        "description": "MA・メールマーケ28本を note へ移設。凍結46本のうち buyer-enablement の被リンク4本・"
+                       "hyper-personalization の被リンク1本が消滅"}
+
+
+def test_the_link_loss_note_follows_the_date(capsys):
+    assert summarize.link_loss_date([]) is None
+    assert not summarize.print_link_loss_note("2026-10-06:2026-11-01", []), "記録が届くまでは何も出さない"
+    early = [_loss_row("2026-10-20")]
+    assert summarize.print_link_loss_note("2026-10-06:2026-11-01", early), "11/2 より前なら短期判定に注記"
+    assert "アフター期間中に E23・E27 の被リンク減あり（2026-10-20）" in capsys.readouterr().out
+    late = [_loss_row("2026-11-05")]
+    assert not summarize.print_link_loss_note("2026-10-06:2026-11-01", late), "11/2 以降なら短期判定には出さない"
+    assert summarize.print_link_loss_note("2026-10-06:2026-12-28", late), "長期判定には出す"
+
+
+def test_the_move_is_listed_in_the_confounder_list_automatically():
+    import datetime as dt
+    overlap, _ = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 12, 28), [_loss_row("2026-10-20")])
+    groups = dict(summarize.group_by_scope(overlap))
+    assert [r["intervention_id"] for r in groups["site_structure"]] == ["I-90"]

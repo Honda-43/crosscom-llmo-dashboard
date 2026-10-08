@@ -38,6 +38,15 @@ CORRECTION_SLUGS = ('agentforce-vibes', 'agentforce-features')
 # 条件で決まるので、後から条件を動かすと引き直しの結果そのものが変わってしまう。
 APPLIED_CORRECTION_SLUGS = ('agentforce-features',)
 
+# MA・メールマーケ28本の note への移設で内部被リンクが減る2本(2026-10-08・本田さん決定)。
+# buyer-enablement(E23・④両方)は被リンク4本、hyper-personalization(E27・④両方)は1本が消える。他の44本は変化なし。
+# 2本とも④なので、リード・FAQの効果とも小さめに出る方向(保守的)。experiment_flag は維持(除外しない・主分析は46本のまま)。
+# 感度分析に「リンク減2本抜き」を足す。2本とも「9/15〜16 追記の9本」「複数段落回答の7本」に含まれ、訂正対象(features)とは重ならない
+LINK_LOSS_SLUGS = ('buyer-enablement', 'hyper-personalization')
+LINK_LOSS_IDS = ('E23', 'E27')
+# 移設の実施記録(interventions.csv)を見分ける scope。実施日はこの行の date から取る
+LINK_LOSS_SCOPE = 'site_structure'
+
 
 # 実験の終わり(config/experiment_freeze.yaml の experiment_end と同じ。テストで照合)。
 # 割付はこの日まで --force でも置き換えない(allocate_47.overwrite_guard)。
