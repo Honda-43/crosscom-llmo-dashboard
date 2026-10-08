@@ -322,9 +322,12 @@ def test_the_four_variants_are_the_agreed_ones():
     labels = [label for label, _ in summarize.variants()]
     # 2026-09-29：複数段落回答の表があれば5通り目が末尾に付く(tests/test_rerandomize.py で確認)
     assert labels[0] == "両方込み" and labels[3] == "9本＋features 抜き"
-    assert len(labels) == 9 and labels[4].startswith("複数段落回答抜き")
+    assert len(labels) == 7 and labels[4].startswith("複数段落回答抜き")
     assert labels[5].startswith("ピラーの既存リンク先抜き（27本")              # 2026-10-02 追加
-    assert labels[6:] == ["リンク減2本抜き（E23・E27）", "9本抜き＋リンク減2本", "複数段落回答抜き＋リンク減2本"]  # 2026-10-08
+    assert labels[6] == "リンク減2本抜き（E23・E27）"                          # 2026-10-08 追加
+    # 同じ記事集合の行はまとめて注記する(2026-10-08)
+    assert labels[1].endswith("〔9本抜き＋リンク減2本と同じ記事集合〕")
+    assert labels[4].endswith("〔複数段落回答抜き＋リンク減2本と同じ記事集合〕")
     assert "9本抜き" in labels[1] and labels[2] == "features 抜き（訂正対象）"
     by_label = dict(summarize.variants())
     applied = set(pool.APPLIED_CORRECTION_SLUGS)
@@ -335,7 +338,7 @@ def test_the_four_variants_are_the_agreed_ones():
     assert by_label["9本＋features 抜き"] == pool.late_appended_slugs() | applied
 
 
-def test_the_judgement_prints_one_table_with_nine_rows(monkeypatch, tmp_path, capsys):
+def test_the_judgement_prints_one_table_with_seven_rows(monkeypatch, tmp_path, capsys):
     rag = "https://cross-com.jp/agentforce-rag/"          # 追記なし・訂正対象でない
     revops = "https://cross-com.jp/revops-guide/"         # 9/15〜16 追記の9本
     feat = "https://cross-com.jp/agentforce-features/"    # 訂正対象(features の1本のみ)
@@ -359,13 +362,13 @@ def test_the_judgement_prints_one_table_with_nine_rows(monkeypatch, tmp_path, ca
              for ln in out.splitlines()
              if ln.startswith(("両方込み", "9本抜き", "features 抜き", "9本＋features", "リンク減2本抜き",
                                "複数段落回答抜き", "ピラーの既存リンク先抜き"))]
-    assert len(table) == 9, out
+    assert len(table) == 7, out
     # 3本 → 9本を抜くと2本、features を抜くと2本、両方抜くと1本。
     # 3本とも複数段落回答ではないので、5通り目は3本のまま。3本ともピラーの既存リンク先なので6通り目は0本
-    # 7〜9通り目(2026-10-08):3本とも E23・E27 ではないのでリンク減抜きは3本、9本＋リンク減は revops を抜いて2本
-    assert [r[1] for r in table] == ["3", "2", "2", "1", "3", "0", "3", "2", "3"], table
+    # 7通り目(2026-10-08):3本とも E23・E27 ではないのでリンク減抜きは3本(9本＋リンク減・複数段落＋リンク減は元の行にまとめた)
+    assert [r[1] for r in table] == ["3", "2", "2", "1", "3", "0", "3"], table
     assert "感度分析（gemini）" in out, "見出しに余分な空白を入れない"
-    assert out.count("=== gemini ") == 9, "9通りそれぞれの内訳も出す"
+    assert out.count("=== gemini ") == 7, "7通りそれぞれの内訳も出す"
 
 
 # --- 8. 条件 g: タイトル変更3本(2026-09-25) ----------------------------------------
@@ -732,8 +735,13 @@ def test_the_two_link_loss_articles_are_both_in_group_4():
 def test_the_link_loss_variants_drop_each_article_once():
     by = dict(summarize.variants())
     assert by["リンク減2本抜き（E23・E27）"] == LOSS
-    assert by["9本抜き＋リンク減2本"] == pool.late_appended_slugs() | LOSS == by["9本抜き（9/15〜16 追記）"]
-    assert by["複数段落回答抜き＋リンク減2本"] == set(pool.multi_paragraph_slugs()[0]) | LOSS
+    # 2本とも9本・複数段落の7本に含まれるので、組み合わせは元の行と同じ記事集合 → 1行にまとめて注記(2026-10-08)
+    late_row = "9本抜き（9/15〜16 追記）〔9本抜き＋リンク減2本と同じ記事集合〕"
+    multi_row = "複数段落回答抜き（7本・全組）〔複数段落回答抜き＋リンク減2本と同じ記事集合〕"
+    assert by[late_row] == pool.late_appended_slugs() | LOSS
+    assert by[multi_row] == set(pool.multi_paragraph_slugs()[0]) | LOSS
+    sets = [frozenset(e) for _, e in summarize.variants()]
+    assert len(sets) == len(set(sets)), "同じ記事集合の行は残らない"
 
 
 def test_the_early_release_rule_and_the_randomization_use_the_new_variants(monkeypatch):
@@ -769,3 +777,9 @@ def test_the_move_is_listed_in_the_confounder_list_automatically():
     overlap, _ = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 12, 28), [_loss_row("2026-10-20")])
     groups = dict(summarize.group_by_scope(overlap))
     assert [r["intervention_id"] for r in groups["site_structure"]] == ["I-90"]
+
+
+def test_the_later_of_the_two_link_removals_is_the_cut_off():
+    rows = [_loss_row("2026-10-20"), dict(_loss_row("2026-10-24"), intervention_id="I-91")]
+    assert str(summarize.link_loss_date(rows)) == "2026-10-24"
+

@@ -342,15 +342,33 @@ def variants():
     out.append(("9本抜き＋リンク減2本", set(late) | loss))
     if multi is not None:
         out.append(("複数段落回答抜き＋リンク減2本", set(multi[0]) | loss))
-    return out
+    return merge_same_sets(out)
+
+
+def merge_same_sets(variant_list):
+    """抜く記事の集合がまったく同じ行を1行にまとめる(2026-10-08)。先に出た行の名前を残し、
+    「〔〇〇と同じ記事集合〕」と注記する。判定の中身(どの記事を抜くか)は変わらない。"""
+    merged, index = [], {}
+    for label, exclude in variant_list:
+        key = frozenset(exclude)
+        if key in index:
+            i = index[key]
+            first, ex = merged[i]
+            merged[i] = (first + f"〔{label}と同じ記事集合〕", ex)
+            continue
+        index[key] = len(merged)
+        merged.append((label, set(exclude)))
+    return merged
 
 
 def link_loss_date(rows=None):
-    """移設で E23・E27 の被リンクが減った日（interventions.csv の scope=site_structure の行の日付）。記録が無ければ None。"""
+    """移設で E23・E27 の被リンクが減った日（interventions.csv の scope=site_structure の行の日付）。記録が無ければ None。
+
+    2記事のリンクが消えた日時が別々なら、遅いほうを区切りにする（2026-10-08 本田さん指示）。"""
     rows = interventions.load() if rows is None else rows
     hits = [r for r in rows if scope_key(r.get("scope")) == LINK_LOSS_SCOPE and r.get("date") is not None
             and any(s in str(r.get("description", "")) for s in LINK_LOSS_SLUGS)]
-    return min(r["date"] for r in hits) if hits else None
+    return max(r["date"] for r in hits) if hits else None
 
 
 def print_link_loss_note(after, rows=None):

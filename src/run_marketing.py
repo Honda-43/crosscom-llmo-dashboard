@@ -227,6 +227,8 @@ def main(argv: Optional[List[str]] = None) -> int:
     if a.model == "gemini":
         # 実験と同じジョブで走るので、同じ時間の予算(2026-10-08)。締め切りを過ぎていれば投げない(期間内の次の日に回る)
         collect_llm.set_deadline(experiment_job_deadline())
+        # 直前に同じジョブの実験が Gemini を呼んでいるので、今を起点に間隔を空ける(1分5回の上限。2026-10-08)
+        collect_llm.note_gemini_call()
         used, note = (None, "")
         if in_marketing_window(date):
             used, note = gemini_used_today(date)

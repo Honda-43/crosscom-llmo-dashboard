@@ -39,6 +39,7 @@ from settings import (
     BACKOFF_BASE_SECONDS,
     DATA_RAW_DIR,
     GEMINI_CALL_TIMEOUT_SECONDS,
+    GEMINI_MIN_INTERVAL_SECONDS,
     MAX_RETRIES,
     MODEL_CONFIG,
     RETRY_DELAY_CAP_SECONDS,
@@ -109,6 +110,18 @@ def is_quota(exc: Exception) -> bool:
 def is_daily_quota(exc: Exception) -> bool:
     """429 のうち「1日あたり」の枠切れか。枠が翌日まで戻らないことの判定。"""
     return is_quota(exc) and _DAILY_QUOTA_MARKER in str(exc)
+
+
+_MINUTE_QUOTA_MARKER = "PerMinute"
+
+
+def is_minute_quota(exc: Exception) -> bool:
+    """429 のうち「1分あたり」の上限か(2026-10-08)。quotaId に PerMinute が入る(PerDay とは別)。
+
+    待てば戻るので取り直してよい。PerMinute も PerDay も書かれていない 429 は、取り直さない側(1日あたり)に倒す。
+    """
+    text = str(exc)
+    return is_quota(exc) and _MINUTE_QUOTA_MARKER in text and _DAILY_QUOTA_MARKER not in text
 
 
 def is_unavailable(exc: Exception) -> bool:
@@ -208,11 +221,20 @@ def _with_retry(fn, *, label: str, attempts: int = MAX_RETRIES,
             if is_permanent(exc):
                 print(f"[warn] {label}: 再試行しても変わらないエラーのため中止")
                 break
+            if is_minute_quota(exc) and attempt < attempts:
+                # 1分あたりの上限(2026-10-08)。待てば戻るので取り直す。取り直しはその日の枠の余りから引く
+                if budget is not None and not budget.spend():
+                    print(f"[warn] {label}: 1分あたりの上限(429)。その日の枠の余りが尽きたため再試行しない")
+                    break
+                wait = min(max(retry_delay(exc) or 0.0, GEMINI_MIN_INTERVAL_SECONDS) + 1.0, 65.0)
+                print(f"[info] {label}: 1分あたりの上限(429)。{wait:.0f}秒待って取り直します")
+                time.sleep(wait)
+                continue
             if is_quota(exc):
                 print(f"[warn] {label}: リクエスト枠を超過(429)。"
                       f"取り直さず欠測にする")
-                if on_quota is not None:
-                    on_quota()
+                if on_quota is not None and not is_minute_quota(exc):
+                    on_quota()                      # 1日あたりの枠切れだけ、その日の残りの再試行を止める
                 break
             if attempt < attempts:
                 if budget is not None and not budget.spend():
@@ -483,6 +505,22 @@ def collect(date: Optional[str] = None,
     return records
 
 
+# Gemini の観測の呼び出しの間隔(2026-10-08)。1分5回の無料枠に収まるよう、前の呼び出しから
+# GEMINI_MIN_INTERVAL_SECONDS 空ける(取り直し・掃き直しを含む。同じプロセスの中で数える)
+_LAST_GEMINI_CALL: List[float] = [0.0]
+
+
+def note_gemini_call(now: Optional[float] = None) -> None:
+    """Gemini を呼んだ(とみなす)時刻を残す。別のプロセスが直前に呼んだ場合の起点にも使う。"""
+    _LAST_GEMINI_CALL[0] = time.monotonic() if now is None else now
+
+
+def _pace_gemini() -> None:
+    wait = _LAST_GEMINI_CALL[0] + GEMINI_MIN_INTERVAL_SECONDS - time.monotonic()
+    if wait > 0:
+        time.sleep(wait)
+
+
 # 観測ジョブの時間の予算(2026-10-08)。締め切り(UNIX 時刻)を過ぎたら新しい呼び出しをしない
 TIME_BUDGET = "time_budget"
 _DEADLINE: List[Optional[float]] = [None]
@@ -520,8 +558,14 @@ def _attempt(record: Dict[str, Any], question: str, *, attempts: int,
         if past_deadline():
             # 取り直し・掃き直しも含めて、締め切りを過ぎたら投げない(2026-10-08)
             raise TimeBudgetExceeded(f"{TIME_BUDGET}: 観測ジョブの開始から時間の予算を超えたため投げていない")
+        if record["model"] == "gemini":
+            _pace_gemini()                        # 1分5回の上限に当たらないよう間隔を空ける
         tries += 1
-        return _QUERY_FUNCS[record["model"]](question, record["model_name"])
+        try:
+            return _QUERY_FUNCS[record["model"]](question, record["model_name"])
+        finally:
+            if record["model"] == "gemini":
+                note_gemini_call()
 
     try:
         got = _with_retry(

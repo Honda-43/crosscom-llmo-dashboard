@@ -20,6 +20,9 @@ def _claude_budget_isolated(tmp_path, tmp_path_factory, monkeypatch):
     import collect_llm
     import settings
     collect_llm.set_deadline(None)      # 観測ジョブの時間の予算はテストごとに外す(2026-10-08)
+    # Gemini の呼び出しの間隔(13秒)はテストでは空けない(間隔そのものは test_gemini_pacing で確かめる)
+    monkeypatch.setattr(collect_llm, "GEMINI_MIN_INTERVAL_SECONDS", 0.0)
+    collect_llm.note_gemini_call(0.0)
     # 作成中の再ランダム化プール(experiment_2x2/results/rerandomization_pool.csv)を既定では読まない(2026-10-08)。
     # 作成中は行が増え続け、2,000件を超えると判定の出力が変わるため、テストの結果が実行の時刻で揺れる。
     # パスを渡して読むテスト(test_rerandomize)には影響しない

@@ -230,6 +230,30 @@ crosscom-llmo-dashboard/
   欠けが特定の組に偏らないようにするため。第3観測層(prompt_marketing)の層ブロック順は変えない
 - 週次集計の「組ごとの欠測」に、欠測の種類(time_budget／job_timeout／503／429／枠不足／その他)ごとの本数も出す
 
+### Gemini の1分あたり上限への対処(2026-10-08)
+
+- gemini-2.5-flash の無料枠は**1分5回**(429 の quotaId `GenerateRequestsPerMinutePerProjectPerModel-FreeTier`・quotaValue 5)。
+  10/08 の日次で7本を約50秒で投げ、E-1 が欠けた
+- **呼び出しの間隔**:Gemini の観測の呼び出し(実験・日次・月次・prompt_marketing。取り直し・掃き直しを含む)の間を **13秒**
+  (`settings.GEMINI_MIN_INTERVAL_SECONDS`)空ける。同じジョブで実験のあとに走る prompt_marketing は、始まった時点から数える。
+  抽出(gemini-3.5-flash-lite)は別のモデルで別の枠なので、従来どおり4.5秒
+- **429 の区別**:quotaId に `PerMinute` があれば1分あたり、`PerDay` があれば1日あたり。1分あたりは待って(retryDelay と13秒の長いほう＋1秒・
+  最大65秒)取り直す。取り直しはその日の枠の余り(1日20回)から引く。1日あたりと、どちらとも書かれていない 429 は従来どおり取り直さない
+- 測り方（質問・モデル・回数）は不変。失敗による欠測を減らすための変更(interventions I-30)。40分の時間の予算は変えない(実験の Gemini 16本は13秒間隔で最短 約3.3分)
+
+### 再ランダム化プールを commit する手順(2026-10-08)
+
+作成中のプール(`experiment_2x2/results/rerandomization_pool.csv`・`.checkpoint`)は、作成中のプロセスが開いているため、
+git の取り込み(pull --rebase)が書き換えようとすると失敗する(10/08 に一度止まった)。手元では2ファイルを git の除外設定
+(skip-worktree)にしてある。commit するときは:
+
+1. 作成を止める(Windows ではプロセスを止める。止めても `--resume` で同じ続きから作れる)
+2. 除外設定を外す:`git update-index --no-skip-worktree experiment_2x2/results/rerandomization_pool.csv experiment_2x2/results/rerandomization_pool.checkpoint`
+3. 点検(重複・条件 a〜g・採用割付を含まない・checkpoint と矛盾なし)とテストを通して、2ファイルだけを commit・push
+4. 除外設定を戻す:`git update-index --skip-worktree …`(同じ2ファイル)
+5. 作成を `python experiment_2x2/rerandomize.py --resume --cited-from 2026-09-15 --cited-to 2026-09-27` で再開(シェルと切り離して起動する。
+   PC がスリープすると止まるので、作成中はスリープさせない)
+
 ### MA 移設で被リンクが減る2本の感度分析(2026-10-08・本田さん決定)
 
 MA・メールマーケ28本を note へ移設する(実施時期は10月中または11/2以降で戦略管制塔が確定)。凍結46本のうち2記事の内部被リンクが減る:
@@ -237,6 +261,7 @@ buyer-enablement(E23)4本、hyper-personalization(E27)1本。他の44本は変�
 
 - 感度分析に「リンク減2本抜き（E23・E27）」「9本抜き＋リンク減2本」「複数段落回答抜き＋リンク減2本」を足した(`pool.LINK_LOSS_SLUGS`)。
   2本とも「9/15〜16 追記の9本」「複数段落回答の7本」に含まれるので、組み合わせの2通りは元の通り(9本抜き・複数段落回答抜き)と同じ記事を抜く。
+  **抜く記事の集合がまったく同じ行は1行にまとめ、「〔〇〇と同じ記事集合〕」と注記する**(2026-10-08。感度分析は7通り)。
   鮮度訂正(features)とは重ならない。再ランダム化検定・早期解放ルールの条件(3)もこの3通りを含む
 - experiment_flag は維持(2記事を除外しない)。主分析は46本のまま
 - 実施記録(interventions.csv の scope=site_structure の行)が入ると、判定レポートに「アフター期間中に E23・E27 の被リンク減あり（実施日）」を自動で出す。

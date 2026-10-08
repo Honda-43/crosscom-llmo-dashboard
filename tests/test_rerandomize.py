@@ -209,7 +209,7 @@ def test_each_variant_gets_its_own_randomization(monkeypatch, capsys):
 
     monkeypatch.setattr(summarize, "randomization", spy)
     summarize.sensitivity_table(after, None, "gemini")
-    assert len(seen) == 6   # 4通り + リンク減2本抜き・9本抜き＋リンク減2本(2026-10-08)
+    assert len(seen) == 5   # 4通り + リンク減2本抜き(9本抜き＋リンク減2本は9本抜きと同じ集合なのでまとめる。2026-10-08)
     assert seen[0] == set() and seen[3] == set(summarize.variants()[3][1])
 
 
@@ -366,7 +366,8 @@ def test_the_fifth_variant_drops_multi_paragraph_articles_from_every_group(tmp_p
                         lambda a, exclude=(): seen.append(set(exclude)) or real(a, exclude))
     summarize.sensitivity_table(after, None, "gemini")
     out = capsys.readouterr().out
-    assert len(seen) == 8 and seen[4] == multi, "再ランダム化検定も同じ除外で(2026-10-08 からリンク減の3通りが続く)"
+    # 2026-10-08 からリンク減2本抜き・複数段落回答抜き＋リンク減2本が続く(この表は E23・E27 を含まないのでまとまらない)
+    assert len(seen) == 7 and seen[4] == multi, "再ランダム化検定も同じ除外で"
     body = [ln for ln in out.splitlines() if ln.startswith("複数段落回答抜き")][0]
     assert body.split()[1] == str(len(ARTS) - 4), body
     assert "※" not in out
@@ -374,7 +375,7 @@ def test_the_fifth_variant_drops_multi_paragraph_articles_from_every_group(tmp_p
 
 def test_without_the_table_the_fifth_variant_is_not_shown_and_says_why(monkeypatch, capsys):
     after = _outcome_rows(monkeypatch, _pool(2000))
-    assert len(summarize.variants()) == 6   # 複数段落の表が無いので「複数段落回答抜き＋リンク減2本」も出ない
+    assert len(summarize.variants()) == 5   # 4通り + リンク減2本抜き(複数段落の表が無い)
     summarize.sensitivity_table(after, None, "gemini")
     out = capsys.readouterr().out
     assert "複数段落回答抜き" in out and "faq_multiparagraph_*.csv が無い" in out
@@ -415,7 +416,8 @@ def test_the_real_table_lists_all_46_and_marks_the_seven():
 
 def test_the_fifth_variant_drops_exactly_the_seven():
     label, exclude = summarize.variants()[4]
-    assert label == "複数段落回答抜き（7本・全組）" and exclude == MULTI7
+    # 本物の7本は E23・E27 を含むので「＋リンク減2本」と同じ集合になり、1行にまとめて注記する(2026-10-08)
+    assert label == "複数段落回答抜き（7本・全組）〔複数段落回答抜き＋リンク減2本と同じ記事集合〕" and exclude == MULTI7
 
 
 def test_the_seven_all_sit_in_faq_groups():

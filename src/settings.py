@@ -569,6 +569,10 @@ def _experiment_job_config() -> Dict[str, Any]:
 
 EXPERIMENT_TIME_BUDGET_MINUTES = float(_experiment_job_config().get("time_budget_minutes", 40))
 
+# Gemini の観測の呼び出しの間隔(秒。2026-10-08)。gemini-2.5-flash の無料枠は1分5回
+# (429 の quotaId GenerateRequestsPerMinutePerProjectPerModel-FreeTier・quotaValue 5)。12秒+余裕
+GEMINI_MIN_INTERVAL_SECONDS = float(os.getenv("GEMINI_MIN_INTERVAL_SECONDS", "13"))
+
 # Gemini の1回の呼び出しの時間切れ(秒。2026-10-06)。10/05 の実験で応答が返らないまま
 # ジョブの4時間制限まで止まり、Claude の観測まで進まなかった。超えたら 503 と同じ扱いで取り直す
 GEMINI_CALL_TIMEOUT_SECONDS = float(os.getenv("GEMINI_CALL_TIMEOUT_SECONDS", "180"))

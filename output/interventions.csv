@@ -41,3 +41,4 @@ date,intervention_id,description,scope,executor,touches_pool46,note
 2026-10-06,I-27,Claude API の全停止（費用ゼロ方針。実験の Claude 観測46本＋E37・日次・月次の Claude 観測・Haiku の抽出と順位抽出・週次所見・引用プローブ）,measurement,本田さん決定,no,アフター期間（10/6〜）の Claude データは0本のため Claude は判定対象外。主指標は事前登録どおり Gemini のみで変更なし。この変更はアフター期間の実験データを見る前に行った。ビフォー（9/15〜9/28）の Claude データは残す。再開は config/claude_budget.yaml の planned_stop_from を null
 2026-10-07,I-28,Ahrefs Web Analytics のタグ再設置,measurement,記事制作,no,
 2026-10-08,I-29,観測ジョブの時間の予算（40分）と観測順の並べ替えを導入,measurement,dashboard,no,時間切れの欠けが組に偏らないようにするため。巡回の割り当ては不変
+2026-10-08,I-30,Gemini 呼び出しの間隔調整と1分あたり429の取り直し,measurement,dashboard,no,測り方（質問・モデル・回数）は不変。失敗による欠測を減らすための変更
