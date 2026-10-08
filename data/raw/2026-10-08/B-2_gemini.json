@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-08",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-10-08T01:35:20.978326Z",
+  "answer": "中堅企業で特定のベンダーに依存せず、中立的な立場でCRMの設計を支援してくれる会社をお探しとのこと、承知いたしました。以下に、そのようなニーズに応えられる可能性のある企業やサービスの特徴をまとめました。\n\n**中立的なCRM設計支援を行う会社の主な特徴**\n\n*   **特定のツールに依存しない提案**: Salesforce、HubSpot、Zohoなど、特定のCRMツールに限定せず、貴社の業務や組織体制に最適なツールを選定・提案してくれます。\n*   **戦略設計から運用・改善まで一貫支援**: CRMは単なるツール導入ではなく、顧客との関係性維持や顧客満足度向上を目指す経営戦略として捉え、戦略設計からデータ基盤構築、施策実行、効果検証、運用改善までを一貫してサポートします。\n*   **業務設計・データ戦略に強み**: 顧客データの統合・分析・活用を見据えた業務プロセス設計や連携設計に力を入れているため、貴社独自の業務フローに合わせたCRMを構築できます。\n*   **属人化を防ぎ、継続的な改善体制を構築**: 導入後の定着化支援や社員トレーニング、運用マニュアル整備などを通じて、特定の担当者に依存しないCRM活用体制の構築を支援します。\n*   **AI活用を前提とした設計**: 最新の動向として、AIが読み書きすることを前提としたCRM設計を提案する会社もあります。\n\n**具体的な支援会社例**\n\n検索結果から、特定のベンダーに依存しない立場でのCRM設計支援を強みとしている企業をいくつか見つけることができました。\n\n*   **株式会社ripla**: 業務設計からシステム構築・運用まで一貫して支援し、CRM開発において顧客データの統合・分析・活用まで見据えた業務設計と連携設計を重視しています。標準CRMパッケージでは不足する要件や自社特有の業務プロセスを反映したCRMが必要な中堅〜大企業に適しています。\n*   **ArchRise（アーチライズ）**: 特定ベンダーに偏らず、Salesforce、Zoho、HubSpotなど複数のツールから最適な選定・構成を提案し、ツール選定から伴走支援、導入後の運用定着まで一貫して対応します。\n*   **合同会社クロスコム**: 特定のCRM製品を前提とせず、AIが読み書きする前提のCRMを業務設計から貴社専用に設計する「Agentic CRM設計支援」を提供しています。\n*   **テクノデジタルコンサルティング**: CRM専門20年の実績を持ち、経営面、マーケティング面、データ分析面、システム面と多角的な視点からCRM/顧客データ活用のあらゆる局面できめ細やかなサポートを提供しています。\n*   **フュージョン株式会社**: 「伴走型CRM支援」を重視し、CRM戦略設計、顧客分析・データ基盤整備、コミュニケーション設計、実行・改善サイクル構築までを支援しています。\n\n**CRMコンサルティング会社を選ぶ際のポイント**\n\n*   **支援内容と貴社の課題との合致**: 貴社が抱えるCRMに関する課題（例：顧客データの散在、ツール活用、人的リソース不足など）を解決できる支援内容であるかを確認しましょう。\n*   **ベンダーニュートラルな提案力**: 特定のCRMツールを推奨するのではなく、貴社のビジネスモデルや組織体制、課題に合わせた最適なツール選定と設計を提案してくれるかどうかが重要です。\n*   **導入後の運用・定着支援**: 導入して終わりではなく、その後の運用支援や効果検証、改善提案まで含めてサポートしてくれるかを確認しましょう。\n*   **業界知識や専門性**: 貴社の業界に精通しているか、CRM成功に必要な経営、マーケティング、データ分析、システムなどの幅広い知識とノウハウを持っているかどうかも選定の重要な要素です。\n\nまずは、上記の情報を参考に、いくつかの会社に問い合わせて、貴社の状況に合わせた具体的な提案を聞いてみることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBdOHdIz3jZbDIXJNAKzD1CFy_EMlw5NnpNZR2mM-6tSODO97k8nhJQqP68PQ_-2aCzAondxCKYMhF3_0Wfylg1xBfiCyg5cR1Gla7_XvJyoQDDCCHqD6J-2u5oJ0WnaHG1XUv-4s=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHHVdEApINnF939Imb3RKiAZbQY8XMKpxALVrRNKPduWT2EyCQt8wyt_eIW1FO-iHnE8qavFCAUnwTmcn38TLBrGQyWHbjMJ_NGFzpH9WBWbvFIbfSO8UPgWmrvtJy59CZvuQ4Sv1823cY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGpU7hKJphLVlxSoUEVSLX3Do2xzlzDRH8NtJ98yKd_qvkyIWIDZiHrM1N8TAUWXx1nhQ3xQZc6LQFC_hHH1jiQvruUeKUaa5ECcDDeh0uqICbOQYvFC3qZoFYC7MGr",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFcTj7MN7opnMpmVMtGA4q_kghKWoWLiFPiCLGrAIOj6bsAEOUqoyKtejHxcvF6oGMx1IsDMS_aSXhEaJbei9C_C9fR6_nuaxttwe2wX2oYpMLFFM4bf17EITqUYWw9hObW-LhV-fuw2OtBKgEpEzHKAsXrfg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELmPiXdSX0stmV8gdSqMMzP6fIzr3PpjKUQ6DUr2lzCkKYrRkkR5GmI8UFZEMlAL8yVZWvj-yuAH6lwaGAOKMav3i84VBxN614UU_c75OqoavCyoOePJ-NFOOC4vxyqCeSmNPo8f6d3Tk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEf4ZiB-CTLlS5362x181i0GC8RDjb1jYNanBP-ZPX1fsmw3xZkTHTCY6mxQraZ0olxMXA6JvJCJHzMR_C28_vPCcU_yrxqupUdmHa3mMph1od6rftn913LbdLJvnCVy1xXE5XrxWf4IfWr",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEuybmgFcJ0qGTMPUCsaqTRWGyi2jydnva0UFoVkHkb2yRqCRTWlXOjwhDIBJ7ZR1AXaQcZ16ErezVQM_v5xKrdg2S5PWsUUwcHyQwEVtU1CCK8qcUrOa5BMn6YENss3Xm-GX0GEKx6RJzDkvK8j4OkUy2UYo_XDA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEbeV0HE88kAzbc8wSnJDdI7whdELEls969rd9qWqTIP9NYnxYAvBSgnoLXkWTxq6emEE5QWhtruvh_FEOA-FmrDnPGTgiNE_lwgdBBX1xAPqoBcUVH1i3dJuQxh2GlYho="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}
