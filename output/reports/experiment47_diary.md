@@ -1183,3 +1183,11 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - 観測順：その日の実験の記事を日付（YYYYMMDD）を種にした乱数で並べ替える。割り当て（どの日にどの記事か）と本数は不変（テストで確認）
 - 週次の「組ごとの欠測」に欠測の種類ごとの本数を追加
 - interventions I-29
+
+---
+
+## 2026-10-08／prompt_marketing（2026-10）を停止（自動記録）
+
+- その月の実験の観測で 429 PerDay の欠測が出たため、Gemini の prompt_marketing の残り 52本を error=quota_skipped として記録し、今月はこれ以上投げない（run_marketing.py）
+- 実験の PerDay 欠測: 2026-10-07 E18
+- Claude の prompt_marketing は Gemini の枠と無関係のため止めない
