@@ -126,6 +126,33 @@ def previous_day_gaps(date: str, summary_rows: List[Dict[str, Any]],
     return gaps
 
 
+# 日次の欠測の扱い(2026-10-08・実験と同じ方針)。日次は7本しかないので、1件の一時的な混雑のたびに
+# 失敗通知が飛ぶと本当の異常が埋もれる。欠測の件数と理由は Slack のサマリ行に必ず出す。
+#   - 429(枠切れ)だけ・503 由来が1件だけ → 警告(exit 0)
+#   - 503 由来が2件以上・認証などの直らないエラー・コードの例外・観測そのものが無い → 失敗(exit 1)
+DAILY_UNAVAILABLE_FAIL_AT = 2
+_REASON_LABELS = {
+    collect_llm.REASON_QUOTA: "429(枠切れ)", collect_llm.REASON_UNAVAILABLE: "503(混雑)",
+    collect_llm.REASON_PERMANENT: "認証・権限など", collect_llm.REASON_OTHER: "その他の例外",
+    collect_llm.REASON_SKIPPED: "投げずに記録", "absent": "観測そのものが無い",
+}
+
+
+def classify_misses(records: List[Dict[str, Any]], missing: List[str]) -> Tuple[bool, str]:
+    """(失敗にするか, サマリ行)。``missing`` は collect_llm.missing_observations のラベル。"""
+    by_label = {f"{r['prompt_id']}/{r['model']}": r for r in records}
+    reasons: Dict[str, List[str]] = {}
+    for label in missing:
+        rec = by_label.get(label)
+        reason = collect_llm.miss_reason(rec.get("error")) if rec else "absent"
+        reasons.setdefault(reason, []).append(label)
+    unavailable = len(reasons.get(collect_llm.REASON_UNAVAILABLE, []))
+    hard = any(r in reasons for r in (collect_llm.REASON_PERMANENT, collect_llm.REASON_OTHER, "absent"))
+    fail = hard or unavailable >= DAILY_UNAVAILABLE_FAIL_AT
+    detail = "・".join(f"{_REASON_LABELS.get(r, r)} {len(v)}件({', '.join(v)})" for r, v in reasons.items())
+    return fail, f"collect_llm(欠測 {len(missing)}件): {detail}"
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Daily LLMO pipeline")
     ap.add_argument("--date", help="YYYY-MM-DD for LLM observations (default: today JST)")
@@ -178,9 +205,12 @@ def main() -> None:
     missing = (collect_llm.missing_observations(records,
                                                 expected=collect_llm.expected_labels())
                if llm_day else [])
+    miss_warnings: List[str] = []
     if missing:
-        failures.append(f"collect_llm(欠測 {len(missing)}件): {', '.join(missing)}")
-        summary_lines.append(f"- ⚠️ 観測の欠測 {len(missing)}件: {', '.join(missing)}")
+        fail, line = classify_misses(records, missing)
+        (failures if fail else miss_warnings).append(line)
+        summary_lines.append(f"- ⚠️ 観測の欠測 {len(missing)}件({'失敗' if fail else '警告のみ・exit 0'}): "
+                             f"{line.split(': ', 1)[1]}")
     extractions = _run(
         "extract",
         lambda: [extract.extract_record(r) for r in records],
@@ -219,6 +249,7 @@ def main() -> None:
         warnings = previous_day_gaps(date, summary_history_rows, observations,
                                      len(collect_llm.expected_labels()))
         summary_lines += [f"- ⚠️ {w}" for w in warnings]
+    warnings = warnings + miss_warnings      # 失敗にしない欠測も Slack のサマリ行に出す(2026-10-08)
     sov_rows = _run("analyze_sov", lambda: analyze_sov.analyze(extractions, date), failures) or []
     changes = _run(
         "analyze_diff",

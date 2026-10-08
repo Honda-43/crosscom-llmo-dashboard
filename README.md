@@ -230,6 +230,13 @@ crosscom-llmo-dashboard/
   欠けが特定の組に偏らないようにするため。第3観測層(prompt_marketing)の層ブロック順は変えない
 - 週次集計の「組ごとの欠測」に、欠測の種類(time_budget／job_timeout／503／429／枠不足／その他)ごとの本数も出す
 
+### 日次の欠測と終了コード(2026-10-08・実験と同じ方針)
+
+日次は7本しかないため、1件の一時的な混雑のたびに失敗通知が飛ぶと本当の異常が埋もれる(`run_daily.classify_misses`)。
+- 欠測がすべて 429(枠切れ)、または 503 由来の欠測が1件だけ → **警告のみ(exit 0)**
+- 503 由来の欠測が2件以上、認証・権限などの直らないエラー、コードの例外、観測そのものが無い → **失敗(exit 1)**
+- どちらでも、欠測の件数と理由(429／503／認証など)は Slack のサマリ行とジョブのサマリに出す
+
 ### Gemini の1分あたり上限への対処(2026-10-08)
 
 - gemini-2.5-flash の無料枠は**1分5回**(429 の quotaId `GenerateRequestsPerMinutePerProjectPerModel-FreeTier`・quotaValue 5)。

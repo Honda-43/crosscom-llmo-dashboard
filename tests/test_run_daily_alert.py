@@ -66,25 +66,54 @@ def _run(monkeypatch, date, records):
     return exited.value.code
 
 
-def test_a_missing_daily_observation_is_posted_to_slack(wired, monkeypatch):
+@pytest.fixture
+def sheets_ok(monkeypatch):
+    """シートの読み書きを何もしない形にする(終了コードを欠測の扱いだけで見るため)。"""
+    for name in dir(sheets_writer):
+        if name.startswith("read_"):
+            monkeypatch.setattr(sheets_writer, name, lambda *a, **k: [])
+        elif name.startswith("write_"):
+            monkeypatch.setattr(sheets_writer, name, lambda *a, **k: None)
+
+
+def test_a_single_503_miss_is_a_warning_not_a_failure(wired, sheets_ok, monkeypatch):
+    """2026-10-08:日次は7本しかないので、503 由来の欠測1件は警告だけ(exit 0)。件数と理由は Slack に出す。"""
     records = [_record(pid, model, error=GEMINI_503 if (pid, model) == ("A-2", "gemini") else None)
                for pid in PROMPT_IDS for model in MODELS]
     code = _run(monkeypatch, OBSERVATION_DAY, records)
+    assert code == 0, "一時的な混雑1件では失敗にしない"
+    assert not any("欠測" in f for f in wired["failures"])
+    assert "collect_llm(欠測 1件): 503(混雑) 1件(A-2/gemini)" in wired["text"], "サマリ行には出す"
 
-    assert code == 1, "欠測がある日はワークフローを赤にする(失敗通知も出る)"
-    assert "failures" in wired, "Slack が呼ばれていない"
-    assert any(f.startswith("collect_llm(欠測 1件)") and "A-2/gemini" in f
-               for f in wired["failures"]), wired["failures"]
+
+def test_two_503_misses_fail_the_run(wired, sheets_ok, monkeypatch):
+    bad = {("A-2", "gemini"), ("B-1", "gemini")}
+    records = [_record(pid, model, error=GEMINI_503 if (pid, model) in bad else None)
+               for pid in PROMPT_IDS for model in MODELS]
+    assert _run(monkeypatch, OBSERVATION_DAY, records) == 1
+    assert any(f.startswith("collect_llm(欠測 2件): 503(混雑) 2件") for f in wired["failures"])
     assert "❌ パイプライン一部失敗" in wired["text"]
-    assert "collect_llm(欠測 1件)" in wired["text"]
 
 
-def test_a_single_miss_is_enough_to_alert(wired, monkeypatch):
-    """しきい値は1件。1件の欠測でも週次の言及率の母数が変わる。"""
+def test_misses_that_are_all_429_are_a_warning(wired, sheets_ok, monkeypatch):
+    quota = "429 RESOURCE_EXHAUSTED. quotaId: 'GenerateRequestsPerDayPerProjectPerModel-FreeTier'"
+    bad = {("A-2", "gemini"), ("B-1", "gemini"), ("E-1", "gemini")}
+    records = [_record(pid, model, error=quota if (pid, model) in bad else None)
+               for pid in PROMPT_IDS for model in MODELS]
+    assert _run(monkeypatch, OBSERVATION_DAY, records) == 0
+    assert "429(枠切れ) 3件" in wired["text"]
+
+
+def test_an_auth_error_or_a_missing_observation_fails_the_run(wired, sheets_ok, monkeypatch):
+    auth = "401 UNAUTHENTICATED API key not valid"
+    records = [_record(pid, model, error=auth if (pid, model) == ("A-1", "gemini") else None)
+               for pid in PROMPT_IDS for model in MODELS]
+    assert _run(monkeypatch, OBSERVATION_DAY, records) == 1
+    assert any("認証・権限など 1件" in f for f in wired["failures"])
+    # 観測そのものが無い(collect が途中で落ちた・モデルが飛ばされた)も失敗
     records = [_record(pid, model) for pid in PROMPT_IDS[:-1] for model in MODELS]
-    records += [_record("E-1", "gemini", error=GEMINI_503), _record("E-1", "claude")]
-    _run(monkeypatch, OBSERVATION_DAY, records)
-    assert any("欠測 1件" in f for f in wired["failures"])
+    assert _run(monkeypatch, OBSERVATION_DAY, records) == 1
+    assert any("観測そのものが無い 2件" in f for f in wired["failures"])
 
 
 def test_a_quiet_day_does_not_observe_so_it_cannot_miss(wired, monkeypatch):
