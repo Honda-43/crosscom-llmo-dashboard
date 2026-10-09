@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-09",
+  "prompt_id": "E31",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？",
+  "cep": null,
+  "timestamp": "2026-10-09T02:44:37.803802Z",
+  "answer": "「Agentforce Employee Agent」は、Salesforce上で動作する従業員向けのAIエージェントです。社内の問い合わせ対応や業務申請フローの自動化を目的として設計されており、従業員の自己解決を促進し、部門間のコミュニケーション効率向上に貢献します。\n\nこのAIエージェントは、以下のような社内問い合わせに対応できます。\n\n*   **定型的な質問への即時回答:** 社内で頻繁に寄せられる質問に対して、蓄積されたナレッジに基づいて自動で回答します。これにより、対応部門と利用者双方の負担を大幅に軽減します。\n*   **適切な部門への自動エスカレーション:** 定型的な回答で解決できない問い合わせや、より専門的な対応が必要な場合には、適切な担当部門へ自動でエスカレーションします。\n*   **申請業務のスムーズな開始とガイド:** 従業員が各種申請を行う際に、その手続きを案内し、スムーズに開始できるようサポートします。\n*   **社内ルールのナレッジ提示:** 社内ルールやマニュアルなどの情報を提示し、従業員が必要な情報を簡単に見つけられるように支援します。\n*   **Salesforceデータとの連携:** 顧客情報や商談情報などのCRMデータを参照・更新することも可能です。\n*   **マルチチャネル対応:** SlackやSalesforceモバイルアプリなどのインターフェースと連携できるため、従業員は普段利用しているツールからAgentforce Employee Agentにアクセスできます。\n\n「Agentforce Employee Agent」に任せられる範囲は、基本的に**ログインしている従業員本人の権限**に準じます。つまり、Agentforce Employee Agentは、その従業員自身がアクセスできる情報に基づいて応答や処理を行うため、従業員が見られない情報はAIエージェントも参照できません。これにより、機密データのプライバシー制御も可能となります。総務や情シスなどへの「よくある問い合わせ」対応で、定型的な対応を自動化したい企業で特に有効とされています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBtsdqSMoX2dHCoxwXbT6lYix7TVfTRuhlg8Kt_VUWOa4BYVq01Nx15tWuDgTgmYOVMLIXSItpwK8sTpkaU5GCjoGJMxgQhD3wBWqH8Zc1yk4w_xNiwMRFxzJOKkgY7p-DsFTidD7Ab6zrXRl4BboUWymx_ts=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFvZM1n-db2462QMZX3OmhLBguTxyCBlkLg3iWxzvbLYFpNhcBDPnA68kFqD_v2vgHFMFEPZ2WWPM3vaHLziHwFIal4T9hO7TmRTlMBCuDlC0A8pGPkz7L740BNG8zX7WlCXERbECTwCbCw9-i9YQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFdU6CLw3xBDax0OmYtz_ZfiVkX1HdA1Nia7uYIXAzOSdRP_OlitVJuoq30zaenyii4W1ay6gbXHZ2_oFPr0lMuOdnEp7x_4f7CyZew3rh5PpelOhMzgH6vqkkqmRwGTMGQueFlgz3Pt-0mgB5cGVCvScCAO3pYgUQDPQ03A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEcqPepFwMYXXtWcyWEuIy5SJJUAcqFnXoTNKPo5QCsAVSXv6DxVlXZin-Dimu_TI1WrpFnwtIxLsmQIW_I-ZF7SzeUEvA2MIB5e9NsoxNuA-IxIjR483HnqBhAmS6LgaVd43nu71E87WRg4A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHwTXWm7gwfKl-3gBathCzy1fSqvyqtR0CtZDlS-rP7LEMaauT3y867_uvq2DdQwdCwvsRSY4Efkr5OCek-BnBDgHlSxWMN7u48mk-uVK7wRVqa3fEdy7BKKcDXu0M-_7phfPnrZVge8qFQHZ8eP6Qa1fu6XL9S-04gO5du"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E31",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-employee-agent/",
+  "answer_text": "「Agentforce Employee Agent」は、Salesforce上で動作する従業員向けのAIエージェントです。社内の問い合わせ対応や業務申請フローの自動化を目的として設計されており、従業員の自己解決を促進し、部門間のコミュニケーション効率向上に貢献します。\n\nこのAIエージェントは、以下のような社内問い合わせに対応できます。\n\n*   **定型的な質問への即時回答:** 社内で頻繁に寄せられる質問に対して、蓄積されたナレッジに基づいて自動で回答します。これにより、対応部門と利用者双方の負担を大幅に軽減します。\n*   **適切な部門への自動エスカレーション:** 定型的な回答で解決できない問い合わせや、より専門的な対応が必要な場合には、適切な担当部門へ自動でエスカレーションします。\n*   **申請業務のスムーズな開始とガイド:** 従業員が各種申請を行う際に、その手続きを案内し、スムーズに開始できるようサポートします。\n*   **社内ルールのナレッジ提示:** 社内ルールやマニュアルなどの情報を提示し、従業員が必要な情報を簡単に見つけられるように支援します。\n*   **Salesforceデータとの連携:** 顧客情報や商談情報などのCRMデータを参照・更新することも可能です。\n*   **マルチチャネル対応:** SlackやSalesforceモバイルアプリなどのインターフェースと連携できるため、従業員は普段利用しているツールからAgentforce Employee Agentにアクセスできます。\n\n「Agentforce Employee Agent」に任せられる範囲は、基本的に**ログインしている従業員本人の権限**に準じます。つまり、Agentforce Employee Agentは、その従業員自身がアクセスできる情報に基づいて応答や処理を行うため、従業員が見られない情報はAIエージェントも参照できません。これにより、機密データのプライバシー制御も可能となります。総務や情シスなどへの「よくある問い合わせ」対応で、定型的な対応を自動化したい企業で特に有効とされています。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "strh.co.jp",
+    "successjp.salesforce.com",
+    "salesforce.com",
+    "note.com",
+    "qiita.com"
+  ],
+  "resolved_urls": [
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://successjp.salesforce.com/article/NAI-001202",
+    "https://www.salesforce.com/jp/agentforce/agentforce-for-employees/",
+    "https://note.com/samuraijuku_biz/n/n08b3a08e8d5d",
+    "https://qiita.com/ubakichi_sr_mc_ai_06/items/b223e5f65787e3bb3d99"
+  ],
+  "unresolved_redirects": 0
+}
