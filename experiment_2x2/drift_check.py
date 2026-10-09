@@ -58,6 +58,36 @@ POST_MANIFEST = os.path.join(POST_DIR, 'manifest.json')
 POST_SNAP_DIR = os.path.join(POST_DIR, 'snapshots')
 POST_HTML_DIR = os.path.join(POST_DIR, 'html')
 
+# 2026-10-09 19:42 の著者表示の変更（interventions.csv I-31・I-32。全ページ一律・4組に同条件）による想定内の変化。
+# 　I-31：本文の冒頭に「著者：本田正憲／肩書き」、末尾に新しい著者欄（紹介文・プロフィールへのリンク）を表示
+# 　　（Person 構造化データは <script> の中なので、そもそも差分に出ない）
+# 　I-32：テーマ標準の著者ボックス（旧紹介文・note へのリンク・記事一覧へ）をオフ
+# 　差分の行が**すべて**下の文字列のどれかなら想定内。1行でも違えば（紹介文の書き換えを含む）従来どおり想定外として出す。
+# 　2026-10-09 に46本の公開ページで確かめた差分（各13行・46本とも同じ）から取った
+AUTHOR_CHANGE_FROM = '2026-10-09'
+AUTHOR_ADDED = frozenset({
+    '著者：', '本田正憲', '合同会社クロスコム 代表／Salesforce認定コンサルタント', 'この記事を書いた人',
+    '双日グループの専門商社で法人営業を経験後、マーケティング支援で独立し2023年に合同会社クロスコムを設立。'
+    '現在はAgentforceの導入・定着支援とAgentic CRM設計支援を専門とする。',
+    'プロフィールを見る →',
+})
+AUTHOR_REMOVED = frozenset({
+    'この記事を書いた人', '本田正憲',
+    '合同会社クロスコムの代表｜専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入。'
+    '現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化した'
+    'Agentforce導入・定着支援と、Agentic CRM設計支援を提供している。'
+    'Salesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリスト。',
+    'https://note.com/honda_crosscom', '記事一覧へ',
+})
+
+
+def author_only_change(diff, today, since=AUTHOR_CHANGE_FROM):
+    """差分が著者表示の変更（I-31・I-32）の行だけか。基準が変更の前でも後でも、今回が変更日以降なら判定する。"""
+    if today < since:
+        return False
+    lines = [x for x in diff if x[:1] in '+-' and not x.startswith(('+++', '---'))]
+    return bool(lines) and all((x[1:] in AUTHOR_ADDED) if x[0] == '+' else (x[1:] in AUTHOR_REMOVED) for x in lines)
+
 
 def markup_diff(before, after, limit=6, ctx=60):
     """HTML の違う箇所を最大 limit 件、前後 ctx 文字つきで返す（テキストが同じ記事の原因を示すため）。"""
@@ -224,7 +254,7 @@ def main():
         print(f'前回の基準が処置の前（〜{TREATMENT_END}）のため、処置後の基準と比べる（9/29〜30 の処置による変化は想定内）')
     first_run = not old or a.baseline
 
-    new, changed, failed, markup_only = {}, [], [], []
+    new, changed, failed, markup_only, author_expected = {}, [], [], [], []
     for slug, url in targets():
         try:
             html = fetch(url)
@@ -248,7 +278,10 @@ def main():
                                              tofile=f'{slug} 今回({today})', lineterm='', n=1))
             item = {'slug': slug, 'url': url, 'prev': prev, 'now': digest,
                     'prev_checked': ref[slug]['checked'], 'diff': diff}
-            if diff:
+            if diff and author_only_change(diff, today):
+                author_expected.append(item)
+                print(f'  ○想定内の変化 {slug}（著者表示の変更 I-31・I-32 の行だけ）')
+            elif diff:
                 changed.append(item)
                 print(f'  ★変化あり {slug}（{len(diff)} 行の差分）')
             else:
@@ -269,7 +302,7 @@ def main():
     if first_run:
         print('基準を作りました。差分の判定は次回から。')
         return 0
-    if not changed and not failed and not markup_only:
+    if not changed and not failed and not markup_only and not author_expected:
         print('前週から変化なし。報告は出しません。')
         return 0
 
@@ -282,7 +315,15 @@ def main():
          f'- 比べた基準：{"処置後の基準（" + TREATMENT_END + " 取得。9/29〜30 の処置による変化は想定内として除いた）" if ref_kind == "post_treatment" else "前回の実行"}',
          f'- 本文テキストが変化した記事（想定外）：**{len(changed)} 本 / {len(new) + len(failed)} 本**',
          f'- HTMLのみの変化（本文テキストは同一・要確認）：{len(markup_only)} 本',
-         f'- 取得できなかった記事：{len(failed)} 本', '']
+         f'- 取得できなかった記事：{len(failed)} 本']
+    if author_expected:
+        L.append(f'- 想定内の変化（著者表示の変更 I-31・I-32 の行だけ）：{len(author_expected)} 本')
+    L.append('')
+    if author_expected:
+        L += ['## 想定内の変化（著者表示の変更・2026-10-09 19:42）', '',
+              '差分の行がすべて著者表示の行（冒頭の「著者：本田正憲」・末尾の新しい著者欄・オフにしたテーマ標準の著者ボックス）だった記事。',
+              '本文の変化ではない。全ページ一律・4組に同条件（interventions.csv I-31・I-32）。著者欄以外の行が1行でも変わった記事は下の「想定外」に出る。', '',
+              ', '.join(c['slug'] for c in author_expected), '']
     if failed:
         L += ['## 取得できなかった記事', '', '| slug | url | 理由 |', '|---|---|---|']
         L += [f'| {s} | {u} | {e} |' for s, u, e in failed]

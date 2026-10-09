@@ -42,3 +42,5 @@ date,intervention_id,description,scope,executor,touches_pool46,note
 2026-10-07,I-28,Ahrefs Web Analytics のタグ再設置,measurement,記事制作,no,
 2026-10-08,I-29,観測ジョブの時間の予算（40分）と観測順の並べ替えを導入,measurement,dashboard,no,時間切れの欠けが組に偏らないようにするため。巡回の割り当ては不変
 2026-10-08,I-30,Gemini 呼び出しの間隔調整と1分あたり429の取り直し,measurement,dashboard,no,測り方（質問・モデル・回数）は不変。失敗による欠測を減らすための変更
+2026-10-09,I-31,19:42 著者の自動表示と Person 構造化データを全ページに適用,サイト全体,seo-agent（9d）,yes,全ページ一律・4組に同条件。46本の本文は不変（表示と構造化データのみ）。アフター期間中のため交絡候補として開示
+2026-10-09,I-32,テーマ標準の著者ボックスを全ページでオフ,サイト全体,seo-agent（9d）,yes,全ページ一律・本文の変更なし。4組に同条件

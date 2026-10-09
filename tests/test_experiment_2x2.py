@@ -440,6 +440,15 @@ def test_site_wide_interventions_that_overlap_the_judgement_are_listed():
     assert [r["intervention_id"] for r in undated] == ["UNDATED"]
 
 
+def test_the_author_display_rows_are_confounders_of_the_after_period(capsys):
+    # 2026-10-09 19:42 の著者表示（I-31）と著者ボックスのオフ（I-32）。アフター期間中・全ページ一律
+    import summarize
+    summarize.print_site_wide_interventions("2026-09-15:2026-09-28", "2026-10-01:2026-11-30")
+    out = capsys.readouterr().out
+    assert "I-31｜19:42 著者の自動表示と Person 構造化データを全ページに適用｜scope=サイト全体｜touches_pool46=yes" in out
+    assert "I-32｜テーマ標準の著者ボックスを全ページでオフ｜scope=サイト全体｜touches_pool46=yes" in out
+
+
 def test_the_judgement_report_starts_with_the_site_wide_interventions(monkeypatch, tmp_path, capsys):
     rag = "https://cross-com.jp/agentforce-rag/"
     monkeypatch.setattr(summarize, "load_allocation", lambda: {"agentforce-rag": "①対照"})

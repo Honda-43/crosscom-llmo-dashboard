@@ -127,3 +127,41 @@ def test_markup_only_change_is_listed_separately(monkeypatch, tmp_path):
 def test_markup_diff_points_at_the_changed_fragment():
     d = drift_check.markup_diff('<p class="a">本文</p>', '<p class="abcdefgh">本文</p>')
     assert d and "abcdefgh" in d[0]
+
+
+# 2026-10-09 19:42 の著者表示の変更（I-31・I-32）。46本の公開ページで実際に出た差分の形
+_OLD_BOX = ("<p>この記事を書いた人</p><p>本田正憲</p><p>" + sorted(drift_check.AUTHOR_REMOVED, key=len)[-1] + "</p>"
+            "<p>https://note.com/honda_crosscom</p><p>記事一覧へ</p>")
+_NEW_TOP = "<p>著者：</p><p>本田正憲</p><p>合同会社クロスコム 代表／Salesforce認定コンサルタント</p>"
+_NEW_BIO = [x for x in drift_check.AUTHOR_ADDED if x.startswith("双日")][0]
+_NEW_BOX = (f"<p>この記事を書いた人</p><p>本田正憲</p><p>合同会社クロスコム 代表／Salesforce認定コンサルタント</p>"
+            f"<p>{_NEW_BIO}</p><p>プロフィールを見る →</p>")
+
+
+def test_author_display_change_is_expected(monkeypatch, tmp_path):
+    old = {"a": _entry(f"<p>事例紹介</p><p>本文</p>{_OLD_BOX}", "2026-10-05")}
+    rc, rep = _run(monkeypatch, tmp_path, {"a": f"<p>事例紹介</p>{_NEW_TOP}<p>本文</p>{_NEW_BOX}"},
+                   old, None, "2026-10-12")
+    assert rep is not None
+    assert "本文テキストが変化した記事（想定外）：**0 本" in rep
+    assert "想定内の変化（著者表示の変更 I-31・I-32 の行だけ）：1 本" in rep
+
+
+def test_author_change_plus_body_change_is_unexpected(monkeypatch, tmp_path):
+    old = {"a": _entry(f"<p>本文</p>{_OLD_BOX}", "2026-10-05")}
+    rc, rep = _run(monkeypatch, tmp_path, {"a": f"{_NEW_TOP}<p>本文が変わった</p>{_NEW_BOX}"}, old, None, "2026-10-12")
+    assert "本文テキストが変化した記事（想定外）：**1 本" in rep and "本文が変わった" in rep
+
+
+def test_rewritten_author_bio_is_unexpected(monkeypatch, tmp_path):
+    old = {"a": _entry(f"<p>本文</p>{_OLD_BOX}", "2026-10-05")}
+    box = _NEW_BOX.replace(_NEW_BIO, "紹介文を書き換えた")
+    rc, rep = _run(monkeypatch, tmp_path, {"a": f"{_NEW_TOP}<p>本文</p>{box}"}, old, None, "2026-10-12")
+    assert "本文テキストが変化した記事（想定外）：**1 本" in rep
+
+
+def test_author_rule_does_not_apply_before_oct9():
+    diff = ["--- a", "+++ b", "+著者：", "+本田正憲"]
+    assert not drift_check.author_only_change(diff, "2026-10-08")
+    assert drift_check.author_only_change(diff, "2026-10-09")
+    assert not drift_check.author_only_change(["--- a", "+++ b"], "2026-10-12")
