@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-10",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-10-10T01:33:54.196920Z",
+  "answer": "中堅企業様が特定ベンダーに依存せず、中立的な立場でCRMの設計を支援してくれる会社をお探しの場合、以下のコンサルティング会社や特徴を持つ企業が候補となります。\n\n**中立的なCRM設計支援を強みとする企業**\n\n*   **StockSun株式会社**\n    売上・LTVの最大化をゴールとし、特定ツールありきの提案ではなく、事業規模や目的に合わせた最適なCRM/MA・SFAを中立的に選定することを強みとしています。余計な固定費の増加を提案しない方針を掲げています。\n*   **アビームコンサルティング**\n    特定の製品やベンダーに縛られない中立的な立場で、先進IT技術を駆使した最適なインフラ構成を導出し、顧客のビジネスをテクノロジーの力で牽引することを特徴としています。\n*   **博報堂DY ONE**\n    社内の各部門や博報堂グループの各社と協働し、特定ベンダーに依存しないマルチベンダーの視点で、課題定義、戦略立案からシステム導入、PDCAまでを一貫して支援します。\n*   **SORAMICHI**\n    CRM/CX・Web開発・デジタル広告まで幅広いソリューションを活用し、特定ベンダーに依存しない最適な構成を提案しています。\n*   **テクノデジタルコンサルティング**\n    CRM・データ戦略設計サービスを提供しており、ツールありきではなく、成果から逆算した戦略設計を起点とすることを特徴としています。大規模CRMプロジェクトでの戦略・業務・データを横断した整理の実績も豊富です。\n\n**選定のポイント**\n\nCRMコンサルティング会社を選ぶ際には、以下の点を考慮すると良いでしょう。\n\n*   **ベンダー中立性:** 特定の製品やサービスに限定せず、貴社のビジネスモデルや課題に最適なCRMソリューションを提案できるかを確認しましょう。\n*   **成果へのコミットメント:** ツール導入だけでなく、売上向上やLTV最大化といった具体的な成果を重視し、戦略策定から運用定着まで一貫して支援してくれるかどうかが重要です。\n*   **豊富な実績と専門知識:** 中堅企業規模での支援実績や、CRMに関する深い専門知識を持つコンサルタントが在籍しているかを確認することが信頼性につながります。\n*   **戦略策定能力:** 貴社の顧客戦略、KPI設計、業務設計などを明確にし、実効性のあるCRM戦略を策定できるかどうかが重要です。\n*   **データ活用支援:** 顧客データを単なる情報として蓄積するだけでなく、分析や施策設計を通じて企業の資産として活用できるような支援を行っているかを確認しましょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGFtx4DqYaRi0IDusvgVJF_Yzq2DL77qT_SuFkRCmD6j4X5htZGMrzqlVTJHgb34EzGTswa6aDAAoZMBlxS0xrTnInrw9ditzssRvgjX7SB9yNKzjn6OG-t25aRlUk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE14FQK1ItBQBhUybqojEPi5IXZcX2gEVxjOOKOCLzqJFgf-WQF87dYjZdMDMcxIMhEwj3YG7KfDMMm9KGWTLFMzYNehE-lkCh8Jdkhw_CssMhA_Bm2-zKfdZKZ7IW3WzZdcaTQ1xjrJPN5aAWpVYpHGDMkXTTR",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGSFxWjhkUqwk_o_33IO69AXbuSdnBGscATJXPQV3U331gAs1U2u6OyZmIyWeo_AZdU3PAhjH2Xk1SFYVqLq2LRv-y0meQcBsfE52Pb9DEVJP5Ng6kLEJr42xV4Uz5IYZc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQErPyvhp8DqHEpIDzbNJoCHPgd27ba_2HPUuJRinZ89zndCMxm8fjFZ5tcRGWhxTna7mI1uN10gIjRKTP2cYNtqr8w7oCRuNbgiN20wMw9oBSLXD4hdbAT-zY7AX5jDHnlEKO7PAnbHbGeuMwzcXvl30OF4SK0-7HTHsodg1PO2nA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFNcQ4XAGFbzSNwZLwJZjJ9mKiSEQthiOIpbqkZWUzKpfWbnCHYhy5IrNadvg195NM9sr3932EtEU14IXmo06NZXM38HWF9vq3VoHKV4SS3nGLmotKgByOe3K7vtTm-dBsqPwmg63NIWs0zcUvwnF5-ivoZ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFwbtJfjLnO1H2nGpx0ay2Y2oO08mwvn9mdcSphZR1ztKyAsr5Xn1kiWqJ8zJWroiLkZOp1UYbnkPCI1IWYiV2D0OAxll6n3kGMPKhaW9qaq64xCQzfynbzAYdbqw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgbRwI8cKTxndmtoHyZzf9S1V-TT5IEaFm3l_Eea5THw-xgIdIOAE2HFi5sIYUJIBG16gh-ncF0MRZtqaMx1unOxjxeVPfSOqtr3yiKcOhx87qdGC15gPhQKp9G2zi_KYmaSjGjg_z3brsmQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFNbSuIw6QTSEoeVdJGKP9ySBmiQiLegyOUyff6mB2H8htvQwVEvC3aNq7X-ScHczvd4oyOpOKuWTcsoxwWrUp6_JLf0mHsSbl3GsOT-oBGyyF2qBih-MGMLuoZyJv0JIQycQKx-Owx"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

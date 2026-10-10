@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-10",
+  "prompt_id": "E-1",
+  "pillar": "entity",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムはどんな会社ですか。強みと提供サービスを教えてください",
+  "cep": "エンティティ情報の鮮度",
+  "timestamp": "2026-10-10T01:34:35.911072Z",
+  "answer": "合同会社クロスコムは、Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援に特化したBtoB向けのコンサルティング会社です。2023年5月に設立され、東京都渋谷区に拠点を置いています。代表は本田正憲氏です。\n\n**強み：**\n\n*   **業務設計起点の支援:** ツール導入前の業務設計を重視し、運用が定着するまで一貫して支援します。\n*   **BtoB領域への特化:** BtoBのソリューション営業の業務プロセスに特化しており、機能設定ではなく業務設計からアプローチします。\n*   **定着まで伴走するサポート:** 1ユースケース×3ヶ月のスモールスタートで、現場に定着するまで伴走型の支援を提供します。\n*   **AI技術への深い知見:** Claude CodeとMCP連携によるAgent Script開発の実装知見を持ち、コードベースでの構築・改善にも対応可能です。\n*   **柔軟な導入・構築支援:** Salesforceの導入・構築において、「パッケージ型」と「タイムチャージ型」の2軸モデルを採用し、無駄なく柔軟な対応を実現しています。\n*   **戦略的なBtoBマーケティング力:** Salesforce認定コンサルタントによる安全な構築支援に加え、BtoBマーケティングの戦略的な視点から構築を提案します。\n\n**提供サービス：**\n\n*   **Agentforce導入・定着支援:** Salesforce Agentforceの導入から定着までを支援します。エージェント設計、トピック構成、アクション配線といった構築作業に加え、導入に伴う業務設計も含めて支援します。自社で構築を進める企業向けには、設計アドバイザリーも提供しています。\n*   **Agentic CRM設計支援:** 特定の製品に限定せず、CRMとAIの組み合わせを設計段階から支援します。マーケティング、営業、カスタマーサクセスに分散したデータと業務を、AIエージェントが自律的に動くことを前提に再設計することに重点を置いています。\n*   **BtoB Salesforce導入・構築支援:** Salesforce環境の構築から、その上で動作するAIエージェントの設計・定着までを一貫して支援できる体制を提供しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEG6gvZqMfrN9ljiEzyum7WjjZIUvo6TDVKhdIpqoo8T1m3FM98-_0t8Tle6u1f30zn7-uaF0sdUyHX1E25Wnnn4eq8V_11FSaGo8_0Lgretp2GEBfC",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF_PwwRinfve7hKZp24GNcowlXe-UqnDxUbEr8eTvrowNBT96RXjKwH3QSs_UZy-akzvyznxDCiS4JuEO6WWW91FaOZNgbPyULkUd1N0ogxOomSnPRz8DWJLQM6kCGUbUYCKw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEAmG477CGS52qOxtBwyjAnA68r2AUe7dEo2LTnokXiChiNsJO8O3P33rw7Iw9DRYYhBcCQhJ377cKynqvOiN6r6iuormdmH3ss-ZyVUacPZGAu6IFe7UQGjrqNGIJXhOYGL1KPqIpQYtLM7hIGeFNfXA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEHBM_C9eLYAA5_yvhZcICO28NJBeTsw9APy5voZxmAbL0SxlNwsQQZfc3VP_Qb4rdDTZY4i8lyS6zRWJzLxnoiK2qwrhZF0Si4KrbBbRtm"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}
