@@ -33,6 +33,7 @@ import collect_ahrefs
 import generate_insight
 import looker_tabs
 import notify_slack
+import repeat_pairs
 import rules_engine
 import run_experiment
 import sheets_writer
@@ -221,6 +222,10 @@ def main() -> None:
                         lambda: run_experiment.weekly_claude_count_line(date), failures)
     if claude_count:
         lines.append(claude_count)
+    # 意図的な反復測定ペア(重複4組)の食い違い(2026-10-10)。同じ質問の揺れ幅の目安。警告にはしない
+    repeat = _run("repeat_pairs", lambda: repeat_pairs.weekly_line(date), failures)
+    if repeat:
+        lines.append(repeat)
 
     if failures:
         lines += ["", "### ⚠️ Failed phases"] + [f"- {f}" for f in failures]
