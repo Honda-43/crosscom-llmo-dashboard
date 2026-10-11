@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-11",
+  "prompt_id": "E25",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce for Marketingで何を任せられる？営業への引き渡しはどう設計する？",
+  "cep": null,
+  "timestamp": "2026-10-11T01:36:48.706058Z",
+  "answer": "Agentforce for Marketingは、SalesforceのAIを活用したマーケティング部門向けのデジタル労働プラットフォームであり、多岐にわたるマーケティング業務を自動化・最適化し、営業へのスムーズな引き渡しを支援します。\n\n**Agentforce for Marketingで任せられること**\n\nAgentforce for Marketingは、主に以下のマーケティング活動をAIの力で支援・自動化します。\n\n*   **ターゲット設定とセグメンテーションの精密化**: Salesforceの顧客データをAIで分析し、ターゲットリストを詳細にセグメント化します。これにより、顧客の興味やニーズに合致したターゲット層を特定できます。\n*   **パーソナライズされたメッセージの自動生成と配信**: 顧客一人ひとりのプロファイルに合わせてパーソナライズされたメッセージを自動生成し、最適なチャネルで配信することが可能です。\n*   **キャンペーンの企画から実行、最適化までのエンドツーエンド支援**:\n    *   マーケティング担当者が設定したキャンペーン目標とブランドガイドラインに基づき、キャンペーンの作成を支援します。これには、ガイドライン作成、ターゲットオーディエンスの特定、セグメント作成が含まれます。\n    *   Eメールやランディングページの初回ドラフト作成、Salesforce Flowでのカスタマージャーニー構築も自動で行えます。\n    *   キャンペーンのパフォーマンスを継続的に分析し、主要業績評価指標（KPI）に基づいて最適化の提案を行います。\n    *   事前構築されたAIエージェントスキルのライブラリにより、キャンペーン作成、パーソナライゼーション、広告最適化、ロイヤルティプログラム管理までを自動化し、マーケティング担当者の時間と生産性を向上させます。\n*   **データに基づいたインサイトの提供**: データ駆動型のキャンペーンインサイトにより、マーケティング活動の効果を深く理解し、改善に繋げることができます。\n*   **リードの質と量の向上**: ターゲット精度の向上によりキャンペーンの投資収益率（ROI）を高め、リードの質と量を同時に改善します。\n*   **顧客体験全体の強化**: 顧客接点全体でパーソナライズされた顧客体験の提供を可能にし、顧客との関係性を深めます。\n*   **製品レコメンデーション**: 顧客の閲覧履歴や購買データ、チャット内容を分析し、パーソナライズされた製品レコメンデーションを提供することで、アップセルやクロスセルを最大化し、売上向上に貢献します。\n\n**営業への引き渡し設計**\n\nAgentforceは、マーケティングと営業間の連携をシームレスにし、顧客ジャーニー全体で一貫した体験を提供することを重視しています。\n\n*   **コンテキストを維持したスムーズな引き渡し**: 顧客は部門が変わっても過去のやり取りを繰り返すことなく、一貫した対応を期待しています。Agentforceは、Salesforceの統合された顧客データを基盤とすることで、マーケティングから営業への引き渡し時にも顧客に関する完全なコンテキストを営業担当者に提供し、シームレスな移行を実現します。\n*   **AIエージェントによる自動リードルーティングと情報提供**: AIエージェントは、ウェブサイト上で顧客を迎え、適切な営業担当者に完全なコンテキストとともにルーティングすることが可能です。\n*   **営業担当者の業務効率化と価値創造への集中**:\n    *   Agentforceは、商談議事録の自動作成、Salesforceへのデータ入力支援、過去の対応履歴を参照したメール返信案の自動作成など、営業担当者の非効率な事務作業を大幅に軽減します。\n    *   商談の進捗や顧客の反応に基づき、次に取るべき最適なアクションを提案し、営業担当者が顧客との対話や戦略的提案といった付加価値の高い活動に集中できるよう支援します。\n    *   アップセル機会やアカウント履歴を事前提供することで、営業担当者がコール前に準備を整えることを可能にします。\n    *   通話メモの自動取得とSalesforceへの更新、平易な言葉から見積もりを迅速に生成する機能も持ちます。\n*   **パーソナライズされたオンボーディングジャーニーへの自動登録**: キャンペーンエージェントやエンゲージメントエージェントは、顧客をパーソナライズされたオンボーディングジャーニーに自動的に登録できます。\n*   **データの一元管理と連携**: AgentforceはSalesforce Platform上に構築されており、散在する顧客データを一元的に管理することで、マーケティングと営業が同じ顧客情報に基づき連携し、部門間の壁をなくします。また、既存のマーケティングオートメーションツールを含む他のアプリケーションやシステムとも連携し、ワークフローを自動化し、部門間の協業を強化できます。\n\nこれらの機能を通じて、Agentforce for Marketingは、マーケティング部門が効率的かつ効果的にリードを育成し、その後の営業部門への引き渡しをスムーズに行い、顧客ライフサイクル全体での顧客体験向上とビジネス成果の最大化に貢献します。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGrd7TnlxeEpOz6-R-n93v0wbAOhh895J6ocHGOCBckC6eQoZn9CaABHy5za180zoafgejTC3XiJupXMJTrRCQIxpIvy5GR_3qeMW3R0eHWbucXKW7F7E2WbxXynEvgOmebh-iy9imY0c0uM1cf89p1mdswzoPwUFZetudxE_yp6WU=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGMosfU8km-zuydkAnfqVMZ3vIW7Rj4ZFdfv1EQv4Sj5wyMPJLIEFpWdoXYq6EXw2Ok44sD37VdJkVwfpo6hQo0mh6ObMubb30jrwiNq3pqZfeys3U6n-6RM_4qOKOrUWtX",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgZxbz9-9Z6gfh1oqPRSL_lRnbhZ7xIvfpSClBghqFlobhFi7WB9kCTR3hBS0F0o2Hn7tw6LpQKeELq9giiGL-rhztP17BW57X6d0N_cQkusjOrcN5M5nGDHhoGuhLq0SQw4jQ-LtT",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-VzqtP3mayC2xN4ttoRmJlv9zxoYAOTHQrLOMriTfnrXKIdK8e3kXl1_DHqhdL4p8Tz2r-PxYQDn5BMk5mEGxVO_mC9Dq0hAV5CZ05zRIdORMemTgfjzlDy9b0GPTFWo3-u-xOz6-uXLmNGk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFyCFpXK_DqVe6tN80DFMVarD9cXOzz-6SQ0Ga3lbGnYPbPA1Z7tHBt_Fhoo1ysb_9CORLeN86rA02mNfkOKeEASh4OjlvT9SywaqqcZDTcl113r0ePSx-cI2n2bLU9BMfC4qeP7SQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQESDK4m4uwAFcQCyJ6mwkMI7VXyK3VgasWMIXAZZEo8CGZAHYWnps02i5Z4r5J97wQ6FPuUzW4GxON5y52Tkhp7pLnKRccKzDzMUjdhnDnOriA-8y-d5Tb0vF8dQeeZwZhaxOXNZfiov3jSd_7cvUo6",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHosZbKgHTo9whdXKIHNM1qApFBksEFlJwuSf6hyF089p4pCw6a56F12Vwr1lEY9KJ6ZR1h0KApLQvfuJTcPYNCcvR5clKfS7OwcTswglkzm4YPGF1xg3RoPqKQ5YZkGQfp0sKuWwJ2G1i_QjSlEJ2i2y-sWCg6-SeGA5rfSjqr9ho="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E25",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-marketing/",
+  "answer_text": "Agentforce for Marketingは、SalesforceのAIを活用したマーケティング部門向けのデジタル労働プラットフォームであり、多岐にわたるマーケティング業務を自動化・最適化し、営業へのスムーズな引き渡しを支援します。\n\n**Agentforce for Marketingで任せられること**\n\nAgentforce for Marketingは、主に以下のマーケティング活動をAIの力で支援・自動化します。\n\n*   **ターゲット設定とセグメンテーションの精密化**: Salesforceの顧客データをAIで分析し、ターゲットリストを詳細にセグメント化します。これにより、顧客の興味やニーズに合致したターゲット層を特定できます。\n*   **パーソナライズされたメッセージの自動生成と配信**: 顧客一人ひとりのプロファイルに合わせてパーソナライズされたメッセージを自動生成し、最適なチャネルで配信することが可能です。\n*   **キャンペーンの企画から実行、最適化までのエンドツーエンド支援**:\n    *   マーケティング担当者が設定したキャンペーン目標とブランドガイドラインに基づき、キャンペーンの作成を支援します。これには、ガイドライン作成、ターゲットオーディエンスの特定、セグメント作成が含まれます。\n    *   Eメールやランディングページの初回ドラフト作成、Salesforce Flowでのカスタマージャーニー構築も自動で行えます。\n    *   キャンペーンのパフォーマンスを継続的に分析し、主要業績評価指標（KPI）に基づいて最適化の提案を行います。\n    *   事前構築されたAIエージェントスキルのライブラリにより、キャンペーン作成、パーソナライゼーション、広告最適化、ロイヤルティプログラム管理までを自動化し、マーケティング担当者の時間と生産性を向上させます。\n*   **データに基づいたインサイトの提供**: データ駆動型のキャンペーンインサイトにより、マーケティング活動の効果を深く理解し、改善に繋げることができます。\n*   **リードの質と量の向上**: ターゲット精度の向上によりキャンペーンの投資収益率（ROI）を高め、リードの質と量を同時に改善します。\n*   **顧客体験全体の強化**: 顧客接点全体でパーソナライズされた顧客体験の提供を可能にし、顧客との関係性を深めます。\n*   **製品レコメンデーション**: 顧客の閲覧履歴や購買データ、チャット内容を分析し、パーソナライズされた製品レコメンデーションを提供することで、アップセルやクロスセルを最大化し、売上向上に貢献します。\n\n**営業への引き渡し設計**\n\nAgentforceは、マーケティングと営業間の連携をシームレスにし、顧客ジャーニー全体で一貫した体験を提供することを重視しています。\n\n*   **コンテキストを維持したスムーズな引き渡し**: 顧客は部門が変わっても過去のやり取りを繰り返すことなく、一貫した対応を期待しています。Agentforceは、Salesforceの統合された顧客データを基盤とすることで、マーケティングから営業への引き渡し時にも顧客に関する完全なコンテキストを営業担当者に提供し、シームレスな移行を実現します。\n*   **AIエージェントによる自動リードルーティングと情報提供**: AIエージェントは、ウェブサイト上で顧客を迎え、適切な営業担当者に完全なコンテキストとともにルーティングすることが可能です。\n*   **営業担当者の業務効率化と価値創造への集中**:\n    *   Agentforceは、商談議事録の自動作成、Salesforceへのデータ入力支援、過去の対応履歴を参照したメール返信案の自動作成など、営業担当者の非効率な事務作業を大幅に軽減します。\n    *   商談の進捗や顧客の反応に基づき、次に取るべき最適なアクションを提案し、営業担当者が顧客との対話や戦略的提案といった付加価値の高い活動に集中できるよう支援します。\n    *   アップセル機会やアカウント履歴を事前提供することで、営業担当者がコール前に準備を整えることを可能にします。\n    *   通話メモの自動取得とSalesforceへの更新、平易な言葉から見積もりを迅速に生成する機能も持ちます。\n*   **パーソナライズされたオンボーディングジャーニーへの自動登録**: キャンペーンエージェントやエンゲージメントエージェントは、顧客をパーソナライズされたオンボーディングジャーニーに自動的に登録できます。\n*   **データの一元管理と連携**: AgentforceはSalesforce Platform上に構築されており、散在する顧客データを一元的に管理することで、マーケティングと営業が同じ顧客情報に基づき連携し、部門間の壁をなくします。また、既存のマーケティングオートメーションツールを含む他のアプリケーションやシステムとも連携し、ワークフローを自動化し、部門間の協業を強化できます。\n\nこれらの機能を通じて、Agentforce for Marketingは、マーケティング部門が効率的かつ効果的にリードを育成し、その後の営業部門への引き渡しをスムーズに行い、顧客ライフサイクル全体での顧客体験向上とビジネス成果の最大化に貢献します。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "service.digital.panasonic.co.jp",
+    "markezine.jp",
+    "manamina.valuesccg.com",
+    "salesforce.com",
+    "youtube.com",
+    "fsi.co.jp"
+  ],
+  "resolved_urls": [
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-3",
+    "https://markezine.jp/news/detail/51879",
+    "https://manamina.valuesccg.com/articles/4115",
+    "https://www.salesforce.com/jp/sem/marketing-demo/",
+    "https://www.youtube.com/watch?v=IdqXO7O7gDc",
+    "https://www.fsi.co.jp/Salesforce/column/column19.html",
+    "https://service.digital.panasonic.co.jp/column/salesforce-agentforce-2"
+  ],
+  "unresolved_redirects": 0
+}
