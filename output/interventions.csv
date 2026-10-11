@@ -44,3 +44,4 @@ date,intervention_id,description,scope,executor,touches_pool46,note
 2026-10-08,I-30,Gemini 呼び出しの間隔調整と1分あたり429の取り直し,measurement,dashboard,no,測り方（質問・モデル・回数）は不変。失敗による欠測を減らすための変更
 2026-10-09,I-31,19:42 著者の自動表示と Person 構造化データを全ページに適用,サイト全体,seo-agent（9d）,yes,全ページ一律・4組に同条件。46本の本文は不変（表示と構造化データのみ）。アフター期間中のため交絡候補として開示
 2026-10-09,I-32,テーマ標準の著者ボックスを全ページでオフ,サイト全体,seo-agent（9d）,yes,全ページ一律・本文の変更なし。4組に同条件
+2026-10-11,I-33,MA・メールマーケ記事のうち5本を note へ 301 移設し下書き化。凍結46本のうち buyer-enablement の被リンク4本・hyper-personalization の被リンク1本が消滅,site_structure,seo-agent（9d）,yes,indirect（被リンク減2本・いずれも④）。リンク消滅時刻：buyer-enablement 21:23:45・21:24:16・21:24:41・21:25:10、hyper-personalization 21:25:36。感度分析の区切り日時は遅いほうの 2026-10-11 21:25:36。既存リンクは外さない原則（2026-09-22）の例外第1号（本田さん承認＋感度分析追加）。転送後46本すべて HTTP 200（seo-agent 確認）

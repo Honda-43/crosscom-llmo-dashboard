@@ -32,6 +32,7 @@ import collections
 import csv
 import io
 import os
+import re
 import sys
 from math import comb
 
@@ -371,16 +372,34 @@ def link_loss_date(rows=None):
     return max(r["date"] for r in hits) if hits else None
 
 
+_LINK_LOSS_AT = re.compile(r"区切り日時は\D*(\d{4}-\d{2}-\d{2} \d{2}:\d{2}(?::\d{2})?)")
+
+
+def link_loss_at(rows=None):
+    """区切り日時（JST の文字列）。行の note の「区切り日時は…YYYY-MM-DD HH:MM:SS」から取る（2026-10-11）。
+    時刻が書かれていなければ日付だけ。記録が無ければ None。
+
+    「リンク減2本抜き」は E23・E27 を期間全体で抜くので、区切り日時で数字は変わらない（注記と表示のため）。"""
+    rows = interventions.load() if rows is None else rows
+    day = link_loss_date(rows)
+    if day is None:
+        return None
+    times = [m.group(1) for r in rows if scope_key(r.get("scope")) == LINK_LOSS_SCOPE and r.get("date") == day
+             for m in [_LINK_LOSS_AT.search(str(r.get("note", "")))] if m and m.group(1).startswith(str(day))]
+    return max(times) if times else str(day)
+
+
 def print_link_loss_note(after, rows=None):
     """アフター期間中に E23・E27 の被リンク減があれば注記（短期判定は 11/1 までに起きた場合だけ・長期判定は期間内なら）。"""
     import datetime as _dt
+    rows = interventions.load() if rows is None else rows
     day = link_loss_date(rows)
     start, end = (_dt.date.fromisoformat(x) for x in _span(after))
     if day is None or not (start <= day <= end):
         return False
-    print(f"**アフター期間中に E23・E27 の被リンク減あり（{day}）**：MA・メールマーケ28本の note 移設で buyer-enablement（E23・④）の被リンク4本・"
-          "hyper-personalization（E27・④）の1本が消えた。被リンク減は④のみのため、リード・FAQ の効果とも小さめに出る方向（保守的）。"
-          "感度分析の「リンク減2本抜き」を参照\n")
+    print(f"**アフター期間中（{day}）に E23・E27 の被リンク減あり。いずれも④。リード・FAQの効果とも小さめに出る方向**"
+          f"（区切り日時 {link_loss_at(rows)}）：MA・メールマーケ記事の note 移設で buyer-enablement（E23・④）の被リンク4本・"
+          "hyper-personalization（E27・④）の1本が消えた。感度分析の「リンク減2本抜き」を参照\n")
     return True
 
 

@@ -775,7 +775,9 @@ def test_the_link_loss_note_follows_the_date(capsys):
     assert not summarize.print_link_loss_note("2026-10-06:2026-11-01", []), "記録が届くまでは何も出さない"
     early = [_loss_row("2026-10-20")]
     assert summarize.print_link_loss_note("2026-10-06:2026-11-01", early), "11/2 より前なら短期判定に注記"
-    assert "アフター期間中に E23・E27 の被リンク減あり（2026-10-20）" in capsys.readouterr().out
+    out = capsys.readouterr().out
+    assert "アフター期間中（2026-10-20）に E23・E27 の被リンク減あり。いずれも④。リード・FAQの効果とも小さめに出る方向" in out
+    assert "区切り日時 2026-10-20）" in out, "note に時刻が無ければ日付だけ"
     late = [_loss_row("2026-11-05")]
     assert not summarize.print_link_loss_note("2026-10-06:2026-11-01", late), "11/2 以降なら短期判定には出さない"
     assert summarize.print_link_loss_note("2026-10-06:2026-12-28", late), "長期判定には出す"
@@ -786,6 +788,26 @@ def test_the_move_is_listed_in_the_confounder_list_automatically():
     overlap, _ = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 12, 28), [_loss_row("2026-10-20")])
     groups = dict(summarize.group_by_scope(overlap))
     assert [r["intervention_id"] for r in groups["site_structure"]] == ["I-90"]
+
+
+def test_the_real_move_row_drives_the_note_and_the_confounder_list(capsys):
+    # 2026-10-11 の実際の記録（I-33・seo-agent（9d）から届いた時刻）
+    import datetime as dt
+    import interventions
+    rows = interventions.load()
+    real = [r for r in rows if r["intervention_id"] == "I-33"]
+    assert len(real) == 1 and real[0]["touches_pool46"] == "yes" and real[0]["scope"] == "site_structure"
+    assert str(summarize.link_loss_date(rows)) == "2026-10-11"
+    assert summarize.link_loss_at(rows) == "2026-10-11 21:25:36"
+    for after in ("2026-10-06:2026-11-01", "2026-10-06:2026-12-28"):     # 短期（11/2 の週）・長期
+        assert summarize.print_link_loss_note(after, rows)
+        out = capsys.readouterr().out
+        assert ("アフター期間中（2026-10-11）に E23・E27 の被リンク減あり。いずれも④。"
+                "リード・FAQの効果とも小さめに出る方向") in out
+        assert "区切り日時 2026-10-11 21:25:36" in out
+    overlap, _ = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 11, 1), rows)
+    groups = dict(summarize.group_by_scope(overlap))
+    assert [r["intervention_id"] for r in groups["site_structure"]] == ["I-33"]
 
 
 def test_the_later_of_the_two_link_removals_is_the_cut_off():

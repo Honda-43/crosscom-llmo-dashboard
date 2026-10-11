@@ -1250,3 +1250,18 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - **確認予定（2026年11月）**：G3・G4 の社名の表記の違い（「合同会社クロスコム」とそれ以外）。11月に M-3・M-4 と PM-BS-02・PM-BS-10 の
   Gemini の観測が両方そろった時点で答えを比べ、同名他社との混同（別の「クロスコム」を挙げる・実績を取り違える）の有無に差が出るかを確かめる。
   第3観測層の Gemini は残り枠で動き、BS 層は順番が2番目なので、11月に第3の Gemini が動けば取れる見込み。そろわなければ12月に持ち越す
+
+---
+
+## 2026-10-11／MA 移設で E23・E27 の被リンクが減った（日時確定・I-33）
+
+- seo-agent（9d）から日時が届いた（元：crosscom-seo-agent/output/reports/bunTG_pool46_link_loss_handoff）。2026-10-11 に MA・メールマーケ記事5本を note へ 301 転送し、サイト側を下書き化：
+  - buyer-enablement（E23・④）：email-marketing-strategy 21:23:45・marketing-automation-lead-generation 21:24:16・marketing-automation-btob 21:24:41・email-marketing-contents 21:25:10（−4）
+  - hyper-personalization（E27・④）：marketing-automation-machine-learning 21:25:36（−1）
+  - 転送後、凍結46本は46本とも HTTP 200（seo-agent 確認）
+- interventions.csv：seo-agent 側が書いた行は**無かった**（dashboard 側だけが書く運用どおり）。**I-33** を1行で追記（scope=site_structure・touches_pool46=yes・note に各時刻と indirect の旨）
+- 感度分析の区切り日時は遅いほうの **2026-10-11 21:25:36**（`summarize.link_loss_at` が I-33 の note から読む）。
+  「リンク減2本抜き」は E23・E27 を期間全体で抜くため、区切り日時で数字は変わらない（注記と表示のため）。
+  なお 10/11 の実験の観測（16本・10:31〜10:38 JST）は移設より前
+- 判定レポートの注記「アフター期間中（2026-10-11）に E23・E27 の被リンク減あり。いずれも④。リード・FAQの効果とも小さめに出る方向（区切り日時 2026-10-11 21:25:36）」が
+  短期判定（11/2 の週）・長期判定の両方に出ること、交絡候補一覧の site_structure に I-33 が載ることを本物の行で確認（テストで固定）
