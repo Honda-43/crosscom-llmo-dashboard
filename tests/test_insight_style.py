@@ -316,3 +316,53 @@ def test_the_merge_keeps_the_rest_of_the_report():
 def test_a_report_already_merged_is_left_alone():
     text = "**R-P2・R-P15 — B-3**\n状態: 統合済み\n"
     assert insight_style.merge_co_fired(text, ["B-3"]) == text
+
+
+# --- 10/12 の再生成で見つかった2点(2026-10-12) -----------------------------------
+# 1. 見出しに「+0.1」(R-P4 の閾値)が残った。stats の値ではないので置換表に無かった
+# 2. 誤字「言言及率」
+HEADING_REPORT = (
+    "## 3. 発火パターンと推奨アクション\n\n"
+    "**R-P4(言及率の急改善:1区分で言及率が前週比+0.1以上)**\n"
+    "状態: 言及率が前週比 -0.05 下がった区分もある。\n"
+    "原因仮説: 相対的に言言及率が向上した可能性がある。\n"
+    "推奨アクション: 担当者が10月20日までに分析する。\n"
+)
+
+
+def test_a_signed_raw_rate_in_a_heading_becomes_points():
+    assert insight_style.signed_rate_points("**R-P4(前週比+0.1以上)**") == "**R-P4(前週比+10ポイント以上)**"
+    assert insight_style.signed_rate_points("前週比 -0.05") == "前週比 -5ポイント"
+    assert insight_style.signed_rate_points("前週比＋0.25") == "前週比+25ポイント"
+    # 英数字の直後のハイフン・% つき・符号なしは触らない
+    assert insight_style.signed_rate_points("gemini-0.5 と +0.1% と 0.1") == "gemini-0.5 と +0.1% と 0.1"
+
+
+def test_a_doubled_first_letter_of_a_term_is_fixed():
+    text, fixed = insight_style.fix_doubled_terms("相対的に言言及率が向上し、前前週比も、ポポイント")
+    assert text == "相対的に言及率が向上し、前週比も、ポイント"
+    assert fixed == [("言言及率", "言及率"), ("前前週比", "前週比"), ("ポポイント", "ポイント")]
+
+
+def test_a_second_letter_overwritten_by_the_first_is_fixed():
+    """10/12 の1回目の再生成で出た「言言シェア」(及 が 言 に化けた形)。"""
+    text, fixed = insight_style.fix_doubled_terms("クロスコムの言言シェア件数と、言言率")
+    assert text == "クロスコムの言及シェア件数と、言及率"
+    assert fixed == [("言言シェア", "言及シェア"), ("言言率", "言及率")]
+
+
+def test_correct_doubled_letters_are_left_and_unknown_ones_are_warned():
+    text, fixed = insight_style.fix_doubled_terms("会社社長と、ここまでのままの数値と、評評価")
+    assert text == "会社社長と、ここまでのままの数値と、評評価" and not fixed
+    # 10/12 の再生成で出た語の境目(以上|上昇)は警告しない
+    assert insight_style.doubled_chars("前週比+10ポイント以上上昇") == []
+    assert insight_style.doubled_chars(text) == [(1, "、評評価")]
+
+
+def test_postprocess_fixes_both_and_leaves_no_warning():
+    result = generate_insight.postprocess(HEADING_REPORT, STATS, [], thresholds={})
+    md = result["report_md"]
+    assert "前週比+10ポイント以上" in md and "-5ポイント" in md
+    assert "言言及率" not in md and "相対的に言及率が向上" in md
+    assert not [w for w in result["warnings"] if "小数" in w or "同じ字" in w], result["warnings"]
+    assert not insight_style.bare_decimals(md)

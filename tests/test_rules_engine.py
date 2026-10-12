@@ -128,6 +128,8 @@ def test_p4_fires_on_ten_point_gain():
     assert v["status"] == FIRED
     assert v["evidence"][0]["pillar"] == "A"
     assert v["evidence"][0]["delta"] == pytest.approx(0.2)
+    # detail は所見の見出しに写る。閾値を小数の生値(+0.1)で書かない(2026-10-12)
+    assert v["detail"] == "1区分で言及率が前週比+10ポイント以上"
 
 
 def test_p4_does_not_fire_below_threshold():

@@ -438,10 +438,12 @@ def rule_p4(mention_rate: Dict[str, Any], cfg: Dict[str, Any]) -> Dict[str, Any]
 
     if not comparable:
         return _verdict("R-P4", INSUFFICIENT, "前週と比較できる言及率がない")
+    # detail はプロンプト経由で所見の見出しに写るので、閾値も「ポイント」で書く(2026-10-12)
+    pts = f"+{round(threshold * 100):d}ポイント"
     if not evidence:
-        return _verdict("R-P4", NOT_FIRED, f"前週比+{threshold}以上の区分はない")
+        return _verdict("R-P4", NOT_FIRED, f"前週比{pts}以上の区分はない")
     return _verdict("R-P4", FIRED,
-                    f"{len(evidence)}区分で言及率が前週比+{threshold}以上", evidence)
+                    f"{len(evidence)}区分で言及率が前週比{pts}以上", evidence)
 
 
 def rule_p5(observations: List[Dict[str, Any]], date: str, cfg: Dict[str, Any],

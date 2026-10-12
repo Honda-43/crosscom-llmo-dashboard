@@ -620,6 +620,12 @@ def postprocess(report_md: str, stats: Dict[str, Any],
     text = insight_style.apply_number_format(
         text, insight_style.number_replacements(stats, flat)
     )
+    # stats の値に無い符号つきの小数(閾値など)も、見出しを含む全行で「±Nポイント」に(2026-10-12)
+    text = insight_style.signed_rate_points(text)
+    # 用語の頭の字の二重(「言言及率」。10/12 の再生成で見つかった誤字)
+    text, doubled = insight_style.fix_doubled_terms(text)
+    for before, after in doubled:
+        print(f"[ok] 記述ルール: 重複した字を直しました({before} → {after})")
     text = insight_style.gloss_first_mentions(text, gloss)
 
     warnings: List[str] = []
@@ -629,6 +635,8 @@ def postprocess(report_md: str, stats: Dict[str, Any],
         warnings.append(f"小数の生値 {value} が {line}行目 に残っています")
     for line, _ in insight_style.arrows(text):
         warnings.append(f"矢印記法が {line}行目 に残っています")
+    for line, word in insight_style.doubled_chars(text):
+        warnings.append(f"同じ字の連続「{word}」が {line}行目 にあります(誤字の可能性)")
     missing = [s for s in _SECTIONS if s.split(". ", 1)[1] not in text]
     if missing:
         warnings.append(f"セクションが欠落しています: {', '.join(missing)}")

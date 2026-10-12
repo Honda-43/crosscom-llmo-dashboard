@@ -155,6 +155,22 @@ def apply_number_format(text: str, replacements: Dict[str, str]) -> str:
     return text
 
 
+# 符号つきの小数(+0.1・-0.05)。所見の中で符号つきの 0.xx は率の差分しかない。
+# stats の値に無い数(閾値など。10/12 は R-P4 の「前週比+0.1以上」が見出しに残った)も
+# ここで「+10ポイント」にする。符号の無い 0.xx は率かシェアか決められないので警告だけ。
+# 「gemini-0.5」のような英数字の直後のハイフンは符号とみなさない。
+_SIGNED_DECIMAL_RE = re.compile(r"(?<![A-Za-z0-9.])([+\-−＋])\s?(0\.\d+)(?![\d%])")
+
+
+def signed_rate_points(text: str) -> str:
+    """符号つきの小数の生値を「±Nポイント」にする(見出しを含む全行。2026-10-12)。"""
+    def repl(match: "re.Match[str]") -> str:
+        size = points(float(match.group(2)))
+        sign = "-" if match.group(1) in ("-", "−") else "+"
+        return f"{sign}{size}ポイント"
+    return _SIGNED_DECIMAL_RE.sub(repl, text)
+
+
 _BARE_DECIMAL_RE = re.compile(r"(?<![\d.\-])0\.\d+(?![\d%])")
 
 
@@ -305,6 +321,58 @@ def arrows(text: str) -> List[Tuple[int, str]]:
         for number, line in enumerate((text or "").splitlines(), start=1)
         if _ARROW_RE.search(line)
     ]
+
+
+# --------------------------------------------------------------------------
+# 4-3. 同じ文字の重複(2026-10-12)
+# --------------------------------------------------------------------------
+# モデルの誤字で「言言及率」のように1字が二重になる。所見で使う用語の頭の字が
+# 二重になったものだけ機械的に直す(1字消すと用語になるもの)。それ以外の
+# 漢字・カタカナの連続は「会社社長」のように正しい語もあるので、直さず警告にする。
+# ひらがなは「ここ」「まま」「ものの」が普通にあるので見ない。
+INSIGHT_TERMS: Tuple[str, ...] = (
+    "言及率", "言及シェア", "言及", "前週比", "前週", "引用元", "引用", "観測", "競合",
+    "発火", "推奨アクション", "原因仮説", "状態", "成果指標", "指名検索", "区分",
+    "判定", "横ばい", "ポイント", "セッション", "クリック", "プロンプト", "クロスコム",
+)
+# 漢字・カタカナが同じ字で2つ続く語のうち正しいもの(警告しない)。
+# 2語の境目で同じ字が並ぶ形(以上|上昇・会社|社長)。10/12 の再生成で「以上上昇」が警告に出た
+DOUBLED_OK: Tuple[str, ...] = ("会社社", "以上上", "以下下", "当社社", "自社社")
+_DOUBLED_RE = re.compile(r"([一-鿿ァ-ヺ])\1")
+
+
+def fix_doubled_terms(text: str) -> Tuple[str, List[Tuple[str, str]]]:
+    """用語の頭の字の二重(言言及率 → 言及率・言言シェア → 言及シェア)を直す。返り値は (本文, [(直す前, 直した後)])。"""
+    fixed: List[Tuple[str, str]] = []
+
+    def repl(match: "re.Match[str]") -> str:
+        rest = text[match.start() + 1:]
+        for term in INSIGHT_TERMS:
+            if rest.startswith(term) and not text[match.start():].startswith(term):
+                fixed.append((f"{match.group(1)}{term}", term))
+                return match.group(1)
+        # 2字目が頭の字で上書きされた形(言言シェア → 言及シェア)。3字以上の用語で、
+        # 3字目以降が続いているときだけ(2字の用語は続きが空で何にでも当たるので見ない)
+        after = text[match.end():]
+        for term in INSIGHT_TERMS:
+            if len(term) >= 3 and term[0] == match.group(1) and after.startswith(term[2:]):
+                fixed.append((f"{match.group(0)}{term[2:]}", term))
+                return term[:2]
+        return match.group(0)
+
+    return _DOUBLED_RE.sub(repl, text), fixed
+
+
+def doubled_chars(text: str) -> List[Tuple[int, str]]:
+    """直せなかった同じ字の連続を (行番号, 前後を含む語) で返す。警告用。"""
+    out: List[Tuple[int, str]] = []
+    for number, line in enumerate((text or "").splitlines(), start=1):
+        for match in _DOUBLED_RE.finditer(line):
+            around = line[max(0, match.start() - 1):match.end() + 1]
+            if any(ok in around for ok in DOUBLED_OK):
+                continue
+            out.append((number, around))
+    return out
 
 
 # --------------------------------------------------------------------------
