@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-12",
+  "prompt_id": "E31",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？",
+  "cep": null,
+  "timestamp": "2026-10-12T02:03:26.155733Z",
+  "answer": "Agentforce Employee Agentは、Salesforce上で動作する従業員向けのAIエージェントで、社内からの問い合わせ対応や業務申請フローを自動化するために設計されています。社内のデジタルヘルパーとして機能し、従業員が日常的に発生する質問や手続きを自己解決できるように支援します。\n\nこのAIエージェントは、定型的な質問への即時回答、適切な部門への自動エスカレーション、ナレッジ連携による自己解決の促進などを通じて、対応部門と利用者双方の負担を大幅に軽減します。 SlackやSalesforceモバイルアプリなどのインターフェースと連携できるため、利用者のアクセス性も高く、業務効率化に貢献します。\n\nAgentforce Employee Agentが社内問い合わせにおいて任せられる範囲は以下の通りです。\n\n*   **定型的な質問への自動回答**：HR、IT、総務などへのよくある問い合わせ（例：経費精算の締め日、就業規則の確認、パスワードリセット方法、休暇申請手続き、住所変更、会社のポリシー確認、アカウント・デバイス・ソフトウェアに関する問い合わせ、インシデント状況確認など）に対して、ナレッジベース（社内規定、ヘルプ記事など）に基づいて即座に回答を提供します。\n*   **申請業務フローの自動案内と開始**：申請フローの案内や、Slackなどから申請手続きを開始することができます。\n*   **適切な部門への自動エスカレーション**：AIエージェントで解決できない複雑な問い合わせや、人間による対応が必要なケース（本人確認が必要なリクエスト、権限付与が関わるリクエスト、緊急性の高いインシデントなど）では、担当部門へスムーズに自動で引き継ぎます。\n*   **ポリシー遵守の維持**：エージェントの応答内でポリシーのガードレールを適用することで、コンプライアンスを維持できます。\n*   **データ参照とアクション連携**：単なるチャットでの回答だけでなく、社内ポリシーやナレッジを参照し、必要な情報を収集し、事前承認・設定されたアクションに接続するワークフローを設計することも可能です。\n\nただし、どこまで任せるかについては、導入チームが「どのデータを表示するか」「どの操作を有効にするか」「どのような場合に人間に引き継ぐか」を決定する必要があります。 また、Employee Agentは利用者の権限の範囲内で動作します。 主に全社員を対象とした問い合わせや、社内規定やナレッジ記事を参照する範囲の質問に適しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHiC7qutHqTfIJYXHma563JInxHsF-mQHR24SLSRqXhy1erOgxuY-xaXO6YMMjjvE6No_5vqPObJZY4MzBfHKghqS_0xcdhiM7AHvdHPg_LY-4dgI1uNduclX2qJKXoO9fiwcJmOaB2iEkud7Xa44laGNQte5E=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHfHVs60v91Rg7JhQaq6taMl_Bq6KA9bqVapR1eOkjkWNw6F2dbd4Z-DacpEAd0n28c-TmyVsi0YNYGKKicoJBLlqULNicafh_pVN9d5edQfqgwjMRO8jNQB9PMvPC0wkFrPnyKw8CYpKuGLegZHUNAben3FbOmq_3YKeGIiluuiTthPYu37P4M4D0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFyyd-3H5F5TbcxUmC38NHZoagn6uFImem5Zr_HBLLZbUV-n1mXvH5UYfzBg-oY86S-GnM9D7HOvRxl49CDvODC6-j1gFe0Z3bXuUvjAYno8NSg0IfXjkx8KHQ6xRVnmaV2B6HLPzKJlWiGXQJwtnxkhXxK",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEdbQQv8wwfguCCmlh_2H7WwSk71uS5nOQgO5SyQc7_Ii5ZASSUfIlOEr_C5IeuEDSqfoDIKsfutBlKg7oeiohtPl5jPTDXGVr1zG9Z283My2gLLgKK32U4ap9e2HpRvuMHEwoQxUUFvv8UTu0bbugOLeH2BiWOBNtJDUy0rBXA-lcshNeSknvbcVSitRwZSjhw5l9_2X1c4gWSLQ5zLAPyA9_h-ymqTMqZ8PgNbhdG0C0JET7-_XXUwaViYvLBQ5fKSnIqddOmfakoVGDEcDZZX1wZk-SLGTk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE7zRpBS7VztE4Co_z3H0QZwN0R-xgNWf3gPQNb9IRsODfZaBdSNRpwj2m2JSU5-jay-aqwruXmhM7PAqycMb35IinSyLd02NuY8Rk_FuDG9RAFFHT_99EIqptGXvfwcORGlXSOTbFyDLj9cBqHUJwi",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3drBPEHlMXBlQQld5G4S290jGr8LsEVFaowoH3X99QbKbf15suvN1M8p3bUsVPFpRvmnB6QUmlXvdaz2CgOR3bnt8MEDtBLLivgrQ3bdYvX9j06o1vozRft6yn4MYcaB7S2mw",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHvrU4IrOjJ3iBgddxdduGlHqa6h2g7olf7fQNS7z6YDtvdFTHLGMxS4KPSRbNB9k0wgxeqEx88RphzGuc1gJXAczjk-EGgKp0PCq8lS5gjfQMyH4qJ_jLZ61MnRhHYDptaCxBDhW86_i5L"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E31",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-employee-agent/",
+  "answer_text": "Agentforce Employee Agentは、Salesforce上で動作する従業員向けのAIエージェントで、社内からの問い合わせ対応や業務申請フローを自動化するために設計されています。社内のデジタルヘルパーとして機能し、従業員が日常的に発生する質問や手続きを自己解決できるように支援します。\n\nこのAIエージェントは、定型的な質問への即時回答、適切な部門への自動エスカレーション、ナレッジ連携による自己解決の促進などを通じて、対応部門と利用者双方の負担を大幅に軽減します。 SlackやSalesforceモバイルアプリなどのインターフェースと連携できるため、利用者のアクセス性も高く、業務効率化に貢献します。\n\nAgentforce Employee Agentが社内問い合わせにおいて任せられる範囲は以下の通りです。\n\n*   **定型的な質問への自動回答**：HR、IT、総務などへのよくある問い合わせ（例：経費精算の締め日、就業規則の確認、パスワードリセット方法、休暇申請手続き、住所変更、会社のポリシー確認、アカウント・デバイス・ソフトウェアに関する問い合わせ、インシデント状況確認など）に対して、ナレッジベース（社内規定、ヘルプ記事など）に基づいて即座に回答を提供します。\n*   **申請業務フローの自動案内と開始**：申請フローの案内や、Slackなどから申請手続きを開始することができます。\n*   **適切な部門への自動エスカレーション**：AIエージェントで解決できない複雑な問い合わせや、人間による対応が必要なケース（本人確認が必要なリクエスト、権限付与が関わるリクエスト、緊急性の高いインシデントなど）では、担当部門へスムーズに自動で引き継ぎます。\n*   **ポリシー遵守の維持**：エージェントの応答内でポリシーのガードレールを適用することで、コンプライアンスを維持できます。\n*   **データ参照とアクション連携**：単なるチャットでの回答だけでなく、社内ポリシーやナレッジを参照し、必要な情報を収集し、事前承認・設定されたアクションに接続するワークフローを設計することも可能です。\n\nただし、どこまで任せるかについては、導入チームが「どのデータを表示するか」「どの操作を有効にするか」「どのような場合に人間に引き継ぐか」を決定する必要があります。 また、Employee Agentは利用者の権限の範囲内で動作します。 主に全社員を対象とした問い合わせや、社内規定やナレッジ記事を参照する範囲の質問に適しています。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "strh.co.jp",
+    "salesforce.com",
+    "eesel.ai",
+    "documentation.conga.com",
+    "note.com",
+    "cross-com.jp"
+  ],
+  "resolved_urls": [
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://www.salesforce.com/agentforce/agentforce-for-employees/employee-agents/",
+    "https://www.eesel.ai/ja/blog/agentforce-employee-support",
+    "https://documentation.conga.com/upgrade_browser",
+    "https://note.com/ai_agent_zukan/n/n7b52298d295c?hl=en",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://cross-com.jp/agentforce-employee-agent/"
+  ],
+  "unresolved_redirects": 0
+}
