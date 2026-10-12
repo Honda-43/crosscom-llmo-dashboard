@@ -111,6 +111,8 @@ jobs:
         env:
           DELIVERED: ${{ steps.pipeline.outputs.delivered }}
           FAILED_PHASES: ${{ steps.pipeline.outputs.failed_phases }}
+          # 原因(どのフェーズの何で落ちたか)。run_weekly.py が引用符・改行を除いて渡す(2026-10-12)
+          FAILED_DETAIL: ${{ steps.pipeline.outputs.failed_detail }}
           COMMIT_CONCLUSION: ${{ steps.commit.conclusion }}
         run: |
           RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
@@ -125,6 +127,9 @@ jobs:
             if [ -n "$PHASES" ]; then
               DETAIL="$DETAIL\n• 落ちたフェーズ: $PHASES"
             fi
+          fi
+          if [ -n "$FAILED_DETAIL" ]; then
+            DETAIL="$DETAIL\n• 原因: $FAILED_DETAIL"
           fi
           TEXT="*LLMO週次アラート*\n*❌ ワークフロー失敗*\n$DETAIL\n<$RUN_URL|実行ログを開く>"
           printf '{"text":"%s"}' "$TEXT" > payload.json

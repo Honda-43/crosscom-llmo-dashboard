@@ -297,12 +297,13 @@ class TruncatedResponse(RuntimeError):
     """
 
 
-def _call_gemini(system: str, user: str, model: str, max_tokens: int) -> str:
-    """Gemini で所見を書く(2026-10-06。Claude を計画的に停止したため)。
+# 直近の呼び出しで所見を書いたモデルと、取り直しの経過(2026-10-12)。
+# _call_model の戻り値(本文)を変えずに、ジョブサマリと通知へ渡すために使う。
+LAST_CALL: Dict[str, Any] = {}
 
-    観測(gemini-2.5-flash)と別のモデルにする(無料枠の1日の上限はモデルごと)。週1回・1〜2回の呼び出し。
-    finish_reason が MAX_TOKENS なら TruncatedResponse(Claude の max_tokens と同じ扱い)。
-    """
+
+def _gemini_request(system: str, user: str, model: str, max_tokens: int):
+    """Gemini への1回の要求。時間切れは 503 と同じ扱い(collect_llm._with_deadline)。"""
     import os
 
     import collect_llm
@@ -312,19 +313,103 @@ def _call_gemini(system: str, user: str, model: str, max_tokens: int) -> str:
 
     client = genai.Client(api_key=os.environ["GEMINI_API_KEY"],
                           http_options=types.HttpOptions(timeout=int(GEMINI_CALL_TIMEOUT_SECONDS * 1000)))
-    resp = collect_llm._with_deadline(lambda: client.models.generate_content(
+    return collect_llm._with_deadline(lambda: client.models.generate_content(
         model=model, contents=user,
         config=types.GenerateContentConfig(system_instruction=system, max_output_tokens=max_tokens),
     ), GEMINI_CALL_TIMEOUT_SECONDS + collect_llm.DEADLINE_SLACK_SECONDS, label="Gemini 所見")
+
+
+def _call_gemini(system: str, user: str, model: str, max_tokens: int) -> str:
+    """Gemini で所見を書く(2026-10-06。Claude を計画的に停止したため)。
+
+    観測(gemini-2.5-flash)と別のモデルにする(無料枠の1日の上限はモデルごと)。週1回・1〜2回の呼び出し。
+    finish_reason が MAX_TOKENS なら TruncatedResponse(Claude の max_tokens と同じ扱い)。
+
+    503(混雑)・429 は取り直す(2026-10-12。10/12 の週次は503の1回で数値だけに落ちた)。
+    同じモデルで INSIGHT_RETRY_ATTEMPTS 回、戻らなければ INSIGHT_FALLBACK_MODEL で同じだけ。
+    鍵・権限・課金のエラーは取り直さない。打ち切り(MAX_TOKENS)は generate() が枠を倍にして呼び直す。
+    """
+    import collect_llm
+    from settings import (INSIGHT_FALLBACK_MODEL, INSIGHT_RETRY_ATTEMPTS,
+                          INSIGHT_RETRY_BASE_SECONDS)
+
+    models = [model]
+    if INSIGHT_FALLBACK_MODEL and INSIGHT_FALLBACK_MODEL != model:
+        models.append(INSIGHT_FALLBACK_MODEL)
+    tried: List[str] = []
+    LAST_CALL.clear()
+    for i, m in enumerate(models):
+        count = [0]
+
+        def once(m: str = m):
+            count[0] += 1
+            return _gemini_request(system, user, m, max_tokens)
+
+        try:
+            resp = collect_llm._with_retry(once, label=f"Gemini 所見({m})",
+                                           attempts=INSIGHT_RETRY_ATTEMPTS,
+                                           base=INSIGHT_RETRY_BASE_SECONDS)
+        except Exception as exc:  # noqa: BLE001
+            reason = collect_llm.miss_reason(exc)
+            tried.append(f"{m} {count[0]}回({_REASON_LABELS.get(reason, type(exc).__name__)})")
+            LAST_CALL["tried"] = list(tried)
+            if reason in (collect_llm.REASON_UNAVAILABLE, collect_llm.REASON_QUOTA) and i + 1 < len(models):
+                print(f"[warn] Gemini 所見: {m} が戻らないため {models[i + 1]} で書き直します")
+                continue
+            raise GeminiInsightError(
+                f"{exc}(試したモデル: {'・'.join(tried)})", reason=reason) from exc
+        if i > 0:
+            LAST_CALL["note"] = f"{'・'.join(tried)} のため {m} で作成"
+        LAST_CALL["model"] = m
+        break
     text = (getattr(resp, "text", "") or "").strip()
     reason = ""
     for cand in getattr(resp, "candidates", []) or []:
         reason = str(getattr(getattr(cand, "finish_reason", None), "name", getattr(cand, "finish_reason", "")))
         break
-    print(f"[ok] _call_model(gemini): finish_reason={reason} max_tokens={max_tokens} chars={len(text)}")
+    print(f"[ok] _call_model(gemini): model={LAST_CALL.get('model')} finish_reason={reason} "
+          f"max_tokens={max_tokens} chars={len(text)}")
     if reason == "MAX_TOKENS":
         raise TruncatedResponse(f"応答が max_output_tokens={max_tokens} で打ち切られました(本文 {len(text)}字)")
     return text
+
+
+class GeminiInsightError(RuntimeError):
+    """取り直しても所見の Gemini が答えなかった。reason は collect_llm.miss_reason の値。"""
+
+    def __init__(self, message: str, reason: str = "") -> None:
+        super().__init__(message)
+        self.reason = reason
+
+
+# 失敗の理由を通知で読める言葉にする(collect_llm.miss_reason の値ごと)
+_REASON_LABELS = {
+    "unavailable": "503 一時的な混雑",
+    "quota": "429 枠切れ",
+    "permanent": "鍵・権限・課金のエラー",
+    "other": "その他のエラー",
+}
+
+
+def describe_failure(stage: str, exc: BaseException) -> str:
+    """フォールバックの原因を1行で: 「[段階] 原因の分類: 元の文面」(2026-10-12)。
+
+    以前は通知に「generate_insight(fallback used)」しか出ず、原因が分からなかった。
+    """
+    import collect_llm
+
+    if isinstance(exc, TruncatedResponse):
+        cause = "出力の上限で打ち切り(枠を倍にしても書き切れず)"
+    elif isinstance(exc, GeminiInsightError):
+        cause = _REASON_LABELS.get(exc.reason, "その他のエラー")
+    else:
+        reason = collect_llm.miss_reason(exc)
+        cause = (_REASON_LABELS[reason] if reason in ("unavailable", "quota", "permanent")
+                 else type(exc).__name__)
+    text = " ".join(str(exc).split())
+    if len(text) > 300:
+        text = text[:300] + "…"
+    return f"[{stage}] {cause}: {text}"
 
 
 def _call_model(system: str, user: str, model: str,
@@ -385,7 +470,8 @@ def _count_line(label: str, series: Dict[str, Any], unit: str = "件") -> str:
 
 
 def fallback_report(stats: Dict[str, Any],
-                    thresholds: Optional[Dict[str, Any]] = None) -> str:
+                    thresholds: Optional[Dict[str, Any]] = None,
+                    reason: Optional[str] = None) -> str:
     """The same 5 sections, built from stats.json without the LLM (§5).
 
     Numbers only, no interpretation — an honest degraded report rather than a
@@ -402,8 +488,10 @@ def fallback_report(stats: Dict[str, Any],
     lines += [
         "> ⚠️ 所見文の自動生成に失敗したため、stats.json の数値サマリのみを配信しています。",
         "> 解釈・推奨アクションは含まれません。",
-        "",
     ]
+    if reason:
+        lines.append(f"> 原因: {reason}")
+    lines.append("")
 
     fired = [r for r in stats.get("rules", []) if r.get("fired")]
     insufficient = [r for r in stats.get("rules", []) if r.get("status") == "insufficient_data"]
@@ -571,12 +659,17 @@ def generate(stats: Dict[str, Any], model: Optional[str] = None,
         return {"report_md": note + fallback_report(stats), "source": "numbers_only", "error": None,
                 "suppressed": [], "frozen": [], "warnings": [], "settled_lines": []}
     actions = list(actions) if actions is not None else _load_actions()
+    # どの段階で落ちたかを通知に出す(2026-10-12)。段階ごとに書き換える
+    stage = "凍結対象の読み込み"
+    LAST_CALL.clear()
     try:
         # 期間内で凍結対象が読めないときは例外 → 数値だけの所見に落とす。
         # 制約なしで書かせて凍結対象の更新を配るよりよい。
         freeze = experiment_freeze.load(str(stats.get("date", "")))
+        stage = "プロンプトの組み立て"
         system = build_system_prompt(playbook)
         user = build_user_prompt(stats, actions, freeze=freeze)
+        stage = f"モデル呼び出し({model})"
         try:
             report = _call_model(system, user, model)
         except TruncatedResponse as exc:
@@ -584,11 +677,13 @@ def generate(stats: Dict[str, Any], model: Optional[str] = None,
             # もう1回呼ぶほうが安い(週1回の呼び出しなので)。
             print(f"[warn] {exc} — max_tokens を倍にして再試行します")
             report = _call_model(system, user, model, INSIGHT_MAX_TOKENS * 2)
+        stage = "応答の検査"
         if not report.strip():
             raise RuntimeError("model returned an empty report")
         if len(report) > INSIGHT_MAX_CHARS * 2:
             # Well past the instructed limit — keep it, but say so.
             print(f"[warn] insight is {len(report)} chars, over the {INSIGHT_MAX_CHARS} target")
+        stage = "後処理(記述ルール・実施済み・凍結対象の差し替え)"
         result = postprocess(report, stats, actions, freeze=freeze)
         # §5 の固定の注記(2026-10-06)はモデルに任せず、必ず入れる
         fixed = observation_notes.weekly_section5_lines(str(stats.get("date") or ""))
@@ -600,16 +695,20 @@ def generate(stats: Dict[str, Any], model: Optional[str] = None,
             print(f"[ok] 実施済みのため再提案を差し替え: {note}")
         for note in result["frozen"]:
             print(f"[ok] 実験の凍結対象のため差し替え: {note}")
-        print(f"[ok] generate_insight: {len(result['report_md'])} chars via {model}")
+        used = LAST_CALL.get("model") or model
+        print(f"[ok] generate_insight: {len(result['report_md'])} chars via {used}")
         # settled_lines を必ず返す。落とすと run_weekly が差し替えた本文を
         # 新しい提案として action_log に登録する(A-016・A-018 の原因)。
         return {"report_md": result["report_md"], "source": "llm", "error": None,
+                "model": used, "model_note": LAST_CALL.get("note"),
                 "suppressed": result["suppressed"], "frozen": result["frozen"],
                 "warnings": result["warnings"], "settled_lines": result["settled_lines"]}
     except Exception as exc:  # noqa: BLE001 - degrade, never drop the report
-        print(f"[warn] generate_insight failed ({exc}) — falling back to the numeric summary")
-        return {"report_md": fallback_report(stats), "source": "fallback",
-                "error": str(exc), "suppressed": [], "frozen": [], "warnings": [],
+        error = describe_failure(stage, exc)
+        print(f"[warn] generate_insight failed {error} — falling back to the numeric summary")
+        return {"report_md": fallback_report(stats, reason=error), "source": "fallback",
+                "error": error, "model": None, "model_note": None,
+                "suppressed": [], "frozen": [], "warnings": [],
                 "settled_lines": []}
 
 

@@ -48,19 +48,30 @@ def _job_summary(lines: List[str]) -> None:
             fh.write("\n".join(lines) + "\n")
 
 
-def _step_outputs(delivered: bool, failures: List[str]) -> None:
-    """ワークフローの失敗通知に渡す(所見が届いたか・落ちたフェーズ名)。
+def _notice_safe(text: str, limit: int = 300) -> str:
+    """通知の JSON を壊さない1行にする(引用符・バックスラッシュ・改行・制御文字を除く)。"""
+    text = " ".join(str(text).split())
+    text = text.replace('"', "'").replace("\\", "/")
+    text = "".join(ch for ch in text if ch.isprintable())
+    return text if len(text) <= limit else text[:limit] + "…"
 
-    フェーズ名だけを渡す。例外の文面は引用符や改行を含み得て、
-    通知の JSON を壊すので載せない(文面は job summary にある)。
+
+def _step_outputs(delivered: bool, failures: List[str]) -> None:
+    """ワークフローの失敗通知に渡す(所見が届いたか・落ちたフェーズ名・原因)。
+
+    failed_phases はフェーズ名だけ。原因(例外の文面)は failed_detail に、
+    引用符・改行を除いた1行ずつで渡す(2026-10-12。以前は名前だけで
+    「generate_insight(fallback used)」から原因が分からなかった)。
     """
     path = os.getenv("GITHUB_OUTPUT")
     if not path:
         return
     names = [f.split(":", 1)[0] for f in failures]
+    detail = " / ".join(_notice_safe(f) for f in failures)
     with open(path, "a", encoding="utf-8") as fh:
         fh.write(f"delivered={'true' if delivered else 'false'}\n")
         fh.write(f"failed_phases={', '.join(names)}\n")
+        fh.write(f"failed_detail={detail}\n")
 
 
 def _run(name: str, fn: Callable[[], Any], failures: List[str]) -> Any:
@@ -135,6 +146,11 @@ def main() -> None:
         result = _run("generate_insight", lambda: generate_insight.generate(stats), failures) or {}
         report_md = result.get("report_md") or generate_insight.fallback_report(stats)
         source = result.get("source", "fallback")
+        if result.get("model"):
+            source = f"{source} ({result['model']})"
+        if result.get("model_note"):
+            # 代わりのモデルで書けた週。所見は届いているので失敗にはしない
+            lines.append(f"- ⚠️ 所見のモデル: {result['model_note']}")
         if result.get("error"):
             failures.append(f"generate_insight(fallback used): {result['error']}")
         # 記述ルール(Phase 7 §B)のうち機械で直せなかったもの。落とさないが、

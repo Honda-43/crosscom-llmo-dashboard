@@ -669,6 +669,15 @@ INSIGHT_MAX_CHARS = int(os.getenv("INSIGHT_MAX_CHARS", "2000"))
 # 足りなければ generate_insight が1度だけ倍にして取り直す。
 INSIGHT_MAX_TOKENS = int(os.getenv("INSIGHT_MAX_TOKENS", "16000"))
 
+# 所見の Gemini が 503(混雑)・429 を返したときの取り直し(2026-10-12)。
+# 10/12 の週次が gemini-3.5-flash の 503「high demand」1回で数値だけの所見に落ちた
+# (取り直しが無かった)。週1回の呼び出しなので長めに待つ: 初回 + 3回、待ち 20 / 40 / 80 秒。
+# それでも戻らなければ代わりのモデルで同じだけ試す(503 の混雑はモデルごと)。
+# 代わりは抽出の gemini-3.5-flash-lite(観測の1日20回の枠は使わない)。空文字で代替なし。
+INSIGHT_RETRY_ATTEMPTS = int(os.getenv("INSIGHT_RETRY_ATTEMPTS", "4"))
+INSIGHT_RETRY_BASE_SECONDS = float(os.getenv("INSIGHT_RETRY_BASE_SECONDS", "20"))
+INSIGHT_FALLBACK_MODEL = os.getenv("INSIGHT_FALLBACK_MODEL", EXTRACT_MODEL)
+
 # Retry policy (§3): exponential backoff.
 #
 # 2026-08 まで 3回 / 基準2秒(待機 2+4=6秒)だった。実測した provider 側の

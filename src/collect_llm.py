@@ -190,15 +190,16 @@ def retry_delay(exc: Exception) -> Optional[float]:
     return None
 
 
-def _wait_for(exc: Exception, attempt: int) -> float:
+def _wait_for(exc: Exception, attempt: int, base: Optional[float] = None) -> float:
     """次の試行までの待ち時間。provider の指示があればそちらを優先する。"""
-    backoff = BACKOFF_BASE_SECONDS * (2 ** (attempt - 1))
+    backoff = (BACKOFF_BASE_SECONDS if base is None else base) * (2 ** (attempt - 1))
     told = retry_delay(exc)
     return max(backoff, told) if told is not None else backoff
 
 
 def _with_retry(fn, *, label: str, attempts: int = MAX_RETRIES,
-                on_quota=None, budget: Optional["RetryBudget"] = None):
+                on_quota=None, budget: Optional["RetryBudget"] = None,
+                base: Optional[float] = None):
     """Run ``fn`` with exponential backoff. Raises the last error after
     ``attempts`` failures so the caller can record the day as missing.
 
@@ -210,6 +211,7 @@ def _with_retry(fn, *, label: str, attempts: int = MAX_RETRIES,
 
     503 の既定は「初回 + 3回」で、待ちは 5 / 10 / 20 秒(合計35秒)。
     実測した障害窓20〜90秒のうち、短いほうを跨ぐことを狙っている。
+    ``base`` で待ちの起点を変えられる(週1回の所見は長めに待つ。2026-10-12)。
     """
     last_exc: Optional[Exception] = None
     for attempt in range(1, attempts + 1):
@@ -240,7 +242,7 @@ def _with_retry(fn, *, label: str, attempts: int = MAX_RETRIES,
                 if budget is not None and not budget.spend():
                     print(f"[warn] {label}: その日の枠の余りが尽きたため再試行しない")
                     break
-                wait = _wait_for(exc, attempt)
+                wait = _wait_for(exc, attempt, base)
                 print(f"[info] {label}: {wait:.0f}秒待って再試行します")
                 time.sleep(wait)
     assert last_exc is not None

@@ -276,6 +276,8 @@ def test_step_outputs_say_the_report_was_delivered(wired, monkeypatch):
     assert got["delivered"] == "true"
     # Ahrefs は best-effort なので載せない。例外の文面(引用符・改行)も載せない。
     assert got["failed_phases"] == "write_weekly_report"
+    # 原因は failed_detail に1行で(引用符は ' に・改行は空白に。通知の JSON を壊さない。2026-10-12)
+    assert got["failed_detail"] == "write_weekly_report: quota 'exceeded' retry"
 
 
 def test_step_outputs_say_not_delivered_when_slack_fails(wired, monkeypatch):
@@ -288,4 +290,35 @@ def test_step_outputs_say_not_delivered_when_slack_fails(wired, monkeypatch):
                         lambda stats, **kw: {"report_md": "本文", "source": "llm", "error": None})
 
     assert run(["--date", "2026-08-17"], monkeypatch) == 1
-    assert _outputs(out) == {"delivered": "false", "failed_phases": "notify_weekly"}
+    assert _outputs(out) == {"delivered": "false", "failed_phases": "notify_weekly",
+                             "failed_detail": "notify_weekly: 500"}
+
+
+def test_a_fallback_report_says_which_stage_failed_and_why_in_the_notice(wired, monkeypatch):
+    """10/12: 通知が「generate_insight(fallback used)」だけで原因が分からなかった。"""
+    calls, tmp_path = wired
+    out = tmp_path / "github_output"
+    monkeypatch.setenv("GITHUB_OUTPUT", str(out))
+    error = ("[モデル呼び出し(gemini-3.5-flash)] 503 一時的な混雑: 503 UNAVAILABLE. "
+             "{'error': {'code': 503, 'message': \"high demand\"}}")
+    monkeypatch.setattr(generate_insight, "generate",
+                        lambda stats, **kw: {"report_md": "数値だけ", "source": "fallback", "error": error})
+
+    assert run(["--date", "2026-08-17"], monkeypatch) == 1
+    got = _outputs(out)
+    assert got["failed_phases"] == "generate_insight(fallback used)"
+    assert got["failed_detail"].startswith(
+        "generate_insight(fallback used): [モデル呼び出し(gemini-3.5-flash)] 503 一時的な混雑: 503 UNAVAILABLE")
+    assert '"' not in got["failed_detail"] and "\\" not in got["failed_detail"]
+
+
+def test_the_report_source_names_the_model_and_a_stand_in_model_is_shown(wired, monkeypatch):
+    calls, tmp_path = wired
+    monkeypatch.setattr(generate_insight, "generate",
+                        lambda stats, **kw: {"report_md": "本文", "source": "llm", "error": None,
+                                             "model": "gemini-3.5-flash-lite",
+                                             "model_note": "gemini-3.5-flash 4回(503 一時的な混雑) のため gemini-3.5-flash-lite で作成"})
+    assert run(["--date", "2026-08-17"], monkeypatch) == 0, "代わりのモデルで届いた週は失敗にしない"
+    summary = calls["summary"]
+    assert "- Report source: llm (gemini-3.5-flash-lite)" in summary
+    assert "- ⚠️ 所見のモデル: gemini-3.5-flash 4回(503 一時的な混雑) のため gemini-3.5-flash-lite で作成" in summary

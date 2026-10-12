@@ -111,3 +111,72 @@ def test_a_truncated_gemini_insight_raises_like_claude(monkeypatch):
     _fake_genai(monkeypatch, [("途中まで", "MAX_TOKENS")], seen)
     with pytest.raises(generate_insight.TruncatedResponse):
         generate_insight._call_model("s", "u", "gemini-3.5-flash", 100)
+
+
+# --- 所見の 503 の取り直し・代わりのモデル・原因の表示(2026-10-12) ----------------------
+# 10/12 の週次は gemini-3.5-flash の「503 UNAVAILABLE ... high demand」1回で数値だけの所見に落ちた。
+BUSY = Exception("503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently "
+                 "experiencing high demand.', 'status': 'UNAVAILABLE'}}")
+
+
+@pytest.fixture
+def no_sleep(monkeypatch):
+    import collect_llm
+    slept = []
+    monkeypatch.setattr(collect_llm.time, "sleep", lambda s: slept.append(s))
+    return slept
+
+
+def test_a_503_insight_call_is_retried_with_long_waits(monkeypatch, no_sleep):
+    seen = []
+    _fake_genai(monkeypatch, [BUSY, BUSY, "本文"], seen)
+    assert generate_insight._call_model("s", "u", "gemini-3.5-flash") == "本文"
+    assert [kw["model"] for kw in seen] == ["gemini-3.5-flash"] * 3
+    assert no_sleep == [settings.INSIGHT_RETRY_BASE_SECONDS, settings.INSIGHT_RETRY_BASE_SECONDS * 2]
+    assert generate_insight.LAST_CALL["model"] == "gemini-3.5-flash"
+    assert "note" not in generate_insight.LAST_CALL
+
+
+def test_a_still_busy_model_hands_over_to_the_stand_in_model(monkeypatch, no_sleep):
+    seen = []
+    n = settings.INSIGHT_RETRY_ATTEMPTS
+    _fake_genai(monkeypatch, [BUSY] * n + ["代わりの本文"], seen)
+    assert generate_insight._call_model("s", "u", "gemini-3.5-flash") == "代わりの本文"
+    assert [kw["model"] for kw in seen] == ["gemini-3.5-flash"] * n + [settings.INSIGHT_FALLBACK_MODEL]
+    assert settings.INSIGHT_FALLBACK_MODEL == "gemini-3.5-flash-lite" != OBSERVATION_MODEL,         "代わりは抽出のモデル(観測の1日20回の枠は使わない)"
+    assert generate_insight.LAST_CALL["model"] == "gemini-3.5-flash-lite"
+    assert generate_insight.LAST_CALL["note"] ==         f"gemini-3.5-flash {n}回(503 一時的な混雑) のため gemini-3.5-flash-lite で作成"
+
+
+def test_a_key_error_is_not_retried_and_not_handed_over(monkeypatch, no_sleep):
+    seen = []
+    _fake_genai(monkeypatch, [Exception("403 PERMISSION_DENIED. API key not valid")], seen)
+    with pytest.raises(generate_insight.GeminiInsightError) as got:
+        generate_insight._call_model("s", "u", "gemini-3.5-flash")
+    assert len(seen) == 1 and not no_sleep
+    assert got.value.reason == "permanent"
+
+
+def test_when_both_models_are_busy_the_fallback_says_the_stage_and_the_cause(monkeypatch, no_sleep):
+    seen = []
+    n = settings.INSIGHT_RETRY_ATTEMPTS
+    _fake_genai(monkeypatch, [BUSY] * (2 * n), seen)
+    stats = {"date": "2026-10-12", "rules": [], "fired_rules": [], "insufficient_rules": [],
+             "mention_rate": {}, "data_quality": {}}
+    monkeypatch.setattr(generate_insight.experiment_freeze, "load", lambda date: None)
+    result = generate_insight.generate(stats, playbook="p", actions=[])
+    assert result["source"] == "fallback" and len(seen) == 2 * n
+    assert result["error"].startswith("[モデル呼び出し(gemini-3.5-flash)] 503 一時的な混雑: 503 UNAVAILABLE")
+    assert f"gemini-3.5-flash {n}回(503 一時的な混雑)・gemini-3.5-flash-lite {n}回(503 一時的な混雑)" in result["error"]
+    assert "> 原因: [モデル呼び出し(gemini-3.5-flash)] 503 一時的な混雑" in result["report_md"]
+
+
+def test_a_failure_before_the_call_names_its_own_stage(monkeypatch):
+    def broken(date):
+        raise FileNotFoundError("config/experiment_freeze.yaml")
+    monkeypatch.setattr(generate_insight.experiment_freeze, "load", broken)
+    calls = []
+    monkeypatch.setattr(generate_insight, "_call_model", lambda *a, **k: calls.append(1) or "x")
+    result = generate_insight.generate({"date": "2026-10-12"}, playbook="p", actions=[])
+    assert not calls
+    assert result["error"].startswith("[凍結対象の読み込み] FileNotFoundError: config/experiment_freeze.yaml")
