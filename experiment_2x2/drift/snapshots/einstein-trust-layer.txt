@@ -2,6 +2,9 @@ Einstein Trust Layerとは？AIに一任する範囲と人が承認する場面�
 2026-08-21
 2026-09-29
 Agentforce
+著者：
+本田正憲
+合同会社クロスコム 代表／Salesforce認定コンサルタント
 結論・要約
 Einstein Trust Layerとは、Agentforceと外部LLMの間を通るデータを守る仕組みのことです。
 Einstein Trust Layerが守るのはデータの経路で、AIエージェントに任せる範囲までは決めません。
@@ -458,11 +461,11 @@ AIエージェントのガバナンスはEinstein Trust Layerの設定より先�
 自社の業務をどの区分に振り分けるかは、業務の内容を知っている人にしか決められません。境界の引き方から一緒に検討したい場合は、
 Agentforce導入・定着支援
 で無料相談も受け付けていますので、お気軽にご相談ください。本記事で整理した3つの区分を、まずは自社の問い合わせに当てはめてみてはいかがでしょうか。少しでもお役に立てれば幸いです。
+この記事を書いた人
+本田正憲
+合同会社クロスコム 代表／Salesforce認定コンサルタント
+双日グループの専門商社で法人営業を経験後、マーケティング支援で独立し2023年に合同会社クロスコムを設立。現在はAgentforceの導入・定着支援とAgentic CRM設計支援を専門とする。
+プロフィールを見る →
 Agentforce
 Agentic CRMとは？AIが動かすCRMの全体像と設計の考え方を解説
 Agentforce Employee Agentとは？社内問い合わせを任せる範囲の決め方
-この記事を書いた人
-本田正憲
-合同会社クロスコムの代表｜専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入。現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供している。Salesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリスト。
-https://note.com/honda_crosscom
-記事一覧へ

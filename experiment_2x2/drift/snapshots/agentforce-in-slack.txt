@@ -2,6 +2,9 @@ Agentforce in Slackとは？できることと導入手順をわかりやすく�
 2026-08-08
 2026-09-29
 Agentforce
+著者：
+本田正憲
+合同会社クロスコム 代表／Salesforce認定コンサルタント
 結論・要約
 Agentforce in Slackとは、SlackのチャンネルやDMからAIエージェントを使える仕組みのことです。
 Slack上のAgentforceは、別の画面に移らず会話の場から直接AIに業務を頼める点に価値があります。
@@ -229,11 +232,11 @@ Salesforceのアカウントを持たない人には、暫定のSalesforceライ
 SlackにAgentforceを置くと会話の場から直接AIに業務を任せられる
 Agentforce in Slackとは、SlackにAgentforceのエージェントを配置し、チャンネルやDMからチームメイトのように使える仕組みです。本記事では、Slackでできること、エージェントのテンプレート、導入の5ステップ、混同しやすいBox for Agentforceの正体、料金とセキュリティまでを、2026年8月時点の情報にもとづいて整理してきました。
 SlackのAgentforceの価値は、普段の会話が集まる場所から、別の画面に移らずにAIへ業務を頼める点にあります。質問への回答だけでなく、カンバスの作成や顧客ブリーフの生成といった作業まで、会話の流れの中で完結します。まずは一部のチームで、従業員向けのエージェントを一つ試すところから、SlackとAgentforceの組み合わせを確かめてみてはいかがでしょうか。本記事が、その一助になれば幸いです。
+この記事を書いた人
+本田正憲
+合同会社クロスコム 代表／Salesforce認定コンサルタント
+双日グループの専門商社で法人営業を経験後、マーケティング支援で独立し2023年に合同会社クロスコムを設立。現在はAgentforceの導入・定着支援とAgentic CRM設計支援を専門とする。
+プロフィールを見る →
 Agentforce
 Agentforceテストセンターとは？AIエージェントの品質保証を三層で設計
 【2026年最新】Agentforce料金・ライセンス｜Flex Creditsと従量課金の違い
-この記事を書いた人
-本田正憲
-合同会社クロスコムの代表｜専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入。現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供している。Salesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリスト。
-https://note.com/honda_crosscom
-記事一覧へ

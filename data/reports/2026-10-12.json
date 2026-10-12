@@ -1,0 +1,513 @@
+{
+  "changes": {
+    "competitor_added": 47,
+    "competitor_removed": 37,
+    "mention_gained": 1,
+    "mention_lost": 2,
+    "rank_down": 5,
+    "rank_up": 4
+  },
+  "data_quality": {
+    "comparable_with_prev_week": true,
+    "comparison_note": "",
+    "expected_days_per_week": 3,
+    "observation_days_prev_week": 3,
+    "observation_days_short": false,
+    "observation_days_this_week": 3,
+    "observations_in_lookback": 145,
+    "weeks_with_observations": 4
+  },
+  "date": "2026-10-12",
+  "fired_rules": [
+    "R-P4",
+    "R-DROP"
+  ],
+  "generated_for_week": {
+    "lookback_days": 28,
+    "prev_week": [
+      "2026-09-29",
+      "2026-10-05"
+    ],
+    "this_week": [
+      "2026-10-06",
+      "2026-10-12"
+    ]
+  },
+  "insufficient_rules": [
+    "R-P8"
+  ],
+  "kgi": {
+    "ai_key_events": {
+      "delta": 0.0,
+      "noise_zone": true,
+      "partial": false,
+      "prev_week": 0.0,
+      "this_week": 0.0,
+      "valid_from": "2026-09-01"
+    },
+    "ai_sessions": {
+      "delta": 2.0,
+      "noise_zone": true,
+      "prev_week": 2.0,
+      "this_week": 4.0
+    },
+    "branded_clicks": {
+      "delta": -2.0,
+      "noise_zone": true,
+      "prev_week": 2.0,
+      "this_week": 0
+    },
+    "branded_impressions": {
+      "delta": -14.0,
+      "noise_zone": true,
+      "prev_week": 14.0,
+      "this_week": 0
+    },
+    "noise_floor": 10.0,
+    "noise_zone_metrics": [
+      "ai_key_events",
+      "ai_sessions",
+      "branded_clicks",
+      "branded_impressions"
+    ]
+  },
+  "mention_rate": {
+    "all": {
+      "delta": 0.1945,
+      "prev_week": 0.4722,
+      "this_week": 0.6667
+    },
+    "days_observed": {
+      "prev_week": 7,
+      "this_week": 7
+    },
+    "pillar_a": {
+      "delta": 0.0,
+      "prev_week": 0.5556,
+      "this_week": 0.5556
+    },
+    "pillar_b": {
+      "delta": 0.3889,
+      "prev_week": 0.3889,
+      "this_week": 0.7778
+    }
+  },
+  "prompt_model_matrix": [
+    {
+      "mentioned_days": 3,
+      "model": "gemini",
+      "observed_days": 3,
+      "prompt_id": "A-1"
+    },
+    {
+      "mentioned_days": 2,
+      "model": "gemini",
+      "observed_days": 3,
+      "prompt_id": "A-2"
+    },
+    {
+      "mentioned_days": 0,
+      "model": "gemini",
+      "observed_days": 3,
+      "prompt_id": "A-3"
+    },
+    {
+      "mentioned_days": 3,
+      "model": "gemini",
+      "observed_days": 3,
+      "prompt_id": "B-1"
+    },
+    {
+      "mentioned_days": 1,
+      "model": "gemini",
+      "observed_days": 3,
+      "prompt_id": "B-2"
+    },
+    {
+      "mentioned_days": 3,
+      "model": "gemini",
+      "observed_days": 3,
+      "prompt_id": "B-3"
+    },
+    {
+      "mentioned_days": 1,
+      "model": "gemini",
+      "observed_days": 1,
+      "prompt_id": "E-1"
+    }
+  ],
+  "rank_trend": [
+    {
+      "delta": null,
+      "median_prev_week": 7,
+      "median_this_week": null,
+      "model": "claude",
+      "prompt_id": "A-1"
+    },
+    {
+      "delta": 0.5,
+      "median_prev_week": 4.5,
+      "median_this_week": 5,
+      "model": "gemini",
+      "prompt_id": "A-1"
+    },
+    {
+      "delta": null,
+      "median_prev_week": 1,
+      "median_this_week": null,
+      "model": "claude",
+      "prompt_id": "A-2"
+    },
+    {
+      "delta": 2.0,
+      "median_prev_week": 1.5,
+      "median_this_week": 3.5,
+      "model": "gemini",
+      "prompt_id": "A-2"
+    },
+    {
+      "delta": null,
+      "median_prev_week": 1,
+      "median_this_week": null,
+      "model": "claude",
+      "prompt_id": "B-1"
+    },
+    {
+      "delta": -1,
+      "median_prev_week": 2,
+      "median_this_week": 1,
+      "model": "gemini",
+      "prompt_id": "B-1"
+    },
+    {
+      "delta": null,
+      "median_prev_week": null,
+      "median_this_week": 3,
+      "model": "gemini",
+      "prompt_id": "B-2"
+    },
+    {
+      "delta": 1,
+      "median_prev_week": 3,
+      "median_this_week": 4,
+      "model": "gemini",
+      "prompt_id": "B-3"
+    },
+    {
+      "delta": null,
+      "median_prev_week": null,
+      "median_this_week": 1,
+      "model": "gemini",
+      "prompt_id": "E-1"
+    }
+  ],
+  "rules": [
+    {
+      "detail": "直近7日にネガティブ/古い情報の検知なし",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P7",
+      "status": "not_fired"
+    },
+    {
+      "coverage": {
+        "e1_observations": 1,
+        "models_with_urls": [],
+        "models_without_urls": [
+          "gemini"
+        ],
+        "observations_with_crosscom_urls": 0
+      },
+      "detail": "E-1の観測はあるが、自社URLの引用が1件も記録されていない(引用URLを解決できないモデルのみ)",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P8",
+      "status": "insufficient_data"
+    },
+    {
+      "detail": "直近3観測日連続で言及を失った系列はない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P2",
+      "status": "not_fired"
+    },
+    {
+      "detail": "1区分で言及率が前週比+0.1以上",
+      "evidence": [
+        {
+          "delta": 0.3889,
+          "pillar": "B",
+          "prev_week": 0.3889,
+          "this_week": 0.7778
+        }
+      ],
+      "fired": true,
+      "rule_id": "R-P4",
+      "status": "fired"
+    },
+    {
+      "detail": "順位中央値が4週連続で6.0以上のプロンプトはない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P5",
+      "status": "not_fired"
+    },
+    {
+      "detail": "自社不在プロンプトで連続出現している競合はない",
+      "evidence": [],
+      "fired": false,
+      "rule_id": "R-P15",
+      "status": "not_fired"
+    },
+    {
+      "detail": "言及シェア上位5に2件の構造変化",
+      "evidence": [
+        {
+          "entity": "日立ソリューションズ",
+          "kind": "halved",
+          "prev_week": 10.0,
+          "this_week": 5.0
+        },
+        {
+          "entity": "三菱総研DCS",
+          "kind": "halved",
+          "prev_week": 8.0,
+          "this_week": 4.0
+        }
+      ],
+      "fired": true,
+      "rule_id": "R-DROP",
+      "status": "fired"
+    }
+  ],
+  "sov": {
+    "A": {
+      "entities": [
+        {
+          "delta": -4.0,
+          "entity": "メンバーズ",
+          "mention_count": 6.0,
+          "prev_week_count": 10.0,
+          "share": 0.6667
+        },
+        {
+          "delta": -1.0,
+          "entity": "enucolor",
+          "mention_count": 5.0,
+          "prev_week_count": 6.0,
+          "share": 0.5556
+        },
+        {
+          "delta": -5.0,
+          "entity": "クロスコム",
+          "mention_count": 5.0,
+          "prev_week_count": 10.0,
+          "share": 0.5556
+        },
+        {
+          "delta": -4.0,
+          "entity": "三菱総研DCS",
+          "mention_count": 4.0,
+          "prev_week_count": 8.0,
+          "share": 0.4444
+        },
+        {
+          "delta": -6.0,
+          "entity": "日立ソリューションズ",
+          "mention_count": 4.0,
+          "prev_week_count": 10.0,
+          "share": 0.4444
+        },
+        {
+          "delta": 0.0,
+          "entity": "K2 Partnering Solutions",
+          "mention_count": 3.0,
+          "prev_week_count": 3.0,
+          "share": 0.3333
+        },
+        {
+          "delta": 0.0,
+          "entity": "セラクCCC",
+          "mention_count": 3.0,
+          "prev_week_count": 3.0,
+          "share": 0.3333
+        },
+        {
+          "delta": -3.0,
+          "entity": "バーチャレクスコンサルティング",
+          "mention_count": 3.0,
+          "prev_week_count": 6.0,
+          "share": 0.3333
+        },
+        {
+          "delta": 2.0,
+          "entity": "DECA",
+          "mention_count": 2.0,
+          "prev_week_count": 0.0,
+          "share": 0.2222
+        },
+        {
+          "delta": 0.0,
+          "entity": "BlueAI",
+          "mention_count": 1.0,
+          "prev_week_count": 1.0,
+          "share": 0.1111
+        }
+      ],
+      "observed_total": 9.0,
+      "prev_week_competitor_count": 50
+    },
+    "B": {
+      "entities": [
+        {
+          "delta": 0.0,
+          "entity": "クロスコム",
+          "mention_count": 7.0,
+          "prev_week_count": 7.0,
+          "share": 0.7778
+        },
+        {
+          "delta": 0.0,
+          "entity": "テクノデジタルコンサルティング",
+          "mention_count": 4.0,
+          "prev_week_count": 4.0,
+          "share": 0.4444
+        },
+        {
+          "delta": 2.0,
+          "entity": "Hiway",
+          "mention_count": 3.0,
+          "prev_week_count": 1.0,
+          "share": 0.3333
+        },
+        {
+          "delta": 1.0,
+          "entity": "ripla",
+          "mention_count": 3.0,
+          "prev_week_count": 2.0,
+          "share": 0.3333
+        },
+        {
+          "delta": 1.0,
+          "entity": "Forsys",
+          "mention_count": 2.0,
+          "prev_week_count": 1.0,
+          "share": 0.2222
+        },
+        {
+          "delta": 1.0,
+          "entity": "May4s Technology",
+          "mention_count": 2.0,
+          "prev_week_count": 1.0,
+          "share": 0.2222
+        },
+        {
+          "delta": -5.0,
+          "entity": "Salesforce",
+          "mention_count": 2.0,
+          "prev_week_count": 7.0,
+          "share": 0.2222
+        },
+        {
+          "delta": 0.0,
+          "entity": "StockSun",
+          "mention_count": 2.0,
+          "prev_week_count": 2.0,
+          "share": 0.2222
+        },
+        {
+          "delta": -1.0,
+          "entity": "ハンドレッド",
+          "mention_count": 2.0,
+          "prev_week_count": 3.0,
+          "share": 0.2222
+        },
+        {
+          "delta": -2.0,
+          "entity": "ブリッジインターナショナルグループ",
+          "mention_count": 2.0,
+          "prev_week_count": 4.0,
+          "share": 0.2222
+        }
+      ],
+      "observed_total": 9.0,
+      "prev_week_competitor_count": 71
+    },
+    "all": {
+      "entities": [
+        {
+          "delta": -5.0,
+          "entity": "クロスコム",
+          "mention_count": 12.0,
+          "prev_week_count": 17.0,
+          "share": 0.6667
+        },
+        {
+          "delta": -4.0,
+          "entity": "メンバーズ",
+          "mention_count": 6.0,
+          "prev_week_count": 10.0,
+          "share": 0.3333
+        },
+        {
+          "delta": -1.0,
+          "entity": "enucolor",
+          "mention_count": 5.0,
+          "prev_week_count": 6.0,
+          "share": 0.2778
+        },
+        {
+          "delta": -5.0,
+          "entity": "日立ソリューションズ",
+          "mention_count": 5.0,
+          "prev_week_count": 10.0,
+          "share": 0.2778
+        },
+        {
+          "delta": 0.0,
+          "entity": "テクノデジタルコンサルティング",
+          "mention_count": 4.0,
+          "prev_week_count": 4.0,
+          "share": 0.2222
+        },
+        {
+          "delta": -4.0,
+          "entity": "三菱総研DCS",
+          "mention_count": 4.0,
+          "prev_week_count": 8.0,
+          "share": 0.2222
+        },
+        {
+          "delta": 2.0,
+          "entity": "Hiway",
+          "mention_count": 3.0,
+          "prev_week_count": 1.0,
+          "share": 0.1667
+        },
+        {
+          "delta": 0.0,
+          "entity": "K2 Partnering Solutions",
+          "mention_count": 3.0,
+          "prev_week_count": 3.0,
+          "share": 0.1667
+        },
+        {
+          "delta": 1.0,
+          "entity": "ripla",
+          "mention_count": 3.0,
+          "prev_week_count": 2.0,
+          "share": 0.1667
+        },
+        {
+          "delta": 0.0,
+          "entity": "セラクCCC",
+          "mention_count": 3.0,
+          "prev_week_count": 3.0,
+          "share": 0.1667
+        }
+      ],
+      "observed_total": 18.0,
+      "prev_week_competitor_count": 118
+    }
+  }
+}

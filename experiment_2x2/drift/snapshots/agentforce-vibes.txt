@@ -2,6 +2,9 @@ Agentforce Vibesとは？使い方や料金、対応IDEをわかりやすく解�
 2026-08-05
 2026-09-29
 Agentforce
+著者：
+本田正憲
+合同会社クロスコム 代表／Salesforce認定コンサルタント
 結論・要約
 Agentforce Vibesとは、自然言語の指示からコードを生成する、エンタープライズ向けのAI開発環境のことです。
 Agentforce Vibesでは、Apexやフォーム、統合処理からアプリまでを自然言語の指示から生成できます。
@@ -217,11 +220,11 @@ Developer・Enterprise・Partner Developer・Performance・Unlimitedの各エデ
 Agentforce Vibesは自然言語でSalesforce開発を加速するAI開発環境である
 Agentforce Vibesとは、自然言語で指示するとコードを生成する、エンタープライズ向けのAI開発環境です。本記事では、Apexやフォームからアプリまで作れる成果物、使い方の4ステップ、料金の3種類、対応するIDEと環境、名称の変遷、導入前の確認項目までを、2026年8月時点の公式情報にもとづいて整理してきました。
 Agentforce Vibesの中心にあるのは、作りたいものを言葉で伝えると、たたき台が生成されるという進め方です。ゼロから書く負担が減り、作っては見せて直すサイクルを速く回せるようになります。まずはFoundationsやDeveloper Edition組織を使って無料で試し、自社の開発にどう組み込めるかを確かめるところから始めてみてはいかがでしょうか。本記事が、その一助になれば幸いです。
+この記事を書いた人
+本田正憲
+合同会社クロスコム 代表／Salesforce認定コンサルタント
+双日グループの専門商社で法人営業を経験後、マーケティング支援で独立し2023年に合同会社クロスコムを設立。現在はAgentforceの導入・定着支援とAgentic CRM設計支援を専門とする。
+プロフィールを見る →
 Agentforce
 Agentforce Service Agentとは？チャットボットとの違いと導入設計
 【2026年最新】Agentforceの機能一覧｜360・Coworker・Voiceまでを整理
-この記事を書いた人
-本田正憲
-合同会社クロスコムの代表｜専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入。現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供している。Salesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリスト。
-https://note.com/honda_crosscom
-記事一覧へ

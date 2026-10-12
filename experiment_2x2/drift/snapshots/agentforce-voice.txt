@@ -2,6 +2,9 @@ Agentforce Voiceとは？電話業務のどこまでを任せるかの設計
 2026-08-26
 2026-09-29
 Agentforce
+著者：
+本田正憲
+合同会社クロスコム 代表／Salesforce認定コンサルタント
 結論・要約
 Agentforce Voiceとは、電話の用件を聞き取って振り分けるAgentforceの音声機能のことです。
 日本語版のAgentforce Voiceは2026年8月7日に提供が始まり、電話業務もAIに任せる対象になりました。
@@ -383,11 +386,11 @@ Agentforce Voiceは用件の切り分けまでを任せ交渉は人に残す
 ※Flex CreditsおよびVoiceアクションの価格は、Salesforce公式のAgentforce料金ページ（2026年8月25日時点）に掲載されている「60,000円／100,000クレジットあたり」および公式の試算例にもとづいています。参考ページは
 こちら
 です。
+この記事を書いた人
+本田正憲
+合同会社クロスコム 代表／Salesforce認定コンサルタント
+双日グループの専門商社で法人営業を経験後、マーケティング支援で独立し2023年に合同会社クロスコムを設立。現在はAgentforceの導入・定着支援とAgentic CRM設計支援を専門とする。
+プロフィールを見る →
 Agentforce
 商談メモが読まれないのは書き方の問題か？読む3つの場面から項目を決める設計
 【2026年8月時点】Agentforce Coworkerとは？営業の照会場面と任せ方の設計
-この記事を書いた人
-本田正憲
-合同会社クロスコムの代表｜専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入。現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供している。Salesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリスト。
-https://note.com/honda_crosscom
-記事一覧へ

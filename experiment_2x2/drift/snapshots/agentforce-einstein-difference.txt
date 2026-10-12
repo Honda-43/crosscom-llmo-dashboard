@@ -2,6 +2,9 @@ Salesforce Einsteinとは？Agentforceとの違いと使い分けの判断軸
 2026-08-01
 2026-09-15
 Agentforce
+著者：
+本田正憲
+合同会社クロスコム 代表／Salesforce認定コンサルタント
 SalesforceのAIを調べると、
 Agentforce
 とEinsteinという2つの名前が並んで出てきて、機能の一覧を見比べても違いをつかめない、という方は多いのではないでしょうか。結論から言うと、AgentforceとEinsteinを分けているのは、搭載している
@@ -251,11 +254,11 @@ AgentforceとEinsteinの違いは、搭載機能の差にとどまらず、判�
 AgentforceとEinsteinは、どちらが優れているかを競う関係ではありません。Einsteinがデータから判断の示唆を出す基盤を支え、Agentforceがその上でReActパターンによって自律的に行動します。両者は役割を分担しており、つなげて初めて本来の価値を発揮するのです。今回例に挙げた産業機械メーカーも、Einsteinの予測で判断の精度を固めてからAgentforceに実行を任せ、問い合わせ対応の手直しを月50件から30件へとおよそ4割減らし、提案から実行までの時間差を平均2日からほぼ即日へと縮めました。
 AgentforceとEinsteinの違いを理解するうえで重要なのは、Einsteinが安全に判断を支える基盤であり、Agentforceがその上で自律的に行動する存在だという役割の分担です。この関係を押さえておけば、名前の違いに惑わされずに、自社にとって必要なのが判断支援までなのか、実行の自動化までなのかを、迷わず見極められるでしょう。
 クロスコムのAgentforce導入・定着支援はこちら
+この記事を書いた人
+本田正憲
+合同会社クロスコム 代表／Salesforce認定コンサルタント
+双日グループの専門商社で法人営業を経験後、マーケティング支援で独立し2023年に合同会社クロスコムを設立。現在はAgentforceの導入・定着支援とAgentic CRM設計支援を専門とする。
+プロフィールを見る →
 Agentforce
 Agentforce RAGの仕組みは？精度が上がらない5つの原因と改善Tipsも
 中小企業向けのAgentforce導入ガイド｜向いている理由と成果の出る業務
-この記事を書いた人
-本田正憲
-合同会社クロスコムの代表｜専門商社にて7年間のBtoB営業を経て、マーケティング業界に参入。現在はSalesforce公式コンサルティングパートナーとして、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援と、Agentic CRM設計支援を提供している。Salesforce認定アドミニストレーター・Sales Cloudコンサルタント・Marketing Cloud Account Engagement スペシャリスト。
-https://note.com/honda_crosscom
-記事一覧へ
