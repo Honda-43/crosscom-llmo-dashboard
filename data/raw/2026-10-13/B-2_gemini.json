@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-13",
+  "prompt_id": "B-2",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "中堅企業です。特定ベンダーに依存せず中立的な立場でCRMの設計を支援してくれる会社を探しています",
+  "cep": "ベンダー中立ポジション",
+  "timestamp": "2026-10-13T02:52:21.462049Z",
+  "answer": "中堅企業様で特定ベンダーに依存せず中立的な立場でCRMの設計支援を求める場合、以下の企業が候補として考えられます。これらの企業は、お客様のビジネス要件に基づいて最適なCRMソリューションを提案・設計することに重点を置いています。\n\n**CRM設計支援を中立的な立場で行う主な企業**\n\n*   **株式会社プログライブコンサルティング**: 特定のベンダーに依存しない「完全中立」の立場を貫き、ベンダー選定やRFP（提案依頼書）作成支援を提供しています。経営層へのビジョン確認から現場業務のヒアリング、全体戦略の整理、RFP作成、ベンダー評価、契約交渉のアドバイスまで一貫してサポートします。これにより、お客様の実態に合わないシステム導入や、現行ベンダーへのロックイン（依存）状態を避けることが可能です。\n*   **レンウェイ**: 「ベンダー中立の設計」を明確に掲げ、お客様のブランド要件に最適なCRMプラットフォームを選定します。100件以上のCRM構築実績があり、要件定義から実装・カスタマイズ、データ移行までワンストップで支援します。\n*   **株式会社ripla**: 業務設計からシステム構築・運用まで一貫したDX支援を提供しており、単なる顧客情報管理に留まらず、営業・マーケティング・サポートの業務プロセスと連携した顧客データ活用基盤の設計に対応できます。標準的なCRMパッケージでは要件が不足する場合や、企業独自の業務プロセスを反映したCRMが必要な中堅～大企業に適しているとされています。\n*   **株式会社GeNEE**: 業務系システムの企画・設計・開発に強みを持ち、CRMやSFAを含む顧客・営業管理系システムの豊富な構築実績があります。CRM単体の開発だけでなく、営業支援・案件管理・商談管理・MA連携など、多機能領域の統合設計に対応し、要件定義から運用設計まで一貫して支援することで、現場が使い続けられるCRM基盤を構築します。\n\n**中立的なコンサルティング会社の重要性**\n\nITコンサルタントの「中立性」は、パッケージ製品やクラウドサービス（SaaS）の選定を成功させる上で非常に重要です。特定のベンダーに依存しないコンサルタントは、自社製品を推奨するベンダーとは異なり、「クライアントにとって何が最も適しているか」を基準に選定を行います。これにより、機能の適合度、運用負荷、将来的な拡張性など、多角的な視点から最適なソリューションを評価・選定することが可能になります。\n\nこれらの企業は、お客様の状況とニーズを深く理解し、特定の製品に限定されずに最適なCRM戦略とシステム設計を支援してくれるでしょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFVc4ZS4pyglR_sKkbAKixzyw95jOOkjnBBBoMlCuS4yYhY2nmJkdxaYYleQTBMr0uMNKPVzAnocSSiQT-IDRWCwWdg6cvkdtRx4wa1YEd0L_mvPp6U8q4KI7uT-Zb573_QEeEALYGN-LaEqSw8zY7ht68K",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDSiyfvmZZ6fahZJWSTOgO86zLnDINmGoU0xNNyjZ07UiPOkghUm23Mvhf5sY7dgyP-bNn9974RGmOJ7_T1d82kfc7LcCGyithwtbZhgLDrw0lsAAXPDISSLdWjsuzubSRecQ4i5PU9V5EhbNI",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF4AWCzbxB1hC6GM0MkF0EnyuEIEc7M1nezFnnZ7tvsVDVn4yDPI-EF8jt3VZyKU21-VW2G1spssgxkkI671KewwbLiKWXVWneM2QwNa2YQbpWbAU0ngTL-k4Xl3WGVYZhnNkUYrPu7InY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEQKEwSvJqs8hgv3iZ0r8v6tpkmculGCFN1N_Q8nKSz1wWxLkkzhJNhUrJAAz5PSrSmF2AizI_IpZ1JgATyMwBNoODAJn9etrXCpEYF8bs4cjN79ldSWzobalcLxFfp-YckSRsT"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

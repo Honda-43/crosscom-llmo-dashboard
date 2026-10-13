@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-13",
+  "prompt_id": "A-1",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの導入支援をしてくれるおすすめの会社を教えてください",
+  "cep": "導入検討初期・パートナー探し",
+  "timestamp": "2026-10-13T02:50:46.285492Z",
+  "answer": "Agentforceの導入支援を検討されている方へ、以下の会社がおすすめです。これらの会社は、Salesforceの専門知識を活かし、Agentforceの設計から実装、運用、定着まで一貫してサポートしています。\n\n### おすすめの導入支援会社\n\n*   **株式会社enucolor**\n    株式会社enucolorは、Agentforce導入支援サービスを提供しており、業務整理からPoC開発、活用推進まで一気通貫でサポートすることで、企業のDX推進と業務改革の実現を支援しています。\n\n*   **三菱総研ＤＣＳ**\n    三菱総研ＤＣＳは、Agentforceを中核としたデータ統合型導入支援を行っています。データ分析・活用基盤の構築やクラウド利活用、多様なシステムの横断的な統合において豊富な実績を持ち、Salesforce単体導入にとどまらず、社内基幹システムと連携したAgentforceの導入を支援します。 また、金融分野で培った実績に基づき、高いセキュリティと信頼性のあるシステム構築が可能です。\n\n*   **日立ソリューションズ**\n    日立ソリューションズは、AIワークショップを通じて現場の業務課題を深く理解し、全社戦略と整合した「ビジネス価値を生むAIエージェント」の実装を支援する導入・活用支援サービスを提供しています。 AIを用いた組織の作り方や新しい働き方を理解し、自社の業務プロセスを整理して、会社にとって本当に必要なAIエージェントの役割を見つけ出すことを支援します。 また、製造業における保守対応の初回完了率向上や、建物の運用業務における作業員調整の自動化など、具体的なユースケースでの導入実績も紹介されています。\n\nこれらの会社は、それぞれ異なる強みを持っており、貴社のニーズに合わせて選択することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_AyoNNAjha2_iH0eLH7anW9aqSNR5hyxDuHOjey3acIP96FiNxHBFL7tf6ua7QjlD2gqU_GBqcQ9t9N3li0-4HGo1YtiOaXShe1Ql_HcxCgUbIpUk0JnBhAMQPvBV5sE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtAIbyzFlQLNp-Wtqy5IO4pvgEb0GZ_Dzsd3XiSrdkwQJQA9OiNqozuw-ld42ZwLc-Sxkz6yPR6aB9-3B9YvAK6kiyd1eqLvfRP4RYFmDARpPgkvTd-3DFsH068nrCG72TuHWgQ0Kh2uw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFSrnk3kNyIm4qjIvT5ixmeMnmnUAQ7k0372wB3QX-efUzlbcHMZ4Dnv5bNTcopTVSKEN_gXMLbB7wJuRMa6-TrYXk6CiWfuGi0oIpNCPYowSbG_1f7nGZ205g2lkstkIZkPS6dVu4-bT-73cxFo1n59aweacbblopLLx-_A=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-13",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-10-13T02:51:58.697021Z",
+  "answer": "Agentic CRM（エージェンティックCRM）とは、自律的なAIエージェントが、人間の承認を逐一必要とせずに、複数のステップからなるワークフローを計画、実行、適応できる顧客関係管理（CRM）システムです。AIエージェントは、あらかじめ設定された範囲内で行動し、必要に応じて人間にエスカレーションします。大規模言語モデル（LLM）を活用して自然言語を理解・処理し、生成AIを超える自律的な実行を実現します。従来のCRMにAI機能を追加したものが、人間による繰り返し指示と確認を必要とするのに対し、Agentic CRMは、AIが様々な情報源に基づいて見積もりドラフトの作成などのタスクを自律的に進める点が異なります。これにより、人間は最終確認に集中できるようになります。\n\nAgentic CRMの導入や設計を支援してくれる会社には、以下のような企業があります。\n\n*   **合同会社クロスコム**: BtoBに特化したコンサルティング会社で、Salesforce Agentforceの導入・定着支援と、Agentic CRMの設計支援を行っています。AIが読み書きすることを前提としたCRMを、業務設計から企業ごとに特化して設計することが可能です。\n*   **Hiway, Inc.**: AIオペレーション基盤を提供しており、メール、電話、フォームで届く代理店からの問い合わせや見積もり依頼をAIが一次処理し、人間がレビューした上で、活動、案件、見積もりデータをSalesforce/CRMへ還流させます。大規模な代理店ネットワークや複雑な見積もり業務を持つエンタープライズ企業に適したAgentic CRMの考え方を提唱しています。\n*   **ブリッジインターナショナルグループ（ブリッジプロセステクノロジー株式会社）**: Salesforce/Agentforceの構想、設計、実装支援に加え、事業戦略、KGI・KPI、業務改革、組織・役割、データ、運用まで一体で支援します。レベニュープロセスへの深い理解とSalesforce/Agentforceの実装力が強みです。\n*   **株式会社100**: HubSpotが提供するAIとCRMを搭載したAgentic Customer Platformの導入・運用支援、およびAIを活用した業務自動化支援を提供しています。\n*   **Mico（株式会社Mico）**: 「Agentic CX Platform™」を提供しており、B2C企業向けに問い合わせ対応から予約獲得、解約阻止まで顧客接点業務をエンドツーエンドで実行するAIエージェントを統合しています。全社導入から成果創出まで、統合的なガバナンス機能により支援します。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSQZvhHCmJe-Sv1B3EVbjgeT6NuEUJhIc6fZ6a-tzlb4D1QP3ZAkcFRDENCNyxugPghnsJAGxgqGrdn6JjaHZWXoqVNaBzSEo00D7j7YkgegneXizQzMScCDdhhtsR071KQworopemxGt8bkUwcIrEsjA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFjbpD--m1PrJSeaVHoMwV4qe6elZ3_QLaB-wW0IknT73FnTMxpR6IDK3i4wTVyW4IVpJ5xg6vQ5JlOBWqLplZ133OHJyEyFr31cITG2K4cs1z575t5N9zC_5-g_SvYG_SUak03Kijf6oTItkNKRh1Xj0UwJtWj47YyGuv-EJu2KoaZ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlvUNr_2QcAPHGVOoo7PXOcrEN5N18a4yTw1BkeaNECYPCrJKTr2YYvIpT_gC45mA3eF7LNuE8D0E-kvQMSp5KZNceT7GGzPpy8aGsnHv8OBuaZTGzMjxUbM8Xj7gpg41oG67laY8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFAc9Lm6obtboJuvcUoHsHA5HjTGB1iuYBm0tOclGtUtBq376IoheRcPsi6ohokoKnCj9DuDbXiZVFdz-Gdhz7ggwOw_FskoQeslgA7tYY5qA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEJs0UOlt5aKKTcm0ozhZv-ZGPlimaG-f6C6pr5dZNUrZy6SPAwVNXgkKeO76ajanoZZ7R4kYns6HRsApQIarCtyioIIJSXaiaT_gWgIqH6ReNGdCCSaohtcs09xqowd9MEuYs1TOumbLk85g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHh6VwavUH1cwTggWIMartDPz3rN2mEqMd2lhGAEBYG0kXIGWpb8v2aiRQJ6rM4O3x6hgXOwbaYQl5HYtF055bQJDv9WjW6QtI9DC1RWF5ernzooypT8SH1",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG4usgN5j-DPATfJ8-EGbJxUroSsAmbhRIMNPWL6lv9EHZZo6QzjM8Mo-aP2LLOFqMziJ_xxeaRUoiuBwtgDVgdnv1QUGercLPs_Xi0rcUknwYMVHaGrGZrHYdpZALHsZIrEuCVXSv87e6nJU0FQmyxAuRuRe4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGwLsLi20ezt3d4ChJnGNOy6c8riEqJgImqkjIkXU0FUIV_ErRLOyrP0dPoQMPObs6OLAppYk9uQfsKBR7gxKLUq_GMuEJxkVGUuPQsqqBVp1l-1r97PhZwyrS6qCF49Mhj2jMwMjTKdha4lQG146fmTETanH5nsF_2PKKGhE6V1Q==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0SbCYUPJDh3Fg_E3-yNeGYjz5EWULVdBMlhySiOoK-0D0KTIiQx8ao9ZzK2T_S0zkxPrHWpFkATtYXzL3lC5b73oOS_8VKNCqnF0C0Dfh-EqiS8jpQNE-BkCeSHmOFhJQ7jq_R_NTt_FuGRpkspAIUuFXrsY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZIAJjGUSnT-mJePg5k4OnGSsInX9SgYqcRftFuonP67E0m9AjEKNkGu3VCZ9azLyQmHm8wdfiIAMYLxNHmvrnDmSCDxcn3r5o2ezXBSKJWn5rPNJb_stu0w=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}
