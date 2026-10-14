@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-14",
+  "prompt_id": "E19",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceで最初のエージェントを1体作るまでの設定手順を教えて",
+  "cep": null,
+  "timestamp": "2026-10-14T01:40:23.633308Z",
+  "answer": "Agentforceで最初のエージェントを1体作成するまでの設定手順は以下の通りです。\n\n**1. 事前準備と有効化**\n*   **ライセンスの確認:** Agentforceを利用するには、Salesforce Sales CloudまたはService Cloudライセンスに加えて、Agentforceアドオンライセンスが必要です。お試しの場合、Developer Edition環境で利用することも可能です。\n*   **Data Cloudの有効化:** Salesforceの「設定」から「Data Cloud 設定ホーム」に移動し、Data Cloudを有効化して接続します。\n*   **Einsteinの有効化:** 「設定」のクイック検索で「Einstein 設定」を検索し、「Einstein を有効化」のトグルをONにします。\n*   **Agentforceの有効化:** ブラウザを再読み込み後、クイック検索で「エージェント」を検索し、「Agentforce」のトグルをONにします。\n*   **権限の付与:** 以下の権限セットライセンスと権限セットをユーザーに付与します。\n    *   権限セットライセンス: Agentforce (Default), Agentforce Service Agent Builder, Data Cloud, Einstein Prompt Templates\n    *   権限セット: Agentforce デフォルト管理者, Agentforce サービスエージェント設定, Agentforce デフォルトエージェントへのアクセス, プロンプトテンプレートマネージャー, Data Cloud アーキテクト\n\n**2. エージェントの作成**\n*   **新規エージェントの開始:** Salesforceの画面右上の歯車アイコンをクリックし、「設定」に移動します。クイック検索で「エージェント」を検索し、「新しいエージェント」をクリックします。\n*   **テンプレートの選択:** 「テンプレートから作成」オプションを選択し、「Agentforce Employee Agent」などのテンプレートを選び、「次へ」をクリックします。\n*   **エージェントのトピック確認:** 選択したテンプレートに基づき、関連するトピックが自動的に設定されます。内容を確認し、「次へ」をクリックします。\n*   **エージェントの基本情報入力:** エージェントの名前、API参照名、説明を入力します。\n*   **言語設定と話調の設定:** 「言語」タブで、エージェントが使用するデフォルト言語と、カジュアル/フォーマルなどの話調を設定します。\n\n**3. テストと公開**\n*   **会話のテスト:** エージェントとの会話をテストし、意図通りに動作するか確認します。\n*   **エージェントへのアクセス権限付与:** 作成したエージェントへのアクセス権限を付与します。\n*   **エージェントの公開:** テストが完了し、問題がなければエージェントを公開します。\n\nAgentforceは、Salesforceが提供するAIエージェントプラットフォームであり、Salesforce内のデータを検索して要約したり、AIチャットボットとして顧客とやり取りしたりするなど、幅広い活用が可能です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGavhDcrFHs-_OXpftuipjwg-AUlOXBNdlXJcS_trDSM6lIn-ygrqCGTwtLUfVQw_j4X6ZdCcJEhlwFeyVHOyVz4ssmGIe74YuFbIYutSC-4YAAgrpxlTPM6DFW6O_qGxkeWt6Fhje0VAdnpWxbqw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpbdDISzuFSqbqoNMxdDAxAHp-fqWGYxs6naZYez8_tkT0Zz9VR0C3SEtbFOA-4LgDSNNOkqvl-3rHIJoaGALvAElCSzRc9Zegs_fkARo11F0B-rEzMQB4Ta9lwbdIciACkmFeB1wH1oJ4ng==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEmrdLZzzNUO4bw0R2OVLo9x7xwFVWV0Wwi3I08SerXyIDqkpZ3wpgA4ixe98YPlJjT0qASVkRn3zzrvvmY9UmMpx1HxmtD_ret4zqROc2Sbz3hSX16VSJ__Wpgo7krw1sFNlfwgJTdCg44b7q7cw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHaHGVaQYROJe9UB8MbSn5O1RLjbbY4QSnGx-ZPBp5kZInGEF7XwauHvaYT2k7P-ERC7TjwrlskF_Om8TuK6dOya6_QsJKAW2PN-S3UT47811bgfJjgWrBEVJIwU4Xx24crIE3MgmFGZUQsa1l2KLvhTXw_pPT5LttazYVsGRbcFD8ggbN_",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEuaC0xVXUh3CDX42OgCKOkht5_p8UyZfatpjZYenCf52e7k0VWHytvYY1KOyJ-vE550u3ENb-9cozzIVAZ-KWdz8HaVs6mpJHtHrz4_U9e3tNai21JDRDlmD999qBPZGsoL7J_nP0gnNs3IA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGCxJsQNVLXxsEuBsz4fNjbZb49FW7a61fyGn7kunRW5Dd99g1sTtqHKqa9-PRevz0vOAM1rk66S3RXLyZTAhazY2WfK70d4ijcK0eoD9MM2GpSD9cXbahlPxN98iobChHa5dBwld2YqrYND4Gtjlbu0MRS7wsc-PGwgmrsOOGE",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEqPvirxeqQXZuxFEwrnudhDR6fEauG47_vgyhmt01Trmt0ImJdTMxNPoMMnrCT3ycVkQlBPeOvUhwxJr_GSM2E-iVVxMwiJiT4haBEexRCgZFIEN0Qo5jSl-CyGQ0KBRDK"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E19",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-usage/",
+  "answer_text": "Agentforceで最初のエージェントを1体作成するまでの設定手順は以下の通りです。\n\n**1. 事前準備と有効化**\n*   **ライセンスの確認:** Agentforceを利用するには、Salesforce Sales CloudまたはService Cloudライセンスに加えて、Agentforceアドオンライセンスが必要です。お試しの場合、Developer Edition環境で利用することも可能です。\n*   **Data Cloudの有効化:** Salesforceの「設定」から「Data Cloud 設定ホーム」に移動し、Data Cloudを有効化して接続します。\n*   **Einsteinの有効化:** 「設定」のクイック検索で「Einstein 設定」を検索し、「Einstein を有効化」のトグルをONにします。\n*   **Agentforceの有効化:** ブラウザを再読み込み後、クイック検索で「エージェント」を検索し、「Agentforce」のトグルをONにします。\n*   **権限の付与:** 以下の権限セットライセンスと権限セットをユーザーに付与します。\n    *   権限セットライセンス: Agentforce (Default), Agentforce Service Agent Builder, Data Cloud, Einstein Prompt Templates\n    *   権限セット: Agentforce デフォルト管理者, Agentforce サービスエージェント設定, Agentforce デフォルトエージェントへのアクセス, プロンプトテンプレートマネージャー, Data Cloud アーキテクト\n\n**2. エージェントの作成**\n*   **新規エージェントの開始:** Salesforceの画面右上の歯車アイコンをクリックし、「設定」に移動します。クイック検索で「エージェント」を検索し、「新しいエージェント」をクリックします。\n*   **テンプレートの選択:** 「テンプレートから作成」オプションを選択し、「Agentforce Employee Agent」などのテンプレートを選び、「次へ」をクリックします。\n*   **エージェントのトピック確認:** 選択したテンプレートに基づき、関連するトピックが自動的に設定されます。内容を確認し、「次へ」をクリックします。\n*   **エージェントの基本情報入力:** エージェントの名前、API参照名、説明を入力します。\n*   **言語設定と話調の設定:** 「言語」タブで、エージェントが使用するデフォルト言語と、カジュアル/フォーマルなどの話調を設定します。\n\n**3. テストと公開**\n*   **会話のテスト:** エージェントとの会話をテストし、意図通りに動作するか確認します。\n*   **エージェントへのアクセス権限付与:** 作成したエージェントへのアクセス権限を付与します。\n*   **エージェントの公開:** テストが完了し、問題がなければエージェントを公開します。\n\nAgentforceは、Salesforceが提供するAIエージェントプラットフォームであり、Salesforce内のデータを検索して要約したり、AIチャットボットとして顧客とやり取りしたりするなど、幅広い活用が可能です。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "successjp.salesforce.com",
+    "note.com",
+    "zenn.dev",
+    "tech-waves.hakuhodody-one.co.jp",
+    "cross-com.jp"
+  ],
+  "resolved_urls": [
+    "https://successjp.salesforce.com/article/NAI-001213",
+    "https://note.com/samuraijuku_biz/n/n08b3a08e8d5d",
+    "https://zenn.dev/actbe_tech/articles/14a1830e7ba109",
+    "https://tech-waves.hakuhodody-one.co.jp/entry/beginner-agentforce-creation",
+    "https://note.com/samuraijuku_biz/n/n8f1910ad5993",
+    "https://tech-waves.hakuhodody-one.co.jp/entry/agentforce-agent-setup",
+    "https://cross-com.jp/agentforce-usage/"
+  ],
+  "unresolved_redirects": 0
+}
