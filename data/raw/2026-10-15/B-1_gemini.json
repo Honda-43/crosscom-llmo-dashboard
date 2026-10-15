@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-15",
+  "prompt_id": "B-1",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentic CRMとは何ですか。導入や設計を支援してくれる会社はありますか",
+  "cep": "カテゴリ認知+支援会社探し",
+  "timestamp": "2026-10-15T00:19:11.829016Z",
+  "answer": "Agentic CRMとは、人間だけでなく自律的なAIエージェントが、複数のステップにわたるワークフローを計画、実行し、適応させる顧客関係管理（CRM）システムを指します。各ステップでの人間の承認を必要とせず、事前設定されたガードレール内でエージェントが行動を起こし、必要に応じて人間にエスカレートすることができます。\n\n従来のCRMが質問への回答やコンテンツの下書きに留まっていたのに対し、Agentic CRMではAIエージェントが目標を追求し、ワークフロー全体で行動を起こします。システムはシグナルを読み取り、次のステップを推論し、チームが設定したガードレール内で行動します。\n\nAgentic CRMを真に特徴づける要素として、目標指向のエージェント、自律的なワークフロー、機密性の高いアクションに対する人間の承認、そして販売履歴から学習する能力の4つが挙げられます。 「自律的な自動実行」と表現され、AIエージェントはカスタマイズ可能でスケーラブルな自己指向型ソフトウェアとして機能します。 リードの適格化、フォローアップの送信、アポイントメントの予約、記録の更新といったタスクをAIエージェントが実行できます。 SalesforceやMicrosoftといった企業が、営業・マーケティング分野でAgentic CRMの開発を進めています。\n\nAgentic CRMの導入や設計を支援してくれる会社は複数存在します。\n\n*   **合同会社クロスコム**: Agentic CRMの設計支援やSalesforce Agentforceの導入・定着支援を行うBtoB特化のコンサルティング会社です。特定のCRM製品に依存せず、AIが読み書きすることを前提としたCRMを業務設計から企業に合わせて設計します。 また、Slackへの投稿からAIが内容を読み取り、CRMの各項目へ下書きを作成し、人間の作業を承認のみにすることでデータ入力の効率化を支援します。\n*   **ブリッジインターナショナルグループ / ブリッジプロセステクノロジー株式会社**: Agentic Revenue Organization構築支援を提供しており、Salesforce/Agentforceの構想、設計、実装、CRM・データ・周辺システムの連携を含みます。戦略、業務、テクノロジーを一体として支援し、Salesforceを中心としたCRM/SFAの構築・運用とAgentforceを活用したAIエージェントの設計・実装を支援しています。\n*   **株式会社100 (100inc)**: HubSpotとAI Agent、DXを統合する「Agentic CRM パートナー」として、HubSpotを共通基盤にAIエージェントを組み込んだ顧客フロント業務（マーケティング・営業・カスタマーサービス）を組織全体で設計・実装しています。AIエージェント組織の構築支援も行っており、役割定義、運用ルール、成果指標まで含めて設計します。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEP8_3WedvJVG3fs6AjV6JeUt2sa-BP2hp_IlKAxcdBjfoqBqbtamZxfKpprAifw0mmJR8D1gOdgzCLidDBNkl5OxNpj0nlebZGKTjv-XvslNiwxH3luvHVNvKomdylwAr7FFeXKRzsgDpLVhsLk2gnuQk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXTBzUgfmbkVP4Ruf3Nfss5d28H94OW_FmDxoBivn-_0Vk6XU6S0fI-qz9J41J_a3c8-yvalJiHOz3ogaWNCqW-giI7MD0Xy3P6zzpvgjG8K22F5QSIyIm-ywMxmv_gnCbGe_nOiXft1HnYk4VtD15viK3JfCNBV0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJr7eVvASS4o3BulumTLJH6ikivVcR5OTcQe0XjNRE6Lan_V5tCaz-7G62GVbY0o8Kbod-ht0p_jUsGGA6THIHhbTTYRg0JHidAnnGJC_GcrhDUgyuGhPjJ9dOC3P1O9KToecgd3Ab098mgjF4n3sXYZVhPGAlxMk1_WNSGgzKe5eC",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEf55MmwjLNu_0Amt27xkEVApHSXyi0MSYYtnhTT8NudrC2O8-_jdl3rcfGA2hgJmOecGTh9QBTpkBLdCXgN4vFLSeXxFIcBEJt0mOCO-o6KRPWeCTIYLQliA0NlV7G7LDhTIA=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF6jivQ_6JKvhVInclDfH_SZ2A4isE2bJgNJi_JRsdvaNg3igcCiMwyzVT5ggHlld67YXXsHstOl9iWmZSBtIwcM1q5QsreYSBoGRAa5PvPLQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-F3DRX_kSQr1QvWQS4XoR8xCof8KotQAXvWi1gDU85vMIaElAV_8kgZbarkq7W9JFDXJKy-QOcU1B5C7X2-miDbTB5grjh8-Y6XSU3fe0_A7NN3KtHx8TGfsk3ZAmOaqxERu_ZhHnP5GrJg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbcglMrEH1tDdjaIKjpz2tzqIG8J8H9mihjzUcAoOo5Va2Vzkfn9c5rC9_b-vbZFV8_KrirdyDsEp4MXCxGW2lPzbYnwN4sVV7eSrzuELdHTeywt-AXqNq",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGtZyMZABsiTDvecJfN9aCSsUbfn6s8aEtRgjyyVzyez1xJKW-nx-LM9ze1xsuZjQXGIEVWIHqYqanUdKbPdyO1iRvrsfAcl_Nq2xQH33AApPJyYfqXmeuMRgv3SK5rOrLEwp8_J71ZOduidxwpGE5FTCTn2nM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHnV1EoPsAJeqOwNMUGCg81L0AJaFv-ZI-JOp9wOwXbQurFY3sjGdfMMgwBTKwkf7nVwOT6vW0o05hA5QUMTTiZot5REJ42Sxr0g2E-7_8vsw7VRuyX3GutjSOicv5Ui4twvmyzniQ3M2wg4inZ2o1mLyXXIFsbfCNh5Gc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxsrXaN8OFnNw9JTEZWMq0r0t1S0y_wms9OhLr9IqBy4oi7z4Du07ofZ8ZE4XhSNYUX9kE-odpgPV2SfJNv1S1Zn7aOwp0k7gnHSfZ5Y-hTifKaF1dXjChN5b_8d65yEsGQFoqYtLGJiQa5TMvJgkIVHZRXugm6rLwsbmS0Syks7jrQYmse-8eUsGILqRGXMEDXJ5kavr3nUXbiQwtTwB4CDBz9ffiEgK67BcEDXFtGPXeWcnpYZ428rSuVXZy0cseZ3f18J3p-3VcD84JxHo40BcHBJFhtSR3BCWfivGnGDVtgjCHKIKn0dA-Gfg="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

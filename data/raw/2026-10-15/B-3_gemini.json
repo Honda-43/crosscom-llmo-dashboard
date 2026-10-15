@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-15",
+  "prompt_id": "B-3",
+  "pillar": "B",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業にAIエージェントを活用したい。ツール選定の前にCRMのデータ設計から支援してくれるパートナーはいますか",
+  "cep": "設計ファースト方法論",
+  "timestamp": "2026-10-15T00:19:59.963135Z",
+  "answer": "営業にAIエージェントを活用するにあたり、ツール選定前のCRMデータ設計から支援してくれるパートナーは複数存在します。これらの企業は、AIを活用した営業活動を成功させるために、データの戦略的な設計と最適化が不可欠であると考えており、幅広いサービスを提供しています。\n\n以下に、CRMデータ設計とAIエージェント活用支援を専門とするパートナー企業の一部をご紹介します。\n\n*   **株式会社プライムビズ**は、「AIを用いた顧客管理（CRM）の最適化」を提供しており、顧客データの分析から営業効率化までを包括的にサポートします。単純な顧客データ管理に留まらず、AIによる知的な事業成長と競争優位の確立を目指し、「AI主導型顧客関係最適化」を通じて営業組織と顧客関係の革新的な進化を支援しています。データ活用範囲やAI機能の柔軟な調整を行い、「営業戦略パートナー」として包括的な支援を提供しています。\n*   **株式会社テクノデジタルコンサルティング**は、「CRM・データ戦略設計サービス」を提供し、顧客戦略、KPI設計、業務設計、データ統合方針まで、データ活用を成果につなげる支援を行います。特に「AI活用を前提としたデータ基盤」の重要性を強調しており、「CRM・データ活用×AIコンサルティング」として、戦略・構想策定からデータ基盤構築、AI予測分析、生成AI・AIエージェント活用までを一気通貫で支援します。\n*   **合同会社クロスコム**は、「Agentic CRM設計支援」を通じて、AIがデータの読み書きを前提としたCRMシステムを企業専用に設計・構築するサービスを提供しています。データの意味を定義する設計に重点を置き、トップセールスが行う判断基準を言語化しデータベース化することを支援します。\n*   **ForceBridge株式会社**は、「AI CRM導入支援」を行っており、コンサルタントが現場に入り込み、課題定義から導入設計、AI活用を前提としたCRMの構築とデータ整備、運用ルール策定、そして継続的な改善までを一貫して伴走支援します。\n*   **FLYO LLC**は、「AI活用コンサルティング」を提供し、データ、マーケティング、CRM/SFAの全領域にAIを掛け合わせ、業務の自動化・高度化を推進します。生成AIの実装から社内展開まで伴走支援しており、AI活用戦略立案からプロンプト設計、運用フロー構築まで対応しています。\n*   **アルビド・ジャパン株式会社**は、「CRM構築・顧客データ活用支援」を提供しており、顧客管理（DB）や履歴データの設計・構築、会員属性や行動履歴を活用したセグメント管理の支援、各種施策とのデータ連携・拡張性を考慮した設計支援などを行います。\n*   **ナウビレッジ株式会社**も「CRM構築・導入支援サービス」の中で、要件定義、営業プロセス設計、データ移行・クレンジング支援、運用ルール設計などを提供し、効率的で属人化しない営業体制の構築を支援します。\n*   **Murasu**の「CRM・顧客データ活用支援」サービスでは、Web、店舗、営業、メール、LINE、問い合わせ履歴などに分散した顧客情報を整理し、「誰が・いつ・何をしたのか」を理解できる状態を作り、分析・施策・改善へ使えることを重視しています。顧客データモデルの設計、CRMの整備、データ連携設計などを通じて、顧客データを意思決定に使える状態へ導きます。\n*   **CRMサポートセンター**は、Zoho認定パートナーとして、ZohoアプリケーションとAIを組み合わせ、マーケティング・営業・営業事務をデータでつなぎ、中小企業の営業DXを設計から定着、AI活用まで支援しています。\n\nこれらのパートナーは、AIエージェント導入の基盤となるCRMデータの整理・設計、そしてAIとの連携を見据えたデータ戦略の立案において、貴社を支援できる専門知識と実績を持っています。まずは、各社のサービス内容や得意分野を確認し、貴社の具体的なニーズに合ったパートナーに相談することをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFnyKK6RILiHpGiKBCbQVMdHBgG9Fu9o3gCDw7IefOU28GpRkaVxGlW8lWLFr9jWjIZlnGnTsSv7W_Y2xClMcnNaMi-CEmrakAt2-R6gQIdIWRPNc1mBiavwgajeg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFL0isTEQ6Nn5_E4dJJmMbXXxFqFVSIcTZpvi3-9muD3SyEOrzxX5IeLwXTM9LlJehaeS6jcShleFY86tCkkeAY64QE5983LxuH8MW1JZTBO8nX3JL056_sKS9ZvhGNGhUs_wqihDBnP1rJp4dtBziiyC8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE7Z3bpwPY3ObSwluc2wyNON3ek1x9U-ULXJIQX7rFo1JmiQW69hepE8kTQToxiEQooUGOQmDvYIr9CiDzd4huc_HsM2XDCqdqdDH27HzUZK73LhJt3Bs5vby0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH2-Em123OqOOj_4Dop4hpiNSXUeCRyv9eZ6ukkdRD33rSH3eAx2iQGgMjES8tpyONbfpe2Z9qoSTHyyemKoEZr9jiyZhVDkoV_f1g1TwL6gfRv1sBdTkNiMrp1KInU96vddg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQElklM9KUUT57dARfyVFUoArsRGsg0sKFHKvlfX97KFWD02KX-SbOnrfaZZqnnMrXkyFAs1NEBS_2Q3CksYeIvzm2aQcQ9oWi5k-5_7w22JK4OZ4vMRM-hXc_6Vk05IVCqpmG2smanTUvsa",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH--KqA46y-HYMZncTojBJsq6yNI2IxJ0WwAHl5_eBN9H-hpxM2_KRvAw_Ft6ydS1GWxrZ-ziW05m1jrV755CC2f0dgVynMKnwDK_hXvl2Cp8JrtPl84kEHsNic",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpnbYby6gtgHbDHpWzGT9Qv77E4aKW9_iPyGdcUxL8UCUz3HiY2fz47Q6o5ySTrthjTzMxsX_kBIAOPy5UyLdqysNYHRv4D60cIp5bV26tY7A5MERoY90=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHc_bJhrkDO6r9h3RYSbK0xJo3emvOldd_NM1JRqZLpgmX51RMDKaglvy3sgXunu_Xe8IrHIlvkN93mGqrw66-k6HGv87WjWMHmGWlgjB8eGoLk8-Bf9GDvN5-1lP7iuv80PA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG1R7FSLsW89nJtFtaUfMzesmMYfy1RQEwi1Y56u_ytgw6eya4U-q_CO8lrSSPk6GMaaGu8Jiyq9nTL9rXZ4uNTg2siz-qdrugHMT2y4Xc10LXwO_ypRzaJDAmoBFH2077ZW2iEN8p6B8owEA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGYMKdOCsXbd8Hk9NTtzUo1cU6bAKnjSlbtwWiXleQcZ5yRIoW98Uh9aWrru0RuoAtASLIlAOAAPyIw6r3W_dwpWBFiJKz1DH8-rCUK7QC90Ku9pxfmePDCUk5ZgqHIstPWLg0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFdnL5w_hYe1O5wZOzC_wUDzOceINhDp6f6f1SZmP1BHhiTlaETMt8LXgonhUj3JU56qWgfNAnZoQAmEK9U02Fe7I7_CqWRC-nXn-KLV9ip2qaU7ApoTlPkiRod"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}

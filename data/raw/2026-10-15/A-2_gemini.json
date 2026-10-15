@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-15",
+  "prompt_id": "A-2",
+  "pillar": "A",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceを導入したが現場に定着しない。定着支援や活用支援をしてくれるコンサルはありますか",
+  "cep": "導入後の定着課題",
+  "timestamp": "2026-10-15T00:18:25.026301Z",
+  "answer": "Agentforceの現場への定着にお困りとのこと、定着支援や活用支援を行うコンサルティング会社は複数存在します。AgentforceはSalesforceが提供する自律型AIエージェントプラットフォームであるため、Salesforce関連の導入・活用支援に強みを持つ企業や、一般的なシステム導入におけるチェンジマネジメントに特化した企業が選択肢となります。\n\n以下に、Agentforceの定着支援や活用支援を提供している主なコンサルティング会社を挙げます。\n\n**Agentforceに特化した支援を提供する企業:**\n\n*   **株式会社メンバーズ**：Agentforceの導入・運用・活用支援を提供しており、初期導入コンサルティングから、設計・実装・運用、内製化、社員育成まで一貫して支援しています。現状業務のヒアリング、業務フロー分析、導入目的・KPIの明確化、リスク・課題の洗い出し、投資対効果（ROI）の試算なども行います。\n*   **合同会社クロスコム**：Agentforceの導入・定着支援を提供し、貴社の目標から逆算して「どの業務で・誰が・何を判断できるようにするか」を定義し、マーケティング、営業、サポートのユースケースに合わせて業務フローにAgentforceを組み込みます。公開後もカスタマーサクセスチームが利用状況と出力品質を継続的にモニタリングし、活用が定着するまで伴走します。代表者はSalesforce認定アドミニストレーター、Salesforce認定Sales Cloudコンサルタントなどの資格を保有しています。\n*   **三菱総研DCS**：Agentforceの導入・活用支援サービスを提供しており、データ分析・活用基盤の構築やマルチクラウド連携の実績を活かし、社内基幹システムと連携したAgentforceの導入を一気通貫で支援します。\n*   **K2 Partnering Solutions**：Agentforceのコンサルティングサービスを提供しており、カスタマイズされたソリューション、サードパーティとの統合、Salesforceとの連携、Agentforceトレーニング、パフォーマンス分析、ガバナンスとコンプライアンスのサポートなどを行います。\n*   **DECA**：Agentforce Service / Service Cloudの構築・活用支援を提供し、問い合わせ対応の効率化、応対品質の平準化、ナレッジ活用、継続的な業務改善までを一貫して支援します。Salesforce Japan Partner Award 2026でJapan Partner of the Year – Agentforce – を受賞しています。\n*   **日立ソリューションズ**：Salesforce向けの「定着化支援サービス」の中で、自律型AIエージェント「Agentforce」の導入・活用をトータルで支援しています。\n*   **セラクCCC**：400名を超える定着・活用支援専門コンサルタントが在籍しており、Salesforce上位資格の取得数で国内トップレベルを誇ります。各社に合わせた提案や内製化支援のための研修も提供しています。\n\n**一般的なシステム導入やチェンジマネジメントの視点から支援する企業:**\n\nAgentforceのような新しいシステムを現場に定着させるには、「チェンジマネジメント」の専門知識が重要です。チェンジマネジメントは、従業員の意識や行動の変化を促し、変革を持続的に組織文化として根付かせるための計画的な取り組みです。\n\n*   **Ataway（アタウェイ）**：ERP導入やDX推進、AIツールのローンチ後、確実に利用・導入・定着が進むための活動計画化と実行を支援するチェンジマネジメントコンサルティングを提供しています。\n*   **PwCコンサルティング**：チェンジマネジメントおよび組織カルチャー変革の支援を提供し、DX、生成AI活用、M&Aなどの企業変革において、従業員の理解・共感・行動変容を引き出し、組織に定着させることを目指します。\n*   **ソルラボ**：システム導入＆定着サポートを提供しており、企業とベンダーの間に立って「本当に使えるシステム」にすることを目指し、現場の言葉で着実に浸透させていく支援を行います。\n*   **SCSKサービスウェア**：システム定着化サービスを提供しており、新システム導入・改修時におけるユーザーの利活用・定着化支援（マニュアル作成、教育など）を通じて、導入効果の早期最大化を図ります。\n*   **株式会社ソフィア**：DX変革におけるチェンジマネジメントの重要性を提唱しており、抵抗や混乱を抑え、行動変容を定着させるための体系的アプローチで、IT活用に伴う組織改革の支援を行っています。\n*   **EY Japan**：従業員が変化を「体験」できるよう常に努めることで、トランスフォーメーションの成果を向上させる新しいチェンジマネジメントのアプローチ「EY Change Experience」を提供しています。\n\nこれらのコンサルティング会社は、Agentforceの導入・活用段階から定着化まで、さまざまな側面で支援を提供しています。貴社の状況や課題に合わせて、最適なパートナーを選ぶことが重要です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFbU6JbUtco_wi3f5R3RcKsgLjoj0M1DXmo7QiDwnV4eD7X2WUK2igxsIQNgA-hhgnVg7344V6rzao8wG_OJ8HnJLpwJtO8qTA3d9V5LjXW61Lw1RCM4WzHi8f3SVy4Nsp_zbPjg39NiEt13kSsFRYgug==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHmZUHc0xLcIXXW7_mhvWXo7zxI4Pv9R0xVu0wxSeTCkSTvx4610Z3NIpBr6tgywb2OLYbiTVX04oNPOX1RIBQUbhesl7F6tgdP3Y2TFMDbLao5QGF7VbB48wdY82jRlMROrbcmLCtpgKL8RQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF8b-ARXQ13qyETdEkqazofblKSLuNu9FWpNxk5M64VpNfqBPYe3mEKBNBa8tPOkVUs1nn2eIMbzPdAxuGlgHsLPMuB51C4jYdmn08EPipTWFcTdes9ptpixVWDTpHcAy-89lw9iE2nDL8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEZt_rAcsCdoAklLGaV53sBjLcZLG6VJgSjyJyQwtvXviPR8csMtw4DZdkAuqiez2egx3_HVtIP1rnedUBrgEzf9MXsccH_DzaOCmD8K53AESV5cODQ_a2s8x4xWnRTrg-7jwAi5EB1ZXY_nFWm89taf7432RSQNZKhXJ4_1Br25szjEwIk74AohMoM2EAjgMCohg0SpFo7I4g-YWuV77QEXtirUr2Xb6aZzZ0RijaI",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFAIKLoVYExgsZlFtodWNzJx5t4awruiQlbbElGaCLehKOBO8qAqYiphPlXGAu8-aR_oeTSnKO0aeFsX6R1yf0mAgV2YdHAlV5PpsxsxH1qPaN3P1wQnH2KukdPp8wec3L7U_fzQGk1B1uelVEiTQcl0k0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGDJMOJ-thZYveGs96Sicw1CimPDLKdwHqyeywWigbczUO6ptOCWFpE5Zl9rnbCko2xbKdFWNhOe4_nTdZrOl9Q7lAy_GyQcGq2mtp14nkk8bDAgvjkefOb-2rZg1XSBsOX4OBRwGNon3HFTuAeUxoHRpMUe6dWoJ0SJYL3wk0=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGVVMbvpf3dMxefseBSQld-YSFKTqe9kNch7FD6gwfxBFG8_xzykeZt3dBM6v7g1NZlwF_2BPNKXVUxy2idU8tUsu6AVRLAG8Hliigj1N1tyKl6wfEKPl6vtcc07V3HWwnT467NIGriKS1fFziy9iRZxftmlpIKNXsbFuFmVDJUnQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoR9TtNUS3IcRp-UHH3UZt4aSiWnpY8OQKhfQKaPkWMOvYXzblaHxkSbhh5B8RtjDb62R3UJasIqtos58jgWG1T2qj_3X6umax_cxg7n1T-t9qJ5n6qdU4PZ1hKKJdJtxNmEYOszmeLX9mFKweuPBhi1ZRqY-3sU7h0rJ7MxRbbYRMroZqUvDWD9XOJEhIRVroEV9lYfHvqrCQ3g2Hpa5DmIpHM8xIf1JEdA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEPPYjlHMI4j3zEpFzvn6xUYS3Hb7uPIME1sNiMKzM74FfpVijsJlt7VosSFGGNRrOJkqmyB4SvpPCk-IxLThG9iA_8DOWKZ6qfZnnrXgmlrDEA8UfMAyA5fVFpqXUjEiACEG5L",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEHG6jVyTQ34T6xdYYVZ7ADnJBOFiqjJXzDfLfIgFwiUX8YzzbfiPPo7-N-5EbRKwk1Y3HgdlZ40VoPCctRONIkEDW4qshq_H1SIyHFK9KM2zQsvc0FozJd-pVtYIVUaxY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHybeRt-4b4XzUw0ZpLD_tvQMYht2cNi8ncb-uREueJuhRQ_ly19vuaei4G31CRzXqt9uY-c90KMVEHR6mjBwGxoCO6s01Cs9-RdPfW1MOf-uezSKHiPRpnMnMAMxs_C_Rg5G5oYc_MHXMgN--gCUYtphzKJUsCtR8L0WBA",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGaxcWOB1xXeXbUXnmUF8crC9n3iJoeYu6c3YOmizKyTJ4r3gxI-sIxGpMtFy-FVvLJQ3-c555QyqfFIohrI1HOAQ53R3N6deBVZLK70aikSPUWR5ParHKQYHmEvzYSRoaFuPc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHrl78s3jjheSKVT4PB19P5IXzxCnJGipahf1s0CkeJDgE3JjIx1IyCuhaL6E2jlQ-AQ8nYgk3fzpdlbxEvRGo3bN9MJJJFc4qyz4uYTHL7AbpP5iUCWFvz7fVro_u8wKY_3tDKMZlGXRMMCGm2baC_P4HynEMBt_-OtY1QxYKI7dFL4Q=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP"
+}
