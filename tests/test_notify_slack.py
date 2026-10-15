@@ -156,6 +156,34 @@ def test_negative_kind_stays_within_the_character_budget():
         assert len(notify_slack.negative_kind(detail)) <= notify_slack.KIND_MAX_CHARS
 
 
+# 10/15 の E-1 × gemini が「ネガティブな記述」とだけ出た。抽出は「終了事業」と書くのに、
+# 種別のキーワードが「旧事業」「MA/」「メール配信」だけだった(gemini の 6件が同じ理由で落ちていた)
+REAL_GEMINI_DETAILS = [
+    # 2026-10-15 E-1 × gemini
+    ("提供サービスの項目で「MA・CRMツールの導入・運用支援: Salesforce、Hubspot、ZohoなどのMA・CRMツールの"
+     "導入・運用代行に加え…」と、終了事業であるMAの「代行・運用」を現在の提供サービスとして現在形で記述しているため。",
+     "旧事業(MA/メール配信)の記述"),
+    # 2026-09-14 E-1 × gemini(戦略コンサルだけ)
+    ("「BtoBマーケティング戦略コンサルティング」が現在の提供サービスとして現在形で記述されている。"
+     "これは【終了事業】に該当し、現在は提供していない。",
+     "旧事業(戦略コンサル)の記述"),
+    ("終了事業を現在の事業として現在形で述べている。", "旧事業の記述"),
+]
+
+
+def test_a_retired_business_detail_says_which_business():
+    for detail, kind in REAL_GEMINI_DETAILS:
+        assert notify_slack.negative_kind(detail) == kind
+        assert len(kind) <= notify_slack.KIND_MAX_CHARS
+
+
+def test_the_daily_line_for_the_10_15_detection_is_specific():
+    extractions = [{"prompt_id": "E-1", "model": "gemini", "negative_or_outdated": True,
+                    "negative_detail": REAL_GEMINI_DETAILS[0][0], "error": None}]
+    lines = notify_slack._negative_lines("2026-10-15", extractions, [], [])
+    assert lines == ["⚠️ E-1 × gemini — 旧事業(MA/メール配信)の記述（本日から）"]
+
+
 def test_failures_are_reported_without_the_error_body():
     text = notify_slack.build_message(
         DATE, failures=["collect_ga4: 429 RESOURCE_EXHAUSTED quota exceeded"])
