@@ -17,6 +17,9 @@ import csv
 import datetime as dt
 import hashlib
 import json
+import shlex
+import shutil
+import subprocess
 import sys
 
 import pytest
@@ -506,7 +509,8 @@ def test_the_retries_never_push_the_day_past_the_gemini_limit(offset, monkeypatc
 def test_one_transient_failure_uses_the_four_spare_on_a_day_without_the_daily_run(
         monkeypatch, tmp_path, no_sleeping):
     """月曜は上限16本で余り4本。1本の 503 にはリトライ3回 + 掃き直し1回までで、
-    180秒後の2回目の掃き直しは枠が尽きて投げない(上限を14から16にした代償)。"""
+    180秒後の2回目の掃き直しは枠が尽きて投げない(上限を14から16にした代償)。
+    枠が0なら2回目の待ち(180秒)にも入らない(2026-10-16)。"""
     monkeypatch.setenv("GEMINI_API_KEY", "x")
     date = MONDAY.isoformat()
     plan = {"gemini": settings.experiment_plan(date)["gemini"]}
@@ -523,8 +527,9 @@ def test_one_transient_failure_uses_the_four_spare_on_a_day_without_the_daily_ru
     budget = collect_llm.RetryBudget(settings.gemini_requests_on(date)["retry_budget"])
     records = run_experiment.observe(date, plan, tmp_path, [], budget=budget,
                                      delays=run_experiment.EXPERIMENT_SWEEP_DELAYS)
-    assert no_sleeping == [5, 10, 20, 60.0, 180.0]   # 2回目の待ちに入ってから枠切れで止まる
+    assert no_sleeping == [5, 10, 20, 60.0]   # 枠が0なので2回目の180秒は待たない
     assert budget.used == 4 and budget.remaining == 0
+    assert (budget.retries, budget.sweeps, budget.exhausted) == (3, 1, True)
     assert calls.count(dead) == 5, "初回 + リトライ3回 + 掃き直し1回"
     assert [r["prompt_id"] for r in records if r.get("error")] == [plan["gemini"][0]["id"]]
 
@@ -1152,3 +1157,119 @@ def test_the_time_budget_is_40_minutes_from_the_job_start(monkeypatch):
     first = wf["jobs"]["experiment"]["steps"][0]
     assert "EXPERIMENT_JOB_STARTED_AT" in first["run"], "ジョブの最初に開始時刻を記録する"
 
+
+
+# --- 失敗通知の原因の1行(2026-10-16) ---------------------------------------------
+# 10/16 は「503の欠測・認証エラー・例外」と3つ並べた通知だけが届き、どれが起きたか分からなかった。
+
+def test_the_budget_is_not_waited_on_when_it_is_already_spent(monkeypatch, tmp_path, no_sleeping):
+    """10/16 の再現:2本の 503 が再試行で戻って枠4本を使い切ったあと、8本が 503。
+    掃き直しは60秒待ってから打ち切るのではなく、待たずに止める。"""
+    monkeypatch.setenv("GEMINI_API_KEY", "x")
+    date = MONDAY.isoformat()
+    plan = {"gemini": settings.experiment_plan(date)["gemini"]}
+    texts = [p["text"] for p in plan["gemini"]]
+    flaky = {texts[0]: 3, texts[1]: 1}          # 戻るまでの 503 の回数
+    dead = set(texts[2:10])
+
+    def query(text, model):
+        if text in dead:
+            raise Exception(GEMINI_503)
+        if flaky.get(text):
+            flaky[text] -= 1
+            raise Exception(GEMINI_503)
+        return ("答え", [])
+
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini", query)
+    budget = collect_llm.RetryBudget(4)
+    records = run_experiment.observe(date, plan, tmp_path, [], budget=budget,
+                                     delays=run_experiment.EXPERIMENT_SWEEP_DELAYS)
+    assert no_sleeping == [5, 10, 20, 5], "再試行の待ちだけ。掃き直しの60秒は待たない"
+    assert (budget.retries, budget.sweeps, budget.exhausted) == (4, 0, True)
+    cause = run_experiment.failure_cause(records, [], budget)
+    ids = [p["id"] for p in plan["gemini"][2:10]]
+    assert cause.startswith(f"503の欠測 8件(")
+    assert all(i in cause for i in ids)
+    assert cause.endswith("取り直しの枠4本を使い切り(再試行4回・掃き直し0回)")
+
+
+def test_the_cause_names_an_auth_error_with_its_text():
+    cause = run_experiment.failure_cause([_missing("E01", AUTH_ERROR)], [])
+    assert cause == "認証・権限エラーの欠測 1件(E01): 401 UNAUTHENTICATED: API key not valid"
+
+
+def test_the_cause_leaves_out_429_and_adds_a_phase_exception():
+    records = [_missing("E01", GEMINI_429), _missing("E02", GEMINI_503)]
+    budget = collect_llm.RetryBudget(2)
+    budget.spend()
+    cause = run_experiment.failure_cause(records, ["write_experiment: HttpError 403"], budget)
+    assert "E01" not in cause, "429 は exit 0 の扱い(原因に入れない)"
+    assert cause == ("503の欠測 1件(E02)。取り直しの枠2本のうち1本を使用(再試行1回・掃き直し0回)"
+                     " / 例外: write_experiment: HttpError 403")
+
+
+@pytest.mark.parametrize("records, raising, expected", [
+    ([lambda: _missing("E01", GEMINI_503)], None, "503の欠測 1件(E01)"),
+    ([lambda: _missing("E01", AUTH_ERROR)], None, "認証・権限エラーの欠測 1件(E01): 401"),
+    ([], "バグ", "例外: observe: バグ"),
+], ids=["503", "認証", "例外"])
+def test_main_hands_the_cause_to_the_workflow(records, raising, expected, monkeypatch, tmp_path):
+    out = tmp_path / "github_output"
+    monkeypatch.setenv("GITHUB_OUTPUT", str(out))
+    assert _exit_code(monkeypatch, tmp_path, [r() for r in records], raising=raising) == 1
+    line = out.read_text(encoding="utf-8").splitlines()[-1]
+    assert line.startswith("failed_detail=" + expected)
+    assert '"' not in line and "\\" not in line
+
+
+def test_main_writes_no_cause_on_a_day_without_failures(monkeypatch, tmp_path):
+    out = tmp_path / "github_output"
+    monkeypatch.setenv("GITHUB_OUTPUT", str(out))
+    assert _exit_code(monkeypatch, tmp_path, [_missing("E01", GEMINI_429)]) == 0
+    assert not out.exists() or "failed_detail" not in out.read_text(encoding="utf-8")
+
+
+def _notify_step():
+    wf = yaml.safe_load(open(settings.ROOT_DIR / ".github/workflows/experiment.yml", encoding="utf-8"))
+    steps = wf["jobs"]["experiment"]["steps"]
+    return next(s for s in steps if s["name"] == "Notify Slack on workflow failure"), steps
+
+
+def test_the_failure_notice_reads_the_cause_from_the_observation_step():
+    notify, steps = _notify_step()
+    ids = {s.get("id") for s in steps}
+    assert {"observe", "marketing", "commit", "claude_cap"} <= ids
+    assert notify["env"]["FAILED_DETAIL"] == "${{ steps.observe.outputs.failed_detail }}"
+    assert "503の欠測・認証エラー・例外" not in notify["run"], "3つ並べるだけの文面に戻さない"
+
+
+@pytest.mark.skipif(not shutil.which("bash"), reason="bash が無い")
+@pytest.mark.parametrize("env, expected", [
+    ({"OBSERVE": "failure",
+      "FAILED_DETAIL": "503の欠測 8件(E37, E02)。取り直しの枠4本を使い切り(再試行4回・掃き直し0回)"},
+     ["• 原因: 503の欠測 8件(E37, E02)。取り直しの枠4本を使い切り(再試行4回・掃き直し0回)"]),
+    ({"OBSERVE": "failure", "FAILED_DETAIL": ""},
+     ["• 原因: 観測の途中でコードの例外(原因の記録なし・実行ログを参照)"]),
+    ({"OBSERVE": "success", "COMMIT": "failure"}, ["• 原因: 記録の commit(git push)が失敗"]),
+    ({"OBSERVE": "success", "CLAUDE_CAP": "failure", "MARKETING": "failure"},
+     ["• 原因: prompt_marketing(Gemini)のステップが失敗",
+      "• 原因: Claude の1日の上限・クレジット不足(claude_budget --check)"]),
+    ({}, ["• 原因: 準備のステップ(checkout・pip install など)が失敗"]),
+], ids=["503", "原因なし", "commit", "2つ", "準備"])
+def test_the_failure_notice_shows_the_actual_cause(env, expected, tmp_path):
+    """通知の run をそのまま bash で走らせ(curl は true に差し替えて送らない)、Slack に送る JSON を確かめる。"""
+    notify, _ = _notify_step()
+    full = {"GITHUB_SERVER_URL": "https://github.com", "GITHUB_REPOSITORY": "o/r",
+            "GITHUB_RUN_ID": "1", "SLACK_WEBHOOK_URL": "https://example.invalid",
+            "OBSERVE": "", "MARKETING": "", "COMMIT": "", "CLAUDE_CAP": "", "FAILED_DETAIL": ""}
+    full.update(env)
+    script = tmp_path / "notify.sh"
+    assert notify["run"].count("curl ") == 1
+    # 値はスクリプトの先頭で export する(Windows の bash には subprocess の env が届かないことがある)
+    exports = "".join(f"export {k}={shlex.quote(v)}\n" for k, v in full.items())
+    script.write_text(exports + notify["run"].replace("curl ", "true "), encoding="utf-8", newline="\n")
+    subprocess.run(["bash", "-e", script.name], cwd=tmp_path, check=True)
+    text = json.loads((tmp_path / "payload.json").read_text(encoding="utf-8"))["text"]
+    lines = text.split("\n")
+    assert lines[2] == "• experiment.yml が異常終了しました"
+    assert [l for l in lines if l.startswith("• 原因")] == expected

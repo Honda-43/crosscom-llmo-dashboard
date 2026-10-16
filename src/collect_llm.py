@@ -168,12 +168,21 @@ class RetryBudget:
     def __init__(self, spare: int) -> None:
         self.remaining = max(0, int(spare))
         self.used = 0
+        # 内訳(2026-10-16)。失敗通知に「再試行何回・掃き直し何回・枠を使い切ったか」を出すため
+        self.retries = 0
+        self.sweeps = 0
+        self.exhausted = False
 
-    def spend(self) -> bool:
+    def spend(self, kind: str = "retry") -> bool:
         if self.remaining <= 0:
+            self.exhausted = True
             return False
         self.remaining -= 1
         self.used += 1
+        if kind == "sweep":
+            self.sweeps += 1
+        else:
+            self.retries += 1
         return True
 
     def __repr__(self) -> str:  # pragma: no cover - ログ用
@@ -684,6 +693,11 @@ def _sweep(records: List[Dict[str, Any]], prompts: List[Dict[str, Any]],
         if not targets:
             break
         labels = ", ".join(f"{r['prompt_id']}/{r['model']}" for r in targets)
+        if budget is not None and budget.remaining <= 0:
+            # 待ってから「枠が尽きた」と打ち切ると、60秒待つだけになる(10/16 は8件を待って0件投げた)
+            budget.exhausted = True
+            print(f"[warn] 掃き直し{index}: その日の枠の余りが0のため掃き直さない ({labels})")
+            break
         if past_deadline(time.time() + wait):
             print(f"[warn] 掃き直し{index}: 待つと時間の予算を超えるため掃き直さない ({labels})")
             break
@@ -691,7 +705,7 @@ def _sweep(records: List[Dict[str, Any]], prompts: List[Dict[str, Any]],
               f"{wait:.0f}秒後に再取得します ({labels})")
         time.sleep(wait)
         for record in targets:
-            if budget is not None and not budget.spend():
+            if budget is not None and not budget.spend("sweep"):
                 print("[warn] 掃き直し: その日の枠の余りが尽きたため打ち切ります")
                 return recovered
             # 1周につき1回だけ。ここで回数を重ねると枠の消費が読めなくなる。

@@ -87,6 +87,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run experiment observation
+        id: observe
         working-directory: src
         run: |
           python run_experiment.py \
@@ -99,6 +100,7 @@ jobs:
       # 実験の観測が失敗した日は走らない(実消費が数えきれないため)。
       # 2026-10-03 から is_first / mention_rank の Haiku 抽出は停止中(費用削減)。再開は変数 MARKETING_RANK_ENABLED='1'
       - name: Run prompt_marketing (Gemini) within the day's remaining quota
+        id: marketing
         working-directory: src
         env:
           MARKETING_RANK_ENABLED: ${{ vars.MARKETING_RANK_ENABLED }}
@@ -107,6 +109,7 @@ jobs:
 
       # 実験日誌(欠測の記録)は観測が失敗した日ほど必要なので always() で commit する。
       - name: Commit experiment raw answers and journal
+        id: commit
         if: always()
         run: |
           git config user.name  "github-actions[bot]"
@@ -128,17 +131,35 @@ jobs:
       # Claude API の1日の呼び出し上限・クレジット不足(claude_budget。2026-10-03)。
       # 止まっていたら失敗にして Slack に知らせる(記録の commit のあと。Gemini の観測には影響しない)。
       - name: Check Claude daily cap
+        id: claude_cap
         if: always()
         working-directory: src
         run: python claude_budget.py --check --job experiment --job marketing_gemini
 
       - name: Notify Slack on workflow failure
         if: failure() && env.SLACK_WEBHOOK_URL != ''
+        env:
+          # 原因の1行(run_experiment.py が引用符・改行を除いて渡す。2026-10-16)。
+          # 以前は「503の欠測・認証エラー・例外」と3つ並べるだけで、どれが起きたか分からなかった
+          FAILED_DETAIL: ${{ steps.observe.outputs.failed_detail }}
+          OBSERVE: ${{ steps.observe.outcome }}
+          MARKETING: ${{ steps.marketing.outcome }}
+          COMMIT: ${{ steps.commit.outcome }}
+          CLAUDE_CAP: ${{ steps.claude_cap.outcome }}
         run: |
           RUN_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
           # 429(枠切れ)だけの欠測は run_experiment が exit 0 にするので、ここには来ない。
-          # 通知が飛ぶのは 503 の欠測が残った日・認証エラー・コード例外のいずれか。
-          TEXT="*LLMO実験アラート*\n*❌ ワークフロー失敗*\n• experiment.yml が異常終了しました(503の欠測・認証エラー・例外)\n<$RUN_URL|実行ログを開く>"
+          # 原因は落ちたステップごとに1行ずつ。観測のステップは run_experiment.py が書いた原因を出す
+          CAUSES=""
+          add() { CAUSES="$CAUSES\n• 原因: $1"; }
+          if [ "$OBSERVE" = "failure" ]; then
+            add "${FAILED_DETAIL:-観測の途中でコードの例外(原因の記録なし・実行ログを参照)}"
+          fi
+          if [ "$MARKETING" = "failure" ]; then add "prompt_marketing(Gemini)のステップが失敗"; fi
+          if [ "$COMMIT" = "failure" ]; then add "記録の commit(git push)が失敗"; fi
+          if [ "$CLAUDE_CAP" = "failure" ]; then add "Claude の1日の上限・クレジット不足(claude_budget --check)"; fi
+          if [ -z "$CAUSES" ]; then add "準備のステップ(checkout・pip install など)が失敗"; fi
+          TEXT="*LLMO実験アラート*\n*❌ ワークフロー失敗*\n• experiment.yml が異常終了しました$CAUSES\n<$RUN_URL|実行ログを開く>"
           printf '{"text":"%s"}' "$TEXT" > payload.json
           curl -sS -X POST -H 'Content-type: application/json' \
             --data @payload.json "$SLACK_WEBHOOK_URL" > /dev/null

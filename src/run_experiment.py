@@ -350,6 +350,53 @@ def missing_by_reason(records: List[Dict[str, Any]]) -> Dict[str, List[str]]:
     return out
 
 
+# 失敗通知の「原因」に出す理由の名前(2026-10-16。以前は「503の欠測・認証エラー・例外」と3つ並べるだけだった)
+_CAUSE_LABELS = {
+    collect_llm.REASON_UNAVAILABLE: "503の欠測",
+    collect_llm.REASON_PERMANENT: "認証・権限エラーの欠測",
+    collect_llm.REASON_OTHER: "例外による欠測",
+}
+
+
+def failure_cause(records: List[Dict[str, Any]], other_failures: List[str],
+                  budget: Optional[collect_llm.RetryBudget] = None) -> str:
+    """exit 1 にした原因を1行で(experiment.yml の失敗通知が読む)。
+
+    欠測は理由ごとに本数と記事ID、503 なら取り直しの枠の使い方(再試行・掃き直しの回数)も出す。
+    欠測以外の失敗(シートの書き込み・観測中の例外など)はその文面を足す。
+    429・投げずに記録したものは exit 0 の扱いなので数えない。
+    """
+    parts: List[str] = []
+    for reason, labels in sorted(missing_by_reason(records).items()):
+        if reason in WARN_ONLY_REASONS:
+            continue
+        ids = ", ".join(label.split("/", 1)[0] for label in labels)
+        part = f"{_CAUSE_LABELS.get(reason, reason)} {len(labels)}件({ids})"
+        if reason == collect_llm.REASON_UNAVAILABLE and budget is not None:
+            spare = budget.used + budget.remaining
+            part += (f"。取り直しの枠{spare}本"
+                     + ("を使い切り" if budget.exhausted or budget.remaining == 0 else f"のうち{budget.used}本を使用")
+                     + f"(再試行{budget.retries}回・掃き直し{budget.sweeps}回)")
+        elif reason != collect_llm.REASON_UNAVAILABLE:
+            first = next((r.get("error") for r in records
+                          if r.get("error") and (r.get("miss_reason") or collect_llm.miss_reason(r["error"])) == reason), "")
+            part += f": {_one_line(first, 120)}"
+        parts.append(part)
+    parts += [f"例外: {_one_line(f, 160)}" for f in other_failures]
+    return " / ".join(parts)
+
+
+def _step_outputs(cause: str) -> None:
+    """失敗通知に渡す原因(1行。引用符・バックスラッシュ・制御文字を除く)。"""
+    path = os.getenv("GITHUB_OUTPUT")
+    if not path:
+        return
+    text = " ".join(str(cause).split()).replace('"', "'").replace("\\", "/")
+    text = "".join(ch for ch in text if ch.isprintable())[:400]
+    with open(path, "a", encoding="utf-8") as fh:
+        fh.write(f"failed_detail={text}\n")
+
+
 def _one_line(text: Any, limit: int = 300) -> str:
     """エラー文面を日誌の1セルに収める。改行と連続する空白をつぶす。"""
     return " ".join(str(text or "").split())[:limit]
@@ -713,6 +760,9 @@ def main() -> None:
     elif not warnings:
         lines += ["", "All phases completed ✅"]
     _job_summary(lines)
+    if failures:
+        miss_lines = [f for f in failures if f.startswith("欠測 ")]
+        _step_outputs(failure_cause(records, [f for f in failures if f not in miss_lines], budget))
     sys.exit(1 if failures else 0)
 
 
