@@ -123,17 +123,16 @@ def main() -> None:
     lines: List[str] = [f"## LLMO weekly pipeline — {date}", ""]
 
     # 日次・月次・週次の観測と配信の一時停止(2026-10-17〜・config/observation_pause.yaml)。
-    # 止めている間は Ahrefs・ルール・所見の生成・Slack の配信をしない。下の実験の行(503欠測・観測本数)は出す
+    # 止めている間はルール・所見の生成・Slack の配信をしない。下の実験の行(503欠測・観測本数)は出す。
+    # Ahrefs の取得とシートへの書き込みは止めない(2026-10-17・GA4/GSC と同じく後から遡って取れないため)
     paused = observation_paused(date)
     if paused:
         start, until = observation_pause_window()
         lines.append(f"- ⏸ 週次所見の生成と配信は停止中({start}〜{until or '再開日未定'}・ダッシュボードの再設計のため)。"
-                     "Ahrefs・ルール・所見・Slack は動かさない。実験の行だけ出す")
+                     "ルール・所見・Slack は動かさない。Ahrefs の取得と実験の行は続ける")
 
-    # 1. Ahrefs (best-effort, unchanged)
-    if paused:
-        ahrefs = None
-    elif args.skip_ahrefs:
+    # 1. Ahrefs (best-effort, unchanged)。停止中も取る
+    if args.skip_ahrefs:
         ahrefs = None
         lines.append("- Ahrefs: skipped (--skip-ahrefs)")
     else:

@@ -166,14 +166,18 @@ def test_marketing_does_nothing_and_records_no_quota_skipped(paused, monkeypatch
     assert any("停止中" in line for line in summary)
 
 
-def test_weekly_skips_the_insight_but_keeps_the_experiment_lines(paused, monkeypatch, tmp_path):
+def test_weekly_skips_the_insight_but_keeps_ahrefs_and_the_experiment_lines(paused, monkeypatch, tmp_path):
+    """Ahrefs は GA4・GSC と同じく後から遡って取れないので、停止中も取ってシートに書く(2026-10-17)。"""
     import collect_ahrefs
     import rules_engine
     import run_experiment
     import run_weekly
+    import sheets_writer
     monkeypatch.setattr(run_experiment, "EXPERIMENT_JOURNAL_FILE", tmp_path / "experiment_journal.csv")
+    ahrefs = {"collected": [], "written": []}
     monkeypatch.setattr(collect_ahrefs, "collect",
-                        lambda date=None: (_ for _ in ()).throw(AssertionError("Ahrefs を呼ばない")))
+                        lambda date=None: ahrefs["collected"].append(date) or {"aio_keyword_count": 3})
+    monkeypatch.setattr(sheets_writer, "write_ahrefs", lambda result: ahrefs["written"].append(result))
     monkeypatch.setattr(rules_engine, "run",
                         lambda date: (_ for _ in ()).throw(AssertionError("ルールを回さない")))
     monkeypatch.setattr(notify_slack, "notify_weekly",
@@ -187,3 +191,13 @@ def test_weekly_skips_the_insight_but_keeps_the_experiment_lines(paused, monkeyp
     text = chr(10).join(summary)
     assert "週次所見の生成と配信は停止中" in text
     assert "実験の503欠測" in text and "実験の Gemini 観測" in text
+    assert ahrefs["collected"] == ["2026-10-19"], "Ahrefs は停止中も取る"
+    assert ahrefs["written"] == [{"aio_keyword_count": 3}], "シートにも書く"
+    assert "- AI-Overview keywords: 3" in text
+
+    # Ahrefs が落ちても(best-effort)停止中の週次は緑のまま
+    monkeypatch.setattr(collect_ahrefs, "collect",
+                        lambda date=None: (_ for _ in ()).throw(RuntimeError("402 Payment Required")))
+    with pytest.raises(SystemExit) as exited:
+        run_weekly.main()
+    assert exited.value.code == 0

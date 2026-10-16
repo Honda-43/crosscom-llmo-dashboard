@@ -4,11 +4,13 @@
 # 止めるもの(paused_from の日(JST)から):
 #   - 日次観測7本(daily.yml の LLM 観測。火・木・土)と、毎日の結果の Slack 配信
 #   - 月次観測12本(monthly.yml。第1水・第1木)
-#   - 週次所見の生成と配信(weekly.yml の run_weekly.py。Ahrefs・ルール・所見・Slack)
+#   - 週次所見の生成と配信(weekly.yml の run_weekly.py。ルール・所見・Slack)
 #   - 第3観測層 prompt_marketing の Gemini(experiment.yml の中で実験のあとに走る分)
 # 止めないもの:
 #   - 実験観測46本(+ watch の E37。experiment.yml)と、その失敗時の Slack 通知
 #   - GA4・GSC の収集(daily.yml。無料で、後から遡って取れないため)と、daily.yml の失敗通知
+#   - Ahrefs の週次取得とシートへの書き込み(weekly.yml の run_weekly.py。GA4・GSC と同じく後から遡って取れないため。
+#     2026-10-17 に所見の停止から切り離した)
 #   - 週次の実験の付随処理(drift_check・実験の週次集計・503欠測/観測本数の行)
 #   - 実験日誌・interventions.csv の記録
 #

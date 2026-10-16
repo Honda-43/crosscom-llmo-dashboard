@@ -4,7 +4,8 @@ on:
   schedule:
     # Monday 08:30 JST = Sunday 23:30 UTC
     # **2026-10-17 から週次所見の生成と配信を一時停止中**(config/observation_pause.yaml)。run_weekly.py は
-    # Ahrefs・ルール・所見・Slack を動かさず、実験の行(503欠測・観測本数)だけジョブサマリに出す。
+    # ルール・所見・Slack を動かさず、実験の行(503欠測・観測本数)だけジョブサマリに出す。
+    # Ahrefs の取得とシートへの書き込みは続ける(後から遡って取れないため)。
     # drift_check と実験の週次集計(experiment_weekly.py)は続ける。
     - cron: '30 23 * * 0'
   workflow_dispatch:

@@ -161,7 +161,8 @@ crosscom-llmo-dashboard/
 | 日次観測7本(daily.yml の LLM 観測。火・木・土) | 実験観測46本＋watch の E37(experiment.yml) |
 | 毎日の結果の Slack 配信(daily.yml) | GA4・GSC の収集(daily.yml。無料で、後から遡って取れないため) |
 | 月次観測12本(monthly.yml。第1水・第1木) | 各ワークフローの失敗通知(daily.yml・experiment.yml など) |
-| 週次所見の生成と配信(weekly.yml の run_weekly.py:Ahrefs・ルール・所見・Slack) | 週次の実験の付随処理(drift_check・実験の週次集計・503欠測と観測本数の行) |
+| 週次所見の生成と配信(weekly.yml の run_weekly.py:ルール・所見・Slack) | 週次の実験の付随処理(drift_check・実験の週次集計・503欠測と観測本数の行) |
+| | Ahrefs の週次取得とシート(ahrefs_aio)への書き込み(weekly.yml の run_weekly.py。GA4・GSC と同じく後から遡って取れないため。2026-10-17 に所見の停止から切り離した) |
 | 第3観測層 prompt_marketing の Gemini(experiment.yml の中で実験のあとに走る分) | 実験日誌・`output/interventions.csv` の記録 |
 
 - 停止は `config/observation_pause.yaml` の `paused_from: "2026-10-17"`(`settings.observation_paused()`)。日付で効くので、
