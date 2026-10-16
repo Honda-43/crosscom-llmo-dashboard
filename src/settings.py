@@ -287,9 +287,40 @@ def experiment_claude_on(date: str) -> bool:
             and not claude_stopped(date))
 
 
+# --------------------------------------------------------------------------
+# 日次・月次・週次の観測と配信の一時停止(2026-10-17〜・ダッシュボードの再設計のため・本田さん決定)
+# --------------------------------------------------------------------------
+# config/observation_pause.yaml の paused_from 〜 paused_until(null なら終わり未定)の日(JST)は、
+# 日次観測7本・月次観測12本・週次所見(生成と配信)・prompt_marketing の Gemini・日次の結果配信を止める。
+# 実験・GA4/GSC・各ワークフローの失敗通知は止めない。
+# 停止中は日次・月次が無いので、実験の Gemini は7日とも同じ本数(EXPERIMENT_PAUSE_DAILY_CAP)。
+# 再開は paused_until に最後の日を入れる(paused_from を消すと停止中の本数が変わり、巡回の割当が過去に遡ってずれる)
+OBSERVATION_PAUSE_FILE = CONFIG_DIR / "observation_pause.yaml"
+# 停止中の実験の1日の本数(毎日14本・予備6本・週98本。2026-10-17 本田さん決定)
+EXPERIMENT_PAUSE_DAILY_CAP = 14
+
+
+def observation_pause_window(path: Optional[Path] = None) -> Tuple[str, str]:
+    """(停止の最初の日, 最後の日)。止めていなければ ("", "")。最後の日が未定なら ""。"""
+    try:
+        with open(path or OBSERVATION_PAUSE_FILE, encoding="utf-8") as fh:
+            data = yaml.safe_load(fh) or {}
+    except OSError:
+        return "", ""
+    start, until = data.get("paused_from"), data.get("paused_until")
+    return (str(start)[:10] if start else ""), (str(until)[:10] if start and until else "")
+
+
+def observation_paused(date: Optional[str] = None) -> bool:
+    """その日(既定: 今日の JST)が日次・月次・週次の観測と配信の停止期間か。"""
+    start, until = observation_pause_window()
+    day = str(date or _today_jst())[:10]
+    return bool(start) and day >= start and (not until or day <= until)
+
+
 def is_daily_llm_day(date: str) -> bool:
-    """日次の7本を観測する日か(JST の日付)。"""
-    return _weekday(date) in DAILY_LLM_WEEKDAYS
+    """日次の7本を観測する日か(JST の日付)。停止期間(observation_paused)は観測しない。"""
+    return _weekday(date) in DAILY_LLM_WEEKDAYS and not observation_paused(date)
 
 
 def daily_llm_requests_on(date: str) -> int:
@@ -299,13 +330,16 @@ def daily_llm_requests_on(date: str) -> int:
 
 def monthly_requests_on(date: str) -> int:
     """その日の月次観測が使う Gemini リクエスト数(第1週の水・木だけ)。"""
-    day = dt.date.fromisoformat(str(date)[:10])
-    return (MONTHLY_BATCH_SIZE if day.day <= 7
-            and day.weekday() in MONTHLY_BATCH_WEEKDAYS.values() else 0)
+    return MONTHLY_BATCH_SIZE if monthly_batch_on(date) else 0
 
 
 def monthly_batch_on(date: str) -> Optional[str]:
-    """その日に走る月次のバッチ("A" / "B")。無ければ None。monthly.yml と同じ判定。"""
+    """その日に走る月次のバッチ("A" / "B")。無ければ None。monthly.yml と同じ判定。
+
+    停止期間(observation_paused)は None(run_monthly.py が何もしない)。
+    """
+    if observation_paused(date):
+        return None
     day = dt.date.fromisoformat(str(date)[:10])
     if day.day > 7:
         return None
@@ -399,10 +433,13 @@ def experiment_gemini_allowance(date: str, prior_used: int) -> int:
     日次・月次のある日は ``20 − prior_used − 予備2``、無い日は ``20``。
     どちらも上限 ``EXPERIMENT_DAILY_CAP``(16本)。``prior_used`` は再試行込みの
     実消費(名目の計算では計画値)。
+    日次・月次の停止期間(observation_paused・2026-10-17〜)は7日とも上限 ``EXPERIMENT_PAUSE_DAILY_CAP``
+    (14本・予備6本)。停止の日付で決まるので、それより前の日の本数(=巡回の割当)は変わらない。
     """
     reserve = EXPERIMENT_DAILY_DAY_RESERVE if has_prior_gemini_run(date) else 0
     room = GEMINI_DAILY_REQUEST_LIMIT - int(prior_used) - reserve
-    return max(0, min(EXPERIMENT_DAILY_CAP, room))
+    cap = EXPERIMENT_PAUSE_DAILY_CAP if observation_paused(date) else EXPERIMENT_DAILY_CAP
+    return max(0, min(cap, room))
 
 
 _EXPERIMENT_CURSOR: Dict[str, int] = {}

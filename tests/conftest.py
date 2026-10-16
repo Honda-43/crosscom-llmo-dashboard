@@ -35,6 +35,12 @@ def _claude_budget_isolated(tmp_path, tmp_path_factory, monkeypatch):
     off = tmp_path_factory.mktemp("claude_running") / "claude_budget.yaml"   # テスト自身の tmp_path を汚さない
     off.write_text("planned_stop_from: null" + chr(10), encoding="utf-8")
     monkeypatch.setattr(settings, "CLAUDE_BUDGET_FILE", off)
+    # 日次・月次・週次の一時停止(2026-10-17)も既定で外す(既存のテストは停止していないときの配分を確かめる)。
+    # 停止中の動きは tests/test_observation_pause.py が入れて確かめる
+    running = tmp_path_factory.mktemp("observing") / "observation_pause.yaml"
+    running.write_text("paused_from: null" + chr(10), encoding="utf-8")
+    monkeypatch.setattr(settings, "OBSERVATION_PAUSE_FILE", running)
+    settings._EXPERIMENT_CURSOR.clear()
     # 抽出保留の台帳(data/extract_pending)も本物を触らない(2026-10-06:run_daily のテストが本物の台帳を
     # 後日抽出して消していた)
     import extract_pending

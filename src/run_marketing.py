@@ -43,7 +43,7 @@ from settings import (DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MARKETING_DIR, GEMINI_DA
                       MARKETING_STOPPED_ON, MARKETING_WINDOW_LAST_DAY, ROOT_DIR,
                       experiment_job_deadline, experiment_plan, in_marketing_window,
                       load_marketing_prompts,
-                      marketing_gemini_allowance)
+                      marketing_gemini_allowance, observation_pause_window, observation_paused)
 
 DIARY_FILE = ROOT_DIR / "output" / "reports" / "experiment47_diary.md"
 
@@ -220,6 +220,12 @@ def main(argv: Optional[List[str]] = None) -> int:
     lines = [f"## prompt_marketing {date}({a.model})"]
     if marketing.month_of(date) < MARKETING_FIRST_MONTH:
         print("\n".join(lines + [f"- 初回の月({MARKETING_FIRST_MONTH})より前のため何もしない"]))
+        return 0
+    if observation_paused(date):
+        # 日次・月次・週次と同時に止める(2026-10-17〜・config/observation_pause.yaml)。投げず、quota_skipped も書かない
+        # (止めた月の行を欠測に見せないため)。再開は日次・週次と同時
+        start, until = observation_pause_window()
+        run_experiment._job_summary(lines + [f"- 停止中({start}〜{until or '再開日未定'}・ダッシュボードの再設計のため)。何もしない"])
         return 0
     prompts = load_marketing_prompts()
     out_dir = DATA_RAW_MARKETING_DIR / date

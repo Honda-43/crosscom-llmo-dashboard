@@ -43,7 +43,7 @@ import retired_urls
 import notify_slack
 import sheets_writer
 from settings import (DATA_RAW_MONTHLY_DIR, MAX_RETRIES, MONTHLY_BATCHES,
-                      load_monthly_prompts)
+                      load_monthly_prompts, observation_pause_window, observation_paused)
 
 # 日次観測の本数。月次を日次と同じ日に走らせる場合だけ足す。
 DAILY_PROMPT_COUNT = 7
@@ -152,6 +152,12 @@ def main() -> None:
     args = ap.parse_args()
 
     date = args.date or dt.datetime.now(JST).strftime("%Y-%m-%d")
+    if observation_paused(date):
+        # 日次・月次・週次の観測と配信の一時停止(2026-10-17〜・config/observation_pause.yaml)。観測も配信もしない
+        start, until = observation_pause_window()
+        _job_summary([f"## LLMO monthly observation — {date[:7]}", "",
+                      f"- ⏸ 月次観測は停止中({start}〜{until or '再開日未定'}・ダッシュボードの再設計のため)。何もしない"])
+        return
     # Claude API の1日の呼び出し上限(2026-10-03)。回数は実際に呼ぶ日(JST の今日)で数える
     claude_budget.start('monthly')
     month = date[:7]

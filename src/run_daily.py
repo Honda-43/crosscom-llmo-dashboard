@@ -41,7 +41,8 @@ import looker_tabs
 import notify_slack
 import retired_urls
 import sheets_writer
-from settings import DATA_RAW_DIR, WEEKDAY_LABELS, is_daily_llm_day, load_prompts
+from settings import (DATA_RAW_DIR, WEEKDAY_LABELS, is_daily_llm_day, load_prompts,
+                      observation_pause_window, observation_paused)
 
 
 def _job_summary(lines: List[str]) -> None:
@@ -175,8 +176,14 @@ def main() -> None:
     # 日次7本の観測は 火・木・土 だけ(2026-09-14。実験47本に Gemini の枠を回すため)。
     # **ワークフローは毎日走らせる。** GA4 / GSC は1回の実行で1日分しか取らないので、
     # 実行ごと止めるとその日のデータが欠ける。止めるのは LLM の観測だけ。
+    # 2026-10-17 から日次観測と毎日の結果の配信を一時停止(config/observation_pause.yaml)。止めている間は
+    # 観測しない日と同じ扱い(GA4・GSC は取る。Slack は失敗・警告のときだけ)
     llm_day = args.force_llm or is_daily_llm_day(date)
-    if not llm_day:
+    if not llm_day and observation_paused(date):
+        start, until = observation_pause_window()
+        summary_lines.append(f"- LLM観測と日次の配信: 停止中({start}〜{until or '再開日未定'}・ダッシュボードの再設計のため)。"
+                             "GA4・GSC・Looker用タブは通常どおり。Slack は失敗・警告のときだけ")
+    elif not llm_day:
         weekday = WEEKDAY_LABELS[dt.date.fromisoformat(date).weekday()]
         summary_lines.append(f"- LLM観測: {weekday}曜は日次観測の曜日ではないためスキップ"
                              "(GA4・GSC・Looker用タブは通常どおり)")

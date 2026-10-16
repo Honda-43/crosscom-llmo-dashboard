@@ -37,7 +37,7 @@ import repeat_pairs
 import rules_engine
 import run_experiment
 import sheets_writer
-from settings import DATA_REPORTS_DIR
+from settings import DATA_REPORTS_DIR, observation_pause_window, observation_paused
 
 
 def _job_summary(lines: List[str]) -> None:
@@ -122,8 +122,18 @@ def main() -> None:
     failures: List[str] = []
     lines: List[str] = [f"## LLMO weekly pipeline — {date}", ""]
 
+    # 日次・月次・週次の観測と配信の一時停止(2026-10-17〜・config/observation_pause.yaml)。
+    # 止めている間は Ahrefs・ルール・所見の生成・Slack の配信をしない。下の実験の行(503欠測・観測本数)は出す
+    paused = observation_paused(date)
+    if paused:
+        start, until = observation_pause_window()
+        lines.append(f"- ⏸ 週次所見の生成と配信は停止中({start}〜{until or '再開日未定'}・ダッシュボードの再設計のため)。"
+                     "Ahrefs・ルール・所見・Slack は動かさない。実験の行だけ出す")
+
     # 1. Ahrefs (best-effort, unchanged)
-    if args.skip_ahrefs:
+    if paused:
+        ahrefs = None
+    elif args.skip_ahrefs:
         ahrefs = None
         lines.append("- Ahrefs: skipped (--skip-ahrefs)")
     else:
@@ -135,7 +145,7 @@ def main() -> None:
         )
 
     # 2. Stage 1 — deterministic rules
-    stats = _run("rules_engine", lambda: rules_engine.run(date), failures)
+    stats = None if paused else _run("rules_engine", lambda: rules_engine.run(date), failures)
 
     report_md, source = None, None
     delivered = False
@@ -255,7 +265,7 @@ def main() -> None:
     # a degraded weekly insight is something to notice, not to swallow.
     critical = [f for f in failures if not f.startswith(("collect_ahrefs", "write_ahrefs"))]
     _step_outputs(delivered, critical)
-    sys.exit(1 if critical or stats is None or report_md is None else 0)
+    sys.exit(1 if critical or (not paused and (stats is None or report_md is None)) else 0)
 
 
 if __name__ == "__main__":
