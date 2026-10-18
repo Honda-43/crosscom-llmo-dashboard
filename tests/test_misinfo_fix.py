@@ -156,7 +156,7 @@ def test_the_three_places_point_at_the_same_article():
     assert pool.load_allocation()[SLUG] == "②FAQのみ"
     edits = drift_check.load_expected_edits()
     assert [e["slug"] for e in edits] == [SLUG]
-    assert edits[0]["from"] == "2026-10-18" and edits[0]["intervention"] == "I-41・I-42"
+    assert edits[0]["from"] == "2026-10-18" and edits[0]["intervention"] == "I-41・I-42・I-43"
     assert len(edits[0]["paragraphs"]) == pool.MISINFO_FIX_PARAGRAPHS == 26
     assert len(edits[0]["faq_answers"]) == pool.MISINFO_FIX_FAQ_ANSWERS == 2
     row = _real_row()
@@ -182,7 +182,8 @@ def test_e33_is_in_none_of_the_existing_rows_so_it_is_its_own_row():
 
 
 def test_the_report_states_the_direction_of_the_bias_in_both_judgements(capsys):
-    text = ("アフター期間中（2026-10-18）に E33（②）の本文26段落と FAQ の答え2か所を修正。②の引用が下がる場合、リードの効果は大きめ（甘い方向）、"
+    text = ("アフター期間中（2026-10-18）に E33（②）の本文と FAQ の数字の修正、および架空の例と『当社では』の分離を実施。"
+            "②の引用が下がる場合、リードの効果は大きめ（甘い方向）、"
             "FAQの効果は小さめに出る。リードの早期解放は『誤情報修正1本抜き』でも効果の向きが同じときだけ通る")
     for span in ("2026-10-06:2026-11-01", "2026-10-06:2026-12-28"):      # 短期・長期
         assert summarize.print_misinfo_fix_note(span)
@@ -200,65 +201,133 @@ def test_the_real_fix_row_is_in_the_confounder_list():
     assert [k for k, _ in groups].index("プール46本") < [k for k, _ in groups].index("site_structure")
 
 
-def _real_diff(after_text):
+def _fixture(name):
+    return (FIXTURES / f"drift_sales_roleplay_{name}.txt").read_text(encoding="utf-8")
+
+
+def _real_diff(after_text, base="before"):
     import difflib
-    before = (FIXTURES / "drift_sales_roleplay_before.txt").read_text(encoding="utf-8").split("\n")
-    return list(difflib.unified_diff(before, after_text.split("\n"), lineterm="", n=1))
+    return list(difflib.unified_diff(_fixture(base).split("\n"), after_text.split("\n"), lineterm="", n=1))
 
 
-def test_the_real_published_change_is_expected_by_the_drift_check():
+def _judge(after_text, today="2026-10-19", base="before"):
+    """週次と同じ判定(差分の行と、前回・今回の本文の全体の両方で確かめる)。"""
+    return drift_check.expected_edit_for(SLUG, _real_diff(after_text, base), today, drift_check.load_expected_edits(),
+                                         _fixture(base), after_text)
+
+
+def test_the_real_published_change_at_15_46_was_expected_until_the_rest_fix():
     """seo-agent の公開 HTML の前後(_7174_public_before/after.html を drift_check と同じ形にしたもの)。
-    変わったのは26段落と記事の「更新」の日付(2026-09-29 → 2026-10-18)だけ。関連記事の並びは本文から切り落とされている。"""
-    after = (FIXTURES / "drift_sales_roleplay_after.txt").read_text(encoding="utf-8")
+    15:46 の時点で変わったのは26段落と記事の「更新」の日付(2026-09-29 → 2026-10-18)だけ。関連記事の並びは本文から切り落とされている。
+    16:44 の I-43 で同じ段落をさらに直したので、15:46 の状態は今は「最後の修正の途中」= 想定外(戻されたら気づく)。"""
+    after = _fixture("after")
     edits = drift_check.load_expected_edits()
     diff = _real_diff(after)
     assert "-2026-09-29" in diff and "+2026-10-18" in diff
-    assert drift_check.expected_edit_for(SLUG, diff, "2026-10-19", edits) is edits[0]
-    assert drift_check.expected_edit_for(SLUG, diff, "2026-10-17", edits) is None, "適用日より前"
-    # 26段落以外の行が1行でも変われば想定外
-    assert drift_check.expected_edit_for(SLUG, _real_diff(after.replace("目次", "もくじ", 1)), "2026-10-19", edits) is None
-    # 更新日が適用日でない日付に変わったのも想定外
-    assert drift_check.expected_edit_for(SLUG, _real_diff(after.replace("2026-10-18", "2026-10-25", 1)),
-                                         "2026-10-26", edits) is None
+    assert _judge(after) is None, "途中の状態(I-43 で書き換えた)は想定外"
+    # 26段落以外の行が1行でも変われば想定外・更新日が適用日でない日付に変わったのも想定外(最後の状態で確かめる)
+    final = _fixture("after_rest")
+    assert _judge(final) == edits[0]
+    assert _judge(final, "2026-10-17") is None, "適用日より前"
+    assert _judge(final.replace("目次", "もくじ", 1)) is None
+    assert _judge(final.replace("2026-10-18", "2026-10-25", 1), "2026-10-26") is None
     # 15:46 の時点では FAQ の答えに元の数字が残っていた(16:05 に I-42 で直した)
     assert "41%" in after
 
 
 def _faq_after():
-    return (FIXTURES / "drift_sales_roleplay_after_faq.txt").read_text(encoding="utf-8")
+    return _fixture("after_faq")
 
 
-def test_the_faq_fix_is_also_expected_by_the_drift_check():
-    """16:05:54 に FAQ の答え2か所も直した(I-42)。10/12 の週次の基準(=修正前)から見ても、15:46 の状態から見ても想定内。
+def test_the_faq_fix_is_in_the_expected_edits_and_only_the_shown_text_is_compared():
+    """16:05:51 に FAQ の答え2か所も直した(I-42)。15:46 → 16:05 の差分は FAQ の答え2行だけ。
     表示の FAQ の文だけを比べる(FAQPage の構造化データは <script> の中なので body_of で落ちている)。"""
     import difflib
-    edits = drift_check.load_expected_edits()
     after = _faq_after()
     assert "41%" not in after and "営業役をやるのが数名で、営業全員に一巡するまで1年近くかかる計算でした" in after
-    assert drift_check.expected_edit_for(SLUG, _real_diff(after), "2026-10-19", edits) is edits[0]
-    mid = (FIXTURES / "drift_sales_roleplay_after.txt").read_text(encoding="utf-8").split("\n")
+    mid = _fixture("after").split("\n")
     diff = list(difflib.unified_diff(mid, after.split("\n"), lineterm="", n=1))
     assert len([x for x in diff if x[:1] in "+-" and not x.startswith(("+++", "---"))]) == 4, "FAQ の答え2行だけ"
-    assert drift_check.expected_edit_for(SLUG, diff, "2026-10-19", edits) is edits[0]
+    befores, _ = drift_check._paragraphs(drift_check.load_expected_edits()[0])
+    assert all(any(drift_check._flat(x[1:]) in b for b in befores) for x in diff if x[:1] == "-" and x[:3] != "---")
     raw = drift_check.body_of('<article><p>本文</p><script type="application/ld+json">{"@type":"FAQPage","x":"41%"}</script></article>')
     assert "FAQPage" not in raw, "構造化データは比べていない"
 
 
-def test_anything_besides_the_26_paragraphs_two_answers_and_the_date_is_unexpected():
-    edits = drift_check.load_expected_edits()
-    after = _faq_after()
-    # ほかの FAQ の答え(質問①)を変えた
-    q1 = [ln for ln in after.split("\n") if ln.startswith("質問①")]
-    assert q1
+def test_anything_besides_the_planned_changes_and_the_date_is_unexpected():
+    after = _fixture("after_rest")
+    # ほかの FAQ の答え(質問③)を変えた
+    q = [ln for ln in after.split("\n") if ln.startswith("質問③")]
+    assert q
     lines = after.split("\n")
-    i = lines.index(q1[0]) + 1
+    i = lines.index(q[0]) + 1
     lines[i] = lines[i] + "（追記）"
-    assert drift_check.expected_edit_for(SLUG, _real_diff("\n".join(lines)), "2026-10-19", edits) is None
+    assert _judge("\n".join(lines)) is None
     # FAQ の答えを決めた内容と違う文に変えた
     other = after.replace("参加率は4割ほどまで下がり続けました", "参加率は半分ほどまで下がり続けました", 1)
     assert other != after
-    assert drift_check.expected_edit_for(SLUG, _real_diff(other), "2026-10-19", edits) is None
+    assert _judge(other) is None
     # 見出し(H3)を変えた
     h3 = after.replace("指標②1人あたりの練習の回数", "指標②1人あたりの練習の頻度", 1)
     assert h3 != after
-    assert drift_check.expected_edit_for(SLUG, _real_diff(h3), "2026-10-19", edits) is None
+    assert _judge(h3) is None
+
+
+# --- 2026-10-18 16:44:20(リビジョン 9049):残りの30か所(I-43)と時刻の訂正 ----------------------------
+def _row_of(iid):
+    import interventions
+    rows = [r for r in interventions.load() if r["intervention_id"] == iid]
+    assert len(rows) == 1
+    return rows[0]
+
+
+def test_the_times_are_corrected_in_the_notes_without_removing_the_old_text():
+    i41, i42 = _row_of("I-41"), _row_of("I-42")
+    assert i41["description"].startswith("15:46:09 ") and i42["description"].startswith("16:05:54 "), "既存の記述は残す"
+    assert "【時刻の訂正】本文の修正は 15:46:07 JST（WordPress のリビジョンの時刻）。記録の 15:46:09 は保存の返事を受け取った時刻" in i41["note"]
+    assert "【時刻の訂正】FAQ の修正は 16:05:51 JST（WordPress のリビジョンの時刻）。記録の 16:05:54 は保存の返事を受け取った時刻" in i42["note"]
+    assert "【2026-10-18 訂正】『FAQ は不変』は誤り" in i41["note"], "前の訂正も残る"
+
+
+def test_the_rest_fix_is_recorded_as_i43_in_the_same_sensitivity_row():
+    r = _row_of("I-43")
+    assert str(r["date"]) == "2026-10-18" and r["description"].startswith(f"16:44:20 {SLUG} の防災設備の例の数字の残り")
+    assert "『当社では』が続く2か所を分離（誤引用の原因の並びの解消）" in r["description"]
+    assert (r["scope"], r["executor"], r["touches_pool46"]) == ("プール46本", "seo-agent（9d）", "yes")
+    assert f"組②FAQのみ（{EID}）" in r["note"] and "（I-41・I-42 と同じ行）" in r["note"]
+    assert "sales_roleplay_rest_applied_record_20261018.md" in r["note"]
+    assert summarize.variants()[-1] == ("誤情報修正1本抜き（E33）", {SLUG}), "感度分析は変えない(同じ1行)"
+    e = drift_check.load_expected_edits()[0]
+    assert e["rest_revision"] == 9049 and e["rest_applied_at_jst"] == "2026-10-18 16:44:20"
+    assert len(e["rest_changes"]) == pool.MISINFO_FIX_REST_CHANGES == 30
+    assert sum(c["where"] == "本文" for c in e["rest_changes"]) == 28
+    for c in e["rest_changes"]:
+        if c["where"] != "本文":     # FAQ は記録の置き換えを当てると表示の文になる
+            assert c["before"].replace(c["fragment_before"], c["fragment_after"]) == c["after"]
+
+
+def _rest_after():
+    return _fixture("after_rest")
+
+
+def test_the_rest_fix_is_expected_from_the_weekly_baseline_and_from_the_faq_state():
+    edits = drift_check.load_expected_edits()
+    after = _rest_after()
+    # 10/12 の週次の基準(修正前)から見る:10/19 の回はこれ
+    assert _judge(after) == edits[0]
+    # 16:05 の状態から見る:変わった行は30か所ぶん
+    diff = _real_diff(after, "after_faq")
+    assert len([x for x in diff if x[:1] == "+" and not x.startswith("+++")]) == 30
+    assert _judge(after, base="after_faq") == edits[0]
+    assert "この例は説明のための架空の例で、当社の支援事例ではありません。" in after
+
+
+def test_other_changes_after_the_rest_fix_are_unexpected():
+    after = _rest_after()
+    cases = [after.replace("この例は説明のための架空の例で、当社の支援事例ではありません。", "", 1),   # 分離の一文を消した
+             after.replace("従業員百数十名", "従業員168名", 1),                                       # 数字を戻した
+             after.replace("指標②1人あたりの練習の回数", "指標②1人あたりの練習の頻度", 1)]             # 見出し
+    for text in cases:
+        assert text != after
+        assert _judge(text) is None
+

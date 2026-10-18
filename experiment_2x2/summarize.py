@@ -44,7 +44,7 @@ import rerandomize  # noqa: E402
 from pool import GROUP_BLIND_UNTIL  # noqa: E402
 from pool import LINK_LOSS_IDS, LINK_LOSS_SCOPE, LINK_LOSS_SLUGS  # noqa: E402
 from pool import (MISINFO_FIX_FAQ_ANSWERS, MISINFO_FIX_IDS, MISINFO_FIX_PARAGRAPHS,  # noqa: E402
-                  MISINFO_FIX_SCOPE, MISINFO_FIX_SLUGS)
+                  MISINFO_FIX_REST_CHANGES, MISINFO_FIX_SCOPE, MISINFO_FIX_SLUGS)
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
                   LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
                   late_appended_slugs, load_allocation, multi_paragraph_slugs,
@@ -462,11 +462,14 @@ def print_misinfo_fix_note(after, rows=None):
         return False
     group = load_allocation().get(MISINFO_FIX_SLUGS[0], "")
     mark = group[:1]
-    print(f"**アフター期間中（{day}）に {'・'.join(MISINFO_FIX_IDS)}（{mark}）の本文{MISINFO_FIX_PARAGRAPHS}段落と FAQ の答え{MISINFO_FIX_FAQ_ANSWERS}か所を修正。"
+    print(f"**アフター期間中（{day}）に {'・'.join(MISINFO_FIX_IDS)}（{mark}）の本文と FAQ の数字の修正、"
+          "および架空の例と『当社では』の分離を実施。"
           f"{mark}の引用が下がる場合、リードの効果は大きめ（甘い方向）、FAQの効果は小さめに出る。"
           "リードの早期解放は『誤情報修正1本抜き』でも効果の向きが同じときだけ通る**"
-          f"（{MISINFO_FIX_SLUGS[0]}・{group}。数字のある段落に架空の事例である旨の断りを足し、数字を幅のある表現に。"
-          "FAQ の答えも数字だけ幅のある表現に（問いの数・順番・位置は不変）。見出し・リード・リンクは不変。感度分析の「誤情報修正1本抜き」を参照）\n")
+          f"（{MISINFO_FIX_SLUGS[0]}・{group}。15:46:07 に本文{MISINFO_FIX_PARAGRAPHS}段落、16:05:51 に FAQ の答え"
+          f"{MISINFO_FIX_FAQ_ANSWERS}か所、16:44:20 に残りの{MISINFO_FIX_REST_CHANGES}か所（本文28・FAQ の答え2）。"
+          "数字を幅のある表現にし、架空の事例である旨の断りを足し、架空の例の直後に「当社では」が続く2か所を分離。"
+          "FAQ は数字だけ（問いの数・順番・位置は不変）。見出し・リード・リンクは不変。感度分析の「誤情報修正1本抜き」を参照）\n")
     return True
 
 

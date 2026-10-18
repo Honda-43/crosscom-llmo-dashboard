@@ -97,6 +97,7 @@ def author_only_change(diff, today, since=AUTHOR_CHANGE_FROM):
 # 　[{"slug", "from"(適用日 YYYY-MM-DD), "intervention"(I-xx), "paragraphs": [{"para", "before", "after"}, ...],
 # 　  "faq_answers": [{"question", "before", "after"}, ...](FAQ の答え。表示の文だけを比べる。FAQPage の構造化データは
 # 　  <script> の中なので body_of で落ちていて、そもそも比べていない),
+# 　  "rest_changes": [{"para", "where", "before", "after"}, ...](同じ記事のあとの追加修正。本文の段落と FAQ の答え),
 # 　  "update_date_display"(true なら記事の「更新」の日付が適用日に変わる行も想定内)}]。
 # 　段落は seo-agent の記録をそのまま入れる（HTML でも素のテキストでもよい。"before"/"after" を1段落ぶん直接書いてもよい）。
 # 　ファイルが無ければ何もしない。
@@ -119,15 +120,27 @@ def _flat(text):
     return _TAGS_AND_SPACE.sub('', str(text or ''))
 
 
-def _paragraphs(edit):
-    paras = list(edit.get('paragraphs') or []) + list(edit.get('faq_answers') or [])
+def _pair_list(edit):
+    """決めた修正の前後の組を、当てる順（本文 → FAQ → 追加修正）に並べる。"""
+    paras = [p for key in ('paragraphs', 'faq_answers', 'rest_changes') for p in (edit.get(key) or [])]
     if 'before' in edit or 'after' in edit:
         paras.append({'before': edit.get('before'), 'after': edit.get('after')})
-    return [_flat(p.get('before')) for p in paras], [_flat(p.get('after')) for p in paras]
+    return paras
 
 
-def expected_edit_for(slug, diff, today, edits):
-    """差分がその記事の決めた修正の段落の中だけなら、その修正（dict）。違えば None。"""
+def _paragraphs(edit):
+    paras = _pair_list(edit)
+    befores = [_flat(p.get('before')) for p in paras]
+    # あとの修正で書き換えた途中の文(ある修正の後 = 次の修正の前)は、足された行としては認めない。
+    # 認めると、最後の修正を途中の文へ戻したのを想定内と読んでしまう(2026-10-18・I-43)
+    later = set(befores)
+    return befores, [a for a in (_flat(p.get('after')) for p in paras) if a not in later]
+
+
+def expected_edit_for(slug, diff, today, edits, old_text=None, new_text=None):
+    """差分がその記事の決めた修正の段落の中だけなら、その修正（dict）。違えば None。
+
+    ``old_text``・``new_text``（前回と今回の本文テキスト）を渡すと、修正を当てた結果が今回と同じかも確かめる（週次はこちら）。"""
     lines = [x for x in diff if x[:1] in '+-' and not x.startswith(('+++', '---'))]
     for e in edits:
         day = str(e.get('from', '9999'))
@@ -141,10 +154,33 @@ def expected_edit_for(slug, diff, today, edits):
             if day in added and any(_DATE_LINE.match(x) for x in removed):
                 added.remove(day)
                 removed.remove(next(x for x in removed if _DATE_LINE.match(x)))
-        if (added and all(x and any(x in a for a in afters) for x in added)
+        if not (added and all(x and any(x in a for a in afters) for x in added)
                 and all(any(x in b for b in befores) for x in removed if x)):
-            return e
+            continue
+        if old_text is not None and new_text is not None and not _replays(e, old_text, new_text, diff):
+            continue
+        return e
     return None
+
+
+def _replays(edit, old_text, new_text, diff):
+    """前回の本文に決めた修正を順に当てると、今回の本文と一字一句同じになるか（2026-10-18・I-43）。
+
+    行ごとの照合だけだと、修正後の段落の一部を消した（例：例と「当社では」を分ける一文を消した）変化も
+    「修正後の段落の一部」として通ってしまう。本文の全体で確かめる。タグの位置で行が分かれても同じに比べるため、
+    空白とタグを落とした文字列で比べる。"""
+    lines = old_text.split('\n')
+    if edit.get('update_date_display'):
+        day = str(edit.get('from', ''))
+        old_dates = [x[1:] for x in diff if x[:1] == '-' and not x.startswith('---') and _DATE_LINE.match(x[1:])]
+        if old_dates and ('+' + day) in diff:
+            lines[lines.index(old_dates[0])] = day
+    text = _flat(''.join(lines))
+    for p in _pair_list(edit):
+        before, after = _flat(p.get('before')), _flat(p.get('after'))
+        if before:
+            text = text.replace(before, after)
+    return text == _flat(new_text.replace('\n', ''))
 
 
 def markup_diff(before, after, limit=6, ctx=60):
@@ -338,7 +374,7 @@ def main():
                                              tofile=f'{slug} 今回({today})', lineterm='', n=1))
             item = {'slug': slug, 'url': url, 'prev': prev, 'now': digest,
                     'prev_checked': ref[slug]['checked'], 'diff': diff}
-            edit = expected_edit_for(slug, diff, today, edits) if diff else None
+            edit = expected_edit_for(slug, diff, today, edits, '\n'.join(before), text) if diff else None
             if diff and author_only_change(diff, today):
                 author_expected.append(item)
                 print(f'  ○想定内の変化 {slug}（著者表示の変更 I-31・I-32 の行だけ）')
