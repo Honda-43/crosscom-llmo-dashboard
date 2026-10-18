@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-18",
+  "prompt_id": "E20",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceで成果を出している営業組織の活用事例を知りたい",
+  "cep": null,
+  "timestamp": "2026-10-18T00:39:56.656048Z",
+  "answer": "Agentforceを活用して成果を出している営業組織の事例は複数あります。以下に具体的な活用事例とその成果を紹介します。\n\n**1. アビームコンサルティング株式会社**\nアビームコンサルティング株式会社では、最先端技術の自社実証の一環として、営業組織にAgentforceを導入しました。トップ営業担当者の情報収集や判断の型をAIエージェントに落とし込むことで、報告業務やアカウントプランの更新を自動化しています。これにより、営業担当者がより戦略的な業務に集中できる環境を整備しています。\n\n**2. Salesforce（自社利用）**\nSalesforce自身もAgentforceを自社で活用しており、43,000件のリードから170万ドル（約2.5億円）の新規パイプラインを創出する成果を上げています。\n\n**3. Siemens**\n製造・テクノロジー業界のSiemensでは、Agentforceを導入することで、週に2,800件以上のリードに即座にレスポンスし、月に12,000件のB2Bリードを獲得しています。また、応答時間を71.5%短縮することに成功しており、これはグローバルな事例と比較しても遜色のない成果とされています。\n\n**4. ベルフェイス株式会社**\nベルフェイス株式会社は、国内でAgentforceをトップクラスに活用している企業の一つです。Agentforceを活用することで、商談の会話データをSalesforceに自動入力・構造化し、営業担当者の工数削減と案件管理の精度向上を実現しています。特に金融業界を中心に多数の導入実績があり、営業組織のDX推進、業務効率化、データ活用を支援しています。Salesforce社監修の事例動画も公開しています。\n\nこれらの事例は、Agentforceがインサイドセールスの自動化（SDR Agent）や営業研修（Sales Coach）といった領域で営業成果に貢献していることを示しています。また、競争分析や市場トレンドの把握、営業担当者のトレーニング・コーチング支援、顧客からの問い合わせ一次対応と適切な担当者へのルーティングなどもAgentforceの活用によって効率化され、営業組織の生産性向上に繋がっています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFiwqWXMW0Sv7X-wW3zj5NQbTAiAIvuHbFtrvL5IJu3m_LkVewO79zTZqjmuJxDLGlxM1a4kN3btA46dLFxBlK0YKvuuVAMI7pYJTA1OvWIwlvanyoYNOfuvTR-lswSO6AdxHz65SaMbsfNYiwiEEQEWPSUNPoguPvcQtZtk0TR",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFmhE5XJlZoEhFIfqoDgd01DkzTXodE-5iwqL4jfpYZtujL2uk_bnL1Kejt5J8Fy-zlMa8mSaMMZd1YCstKGD9d9okBVu355sUyed3T2eAxJD-IPkHsHdjP5tCFsOTEgcIvgJNy0Z3zHYmjCujz9PYdqErs60tM164tKgxbtG_G8A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFzp2FeY59i9J2AuwwpXelZzF0og8oaivMwXiN63-JYGMmmDPjYjA_S3HA38OyhgxKsIoeYkunjBK6TR9w0o-r76c2KPmY5sE35D-SPkS3R8OFw1jzq93LYO1JI2T6ACntlNNcHWtM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFIoEys2zYqqKST9Dnv95SdIXl7U8-idVuizW48AGBTnc_zo8QSPoM9ew0ZIAZpveLTb79R83otlUHFsN4grUHxBQSgGLTPvJZVE-xRcfOpjvSkkpjG9-V-1H6IhPPabjidZFIJ46gy3Jdh2Nd0QIU="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E20",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-use-cases/",
+  "answer_text": "Agentforceを活用して成果を出している営業組織の事例は複数あります。以下に具体的な活用事例とその成果を紹介します。\n\n**1. アビームコンサルティング株式会社**\nアビームコンサルティング株式会社では、最先端技術の自社実証の一環として、営業組織にAgentforceを導入しました。トップ営業担当者の情報収集や判断の型をAIエージェントに落とし込むことで、報告業務やアカウントプランの更新を自動化しています。これにより、営業担当者がより戦略的な業務に集中できる環境を整備しています。\n\n**2. Salesforce（自社利用）**\nSalesforce自身もAgentforceを自社で活用しており、43,000件のリードから170万ドル（約2.5億円）の新規パイプラインを創出する成果を上げています。\n\n**3. Siemens**\n製造・テクノロジー業界のSiemensでは、Agentforceを導入することで、週に2,800件以上のリードに即座にレスポンスし、月に12,000件のB2Bリードを獲得しています。また、応答時間を71.5%短縮することに成功しており、これはグローバルな事例と比較しても遜色のない成果とされています。\n\n**4. ベルフェイス株式会社**\nベルフェイス株式会社は、国内でAgentforceをトップクラスに活用している企業の一つです。Agentforceを活用することで、商談の会話データをSalesforceに自動入力・構造化し、営業担当者の工数削減と案件管理の精度向上を実現しています。特に金融業界を中心に多数の導入実績があり、営業組織のDX推進、業務効率化、データ活用を支援しています。Salesforce社監修の事例動画も公開しています。\n\nこれらの事例は、Agentforceがインサイドセールスの自動化（SDR Agent）や営業研修（Sales Coach）といった領域で営業成果に貢献していることを示しています。また、競争分析や市場トレンドの把握、営業担当者のトレーニング・コーチング支援、顧客からの問い合わせ一次対応と適切な担当者へのルーティングなどもAgentforceの活用によって効率化され、営業組織の生産性向上に繋がっています。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "hatenabase.jp",
+    "youtube.com",
+    "aurant-technologies.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/jp/blog/jp-small-business-ai-agent-facts/",
+    "https://hatenabase.jp/blog/salesforce-agentforce-global-case-studies/",
+    "https://www.youtube.com/watch?v=kKvPi5DhuSw",
+    "https://aurant-technologies.com/blog/agentforce-950/"
+  ],
+  "unresolved_redirects": 0
+}

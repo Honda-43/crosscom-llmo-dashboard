@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-18",
+  "prompt_id": "E19",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceで最初のエージェントを1体作るまでの設定手順を教えて",
+  "cep": null,
+  "timestamp": "2026-10-18T00:36:12.910506Z",
+  "answer": "Agentforceで最初のエージェントを作成するまでの設定手順は、主に以下のステップで構成されます。\n\n**1. 利用環境と権限の準備**\nAgentforceを利用するには、まずSalesforce環境でEinsteinおよびAgentforceを有効化し、適切な権限をユーザーに付与する必要があります。\n*   **Einsteinの有効化**: Salesforceの設定から「Einstein 設定」を検索し、「Einstein を有効化」のトグルをONにします。ブラウザを再読み込み後、再度設定で「エージェント」を検索し、「Agentforce」のトグルをONにします。\n*   **エージェントへの権限付与**: 「ユーザー」を検索し、「EinsteinServiceAgent User」の編集からプロファイルを「Einstein Agent User」に設定します。必要に応じて、エージェントが実行するアクションに応じた権限を付与します。 Agentforceのアドオン、Agentforce (Default)、Agentforce Service Agent Builder、Data Cloud、Einstein Prompt Templatesなどの権限セットライセンスと、Agentforce デフォルト管理者、Agentforce サービスエージェント設定、Agentforce デフォルトエージェントへのアクセス、プロンプトテンプレートマネージャー、Data Cloud アーキテクトなどの権限セットが必要になる場合があります。\n\n**2. Agent Builderでのエージェント作成**\n環境の準備ができたら、Agent Builderを使用してエージェント本体を作成します。\n*   **新しいエージェントの作成**: クイック検索で「エージェント」を検索し、「新しいエージェント」をクリックします。\n*   **テンプレートの選択**: 「Agentforce Employee Agent」などのテンプレートを選択するか、一からエージェントを作成します。\n*   **エージェントの役割と指示文の設定**: エージェントの役割を定義し、その動作を指示するプロンプトを設定します。エージェントがデフォルトで使用する言語や、カジュアル、フォーマルといった口調も設定可能です。\n\n**3. トピックとアクションの設定**\nエージェントに具体的な業務を実行させるためのトピック（またはサブエージェント）とアクションを設定します。\n*   **トピックの追加**: エージェントが対応する業務や質問の範囲を「トピック」として追加します。テンプレートを選択した場合、関連するトピックが自動的に設定されることもあります。 2026年4月以降、トピックは「サブエージェント」と呼ばれることもあります。\n*   **アクションの設定**: エージェントがトピックに基づいて実行できるアクションを定義します。これには、ケースの作成、商談の更新、メール送信、ワークフローのトリガーなどが含まれます。\n\n**4. テストと公開**\nエージェントが意図通りに機能するかをテストし、問題がなければ公開します。\n*   **会話のテスト**: 作成したエージェントの会話プレビュー機能を使用して、実際にエージェントがどのように応答し、アクションを実行するかを確認します。 設定変更をチャットに反映させるには、会話プレビュー右上の更新ボタンをクリックする必要があります。\n*   **公開**: テストで問題がなければ、エージェントを公開し、ユーザーが利用できるようにします。\n\nこれらの手順は、Salesforceの公式ドキュメントや関連するブログ記事で詳しく解説されています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGvFfnToEq4dpmPUxi3TqscBDnHMcqaDlZSP1gtiYugYbuo4dU4UcqY5b_XxSUPLFezrVqH-M7sOzQhSaJI0t2x9WbFoIr9clkM8HIhRUvHhqDq550MGDJnYXTDyv_uhE9B4aCH80d0fvQPM5YSFAN6nn3gbkzj1yaIgDj820iweZUvb3G2",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFB58pHrOHwdO5SFZ5GVQtFoDiwo5fAMb5GGsgFRHiQubssmSAmosdGzsml4Vn3ESu3PNG6kvZsEYzsR2_LxgPdaY-KTIkAgPDvNXtkMSlXOk251QOjt7zabvZfC_NQlrXH1hbtHioa8k9cmBbi4W4TwoDsYhugwDgi45EGGdK5tdEsZnZx",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFtCzgOmouosfLIxjyl9_RFdCORGjESQhmPgrgWSas2flmjP9FJJvWPjJywk0XvN4wDw_wk9fwD08z-1QYlraJdx96xYbWPVzUKrGEXGTGEG25v90nbbos4GzhXbE-qX1IxDGTWJ0ntGjSsOw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEvkySQ4T6TfqKZWyvICyVATOVD7Udi2Ylr5aX-C3eOFWVe2kYZoocWTs4q77yuI7n-6iC1iHOQZaVnpDlAebSfOaOpnleNMSpZaIev9mJ-5vDyfgNG8Ea5m_h7uHr6b4VN",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFc0xyadlGPW9hPdEoVB3fc2Na-2mRDa5XQv9DeYjsu9A3f00JOl5YGVCEM_lwglvdCwf_9b4Pm00k9Zz2HgfyL4dScYrhNy_ZkyppLaxLDusohMVmuhBum9sA7X_fKjeHKI-sV42D7wb8i6l9kWLK8Pdvq-YjymHvN9tIo2-gm",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE8ySgRy7FnBxji5dSXlnYkJMxF-_EDrDZfLpNH8Y5rfnooAUAnKiclKDOng2Le3KSwmXONUbCCAFZvuttdX5o-wWkIf_P6jaO4ykoRkdsx0M-B3wUJexfwt8ZlZ3kD54Nt-D8T5PCycreGXYKJMJmzbyd1OYiHQm6KO97BuqokxRkMrt9X",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHSQb2MyWcbhE8_4kf8KP6xs5gaM4pe4bhQG2ofSGPeRHkiWYqLPXD6GPcInoKjUmQjb9Y5zFbbtkfiY92PUcWyP6gst6g7Ag5z_R4qpcUzSoQa6WhVJ4uMtKuwqIuqHyS2nQMP2TfzN54OJb2-2WlML1v_gHc-QZYXMQ=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E19",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-usage/",
+  "answer_text": "Agentforceで最初のエージェントを作成するまでの設定手順は、主に以下のステップで構成されます。\n\n**1. 利用環境と権限の準備**\nAgentforceを利用するには、まずSalesforce環境でEinsteinおよびAgentforceを有効化し、適切な権限をユーザーに付与する必要があります。\n*   **Einsteinの有効化**: Salesforceの設定から「Einstein 設定」を検索し、「Einstein を有効化」のトグルをONにします。ブラウザを再読み込み後、再度設定で「エージェント」を検索し、「Agentforce」のトグルをONにします。\n*   **エージェントへの権限付与**: 「ユーザー」を検索し、「EinsteinServiceAgent User」の編集からプロファイルを「Einstein Agent User」に設定します。必要に応じて、エージェントが実行するアクションに応じた権限を付与します。 Agentforceのアドオン、Agentforce (Default)、Agentforce Service Agent Builder、Data Cloud、Einstein Prompt Templatesなどの権限セットライセンスと、Agentforce デフォルト管理者、Agentforce サービスエージェント設定、Agentforce デフォルトエージェントへのアクセス、プロンプトテンプレートマネージャー、Data Cloud アーキテクトなどの権限セットが必要になる場合があります。\n\n**2. Agent Builderでのエージェント作成**\n環境の準備ができたら、Agent Builderを使用してエージェント本体を作成します。\n*   **新しいエージェントの作成**: クイック検索で「エージェント」を検索し、「新しいエージェント」をクリックします。\n*   **テンプレートの選択**: 「Agentforce Employee Agent」などのテンプレートを選択するか、一からエージェントを作成します。\n*   **エージェントの役割と指示文の設定**: エージェントの役割を定義し、その動作を指示するプロンプトを設定します。エージェントがデフォルトで使用する言語や、カジュアル、フォーマルといった口調も設定可能です。\n\n**3. トピックとアクションの設定**\nエージェントに具体的な業務を実行させるためのトピック（またはサブエージェント）とアクションを設定します。\n*   **トピックの追加**: エージェントが対応する業務や質問の範囲を「トピック」として追加します。テンプレートを選択した場合、関連するトピックが自動的に設定されることもあります。 2026年4月以降、トピックは「サブエージェント」と呼ばれることもあります。\n*   **アクションの設定**: エージェントがトピックに基づいて実行できるアクションを定義します。これには、ケースの作成、商談の更新、メール送信、ワークフローのトリガーなどが含まれます。\n\n**4. テストと公開**\nエージェントが意図通りに機能するかをテストし、問題がなければ公開します。\n*   **会話のテスト**: 作成したエージェントの会話プレビュー機能を使用して、実際にエージェントがどのように応答し、アクションを実行するかを確認します。 設定変更をチャットに反映させるには、会話プレビュー右上の更新ボタンをクリックする必要があります。\n*   **公開**: テストで問題がなければ、エージェントを公開し、ユーザーが利用できるようにします。\n\nこれらの手順は、Salesforceの公式ドキュメントや関連するブログ記事で詳しく解説されています。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "tech-waves.hakuhodody-one.co.jp",
+    "howtoagentforce.com",
+    "note.com",
+    "cross-com.jp",
+    "developer.salesforce.com",
+    "cloudsheer.com"
+  ],
+  "resolved_urls": [
+    "https://tech-waves.hakuhodody-one.co.jp/entry/beginner-agentforce-creation",
+    "https://howtoagentforce.com/2025/01/01/how-to-get-started-with-agentforce/",
+    "https://note.com/samuraijuku_biz/n/n08b3a08e8d5d",
+    "https://cross-com.jp/agentforce-usage/",
+    "https://tech-waves.hakuhodody-one.co.jp/entry/agentforce-agent-setup",
+    "https://developer.salesforce.com/docs/ai/agentforce/guide/get-started.html",
+    "https://www.cloudsheer.com/blog/getting-started-agentforce-2026"
+  ],
+  "unresolved_redirects": 0
+}
