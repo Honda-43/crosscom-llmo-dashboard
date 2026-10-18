@@ -1338,3 +1338,16 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
     （pillar_existing_links／pillar_strong_overlap）の group 列を読んでいた。今の表は allocation_v1 と全行一致しているが、
     seo-agent が新しい表を出したとき古い組が入りうるため、割付表の組を使うようにした（割付表に無い記事だけ表の値）。判定の数字は変わらない
   - targets.csv は seo-agent 管理のため dashboard 側では直さない（group 列の更新は seo-agent 側の判断）
+
+---
+
+## 2026-10-18／targets.csv の group 列の削除に備えて、dashboard のテストを直した
+
+- seo-agent 側で experiment_2x2/targets.csv の古い group 列（9/14 の48本版の仮の振り分けの名残）を削除する。その前に dashboard のテストを直した
+- tests/test_allocation_source.py から、targets.csv に group 列があることや「37本が allocation_v1 と違う」ことを前提にした確認を外した。
+  確かめる中身は「判定・感度分析・再ランダム化検定・欠測の組別集計・ピラーの偏りが allocation_v1.csv の組で数えること」だけ
+  （割付表と違う組を別に与えても、結果がそちらに動かないことで確かめる）
+- 「targets.csv に group 列が無いこと」を確かめるテストを1本追加。**seo-agent 側の削除が終わるまでは skip**（README「組の正本」に、削除したら skip を外すと書いた）
+- **確認**：group 列を除いた targets.csv の写しを作り（本物は触らない）、テストの間だけ targets.csv の読み取りを写しに向けて全テストを実行 → 全件通過
+  （1552 passed・targets.csv の読み取り43回を写しへ。skip 中のテストと同じ中身も写しで通過）。列がある今の本物でも全件通過（1551 passed）
+- **seo-agent 側で group 列を削除してよい**（dashboard の判定・集計は影響を受けない）

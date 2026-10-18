@@ -318,6 +318,16 @@ buyer-enablement(E23)4本、hyper-personalization(E27)1本。他の44本は変�
 - 実施記録(interventions.csv の scope=site_structure の行)が入ると、判定レポートに「アフター期間中に E23・E27 の被リンク減あり（実施日）」を自動で出す。
   実施日がアフター期間内の判定にだけ出る(11/1 までなら短期・長期の両方、11/2 以降なら長期のみ)。交絡候補一覧にも自動で載る
 
+### 組の正本(allocation_v1.csv)と targets.csv の group 列(2026-10-18)
+
+- **46本の組の正本は `experiment_2x2/allocation_v1.csv`(9/28 の割付)。** 判定・感度分析・再ランダム化検定・欠測の組別集計・
+  ピラーの偏りはすべてここから組を引く(`tests/test_allocation_source.py`)
+- `experiment_2x2/targets.csv`(seo-agent 管理の編集禁止リスト)の group 列は、9/14 の48本版の仮の振り分けの名残
+  (46本中37本が allocation_v1 と違う)。dashboard は読まない(targets.csv から読むのは URL と公開日 published だけ)。
+  seo-agent 側でこの列を削除する。dashboard のテストは列が**ある場合・無い場合のどちらでも通る**(10/18 に列を除いた写しで全テストを確認)
+- **seo-agent 側で group 列を削除したら、`tests/test_allocation_source.py` の `test_targets_csv_has_no_group_column` の skip を外す**
+  (列が戻っていないことを以後のテストで確かめるため)
+
 ### 週次集計の「組ごとの欠測」(2026-10-08)
 
 `src/experiment_weekly.py` の週次集計に「1-2. 組ごとの欠測(実験の Gemini・本数のみ)」を出す。その週と、アフター期間(10/6〜)の累計の

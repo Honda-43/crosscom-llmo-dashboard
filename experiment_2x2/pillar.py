@@ -86,7 +86,7 @@ def _slug(text):
 
 def _group(slug, listed):
     """46本の組。**正本は allocation_v1.csv**(2026-10-18)。表の group 列は seo-agent 側の写しで、古い割付
-    (targets.csv の group 列は9/28 の割付より前の値のまま)が入りうるので使わない。割付表に無い記事だけ表の値。"""
+    (targets.csv にあった group 列は 9/14 の48本版の仮の振り分けの名残)が入りうるので使わない。割付表に無い記事だけ表の値。"""
     from pool import load_allocation      # 遅延 import(pool は同じフォルダ。summarize と同じ読み方)
     return load_allocation().get(_slug(slug), listed)
 
