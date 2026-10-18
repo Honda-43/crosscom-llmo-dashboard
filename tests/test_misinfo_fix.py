@@ -331,3 +331,17 @@ def test_other_changes_after_the_rest_fix_are_unexpected():
         assert text != after
         assert _judge(text) is None
 
+
+
+def test_the_i42_note_corrects_the_question_2_wording_and_the_file_name():
+    r = _row_of("I-42")
+    assert r["description"].startswith("16:05:54 "), "既存の記述は残す"
+    assert "質問② 2名ほど→数名・営業20名・10か月→営業全員" in r["description"]
+    assert "【時刻の訂正】FAQ の修正は 16:05:51 JST" in r["note"], "前の訂正も残る"
+    tail = r["note"].split("【2026-10-18 訂正】")[-1]
+    assert "「2名ほど → 数名」「営業20名 → 営業全員」「10か月 → 1年近く」の3つ" in tail
+    assert "sales_roleplay_faq_applied_record_20261018.md" in tail
+    # expected_edits.json(seo-agent の記録から入れた答えの全文)と一致する
+    q2 = [a for a in drift_check.load_expected_edits()[0]["faq_answers"] if a["question"].startswith("質問②")][0]
+    assert "2名ほどで、営業20名に一巡するまで10か月" in q2["before"]
+    assert "数名で、営業全員に一巡するまで1年近く" in q2["after"]
