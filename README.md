@@ -324,9 +324,10 @@ buyer-enablement(E23)4本、hyper-personalization(E27)1本。他の44本は変�
   ピラーの偏りはすべてここから組を引く(`tests/test_allocation_source.py`)
 - `experiment_2x2/targets.csv`(seo-agent 管理の編集禁止リスト)の group 列は、9/14 の48本版の仮の振り分けの名残
   (46本中37本が allocation_v1 と違う)。dashboard は読まない(targets.csv から読むのは URL と公開日 published だけ)。
-  seo-agent 側でこの列を削除する。dashboard のテストは列が**ある場合・無い場合のどちらでも通る**(10/18 に列を除いた写しで全テストを確認)
-- **seo-agent 側で group 列を削除したら、`tests/test_allocation_source.py` の `test_targets_csv_has_no_group_column` の skip を外す**
-  (列が戻っていないことを以後のテストで確かめるため)
+  **2026-10-18 に seo-agent 側でこの列を削除した(ef5ff40)。** dashboard のテストは列が**ある場合・無い場合のどちらでも通る**
+  (削除の前に、列を除いた写しで全テストを確認)
+- `tests/test_allocation_source.py` の `test_targets_csv_has_no_group_column` で、列が戻っていないことを確かめる
+  (削除までは skip にしていた。削除を受けて 10/18 に skip を外した)
 
 ### 週次集計の「組ごとの欠測」(2026-10-08)
 

@@ -1351,3 +1351,5 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - **確認**：group 列を除いた targets.csv の写しを作り（本物は触らない）、テストの間だけ targets.csv の読み取りを写しに向けて全テストを実行 → 全件通過
   （1552 passed・targets.csv の読み取り43回を写しへ。skip 中のテストと同じ中身も写しで通過）。列がある今の本物でも全件通過（1551 passed）
 - **seo-agent 側で group 列を削除してよい**（dashboard の判定・集計は影響を受けない）
+- 同日追記：**seo-agent 側で targets.csv の group 列を削除した（ef5ff40）**。46本の URL・公開日・質問は不変（削除前と突き合わせて確認。変わったのは列と注記1行だけ）。
+  「targets.csv に group 列が無いこと」のテストの skip を外した

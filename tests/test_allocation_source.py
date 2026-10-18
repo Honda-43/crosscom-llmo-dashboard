@@ -2,7 +2,7 @@
 
 experiment_2x2/targets.csv(seo-agent の編集禁止リスト)には、9/14 の48本版の仮の振り分けの名残の group 列があった
 (46本中37本が allocation_v1 と違う)。dashboard はこの列を読まない(公開日の published 列と URL だけ)。
-seo-agent 側でこの列を消す(2026-10-18)ので、ここのテストは **group 列がある場合・無い場合のどちらでも通る**
+seo-agent 側でこの列を消した(2026-10-18・ef5ff40)。ここのテストは **group 列がある場合・無い場合のどちらでも通る**
 ように targets.csv の group 列には触れない。確かめるのは、判定・感度分析・再ランダム化検定・欠測の組別集計・
 ピラーの偏りが allocation_v1 の組で数えることだけ(割付表と違う組を別に与えても、結果がそちらに動かないことで確かめる)。
 """
@@ -11,8 +11,6 @@ import csv
 import io
 import sys
 from pathlib import Path
-
-import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "experiment_2x2"))
@@ -55,8 +53,7 @@ def _other(group):
     return rerandomize.GROUPS[(rerandomize.GROUPS.index(group) + 1) % len(rerandomize.GROUPS)]
 
 
-# seo-agent 側で targets.csv の group 列を削除したら skip を外す(README「組の正本」)
-@pytest.mark.skip(reason="seo-agent 側で targets.csv の group 列を削除するまで(削除したら skip を外す)")
+# seo-agent 側で 2026-10-18 に targets.csv の group 列を削除した(ef5ff40)。列が戻っていないことを確かめる
 def test_targets_csv_has_no_group_column():
     with io.open(TARGETS, encoding="utf-8-sig") as fh:
         header = next(csv.reader(line for line in fh if not line.startswith("#")))
