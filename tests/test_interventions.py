@@ -200,3 +200,11 @@ def test_i44_to_i46_record_the_d44_fixes_outside_the_frozen_46_and_match_the_han
     assert not [s for s in ug + uj if f"/{s}/" in pool], "凍結46本は0本"
     assert "interventions_handoff_bunUG_20261018.csv" in rows["I-44"]["note"]
     assert "interventions_handoff_bunUJ_20261018.csv" in rows["I-46"]["note"]
+
+
+def test_i44_note_keeps_the_original_text_and_appends_which_time_is_the_record():
+    """I-44：記録の時刻は第2版(最後のリビジョン)。元の note は残し、末尾に追記する。"""
+    note = {r["intervention_id"]: r for r in interventions.load()}["I-44"]["note"]
+    head, sep, tail = note.partition("【2026-10-18 追記】")
+    assert sep and head.startswith("凍結46本は0本。") and "（ピラーA の1行を除く37行）" in head
+    assert "第2版（最後のリビジョン）" in tail and "17:13〜17:18 に重なって" in tail
