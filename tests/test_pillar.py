@@ -210,3 +210,64 @@ def test_the_judgement_report_shows_the_edit_finished_on_20261003_with_19():
     assert "pillar_links_added_20261002.csv・pillar_links_added_20261003.csv" in line
     assert parts == [], "10/5 以前に完了したのでアフターは分けない"
 
+
+
+# --- 2026-10-18:リンクの本数が変わらないピラーの本文の編集では、アフター期間を分けない ----------------------
+SHORT = ("2026-10-06", "2026-11-01")
+LONG = ("2026-10-06", "2026-12-28")
+
+
+def _links_csv(path, rows):
+    with open(path, "w", encoding="utf-8", newline="") as fh:
+        w = csv.writer(fh)
+        w.writerow(["applied_at_jst", "pillar_slug", "target_slug", "action", "target_group", "overlap_level", "note"])
+        w.writerows(rows)
+    return str(path)
+
+
+def test_the_real_records_finish_on_oct_3_so_the_after_period_is_not_split():
+    edit = pillar.pillar_edit()
+    assert edit["done"] == dt.date(2026, 10, 3) and edit["ignored"] == 0
+    for span in (SHORT, LONG):
+        _, parts = pillar.report_lines(span)
+        assert parts == [], "10/5 までに完了したので分けない"
+
+
+def test_a_body_only_edit_of_a_pillar_does_not_split_even_if_it_is_in_interventions(monkeypatch):
+    """ピラーA の架空事例の数字の書き方の修正(2026-10-18・リンクの本数は不変)は interventions.csv の行。
+    切り分けは pillar_links_added_*.csv の add/remove の行だけで決まるので、この行があっても分けない。"""
+    import interventions
+    row = {"raw_date": "2026-10-18", "date": dt.date(2026, 10, 18), "intervention_id": "I-99",
+           "description": "17:15:27 ピラーA の架空事例の数字を幅のある表現に変更", "scope": "ピラーA（agentforce-guide）",
+           "executor": "seo-agent（9d）", "touches_pool46": "yes", "ongoing": False, "note": "46本へのリンクの本数は前後で同じ"}
+    real = interventions.load()
+    monkeypatch.setattr(interventions, "load", lambda path=None: real + [row])
+    for span in (SHORT, LONG):
+        _, parts = pillar.report_lines(span)
+        assert parts == []
+    import inspect
+    for fn in (pillar.report_lines, pillar.pillar_edit, pillar.split_after):
+        assert "interventions.load" not in inspect.getsource(fn), "切り分けに interventions.csv を使わない"
+
+
+def test_rows_that_do_not_add_or_remove_a_link_do_not_move_the_completion_date(tmp_path):
+    """表に本文の編集の行(action が add/remove 以外)が混ざっても完了日は動かない。足した・外した行なら動く。"""
+    base = [("2026-10-02 13:09:58", "agentforce-guide", "agentforce-pricing", "add", "", "", ""),
+            ("2026-10-03 15:08:33", "agentic-crm", "x-orphan", "add", "", "", "")]
+    body = [("2026-10-18 17:15:27", "agentforce-guide", "", "body_edit", "", "", "架空事例の数字の書き方のみ")]
+    path = _links_csv(tmp_path / "pillar_links_added_20261018.csv", base + body)
+    edit = pillar.pillar_edit(path)
+    assert edit["done"] == dt.date(2026, 10, 3) and edit["ignored"] == 1
+    assert edit["final"] == {"agentforce-guide": 1, "agentic-crm": 1}, "リンクの最終状態も変えない"
+    assert pillar.split_after(SHORT, edit["done"]) == ("before_after", [])
+    # リンクを足した行なら、10/6 以降の完了として前後に分ける(これまでどおり)
+    added = base + [("2026-10-18 17:15:27", "agentforce-guide", "y-orphan", "add", "", "", "")]
+    edit = pillar.pillar_edit(_links_csv(tmp_path / "pillar_links_added_20261019.csv", added))
+    assert edit["done"] == dt.date(2026, 10, 18)
+    mode, parts = pillar.split_after(SHORT, edit["done"])
+    assert mode == "split" and parts == [("ピラー編集前", ("2026-10-06", "2026-10-17")),
+                                         ("ピラー編集後", ("2026-10-19", "2026-11-01"))]
+    # action の列が無い古い表は add として読む
+    old = tmp_path / "pillar_links_added_old.csv"
+    old.write_text("applied_at_jst,pillar_slug,target_slug\n2026-10-02 13:09:58,agentforce-guide,z\n", encoding="utf-8")
+    assert pillar.pillar_edit(str(old))["added"] == 1

@@ -16,6 +16,9 @@ agentforce-pricing は編集できるようになった（本田さん決定・i
 アフター期間の切り分け：ピラー編集の完了（pillar_links_added_*.csv の最後の実施日）が 10/5 までなら
   アフター（10/6〜）の全体に同じ条件でかかるので注記だけ。10/6 以降なら、アフターを編集前・編集後に分けた結果も
   並べる（完了日の観測はどちらにも入れない）
+  数えるのは pillar_links_added_*.csv の action が add / remove の行（リンクの本数が変わる編集）だけ。
+  ピラーの本文だけの編集（2026-10-18 の架空事例の数字の書き方など・リンクの本数は不変）は interventions.csv の行で、
+  切り分けには使わない（interventions.csv はここでは読まない）
 
 表（どれも seo-agent 側の判断・測定。dashboard の experiment_2x2/ に写しがあればそれを優先して読む）
   pillar_links_added_*.csv          : 実施の記録（date, wp_modified, pillar, target_slug …）。seo-agent の output/reports
@@ -40,6 +43,9 @@ PILLAR_LABEL = {'agentforce-guide': 'ピラーA（agentforce-guide）', 'agentic
 DATE_COLUMNS = ('applied_at_jst', 'wp_modified', 'applied_at', 'added_at', 'datetime', 'date')
 TARGET_COLUMNS = ('target_slug', 'target', 'slug')
 PILLAR_COLUMNS = ('pillar_slug', 'pillar')
+# アフター期間の切り分けに使う操作。リンクの本数が変わる行だけ(action が空の古い表は add として読む)。
+# ピラーの本文だけの編集(リンクの本数は不変)は interventions.csv に記録し、ここでは数えない(2026-10-18)
+LINK_ACTIONS = ('add', 'remove')
 
 
 def find(name_glob):
@@ -130,11 +136,18 @@ def pillar_edit(path=None):
         rows += [(str(r.get(dcol) or '') if dcol else '', r, dcol, tcol, pcol) for r in part]
     linked, by_pillar, last = {}, {}, None
     added = removed = 0
+    ignored = 0
     for _, r, dcol, tcol, pcol in sorted(rows, key=lambda x: x[0]):
         when = _when(r.get(dcol)) if dcol else None
         pillar_slug = r.get(pcol, '') if pcol else ''
         target = _slug(r.get(tcol)) if tcol else ''
-        if str(r.get('action', 'add')).strip().lower() == 'remove':
+        action = str(r.get('action') or 'add').strip().lower()
+        # リンクを足した・外した行だけを数える(2026-10-18)。リンクの本数が変わらないピラーの本文の編集
+        # (例:架空事例の数字の書き方)の行が混ざっても、完了日を動かさない = アフター期間を分けない
+        if action not in LINK_ACTIONS:
+            ignored += 1
+            continue
+        if action == 'remove':
             linked.pop((pillar_slug, target), None)
             removed += 1
         else:
@@ -147,7 +160,7 @@ def pillar_edit(path=None):
     final = collections.Counter(p for p, _ in linked)
     return {'done': last.date() if last else None, 'last': last, 'count': len(rows),
             'targets': sorted({t for _, t in linked}), 'final': dict(final),
-            'added': added, 'removed': removed, 'by_pillar': by_pillar, 'path': paths[-1],
+            'added': added, 'removed': removed, 'ignored': ignored, 'by_pillar': by_pillar, 'path': paths[-1],
             'paths': paths}
 
 

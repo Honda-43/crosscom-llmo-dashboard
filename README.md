@@ -371,6 +371,18 @@ buyer-enablement(E23)4本、hyper-personalization(E27)1本。他の44本は変�
   実験の Gemini の回答(answer_text。セルで切れていれば raw_file の全文)で社名(mentioned_v2 の表記)が出た件数を出す(0件なら0件)。
   出た回答は該当箇所(前後40字)を表に出す。欠測の行は数えない。**組ごとの比較はしない**(組の名前も出さない。判定には使わない)
 
+### ピラーの本文だけの編集とアフター期間の切り分け(2026-10-18)
+
+判定レポートの「ピラー編集の完了が 10/6 以降ならアフター期間を前後で分ける」仕組み(`experiment_2x2/pillar.py`)は、
+**pillar_links_added_*.csv の action が add / remove の行(リンクを足した・外した編集)だけ**で完了日を決める。
+
+- ピラーの本文だけの編集(リンクの本数は不変)は interventions.csv に記録し、切り分けには使わない(切り分けは interventions.csv を読まない)
+- 表に add / remove 以外の行(本文の編集の記録など)が混ざっても完了日を動かさない(2026-10-18 に直した。それまでは add として数えていた)。
+  action の列が無い古い表は add として読む
+- 今の記録(10/02・10/03 の表)では完了は 2026-10-03 なので、短期・長期とも分けない(`tests/test_pillar.py`)
+- 2026-10-18 のピラーA(agentforce-guide)の架空事例の数字の書き方の修正はこれに当たる。seo-agent の最終報告で
+  46本へのリンクの本数が前後で同じと確認できたら、interventions.csv に scope=ピラーA の別の行で記録する(アフター期間は分けない)
+
 ### 組の正本(allocation_v1.csv)と targets.csv の group 列(2026-10-18)
 
 - **46本の組の正本は `experiment_2x2/allocation_v1.csv`(9/28 の割付)。** 判定・感度分析・再ランダム化検定・欠測の組別集計・
