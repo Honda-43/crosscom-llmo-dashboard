@@ -208,3 +208,14 @@ def test_i44_note_keeps_the_original_text_and_appends_which_time_is_the_record()
     head, sep, tail = note.partition("【2026-10-18 追記】")
     assert sep and head.startswith("凍結46本は0本。") and "（ピラーA の1行を除く37行）" in head
     assert "第2版（最後のリビジョン）" in tail and "17:13〜17:18 に重なって" in tail
+
+
+def test_rows_of_oct_18_written_by_9c_or_9d_note_the_single_session_but_earlier_rows_do_not():
+    """10/18 の 9c／9d は表示名で、書き込みは e0eede5c の1セッション。10/18 より前の 9d は別のセッションなので訂正しない。"""
+    mark = "【2026-10-18 訂正】executor の 9c／9d は Claude Code の表示名。実際の書き込みはすべて seo-agent（e0eede5c）の1セッション（制作管制の確認）"
+    rows = interventions.load()
+    named = [r for r in rows if "9c" in r["executor"] or "9d" in r["executor"]]
+    fixed = [r["intervention_id"] for r in named if r["raw_date"] == "2026-10-18"]
+    assert fixed == ["I-38", "I-39", "I-40", "I-41", "I-42", "I-43", "I-44", "I-46"]
+    for r in named:
+        assert (r["note"].endswith(mark)) == (r["raw_date"] == "2026-10-18"), r["intervention_id"]

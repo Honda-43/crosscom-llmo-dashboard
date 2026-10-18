@@ -338,7 +338,8 @@ def test_the_i42_note_corrects_the_question_2_wording_and_the_file_name():
     assert r["description"].startswith("16:05:54 "), "既存の記述は残す"
     assert "質問② 2名ほど→数名・営業20名・10か月→営業全員" in r["description"]
     assert "【時刻の訂正】FAQ の修正は 16:05:51 JST" in r["note"], "前の訂正も残る"
-    tail = r["note"].split("【2026-10-18 訂正】")[-1]
+    # 【2026-10-18 訂正】は後から executor の訂正も足されたため、質問②の訂正を名指しで探す
+    tail = [s for s in r["note"].split("【2026-10-18 訂正】") if "質問②" in s][-1]
     assert "「2名ほど → 数名」「営業20名 → 営業全員」「10か月 → 1年近く」の3つ" in tail
     assert "sales_roleplay_faq_applied_record_20261018.md" in tail
     # expected_edits.json(seo-agent の記録から入れた答えの全文)と一致する
