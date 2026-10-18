@@ -244,3 +244,57 @@ def test_misses_are_also_shown_by_kind():
     assert "| この週(10/05〜10/11) | time_budget | 1 | 1 | 0 | 0 | 2 |" in text
     assert "| この週(10/05〜10/11) | 429 | 0 | 1 | 0 | 0 | 1 |" in text
     assert "| アフター期間の累計(10/06〜10/11) | time_budget | 1 | 1 | 0 | 0 | 2 |" in text
+
+
+# --- 5-2. 並びによる誤引用の見張り(2026-10-18・記録のみ) ------------------------------------------
+WATCH_POOL = [{"id": e, "layer": "新", "url": f"https://cross-com.jp/{s}/"} for e, s in ew.SEQUENCE_WATCH] + POOL
+OCT19 = dt.date(2026, 10, 19)
+
+
+def _watch(rows, tmp_path):
+    text = ew.build(OCT19, rows, pool=WATCH_POOL, raw_dir=tmp_path / "raw",
+                    experiment_dir=tmp_path / "exp", monthly_dir=tmp_path / "monthly")
+    return text.split("## 5-2. 参考:並びによる誤引用の見張り")[1]
+
+
+def test_the_four_watched_articles_are_the_agreed_ones():
+    assert ew.SEQUENCE_WATCH == (("E33", "agentforce-sales-roleplay"), ("E09", "agentforce-mcp"),
+                                 ("E47", "agentforce-proposal-review"), ("E42", "agentforce-sales-meeting"))
+    real = {p["id"]: p["url"].rstrip("/").rsplit("/", 1)[-1] for p in settings.load_experiment_prompts()}
+    assert all(real[e] == s for e, s in ew.SEQUENCE_WATCH), "実験のプロンプトの記事と一致"
+
+
+def test_zero_mentions_are_shown_as_zero(tmp_path):
+    rows = [dict(_row("2026-10-13", "E33", "gemini"), answer_text="営業ロープレの設計について説明します。")]
+    part = _watch(rows, tmp_path)
+    assert "- E33 agentforce-sales-roleplay:0件 / 回答 1件" in part
+    assert "- E09 agentforce-mcp:0件 / 回答 0件" in part
+    assert "- 計 0件" in part and "| 記事 |" not in part
+
+
+def test_a_mention_shows_40_characters_around_it_and_no_group(tmp_path):
+    before, after = "あ" * 50 + "この例は", "の支援事例として紹介されています。" + "い" * 50
+    text = before + "クロス・コム" + after
+    rows = [dict(_row("2026-10-14", "E47", "gemini", mentioned=1), answer_text=text),
+            dict(_row("2026-10-15", "E47", "gemini"), answer_text="CROSSCOM の記事です"),          # 大文字も表記ゆれ
+            dict(_row("2026-10-15", "E42", "gemini", error="503 UNAVAILABLE"), answer_text="クロスコム"),  # 欠測は数えない
+            dict(_row("2026-10-15", "E09", "claude"), answer_text="クロスコム"),                  # Gemini だけ
+            dict(_row("2026-10-15", "E01", "gemini"), answer_text="クロスコム")]                  # 4本の外
+    part = _watch(rows, tmp_path)
+    assert "- E47 agentforce-proposal-review:2件 / 回答 2件" in part
+    assert "- E42 agentforce-sales-meeting:0件 / 回答 0件" in part
+    assert "- E09 agentforce-mcp:0件 / 回答 0件" in part and "- 計 2件" in part
+    excerpt = ("…" + before[-40:] + "クロス・コム" + after[:40] + "…")
+    assert f"| E47 | 2026-10-14 | {excerpt} |" in part
+    assert "| E47 | 2026-10-15 | CROSSCOM の記事です |" in part
+    assert not any(g in part for g in ew.GROUPS), "組は出さない"
+
+
+def test_a_truncated_cell_is_read_from_the_raw_file(tmp_path):
+    raw = tmp_path / "raw.json"
+    raw.write_text(json.dumps({"answer": "前半。" + "う" * 60 + "Cross-Com の事例"}, ensure_ascii=False), encoding="utf-8")
+    row = dict(_row("2026-10-14", "E33", "gemini"), answer_text="前半。…[続きは raw_file]", raw_file="raw.json")
+    import backfill_mentioned_v2
+    lines = ew.sequence_watch_lines([row], {}, answer=lambda r: backfill_mentioned_v2.answer_of(r, tmp_path))
+    assert "- E33 agentforce-sales-roleplay:1件 / 回答 1件" in lines
+    assert any("Cross-Com の事例" in ln for ln in lines)

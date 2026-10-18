@@ -395,7 +395,69 @@ def build(report_date: dt.date, rows: Iterable[Dict[str, Any]],
         L.append(f"- {model.capitalize()}: {len(men)} / {len(ok)}({rate})"
                  + (f" — {'、'.join(order(set(men)))}" if men and not blind else ""))
     L.append("")
+    L += sequence_watch_lines(wk, meta)
     return "\n".join(L)
+
+
+# ---- 5-2. 参考:並びによる誤引用の見張り(2026-10-18・記録のみ) -------------------------------------
+# 架空の例(主語のない「ある会社では」型)の直後に「当社では…」が続くと、AI が当社の支援の例と読む
+# (制作管制の調査。Perplexity の誤引用の原因)。凍結46本で同じ並びを持つのは E33(10/18 に修正済み)と下の3本。
+# 3本は 2027-01-01 以降に直す。誤引用が確認されたらその1本だけ直し、感度分析に丸ごと抜く行を足す。
+# 実験の Gemini の回答に社名(mentioned_v2 の表記)が出た件数と、該当箇所(前後40字)を出す。組ごとの比較はしない
+SEQUENCE_WATCH = (("E33", "agentforce-sales-roleplay"), ("E09", "agentforce-mcp"),
+                  ("E47", "agentforce-proposal-review"), ("E42", "agentforce-sales-meeting"))
+SEQUENCE_WATCH_CONTEXT = 40
+
+
+def mention_excerpts(text: str, context: int = SEQUENCE_WATCH_CONTEXT) -> List[str]:
+    """社名(mentioned_v2 の表記)に当たった箇所の前後 ``context`` 字。重なる箇所は1つにまとめる。"""
+    import unicodedata
+
+    import experiment
+    norm = unicodedata.normalize("NFKC", str(text or ""))
+    spans: List[List[int]] = []
+    for a, b in experiment.mention_hits_v2(text):
+        lo, hi = max(0, a - context), min(len(norm), b + context)
+        if spans and lo <= spans[-1][1]:
+            spans[-1][1] = max(spans[-1][1], hi)
+        else:
+            spans.append([lo, hi])
+    out = []
+    for lo, hi in spans:
+        piece = " ".join(norm[lo:hi].split()).replace("|", "｜")
+        out.append(("…" if lo > 0 else "") + piece + ("…" if hi < len(norm) else ""))
+    return out
+
+
+def sequence_watch_lines(wk: List[Dict[str, Any]], meta: Dict[str, Tuple[str, str]],
+                         answer=None) -> List[str]:
+    """5-2 の行。``wk`` はその週のプールの行、``meta`` は {記事ID: (層, slug)}。"""
+    if answer is None:
+        from backfill_mentioned_v2 import answer_of as answer
+    L = ["## 5-2. 参考:並びによる誤引用の見張り(実験の Gemini・4本)", "",
+         "架空の例(主語のない「ある会社では」型)の直後に「当社では…」が続く並びがある4本。AI が当社の支援の例と読むおそれがある"
+         "(Perplexity の誤引用の原因)。E33 は 2026-10-18 に修正済み、ほかの3本は 2027-01-01 以降に修正。"
+         "回答に社名(mentioned_v2 の表記)が出た件数を出す。**組ごとの比較はしない(判定には使わない)**", ""]
+    total, shown = 0, []
+    for eid, slug in SEQUENCE_WATCH:
+        rows = [r for r in wk if r.get("experiment_id") == eid and r.get("model") == "gemini"
+                and not str(r.get("error") or "").strip()]
+        hits = []
+        for r in rows:
+            spots = mention_excerpts(answer(r))
+            if spots or _flag(r.get("mentioned_v2")):
+                hits.append((r, spots))
+        total += len(hits)
+        L.append(f"- {eid} {slug}:{len(hits)}件 / 回答 {len(rows)}件")
+        shown += [(eid, r, spots) for r, spots in hits]
+    L.append(f"- 計 {total}件")
+    if shown:
+        L += ["", "| 記事 | 日付 | 該当箇所(前後40字) |", "|---|---|---|"]
+        for eid, r, spots in shown:
+            L.append(f"| {eid} | {str(r.get('date', ''))[:10]} | "
+                     f"{' / '.join(spots) if spots else '(本文が無い。mentioned_v2=1 の行)'} |")
+    L.append("")
+    return L
 
 
 # 人が後から書き足す行の目印。08d2927 で week1 に「- **確定: 2026-09-22**(…)」を手で足した。
