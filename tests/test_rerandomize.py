@@ -209,7 +209,8 @@ def test_each_variant_gets_its_own_randomization(monkeypatch, capsys):
 
     monkeypatch.setattr(summarize, "randomization", spy)
     summarize.sensitivity_table(after, None, "gemini")
-    assert len(seen) == 5   # 4通り + リンク減2本抜き(9本抜き＋リンク減2本は9本抜きと同じ集合なのでまとめる。2026-10-08)
+    # 4通り + リンク減2本抜き(9本抜き＋リンク減2本は9本抜きと同じ集合なのでまとめる。2026-10-08) + 誤情報修正1本抜き(2026-10-18)
+    assert len(seen) == 6 and seen[-1] == {"agentforce-sales-roleplay"}
     assert seen[0] == set() and seen[3] == set(summarize.variants()[3][1])
 
 
@@ -367,7 +368,7 @@ def test_the_fifth_variant_drops_multi_paragraph_articles_from_every_group(tmp_p
     summarize.sensitivity_table(after, None, "gemini")
     out = capsys.readouterr().out
     # 2026-10-08 からリンク減2本抜き・複数段落回答抜き＋リンク減2本が続く(この表は E23・E27 を含まないのでまとまらない)
-    assert len(seen) == 7 and seen[4] == multi, "再ランダム化検定も同じ除外で"
+    assert len(seen) == 8 and seen[4] == multi, "再ランダム化検定も同じ除外で"   # 2026-10-18 から誤情報修正1本抜きが末尾に付く
     body = [ln for ln in out.splitlines() if ln.startswith("複数段落回答抜き")][0]
     assert body.split()[1] == str(len(ARTS) - 4), body
     # 複数段落回答の警告は出ない(2026-10-18 から表の下に誤情報修正の1行が必ず出るので、その行は除いて見る)
@@ -376,7 +377,7 @@ def test_the_fifth_variant_drops_multi_paragraph_articles_from_every_group(tmp_p
 
 def test_without_the_table_the_fifth_variant_is_not_shown_and_says_why(monkeypatch, capsys):
     after = _outcome_rows(monkeypatch, _pool(2000))
-    assert len(summarize.variants()) == 5   # 4通り + リンク減2本抜き(複数段落の表が無い)
+    assert len(summarize.variants()) == 6   # 4通り + リンク減2本抜き(複数段落の表が無い) + 誤情報修正1本抜き(2026-10-18)
     summarize.sensitivity_table(after, None, "gemini")
     out = capsys.readouterr().out
     assert "複数段落回答抜き" in out and "faq_multiparagraph_*.csv が無い" in out

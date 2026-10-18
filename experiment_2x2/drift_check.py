@@ -94,12 +94,16 @@ def author_only_change(diff, today, since=AUTHOR_CHANGE_FROM):
 
 
 # 実験期間中に入れると決めた本文の修正（2026-10-18・誤情報修正の1本・pool.MISINFO_FIX_SLUGS）。
-# 　[{"slug", "from"(適用日 YYYY-MM-DD), "intervention"(I-xx), "before"(修正前の段落), "after"(修正後の段落)}]。
-# 　段落は seo-agent の記録をそのまま入れる（HTML でも素のテキストでもよい）。ファイルが無ければ何もしない。
-# 　その記事の差分の行が**すべて**その段落の中（消えた行は修正前の段落の一部・足された行は修正後の段落の一部）なら想定内。
-# 　1行でもその段落の外が変わっていれば、記事ごと従来どおり想定外として出す
+# 　[{"slug", "from"(適用日 YYYY-MM-DD), "intervention"(I-xx), "paragraphs": [{"para", "before", "after"}, ...],
+# 　  "update_date_display"(true なら記事の「更新」の日付が適用日に変わる行も想定内)}]。
+# 　段落は seo-agent の記録をそのまま入れる（HTML でも素のテキストでもよい。"before"/"after" を1段落ぶん直接書いてもよい）。
+# 　ファイルが無ければ何もしない。
+# 　その記事の差分の行が**すべて**決めた段落の中（消えた行はどれかの修正前の段落の一部・足された行はどれかの修正後の段落の一部）なら想定内。
+# 　1行でもその外が変わっていれば、記事ごと従来どおり想定外として出す。
+# 　関連記事の並び（テーマがアクセスのたびに選び直す）は body_of で切り落としているので、そもそも差分に出ない
 EXPECTED_EDITS = os.path.join(HERE, 'drift', 'expected_edits.json')
 _TAGS_AND_SPACE = re.compile(r'<[^>]+>|\s+')
+_DATE_LINE = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 
 
 def load_expected_edits(path=None):
@@ -113,16 +117,30 @@ def _flat(text):
     return _TAGS_AND_SPACE.sub('', str(text or ''))
 
 
+def _paragraphs(edit):
+    paras = list(edit.get('paragraphs') or [])
+    if 'before' in edit or 'after' in edit:
+        paras.append({'before': edit.get('before'), 'after': edit.get('after')})
+    return [_flat(p.get('before')) for p in paras], [_flat(p.get('after')) for p in paras]
+
+
 def expected_edit_for(slug, diff, today, edits):
     """差分がその記事の決めた修正の段落の中だけなら、その修正（dict）。違えば None。"""
     lines = [x for x in diff if x[:1] in '+-' and not x.startswith(('+++', '---'))]
     for e in edits:
-        if e.get('slug') != slug or today < str(e.get('from', '9999')):
+        day = str(e.get('from', '9999'))
+        if e.get('slug') != slug or today < day:
             continue
-        before, after = _flat(e.get('before')), _flat(e.get('after'))
-        added = [_flat(x[1:]) for x in lines if x[0] == '+']
+        befores, afters = _paragraphs(e)
         removed = [_flat(x[1:]) for x in lines if x[0] == '-']
-        if added and all(x and x in after for x in added) and all(x in before for x in removed if x):
+        added = [_flat(x[1:]) for x in lines if x[0] == '+']
+        if e.get('update_date_display'):
+            # 記事の「更新」の表示：日付だけの行が適用日に変わったもの（1組だけ）
+            if day in added and any(_DATE_LINE.match(x) for x in removed):
+                added.remove(day)
+                removed.remove(next(x for x in removed if _DATE_LINE.match(x)))
+        if (added and all(x and any(x in a for a in afters) for x in added)
+                and all(any(x in b for b in befores) for x in removed if x)):
             return e
     return None
 

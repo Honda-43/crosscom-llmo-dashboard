@@ -322,9 +322,10 @@ def test_the_four_variants_are_the_agreed_ones():
     labels = [label for label, _ in summarize.variants()]
     # 2026-09-29：複数段落回答の表があれば5通り目が末尾に付く(tests/test_rerandomize.py で確認)
     assert labels[0] == "両方込み" and labels[3] == "9本＋features 抜き"
-    assert len(labels) == 7 and labels[4].startswith("複数段落回答抜き")
+    assert len(labels) == 8 and labels[4].startswith("複数段落回答抜き")
     assert labels[5].startswith("ピラーの既存リンク先抜き（27本")              # 2026-10-02 追加
     assert labels[6] == "リンク減2本抜き（E23・E27）"                          # 2026-10-08 追加
+    assert labels[7] == "誤情報修正1本抜き（E33）"                             # 2026-10-18 追加
     # 同じ記事集合の行はまとめて注記する(2026-10-08)
     assert labels[1].endswith("〔9本抜き＋リンク減2本と同じ記事集合〕")
     assert labels[4].endswith("〔複数段落回答抜き＋リンク減2本と同じ記事集合〕")
@@ -361,14 +362,15 @@ def test_the_judgement_prints_one_table_with_seven_rows(monkeypatch, tmp_path, c
     table = [re.split(r"\s{2,}", ln)
              for ln in out.splitlines()
              if ln.startswith(("両方込み", "9本抜き", "features 抜き", "9本＋features", "リンク減2本抜き",
-                               "複数段落回答抜き", "ピラーの既存リンク先抜き"))]
-    assert len(table) == 7, out
+                               "複数段落回答抜き", "ピラーの既存リンク先抜き", "誤情報修正1本抜き"))]
+    assert len(table) == 8, out
     # 3本 → 9本を抜くと2本、features を抜くと2本、両方抜くと1本。
     # 3本とも複数段落回答ではないので、5通り目は3本のまま。3本ともピラーの既存リンク先なので6通り目は0本
     # 7通り目(2026-10-08):3本とも E23・E27 ではないのでリンク減抜きは3本(9本＋リンク減・複数段落＋リンク減は元の行にまとめた)
-    assert [r[1] for r in table] == ["3", "2", "2", "1", "3", "0", "3"], table
+    # 8通り目(2026-10-18):3本とも E33 ではないので誤情報修正1本抜きは3本
+    assert [r[1] for r in table] == ["3", "2", "2", "1", "3", "0", "3", "3"], table
     assert "感度分析（gemini）" in out, "見出しに余分な空白を入れない"
-    assert out.count("=== gemini ") == 7, "7通りそれぞれの内訳も出す"
+    assert out.count("=== gemini ") == 8, "8通りそれぞれの内訳も出す(2026-10-18 に誤情報修正1本抜きを追加)"
 
 
 # --- 8. 条件 g: タイトル変更3本(2026-09-25) ----------------------------------------

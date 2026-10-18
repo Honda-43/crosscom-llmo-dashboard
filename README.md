@@ -333,9 +333,17 @@ buyer-enablement(E23)4本、hyper-personalization(E27)1本。他の44本は変�
   (消えた行は修正前の段落の一部・足された行は修正後の段落の一部)で、適用日以降の回なら「想定内」として別枠に出す。
   段落の外が1行でも変わった記事・決めた内容と違う書き換え・戻した場合は、従来どおり「想定外」(その記事が修正の対象である旨を添える)
 - **交絡候補一覧**:interventions.csv の行(scope=プール46本・touches_pool46=yes)が入れば、判定期間と重なる判定のレポートで先頭の組に載る
-- **seo-agent から記録(slug・組・適用日時・修正前後の段落)が届くまでは、上の行もドリフトの扱いも出ない**(表の下に「記録待ち」と出す)。
-  届いたら `pool.MISINFO_FIX_SLUGS`・`MISINFO_FIX_IDS` と `drift/expected_edits.json` を埋め、interventions.csv に1行追記する
-  (`tests/test_misinfo_fix.py` が3か所の一致を確かめる)
+- **登録済み(2026-10-18・seo-agent 148d365)**:agentforce-sales-roleplay(post 7174・**E33・②FAQのみ**)。適用 2026-10-18 15:46:09 JST。
+  本文195段落のうち数字のある26段落だけ(例:41% → 4割ほど)。H3 見出しと FAQ の答えには元の数字が残る。interventions.csv I-41
+  - E33 は既存の感度分析(9本・features・複数段落7本・ピラーの既存リンク先・リンク減2本)の**どれにも含まれない**ので、独立の8通り目になる
+  - **偏りの向き**:②の引用が下がる場合、リードの効果は大きめ(甘い方向)、FAQの効果は小さめに出る。判定レポートの冒頭に
+    「アフター期間中（2026-10-18）に E33（②）の本文26段落を修正…」と出す(短期・長期の両方。実施日は I-41 の date から取る)。
+    リードの早期解放は「誤情報修正1本抜き」でも効果の向きが同じときだけ通る(条件(3))
+  - ドリフト検知:`drift/expected_edits.json` に26段落の前後(seo-agent の sales_roleplay_applied_record_20261018.json から)。
+    記事の「更新」の日付が適用日(2026-10-18)に変わる行も想定内。関連記事の並びは本文から切り落としているのでそもそも出ない。
+    seo-agent の公開 HTML の前後で試し、想定内になること・26段落以外の1行の変化や別の日付への変化は想定外になることを確かめた
+    (`tests/fixtures/drift_sales_roleplay_*.txt`)。10/12 の週次の基準は修正前の公開ページと一致
+  - `tests/test_misinfo_fix.py` が pool.py・expected_edits.json・interventions.csv の3か所が同じ記事を指すことを確かめる
 
 ### 組の正本(allocation_v1.csv)と targets.csv の group 列(2026-10-18)
 

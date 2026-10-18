@@ -51,10 +51,15 @@ LINK_LOSS_SCOPE = 'site_structure'
 # 誤って紹介した「防災設備」の記事だけを直す(数字のある段落に架空の事例である旨の断りを足し、数字を幅のある表現にする2点のみ)。
 # 残りの架空事例38本は 2027-01-01 以降。experiment_flag は維持(除外しない・主分析は46本のまま)。
 # 感度分析に「誤情報修正1本抜き」を足す(早期解放の条件(3)・再ランダム化検定も同じ除外)。
-# **seo-agent から記録(slug・組・適用日時・修正前後の段落)が届くまでは空**。届いたら slug と記事ID を入れ、
-# 修正前後の段落を drift/expected_edits.json に書く(週次のドリフト検知で、その段落だけの変化を想定内にする)
-MISINFO_FIX_SLUGS = ()
-MISINFO_FIX_IDS = ()
+# 2026-10-18 に seo-agent から記録が届いた(seo-agent 148d365):agentforce-sales-roleplay(post 7174・E33・②FAQのみ)。
+# 適用 2026-10-18 15:46:09 JST。本文195段落のうち数字のある26段落だけ(見出し・リード・FAQ・リンクは不変)。
+# 修正前後の26段落は drift/expected_edits.json(週次のドリフト検知で、その段落だけの変化を想定内にする)。
+# 既存の感度分析(9本・features・複数段落7本・ピラーの既存リンク先・リンク減2本)のどれにも含まれない
+MISINFO_FIX_SLUGS = ('agentforce-sales-roleplay',)
+MISINFO_FIX_IDS = ('E33',)
+MISINFO_FIX_PARAGRAPHS = 26
+# 実施記録(interventions.csv)を見分ける scope。実施日はこの行の date から取る
+MISINFO_FIX_SCOPE = 'プール46本'
 
 
 # 実験の終わり(config/experiment_freeze.yaml の experiment_end と同じ。テストで照合)。

@@ -43,7 +43,7 @@ import pillar  # noqa: E402
 import rerandomize  # noqa: E402
 from pool import GROUP_BLIND_UNTIL  # noqa: E402
 from pool import LINK_LOSS_IDS, LINK_LOSS_SCOPE, LINK_LOSS_SLUGS  # noqa: E402
-from pool import MISINFO_FIX_IDS, MISINFO_FIX_SLUGS  # noqa: E402
+from pool import MISINFO_FIX_IDS, MISINFO_FIX_PARAGRAPHS, MISINFO_FIX_SCOPE, MISINFO_FIX_SLUGS  # noqa: E402
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
                   LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
                   late_appended_slugs, load_allocation, multi_paragraph_slugs,
@@ -441,6 +441,34 @@ def print_link_loss_note(after, rows=None):
     return True
 
 
+def misinfo_fix_date(rows=None):
+    """誤情報修正の実施日（interventions.csv の scope=プール46本 で記事の slug を含む行の date）。記録が無ければ None。"""
+    rows = interventions.load() if rows is None else rows
+    hits = [r for r in rows if scope_key(r.get("scope")) == MISINFO_FIX_SCOPE and r.get("date") is not None
+            and any(s in str(r.get("description", "")) for s in MISINFO_FIX_SLUGS)]
+    return max(r["date"] for r in hits) if hits else None
+
+
+def print_misinfo_fix_note(after, rows=None):
+    """アフター期間中に誤情報修正があれば偏りの向きを注記（2026-10-18・本田さん指示）。短期・長期の両方に出る。"""
+    import datetime as _dt
+    if not MISINFO_FIX_SLUGS:
+        return False
+    rows = interventions.load() if rows is None else rows
+    day = misinfo_fix_date(rows)
+    start, end = (_dt.date.fromisoformat(x) for x in _span(after))
+    if day is None or not (start <= day <= end):
+        return False
+    group = load_allocation().get(MISINFO_FIX_SLUGS[0], "")
+    mark = group[:1]
+    print(f"**アフター期間中（{day}）に {'・'.join(MISINFO_FIX_IDS)}（{mark}）の本文{MISINFO_FIX_PARAGRAPHS}段落を修正。"
+          f"{mark}の引用が下がる場合、リードの効果は大きめ（甘い方向）、FAQの効果は小さめに出る。"
+          "リードの早期解放は『誤情報修正1本抜き』でも効果の向きが同じときだけ通る**"
+          f"（{MISINFO_FIX_SLUGS[0]}・{group}。数字のある段落に架空の事例である旨の断りを足し、数字を幅のある表現に。"
+          "見出し・リード・FAQ・リンクは不変。感度分析の「誤情報修正1本抜き」を参照）\n")
+    return True
+
+
 def multi_paragraph_note():
     """5通り目を出せない・抜き漏れがありうるときの1行。問題が無ければ None。"""
     multi = multi_paragraph_slugs()
@@ -834,6 +862,7 @@ def main(argv=None):
             print(f"**{GENERALIZATION_NOTE}**\n")
         print_site_wide_interventions(a.before, a.after)
         print_link_loss_note(a.after)
+        print_misinfo_fix_note(a.after)
         pillar_lines, pillar_parts = pillar.report_lines(_span(a.after))
         print("\n".join(pillar_lines))
         rows = read_llm_experiment(a.csv)
