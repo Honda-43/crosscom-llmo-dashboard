@@ -165,3 +165,62 @@ def test_author_rule_does_not_apply_before_oct9():
     assert not drift_check.author_only_change(diff, "2026-10-08")
     assert drift_check.author_only_change(diff, "2026-10-09")
     assert not drift_check.author_only_change(["--- a", "+++ b"], "2026-10-12")
+
+
+# 2026-10-18：実験期間中に誤情報を直す1本（pool.MISINFO_FIX_SLUGS）。決めた段落だけの変化は想定内
+_FIX_BEFORE = "<p>防災設備メーカーA社では、商談化率が<strong>32%</strong>向上し、受注が1.8倍になった。</p>"
+_FIX_AFTER = ("<p>※以下は架空の事例です。</p><p>防災設備メーカーを想定した例では、商談化率が"
+              "<strong>2〜3割程度</strong>向上し、受注が1.5〜2倍程度になるケースが考えられる。</p>")
+_FIX = {"slug": "a", "from": "2026-10-20", "intervention": "I-91", "before": _FIX_BEFORE, "after": _FIX_AFTER}
+
+
+def _with_fix(monkeypatch, tmp_path, edits=(_FIX,)):
+    path = tmp_path / "expected_edits.json"
+    path.write_text(json.dumps(list(edits), ensure_ascii=False), encoding="utf-8")
+    monkeypatch.setattr(drift_check, "EXPECTED_EDITS", str(path))
+
+
+def test_the_planned_fix_of_one_paragraph_is_expected(monkeypatch, tmp_path):
+    _with_fix(monkeypatch, tmp_path)
+    old = {"a": _entry(f"<h2>見出し</h2>{_FIX_BEFORE}<p>本文</p>", "2026-10-19")}
+    rc, rep = _run(monkeypatch, tmp_path, {"a": f"<h2>見出し</h2>{_FIX_AFTER}<p>本文</p>"}, old, None, "2026-10-26")
+    assert rep is not None
+    assert "本文テキストが変化した記事（想定外）：**0 本" in rep
+    assert "想定内の変化（実験期間中に入れると決めた修正の段落だけ）：1 本" in rep
+    assert "| a | I-91 | 2026-10-20 |" in rep
+
+
+def test_a_change_outside_the_paragraph_is_unexpected(monkeypatch, tmp_path):
+    _with_fix(monkeypatch, tmp_path)
+    old = {"a": _entry(f"<h2>見出し</h2>{_FIX_BEFORE}<p>本文</p>", "2026-10-19")}
+    rc, rep = _run(monkeypatch, tmp_path, {"a": f"<h2>見出しを変えた</h2>{_FIX_AFTER}<p>本文</p>"},
+                   old, None, "2026-10-26")
+    assert "本文テキストが変化した記事（想定外）：**1 本" in rep
+    assert "決めた段落の外も変わっている" in rep and "見出しを変えた" in rep
+
+
+def test_a_different_rewrite_of_the_paragraph_is_unexpected(monkeypatch, tmp_path):
+    _with_fix(monkeypatch, tmp_path)
+    old = {"a": _entry(f"{_FIX_BEFORE}<p>本文</p>", "2026-10-19")}
+    rc, rep = _run(monkeypatch, tmp_path, {"a": "<p>防災設備の段落を別の文に書き換えた</p><p>本文</p>"},
+                   old, None, "2026-10-26")
+    assert "本文テキストが変化した記事（想定外）：**1 本" in rep
+
+
+def test_the_rule_is_only_for_that_article_and_from_that_day(monkeypatch, tmp_path):
+    diff = ["--- a", "+++ b", "-" + drift_check.text_of(_FIX_BEFORE).split("\n")[0], "+※以下は架空の事例です。"]
+    assert drift_check.expected_edit_for("a", diff, "2026-10-20", [_FIX]) == _FIX
+    assert drift_check.expected_edit_for("a", diff, "2026-10-19", [_FIX]) is None, "適用日より前"
+    assert drift_check.expected_edit_for("b", diff, "2026-10-26", [_FIX]) is None, "ほかの記事"
+    assert drift_check.expected_edit_for("a", ["--- a", "+++ b", "-防災設備メーカーA社では、商談化率が"],
+                                         "2026-10-26", [_FIX]) is None, "消えただけ(足された行なし)"
+    # 戻した(修正後→修正前)のも想定外
+    back = ["--- a", "+++ b", "-※以下は架空の事例です。", "+防災設備メーカーA社では、商談化率が"]
+    assert drift_check.expected_edit_for("a", back, "2026-10-26", [_FIX]) is None
+
+
+def test_other_articles_are_unaffected_by_the_fix_rule(monkeypatch, tmp_path):
+    _with_fix(monkeypatch, tmp_path)
+    old = {"b": _entry(f"{_FIX_BEFORE}", "2026-10-19")}
+    rc, rep = _run(monkeypatch, tmp_path, {"b": _FIX_AFTER}, old, None, "2026-10-26")
+    assert "本文テキストが変化した記事（想定外）：**1 本" in rep

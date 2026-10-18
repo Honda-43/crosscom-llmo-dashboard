@@ -43,6 +43,7 @@ import pillar  # noqa: E402
 import rerandomize  # noqa: E402
 from pool import GROUP_BLIND_UNTIL  # noqa: E402
 from pool import LINK_LOSS_IDS, LINK_LOSS_SCOPE, LINK_LOSS_SLUGS  # noqa: E402
+from pool import MISINFO_FIX_IDS, MISINFO_FIX_SLUGS  # noqa: E402
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
                   LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
                   late_appended_slugs, load_allocation, multi_paragraph_slugs,
@@ -343,7 +344,44 @@ def variants():
     out.append(("9本抜き＋リンク減2本", set(late) | loss))
     if multi is not None:
         out.append(("複数段落回答抜き＋リンク減2本", set(multi[0]) | loss))
+    # 最後の通り(2026-10-18)：実験期間中に誤情報を直す1本を抜く。記録が届くまでは出さない(sensitivity_table が理由を出す)。
+    # 1本だけの集合なので、既存の行と同じ記事集合になるのは features 抜き(その記事が agentforce-features のとき)だけ。
+    # そのときは merge_same_sets が1行にまとめる。早期解放の条件(3)・再ランダム化検定もこの通りを含む
+    fix = set(MISINFO_FIX_SLUGS)
+    if fix:
+        out.append((misinfo_fix_label(), fix))
     return merge_same_sets(out)
+
+
+def misinfo_fix_label():
+    ids = "・".join(MISINFO_FIX_IDS) or "・".join(sorted(MISINFO_FIX_SLUGS))
+    return f"誤情報修正1本抜き（{ids}）"
+
+
+def misinfo_fix_overlap():
+    """誤情報を直す記事が、既存の感度分析のどの「抜く記事」に含まれるか。[(見出し, 含まれるか)]。記録が無ければ None。"""
+    fix = set(MISINFO_FIX_SLUGS)
+    if not fix:
+        return None
+    multi = multi_paragraph_slugs()
+    linked = pillar.linked_articles()
+    sets = [("9本（9/15〜16 追記）", set(late_appended_slugs())),
+            ("features（訂正対象）", set(APPLIED_CORRECTION_SLUGS)),
+            ("複数段落回答", set(multi[0]) if multi is not None else None),
+            ("ピラーの既存リンク先", set(linked) if linked is not None else None),
+            ("リンク減2本", set(LINK_LOSS_SLUGS))]
+    return [(label, s is not None and fix <= s) for label, s in sets]
+
+
+def misinfo_fix_note():
+    """感度分析の表の下に出す1行。"""
+    over = misinfo_fix_overlap()
+    if over is None:
+        return ("※ 「誤情報修正1本抜き」は出していない：seo-agent からの記録（slug・組・適用日時）待ち"
+                "（pool.MISINFO_FIX_SLUGS が空）")
+    inside = [label for label, hit in over if hit]
+    return (f"※ 誤情報修正の1本（{'・'.join(MISINFO_FIX_IDS) or '・'.join(MISINFO_FIX_SLUGS)}）は"
+            + (f"{'・'.join(inside)}にも含まれる" if inside else "既存の感度分析のどの行にも含まれない"))
 
 
 def merge_same_sets(variant_list):
@@ -454,6 +492,7 @@ def sensitivity_table(after, before, title=""):
     note = multi_paragraph_note()
     if note:
         print(note)
+    print(misinfo_fix_note())
     print()
 
 
@@ -828,7 +867,7 @@ def main(argv=None):
     print("p は**再ランダム化検定**を本線にする（条件 a〜g の合格率が約 1/9,200 のため、"
           "同じ条件を満たす割付の中で数える）。フィッシャー正確検定は参考。")
     print("感度分析で結論が食い違う場合は、処置ではなく"
-          "「9/15〜16 の追記」「鮮度更新の訂正」「FAQ の複数段落回答（<br> でつないだ変換）」"
+          "「9/15〜16 の追記」「鮮度更新の訂正」「FAQ の複数段落回答（<br> でつないだ変換）」「誤情報の修正（1本）」"
           "のどれかの影響として扱う。")
     return 0
 

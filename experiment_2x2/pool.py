@@ -47,6 +47,15 @@ LINK_LOSS_IDS = ('E23', 'E27')
 # 移設の実施記録(interventions.csv)を見分ける scope。実施日はこの行の date から取る
 LINK_LOSS_SCOPE = 'site_structure'
 
+# 実験期間中に誤情報を直す1本(2026-10-18・本田さん決定・案C)。架空事例のうち、Perplexity が当社の実績として
+# 誤って紹介した「防災設備」の記事だけを直す(数字のある段落に架空の事例である旨の断りを足し、数字を幅のある表現にする2点のみ)。
+# 残りの架空事例38本は 2027-01-01 以降。experiment_flag は維持(除外しない・主分析は46本のまま)。
+# 感度分析に「誤情報修正1本抜き」を足す(早期解放の条件(3)・再ランダム化検定も同じ除外)。
+# **seo-agent から記録(slug・組・適用日時・修正前後の段落)が届くまでは空**。届いたら slug と記事ID を入れ、
+# 修正前後の段落を drift/expected_edits.json に書く(週次のドリフト検知で、その段落だけの変化を想定内にする)
+MISINFO_FIX_SLUGS = ()
+MISINFO_FIX_IDS = ()
+
 
 # 実験の終わり(config/experiment_freeze.yaml の experiment_end と同じ。テストで照合)。
 # 割付はこの日まで --force でも置き換えない(allocate_47.overwrite_guard)。

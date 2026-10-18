@@ -29,6 +29,10 @@ usage:
 　**前回の基準が処置の前（checked が 2026-09-30 以前）の回だけ**、前回の代わりに処置後の基準と比べる。
 　→ 9/29〜30 の処置による変化は差分に出ない（想定内）。処置後の基準と違えば、それは 10/1 以降の変化＝想定外。
 　その回のハッシュが新しい基準になり、翌週からは従来どおり前回と比べる。
+
+実験期間中に入れると決めた修正（2026-10-18 追加・誤情報修正の1本）
+　drift/expected_edits.json に修正前後の段落を入れると、その記事の差分がその段落の中だけなら想定内として別枠に出す。
+　段落の外が1行でも変わっていれば想定外。
 """
 import argparse
 import csv
@@ -87,6 +91,40 @@ def author_only_change(diff, today, since=AUTHOR_CHANGE_FROM):
         return False
     lines = [x for x in diff if x[:1] in '+-' and not x.startswith(('+++', '---'))]
     return bool(lines) and all((x[1:] in AUTHOR_ADDED) if x[0] == '+' else (x[1:] in AUTHOR_REMOVED) for x in lines)
+
+
+# 実験期間中に入れると決めた本文の修正（2026-10-18・誤情報修正の1本・pool.MISINFO_FIX_SLUGS）。
+# 　[{"slug", "from"(適用日 YYYY-MM-DD), "intervention"(I-xx), "before"(修正前の段落), "after"(修正後の段落)}]。
+# 　段落は seo-agent の記録をそのまま入れる（HTML でも素のテキストでもよい）。ファイルが無ければ何もしない。
+# 　その記事の差分の行が**すべて**その段落の中（消えた行は修正前の段落の一部・足された行は修正後の段落の一部）なら想定内。
+# 　1行でもその段落の外が変わっていれば、記事ごと従来どおり想定外として出す
+EXPECTED_EDITS = os.path.join(HERE, 'drift', 'expected_edits.json')
+_TAGS_AND_SPACE = re.compile(r'<[^>]+>|\s+')
+
+
+def load_expected_edits(path=None):
+    path = EXPECTED_EDITS if path is None else path
+    if not os.path.exists(path):
+        return []
+    return json.load(io.open(path, encoding='utf-8'))
+
+
+def _flat(text):
+    return _TAGS_AND_SPACE.sub('', str(text or ''))
+
+
+def expected_edit_for(slug, diff, today, edits):
+    """差分がその記事の決めた修正の段落の中だけなら、その修正（dict）。違えば None。"""
+    lines = [x for x in diff if x[:1] in '+-' and not x.startswith(('+++', '---'))]
+    for e in edits:
+        if e.get('slug') != slug or today < str(e.get('from', '9999')):
+            continue
+        before, after = _flat(e.get('before')), _flat(e.get('after'))
+        added = [_flat(x[1:]) for x in lines if x[0] == '+']
+        removed = [_flat(x[1:]) for x in lines if x[0] == '-']
+        if added and all(x and x in after for x in added) and all(x in before for x in removed if x):
+            return e
+    return None
 
 
 def markup_diff(before, after, limit=6, ctx=60):
@@ -255,6 +293,8 @@ def main():
     first_run = not old or a.baseline
 
     new, changed, failed, markup_only, author_expected = {}, [], [], [], []
+    edits, edit_expected = load_expected_edits(), []
+    edit_slugs = {e.get('slug') for e in edits}
     for slug, url in targets():
         try:
             html = fetch(url)
@@ -278,10 +318,17 @@ def main():
                                              tofile=f'{slug} 今回({today})', lineterm='', n=1))
             item = {'slug': slug, 'url': url, 'prev': prev, 'now': digest,
                     'prev_checked': ref[slug]['checked'], 'diff': diff}
+            edit = expected_edit_for(slug, diff, today, edits) if diff else None
             if diff and author_only_change(diff, today):
                 author_expected.append(item)
                 print(f'  ○想定内の変化 {slug}（著者表示の変更 I-31・I-32 の行だけ）')
+            elif edit:
+                item['edit'] = edit
+                edit_expected.append(item)
+                print(f'  ○想定内の変化 {slug}（決めた修正 {edit.get("intervention", "")} の段落だけ）')
             elif diff:
+                if slug in edit_slugs:
+                    item['edit_outside'] = True
                 changed.append(item)
                 print(f'  ★変化あり {slug}（{len(diff)} 行の差分）')
             else:
@@ -302,7 +349,7 @@ def main():
     if first_run:
         print('基準を作りました。差分の判定は次回から。')
         return 0
-    if not changed and not failed and not markup_only and not author_expected:
+    if not changed and not failed and not markup_only and not author_expected and not edit_expected:
         print('前週から変化なし。報告は出しません。')
         return 0
 
@@ -318,7 +365,17 @@ def main():
          f'- 取得できなかった記事：{len(failed)} 本']
     if author_expected:
         L.append(f'- 想定内の変化（著者表示の変更 I-31・I-32 の行だけ）：{len(author_expected)} 本')
+    if edit_expected:
+        L.append(f'- 想定内の変化（実験期間中に入れると決めた修正の段落だけ）：{len(edit_expected)} 本')
     L.append('')
+    if edit_expected:
+        L += ['## 想定内の変化（実験期間中に入れると決めた修正）', '',
+              '差分の行がすべて、決めた修正の段落の中（修正前の段落の一部が消え、修正後の段落の一部が足された）だった記事。',
+              '段落の外が1行でも変わった記事は下の「想定外」に出る。', '',
+              '| slug | 介入 | 適用日 |', '|---|---|---|']
+        L += [f'| {c["slug"]} | {c["edit"].get("intervention", "")} | {c["edit"].get("from", "")} |'
+              for c in edit_expected]
+        L.append('')
     if author_expected:
         L += ['## 想定内の変化（著者表示の変更・2026-10-09 19:42）', '',
               '差分の行がすべて著者表示の行（冒頭の「著者：本田正憲」・末尾の新しい著者欄・オフにしたテーマ標準の著者ボックス）だった記事。',
@@ -340,7 +397,11 @@ def main():
             L += ['', f'### {c["slug"]}：HTML の違う箇所', '', '`' * 3] + c['markup'] + ['`' * 3]
         L.append('')
     for c in changed:
-        L += [f'## {c["url"]}', '',
+        L += [f'## {c["url"]}', '']
+        if c.get('edit_outside'):
+            L += ['**この記事は実験期間中に入れると決めた修正（drift/expected_edits.json）の対象。'
+                  'ただし、決めた段落の外も変わっている（または決めた内容と違う）。想定外として扱う**', '']
+        L += [
               f'- 前回 {c["prev_checked"]}：`{c["prev"][:16]}`',
               f'- 今回 {today}：`{c["now"][:16]}`', '',
               '`' * 3 + 'diff']
