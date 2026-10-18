@@ -1315,3 +1315,26 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - interventions.csv I-34（停止）・I-35（停止中の実験の配分）に記録。README「観測と配信の一時停止」
 - 同日追記：**Ahrefs の週次取得とシート（ahrefs_aio）への書き込みは、週次所見の停止から切り離して続ける**（GA4・GSC と同じく後から遡って取れないため・本田さん決定）。
   run_weekly.py は停止中も Ahrefs だけ取り、ルール・所見・Slack は止めたまま
+
+---
+
+## 2026-10-18／サイトの介入5件の記録と、組の正本（allocation_v1.csv）の確認
+
+- **interventions.csv に5件を追記（I-36〜I-40）**。いずれも touches_pool46=no（46本の本文・46本へのリンクは不変）
+  - I-36（10/16 11:12〜11:14・本田さん 管理画面）：固定ページ24本をゴミ箱へ（終了事業のサービスページ6本・資料ページ4本・サンクス13本・空の固定ページ1本）。
+    現在404（2本は WordPress の自動推測で301）。公開ページから24本へのリンク0本（seo-agent 確認）。近い現行ページへの301を10本作る予定（転送先は46本以外で確認のうえ設定）
+  - I-37（10/18 13:36・本田さん）：無料相談ページ（/service/btob-marketing-free-consultation/）とサンクスをゴミ箱から復元。下書きのため外からは404。公開に戻すときは別の行で記録する
+  - I-38（10/18 13:05・seo-agent 9c）：トップページ「支援企業例」節のリード文を現在の事業に差し替え、事例カードを外した（scope=サイト全体）。46本へのリンクは前後とも0本
+  - I-39（10/18 13:05・seo-agent 9c）：事例の分類名3つ（case_category 24・25・26）に「（提供終了）」を付けた。URL・本文は不変
+  - I-40（10/18 13:40・seo-agent 9c）：ma-support-company のカテゴリを「BtoB MA導入・運用」から「BtoBマーケティング全般」へ。MA カテゴリは category-sitemap から消え、記事は post-sitemap に残る
+  - アフター期間中の介入。判定レポートの交絡候補一覧（期間と重なる介入）に載る
+- **組の正本の確認**：experiment_2x2/targets.csv（seo-agent の編集禁止リスト）の **group 列は 9/28 の割付より前の古い値のまま**で、
+  46本中37本が allocation_v1.csv と違う。**組の正本は experiment_2x2/allocation_v1.csv（9/28 の割付）**
+  - dashboard の全コードを検索した結果、targets.csv の group 列を読んでいる処理は無かった。targets.csv を開くのは
+    allocate_47.load_articles（公開日 published 列のみ）だけで、凍結の一覧（experiment_freeze）は URL だけを読む
+  - 判定・感度分析（summarize）、再ランダム化検定（rerandomize・summarize.randomization）、欠測の組別集計（experiment_weekly）、
+    不均衡の確認・引用プローブはすべて allocation_v1.csv の組を使う（tests/test_allocation_source.py で固定）
+  - 1か所だけ間接の経路を直した：ピラーの偏り（pillar.py・判定レポートの冒頭と6つ目の感度分析）は、seo-agent 側の表
+    （pillar_existing_links／pillar_strong_overlap）の group 列を読んでいた。今の表は allocation_v1 と全行一致しているが、
+    seo-agent が新しい表を出したとき古い組が入りうるため、割付表の組を使うようにした（割付表に無い記事だけ表の値）。判定の数字は変わらない
+  - targets.csv は seo-agent 管理のため dashboard 側では直さない（group 列の更新は seo-agent 側の判断）

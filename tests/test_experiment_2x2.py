@@ -807,7 +807,10 @@ def test_the_real_move_row_drives_the_note_and_the_confounder_list(capsys):
         assert "区切り日時 2026-10-11 21:25:36" in out
     overlap, _ = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 11, 1), rows)
     groups = dict(summarize.group_by_scope(overlap))
-    assert [r["intervention_id"] for r in groups["site_structure"]] == ["I-33"]
+    # 2026-10-18:アフター期間中のサイトの介入(I-36・I-37・I-39・I-40。いずれも46本に触れない)も交絡候補に載る。
+    # 被リンク減の区切り(上の link_loss)は I-33 のまま
+    assert [r["intervention_id"] for r in groups["site_structure"]] == ["I-33", "I-36", "I-37", "I-39", "I-40"]
+    assert "I-38" in [r["intervention_id"] for r in groups["サイト全体"]]
 
 
 def test_the_later_of_the_two_link_removals_is_the_cut_off():

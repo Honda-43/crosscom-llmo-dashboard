@@ -84,6 +84,13 @@ def _slug(text):
     return str(text or '').strip().rstrip('/').split('/')[-1].lower()
 
 
+def _group(slug, listed):
+    """46本の組。**正本は allocation_v1.csv**(2026-10-18)。表の group 列は seo-agent 側の写しで、古い割付
+    (targets.csv の group 列は9/28 の割付より前の値のまま)が入りうるので使わない。割付表に無い記事だけ表の値。"""
+    from pool import load_allocation      # 遅延 import(pool は同じフォルダ。summarize と同じ読み方)
+    return load_allocation().get(_slug(slug), listed)
+
+
 # --------------------------------------------------------------------------
 # 実施の記録
 # --------------------------------------------------------------------------
@@ -191,7 +198,7 @@ def balance(path=None):
     out = []
     for label, keep in [(PILLAR_LABEL[p], (lambda r, p=p: r['pillar'] == p)) for p in PILLARS] \
             + [('A・Bのどちらか', lambda r: True)]:
-        arts = {(r['group'], _slug(r['slug'])) for r in rows if keep(r)}
+        arts = {(_group(r['slug'], r['group']), _slug(r['slug'])) for r in rows if keep(r)}
         counts = {g: sum(1 for grp, _ in arts if grp == g) for g in GROUPS}
         gap = max(counts.values()) - min(counts.values())
         out.append((label, counts, gap, gap >= BIAS_GAP))
@@ -208,7 +215,8 @@ def poaching(edit=None, path=None):
         return None
     rows = _rows(path)
     targets = set((edit or {}).get('targets') or [])
-    linked = [(r['orphan'], r['prompt_slug'], r['group']) for r in rows if _slug(r['orphan']) in targets]
+    linked = [(r['orphan'], r['prompt_slug'], _group(r['prompt_slug'], r['group']))
+              for r in rows if _slug(r['orphan']) in targets]
     by_group = collections.Counter(g for _, _, g in linked)
     return {'linked': linked, 'by_group': {g: by_group.get(g, 0) for g in GROUPS},
             'total': len({r['orphan'] for r in rows})}
