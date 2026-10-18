@@ -173,3 +173,30 @@ def test_i15_to_i17_record_the_form_changes_as_outside_the_experiment():
     assert all(pid in rows["I-15"]["scope"] for pid in ("68", "1891", "5702", "5801"))
     assert all(pid in rows["I-16"]["scope"] for pid in ("2231", "6443", "5706"))
     assert "1337" in rows["I-17"]["scope"] and rows["I-17"]["executor"] == "制作管制"
+
+
+def test_i44_to_i46_record_the_d44_fixes_outside_the_frozen_46_and_match_the_handoff_copies():
+    """D-44(10/18)：凍結外37本(I-44)・ピラーA の断り(I-45)・凍結外15本(I-46)。53行は入れず、記事ごとの行は output/handoff/ の写しを参照する。"""
+    import csv
+    import os
+    import re
+
+    rows = {r["intervention_id"]: r for r in interventions.load()}
+    assert [rows[i]["scope"] for i in ("I-44", "I-45", "I-46")] == ["site_content", "ピラーA", "site_content"]
+    assert all(rows[i]["touches_pool46"] == "no" and rows[i]["raw_date"] == "2026-10-18" for i in ("I-44", "I-45", "I-46"))
+    assert "アフター期間は分けない" in rows["I-45"]["note"]
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    handoff = os.path.join(root, "output", "handoff")
+    pool = open(os.path.join(root, "config", "prompts_experiment.csv"), encoding="utf-8-sig").read()
+
+    def slugs(name):
+        with open(os.path.join(handoff, name), encoding="utf-8-sig") as f:
+            return [re.match(r"/?([a-z0-9-]+)", r["scope"]).group(1) for r in csv.DictReader(f)]
+
+    ug, uj = slugs("interventions_handoff_bunUG_20261018.csv"), slugs("interventions_handoff_bunUJ_20261018.csv")
+    assert len(ug) == 38 and "agentforce-guide" in ug and len(uj) == 15
+    assert "37本" in rows["I-44"]["description"] and "15本" in rows["I-46"]["description"]
+    assert not [s for s in ug + uj if f"/{s}/" in pool], "凍結46本は0本"
+    assert "interventions_handoff_bunUG_20261018.csv" in rows["I-44"]["note"]
+    assert "interventions_handoff_bunUJ_20261018.csv" in rows["I-46"]["note"]
