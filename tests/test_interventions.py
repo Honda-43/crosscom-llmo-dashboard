@@ -219,3 +219,11 @@ def test_rows_of_oct_18_written_by_9c_or_9d_note_the_single_session_but_earlier_
     assert fixed == ["I-38", "I-39", "I-40", "I-41", "I-42", "I-43", "I-44", "I-46"]
     for r in named:
         assert (r["note"].endswith(mark)) == (r["raw_date"] == "2026-10-18"), r["intervention_id"]
+
+
+def test_i45_note_appends_the_writing_session_without_the_disputed_count():
+    """I-45：書き込みは e0eede5c。107件には本田さんの下書き・自動保存が含まれるため、件数は note に入れない。"""
+    r = {r["intervention_id"]: r for r in interventions.load()}["I-45"]
+    assert r["executor"] == "記事制作" and r["note"].startswith("リビジョン 9083（前は 8438・2026-10-02）。")
+    tail = r["note"].split("【2026-10-18 追記】")[-1]
+    assert "seo-agent（e0eede5c）" in tail and "17:13:54〜17:25:30" in tail and "107件" not in tail
