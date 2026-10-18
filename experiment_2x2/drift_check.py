@@ -95,6 +95,8 @@ def author_only_change(diff, today, since=AUTHOR_CHANGE_FROM):
 
 # 実験期間中に入れると決めた本文の修正（2026-10-18・誤情報修正の1本・pool.MISINFO_FIX_SLUGS）。
 # 　[{"slug", "from"(適用日 YYYY-MM-DD), "intervention"(I-xx), "paragraphs": [{"para", "before", "after"}, ...],
+# 　  "faq_answers": [{"question", "before", "after"}, ...](FAQ の答え。表示の文だけを比べる。FAQPage の構造化データは
+# 　  <script> の中なので body_of で落ちていて、そもそも比べていない),
 # 　  "update_date_display"(true なら記事の「更新」の日付が適用日に変わる行も想定内)}]。
 # 　段落は seo-agent の記録をそのまま入れる（HTML でも素のテキストでもよい。"before"/"after" を1段落ぶん直接書いてもよい）。
 # 　ファイルが無ければ何もしない。
@@ -118,7 +120,7 @@ def _flat(text):
 
 
 def _paragraphs(edit):
-    paras = list(edit.get('paragraphs') or [])
+    paras = list(edit.get('paragraphs') or []) + list(edit.get('faq_answers') or [])
     if 'before' in edit or 'after' in edit:
         paras.append({'before': edit.get('before'), 'after': edit.get('after')})
     return [_flat(p.get('before')) for p in paras], [_flat(p.get('after')) for p in paras]

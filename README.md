@@ -344,6 +344,12 @@ buyer-enablement(E23)4本、hyper-personalization(E27)1本。他の44本は変�
     seo-agent の公開 HTML の前後で試し、想定内になること・26段落以外の1行の変化や別の日付への変化は想定外になることを確かめた
     (`tests/fixtures/drift_sales_roleplay_*.txt`)。10/12 の週次の基準は修正前の公開ページと一致
   - `tests/test_misinfo_fix.py` が pool.py・expected_edits.json・interventions.csv の3か所が同じ記事を指すことを確かめる
+- **訂正(2026-10-18)**:E33 の修正は本文26段落だけでなく、**同日 16:05:54 に FAQ の答え2か所(質問②・④)の数字も変えていた**
+  (seo-agent feed64e・本田さん判断・interventions.csv I-42。I-41 の note にも訂正を追記)。問いの数5・順番・位置(B-24 の処置)は不変で、答えの文言だけ。H3 見出しは不変
+  - **感度分析は変えない**:「誤情報修正1本抜き」は E33 を判定期間の**全体**から抜く方式なので、FAQ の修正も同じ1行で吸収される
+  - 判定レポートの注記は「本文26段落と FAQ の答え2か所を修正」
+  - ドリフト検知:expected_edits.json に FAQ の答え2か所の前後も入れた(`faq_answers`)。比べるのは表示の FAQ の文だけ
+    (FAQPage の構造化データは `<script>` の中なので、もともと比べていない)。26段落・FAQ の答え2か所・更新日の表示以外が変われば想定外
 
 ### 組の正本(allocation_v1.csv)と targets.csv の group 列(2026-10-18)
 

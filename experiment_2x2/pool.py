@@ -52,12 +52,15 @@ LINK_LOSS_SCOPE = 'site_structure'
 # 残りの架空事例38本は 2027-01-01 以降。experiment_flag は維持(除外しない・主分析は46本のまま)。
 # 感度分析に「誤情報修正1本抜き」を足す(早期解放の条件(3)・再ランダム化検定も同じ除外)。
 # 2026-10-18 に seo-agent から記録が届いた(seo-agent 148d365):agentforce-sales-roleplay(post 7174・E33・②FAQのみ)。
-# 適用 2026-10-18 15:46:09 JST。本文195段落のうち数字のある26段落だけ(見出し・リード・FAQ・リンクは不変)。
+# 適用 2026-10-18 15:46:09 JST。本文195段落のうち数字のある26段落(見出し・リード・リンクは不変。FAQ は下の訂正を参照)。
 # 修正前後の26段落は drift/expected_edits.json(週次のドリフト検知で、その段落だけの変化を想定内にする)。
 # 既存の感度分析(9本・features・複数段落7本・ピラーの既存リンク先・リンク減2本)のどれにも含まれない
 MISINFO_FIX_SLUGS = ('agentforce-sales-roleplay',)
 MISINFO_FIX_IDS = ('E33',)
 MISINFO_FIX_PARAGRAPHS = 26
+# 同日 16:05:54 に FAQ の答え2か所(質問②・④)の数字も変えた(seo-agent feed64e・I-42。本田さん判断)。問いの数5・順番・位置は不変。
+# 感度分析は E33 を判定期間の全体から抜くので、この修正も「誤情報修正1本抜き」の同じ1行で吸収される
+MISINFO_FIX_FAQ_ANSWERS = 2
 # 実施記録(interventions.csv)を見分ける scope。実施日はこの行の date から取る
 MISINFO_FIX_SCOPE = 'プール46本'
 
