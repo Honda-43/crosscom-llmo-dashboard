@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-19",
+  "prompt_id": "E31",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？",
+  "cep": null,
+  "timestamp": "2026-10-19T00:46:14.328624Z",
+  "answer": "Agentforce Employee Agentは、Salesforce上で動作する従業員向けのAIエージェントで、社内からの問い合わせ対応や業務申請フローを自動化するために設計されています。従業員が日常的に発生する質問や手続きを自己解決できるよう支援し、対応部門と利用者双方の負担を大幅に軽減することを目的としています。\n\nこのAIエージェントは、以下の範囲まで社内問い合わせを任せることができます。\n\n*   **定型的な質問への即時回答**：社内のよくある質問（FAQ）に対して、社内ナレッジや規定に基づいて自動で回答を提供します。特に、総務、情シス、人事部門などによく寄せられる定型的な問い合わせに効果的です。\n*   **申請業務のサポート**：申請手続きの開始を支援したり、申請状況の確認を可能にします。例えば、休暇申請や休職申請の状況確認、プロフィール情報の変更、人事ケースの管理などをサポートします。\n*   **社内ナレッジの提示**：社内ルールや規定に関するナレッジを提示し、従業員が自身で情報を検索・取得できるようにします。\n*   **適切な部門への自動エスカレーション**：AIエージェントで解決できない複雑な問い合わせに対しては、適切な担当部門へ自動的にエスカレーションする機能を備えています。\n*   **多様なインターフェースからの利用**：SlackやSalesforceモバイルアプリなどのインターフェースと連携し、従業員が日常的に利用するツールからアクセスできるため、利用者のアクセス性も高いです。\n\nただし、Agentforce Employee Agentは、すべての社内問い合わせを無制限に処理できるわけではありません。例えば、Agentforce CoworkerがCRMデータなど複数のレコードや会話を横断した高度な照会に対応するのに対し、Employee Agentは主に社内規程やナレッジ記事を中心とした情報参照を想定しています。 また、導入後の回答品質や利用定着には、適切な設計と運用が重要であり、どこまで自動化するか（Slack連携やエスカレーションの範囲など）を適切に決める必要があります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGRxaI5T1koT_4y9h_efLwhgeVwonYJb2aJJNiM1L38pXfpT4BIdtCkAqaPI3ZWXbSM66bDzUX1u7Ef6RIAH_SAAKV3gJFQRjjZlYA4Pbw7czdexmAVYdJBtEtUkCR417G9Hg0qPXu0UXsakjUZjaMpkfREzn4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHYDUqsDRpaE7pjVHR9q9RgwcGudID39if4zsmVhHC0F4LwxU9A-Mh46z_l0Rp_ujaSNQB8Offk8O2vM5URjozQUuxXgkLdyH8a9APWNYzTFhXdka3vUSSqa0tFTG-DzX9gl8oc6zUZnRoc9Mdx6fPInatZD0q72gaLxkC-Xg1G9JreYLzRuJOhO-w=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE5wiO3wwowAlB33k5trGkSA5sVmjJpBZsxbdjRkKOfGaVJnmUfkJmvrvLy-zp2GZdAqpNbzIzRqhd07qHxPt2_d_YQrhZH3kkKjJokSNu5uTXZYTiGh5F27dQcTp7gL7jG_Zhu4B8RwvMKZpaY4IuaSkEFsKD_b2duaEfPITjD7TB_szSv7DTUmtbWQN4LzGvHHI77rkorIP5axF00QohjzUuE80oIe-3idvGC78J4Dr6zxbWzUwrqJLzIwvDzhdF0M5k=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE28--CP8pKr_gIE-D49T1zbP-kmZdYAJH5J4fp_NCoB0n7GEGAt-NBAEhII0N1iHxs2T9bQSd6D2Tm-_9sBlvn0Y9H9uKZs3cbMLREfXb2CFI9dC4llvRmQZr4YCt-hpa_jf7ENLS5Y097DDYVNo_V9_JV",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHYgFO0zQ0WxkVzPP7WHBUM7x1pwpDziXSmpFM2LHn5Mnn37squW3qa0p2mZJaGJXRjc80xDeNohx3ErMfitfyPp1RkSM5j6Y3re8NDUqmZcofA_ahe5lGMUCOKeD7kPWNW-30f-lcwPR1I5JsINiirvWStg8DclhUgPI=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHojGi6eiDix96ofwu1LbKEBz5ziN1EFYkfUVX89_DS1sEUStiY0bFn2LAganxe6ZuHVLT7OFAXEZWIvg7VNGzkC4PDwZvXaWl1QRUzLS5bPbtetfJ5KChn5AET2wYNP5ckPFwA"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E31",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-employee-agent/",
+  "answer_text": "Agentforce Employee Agentは、Salesforce上で動作する従業員向けのAIエージェントで、社内からの問い合わせ対応や業務申請フローを自動化するために設計されています。従業員が日常的に発生する質問や手続きを自己解決できるよう支援し、対応部門と利用者双方の負担を大幅に軽減することを目的としています。\n\nこのAIエージェントは、以下の範囲まで社内問い合わせを任せることができます。\n\n*   **定型的な質問への即時回答**：社内のよくある質問（FAQ）に対して、社内ナレッジや規定に基づいて自動で回答を提供します。特に、総務、情シス、人事部門などによく寄せられる定型的な問い合わせに効果的です。\n*   **申請業務のサポート**：申請手続きの開始を支援したり、申請状況の確認を可能にします。例えば、休暇申請や休職申請の状況確認、プロフィール情報の変更、人事ケースの管理などをサポートします。\n*   **社内ナレッジの提示**：社内ルールや規定に関するナレッジを提示し、従業員が自身で情報を検索・取得できるようにします。\n*   **適切な部門への自動エスカレーション**：AIエージェントで解決できない複雑な問い合わせに対しては、適切な担当部門へ自動的にエスカレーションする機能を備えています。\n*   **多様なインターフェースからの利用**：SlackやSalesforceモバイルアプリなどのインターフェースと連携し、従業員が日常的に利用するツールからアクセスできるため、利用者のアクセス性も高いです。\n\nただし、Agentforce Employee Agentは、すべての社内問い合わせを無制限に処理できるわけではありません。例えば、Agentforce CoworkerがCRMデータなど複数のレコードや会話を横断した高度な照会に対応するのに対し、Employee Agentは主に社内規程やナレッジ記事を中心とした情報参照を想定しています。 また、導入後の回答品質や利用定着には、適切な設計と運用が重要であり、どこまで自動化するか（Slack連携やエスカレーションの範囲など）を適切に決める必要があります。",
+  "cited_domain": 1,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "strh.co.jp",
+    "salesforce.com",
+    "trailhead.salesforce.com",
+    "zenn.dev",
+    "aismiley.co.jp",
+    "cross-com.jp"
+  ],
+  "resolved_urls": [
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://www.salesforce.com/agentforce/agentforce-for-employees/employee-agents/",
+    "https://trailhead.salesforce.com/ja/content/learn/modules/agentforce-for-employees-quick-look/get-started-with-agentforce-for-employees",
+    "https://zenn.dev/pacific_creator/articles/bd665f463b4ccc",
+    "https://aismiley.co.jp/ai_news/agentforce-salesforce-agentic-ai/",
+    "https://cross-com.jp/agentforce-coworker/"
+  ],
+  "unresolved_redirects": 0
+}
