@@ -33,6 +33,12 @@ usage:
 実験期間中に入れると決めた修正（2026-10-18 追加・誤情報修正の1本）
 　drift/expected_edits.json に修正前後の段落を入れると、その記事の差分がその段落の中だけなら想定内として別枠に出す。
 　段落の外が1行でも変わっていれば想定外。
+
+事実訂正（2026-10-20 準備・Agentforce の導入実績があるように読める文の訂正・約20本）
+　fact_corrections.csv（E番号・slug・組・リビジョン・時刻）に載り時刻の入った記事は、drift/fact_correction_sentences.csv
+　（E番号・slug・修正前・修正後）の文の置き換えだけで前回の本文から今回の本文になるなら想定内（E33 と同じ考え方を文の単位で）。
+　置き換えは文ごとに、今回の本文に修正後の文があるものだけ当てる（何回かに分けて直しても週ごとに確かめられる）。
+　ほかが1字でも変わっていれば想定外。表に載っているのに時刻・文が無い記事が変わったら、想定外として「記録待ち」と注記する。
 """
 import argparse
 import csv
@@ -142,9 +148,19 @@ def expected_edit_for(slug, diff, today, edits, old_text=None, new_text=None):
 
     ``old_text``・``new_text``（前回と今回の本文テキスト）を渡すと、修正を当てた結果が今回と同じかも確かめる（週次はこちら）。"""
     lines = [x for x in diff if x[:1] in '+-' and not x.startswith(('+++', '---'))]
-    for e in edits:
+    mine = [e for e in edits if e.get('slug') == slug and today >= str(e.get('from', '9999'))]
+    if len(mine) > 1 and any(e.get('mode') == 'sentences' for e in mine):
+        # 同じ記事に決めた修正が2つ以上（例：E33 の修正のあとに事実訂正）。同じ週に両方が入っても確かめられるよう、合わせた形も試す
+        mine = mine + [{'slug': slug, 'mode': 'sentences', 'from': max(str(e.get('from')) for e in mine),
+                        'intervention': '・'.join(str(e.get('intervention', '')) for e in mine),
+                        'paragraphs': [p for e in mine for p in _pair_list(e)],
+                        'update_date_display': any(e.get('update_date_display') for e in mine)}]
+    for e in mine:
         day = str(e.get('from', '9999'))
-        if e.get('slug') != slug or today < day:
+        if e.get('mode') == 'sentences':
+            # 文の単位の修正は行の照合ができない（段落の中の一部の文だけが変わる）。本文の全体で確かめる
+            if old_text is not None and new_text is not None and _replays_sentences(e, old_text, new_text, diff):
+                return e
             continue
         befores, afters = _paragraphs(e)
         removed = [_flat(x[1:]) for x in lines if x[0] == '-']
@@ -169,18 +185,78 @@ def _replays(edit, old_text, new_text, diff):
     行ごとの照合だけだと、修正後の段落の一部を消した（例：例と「当社では」を分ける一文を消した）変化も
     「修正後の段落の一部」として通ってしまう。本文の全体で確かめる。タグの位置で行が分かれても同じに比べるため、
     空白とタグを落とした文字列で比べる。"""
+    text = _old_with_date(edit, old_text, diff)
+    for p in _pair_list(edit):
+        before, after = _flat(p.get('before')), _flat(p.get('after'))
+        if before:
+            text = text.replace(before, after)
+    return text == _flat(new_text.replace('\n', ''))
+
+
+def _old_with_date(edit, old_text, diff):
+    """前回の本文（空白とタグを落とした文字列）。決めた修正で「更新」の日付が適用日に変わる記事は、その行を先に直す。"""
     lines = old_text.split('\n')
     if edit.get('update_date_display'):
         day = str(edit.get('from', ''))
         old_dates = [x[1:] for x in diff if x[:1] == '-' and not x.startswith('---') and _DATE_LINE.match(x[1:])]
         if old_dates and ('+' + day) in diff:
             lines[lines.index(old_dates[0])] = day
-    text = _flat(''.join(lines))
+    return _flat(''.join(lines))
+
+
+def _replays_sentences(edit, old_text, new_text, diff):
+    """事実訂正（文の単位）：前回の本文に決めた文の置き換えを当てると、今回の本文と一字一句同じになるか（2026-10-20）。
+
+    置き換えは、修正前の文が前回の本文にあり、修正後の文が今回の本文にあるものだけ当てる（何回かに分けて直した週も通るように）。
+    1つも当たらなければ想定内にしない。"""
+    text = _old_with_date(edit, old_text, diff)
+    target = _flat(new_text.replace('\n', ''))
+    hit = 0
     for p in _pair_list(edit):
         before, after = _flat(p.get('before')), _flat(p.get('after'))
-        if before:
+        if before and before in text and after in target:
             text = text.replace(before, after)
-    return text == _flat(new_text.replace('\n', ''))
+            hit += 1
+    return hit > 0 and text == target
+
+
+# 事実訂正（2026-10-20 準備）の修正前後の文。列：E番号・slug・修正前・修正後（1行1文。同じ記事の文は何行でもよい）
+FACT_SENTENCES = os.path.join(HERE, 'drift', 'fact_correction_sentences.csv')
+
+
+def load_fact_correction_edits(sentences_path=None, corrections_path=None):
+    """事実訂正の記事ごとの「決めた修正」（expected_edit_for に渡す形）。時刻と文の両方がある記事だけ。
+
+    from は fact_corrections.csv のその記事の最も早い訂正の日。記事の「更新」の日付が訂正の日に変わる行も想定内にする。"""
+    import pool
+    path = FACT_SENTENCES if sentences_path is None else sentences_path
+    rows = pool.load_fact_corrections(corrections_path)
+    at = pool.fact_correction_at_by_slug(corrections_path)
+    sentences = {}
+    if os.path.exists(path):
+        for r in pool.read_csv(path):
+            s = pool.slug(r.get('slug') or '')
+            if s and (str(r.get('修正前') or '').strip() or str(r.get('修正後') or '').strip()):
+                sentences.setdefault(s, []).append({'before': r.get('修正前') or '', 'after': r.get('修正後') or ''})
+    out = []
+    for s in sorted({r['slug'] for r in rows}):
+        if s not in at or s not in sentences:
+            continue
+        eids = sorted({r['eid'] for r in rows if r['slug'] == s and r['eid']})
+        revs = sorted({r['revision'] for r in rows if r['slug'] == s and r['revision']})
+        tag = '・'.join(eids) + (f"・リビジョン {'・'.join(revs)}" if revs else '')
+        out.append({'slug': s, 'from': at[s].date().isoformat(), 'mode': 'sentences',
+                    'intervention': f'事実訂正（{tag}）' if tag else '事実訂正',
+                    'paragraphs': sentences[s], 'update_date_display': True})
+    return out
+
+
+def fact_correction_pending(corrections_path=None, sentences_path=None):
+    """fact_corrections.csv に載っているが、時刻か修正前後の文が無い記事（想定内にできない）。"""
+    import pool
+    listed = {r['slug'] for r in pool.load_fact_corrections(corrections_path)}
+    ready = {e['slug'] for e in load_fact_correction_edits(sentences_path, corrections_path)}
+    return listed - ready
 
 
 def markup_diff(before, after, limit=6, ctx=60):
@@ -349,8 +425,9 @@ def main():
     first_run = not old or a.baseline
 
     new, changed, failed, markup_only, author_expected = {}, [], [], [], []
-    edits, edit_expected = load_expected_edits(), []
-    edit_slugs = {e.get('slug') for e in edits}
+    edits, edit_expected = load_expected_edits() + load_fact_correction_edits(), []
+    fact_pending = fact_correction_pending()
+    edit_slugs = {e.get('slug') for e in edits} | fact_pending
     for slug, url in targets():
         try:
             html = fetch(url)
@@ -383,7 +460,9 @@ def main():
                 edit_expected.append(item)
                 print(f'  ○想定内の変化 {slug}（決めた修正 {edit.get("intervention", "")} の段落だけ）')
             elif diff:
-                if slug in edit_slugs:
+                if slug in fact_pending:
+                    item['fact_pending'] = True
+                elif slug in edit_slugs:
                     item['edit_outside'] = True
                 changed.append(item)
                 print(f'  ★変化あり {slug}（{len(diff)} 行の差分）')
@@ -454,6 +533,9 @@ def main():
         L.append('')
     for c in changed:
         L += [f'## {c["url"]}', '']
+        if c.get('fact_pending'):
+            L += ['**この記事は事実訂正の対象（fact_corrections.csv）。ただし訂正の時刻か修正前後の文'
+                  '（drift/fact_correction_sentences.csv）が記録待ちのため、想定内か確かめられない。想定外として扱う**', '']
         if c.get('edit_outside'):
             L += ['**この記事は実験期間中に入れると決めた修正（drift/expected_edits.json）の対象。'
                   'ただし、決めた段落の外も変わっている（または決めた内容と違う）。想定外として扱う**', '']

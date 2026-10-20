@@ -45,6 +45,8 @@ from pool import GROUP_BLIND_UNTIL  # noqa: E402
 from pool import LINK_LOSS_IDS, LINK_LOSS_SCOPE, LINK_LOSS_SLUGS  # noqa: E402
 from pool import (MISINFO_FIX_FAQ_ANSWERS, MISINFO_FIX_IDS, MISINFO_FIX_PARAGRAPHS,  # noqa: E402
                   MISINFO_FIX_REST_CHANGES, MISINFO_FIX_SCOPE, MISINFO_FIX_SLUGS)
+from pool import (FACT_CORRECTION_IMBALANCE, fact_correction_first_at,  # noqa: E402
+                  fact_correction_slugs, load_fact_corrections)
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
                   LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
                   late_appended_slugs, load_allocation, multi_paragraph_slugs,
@@ -135,10 +137,36 @@ def counted(row, pool):
             and not str(row.get("error", "")).strip())
 
 
-def period(rows, span, model, groups, pool, rate=None):
+def observed_at_jst(row):
+    """観測の時刻（JST の datetime）。timestamp 列（UTC の ISO・末尾 Z）から。読めなければ None。"""
+    import datetime as _dt
+    raw = str(row.get("timestamp", "") or "").strip()
+    if not raw:
+        return None
+    try:
+        t = _dt.datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if t.tzinfo is not None:
+        t = t.astimezone(_dt.timezone(_dt.timedelta(hours=9))).replace(tzinfo=None)
+    return t
+
+
+def before_cut(row, until):
+    """観測が ``until``（JST の datetime）より前か。時刻が読めない行は日付で見て、訂正の日の観測は入れない（保守的）。"""
+    if until is None:
+        return True
+    t = observed_at_jst(row)
+    if t is not None:
+        return t < until
+    return str(row.get("date", ""))[:10] < until.date().isoformat()
+
+
+def period(rows, span, model, groups, pool, rate=None, until=None):
     """{slug: (組, 値)}。値は Gemini が「期間中に1回でも cited_article=1 なら1」、
     Claude（RATE_MODELS）が「cited_article=1 の回数 ÷ 観測できた回数」の率（0〜1 の小数）。
     ``rate`` を渡すとモデルに関係なくどちらかに決める。
+    ``until``（JST の datetime）を渡すと、その時刻より前の観測だけを使う（感度分析 B「事実訂正前で打ち切り」）。
 
     9/15〜16 に逆リンク追記が入った9本は、追記より前(9/16 まで)の観測を使わない
     (pool.baseline_start)。追記そのものが引用されやすさを動かすので、追記前後を
@@ -149,7 +177,7 @@ def period(rows, span, model, groups, pool, rate=None):
     for r in rows:
         if r.get("model") != model or not (start <= str(r.get("date", ""))[:10] <= end):
             continue
-        if not counted(r, pool):
+        if not counted(r, pool) or not before_cut(r, until):
             continue
         s = slug(r["target_url"])
         limit = baseline_start(s)
@@ -351,7 +379,128 @@ def variants():
     fix = set(MISINFO_FIX_SLUGS)
     if fix:
         out.append((misinfo_fix_label(), fix))
+    # 事実訂正 A(2026-10-20 準備)：Agentforce の導入実績があるように読める文を直す記事(約20本)を全組から抜く。
+    # fact_corrections.csv が空のうちは出さない(sensitivity_table が「記録待ち」の行を出す)。B は記事を抜かないので fact_cut で別に作る
+    fact = fact_correction_slugs()
+    if fact:
+        out.append((fact_a_label(fact), set(fact)))
     return merge_same_sets(out)
+
+
+# --------------------------------------------------------------------------
+# 事実訂正（2026-10-20 準備）：A「事実訂正あり記事抜き」・B「事実訂正前で打ち切り」
+# --------------------------------------------------------------------------
+FACT_A = "事実訂正あり記事抜き"
+FACT_B = "事実訂正前で打ち切り"
+FACT_PENDING = "記録待ち"
+GROUP_ORDER = ("①対照", "②FAQのみ", "③リードのみ", "④両方")
+
+
+def fact_a_label(fact=None):
+    fact = fact_correction_slugs() if fact is None else fact
+    return f"{FACT_A}（{len(fact)}本・全組）"
+
+
+def fact_b_label(at):
+    return f"{FACT_B}（{at:%Y-%m-%d %H:%M} より前）"
+
+
+def fact_group_counts(slugs=None, groups=None):
+    """{組: 本数}（4組とも出す・0本も）。組は allocation_v1.csv から引く。"""
+    slugs = fact_correction_slugs() if slugs is None else slugs
+    groups = load_allocation() if groups is None else groups
+    counts = {g: 0 for g in GROUP_ORDER}
+    for s in slugs:
+        g = groups.get(s)
+        if g in counts:
+            counts[g] += 1
+    return counts
+
+
+def fact_imbalanced(counts):
+    """組の間の本数の差が pool.FACT_CORRECTION_IMBALANCE（3本）以上か。"""
+    return bool(counts) and max(counts.values()) - min(counts.values()) >= FACT_CORRECTION_IMBALANCE
+
+
+def print_fact_correction_head(groups=None):
+    """判定レポートの冒頭：事実訂正の対象の記事の組ごとの本数と偏り。記録が無ければ「記録待ち」。"""
+    groups = load_allocation() if groups is None else groups
+    rows = load_fact_corrections()
+    print("## 事実訂正（Agentforce の導入実績があるように読める文の訂正・凍結46本）")
+    if not rows:
+        print(f"{FACT_PENDING}：experiment_2x2/fact_corrections.csv が空。"
+              f"感度分析の「{FACT_A}」「{FACT_B}」は記録が届いてから計算する\n")
+        return None
+    fact = fact_correction_slugs()
+    counts = fact_group_counts(fact, groups)
+    spread = max(counts.values()) - min(counts.values())
+    mark = (f"**偏りあり**（組の間の差 {spread}本。{FACT_CORRECTION_IMBALANCE}本以上）" if fact_imbalanced(counts)
+            else f"偏りなし（組の間の差 {spread}本）")
+    print(f"対象 {len(fact)}本：" + "・".join(f"{g} {n}本" for g, n in counts.items()) + f" → {mark}")
+    first = fact_correction_first_at()
+    timed = len({r['slug'] for r in rows if r['at'] is not None})
+    print(f"最も早い訂正の時刻：{first:%Y-%m-%d %H:%M:%S}（時刻の入った記事 {timed}本／{len(fact)}本）" if first
+          else f"訂正の時刻：{FACT_PENDING}（{FACT_B} は時刻が入ってから計算する）")
+    outside = sorted({r['slug'] for r in rows} - pool_slugs())
+    if outside:
+        print(f"※ プール46本に無い記事が表にある（数えない）：{'・'.join(outside)}")
+    wrong = sorted(r['slug'] for r in rows if r['slug'] in groups and r['group'] and r['group'] != groups[r['slug']])
+    if wrong:
+        print(f"※ 表の「組」が allocation_v1.csv と違う記事（組は allocation_v1.csv を使う）：{'・'.join(sorted(set(wrong)))}")
+    print()
+    return counts
+
+
+def fact_cut(rows, span, model, groups, pool, until=None):
+    """感度分析 B の材料。{label, status, at, after, obs_full, obs_cut, days_full, days_cut}。
+
+    status：pending（時刻が無い）・none（訂正がアフターの初日より前で、使える観測が無い）・
+    same（訂正がアフターの最終日より後で、打ち切っても全期間と同じ）・cut（打ち切る）。
+    ``until`` を省くと fact_corrections.csv の最も早い訂正の時刻を使う。"""
+    import datetime as _dt
+    until = fact_correction_first_at() if until is None else until
+    start, end = span
+    obs = [r for r in rows if r.get("model") == model and start <= str(r.get("date", ""))[:10] <= end
+           and counted(r, pool)]
+    kept = [r for r in obs if before_cut(r, until)]
+    out = {"at": until, "obs_full": len(obs), "days_full": len({str(r.get("date", ""))[:10] for r in obs}),
+           "obs_cut": len(kept), "days_cut": len({str(r.get("date", ""))[:10] for r in kept}), "after": None}
+    if until is None:
+        return dict(out, label=FACT_B, status="pending", obs_cut=None, days_cut=None)
+    out["label"] = fact_b_label(until)
+    if until <= _dt.datetime.fromisoformat(start):
+        return dict(out, status="none")
+    # 打ち切りがアフターの最終日の後、または打ち切りで落ちる観測が無いなら全期間と同じ
+    if until >= _dt.datetime.fromisoformat(end) + _dt.timedelta(days=1) or out["obs_cut"] == out["obs_full"]:
+        out["status"] = "same"
+    else:
+        out["status"] = "cut"
+    out["after"] = period(rows, span, model, groups, pool, until=until)
+    return out
+
+
+def fact_lines(after, cut):
+    """感度分析の表の下に出す行：A で抜いた後の本数（組ごと）と、B で使えるアフター期間の観測回数。"""
+    lines = []
+    fact = fact_correction_slugs()
+    if not fact:
+        lines.append(f"※ 「{FACT_A}」：{FACT_PENDING}（fact_corrections.csv が空）")
+    else:
+        groups = tally(after, None, fact)
+        left = {g: len(groups.get(g, [])) for g in GROUP_ORDER}
+        full = {g: len(tally(after, None).get(g, [])) for g in GROUP_ORDER}
+        lines.append(f"※ 「{FACT_A}」で抜いた後の残り：{sum(left.values())}本／{sum(full.values())}本（"
+                     + "・".join(f"{g} {left[g]}本" for g in GROUP_ORDER)
+                     + "）。本数が減るぶん比べる力が落ちる")
+    if cut is None or cut["status"] == "pending":
+        lines.append(f"※ 「{FACT_B}」：{FACT_PENDING}（fact_corrections.csv に訂正の時刻が無い）")
+    else:
+        use = (f"使えるのは {cut['obs_cut']:,}回（{cut['days_cut']}日）" if cut["status"] != "none"
+               else "使える観測なし（訂正がアフター期間の初日より前）")
+        same = "。打ち切りはアフター期間の後なので、全期間と同じ（「両方込み」と同じ）" if cut["status"] == "same" else ""
+        lines.append(f"※ 「{cut['label']}」：アフター期間の観測 {cut['obs_full']:,}回（{cut['days_full']}日）のうち"
+                     f"{use}{same}。観測が減るぶん比べる力が落ちる")
+    return lines
 
 
 def misinfo_fix_label():
@@ -485,26 +634,50 @@ def multi_paragraph_note():
     return None
 
 
-def sensitivity_table(after, before, title=""):
-    """感度分析（両方込み／9本抜き／features 抜き／9本＋features 抜き／複数段落回答抜き）を1つの表にする。"""
+def _table_row(label, after, before, exclude=()):
+    groups = tally(after, before, exclude)
+    rate = is_rate(groups)
+    n = sum(len(x) for x in groups.values())
+    rates = []
+    for g in GROUP_ORDER:
+        hit, miss = cells(groups, g)
+        rates.append(share(hit, len(groups.get(g, [])), rate))
+    _, _, _, _, lead_diff, lead_p = effect(groups, LEAD_ON, LEAD_OFF)
+    _, _, _, _, faq_diff, faq_p = effect(groups, FAQ_ON, FAQ_OFF)
+    rr = randomization(after, exclude)
+    ok = tested(rr)
+    return [label, str(n)] + rates + [
+        f"{lead_diff:+.0%}",
+        f"{rr['lead_p']:.3f}" if ok else "—", "—" if lead_p is None else f"{lead_p:.3f}",
+        f"{faq_diff:+.0%}",
+        f"{rr['faq_p']:.3f}" if ok else "—", "—" if faq_p is None else f"{faq_p:.3f}"], rr
+
+
+def _pending_row(label, text=FACT_PENDING):
+    return [label, text] + [""] * 10
+
+
+def sensitivity_table(after, before, title="", cut=None):
+    """感度分析（両方込み／9本抜き／features 抜き／…／事実訂正 A・B）を1つの表にする。
+
+    ``cut`` は fact_cut の結果（感度分析 B）。None か時刻が無ければ B は「記録待ち」の行。"""
     rows = []
-    for label, exclude in variants():
-        groups = tally(after, before, exclude)
-        rate = is_rate(groups)
-        n = sum(len(x) for x in groups.values())
-        rates = []
-        for g in ("①対照", "②FAQのみ", "③リードのみ", "④両方"):
-            hit, miss = cells(groups, g)
-            rates.append(share(hit, len(groups.get(g, [])), rate))
-        _, _, _, _, lead_diff, lead_p = effect(groups, LEAD_ON, LEAD_OFF)
-        _, _, _, _, faq_diff, faq_p = effect(groups, FAQ_ON, FAQ_OFF)
-        rr = randomization(after, exclude)
-        ok = tested(rr)
-        rows.append([label, str(n)] + rates
-                    + [f"{lead_diff:+.0%}",
-                       f"{rr['lead_p']:.3f}" if ok else "—", "—" if lead_p is None else f"{lead_p:.3f}",
-                       f"{faq_diff:+.0%}",
-                       f"{rr['faq_p']:.3f}" if ok else "—", "—" if faq_p is None else f"{faq_p:.3f}"])
+    rr = None
+    labels = variants()
+    for i, (label, exclude) in enumerate(labels):
+        if i == 0 and cut is not None and cut["status"] == "same":
+            # B が全期間と同じ観測になる（打ち切りがアフター期間の後）ときは「両方込み」の行にまとめる
+            label += f"〔{cut['label']}と同じ観測〕"
+        row, rr = _table_row(label, after, before, exclude)
+        rows.append(row)
+    if not fact_correction_slugs():
+        rows.append(_pending_row(FACT_A))
+    if cut is None or cut["status"] == "pending":
+        rows.append(_pending_row(FACT_B))
+    elif cut["status"] == "none":
+        rows.append(_pending_row(cut["label"], "観測なし"))
+    elif cut["status"] == "cut":
+        rows.append(_table_row(cut["label"], cut["after"], before)[0])
     head = ["感度分析" + (f"（{title.strip()}）" if title.strip() else ""), "本数",
             "①対照", "②FAQのみ", "③リードのみ", "④両方",
             "リード差", "p(再ランダム化)", "p(フィッシャー)",
@@ -525,6 +698,8 @@ def sensitivity_table(after, before, title=""):
     if note:
         print(note)
     print(misinfo_fix_note())
+    for line in fact_lines(after, cut):
+        print(line)
     print()
 
 
@@ -567,12 +742,19 @@ def faq_by_multi_paragraph(after, before, title=""):
     return out
 
 
-def both_ways(after, before, title=""):
-    """感度分析の表と、各通りの組別の内訳を出す。"""
-    sensitivity_table(after, before, title)
+def both_ways(after, before, title="", cut=None):
+    """感度分析の表と、各通りの組別の内訳を出す。``cut`` は感度分析 B（fact_cut の結果）。"""
+    sensitivity_table(after, before, title, cut)
     faq_by_multi_paragraph(after, before, title)
     for label, exclude in variants():
         summarize(after, before, exclude, f"{title}{label}")
+    if cut is not None and cut["status"] == "cut":
+        summarize(cut["after"], before, (), f"{title}{cut['label']}")
+
+
+def cut_signs(cut):
+    """早期解放の条件(3)に足す B の行。(見出し, アフター) のリスト。打ち切りがあるときだけ。"""
+    return [(cut["label"], cut["after"])] if cut is not None and cut["status"] in ("cut", "none") else []
 
 
 # --------------------------------------------------------------------------
@@ -605,10 +787,11 @@ def did_of(after, before, on_groups, off_groups, exclude=()):
     return round((sum(on_d) / len(on_d) - sum(off_d) / len(off_d)) * 100, 6)
 
 
-def early_release(after, before, rr=None, variant_list=None):
+def early_release(after, before, rr=None, variant_list=None, cut=None):
     """施策ごとの早期解放の判定。[{name, did, did_ok, p, n, p_ok, signs, signs_ok, verdict, text}]。
 
     ``rr`` は再ランダム化検定の結果（省略時は randomization(after)）。``variant_list`` は感度分析の通り（省略時は variants()）。
+    ``cut`` は感度分析 B（fact_cut の結果）。打ち切りがあれば条件(3)に B の行も入る（観測が無ければ「計算できない」で不合格）。
     """
     rr = randomization(after) if rr is None else rr
     variant_list = variants() if variant_list is None else variant_list
@@ -620,6 +803,7 @@ def early_release(after, before, rr=None, variant_list=None):
         p = rr.get(key) if pool_ok else None
         p_ok = pool_ok and p is not None and p < EARLY_RELEASE_P
         signs = [(label, did_of(after, before, on, off, exclude)) for label, exclude in variant_list]
+        signs += [(label, did_of(part, before, on, off) if part else None) for label, part in cut_signs(cut)]
         signs_ok = bool(signs) and all(v is not None and v > 0 for _, v in signs)
         if not pool_ok:
             verdict, text = EARLY_RELEASE_POOL_SHORT, EARLY_RELEASE_NO
@@ -637,10 +821,23 @@ def is_short_judgement(after_span):
     return tuple(after_span) == SHORT_JUDGEMENT_AFTER
 
 
-def print_early_release(after, before, rr=None, variant_list=None):
+def fact_pending_note(cut=None):
+    """条件(3)に入れられなかった事実訂正の行（記録待ち）の注記。無ければ None。"""
+    pending = ([FACT_A] if not fact_correction_slugs() else []) + \
+        ([FACT_B] if cut is None or cut["status"] == "pending" else [])
+    if not pending:
+        return None
+    return (f"※ 条件(3)の「{'」「'.join(pending)}」は{FACT_PENDING}のため含めていない（fact_corrections.csv が空・時刻なし）。"
+            "訂正を反映したのに記録が無いまま判定しないこと")
+
+
+def print_early_release(after, before, rr=None, variant_list=None, cut=None):
     ok = lambda b: "合格" if b else "不合格"  # noqa: E731
     print("## 早期解放の判定（短期判定のみ・Gemini・2026-10-01 事前登録）")
-    for r in early_release(after, before, rr, variant_list):
+    note = fact_pending_note(cut)
+    if note:
+        print(note)
+    for r in early_release(after, before, rr, variant_list, cut):
         print(f"### {r['name']}")
         did = "計算できない" if r["did"] is None else f"{r['did']:+.1f}ポイント"
         print(f"- (1) 差の差 {did}（基準 +{EARLY_RELEASE_DID_PT:.0f}ポイント以上）→ {ok(r['did_ok'])}")
@@ -867,6 +1064,7 @@ def main(argv=None):
         print_site_wide_interventions(a.before, a.after)
         print_link_loss_note(a.after)
         print_misinfo_fix_note(a.after)
+        print_fact_correction_head(groups)
         pillar_lines, pillar_parts = pillar.report_lines(_span(a.after))
         print("\n".join(pillar_lines))
         rows = read_llm_experiment(a.csv)
@@ -887,20 +1085,22 @@ def main(argv=None):
             print(f"##### {model}（アフター {a.after} / ビフォー {a.before}）")
             if missing:
                 print(f"ビフォーに観測の無い記事 {len(missing)}本（ビフォーは0として扱う）: {', '.join(missing)}")
-            both_ways(after, before, f"{model} ")
+            cut = fact_cut(rows, _span(a.after), model, groups, pool)
+            both_ways(after, before, f"{model} ", cut)
             # ピラー編集が 10/6 以降に完了した場合は、アフターをその前後に分けた結果も並べる
             for label, span in pillar_parts:
                 part = period(rows, span, model, groups, pool)
                 print(f"##### {model}（アフター {span[0]}〜{span[1]}・{label} / ビフォー {a.before}）")
-                both_ways(part, before, f"{model} {label} ")
+                both_ways(part, before, f"{model} {label} ", fact_cut(rows, span, model, groups, pool))
             gsc_rank_subgroups(after, before, f"{model} ")
             if model == "gemini" and is_short_judgement(_span(a.after)):
-                print_early_release(after, before)
+                print_early_release(after, before, cut=cut)
     print("判定: 差が +25pt 以上 かつ p<0.10 で「効いた」。どちらか欠ければ「この本数では判断できない」。")
     print("p は**再ランダム化検定**を本線にする（条件 a〜g の合格率が約 1/9,200 のため、"
           "同じ条件を満たす割付の中で数える）。フィッシャー正確検定は参考。")
     print("感度分析で結論が食い違う場合は、処置ではなく"
           "「9/15〜16 の追記」「鮮度更新の訂正」「FAQ の複数段落回答（<br> でつないだ変換）」「誤情報の修正（1本）」"
+          "「事実訂正（導入実績の記述）」"
           "のどれかの影響として扱う。")
     return 0
 

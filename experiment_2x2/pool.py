@@ -68,6 +68,18 @@ MISINFO_FIX_REST_CHANGES = 30
 # 実施記録(interventions.csv)を見分ける scope。実施日はこの行の date から取る
 MISINFO_FIX_SCOPE = 'プール46本'
 
+# 事実訂正(2026-10-20 準備・本田さん確認)：Agentforce の顧客導入は0件。凍結46本のうち約20本に導入実績があるように
+# 読める記述があり、事実と違う文だけを近く直す(記事制作から一覧が届き、効果測定チャットで確認してから反映)。
+# 対象の記事と日時はこの表に入れる(列：E番号・slug・組・リビジョン・時刻)。記録が届くまでは見出しだけ(空)。
+# 　時刻は JST の "YYYY-MM-DD HH:MM[:SS]"(WordPress のリビジョンの時刻)。空の行は「対象だが未反映」
+# 　組の正本は allocation_v1.csv。表の「組」は突き合わせ用で、食い違えば判定レポートに出す
+# 感度分析 A「事実訂正あり記事抜き」(対象の記事を全組から抜く)と B「事実訂正前で打ち切り」(アフター期間を最も早い訂正の
+# 時刻で切る)に使う。早期解放の条件(3)・再ランダム化検定も同じ。修正前後の文は drift/fact_correction_sentences.csv
+FACT_CORRECTIONS_CSV = os.path.join(HERE, 'fact_corrections.csv')
+FACT_CORRECTION_COLUMNS = ('E番号', 'slug', '組', 'リビジョン', '時刻')
+# 組の間の本数の差がこれ以上なら「偏りあり」と出す
+FACT_CORRECTION_IMBALANCE = 3
+
 
 # 実験の終わり(config/experiment_freeze.yaml の experiment_end と同じ。テストで照合)。
 # 割付はこの日まで --force でも置き換えない(allocate_47.overwrite_guard)。
@@ -227,6 +239,59 @@ def multi_paragraph_slugs(path=None):
         if str(r.get('has_multi_paragraph_answer', '')).strip() == '1':
             multi.add(s)
     return multi & pool, pool - listed
+
+
+def parse_jst(text):
+    """"YYYY-MM-DD HH:MM[:SS]"(T 区切りも可)を datetime に。日付だけなら 00:00。空なら None。"""
+    import datetime
+    text = str(text or '').strip().replace('T', ' ')
+    if not text:
+        return None
+    for fmt in ('%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M', '%Y-%m-%d'):
+        try:
+            return datetime.datetime.strptime(text, fmt)
+        except ValueError:
+            pass
+    raise ValueError(f'fact_corrections.csv の時刻が読めない: {text!r}(YYYY-MM-DD HH:MM:SS)')
+
+
+def load_fact_corrections(path=None):
+    """事実訂正の表の行 [{eid, slug, group, revision, at(datetime|None), at_text}]。表が無い・空なら []。
+
+    同じ記事が複数行(リビジョンが複数)でもよい。slug が空の行は読み飛ばす。"""
+    path = FACT_CORRECTIONS_CSV if path is None else path
+    if not os.path.exists(path):
+        return []
+    out = []
+    for r in read_csv(path):
+        s = slug(r.get('slug') or '')
+        if not s:
+            continue
+        at_text = str(r.get('時刻') or '').strip()
+        out.append({'eid': str(r.get('E番号') or '').strip(), 'slug': s,
+                    'group': str(r.get('組') or '').strip(), 'revision': str(r.get('リビジョン') or '').strip(),
+                    'at': parse_jst(at_text), 'at_text': at_text})
+    return out
+
+
+def fact_correction_slugs(path=None):
+    """事実訂正の対象の記事(プール46本の中だけ)。記録が無ければ空の set。"""
+    return {r['slug'] for r in load_fact_corrections(path)} & pool_slugs()
+
+
+def fact_correction_first_at(path=None):
+    """全記事のうち最も早い訂正の時刻(datetime)。時刻が1つも無ければ None。"""
+    times = [r['at'] for r in load_fact_corrections(path) if r['at'] is not None]
+    return min(times) if times else None
+
+
+def fact_correction_at_by_slug(path=None):
+    """{slug: その記事の最も早い訂正の時刻}。時刻の無い記事は入れない。"""
+    out = {}
+    for r in load_fact_corrections(path):
+        if r['at'] is not None and (r['slug'] not in out or r['at'] < out[r['slug']]):
+            out[r['slug']] = r['at']
+    return out
 
 
 def baseline_start(slug_name, path=None):

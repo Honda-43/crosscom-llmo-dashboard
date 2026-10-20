@@ -371,8 +371,8 @@ def test_the_fifth_variant_drops_multi_paragraph_articles_from_every_group(tmp_p
     assert len(seen) == 8 and seen[4] == multi, "再ランダム化検定も同じ除外で"   # 2026-10-18 から誤情報修正1本抜きが末尾に付く
     body = [ln for ln in out.splitlines() if ln.startswith("複数段落回答抜き")][0]
     assert body.split()[1] == str(len(ARTS) - 4), body
-    # 複数段落回答の警告は出ない(2026-10-18 から表の下に誤情報修正の1行が必ず出るので、その行は除いて見る)
-    assert not [ln for ln in out.splitlines() if ln.startswith("※") and "誤情報修正" not in ln]
+    # 複数段落回答の警告は出ない(2026-10-18 から表の下に誤情報修正の1行、2026-10-20 から事実訂正 A・B の2行が必ず出るので、それらは除いて見る)
+    assert not [ln for ln in out.splitlines() if ln.startswith("※") and "誤情報修正" not in ln and "事実訂正" not in ln]
 
 
 def test_without_the_table_the_fifth_variant_is_not_shown_and_says_why(monkeypatch, capsys):
