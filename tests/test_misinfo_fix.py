@@ -51,7 +51,9 @@ def test_the_record_and_the_paragraph_file_agree():
     with io.open(pool.ALLOCATION_CSV, encoding="utf-8") as fh:
         ids = {pool.slug(r["url"]): r["id"] for r in csv.DictReader(fh)}
     assert tuple(ids[s] for s in pool.MISINFO_FIX_SLUGS) == pool.MISINFO_FIX_IDS
-    assert {e["slug"] for e in drift_check.load_expected_edits()} == set(pool.MISINFO_FIX_SLUGS)
+    # 事実訂正（文の単位・mode=sentences）の項目は E33 の修正ではないので数えない(2026-10-22)
+    assert {e["slug"] for e in drift_check.load_expected_edits(keep_pending=True)
+            if e.get("mode") != "sentences"} == set(pool.MISINFO_FIX_SLUGS)
 
 
 def test_before_the_record_the_variant_is_not_shown_and_the_table_says_why(monkeypatch, capsys):

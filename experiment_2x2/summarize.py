@@ -45,7 +45,7 @@ from pool import GROUP_BLIND_UNTIL  # noqa: E402
 from pool import LINK_LOSS_IDS, LINK_LOSS_SCOPE, LINK_LOSS_SLUGS  # noqa: E402
 from pool import (MISINFO_FIX_FAQ_ANSWERS, MISINFO_FIX_IDS, MISINFO_FIX_PARAGRAPHS,  # noqa: E402
                   MISINFO_FIX_REST_CHANGES, MISINFO_FIX_SCOPE, MISINFO_FIX_SLUGS)
-from pool import (FACT_CORRECTION_IMBALANCE, fact_correction_first_at,  # noqa: E402
+from pool import (FACT_CORRECTION_IMBALANCE, fact_correction_at_by_slug, fact_correction_first_at,  # noqa: E402
                   fact_correction_slugs, load_fact_corrections)
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
                   LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
@@ -396,9 +396,80 @@ FACT_PENDING = "記録待ち"
 GROUP_ORDER = ("①対照", "②FAQのみ", "③リードのみ", "④両方")
 
 
+def fact_slugs_in_order():
+    """事実訂正の記事の slug（表の順・重複なし・プール46本の中だけ）。"""
+    fact, out = fact_correction_slugs(), []
+    for r in load_fact_corrections():
+        if r["slug"] in fact and r["slug"] not in out:
+            out.append(r["slug"])
+    return out
+
+
+def fact_eids(fact=None):
+    """事実訂正の記事の E番号（表の順・重複なし）。E番号の無い記事は slug で出す。"""
+    fact = fact_correction_slugs() if fact is None else set(fact)
+    rows = load_fact_corrections()
+    out = []
+    for r in rows:
+        key = r["eid"] or r["slug"]
+        if r["slug"] in fact and key not in out:
+            out.append(key)
+    out += sorted(fact - {r["slug"] for r in rows})
+    return out
+
+
 def fact_a_label(fact=None):
+    """感度分析 A の見出し。例：事実訂正2本抜き（E22・E05）（2026-10-22 本田さん指定の形）。"""
     fact = fact_correction_slugs() if fact is None else fact
-    return f"{FACT_A}（{len(fact)}本・全組）"
+    return f"事実訂正{len(fact)}本抜き（{'・'.join(fact_eids(fact))}）"
+
+
+# その組の引用が下がったときの、リード・FAQ の効果の出方（効果＝処置あり − 処置なし）
+FACT_SAFE, FACT_SOFT = "小さめ（安全側）", "大きめ（甘い方向）"
+
+
+def fact_direction(group):
+    """(リード, FAQ) の効果の出方。その組の引用が下がった場合。"""
+    lead = FACT_SAFE if group in LEAD_ON else FACT_SOFT
+    faq = FACT_SAFE if group in FAQ_ON else FACT_SOFT
+    return lead, faq
+
+
+def fact_places(fact=None):
+    """決めた修正前後の文の組の数（drift の expected_edits.json と fact_correction_sentences.csv）。無ければ 0。"""
+    import drift_check
+    fact = fact_correction_slugs() if fact is None else set(fact)
+    edits = drift_check.fact_sentence_edits(with_pending=True)
+    return sum(len(drift_check._pair_list(e)) for e in edits if e.get("slug") in fact)
+
+
+def fact_direction_note(groups=None, span=None):
+    """偏りの向きの注記（2026-10-22・本田さん指示。短期・長期の両方に出す）。対象が無い・訂正がアフターの後なら None。"""
+    import datetime as _dt
+    groups = load_allocation() if groups is None else groups
+    fact = fact_correction_slugs()
+    if not fact:
+        return None
+    first = fact_correction_first_at()
+    if first is not None and span is not None and first >= _dt.datetime.fromisoformat(span[1]) + _dt.timedelta(days=1):
+        return None
+    gs = [g for g in GROUP_ORDER if any(groups.get(s) == g for s in fact)]
+    marks = "・".join(g[:1] for g in gs)
+    if len(gs) == 1 and len(fact) > 1:
+        who = f"ともに{marks}" if len(fact) == 2 else f"すべて{marks}"
+    else:
+        who = marks
+    places = fact_places(fact)
+    what = f"本文{places}か所" if places else "本文の文（箇所の数は記録待ち）"
+    dirs = {fact_direction(g) for g in gs}
+    if len(dirs) == 1:
+        lead, faq = dirs.pop()
+        tail = f"{marks}の引用が下がった場合、リードの効果は{lead}、FAQの効果は{faq}に出る"
+    else:
+        tail = "組によって向きが違う：" + "／".join(
+            f"{g[:1]}の引用が下がるとリードは{fact_direction(g)[0]}・FAQは{fact_direction(g)[1]}" for g in gs)
+    when = "" if first else "（反映の時刻は記録待ち）"
+    return f"**{'・'.join(fact_eids(fact))}（{who}）の{what}を事実訂正{when}。{tail}**"
 
 
 def fact_b_label(at):
@@ -422,8 +493,8 @@ def fact_imbalanced(counts):
     return bool(counts) and max(counts.values()) - min(counts.values()) >= FACT_CORRECTION_IMBALANCE
 
 
-def print_fact_correction_head(groups=None):
-    """判定レポートの冒頭：事実訂正の対象の記事の組ごとの本数と偏り。記録が無ければ「記録待ち」。"""
+def print_fact_correction_head(groups=None, span=None):
+    """判定レポートの冒頭：事実訂正の対象の記事の組ごとの本数と偏り、偏りの向き。記録が無ければ「記録待ち」。"""
     groups = load_allocation() if groups is None else groups
     rows = load_fact_corrections()
     print("## 事実訂正（Agentforce の導入実績があるように読める文の訂正・凍結46本）")
@@ -437,6 +508,9 @@ def print_fact_correction_head(groups=None):
     mark = (f"**偏りあり**（組の間の差 {spread}本。{FACT_CORRECTION_IMBALANCE}本以上）" if fact_imbalanced(counts)
             else f"偏りなし（組の間の差 {spread}本）")
     print(f"対象 {len(fact)}本：" + "・".join(f"{g} {n}本" for g, n in counts.items()) + f" → {mark}")
+    note = fact_direction_note(groups, span)
+    if note:
+        print(note)
     first = fact_correction_first_at()
     timed = len({r['slug'] for r in rows if r['at'] is not None})
     print(f"最も早い訂正の時刻：{first:%Y-%m-%d %H:%M:%S}（時刻の入った記事 {timed}本／{len(fact)}本）" if first
@@ -449,6 +523,71 @@ def print_fact_correction_head(groups=None):
         print(f"※ 表の「組」が allocation_v1.csv と違う記事（組は allocation_v1.csv を使う）：{'・'.join(sorted(set(wrong)))}")
     print()
     return counts
+
+
+FACT_REFERENCE_HEADING = "参考：事実訂正の記事の反映の前後（Gemini・判定には使わない）"
+
+
+def fact_reference(rows, span, pool, at_by_slug=None):
+    """[{slug, at, before:{obs, cited, mentioned}, after:{…}}]。アフター期間の中を、反映の時刻の前と以後に分けて数える。
+
+    時刻の無い観測は日付で見て、反映の日の分はどちらにも入れない（前後を決められない）。時刻の無い記事は at=None。"""
+    at_by_slug = fact_correction_at_by_slug() if at_by_slug is None else at_by_slug
+    start, end = span
+    out = []
+    for s in fact_slugs_in_order():
+        at = at_by_slug.get(s)
+        side = {k: {"obs": 0, "cited": 0, "mentioned": 0} for k in ("before", "after")}
+        for r in rows if at is not None else []:
+            if (r.get("model") != "gemini" or slug(r.get("target_url", "")) != s
+                    or not (start <= str(r.get("date", ""))[:10] <= end) or not counted(r, pool)):
+                continue
+            t = observed_at_jst(r)
+            if t is None:
+                day, cut_day = str(r.get("date", ""))[:10], at.date().isoformat()
+                key = None if day == cut_day else ("before" if day < cut_day else "after")
+            else:
+                key = "before" if t < at else "after"
+            if key is None:
+                continue
+            side[key]["obs"] += 1
+            side[key]["cited"] += str(r.get("cited_article", "")).strip() == "1"
+            side[key]["mentioned"] += str(r.get("mentioned_v2", "")).strip() == "1"
+        out.append({"slug": s, "at": at, **side})
+    return out
+
+
+def print_fact_reference(rows, span, groups=None, pool=None, today=None):
+    """参考の表（2026-10-22 本田さん指示）。11/2 の短期判定より前は出さない（組ごとの結果を途中で見ないルール）。"""
+    import datetime as _dt
+    groups = load_allocation() if groups is None else groups
+    pool = pool_slugs() if pool is None else pool
+    today = today or _dt.date.today()
+    fact = fact_correction_slugs()
+    if not fact:
+        return None
+    print(f"### {FACT_REFERENCE_HEADING}")
+    marks = "・".join(g[:1] for g in GROUP_ORDER if any(groups.get(s) == g for s in fact))
+    if today < _dt.date.fromisoformat(GROUP_BLIND_UNTIL):
+        print(f"{GROUP_BLIND_UNTIL} の短期判定まで出さない（組ごとの結果を途中で見ないため。{marks}の記事の結果にあたる）\n")
+        return None
+    table = fact_reference(rows, span, pool)
+    eid = {r["slug"]: r["eid"] for r in load_fact_corrections()}
+    print(f"**{len(table)}本・数回ずつの観測のため、上下から何かを言える量ではない。**"
+          "判定には使わない（反映の時刻より前／以後。時刻の無い観測は、反映の日の分をどちらにも入れない）")
+    print("| E番号 | slug | 組 | 反映の時刻 | 前：観測 | 前：cited_article | 前：mentioned_v2 "
+          "| 後：観測 | 後：cited_article | 後：mentioned_v2 |")
+    print("|---|---|---|---|---|---|---|---|---|---|")
+    for t in table:
+        head = f"| {eid.get(t['slug'], '')} | {t['slug']} | {groups.get(t['slug'], '')} "
+        if t["at"] is None:
+            print(head + f"| {FACT_PENDING} |  |  |  |  |  |  |")
+            continue
+        b, a = t["before"], t["after"]
+        print(head + f"| {t['at']:%Y-%m-%d %H:%M} | {b['obs']}回 | {b['cited']}回 | {b['mentioned']}回 "
+              f"| {a['obs']}回 | {a['cited']}回 | {a['mentioned']}回 |")
+    print()
+    return table
 
 
 def fact_cut(rows, span, model, groups, pool, until=None):
@@ -489,7 +628,7 @@ def fact_lines(after, cut):
         groups = tally(after, None, fact)
         left = {g: len(groups.get(g, [])) for g in GROUP_ORDER}
         full = {g: len(tally(after, None).get(g, [])) for g in GROUP_ORDER}
-        lines.append(f"※ 「{FACT_A}」で抜いた後の残り：{sum(left.values())}本／{sum(full.values())}本（"
+        lines.append(f"※ 「{fact_a_label(fact)}」で抜いた後の残り：{sum(left.values())}本／{sum(full.values())}本（"
                      + "・".join(f"{g} {left[g]}本" for g in GROUP_ORDER)
                      + "）。本数が減るぶん比べる力が落ちる")
     if cut is None or cut["status"] == "pending":
@@ -1064,7 +1203,7 @@ def main(argv=None):
         print_site_wide_interventions(a.before, a.after)
         print_link_loss_note(a.after)
         print_misinfo_fix_note(a.after)
-        print_fact_correction_head(groups)
+        print_fact_correction_head(groups, _span(a.after))
         pillar_lines, pillar_parts = pillar.report_lines(_span(a.after))
         print("\n".join(pillar_lines))
         rows = read_llm_experiment(a.csv)
@@ -1074,6 +1213,8 @@ def main(argv=None):
             print(f"9/15〜16 に追記の入った{len(late)}本は {LATE_BASELINE_FROM} 以降の観測だけを使う")
         watch = sum(1 for r in rows if str(r.get("experiment_flag", "")).strip() == WATCH_FLAG)
         print(f"llm_experiment {len(rows)}行（watch {watch}行とプール外・欠測は数えない）\n")
+        if not a.model or a.model == "gemini":
+            print_fact_reference(rows, _span(a.after), groups, pool)
         for model in ([a.model] if a.model else MODELS):
             if model_excluded(model, _span(a.after)):
                 # 欠測を0（引用なし）として数えない。ビフォー（9/15〜9/28）の Claude データは消さずに記録として残す

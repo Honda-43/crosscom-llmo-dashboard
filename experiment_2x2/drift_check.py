@@ -39,6 +39,8 @@ usage:
 　（E番号・slug・修正前・修正後）の文の置き換えだけで前回の本文から今回の本文になるなら想定内（E33 と同じ考え方を文の単位で）。
 　置き換えは文ごとに、今回の本文に修正後の文があるものだけ当てる（何回かに分けて直しても週ごとに確かめられる）。
 　ほかが1字でも変わっていれば想定外。表に載っているのに時刻・文が無い記事が変わったら、想定外として「記録待ち」と注記する。
+　2026-10-22（E22・E05）：修正前後の文は drift/expected_edits.json にも入れられる（"mode": "sentences" の項目。
+　"sentences": [{before, after}]。"from" を空にすると fact_corrections.csv のその記事の訂正の日を使う）。
 """
 import argparse
 import csv
@@ -115,11 +117,31 @@ _TAGS_AND_SPACE = re.compile(r'<[^>]+>|\s+')
 _DATE_LINE = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 
 
-def load_expected_edits(path=None):
+def load_expected_edits(path=None, keep_pending=False, corrections_path=None):
+    """expected_edits.json の決めた修正。
+
+    事実訂正（文の単位・2026-10-22）は ``"mode": "sentences"`` の項目で入れる（形は README）。``sentences`` は
+    ``paragraphs`` と同じ扱い（[{before, after}]）。``from`` が空なら fact_corrections.csv のその記事の訂正の日を使う。
+    時刻がまだ無い項目は想定内にできないので返さない（``keep_pending=True`` なら from を空のまま返す）。"""
     path = EXPECTED_EDITS if path is None else path
     if not os.path.exists(path):
         return []
-    return json.load(io.open(path, encoding='utf-8'))
+    out = []
+    for e in json.load(io.open(path, encoding='utf-8')):
+        if e.get('mode') != 'sentences':
+            out.append(e)
+            continue
+        e = dict(e)
+        if 'sentences' in e and not e.get('paragraphs'):
+            e['paragraphs'] = e.pop('sentences')
+        e.setdefault('update_date_display', True)
+        if not e.get('from'):
+            import pool
+            at = pool.fact_correction_at_by_slug(corrections_path).get(pool.slug(e.get('slug') or ''))
+            e['from'] = at.date().isoformat() if at else ''
+        if e['from'] or keep_pending:
+            out.append(e)
+    return out
 
 
 def _flat(text):
@@ -224,8 +246,9 @@ def _replays_sentences(edit, old_text, new_text, diff):
 FACT_SENTENCES = os.path.join(HERE, 'drift', 'fact_correction_sentences.csv')
 
 
-def load_fact_correction_edits(sentences_path=None, corrections_path=None):
-    """事実訂正の記事ごとの「決めた修正」（expected_edit_for に渡す形）。時刻と文の両方がある記事だけ。
+def load_fact_correction_edits(sentences_path=None, corrections_path=None, keep_pending=False):
+    """事実訂正の記事ごとの「決めた修正」（expected_edit_for に渡す形）。時刻と文の両方がある記事だけ
+    （``keep_pending=True`` なら時刻の無い記事も from を空で返す。箇所を数えるため）。
 
     from は fact_corrections.csv のその記事の最も早い訂正の日。記事の「更新」の日付が訂正の日に変わる行も想定内にする。"""
     import pool
@@ -239,23 +262,31 @@ def load_fact_correction_edits(sentences_path=None, corrections_path=None):
             if s and (str(r.get('修正前') or '').strip() or str(r.get('修正後') or '').strip()):
                 sentences.setdefault(s, []).append({'before': r.get('修正前') or '', 'after': r.get('修正後') or ''})
     out = []
-    for s in sorted({r['slug'] for r in rows}):
-        if s not in at or s not in sentences:
+    for s in sorted({r['slug'] for r in rows} | (set(sentences) if keep_pending else set())):
+        if s not in sentences or (s not in at and not keep_pending):
             continue
         eids = sorted({r['eid'] for r in rows if r['slug'] == s and r['eid']})
         revs = sorted({r['revision'] for r in rows if r['slug'] == s and r['revision']})
         tag = '・'.join(eids) + (f"・リビジョン {'・'.join(revs)}" if revs else '')
-        out.append({'slug': s, 'from': at[s].date().isoformat(), 'mode': 'sentences',
+        out.append({'slug': s, 'from': at[s].date().isoformat() if s in at else '', 'mode': 'sentences',
                     'intervention': f'事実訂正（{tag}）' if tag else '事実訂正',
                     'paragraphs': sentences[s], 'update_date_display': True})
     return out
 
 
-def fact_correction_pending(corrections_path=None, sentences_path=None):
+def fact_sentence_edits(with_pending=False, corrections_path=None, sentences_path=None, edits_path=None):
+    """事実訂正（文の単位）の決めた修正の全部：expected_edits.json の sentences の項目と fact_correction_sentences.csv。"""
+    js = [e for e in load_expected_edits(edits_path, keep_pending=with_pending, corrections_path=corrections_path)
+          if e.get('mode') == 'sentences']
+    return js + load_fact_correction_edits(sentences_path, corrections_path, keep_pending=with_pending)
+
+
+def fact_correction_pending(corrections_path=None, sentences_path=None, edits_path=None):
     """fact_corrections.csv に載っているが、時刻か修正前後の文が無い記事（想定内にできない）。"""
     import pool
     listed = {r['slug'] for r in pool.load_fact_corrections(corrections_path)}
-    ready = {e['slug'] for e in load_fact_correction_edits(sentences_path, corrections_path)}
+    ready = {pool.slug(e.get('slug') or '')
+             for e in fact_sentence_edits(False, corrections_path, sentences_path, edits_path)}
     return listed - ready
 
 
@@ -535,7 +566,7 @@ def main():
         L += [f'## {c["url"]}', '']
         if c.get('fact_pending'):
             L += ['**この記事は事実訂正の対象（fact_corrections.csv）。ただし訂正の時刻か修正前後の文'
-                  '（drift/fact_correction_sentences.csv）が記録待ちのため、想定内か確かめられない。想定外として扱う**', '']
+                  '（drift/expected_edits.json の mode=sentences の項目か drift/fact_correction_sentences.csv）が記録待ちのため、想定内か確かめられない。想定外として扱う**', '']
         if c.get('edit_outside'):
             L += ['**この記事は実験期間中に入れると決めた修正（drift/expected_edits.json）の対象。'
                   'ただし、決めた段落の外も変わっている（または決めた内容と違う）。想定外として扱う**', '']

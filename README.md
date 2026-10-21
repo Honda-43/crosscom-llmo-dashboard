@@ -384,7 +384,7 @@ experiment_flag は維持(除外しない)。主分析は46本のまま。
 - **対象の表**:`experiment_2x2/fact_corrections.csv`(列:E番号・slug・組・リビジョン・時刻)。記録が届くまでは見出しだけ。
   時刻は JST の `YYYY-MM-DD HH:MM[:SS]`(WordPress のリビジョンの時刻)。同じ記事が複数行(リビジョンが複数)でもよい。
   組の正本は allocation_v1.csv(表の「組」と違えば判定レポートに出す)。プール46本に無い記事は数えない(レポートに出す)
-- **感度分析 A「事実訂正あり記事抜き（N本・全組）」**:表の記事を判定期間の全体から、組に関係なく抜く(`pool.fact_correction_slugs`)。
+- **感度分析 A「事実訂正N本抜き（E番号）」**(例:事実訂正2本抜き（E22・E05）。2026-10-22 に見出しの形を変更。表が空のうちは「事実訂正あり記事抜き」の記録待ちの行):表の記事を判定期間の全体から、組に関係なく抜く(`pool.fact_correction_slugs`)。
   既存の行と抜く記事の集合がまったく同じなら1行にまとめる(`merge_same_sets`)。表が空なら表に「記録待ち」の行を出す
 - **感度分析 B「事実訂正前で打ち切り（YYYY-MM-DD HH:MM より前）」**:アフター期間を、全記事のうち**最も早い訂正の時刻**で切り、それより前の観測だけで計算
   (短期判定・長期判定の両方)。観測の時刻は llm_experiment の timestamp(UTC)を JST にして比べる。時刻の無い行は日付で見て、訂正の日の観測は入れない(保守的)。
@@ -400,8 +400,32 @@ experiment_flag は維持(除外しない)。主分析は46本のまま。
   置き換えは「修正後の文が今回の本文にある」ものだけ当てるので、何回かに分けて直しても週ごとに確かめられる。記事の「更新」の日付が訂正の日に変わる行も想定内。
   同じ段落のほかの文・見出しなどが1字でも変われば想定外。E33 のように別の決めた修正がある記事は、両方を合わせた形も試す。
   表に載っているのに時刻か文が無い記事が変わったら、想定外として「記録待ち」と注記する
-- 記録が届いたら:fact_corrections.csv と fact_correction_sentences.csv に入れ、interventions.csv に行を足す(scope=プール46本・touches_pool46=yes)。
+- 記録が届いたら:fact_corrections.csv と、修正前後の文(expected_edits.json か fact_correction_sentences.csv)に入れ、interventions.csv に行を足す(scope=プール46本・touches_pool46=yes)。
   テストは `tests/test_fact_corrections.py`(記録の前も後も通る)
+
+#### E22・E05 の事実訂正(2026-10-22 準備・効果測定チャットで了承済み・まだ反映していない)
+
+- 対象:agentforce-reasoning-control(**E22・③リードのみ**)2か所、agentforce-roi(**E05・③リードのみ**)1か所。
+  Agentforce の顧客導入0件(2026-10-20 本田確認)なのに、当社が利用者から相談を受けている・顧客と一緒に作業していると言い切る文があったため。
+  序文・見出し・FAQ・リンクは変えない。反映は、その日の実験の観測ジョブが終わった後(10:00 JST 以降の見込み)
+- 感度分析 A は「**事実訂正2本抜き（E22・E05）**」、B は「事実訂正前で打ち切り（反映の時刻より前）」(上の仕組みのまま。短期・長期の両方、早期解放の条件(3)・再ランダム化検定にも入る)
+- **偏りの向きの注記**(判定レポートの「## 事実訂正」に、短期・長期の両方で出す。`summarize.fact_direction_note`):
+  「E22・E05（ともに③）の本文3か所を事実訂正。③の引用が下がった場合、リードの効果は小さめ（安全側）、FAQの効果は大きめ（甘い方向）に出る」。
+  組と向きは allocation_v1.csv から自動で決める(効果＝処置あり − 処置なし。②なら逆、④なら両方小さめ、①なら両方大きめ)。
+  箇所の数は決めた修正前後の文の組の数。反映がアフター期間の後なら、その期間のレポートには出さない
+- **参考の表**「参考：事実訂正の記事の反映の前後（Gemini・判定には使わない）」(`summarize.print_fact_reference`):
+  記事ごとに、アフター期間の中で反映の時刻の前／以後の観測回数・cited_article=1 の回数・mentioned_v2=1 の回数。
+  冒頭に「2本・数回ずつの観測のため、上下から何かを言える量ではない」。時刻の無い観測は、反映の日の分をどちらにも入れない。
+  **11/2(短期判定・`pool.GROUP_BLIND_UNTIL`)より前は表を出さず、見出しと「短期判定まで出さない」だけ**(組ごとの結果を途中で見ないルール。③の記事の結果にあたる)
+- **ドリフト検知**:修正前後の文は `experiment_2x2/drift/expected_edits.json` に次の形で入れる(fact_correction_sentences.csv でもよい)。
+  `"from"` を空にすると fact_corrections.csv のその記事の訂正の日を使う。時刻が入るまでは想定内にしない(変われば「記録待ち」と注記)
+  ```json
+  {"slug": "agentforce-reasoning-control", "mode": "sentences", "from": "",
+   "intervention": "I-xx 事実訂正（E22）", "source": "seo-agent の記録のパス",
+   "sentences": [{"before": "修正前の文", "after": "修正後の文"}, {"before": "…", "after": "…"}]}
+  ```
+- **記録が届いたら**:fact_corrections.csv に E22・E05 の行(リビジョン・時刻)、expected_edits.json に3か所の文、interventions.csv に届いた原文のまま1行ずつ入れる。
+  テストは `tests/test_fact_corrections_e22_e05.py`
 
 ### ピラーの本文だけの編集とアフター期間の切り分け(2026-10-18)
 

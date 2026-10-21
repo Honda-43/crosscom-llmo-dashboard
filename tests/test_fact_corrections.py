@@ -93,7 +93,7 @@ def test_a_drops_the_listed_articles_from_every_group_and_is_last(monkeypatch, t
     _table(monkeypatch, tmp_path, [["", s, "", "", ""] for s in picked] + [["", picked[0], "", "9100", ""]])
     after = summarize.variants()
     assert after[:-1] == before, "既存の行(番号・中身)は変えない"
-    assert after[-1] == ("事実訂正あり記事抜き（3本・全組）", set(picked)), "同じ記事が2行あっても1本"
+    assert after[-1] == (f"事実訂正3本抜き（{'・'.join(picked)}）", set(picked)), "同じ記事が2行あっても1本"
 
 
 def test_a_is_merged_when_it_equals_an_existing_row(monkeypatch, tmp_path):
@@ -103,7 +103,7 @@ def test_a_is_merged_when_it_equals_an_existing_row(monkeypatch, tmp_path):
     sets = [frozenset(e) for _, e in rows]
     assert len(sets) == len(set(sets))
     merged = [label for label, e in rows if e == set(pool.LINK_LOSS_SLUGS)]
-    assert len(merged) == 1 and "〔事実訂正あり記事抜き（2本・全組）と同じ記事集合〕" in merged[0]
+    assert len(merged) == 1 and "〔事実訂正2本抜き（E23・E27）と同じ記事集合〕" in merged[0]
 
 
 def test_a_reports_what_is_left_and_its_randomization_uses_the_same_exclusion(monkeypatch, tmp_path, capsys):
@@ -117,7 +117,7 @@ def test_a_reports_what_is_left_and_its_randomization_uses_the_same_exclusion(mo
     out = capsys.readouterr().out
     assert set(picked) in [ex for _, ex in seen]
     n = {k: len(v) for k, v in g.items()}
-    assert (f"「事実訂正あり記事抜き」で抜いた後の残り：{len(after) - 3}本／{len(after)}本（①対照 {n['①対照'] - 3}本・"
+    assert (f"「事実訂正3本抜き（{'・'.join(picked)}）」で抜いた後の残り：{len(after) - 3}本／{len(after)}本（①対照 {n['①対照'] - 3}本・"
             f"②FAQのみ {n['②FAQのみ']}本・③リードのみ {n['③リードのみ']}本・④両方 {n['④両方']}本）") in out
 
 
@@ -230,7 +230,7 @@ def test_a_is_in_the_early_release_rule(monkeypatch, tmp_path):
     after = {"agentforce-rag": ("③リードのみ", 1), "agentforce-features": ("①対照", 0)}
     rows = summarize.early_release(after, {}, {"n": 2500, "lead_p": 0.001, "faq_p": 0.001})
     labels = [label for label, _ in rows[0]["signs"]]
-    assert labels[-1] == "事実訂正あり記事抜き（1本・全組）" and len(labels) == len(summarize.variants())
+    assert labels[-1] == f"事実訂正1本抜き（{g['①対照'][0]}）" and len(labels) == len(summarize.variants())
 
 
 def test_the_whole_report_shows_the_head_and_both_rows(monkeypatch, tmp_path, capsys):
@@ -253,10 +253,10 @@ def test_the_whole_report_shows_the_head_and_both_rows(monkeypatch, tmp_path, ca
     out = capsys.readouterr().out
     assert out.index("## 事実訂正") < out.index("##### gemini"), "冒頭に出す"
     assert "対象 1本：①対照 0本・②FAQのみ 0本・③リードのみ 1本・④両方 0本" in out
-    assert "事実訂正あり記事抜き（1本・全組）" in out and "事実訂正前で打ち切り（2026-10-20 12:00 より前）" in out
+    assert "事実訂正1本抜き（E06）" in out and "事実訂正前で打ち切り（2026-10-20 12:00 より前）" in out
     assert "アフター期間の観測 3回（2日）のうち使えるのは 2回（1日）" in out
     section = out.split("## 早期解放の判定")[1]
-    assert "事実訂正あり記事抜き（1本・全組）" in section and "事実訂正前で打ち切り（2026-10-20 12:00 より前）" in section
+    assert "事実訂正1本抜き（E06）" in section and "事実訂正前で打ち切り（2026-10-20 12:00 より前）" in section
 
 
 # --- ドリフト検知：決めた文の変化だけを想定内 --------------------------------------------------------------
