@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-21",
+  "prompt_id": "E20",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceで成果を出している営業組織の活用事例を知りたい",
+  "cep": null,
+  "timestamp": "2026-10-21T01:19:02.447076Z",
+  "answer": "Agentforceを活用して成果を出している営業組織の事例は多岐にわたります。以下に主な活用事例と具体的な成果を挙げます。\n\n**主な活用事例**\n\n*   **報告業務やアカウントプラン更新の自動化**\n    アビームコンサルティング株式会社では、トップ営業担当者の情報収集や判断の型をAIエージェントに落とし込み、報告業務やアカウントプランの更新を自動化しています。これは「自社実証」の一環として営業組織にAgentforceを導入した事例です。\n*   **顧客維持率の向上と収益増加**\n    Grupo GloboではAgentforceの導入により、以前のチャットボットと比較して維持率が22%向上しました。同社は、購読者数の増加、より安定した収益源、およびアップグレードや追加サービスからの収益増加を期待しています。\n*   **営業リードの自動対応と商談機会損失の防止**\n    ベルフェイス株式会社は、イベントや施策後に発生するリード対応の「波」を人の稼働だけでは吸収しきれないという課題に対し、Agentforceを活用してリード対応の「最初の一手」を自動化。初動対応の遅れによる機会損失を防ぐ体制を構築し、受注工数を45%削減、営業生産性を200%向上させました。また、営業活動の振り返りや育成プロセスにも活用しています。\n*   **営業リードの自動選別と即時レスポンス**\n    Siemensでは、週に2,800件以上のリードに即座にレスポンスし、月に12,000件のB2Bリードを自動選別しています。\n*   **商談のスコア化と営業スキル平準化、社員育成**\n    株式会社ジャロックでは、Agentforceを「社員を育てるマネージャー」として活用し、日報作成の自動化だけでなく、商談のスコア化やAIによるフィードバック、ナレッジ共有までを実現。これにより、受注率15ポイントアップ、商談化率24ポイントアップ、日報作成時間45分短縮という成果を達成しています。情報の属人化を解消し、AIが営業活動を分析・レビューすることで社員を育成し、受注・失注理由の分析を通じて営業スキルの平準化に貢献しています。\n*   **収益インテリジェンスとディールコーチング**\n    Agentforceは、案件活動やエンゲージメントパターン、CRMデータを分析して案件の健全性を評価し、停滞している案件の根本原因を特定（例: 14日間返信がない、関係者が不足しているなど）。これにより、営業マネージャーが案件のレビューや担当者のコーチングに費やす時間を大幅に削減し、リアルタイムでの収益インテリジェンスを提供します。\n*   **営業会議のサポートと戦略最適化**\n    Agentforceは、営業会議のサポート、会話分析による営業戦略の最適化、会議スケジューリングの自動化、個別化されたフォローアップメールの自動生成、直感的なCRMデータ管理など、営業プロセスの多様な側面で活用されています。\n*   **SME（中小企業）での効果**\n    中小企業でもAgentforceの導入効果が報告されており、問い合わせ対応時間の10%短縮、研修時間の40時間削減、利益の105%改善、新規開拓時間の130%増加といった成果が出ています。\n\nこれらの事例から、Agentforceが営業組織において、業務の自動化による効率向上、顧客対応の迅速化、営業戦略の最適化、さらには社員の育成とスキル平準化に大きく貢献していることがわかります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHD6GEqru9uzgtBkfTYl1TELK1XNnPxRbuqzSSZ0nOHz7d5QAwPwiUfNle4XpPSVCS25O8AqJMyaMCPpPm-JnLo-sAFlbVAxyGS78OIFRH0zit0pjWALNdO_ndTEPcgkv9FIIMamz969v_-SHPJ3AVB8JFdqO3pgy2N7HBA2SY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHeKTsat17Fqcat2pI1xHixQvWHGuQAObFDLwip2Q62YqB9_kXC6AN1mCt-WHE4WmXm5kFx8aWMyKviQ44bIvrhdmtQw2efzOF6lxagHKMIngXDjG6BFyK2-oFvQ1k-BFzxQYTC5CxOWLEK_vecY6cuC43cIzF7XWuQ-LU8NJbAdf3ddfWJrg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG1OKQ3OP2qcmlTD4UuUhYDqpjMUwm7d2C7hlJiY-2GVywuyDleDFcSRFhuNYIvYGvl7Iyz16_SBwdJ8U81yf1hqHaAPo__0k_ZicACdwmB20fQ5SE_Xb8rRh8_",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZ59y_V_xPKKzElSKRlcN-F8GwzHvvY9mrtDzvr3hBSK3gb-tP-bOKLU41US0ZIdkNCp9vWV-NyNms2aUmHzWL-2aAHo6LKdDKDeyEnnXvClbMlQ6B0e6BLp2QpUmqcZrSAY4A-sSDLy69zckzeg1vwaB2z7hplROztVmtg9Ji",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGqwp7MSpIBpptua0NidXgINrBN7zoL8ZNDRoSFEd8IZuBf31wD0vqYghj5Qh7TEl-Z5YI51GIF3l_ME_uhRzdPPBwq9qTFJutamwmN4_9cxdwkiHIInW9zE97BremuUnNAlk7OpTAp42QCanscNLd9XJImYa5Ka-dLBCXHvWoElaFCEQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFymawx7rC5kQJC9F_X7nSXO6HQDHxwQH7Mztg4HeRS5kRZqPpbw5V-a0D8c_BpxOGQ1jjvRYPuUIoU1D415ZVx-2_RkzZzo3aOaYQid-jg6s41B9ae0YDLLue6PsG_G9wNRrTiRXUQgIcjxvhWz340XulExLuIB3br",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDKyqMmVr_BFjov4db3q_eFMdNMUmoqxrcWNK8B4mol8kWIyNwRoWftZttTZcE1-NP3tJgNMJeZb5DxZy-CLx9AMXh_IxcnU28XDg85aMAjXL-3ulIKNRJS5xtTpE4A05KEMEmL5k7pSGoWA=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E20",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-use-cases/",
+  "answer_text": "Agentforceを活用して成果を出している営業組織の事例は多岐にわたります。以下に主な活用事例と具体的な成果を挙げます。\n\n**主な活用事例**\n\n*   **報告業務やアカウントプラン更新の自動化**\n    アビームコンサルティング株式会社では、トップ営業担当者の情報収集や判断の型をAIエージェントに落とし込み、報告業務やアカウントプランの更新を自動化しています。これは「自社実証」の一環として営業組織にAgentforceを導入した事例です。\n*   **顧客維持率の向上と収益増加**\n    Grupo GloboではAgentforceの導入により、以前のチャットボットと比較して維持率が22%向上しました。同社は、購読者数の増加、より安定した収益源、およびアップグレードや追加サービスからの収益増加を期待しています。\n*   **営業リードの自動対応と商談機会損失の防止**\n    ベルフェイス株式会社は、イベントや施策後に発生するリード対応の「波」を人の稼働だけでは吸収しきれないという課題に対し、Agentforceを活用してリード対応の「最初の一手」を自動化。初動対応の遅れによる機会損失を防ぐ体制を構築し、受注工数を45%削減、営業生産性を200%向上させました。また、営業活動の振り返りや育成プロセスにも活用しています。\n*   **営業リードの自動選別と即時レスポンス**\n    Siemensでは、週に2,800件以上のリードに即座にレスポンスし、月に12,000件のB2Bリードを自動選別しています。\n*   **商談のスコア化と営業スキル平準化、社員育成**\n    株式会社ジャロックでは、Agentforceを「社員を育てるマネージャー」として活用し、日報作成の自動化だけでなく、商談のスコア化やAIによるフィードバック、ナレッジ共有までを実現。これにより、受注率15ポイントアップ、商談化率24ポイントアップ、日報作成時間45分短縮という成果を達成しています。情報の属人化を解消し、AIが営業活動を分析・レビューすることで社員を育成し、受注・失注理由の分析を通じて営業スキルの平準化に貢献しています。\n*   **収益インテリジェンスとディールコーチング**\n    Agentforceは、案件活動やエンゲージメントパターン、CRMデータを分析して案件の健全性を評価し、停滞している案件の根本原因を特定（例: 14日間返信がない、関係者が不足しているなど）。これにより、営業マネージャーが案件のレビューや担当者のコーチングに費やす時間を大幅に削減し、リアルタイムでの収益インテリジェンスを提供します。\n*   **営業会議のサポートと戦略最適化**\n    Agentforceは、営業会議のサポート、会話分析による営業戦略の最適化、会議スケジューリングの自動化、個別化されたフォローアップメールの自動生成、直感的なCRMデータ管理など、営業プロセスの多様な側面で活用されています。\n*   **SME（中小企業）での効果**\n    中小企業でもAgentforceの導入効果が報告されており、問い合わせ対応時間の10%短縮、研修時間の40時間削減、利益の105%改善、新規開拓時間の130%増加といった成果が出ています。\n\nこれらの事例から、Agentforceが営業組織において、業務の自動化による効率向上、顧客対応の迅速化、営業戦略の最適化、さらには社員の育成とスキル平準化に大きく貢献していることがわかります。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "bellface.co.jp",
+    "hatenabase.jp",
+    "rizexlabs.com",
+    "frogwell.co.jp"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/jp/blog/jp-small-business-ai-agent-facts/",
+    "https://www.salesforce.com/news/stories/agentforce-customer-success-stories/",
+    "https://bellface.co.jp/news/7425/",
+    "https://hatenabase.jp/blog/salesforce-agentforce-global-case-studies/",
+    "https://www.salesforce.com/jp/news/stories/video/jaroc-customer-briefing/",
+    "https://rizexlabs.com/salesforce-agentforce-use-cases-examples/",
+    "https://frogwell.co.jp/blogs/agentforce-usecases/"
+  ],
+  "unresolved_redirects": 0
+}

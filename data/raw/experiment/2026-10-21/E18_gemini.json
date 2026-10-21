@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-21",
+  "prompt_id": "E18",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceをどの業務から始めるべき？ユースケースの選び方の判断軸",
+  "cep": null,
+  "timestamp": "2026-10-21T01:18:38.600449Z",
+  "answer": "Agentforceの導入を始める業務やユースケースの選定においては、いきなり大規模な導入を目指すのではなく、小さく始めて成功体験を積み重ねることが重要です。以下に、開始すべき業務とユースケースを選ぶ際の判断軸をまとめます。\n\n### Agentforce導入を始めるべき業務\n\nAgentforce（Salesforceが提供する自律型AIエージェント）は、状況を理解し、自ら判断してタスクを実行できるため、これまで人が行っていたシステム上の業務を効率化できます。導入の最初の一歩としては、以下の特徴を持つ業務から始めるのが効果的です。\n\n1.  **高頻度かつ定型的な業務**\n    *   毎日または毎週必ず発生し、手順が明確に決まっている作業が適しています。これにより、AIエージェントによる自動化の効果が数値として現れやすくなります。\n2.  **人件費・時間コストが高い業務**\n    *   社員が多くの時間を費やしており、ミスが許されないような手作業の業務は、AIエージェント導入による費用対効果が高い可能性があります。\n3.  **API連携が容易な業務**\n    *   メール処理、スプレッドシートへの転記、SaaSツール間のデータ移動など、既存システムとの連携が比較的容易な業務から始めることで、導入のハードルを下げられます。\n4.  **内部向けの業務から開始する**\n    *   顧客に直接影響を与える業務よりも、社内向けの業務（従業員支援エージェントなど）から始めるのが安全です。これにより、万が一AIが誤った判断をした場合でも、修正が容易でリスクを抑えられます。\n5.  **AIの出力が人間による確認を挟める業務**\n    *   初期段階では、AIが生成した内容を人間が最終的に確認・承認するフローがある業務を選ぶと良いでしょう。例えば、メールの下書き作成や議事録の要約などが該当します。\n\n### ユースケース選びの判断軸\n\nAIエージェントのユースケースを選定する際には、以下の4つの観点から業務を評価し、優先順位を付けることが推奨されます。\n\n1.  **定型性 (Routineness) × 判断性 (Judgment Required)**\n    *   **定型・判断少（RPA等での自動化が向く）**: 転記や定型処理など、手順が決まっていて人の判断がほとんど必要ない業務は、RPAなどで自動化しやすい領域です。\n    *   **定型・判断あり（AIエージェントが活きる）**: 手順は決まっているものの、ある程度の人の判断や例外対応が必要な業務（例：問い合わせの一次対応、書類チェックなど）は、AIエージェントが最も能力を発揮しやすい領域です。\n    *   **非定型・判断少（標準化を検討）**: 手順が整っていないが判断は少ない業務は、まず標準化を進めてから自動化を検討します。\n    *   **非定型・判断あり（人が担う／AIは補助に徹する）**: 交渉や最終承認など、高度な文脈理解や倫理的判断が求められる業務は、引き続き人が担うべきであり、AIはあくまで補助的な役割に留めます。\n\n2.  **効果 (Impact) と費用対効果 (ROI)**\n    *   AI導入によってどれだけの業務効率化、コスト削減、品質向上などの具体的な効果が見込まれるかを評価します。\n    *   投資対効果（ROI）が早期に期待できる業務、つまり「ローハンギングフルーツ（簡単に達成できる目標）」を特定することが重要です。\n\n3.  **実現可能性 (Feasibility) とデータ整備状況 (Data Readiness)**\n    *   AIエージェントが学習するために必要なデータが、十分に整備されているか、アクセス可能かを確認します。Agentforceの場合、CRMデータや各種システムとの連携が鍵となります。\n    *   業務プロセスが明確で、AIに任せるタスクの手順や完成条件を具体的に説明できるかどうかも重要です。\n\n4.  **リスク (Risk) と計測可能性 (Measurability)**\n    *   AIの誤作動による影響が小さい業務、あるいは人間がその出力を容易にチェック・修正できる業務から始めましょう。機密性の高い情報や最終的な意思決定を伴う業務は、情報漏洩や責任の所在が曖昧になるリスクがあるため、慎重な検討が必要です。\n    *   導入前と導入後で効果を測定できる明確な指標（例：処理時間、対応件数、手戻り件数など）を設定し、PDCAサイクルを回せる業務を選びます。\n\nこれらの判断軸を活用し、まずは一つの具体的な業務を選定し、小さく成功させることで、Agentforce活用の知見を深め、その後の大規模な導入へとつなげていくことが成功への近道となります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbeLRQ8o2OYHZFO57wUaUu3cUkXEefFNxOq1-VFHBIkplmeTU1nIf5PMz9duvFOSWQctc_Jj_36UpibN8UMA2ucTCHvCsPfX23iuQlu_8NQ-L9I9KNW8TTpXhMk5lmU7pDsY1v9SR78oUVsk2q2fM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGh082iAvUJbyjgt9s0ykuwO8gKBat_qGQUdwWQVpamGGVq2JlM3HKbdnVD_PcaHtXradA9g4xTUh7lQvc4Z267vcFAcDwHZsUSzXHbwEDKOwb4jNf_L5YGazjb8tsaPflQr4B-5SSCC-l9Smg5zF4tvLLuW3Vw",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0R98m8Aq0PPzQgW2imNNdfmQB6--psDN6Cija_Q9EH066XJvPSp1ypt_kfyYHreAFDHABLlIvTdMmbOstwm9ieuHgHbiiZW9URv5WBciipGbV0J1uCzpGpO9j9thd9avDmD4QAavBLBHnDKfF5g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEglQKoCqYDlwz1iYVfpFCGHPfIkqyGQ9MTHxnPS7iSNPLaGYN3t3PIQbI10eLUa6Mrar7e3d65GxZHJpJywAKQmEh8JIQWsVmP-XWJgkvRP13t6_-DeI8rImeUvbmjPZJW",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFLQkzSIyi-T02JnQ7GdLJGhHNyvYcrjZ9OdvEAoTSnRUaXZ5_WoULuSoFXg44vWtEigfSEw672DSmmsEkdQWXFmWeCw3wRnrAWdNIvRL5gGj-Blrq3zOGGSNq3x6G_a3StFjCy7lchQqjBbG1xepsaqFYbCgDBVyOFfjtElx8q",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHdplsu416WCsvI0DtBhjxwfjV6ZglVsqkZoc3w1d2lPDcJ0swxWqrOF0CPjqF3pXgAgYeo_JG8lp1XOVZoBaasPWbJeYnwg9gDC1yt2633EKxTM9HiPYQ3gpdaOpTLEvBHxNAwO3H3"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E18",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-usecase-selection/",
+  "answer_text": "Agentforceの導入を始める業務やユースケースの選定においては、いきなり大規模な導入を目指すのではなく、小さく始めて成功体験を積み重ねることが重要です。以下に、開始すべき業務とユースケースを選ぶ際の判断軸をまとめます。\n\n### Agentforce導入を始めるべき業務\n\nAgentforce（Salesforceが提供する自律型AIエージェント）は、状況を理解し、自ら判断してタスクを実行できるため、これまで人が行っていたシステム上の業務を効率化できます。導入の最初の一歩としては、以下の特徴を持つ業務から始めるのが効果的です。\n\n1.  **高頻度かつ定型的な業務**\n    *   毎日または毎週必ず発生し、手順が明確に決まっている作業が適しています。これにより、AIエージェントによる自動化の効果が数値として現れやすくなります。\n2.  **人件費・時間コストが高い業務**\n    *   社員が多くの時間を費やしており、ミスが許されないような手作業の業務は、AIエージェント導入による費用対効果が高い可能性があります。\n3.  **API連携が容易な業務**\n    *   メール処理、スプレッドシートへの転記、SaaSツール間のデータ移動など、既存システムとの連携が比較的容易な業務から始めることで、導入のハードルを下げられます。\n4.  **内部向けの業務から開始する**\n    *   顧客に直接影響を与える業務よりも、社内向けの業務（従業員支援エージェントなど）から始めるのが安全です。これにより、万が一AIが誤った判断をした場合でも、修正が容易でリスクを抑えられます。\n5.  **AIの出力が人間による確認を挟める業務**\n    *   初期段階では、AIが生成した内容を人間が最終的に確認・承認するフローがある業務を選ぶと良いでしょう。例えば、メールの下書き作成や議事録の要約などが該当します。\n\n### ユースケース選びの判断軸\n\nAIエージェントのユースケースを選定する際には、以下の4つの観点から業務を評価し、優先順位を付けることが推奨されます。\n\n1.  **定型性 (Routineness) × 判断性 (Judgment Required)**\n    *   **定型・判断少（RPA等での自動化が向く）**: 転記や定型処理など、手順が決まっていて人の判断がほとんど必要ない業務は、RPAなどで自動化しやすい領域です。\n    *   **定型・判断あり（AIエージェントが活きる）**: 手順は決まっているものの、ある程度の人の判断や例外対応が必要な業務（例：問い合わせの一次対応、書類チェックなど）は、AIエージェントが最も能力を発揮しやすい領域です。\n    *   **非定型・判断少（標準化を検討）**: 手順が整っていないが判断は少ない業務は、まず標準化を進めてから自動化を検討します。\n    *   **非定型・判断あり（人が担う／AIは補助に徹する）**: 交渉や最終承認など、高度な文脈理解や倫理的判断が求められる業務は、引き続き人が担うべきであり、AIはあくまで補助的な役割に留めます。\n\n2.  **効果 (Impact) と費用対効果 (ROI)**\n    *   AI導入によってどれだけの業務効率化、コスト削減、品質向上などの具体的な効果が見込まれるかを評価します。\n    *   投資対効果（ROI）が早期に期待できる業務、つまり「ローハンギングフルーツ（簡単に達成できる目標）」を特定することが重要です。\n\n3.  **実現可能性 (Feasibility) とデータ整備状況 (Data Readiness)**\n    *   AIエージェントが学習するために必要なデータが、十分に整備されているか、アクセス可能かを確認します。Agentforceの場合、CRMデータや各種システムとの連携が鍵となります。\n    *   業務プロセスが明確で、AIに任せるタスクの手順や完成条件を具体的に説明できるかどうかも重要です。\n\n4.  **リスク (Risk) と計測可能性 (Measurability)**\n    *   AIの誤作動による影響が小さい業務、あるいは人間がその出力を容易にチェック・修正できる業務から始めましょう。機密性の高い情報や最終的な意思決定を伴う業務は、情報漏洩や責任の所在が曖昧になるリスクがあるため、慎重な検討が必要です。\n    *   導入前と導入後で効果を測定できる明確な指標（例：処理時間、対応件数、手戻り件数など）を設定し、PDCAサイクルを回せる業務を選びます。\n\nこれらの判断軸を活用し、まずは一つの具体的な業務を選定し、小さく成功させることで、Agentforce活用の知見を深め、その後の大規模な導入へとつなげていくことが成功への近道となります。",
+  "cited_domain": 1,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "kanri-pro.com",
+    "fde.deploai.co.jp",
+    "successjp.salesforce.com",
+    "cross-com.jp",
+    "sunbridge.com",
+    "note.com"
+  ],
+  "resolved_urls": [
+    "https://www.kanri-pro.com/blog/ai-suitability-matrix",
+    "https://fde.deploai.co.jp/column/ai-usecase-prioritization/",
+    "https://successjp.salesforce.com/article/NAI-001225",
+    "https://cross-com.jp/agentforce-guide/",
+    "https://www.sunbridge.com/service/agentforce-implementation-package/",
+    "https://note.com/smart_eight/n/n256304552d30"
+  ],
+  "unresolved_redirects": 0
+}

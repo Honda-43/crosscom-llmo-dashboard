@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-21",
+  "prompt_id": "E21",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agent Scriptとは？Agentforceの設定を画面ではなくコードで管理すべきケースは？",
+  "cep": null,
+  "timestamp": "2026-10-21T01:18:08.358293Z",
+  "answer": "**Agent Scriptとは**\n\nAgent Scriptは、SalesforceのAIエージェントプラットフォームであるAgentforceにおいて、AIエージェントに業務ルールを教えるための設計用言語です。会話の流れを「ステップ」として明示的に定義することが可能で、2026年2月に日本でベータ提供が開始されました。\n\nこの言語は、AIエージェントを構築するためのSalesforceの新しい言語であり、決定論的なコードと自然言語のプロンプトを同じ命令ブロック内で組み合わせる「ハイブリッド推論」を導入しています。 Agent Scriptは、Agentforce 360プラットフォーム上で動作するAIエージェントを人間が理解しやすい形式で記述できるスクリプト言語であり、高レベルの宣言型ドメイン固有言語（DSL）として、プログラム的に厳密なAIエージェントを実現します。\n\nAgent Scriptを使用することで、if文を用いた条件分岐や変数への値の代入が可能になり、これまで自然言語で指示していたエージェントの動きをスクリプトで定義することで、より明確にエージェントの挙動を制御できるようになります。 つまり、Agentforceのエージェント定義をコードとして記述する言語と言えます。\n\n**Agentforceの設定を画面ではなくコードで管理すべきケース**\n\nAgentforceの設定を画面ではなくコードで管理すべきケースは、主にGUI（グラフィカルユーザーインターフェース）での運用が限界に達した際です。 具体的には以下のような状況が挙げられます。\n\n*   **プログラム的に厳密なAIエージェントの実現**: Agent Scriptは、プログラム的に厳密なAIエージェントを実現するための高レベルなDSLであるため、複雑で精密な動作を求める場合にコードによる管理が適しています。\n*   **明確なエージェント挙動の制御**: 自然言語による指示では曖昧さが残る場合でも、Agent Scriptのif文や変数を用いた条件分岐、値の代入機能により、エージェントの挙動を明確かつ詳細に定義・制御したい場合にコードが有利です。\n*   **組織間の定義比較や差分管理**: 複数の組織間でエージェントの定義を比較し、異なる行だけを特定して表示したい場合に、定義をファイルとして取得しコードで管理することが有効です。\n*   **GUI運用の限界**: AgentforceはGUIやローコード・ノーコードでエージェントを作成できますが、トピック選択が意図通りにならない、コントロールすべき要素が多いといった課題が生じることがあります。 こうした複雑なシナリオや大規模な実装において、コードによる管理はより堅牢な制御を可能にします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGCtAdfQMgyPF7N-xriHJvW8rgae3MGAXugrVDakmNMoHFzTD4myIXMJ_we5hGeRkeLuP4K-1XkW5-tska_3fK4Mgt9wRsw6EfBWm72h5bZle-yujJT9p-f8-XbCkRqiDtnpwTE3XxweQzWH4RX9jo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGwThbky-ZYhlyQAxIWIvLjHgn2Zv1kuOnXEV6qwe69J0vj9kGfqaQ97VjrHW3KW9Nwxcya2VcCyAmoLOetfIw9sqk76sdUtCu5IN3t4E0cVQ8VK11lo7qqZd-p2a_sP_No0esVxeG0q3bgVdh_SRi9IbP-I1O9G_JIydmZhYX5TQhWOg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHHSPaalJ14vn5FD9br1sBpEaLqWTsSLlOBFxlq4QpR9GVVCLWRka9KC6vl2hRF-W69xYsFs1DxAiBqU3Y0WghgqVIaREyzSj09ZPo4bJHQc9m4E45gvT_a8azVtY4UPkyJc0UxADfFczNATnTVqNsBvOVXL8rNYMgN44-dwvLhAweo5xHUyCOWi6RVTdP87U1sEcHv9piyL8rcRJVID9z1Soo_m5W4z04Yqq_Q2m1I",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGN-3lVZsFovpCuMxNb7QncV9fA8YkShSGGaYyVEGqJiSSuF3a5NmmMaCPvg_gbdHcSArmxQlIAhre8xVEUdn6Pp1bwBO4mbtHcqn5ifB1NJqdIX8T85RKmwJX7nIz5er4FxeVobhdgwsk92nseI95bw_nsFR6J8aED58p1cE6e7WXoRwSZeZBhHeV4JijOsO_jXdh5iOkMIQpTl14rGb1EXDzTMNlfnhW5Z-H_3XGn87pv2t8blqwemwtO0Dk4mgvyU0XTyD29iCYRsJeI-ZwOD7QXO1lzAr0NA2hdvmiytBelVJSIwprZtyCLHtTmqsP6QSsvWqtP9o53TFTEHNn7dJYo3ANbX657848Kax6P0tgaLTwxIHVvc14BpRhokJ2DwCE6FCk2vAwzpXAhvPc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHtGQ9eJkxT24LYdZap1y70fjiHlybw7gmDL2DtceRx3XW71Wx1IKTwe1M91GrH0eTE0CcE_bcUZRtebi7Ofixc7FKRssD9KWySUlNaOEda4aBq9cSnEfKuo1YnJ9gGu1gD-8aAwsQxDR1a6iZzI5Jq3BsG8C_cVqBSaw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFFvvQ_iSjdiS6stGRRxSz1ni0sFspzVdnuO_tAVFtGxtB0AYChucS1K0CTUNcyNpxBY-Be77sQ4HgWIhjqzNePdAH2iZEYiDr_KXvZrJQI_zEjUy_X54JaavQIypQpo7XPo2oOG-bVEA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEr7zajroCNeTJ24P89EyTpJq5J529OnxM5txCz_eO353f7mOaFDlcpdIuw1_ZGzkNF1F2JbOj6LyogjcNxkcNY_lRsitVPHZCZ6Z9FisA7O5d5MH3KkeGmX2E9YZkgItAa2so8BFuVF_my9NU="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E21",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-agent-script/",
+  "answer_text": "**Agent Scriptとは**\n\nAgent Scriptは、SalesforceのAIエージェントプラットフォームであるAgentforceにおいて、AIエージェントに業務ルールを教えるための設計用言語です。会話の流れを「ステップ」として明示的に定義することが可能で、2026年2月に日本でベータ提供が開始されました。\n\nこの言語は、AIエージェントを構築するためのSalesforceの新しい言語であり、決定論的なコードと自然言語のプロンプトを同じ命令ブロック内で組み合わせる「ハイブリッド推論」を導入しています。 Agent Scriptは、Agentforce 360プラットフォーム上で動作するAIエージェントを人間が理解しやすい形式で記述できるスクリプト言語であり、高レベルの宣言型ドメイン固有言語（DSL）として、プログラム的に厳密なAIエージェントを実現します。\n\nAgent Scriptを使用することで、if文を用いた条件分岐や変数への値の代入が可能になり、これまで自然言語で指示していたエージェントの動きをスクリプトで定義することで、より明確にエージェントの挙動を制御できるようになります。 つまり、Agentforceのエージェント定義をコードとして記述する言語と言えます。\n\n**Agentforceの設定を画面ではなくコードで管理すべきケース**\n\nAgentforceの設定を画面ではなくコードで管理すべきケースは、主にGUI（グラフィカルユーザーインターフェース）での運用が限界に達した際です。 具体的には以下のような状況が挙げられます。\n\n*   **プログラム的に厳密なAIエージェントの実現**: Agent Scriptは、プログラム的に厳密なAIエージェントを実現するための高レベルなDSLであるため、複雑で精密な動作を求める場合にコードによる管理が適しています。\n*   **明確なエージェント挙動の制御**: 自然言語による指示では曖昧さが残る場合でも、Agent Scriptのif文や変数を用いた条件分岐、値の代入機能により、エージェントの挙動を明確かつ詳細に定義・制御したい場合にコードが有利です。\n*   **組織間の定義比較や差分管理**: 複数の組織間でエージェントの定義を比較し、異なる行だけを特定して表示したい場合に、定義をファイルとして取得しコードで管理することが有効です。\n*   **GUI運用の限界**: AgentforceはGUIやローコード・ノーコードでエージェントを作成できますが、トピック選択が意図通りにならない、コントロールすべき要素が多いといった課題が生じることがあります。 こうした複雑なシナリオや大規模な実装において、コードによる管理はより堅牢な制御を可能にします。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "keieiax.jp",
+    "tech.feature-branch.co.jp",
+    "developer.salesforce.com",
+    "tech-waves.hakuhodody-one.co.jp",
+    "cross-com.jp",
+    "note.com"
+  ],
+  "resolved_urls": [
+    "https://keieiax.jp/glossary/agentforce-agent-script/",
+    "https://tech.feature-branch.co.jp/posts/2026/03/agentforce-agent-script/",
+    "https://developer.salesforce.com/jpblogs/2026/03/agent-script-decoded-intro-to-agent-script-language-fundamentals-jp",
+    "https://developer.salesforce.com/jpblogs/2025/10/ai%E3%82%A8%E3%83%BC%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%88%E9%96%8B%E7%99%BA%E3%81%AE%E6%82%A9%E3%81%BF%E3%82%92%E8%A7%A3%E6%B1%BA%EF%BC%81agent-script%E3%81%A8%E3%83%8F%E3%82%A4%E3%83%96%E3%83%AA",
+    "https://tech-waves.hakuhodody-one.co.jp/entry/agent-script-tips",
+    "https://cross-com.jp/agentforce-agent-script/",
+    "https://note.com/joyous_shrew6990/n/n15f37f68a7fa"
+  ],
+  "unresolved_redirects": 0
+}
