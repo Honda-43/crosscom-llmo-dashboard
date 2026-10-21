@@ -813,6 +813,9 @@ def test_the_real_move_row_drives_the_note_and_the_confounder_list(capsys):
     # 被リンク減の区切り(上の link_loss)は I-33 のまま
     assert [r["intervention_id"] for r in groups["site_structure"]] == ["I-33", "I-36", "I-37", "I-39", "I-40"]
     assert "I-38" in [r["intervention_id"] for r in groups["サイト全体"]]
+    # 2026-10-21:便VA の3件(トップページ・lab 8991・導入支援会社8選)も交絡候補に載る
+    assert "I-47" in [r["intervention_id"] for r in groups["サイト全体"]]
+    assert {"I-48", "I-49"} <= {r["intervention_id"] for r in groups["site_content"]}
 
 
 def test_the_later_of_the_two_link_removals_is_the_cut_off():
