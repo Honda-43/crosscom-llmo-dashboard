@@ -1,17 +1,19 @@
 # LLM APIs
+# 観測に使うライブラリは 2026-10-22 の実験ジョブ(run 39704011106)で入っていた版に == で固定。
+# 上げる必要が出たら(セキュリティの更新を含む)、事前に効果測定チャットと管制塔へ相談する(README「観測の実行と記録を変えない決まり」)
 openai>=1.51.0
 anthropic>=0.40.0
-google-genai>=0.8.0
+google-genai==2.32.0  # 観測に使う。版を固定(2026-10-22・config/observation_lock.yaml で見張る)
 
 # Google Sheets / GA4 / GSC
-gspread>=6.1.0
-google-auth>=2.35.0
+gspread==6.2.1  # 観測に使う(llm_experiment・llm_marketing への書き込み)。版を固定
+google-auth==2.62.0  # 観測に使う(シートの認証)。版を固定
 google-analytics-data>=0.18.0
 google-api-python-client>=2.140.0
 
 # utils
 PyYAML>=6.0.2
-requests>=2.32.0
+requests==2.34.2  # 観測に使う(引用URLの転送先の解決)。版を固定
 tenacity>=9.0.0
 tzdata>=2024.1  # IANA tz database for zoneinfo (Asia/Tokyo) on all platforms
 

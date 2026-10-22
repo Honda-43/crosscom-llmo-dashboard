@@ -74,5 +74,10 @@ files:
               month_records, done_ids, pending, gemini_order, experiment_perday_misses, is_last_window_day,
               skipped_record]
     sha256: 81974e93120ff9af0bf663f04dd1ff9bebd455814f2da5566a2d4713b11fe667
+  # 観測に使うライブラリの版(2026-10-22 に == で固定。直近の実験ジョブ run 39704011106 と同じ版)。
+  # packages の行だけをハッシュする(ほかの行の追加・変更では失敗しない)。上げるときは事前に相談
+  - path: requirements.txt
+    packages: [google-genai, gspread, google-auth, requests]
+    sha256: fb6e11beae2ed4be825b747a278426c1bea994ea0274caefa50f9cb0f69e6fcb
 # 承認された変更の記録(--update が追記する)
 history: []

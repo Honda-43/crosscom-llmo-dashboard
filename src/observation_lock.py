@@ -7,6 +7,8 @@
   tests/test_observation_lock.py がハッシュを計算し直し、違えば失敗する(2027-01-04 以降は飛ばす)。
 - 表示の部分と同じファイルに同居しているもの(settings.py・sheets_writer.py・marketing.py・retired_urls.py)は、
   ファイル全体ではなく、観測の実行と記録に使う関数・定数(symbols)だけをハッシュする。
+- requirements.txt は、観測に使うライブラリの == で固定した行(packages)だけをハッシュする(2026-10-22)。
+  ほかの行の追加・変更では失敗しない。固定した行のコメントの書き換えも失敗しない
   表示の部分の関数を直しても失敗しない。
 - 改行コード(CRLF/LF)の違いは同じ中身として扱う(Windows の checkout で CRLF になるため)。
 
@@ -22,6 +24,7 @@ import ast
 import datetime as dt
 import hashlib
 import json
+import re
 import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -70,11 +73,37 @@ def symbol_sources(text: str, symbols: List[str]) -> Dict[str, str]:
     return {s: "\n".join(found[s]) for s in symbols}
 
 
+_REQ_NAME = re.compile(r"^\s*([A-Za-z0-9][A-Za-z0-9._-]*)")
+
+
+def requirement_lines(text: str, packages: List[str]) -> Dict[str, str]:
+    """requirements.txt のうち ``packages`` の行(末尾のコメントを除いた指定)。名前は大文字小文字・-_. を区別しない。
+    無いパッケージ・2行あるパッケージは KeyError(消した・書き足した、も変更として止める)。"""
+    def norm(name: str) -> str:
+        return re.sub(r"[-_.]+", "-", name).lower()
+    want = {norm(p): p for p in packages}
+    found: Dict[str, List[str]] = {}
+    for line in text.split("\n"):
+        spec = line.split("#", 1)[0].strip()
+        m = _REQ_NAME.match(spec)
+        if spec and m and norm(m.group(1)) in want:
+            found.setdefault(want[norm(m.group(1))], []).append(spec)
+    bad = [p for p in packages if len(found.get(p, [])) != 1]
+    if bad:
+        raise KeyError(f"見つからない・重なっているパッケージ: {', '.join(bad)}")
+    return {p: found[p][0] for p in packages}
+
+
 def digest(entry: Dict[str, Any], root: Path = ROOT) -> str:
-    """一覧の1件のハッシュ。symbols があればその名前のソースだけ、無ければファイル全体。"""
+    """一覧の1件のハッシュ。symbols があればその名前のソースだけ、packages があれば
+    requirements.txt のその行だけ(コメントは除く)、どちらも無ければファイル全体。"""
     text = _text(root / entry["path"])
     symbols = entry.get("symbols")
-    if symbols:
+    packages = entry.get("packages")
+    if packages:
+        lines = requirement_lines(text, list(packages))
+        text = "".join(f"{lines[p]}\n" for p in packages)
+    elif symbols:
         src = symbol_sources(text, list(symbols))
         text = "".join(f"# {name}\n{src[name]}\n" for name in symbols)
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
@@ -96,7 +125,8 @@ def changed(lock: Optional[Dict[str, Any]] = None, root: Path = ROOT) -> List[st
             out.append(f"{entry['path']}（{exc}）")
             continue
         if now != entry["sha256"]:
-            label = entry["path"] + (f"（{len(entry['symbols'])}個の関数・定数）" if entry.get("symbols") else "")
+            label = entry["path"] + (f"（{len(entry['symbols'])}個の関数・定数）" if entry.get("symbols") else
+                                     f"（{'・'.join(entry['packages'])} の行）" if entry.get("packages") else "")
             out.append(label)
     return out
 

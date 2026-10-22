@@ -125,3 +125,36 @@ def test_update_after_approval_writes_the_hash_history_and_diary(tmp_path):
     assert path.read_text(encoding="utf-8").startswith("# 見張り\n"), "コメントは残す"
     text = diary.read_text(encoding="utf-8")
     assert text.startswith("# 日誌\n") and "観測の実行と記録の変更（承認済み" in text and reason in text
+
+
+# 2026-10-22 の実験ジョブ(GitHub Actions run 39704011106)の Install dependencies で入っていた版
+PINNED = {"google-genai": "2.32.0", "gspread": "6.2.1", "google-auth": "2.62.0", "requests": "2.34.2"}
+
+
+def test_observation_libraries_are_pinned_to_the_last_run():
+    text = (ROOT / "requirements.txt").read_text(encoding="utf-8")
+    lines = observation_lock.requirement_lines(text, list(PINNED))
+    assert lines == {p: f"{p}=={v}" for p, v in PINNED.items()}
+    entry = [e for e in observation_lock.load()["files"] if e["path"] == "requirements.txt"]
+    assert len(entry) == 1 and entry[0]["packages"] == list(PINNED), "見張るのは固定した行だけ"
+
+
+REQ = "# LLM APIs\nopenai>=1.51.0\ngoogle-genai==2.32.0  # 固定\n\nGoogle_Auth==2.62.0\npytest>=8.3.0\n"
+
+
+def test_only_the_pinned_lines_of_requirements_are_watched(tmp_path):
+    (tmp_path / "requirements.txt").write_text(REQ, encoding="utf-8")
+    lock = {"files": [{"path": "requirements.txt", "packages": ["google-genai", "google-auth"]}]}
+    lock["files"][0]["sha256"] = observation_lock.digest(lock["files"][0], tmp_path)
+
+    def changed(text):
+        (tmp_path / "requirements.txt").write_text(text, encoding="utf-8")
+        return observation_lock.changed(lock, tmp_path)
+    assert changed(REQ) == []
+    assert changed(REQ.replace("openai>=1.51.0", "openai>=2.0.0") + "plotly>=6.0\n") == [], "ほかの行は自由"
+    assert changed(REQ.replace("# 固定", "# 観測に使う。上げるときは相談")) == [], "固定した行のコメントは自由"
+    assert changed(REQ.replace("google-genai==2.32.0", "google-genai==2.33.0")) == [
+        "requirements.txt（google-genai・google-auth の行）"]
+    assert changed(REQ.replace("google-genai==2.32.0", "google-genai>=2.32.0")) != []
+    assert "google-genai" in changed(REQ.replace("google-genai==2.32.0  # 固定\n", ""))[0], "消すのも変更"
+    assert changed(REQ + "google-genai==2.33.0\n") != [], "2行目を書き足すのも変更"
