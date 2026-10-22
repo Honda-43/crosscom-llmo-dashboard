@@ -739,6 +739,21 @@ def misinfo_fix_date(rows=None):
     return max(r["date"] for r in hits) if hits else None
 
 
+# Gemini のライブラリの版(2026-10-22)。実験ジョブの Install dependencies のログで確認し、requirements.txt で 2.32.0 に固定した。
+# 引用の取り出しへの影響は experiment_2x2/genai_version_check.py(46本をまとめた全体だけ・cited_article と mentioned 系は読まない)
+GENAI_VERSION_HEADING = "Gemini のライブラリ（google-genai）の版"
+GENAI_VERSION_NOTE = ("Gemini のライブラリ（google-genai）の版が、ビフォー（2.23.0〜2.25.0）とアフター（2.28.0〜2.32.0）で違う"
+                      "（2026-10-22 に 2.32.0 で固定）。同じ日は4組とも同じ版のため、前後の変化を組どうしで比べる判定では打ち消される。"
+                      "引用の取り出しへの影響は、版が変わった10日の前後で段差なし（46本をまとめた全体で、引用元のある行の割合・"
+                      "1行あたりの引用元の数・grounding が空の行の割合を、記事の違いをならして比べた。2026-10-22 確認・"
+                      "output/reports/genai_version_check_20261022.csv）")
+
+
+def print_genai_version_note():
+    """判定レポートの注記：Gemini のライブラリの版の違い（短期・長期の両方に出す）。"""
+    print(f"### {GENAI_VERSION_HEADING}\n{GENAI_VERSION_NOTE}\n")
+
+
 def print_misinfo_fix_note(after, rows=None):
     """アフター期間中に誤情報修正があれば偏りの向きを注記（2026-10-18・本田さん指示）。短期・長期の両方に出る。"""
     import datetime as _dt
@@ -1468,6 +1483,7 @@ def main(argv=None):
         print_new_article_poaching(overlap, blind, groups)
         print_link_loss_note(a.after)
         print_misinfo_fix_note(a.after)
+        print_genai_version_note()
         print_fact_correction_head(groups, _span(a.after))
         pillar_lines, pillar_parts = pillar.report_lines(_span(a.after))
         print("\n".join(pillar_lines))

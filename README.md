@@ -241,6 +241,11 @@ crosscom-llmo-dashboard/
     `google-genai` が中で使う `httpx`(0.28.1)・`pydantic` なども requirements.txt に無いので固定していない(9/15〜10/22 の実行で `httpx` は 0.28.1 のまま)
   - **固定する前は、実験の途中で `google-genai` が上がっていた**(実行ログで確認):ビフォー(9/15〜9/28)は 2.23.0〜2.25.0、
     アフター(10/06〜)は 2.28.0〜2.32.0(10/21 から 2.32.0)。`gspread` 6.2.1・`requests` 2.34.2 は 9/15 から同じ。版の違いは4組に同じようにかかる
+  - **引用の取り出しへの影響の確認(2026-10-22)**:`experiment_2x2/genai_version_check.py`。46本をまとめた全体だけで、日ごとに
+    引用元(cited_domains)のある行の割合・1行あたりの引用元の数・grounding が空(cited_urls が空)の行の割合を出し、版が変わった10日の前後3日の差を、
+    版が変わっていない日の境目の差(ふだんの揺れ)と比べる。cited_article・mentioned 系は読まない。差は記事の違いをならして取る
+    (grounding が空になる行は46本のうち12本の記事に偏り、その記事が固まった日は全体の率が動くため)。**結果は段差なし**。
+    表は `output/reports/genai_version_check_20261022.csv`。判定レポートに「Gemini のライブラリ（google-genai）の版」の注記を出す
 - 一覧に入れていないもの:日次・月次・週次の観測のファイル(一時停止中)、判定と集計(`experiment_2x2/summarize.py` など。観測の記録は変えない)
 - **観測の欠測は判定レポートに自動で載る**(`summarize.py` の「観測の欠測」の注記)。日ごとの観測計画(`settings.experiment_plan`)と
   答えの取れた行を突き合わせ、抜けた日の日付・本数・理由(実験日誌 → llm_experiment の error 列。どちらにも無ければ「記録なし」＝ジョブが動かなかった可能性)を出す。
