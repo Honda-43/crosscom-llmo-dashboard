@@ -1172,54 +1172,89 @@ def print_site_wide_interventions(before, after, rows=None):
 # --------------------------------------------------------------------------
 # 新記事の横取りのおそれ(2026-10-22・戦略管制塔の依頼)
 # cross-com.jp に新記事が出るたびに interventions.csv に scope=new_article で1行記録する。
-# note に「実験用プロンプトに答えうる：E16・E24」(なし／要確認)と書く。46本の実験用プロンプトに答えうる新記事は、
-# AI が46本の代わりに引用しうる(横取り)。本数と E番号は常に出し、組ごとの本数は 11/2 の短期判定から出す。
-# 表示だけで、判定の数値には使わない
+# note に seo-agent の確認の形で「実験用プロンプトとの重なり：強0」「弱：E16（…）」と書く(強・弱の E番号)。
+# 46本の実験用プロンプトに答えうる新記事は、AI が46本の代わりに引用しうる(横取り)。
+# 強・弱の E番号は常に出し、組ごとの本数は 11/2 の短期判定から出す。表示だけで、判定の数値には使わない。
+# 重なりの記載が無い行は、旧い書き方「実験用プロンプトに答えうる：E16」(＝強)／「なし」／「要確認」を読む
 # --------------------------------------------------------------------------
 NEW_ARTICLE_SCOPE = "new_article"
 ANSWERABLE_LABEL = "実験用プロンプトに答えうる"
+OVERLAP_LABEL = "実験用プロンプトとの重なり"
 POACHING_HEADING = "新記事の横取りのおそれ（46本の実験用プロンプトに答えうる新記事）"
 _ANSWERABLE = re.compile(ANSWERABLE_LABEL + r"[：:]\s*([^。\n]*)")
+_EID = re.compile(r"E\d{2}")
 
 
-def new_article_answerable(row):
-    """("yes", [E番号]) ／ ("no", []) ／ ("unknown", [])。note の「実験用プロンプトに答えうる：…」を読む。"""
-    m = _ANSWERABLE.search(str(row.get("note") or ""))
+def _ids_in_order(text):
+    return list(dict.fromkeys(_EID.findall(text)))
+
+
+def new_article_overlap(row):
+    """("known", 強の E番号, 弱の E番号) ／ ("unknown", [], [])。強・弱は note に出てくる順。
+
+    「実験用プロンプトとの重なり：」があれば、そこから「・公開」までを読む：「弱」より前が強、「弱」から後が弱。
+    無ければ旧い書き方「実験用プロンプトに答えうる：…」(E番号は強・「なし」は重なりなし・それ以外は要確認)。
+    """
+    note = str(row.get("note") or "")
+    at = note.rfind(OVERLAP_LABEL)
+    if at >= 0:
+        part = note[at + len(OVERLAP_LABEL):]
+        stop = part.find("・公開")
+        part = part if stop < 0 else part[:stop]
+        weak_at = part.find("弱")
+        strong_text, weak_text = (part, "") if weak_at < 0 else (part[:weak_at], part[weak_at:])
+        strong = _ids_in_order(strong_text)
+        return "known", strong, [i for i in _ids_in_order(weak_text) if i not in strong]
+    m = _ANSWERABLE.search(note)
     if not m:
-        return "unknown", []
-    ids = sorted(set(re.findall(r"E\d{2}", m.group(1))))
+        return "unknown", [], []
+    ids = _ids_in_order(m.group(1))
     if ids:
-        return "yes", ids
+        return "known", ids, []
     if m.group(1).strip().startswith("なし"):
-        return "no", []
-    return "unknown", []
+        return "known", [], []
+    return "unknown", [], []
+
+
+def overlap_text(strong, weak):
+    """「強0・弱（E16・E22）」の形。"""
+    fmt = lambda name, ids: f"{name}（{'・'.join(ids)}）" if ids else f"{name}0"  # noqa: E731
+    return fmt("強", strong) + "・" + fmt("弱", weak)
 
 
 def new_article_rows(rows):
     return [r for r in rows if scope_key(r.get("scope")) == NEW_ARTICLE_SCOPE]
 
 
+def _new_article_slug(row):
+    desc = str(row.get("description") or "")
+    return desc.split("：", 1)[1].strip() if "：" in desc else desc
+
+
 def print_new_article_poaching(overlap, blind, groups=None):
-    """判定期間に日付が重なる新記事のうち、46本の実験用プロンプトに答えうるもの。組ごとは 11/2 から。"""
+    """判定期間に日付が重なる新記事と、46本の実験用プロンプトとの重なり(強・弱)。組ごとは 11/2 から。"""
     news = new_article_rows(overlap)
     print(f"### {POACHING_HEADING}")
     if not news:
         print("判定期間に公開された新記事（scope=new_article）の記録なし\n")
         return
-    judged = [(r, *new_article_answerable(r)) for r in news]
-    yes = [(r, ids) for r, k, ids in judged if k == "yes"]
-    unknown = [r for r, k, _ in judged if k == "unknown"]
-    ids = sorted({i for _, i_s in yes for i in i_s})
-    print(f"判定期間に公開された新記事 {len(news)}本のうち、46本の実験用プロンプトに答えうる {len(yes)}本"
-          + (f"（{'・'.join(ids)}）" if ids else "")
-          + (f"・答えうるか要確認 {len(unknown)}本（{'・'.join(r['intervention_id'] for r in unknown)}）" if unknown else ""))
-    if yes and blind:
+    judged = [(r, *new_article_overlap(r)) for r in news]
+    strong = list(dict.fromkeys(i for _, k, st, _ in judged for i in st))
+    weak = [i for i in dict.fromkeys(i for _, k, _, wk in judged for i in wk) if i not in strong]
+    unknown = [r for r, k, _, _ in judged if k == "unknown"]
+    print(f"判定期間に公開された新記事 {len(news)}本。46本の実験用プロンプトとの重なり：{overlap_text(strong, weak)}"
+          + (f"・重なりが要確認 {len(unknown)}本（{'・'.join(r['intervention_id'] for r in unknown)}）" if unknown else ""))
+    for r, k, st, wk in judged:
+        print(f"- {r['intervention_id']} {_new_article_slug(r)}：" + (overlap_text(st, wk) if k == "known" else "要確認"))
+    if (strong or weak) and blind:
         print(f"組ごとの本数は {GROUP_BLIND_UNTIL} の短期判定まで出さない")
-    elif yes:
+    elif strong or weak:
         groups = load_allocation() if groups is None else groups
         by_id = {a["id"]: a["slug"] for a in load_pool()}
-        by = collections.Counter(groups.get(by_id.get(i), "（割付なし）") for i in ids)
-        print("答えうる E番号の組：" + "・".join(f"{g} {by.get(g, 0)}本" for g in GROUP_ORDER))
+        for name, ids in (("強", strong), ("弱", weak)):
+            if ids:
+                by = collections.Counter(groups.get(by_id.get(i), "（割付なし）") for i in ids)
+                print(f"{name}の E番号の組：" + "・".join(f"{g} {by.get(g, 0)}本" for g in GROUP_ORDER))
     print("※ 表示だけで、判定の数値には使わない\n")
 
 
