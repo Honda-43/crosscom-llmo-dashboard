@@ -51,7 +51,7 @@ from pool import (FACT_CORRECTION_IMBALANCE, fact_correction_at_by_slug, fact_co
 from pool import (APPLIED_CORRECTION_SLUGS, EXCLUDED,  # noqa: E402
                   LATE_BASELINE_FROM, PROBE_BASELINE_EXCLUDED, baseline_start,
                   late_appended_slugs, load_allocation, multi_paragraph_slugs,
-                  pool_slugs, slug)
+                  load_pool, pool_slugs, slug)
 
 WATCH_FLAG = "watch"
 MODELS = ("gemini", "claude")
@@ -1169,6 +1169,60 @@ def print_site_wide_interventions(before, after, rows=None):
     return overlap
 
 
+# --------------------------------------------------------------------------
+# 新記事の横取りのおそれ(2026-10-22・戦略管制塔の依頼)
+# cross-com.jp に新記事が出るたびに interventions.csv に scope=new_article で1行記録する。
+# note に「実験用プロンプトに答えうる：E16・E24」(なし／要確認)と書く。46本の実験用プロンプトに答えうる新記事は、
+# AI が46本の代わりに引用しうる(横取り)。本数と E番号は常に出し、組ごとの本数は 11/2 の短期判定から出す。
+# 表示だけで、判定の数値には使わない
+# --------------------------------------------------------------------------
+NEW_ARTICLE_SCOPE = "new_article"
+ANSWERABLE_LABEL = "実験用プロンプトに答えうる"
+POACHING_HEADING = "新記事の横取りのおそれ（46本の実験用プロンプトに答えうる新記事）"
+_ANSWERABLE = re.compile(ANSWERABLE_LABEL + r"[：:]\s*([^。\n]*)")
+
+
+def new_article_answerable(row):
+    """("yes", [E番号]) ／ ("no", []) ／ ("unknown", [])。note の「実験用プロンプトに答えうる：…」を読む。"""
+    m = _ANSWERABLE.search(str(row.get("note") or ""))
+    if not m:
+        return "unknown", []
+    ids = sorted(set(re.findall(r"E\d{2}", m.group(1))))
+    if ids:
+        return "yes", ids
+    if m.group(1).strip().startswith("なし"):
+        return "no", []
+    return "unknown", []
+
+
+def new_article_rows(rows):
+    return [r for r in rows if scope_key(r.get("scope")) == NEW_ARTICLE_SCOPE]
+
+
+def print_new_article_poaching(overlap, blind, groups=None):
+    """判定期間に日付が重なる新記事のうち、46本の実験用プロンプトに答えうるもの。組ごとは 11/2 から。"""
+    news = new_article_rows(overlap)
+    print(f"### {POACHING_HEADING}")
+    if not news:
+        print("判定期間に公開された新記事（scope=new_article）の記録なし\n")
+        return
+    judged = [(r, *new_article_answerable(r)) for r in news]
+    yes = [(r, ids) for r, k, ids in judged if k == "yes"]
+    unknown = [r for r, k, _ in judged if k == "unknown"]
+    ids = sorted({i for _, i_s in yes for i in i_s})
+    print(f"判定期間に公開された新記事 {len(news)}本のうち、46本の実験用プロンプトに答えうる {len(yes)}本"
+          + (f"（{'・'.join(ids)}）" if ids else "")
+          + (f"・答えうるか要確認 {len(unknown)}本（{'・'.join(r['intervention_id'] for r in unknown)}）" if unknown else ""))
+    if yes and blind:
+        print(f"組ごとの本数は {GROUP_BLIND_UNTIL} の短期判定まで出さない")
+    elif yes:
+        groups = load_allocation() if groups is None else groups
+        by_id = {a["id"]: a["slug"] for a in load_pool()}
+        by = collections.Counter(groups.get(by_id.get(i), "（割付なし）") for i in ids)
+        print("答えうる E番号の組：" + "・".join(f"{g} {by.get(g, 0)}本" for g in GROUP_ORDER))
+    print("※ 表示だけで、判定の数値には使わない\n")
+
+
 def _span(text):
     start, _, end = text.partition(":")
     return start, end or start
@@ -1258,7 +1312,8 @@ def main(argv=None):
             sys.exit("allocation_v1.csv が無い（9/28 の割付の前）。組が決まってから判定する")
         if model_excluded("claude", _span(a.after)):
             print(f"**{GENERALIZATION_NOTE}**\n")
-        print_site_wide_interventions(a.before, a.after)
+        overlap = print_site_wide_interventions(a.before, a.after)
+        print_new_article_poaching(overlap, blind, groups)
         print_link_loss_note(a.after)
         print_misinfo_fix_note(a.after)
         print_fact_correction_head(groups, _span(a.after))
