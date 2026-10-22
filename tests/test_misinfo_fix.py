@@ -64,14 +64,21 @@ def test_before_the_record_the_variant_is_not_shown_and_the_table_says_why(monke
     assert "「誤情報修正1本抜き」は出していない：seo-agent からの記録（slug・組・適用日時）待ち" in capsys.readouterr().out
 
 
+def _no_fact(rows):
+    """事実訂正の行(2026-10-22 から E22・E05。誤情報修正の行のあとに付く)を除いた感度分析の行。"""
+    return [r for r in rows if not r[0].startswith("事実訂正")]
+
+
 def test_the_variant_drops_only_that_article_and_is_last(monkeypatch):
     monkeypatch.setattr(summarize, "MISINFO_FIX_SLUGS", ())
     before = summarize.variants()
     s = _outside_every_set()
     _fix(monkeypatch, s)
     after = summarize.variants()
-    assert after[:-1] == before, "既存の行(番号・中身)は変えない"
-    assert after[-1] == ("誤情報修正1本抜き（E99）", {s})
+    assert _no_fact(after)[:-1] == _no_fact(before), "既存の行(番号・中身)は変えない"
+    assert _no_fact(after)[-1] == ("誤情報修正1本抜き（E99）", {s}), "事実訂正の行を除けば末尾"
+    assert [r[0] for r in after[len(_no_fact(after)):]] == [r[0] for r in before[len(_no_fact(before)):]], \
+        "事実訂正の行はそのあと"
     over = summarize.misinfo_fix_overlap()
     assert [label for label, _ in over] == ["9本（9/15〜16 追記）", "features（訂正対象）", "複数段落回答",
                                             "ピラーの既存リンク先", "リンク減2本"]
@@ -111,7 +118,8 @@ def test_the_early_release_rule_and_the_randomization_include_the_new_row(monkey
     labels = [label for label, _ in rows[0]["signs"]]
     assert "誤情報修正1本抜き（E99）" in labels and len(labels) == len(summarize.variants())
     # 条件(3)：この行で向きが逆なら解放しない
-    assert all(r["signs"][-1][0] == "誤情報修正1本抜き（E99）" for r in rows)
+    assert all([x for x in r["signs"] if not x[0].startswith("事実訂正")][-1][0] == "誤情報修正1本抜き（E99）"
+               for r in rows)
 
 
 def test_the_fix_row_is_listed_in_the_confounder_list_with_the_pool46_rows_first():
@@ -135,8 +143,9 @@ def test_the_expected_edits_file_is_valid_json_when_present():
         edits = json.loads(path.read_text(encoding="utf-8"))
         for e in edits:
             assert {"slug", "from", "intervention"} <= set(e), e
-            assert e.get("paragraphs") or ("before" in e and "after" in e), e
-            assert all({"before", "after"} <= set(p) for p in e.get("paragraphs", [])), e
+            # 事実訂正(2026-10-22・mode=sentences)は "sentences" に修正前後の文を入れる
+            assert e.get("paragraphs") or e.get("sentences") or ("before" in e and "after" in e), e
+            assert all({"before", "after"} <= set(p) for p in e.get("paragraphs", []) + e.get("sentences", [])), e
             dt.date.fromisoformat(e["from"])
 
 
@@ -156,7 +165,7 @@ def test_the_three_places_point_at_the_same_article():
     """pool.py・drift/expected_edits.json・interventions.csv が同じ記事(E33)を指す。"""
     assert pool.MISINFO_FIX_SLUGS == (SLUG,) and pool.MISINFO_FIX_IDS == (EID,)
     assert pool.load_allocation()[SLUG] == "②FAQのみ"
-    edits = drift_check.load_expected_edits()
+    edits = [e for e in drift_check.load_expected_edits() if e.get("mode") != "sentences"]   # 事実訂正(E22・E05)は除く
     assert [e["slug"] for e in edits] == [SLUG]
     assert edits[0]["from"] == "2026-10-18" and edits[0]["intervention"] == "I-41・I-42・I-43"
     assert len(edits[0]["paragraphs"]) == pool.MISINFO_FIX_PARAGRAPHS == 26
@@ -178,7 +187,7 @@ def test_the_three_places_point_at_the_same_article():
 
 def test_e33_is_in_none_of_the_existing_rows_so_it_is_its_own_row():
     assert not any(hit for _, hit in summarize.misinfo_fix_overlap())
-    rows = summarize.variants()
+    rows = _no_fact(summarize.variants())
     assert rows[-1] == ("誤情報修正1本抜き（E33）", {SLUG})
     assert summarize.misinfo_fix_note() == "※ 誤情報修正の1本（E33）は既存の感度分析のどの行にも含まれない"
 
@@ -298,7 +307,7 @@ def test_the_rest_fix_is_recorded_as_i43_in_the_same_sensitivity_row():
     assert (r["scope"], r["executor"], r["touches_pool46"]) == ("プール46本", "seo-agent（9d）", "yes")
     assert f"組②FAQのみ（{EID}）" in r["note"] and "（I-41・I-42 と同じ行）" in r["note"]
     assert "sales_roleplay_rest_applied_record_20261018.md" in r["note"]
-    assert summarize.variants()[-1] == ("誤情報修正1本抜き（E33）", {SLUG}), "感度分析は変えない(同じ1行)"
+    assert _no_fact(summarize.variants())[-1] == ("誤情報修正1本抜き（E33）", {SLUG}), "感度分析は変えない(同じ1行)"
     e = drift_check.load_expected_edits()[0]
     assert e["rest_revision"] == 9049 and e["rest_applied_at_jst"] == "2026-10-18 16:44:20"
     assert len(e["rest_changes"]) == pool.MISINFO_FIX_REST_CHANGES == 30

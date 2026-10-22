@@ -260,6 +260,7 @@ crosscom-llmo-dashboard/
 - **記録のルール(2026-10-07)**:今後 interventions.csv に書くときは、**scope に件数を入れない**(件数は description に書く)。既存の行の scope は書き換えない
 - **記録のルール(2026-10-18)**:executor のセッション名は表示名(9c など)ではなく sessionId の先頭8文字で書く。例:seo-agent（e0eede5c）。
 - **記録のルール(2026-10-21)**:seo-agent から渡し用の行が届いた場合、description・note は原文をそのまま使う。要約した場合は note に原文を追記する(既存のセルは書き換えない)。例:I-47〜I-49 は description が効果測定チャットの要約のため、note の末尾に【2026-10-21 追記・seo-agent の原文】として原文を追記した。
+- **記録のルール(2026-10-22)**:seo-agent の渡し用の行で、4列目(scope の位置)に URL が入っている場合は、scope に「プール46本」などの区分を入れ、URL は note の先頭に「対象：〈URL〉。」として移す(description と note の本文は変えない)。intervention_id が空欄なら既存の最大番号の次から埋める。例:I-50〜I-52(便VC)
   表示名は Claude Code が起動のたびに自動で付けるもので、10/18 の 9c／9d はどちらも e0eede5c の1セッションだった(制作管制の確認)。
   10/18 の該当行は note の末尾に追記で訂正した。10/18 より前の行(10/2 の 9d など)は当時実際に別のセッションが書き込んでいたため訂正しない
 - seo-agent のサイト整理(26行)は実行記録が届いたら scope=site_hygiene で追記する(この一覧に自動で載る)
@@ -403,7 +404,9 @@ experiment_flag は維持(除外しない)。主分析は46本のまま。
 - 記録が届いたら:fact_corrections.csv と、修正前後の文(expected_edits.json か fact_correction_sentences.csv)に入れ、interventions.csv に行を足す(scope=プール46本・touches_pool46=yes)。
   テストは `tests/test_fact_corrections.py`(記録の前も後も通る)
 
-#### E22・E05 の事実訂正(2026-10-22 準備・効果測定チャットで了承済み・まだ反映していない)
+#### E22・E05 の事実訂正(2026-10-22 準備 → 同日 11:29〜11:30 に反映・記録済み)
+
+**反映済み(便VC・seo-agent a2846ad4)**:E22(post 6648)は 2026-10-22 11:29:46 JST にリビジョン 9190(2か所を1回で保存)、E05(post 6647)は 11:30:10 JST にリビジョン 9191。観測ジョブの完了(afc3e8f・10:20:15 JST)を確かめてから反映。interventions は I-50・I-51(E22)・I-52(E05)。感度分析 B の区切りは早いほうの **2026-10-22 11:29:46**(10/22 朝の観測は最後が 10:15:42 JST で、区切りより前＝修正前に入る)。公開ページで変わったのは3か所と更新日の表示(2026-09-29 → 2026-10-22)と dateModified だけ。E05 の序文1文目(「…導入を任された担当者からよく聞きます。」)は今回直さず 2027-01-01 のバッチへ
 
 - 対象:agentforce-reasoning-control(**E22・③リードのみ**)2か所、agentforce-roi(**E05・③リードのみ**)1か所。
   Agentforce の顧客導入0件(2026-10-20 本田確認)なのに、当社が利用者から相談を受けている・顧客と一緒に作業していると言い切る文があったため。
@@ -424,8 +427,9 @@ experiment_flag は維持(除外しない)。主分析は46本のまま。
    "intervention": "I-xx 事実訂正（E22）", "source": "seo-agent の記録のパス",
    "sentences": [{"before": "修正前の文", "after": "修正後の文"}, {"before": "…", "after": "…"}]}
   ```
-- **記録が届いたら**:fact_corrections.csv に E22・E05 の行(リビジョン・時刻)、expected_edits.json に3か所の文、interventions.csv に届いた原文のまま1行ずつ入れる。
-  テストは `tests/test_fact_corrections_e22_e05.py`
+- **記録(2026-10-22 に入れた)**:fact_corrections.csv に E22・E05 の行(リビジョン・時刻)、expected_edits.json に3か所の文(一字一句・mode=sentences・from 2026-10-22・
+  update_date_display。更新日の表示は反映日 2026-10-22 に変わった場合だけ想定内。dateModified は構造化データ〈script〉なので本文の比較に入らない)、
+  interventions.csv に届いた原文のまま3行(URL は scope から note の先頭へ)。テストは `tests/test_fact_corrections_e22_e05.py`(実際の表・実際のスナップショットでも確かめる)
 
 ### ピラーの本文だけの編集とアフター期間の切り分け(2026-10-18)
 

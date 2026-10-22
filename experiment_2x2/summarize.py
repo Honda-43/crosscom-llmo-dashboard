@@ -473,7 +473,7 @@ def fact_direction_note(groups=None, span=None):
 
 
 def fact_b_label(at):
-    return f"{FACT_B}（{at:%Y-%m-%d %H:%M} より前）"
+    return f"{FACT_B}（{at:%Y-%m-%d %H:%M:%S} より前）"
 
 
 def fact_group_counts(slugs=None, groups=None):

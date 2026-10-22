@@ -82,7 +82,9 @@ def test_the_real_log_parses_and_keeps_the_agreed_columns():
     # 10/18 の誤情報修正(I-41・E33 の26段落、I-42・同じ記事の FAQ の答え2か所、I-43・残りの30か所)は凍結46本の本文の変更なので yes
     assert [r["intervention_id"] for r in pool] == ["I-11", "I-12", "I-09", "I-07", "I-14",
                                                     "I-20", "I-21", "I-22", "I-23", "I-26", "I-31", "I-32", "I-33",
-                                                    "I-41", "I-42", "I-43"]
+                                                    "I-41", "I-42", "I-43",
+                                                    # 10/22 の事実訂正(I-50・I-51 は E22、I-52 は E05。便VC)は凍結46本の本文の変更なので yes
+                                                    "I-50", "I-51", "I-52"]
     by_id = {r["intervention_id"]: r for r in rows}
     # 9/29 に入れる訂正は1本(E37 は 9/22 に実験外で適用済み。
     # agentforce-vibes は 2026-09-26 に訂正見送り —— 戦略管制塔の裁定で凍結明けへ)

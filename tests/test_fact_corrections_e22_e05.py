@@ -7,12 +7,14 @@
 - 偏りの向きの注記を短期・長期の両方に出す
 - 参考の表(反映の前後の Gemini の cited_article・mentioned_v2・観測回数)は 11/2 の短期判定まで出さない
 - ドリフト検知：修正前後の文は expected_edits.json の mode=sentences の項目に入れる。時刻は fact_corrections.csv から
-記録が届くまで実際の表は空。ここのテストは表を一時ファイルに差し替えて確かめる。
+仕組みのテストは表を一時ファイルに差し替えて確かめる。2026-10-22 に記録が届いた(便VC)ので、末尾で実際の表も確かめる。
 """
 import csv
 import datetime as dt
 import io
 import json
+
+import pytest
 import sys
 from pathlib import Path
 
@@ -186,3 +188,99 @@ def test_sentence_entries_wait_for_the_time(monkeypatch, tmp_path):
 def test_the_real_expected_edits_file_still_loads():
     edits = drift_check.load_expected_edits(keep_pending=True)
     assert edits and edits[0]["slug"] == "agentforce-sales-roleplay"
+
+
+# --- 記録が届いた(便VC・2026-10-22)：実際の表で確かめる ---------------------------------------------------
+REAL_NOTE = NOTE
+
+
+def test_the_real_records_are_in_the_table():
+    rows = pool.load_fact_corrections()
+    assert [(r["eid"], r["slug"], r["group"], r["revision"], r["at_text"]) for r in rows] == [
+        ("E22", E22, "③リードのみ", "9190", "2026-10-22 11:29:46"),
+        ("E05", E05, "③リードのみ", "9191", "2026-10-22 11:30:10")]
+    assert pool.fact_correction_first_at() == dt.datetime(2026, 10, 22, 11, 29, 46), "B の区切りは早いほう"
+    assert summarize.variants()[-1] == ("事実訂正2本抜き（E22・E05）", {E22, E05})
+    assert summarize.fact_b_label(pool.fact_correction_first_at()) == "事実訂正前で打ち切り（2026-10-22 11:29:46 より前）"
+
+
+@pytest.mark.parametrize("ts,kept", [
+    ("2026-10-22T01:15:42.426455Z", True),   # 10/22 朝の観測の最後(10:15:42 JST)
+    ("2026-10-22T01:20:15Z", True),          # 観測ジョブの完了(afc3e8f・10:20:15 JST)
+    ("2026-10-22T02:29:45Z", True),          # 区切りの1秒前
+    ("2026-10-22T02:29:46Z", False),         # 区切り(E22 の反映 11:29:46 JST)
+    ("2026-10-23T00:30:00Z", False),
+])
+def test_the_morning_observations_of_10_22_are_before_the_cut(ts, kept):
+    row = {"date": "2026-10-22", "timestamp": ts}
+    assert summarize.before_cut(row, pool.fact_correction_first_at()) is kept
+
+
+def test_the_real_head_shows_the_note_not_pending(capsys):
+    for span in (("2026-10-06", "2026-11-01"), ("2026-10-06", "2026-12-27")):
+        summarize.print_fact_correction_head(span=span)
+        out = capsys.readouterr().out
+        assert REAL_NOTE in out and "記録待ち" not in out, span
+        assert "最も早い訂正の時刻：2026-10-22 11:29:46（時刻の入った記事 2本／2本）" in out
+
+
+def test_the_real_reference_table_stays_hidden_until_11_02(capsys):
+    assert summarize.print_fact_reference([], ("2026-10-06", "2026-11-01"), today=dt.date(2026, 10, 22)) is None
+    out = capsys.readouterr().out
+    assert "2026-11-02 の短期判定まで出さない" in out and "回 |" not in out
+
+
+def test_the_three_interventions_rows():
+    import interventions
+    rows = {r["intervention_id"]: r for r in interventions.load()}
+    for iid, slug_, post in (("I-50", E22, 6648), ("I-51", E22, 6648), ("I-52", E05, 6647)):
+        r = rows[iid]
+        assert (str(r["date"]), r["scope"], r["executor"], r["touches_pool46"]) == (
+            "2026-10-22", "プール46本", "seo-agent（a2846ad4）", "yes"), iid
+        assert r["note"].startswith(f"対象：https://cross-com.jp/{slug_}/（post {post}）。組＝③リードのみ"), iid
+    assert rows["I-50"]["description"].startswith("11:29:46 JST（リビジョン 9190）6648 agentforce-reasoning-control：")
+    assert rows["I-52"]["description"].startswith("11:30:10 JST（リビジョン 9191）6647 agentforce-roi：")
+    overlap, _ = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 11, 1))
+    groups = dict(summarize.group_by_scope(overlap))
+    assert {"I-50", "I-51", "I-52"} <= {r["intervention_id"] for r in groups["プール46本"]}
+
+
+def _core(before, after):
+    i = 0
+    while i < min(len(before), len(after)) and before[i] == after[i]:
+        i += 1
+    j = 0
+    while j < min(len(before), len(after)) - i and before[-1 - j] == after[-1 - j]:
+        j += 1
+    return before[i:len(before) - j], after[i:len(after) - j]
+
+
+@pytest.mark.parametrize("slug_", [E22, E05])
+def test_the_real_correction_is_expected_only_with_the_date_of_the_day(slug_):
+    """実際の週次スナップショットに3か所の置き換えを当てる。更新日の表示が 2026-10-22 に変わるのは想定内、
+    ほかの日付に変わったら想定外。dateModified は構造化データ(script)なので本文の比較に入らない。"""
+    import difflib
+    edits = drift_check.load_expected_edits() + drift_check.load_fact_correction_edits()
+    e = [x for x in edits if x["slug"] == slug_ and x.get("mode") == "sentences"][0]
+    old = (ROOT / "experiment_2x2" / "drift" / "snapshots" / f"{slug_}.txt").read_text(encoding="utf-8")
+    if "2026-09-29" not in old.split("\n") or not all(drift_check._flat(p["before"]) in drift_check._flat(old.replace("\n", ""))
+                                                       for p in e["paragraphs"]):
+        pytest.skip("スナップショットが修正後に更新された")
+
+    def sim(date):
+        new = old
+        for p in e["paragraphs"]:
+            b, a = _core(p["before"], p["after"])
+            assert new.count(b) == 1, b
+            new = new.replace(b, a)
+        return new.replace("\n2026-09-29\n", f"\n{date}\n", 1) if date else new
+
+    def check(new, today="2026-10-26"):
+        diff = list(difflib.unified_diff(old.split("\n"), new.split("\n"), lineterm="", n=1))
+        return drift_check.expected_edit_for(slug_, diff, today, edits, old, new)
+
+    assert check(sim("2026-10-22")) == e
+    assert check(sim("")) == e, "更新日の表示が変わらない週も想定内"
+    assert check(sim("2026-10-23")) is None, "反映日以外の日付は想定外"
+    assert check(sim("2026-10-22"), today="2026-10-21") is None, "反映日より前の回は想定外"
+    assert drift_check.fact_correction_pending() == set()

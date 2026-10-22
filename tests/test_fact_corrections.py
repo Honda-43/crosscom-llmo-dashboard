@@ -162,7 +162,7 @@ def test_b_keeps_only_observations_before_the_first_correction():
             _obs("2026-10-30", "1")]                             # 時刻なし・訂正の日より後
     until = dt.datetime(2026, 10, 24, 9, 0)
     cut = summarize.fact_cut(rows, ("2026-10-06", "2026-11-01"), "gemini", groups, pool46, until)
-    assert cut["status"] == "cut" and cut["label"] == "事実訂正前で打ち切り（2026-10-24 09:00 より前）"
+    assert cut["status"] == "cut" and cut["label"] == "事実訂正前で打ち切り（2026-10-24 09:00:00 より前）"
     assert cut["after"] == {"agentforce-rag": ("③リードのみ", 0)}
     assert (cut["obs_full"], cut["days_full"], cut["obs_cut"], cut["days_cut"]) == (4, 3, 2, 2)
     line = summarize.fact_lines({}, cut)[-1]
@@ -253,10 +253,10 @@ def test_the_whole_report_shows_the_head_and_both_rows(monkeypatch, tmp_path, ca
     out = capsys.readouterr().out
     assert out.index("## 事実訂正") < out.index("##### gemini"), "冒頭に出す"
     assert "対象 1本：①対照 0本・②FAQのみ 0本・③リードのみ 1本・④両方 0本" in out
-    assert "事実訂正1本抜き（E06）" in out and "事実訂正前で打ち切り（2026-10-20 12:00 より前）" in out
+    assert "事実訂正1本抜き（E06）" in out and "事実訂正前で打ち切り（2026-10-20 12:00:00 より前）" in out
     assert "アフター期間の観測 3回（2日）のうち使えるのは 2回（1日）" in out
     section = out.split("## 早期解放の判定")[1]
-    assert "事実訂正1本抜き（E06）" in section and "事実訂正前で打ち切り（2026-10-20 12:00 より前）" in section
+    assert "事実訂正1本抜き（E06）" in section and "事実訂正前で打ち切り（2026-10-20 12:00:00 より前）" in section
 
 
 # --- ドリフト検知：決めた文の変化だけを想定内 --------------------------------------------------------------
