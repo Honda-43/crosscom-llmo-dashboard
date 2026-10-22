@@ -140,3 +140,26 @@ def test_i54_records_the_marketing_gemini_exemption():
     r = {x["intervention_id"]: x for x in interventions.load()}["I-54"]
     assert (r["raw_date"], r["scope"], r["executor"], r["touches_pool46"]) == ("2026-10-22", "measurement", "本田さん決定", "no")
     assert r["description"].startswith("一時停止（10/17〜・ダッシュボード作り直し）から第3観測層の Gemini のみ除外")
+
+
+def test_i55_claudeforce_update_is_recorded_from_the_handoff():
+    """便VG(2026-10-22)の Claudeforce 記事の更新。渡し用ファイルはそのまま写し、行は原文のまま(ID だけ埋める)。"""
+    handoff = ROOT / "output" / "handoff" / "interventions_handoff_bunVG_20261022.csv"
+    with io.open(handoff, encoding="utf-8-sig") as f:
+        src = list(csv.DictReader(line for line in f if not line.startswith("#")))
+    assert len(src) == 1 and src[0]["intervention_id"] == ""
+    rows = {r["intervention_id"]: r for r in interventions.load()}
+    r = rows["I-55"]
+    assert (r["raw_date"], r["description"], r["executor"], r["touches_pool46"]) == (
+        src[0]["date"], src[0]["description"], src[0]["executor"], src[0]["touches_pool46"])
+    assert r["scope"] == "site_content", "原文の scope の列は URL なので site_content(I-50〜I-52 と同じ扱い)"
+    assert r["note"] == f"対象：{src[0]['scope']}。{src[0]['note']}"
+    assert r["executor"] == "seo-agent（a2846ad4）" and r["touches_pool46"] == "no"
+    assert "2026-10-22 17:48:42 に本文を更新（I-55）。46本の質問への答え方（強0・弱 E16 ほか）を変える変更ではない" in rows["I-53"]["note"]
+    assert summarize.new_article_overlap(rows["I-53"]) == ("known", [], ["E16", "E22", "E14", "E46", "E11", "E12"])
+
+
+def test_i55_is_a_confounder_candidate(capsys):
+    summarize.print_site_wide_interventions("2026-09-15:2026-09-28", "2026-10-06:2026-11-01")
+    out = capsys.readouterr().out
+    assert "I-55｜17:48:42 JST（リビジョン 9212）8224 claudeforce" in out and "scope=site_content｜touches_pool46=no" in out
