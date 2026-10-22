@@ -2,7 +2,7 @@
 
 > **プローブは実験期間中は不使用。判定は llm_experiment のみ。**（2026-09-22 決定）
 > 実験期間（〜2026-12-31）は、このプローブで観測しない。処置の効果の判定は dashboard の
-> `llm_experiment`（Gemini・Claude の実験観測）だけで行う。Perplexity は使わない。
+> `llm_experiment` の Gemini だけで行う（Claude の観測は 2026-10-06 に計画的停止・判定対象外）。Perplexity は使わない。
 > 既存の結果（`results/2026-09-17.csv`）も判定・裁定のどちらにも使わない。
 
 Ahrefs の記事単位の引用データは Lite プランの API では取得できないため、
@@ -18,7 +18,7 @@ Ahrefs の記事単位の引用データは Lite プランの API では取得�
 ## 対象と質問文（実験後に使う場合）
 - 対象と質問文は `config/prompts_experiment.csv`（プール46本。2026-09-22 に E37 を除外）の
   `prompt` 列。組は 9/28 の割付の結果 `allocation_v1.csv`（`allocate_47.py --write` が書く）から引く。
-  `targets.csv` は編集禁止リスト（49本）で、観測には使わない。プールの定義は `pool.py`
+  `targets.csv` は編集禁止リスト（2026-10-02 に49本から統計46本のみに縮小）で、観測には使わない。プールの定義は `pool.py`
 - 組別の集計は `probe_summary.py`（Perplexity の cited_article 率。参考）
 - 費用の参考（2026-09-22 時点の Perplexity sonar 料金）：46本×3回=138回で約 $0.8
 
