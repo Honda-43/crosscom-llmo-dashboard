@@ -30,6 +30,7 @@
 import argparse
 import collections
 import csv
+import datetime
 import io
 import os
 import re
@@ -1173,6 +1174,60 @@ def _span(text):
     return start, end or start
 
 
+# --------------------------------------------------------------------------
+# 11/2 より前は、本物のデータの組ごとの数字を計算も表示もしない（2026-10-22・本田さん指示）
+# 「11/2 まで組ごとの結果を見ない」は、見た人が後の判断に引きずられないためのルール。人の注意に頼らず仕組みで止める。
+# - 日付は実行した時刻（JST・システムの時計）で決める。引数・環境変数では前倒しできない
+# - 作り物のデータ（テスト）かどうかは、引数ではなく読み込むファイルの場所で決める：
+#   pytest の一時フォルダ（パスに pytest-of- を含む）か、リポジトリの tests/ の下のファイルだけが作り物。
+#   シート（--csv なし）と、それ以外の場所のファイルはすべて本物として扱う。
+#   一時フォルダの場所は環境変数（TEMP など）で変えられるので、場所の判定には使わない
+# --------------------------------------------------------------------------
+_JST = datetime.timezone(datetime.timedelta(hours=9))
+GROUP_BLIND_UNTIL_JST = datetime.datetime.fromisoformat(GROUP_BLIND_UNTIL).replace(tzinfo=_JST)
+_TESTS_DIR = os.path.realpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "tests"))
+BLIND_MESSAGE = (f"組ごとの数字（組別の率・差・p値・感度分析の表・早期解放の判定・参考の表）は "
+                 f"{GROUP_BLIND_UNTIL} 00:00 JST の短期判定まで計算も表示もしない"
+                 "（組ごとの結果を途中で見ないため。本物のデータで実行したとき）")
+
+
+def _now_jst():
+    """実行した時刻（JST）。引数・環境変数では変えられない。"""
+    return datetime.datetime.now(_JST)
+
+
+def is_synthetic(path):
+    """作り物のデータのファイルか（場所で決める）。シート（path が空）は本物。"""
+    if not path:
+        return False
+    real = os.path.realpath(str(path))
+    parts = real.replace("\\", "/").split("/")
+    if any(p.startswith("pytest-of-") for p in parts):
+        return True
+    return os.path.commonpath([os.path.normcase(real), os.path.normcase(_TESTS_DIR)]) == os.path.normcase(_TESTS_DIR)
+
+
+def group_blind(paths, now=None):
+    """組ごとの数字を出さないか。本物のデータ（作り物でないファイルが1つでもある）で、11/2 00:00 JST より前なら True。"""
+    now = _now_jst() if now is None else now
+    if all(is_synthetic(p) for p in paths):
+        return False
+    return now < GROUP_BLIND_UNTIL_JST
+
+
+def print_blind_overall(after, before, groups, pool, model):
+    """11/2 より前に出してよいもの：46本全体の数字と、観測の無い記事の組別本数（結果ではない）。"""
+    n = len(after)
+    hit = sum(1 for _, v in after.values() if v)
+    print(f"46本全体（組をまとめた数）：アフターに観測のある記事 {n}本／{len(pool)}本"
+          + (f"・期間中に1回でも引用された記事 {hit}本" if model not in RATE_MODELS else ""))
+    none_after = sorted(s for s in pool if s not in after)
+    if none_after:
+        by = collections.Counter(groups.get(s, "（割付なし）") for s in none_after)
+        print(f"アフターに観測の無い記事（欠測）{len(none_after)}本：" + "・".join(f"{g} {by.get(g, 0)}本" for g in GROUP_ORDER))
+    print()
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="2×2 の判定（llm_experiment）")
     ap.add_argument("--before", help="ビフォー期間 YYYY-MM-DD:YYYY-MM-DD")
@@ -1182,8 +1237,11 @@ def main(argv=None):
     ap.add_argument("--probe", nargs="+", metavar="CSV",
                     help="引用プローブの結果で集計する（参考。アフター [ビフォー]）")
     a = ap.parse_args(argv)
+    blind = group_blind(a.probe if a.probe else [a.csv])
 
-    if a.probe:
+    if a.probe and blind:
+        print(f"※ 引用プローブ：{BLIND_MESSAGE}\n")
+    elif a.probe:
         if len(a.probe) > 1:
             stem = os.path.splitext(os.path.basename(a.probe[1]))[0]
             if stem in PROBE_BASELINE_EXCLUDED:
@@ -1213,8 +1271,12 @@ def main(argv=None):
             print(f"9/15〜16 に追記の入った{len(late)}本は {LATE_BASELINE_FROM} 以降の観測だけを使う")
         watch = sum(1 for r in rows if str(r.get("experiment_flag", "")).strip() == WATCH_FLAG)
         print(f"llm_experiment {len(rows)}行（watch {watch}行とプール外・欠測は数えない）\n")
-        if not a.model or a.model == "gemini":
+        if blind:
+            print(f"**{BLIND_MESSAGE}**\n")
+        if (not a.model or a.model == "gemini") and not blind:
             print_fact_reference(rows, _span(a.after), groups, pool)
+        elif not a.model or a.model == "gemini":
+            print(f"### {FACT_REFERENCE_HEADING}\n{GROUP_BLIND_UNTIL} の短期判定まで出さない（組ごとの結果を途中で見ないため）\n")
         for model in ([a.model] if a.model else MODELS):
             if model_excluded(model, _span(a.after)):
                 # 欠測を0（引用なし）として数えない。ビフォー（9/15〜9/28）の Claude データは消さずに記録として残す
@@ -1226,6 +1288,10 @@ def main(argv=None):
             print(f"##### {model}（アフター {a.after} / ビフォー {a.before}）")
             if missing:
                 print(f"ビフォーに観測の無い記事 {len(missing)}本（ビフォーは0として扱う）: {', '.join(missing)}")
+            if blind:
+                print_blind_overall(after, before, groups, pool, model)
+                print(f"感度分析・早期解放・ピラーの前後・GSC 補助分析：{GROUP_BLIND_UNTIL} の短期判定まで出さない\n")
+                continue
             cut = fact_cut(rows, _span(a.after), model, groups, pool)
             both_ways(after, before, f"{model} ", cut)
             # ピラー編集が 10/6 以降に完了した場合は、アフターをその前後に分けた結果も並べる
