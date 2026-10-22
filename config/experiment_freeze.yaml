@@ -21,6 +21,10 @@ freeze_start: "2026-09-15"
 # agentforce-guide／agentic-crm)の凍結を解いた。実験は継続し、46本の比較とリンク増減の禁止は 12/31 まで維持。
 scope_reduced_on: "2026-10-02"
 scope_reduced_reason: "事業上の改善を優先（本田さん決定）。46本の比較は維持"
+# 凍結を解いたページ(編集可)。週次所見の推奨アクションで、これらへの編集の提案は違反にしない(2026-10-22 にコードを追いつかせた)
+unfrozen_pages: [agentforce-guide, agentic-crm, agentforce-pricing]
+# ピラー。編集は可。46本へのリンクを足す・外す提案だけ注意を出す(違反ではない。増減は apply_gate が書き込み時に止める)
+pillars: [agentforce-guide, agentic-crm]
 
 # 編集禁止(本文・タイトル・meta・スキーマ・逆リンクの追記を含む)。2026-10-02 から統計46本(それまで49本)。
 # 一覧は seo-agent が持つ。縮小(49→46)も seo-agent 側が targets.csv を書き換えて行う(dashboard は読むだけ)。

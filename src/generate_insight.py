@@ -616,6 +616,8 @@ def postprocess(report_md: str, stats: Dict[str, Any],
 
     text, suppressed, settled_lines = action_log.suppress_settled(text, actions)
     text, frozen, freeze_lines = experiment_freeze.suppress_frozen(text, freeze)
+    # ピラーから46本へのリンクを足す・外す提案は注意だけ(違反ではない。apply_gate が書き込み時に止める・2026-10-22)
+    cautions = experiment_freeze.pillar_cautions(text, freeze)
     settled_lines = settled_lines + freeze_lines
     text = insight_style.apply_number_format(
         text, insight_style.number_replacements(stats, flat)
@@ -628,7 +630,7 @@ def postprocess(report_md: str, stats: Dict[str, Any],
         print(f"[ok] 記述ルール: 重複した字を直しました({before} → {after})")
     text = insight_style.gloss_first_mentions(text, gloss)
 
-    warnings: List[str] = []
+    warnings: List[str] = list(cautions)
     for line, word, _ in insight_style.banned_words(text):
         warnings.append(f"禁止語「{word}」が {line}行目 に残っています")
     for line, value in insight_style.bare_decimals(text):

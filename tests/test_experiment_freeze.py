@@ -27,12 +27,15 @@ def real_freeze():
 def freeze():
     """仕組みのテスト用の凍結（固定）。2026-10-02 に実ファイルの凍結は統計46本だけになり、
     pricing・ピラーが外れて「対応表で凍結ページに当たるプロンプト」が無くなった。
-    差し替え・ピラーの扱いの仕組みは、凍結ページを固定して確かめる（49本の頃と同じ形）。"""
+    差し替えの仕組みは、pricing を46本の1本の代わりに凍結して確かめる。
+    ピラー2本は 10/02 以降の形（凍結を解いた・編集可。46本へのリンクの増減だけ注意）。"""
     return experiment_freeze.Freeze(
         experiment_start="2026-09-29", experiment_end="2026-12-31",
-        edit_ban=frozenset({"agentforce-pricing", "agentforce-rag", "agentforce-guide", "agentic-crm"}),
+        edit_ban=frozenset({"agentforce-pricing", "agentforce-rag"}),
         link_ban=frozenset({"agentforce-pricing", "agentforce-rag"}),
-        prompt_pages=experiment_freeze.load_prompt_pages())
+        prompt_pages=experiment_freeze.load_prompt_pages(),
+        pillars=frozenset({"agentforce-guide", "agentic-crm"}),
+        unfrozen=frozenset({"agentforce-guide", "agentic-crm"}))
 
 
 def test_the_lists_come_from_the_seo_agent_files(real_freeze):
@@ -66,13 +69,13 @@ def test_actions_on_frozen_pages_are_replaced_with_the_note(freeze):
     note = "実験期間中(〜2026-12-31)のため、ページ更新を伴う施策は提案対象外。凍結対象外の施策のみ提案する"
     assert f"推奨アクション: {note}" in lines
     assert not any("/agentforce-pricing/ に費用相場" in l for l in lines)
-    assert not any("/agentic-crm/ の本文" in l for l in lines)
-    # ピラーを張り先にするのは可、凍結対象外のページの更新も可
+    # ピラーは 2026-10-02 に凍結を解いた：本文の更新も、張り先にするのも可。凍結対象外のページの更新も可
+    assert any("/agentic-crm/ の本文" in l for l in lines)
     assert any("agentforce-guide/ へリンク" in l for l in lines)
     assert any("/service/btob-marketing-strategy/" in l for l in lines)
     # 状態の行(引用の事実)は触らない
     assert "状態: A-3でClaudeの回答に3観測日以上言及がない。" in lines
-    assert len(notes) == 2
+    assert len(notes) == 1
     assert written == [note]
 
 
@@ -91,7 +94,7 @@ def test_the_note_is_not_registered_as_a_new_proposal(freeze):
     contents = [p["内容"] for p in proposals]
     assert not any("実験期間中" in c for c in contents), contents
     assert any("agentforce-guide" in c for c in contents)
-    assert len(result["frozen"]) == 2
+    assert len(result["frozen"]) == 1
 
 
 def test_the_prompt_carries_the_constraint_only_in_the_period(freeze):
@@ -135,15 +138,16 @@ def test_every_daily_prompt_has_pages_and_monthly_is_left_out():
     assert all(paths for paths in pages.values())
 
 
-def test_only_a3_and_b1_map_to_frozen_pages(freeze):
+def test_only_a3_maps_to_a_frozen_page(freeze):
+    """B-1 の対応ページ（ピラー agentic-crm）は 2026-10-02 に凍結を解いたので当たらない。"""
     frozen = {pid for pid in freeze.prompt_pages if freeze.frozen_pages(pid)}
-    assert frozen == {"A-3", "B-1"}
+    assert frozen == {"A-3"}
     assert freeze.frozen_pages("A-3") == ["/agentforce-pricing/"]
 
 
 @pytest.mark.parametrize("line", [
     "推奨アクション: 担当者が来週末までにA-3の自社ページを更新する。",
-    "推奨アクション: 担当者が2026/10/05までにB-1の記事にFAQを追記する。",
+    "推奨アクション: 担当者が2026/10/05までにA-3の記事にFAQを追記する。",
 ])
 def test_a_page_update_without_a_path_is_judged_by_the_map(freeze, line):
     text, notes, _ = experiment_freeze.suppress_frozen(line, freeze)
@@ -156,6 +160,8 @@ def test_a_page_update_without_a_path_is_judged_by_the_map(freeze, line):
     "推奨アクション: 担当者が来週末までにA-3の /service/agentforce-support/ を更新する。",
     # 対応ページが凍結対象外
     "推奨アクション: 担当者が来週末までにA-1の自社ページを更新する。",
+    # 対応ページがピラー（2026-10-02 に凍結を解いた）
+    "推奨アクション: 担当者が2026/10/05までにB-1の記事にFAQを追記する。",
     # 外部への修正依頼は自社ページの更新ではない
     "推奨アクション: 担当者が来週末までにA-3で引用された外部記事の運営者に修正を依頼する。",
     # 更新を伴わない
@@ -190,5 +196,85 @@ def test_the_models_own_note_and_alternative_are_kept(freeze):
 def test_the_prompt_names_the_mapped_frozen_prompts(freeze):
     block = experiment_freeze.prompt_block(freeze)
     assert "- A-3: /agentforce-pricing/" in block
-    assert "- B-1: /agentic-crm/" in block
+    assert "- B-1:" not in block
     assert "- A-1:" not in block
+
+
+# --------------------------------------------------------------------------
+# ピラーの規則(2026-10-22。10/02 の凍結の縮小にコードを追いつかせた)
+# ピラー2本・pricing は編集可。違反は統計46本(targets.csv)への提案だけ。
+# ピラーから46本へのリンクを足す・外す提案は注意だけ(apply_gate が書き込み時に止める)
+# --------------------------------------------------------------------------
+@pytest.mark.parametrize("line", [
+    "推奨アクション: 担当者が来週末までに /agentforce-guide/ の本文に最新の料金体系の節を追記する。",
+    "推奨アクション: 担当者が来週末までに https://cross-com.jp/agentic-crm/ の見出しとFAQを更新する。",
+    "推奨アクション: 担当者が来週末までにピラーの本文を書き換える。",
+])
+def test_editing_a_pillar_is_not_a_violation(real_freeze, line):
+    text, notes, _ = experiment_freeze.suppress_frozen(line, real_freeze)
+    assert text == line and not notes
+    assert experiment_freeze.pillar_cautions(line, real_freeze) == []
+
+
+def test_editing_pricing_is_not_a_violation(real_freeze):
+    line = "推奨アクション: 担当者が来週末までに /agentforce-pricing/ に費用相場の表を追記する。"
+    assert experiment_freeze.suppress_frozen(line, real_freeze)[0] == line
+
+
+@pytest.mark.parametrize("line,target", [
+    ("推奨アクション: 担当者が来週末までに /agentforce-guide/ から /agentforce-rag/ へのリンクを追加する。",
+     "/agentforce-rag/"),
+    ("推奨アクション: 担当者が来週末までに /agentic-crm/ の本文から /agentforce-rag/ へのリンクを外す。",
+     "/agentforce-rag/"),
+    ("推奨アクション: 担当者が来週末までにピラーから関連記事へのリンクを張る。", "46本"),
+])
+def test_a_pillar_link_change_to_the_46_gives_a_caution(real_freeze, line, target):
+    text, notes, _ = experiment_freeze.suppress_frozen(line, real_freeze)
+    assert text == line and not notes, "違反ではない(差し替えない)"
+    cautions = experiment_freeze.pillar_cautions(line, real_freeze)
+    assert len(cautions) == 1
+    assert f"46本({target})へのリンクを足す・外す" in cautions[0]
+    assert "apply_gate が書き込み時に止める" in cautions[0] and cautions[0].startswith("注意(違反ではない)")
+
+
+def test_a_pillar_link_to_somewhere_else_gives_no_caution(real_freeze):
+    line = ("推奨アクション: 担当者が来週末までに /agentforce-guide/ から "
+            "/service/agentforce-support/ へのリンクを追加する。")
+    assert experiment_freeze.pillar_cautions(line, real_freeze) == []
+
+
+def test_the_caution_reaches_the_job_summary(real_freeze):
+    report = "推奨アクション: 担当者が来週末までに /agentforce-guide/ から /agentforce-rag/ へのリンクを追加する。"
+    result = generate_insight.postprocess(report, {"date": "2026-10-19"}, [], thresholds={}, freeze=real_freeze)
+    assert any(w.startswith("注意(違反ではない): ピラー(/agentforce-guide/)") for w in result["warnings"])
+    assert result["frozen"] == []
+
+
+@pytest.mark.parametrize("line", [
+    "推奨アクション: 担当者が来週末までに /agentforce-rag/ の本文を更新する。",
+    "推奨アクション: 担当者が来週末までに他記事から /agentforce-rag/ へリンクを張る。",
+    # ピラーのリンクの提案でも、46本そのものを編集する書き方なら違反
+    "推奨アクション: 担当者が来週末までに /agentforce-guide/ から /agentforce-rag/ へリンクを張り、"
+    "/agentforce-rag/ の本文も更新する。",
+])
+def test_proposals_on_the_46_are_still_violations(real_freeze, line):
+    text, notes, _ = experiment_freeze.suppress_frozen(line, real_freeze)
+    assert text == f"推奨アクション: {NOTE}" and notes
+
+
+def test_the_real_config_names_the_pillars_and_the_unfrozen_pages(real_freeze):
+    assert real_freeze.pillars == {"agentforce-guide", "agentic-crm"}
+    assert real_freeze.unfrozen == {"agentforce-guide", "agentic-crm", "agentforce-pricing"}
+    block = experiment_freeze.prompt_block(real_freeze)
+    assert "2026-10-02 に凍結を解いた(編集してよい)" in block and "/agentforce-guide/" in block
+    assert "ピラー:張り先にするのは可" not in block
+
+
+def test_nothing_is_a_violation_or_a_caution_after_the_release():
+    freeze = experiment_freeze.load("2027-01-01")
+    assert freeze is None
+    for line in ("推奨アクション: 担当者が来週末までに /agentforce-rag/ の本文を更新する。",
+                 "推奨アクション: 担当者が来週末までに /agentforce-guide/ から /agentforce-rag/ へのリンクを追加する。",
+                 "推奨アクション: 担当者が来週末までに /agentforce-guide/ の本文を更新する。"):
+        assert experiment_freeze.suppress_frozen(line, freeze) == (line, [], [])
+        assert experiment_freeze.pillar_cautions(line, freeze) == []

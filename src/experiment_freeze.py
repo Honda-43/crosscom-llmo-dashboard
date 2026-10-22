@@ -8,6 +8,10 @@
   link_ban.csv)を読む。一覧を書き写すと、効果測定チャット側の変更と同期が切れる。
 - 生成前にプロンプトで伝え(提案させない)、生成後に推奨アクション行を検査する
   (残ったものを差し替える)。実施済み施策の除外(action_log.suppress_settled)と同じ2段構え。
+- 2026-10-02 に凍結を統計46本だけに縮小した(ピラー2本 agentforce-guide／agentic-crm と
+  agentforce-pricing は編集可)。違反として差し替えるのは targets.csv(46本)に触れる提案だけ。
+  ピラーは、提案に「46本へのリンクを足す・外す」が含まれるときだけ注意を出す(違反ではない。
+  46本へのリンクの増減は seo-agent の apply_gate が書き込み時に止める)。2026-10-22 にコードを追いつかせた。
 """
 from __future__ import annotations
 
@@ -21,7 +25,6 @@ from urllib.parse import urlparse
 import insight_style
 from settings import EXPERIMENT_FREEZE_FILE, PROMPT_PAGE_MAP_FILE, ROOT_DIR, load_yaml
 
-# ピラーの「張り先にする」は可、「本文を触る」は不可。ピラーだけは行の動詞で分ける。
 _EDIT_WORDS = re.compile(r"更新|追記|編集|書き換|書換|修正|改訂|差し替|差替|加筆|リライト")
 # パスを書かない提案のうち「自社ページの更新」とみなすもの。編集の動詞に加えて
 # 自社のページを指す語があり、外部への依頼・掲載の話ではないこと。
@@ -30,6 +33,11 @@ _EXTERNAL_WORDS = re.compile(r"外部|第三者|他社|依頼|メディア|デ�
 # 行に書かれたパス(/xxx/ または https://…/xxx/)。書かれていればパスで判定する。
 # 日付(2026/10/05)をパスと取り違えないよう、英字を含む区切りだけを見る。
 _PATH = re.compile(r"(?:https?://[^\s/]+)?(/(?=[\w-]*[A-Za-z])[\w-]+(?:/[\w-]+)*/)", re.ASCII)
+# リンクを足す・外す(ピラーの注意に使う)
+_LINK_CHANGE = re.compile(r"(?:リンク|導線).{0,12}?(?:追加|足|張|貼|設置|外|削除|はず|増|減|差し替|差替)"
+                          r"|(?:追加|足|張|貼|設置|外|削除|はず).{0,6}?(?:リンク|導線)")
+# 46本へのリンクを指す語(パスを書かない提案用)
+_POOL_WORDS = re.compile(r"46本|統計|実験の記事|子記事|個別記事|関連記事|各記事|クラスター|配下の記事")
 _ACTION_LINE = re.compile(
     r"^\s*(?:[-*・]|\d+[.)])?\s*(?:\*\*)?(?:推奨)?アクション(?:\*\*)?\s*[:：]\s*(.+)$"
 )
@@ -43,11 +51,15 @@ class Freeze:
     link_ban: FrozenSet[str]    # 新しいリンクを張らない・外さない(2026-10-02 から統計46本)
     # プロンプトID -> 対応する自社ページ(先頭が主)。config/prompt_page_map.yaml
     prompt_pages: Dict[str, Tuple[str, ...]] = None  # type: ignore[assignment]
+    # ピラー(2026-10-02 に凍結を解いた。編集可・46本へのリンクの増減だけ不可)。config の pillars
+    pillars: FrozenSet[str] = frozenset()
+    # 2026-10-02 に凍結を解いたページ(ピラー2本・agentforce-pricing)。config の unfrozen_pages
+    unfrozen: FrozenSet[str] = frozenset()
 
     def frozen_pages(self, prompt_id: str) -> List[str]:
         """そのプロンプトの対応ページのうち、凍結対象のもの。"""
         return [p for p in (self.prompt_pages or {}).get(prompt_id, ())
-                if p.strip("/") in self.edit_ban]
+                if p.strip("/") in self.edit_ban - self.unfrozen]
 
     @property
     def note(self) -> str:
@@ -95,6 +107,8 @@ def load(date: str, config_path=EXPERIMENT_FREEZE_FILE,
         edit_ban=_read_slugs(ROOT_DIR / cfg["edit_ban_file"]),
         link_ban=_read_slugs(ROOT_DIR / cfg["link_ban_file"]),
         prompt_pages=load_prompt_pages(page_map_path),
+        pillars=frozenset(str(s).strip("/") for s in cfg.get("pillars") or ()),
+        unfrozen=frozenset(str(s).strip("/") for s in cfg.get("unfrozen_pages") or ()),
     )
 
 
@@ -102,10 +116,12 @@ def prompt_block(freeze: Optional[Freeze]) -> str:
     """generate_insight のユーザープロンプトに差し込む制約。期間外は空文字。"""
     if freeze is None:
         return ""
-    pages = "\n".join(
-        f"- /{slug}/" + ("" if slug in freeze.link_ban else "(ピラー:張り先にするのは可)")
-        for slug in sorted(freeze.edit_ban)
-    )
+    pages = "\n".join(f"- /{slug}/" for slug in sorted(freeze.edit_ban))
+    open_pages = sorted(freeze.unfrozen - freeze.edit_ban)
+    open_block = (
+        "- 次のページは 2026-10-02 に凍結を解いた(編集してよい)。ただし凍結対象へのリンクを足す・外すことはしない:"
+        + "、".join(f"/{s}/" for s in open_pages) + "\n"
+    ) if open_pages else ""
     mapped = [f"- {pid}: " + "、".join(freeze.frozen_pages(pid))
               for pid in sorted(freeze.prompt_pages or {}) if freeze.frozen_pages(pid)]
     mapped_block = (
@@ -117,8 +133,8 @@ def prompt_block(freeze: Optional[Freeze]) -> str:
 # 実験期間の制約(実験期間 {freeze.experiment_start}〜{freeze.experiment_end})
 次のページは実験の対象のため、{freeze.experiment_end} まで本文を変えません(編集凍結)。
 - 本文・タイトル・meta・スキーマの変更、追記(逆リンクの追記を含む)をする施策は提案しない。
-- 新しいリンクの張り先にする施策も提案しない(「ピラー」と書いたページだけは張り先にしてよい)。
-- 統合項目の「②自社ページ更新」の対象が凍結対象にあたる場合も同じ扱いにする。
+- 新しいリンクの張り先にする施策、リンクを外す施策も提案しない。
+{open_block}- 統合項目の「②自社ページ更新」の対象が凍結対象にあたる場合も同じ扱いにする。
 凍結対象にあたる施策が本来の打ち手になる項目では、推奨アクションの行を次の1文で始め、
 続けて凍結対象外で打てる施策を1つだけ書く(外部掲載の獲得、第三者メディアへの情報提供、
 凍結対象外のページの更新など。プレイブックに沿うものに限る)。代わりが無ければこの1文だけにする。
@@ -134,19 +150,65 @@ def _mentions(line: str, slug: str) -> bool:
     return re.search(rf"(?<![A-Za-z0-9_-]){re.escape(slug)}(?![A-Za-z0-9_-])", line) is not None
 
 
-def violations(line: str, freeze: Freeze) -> List[str]:
-    """推奨アクション1行が触れている凍結対象。
+def _pillars_in(line: str, freeze: Freeze) -> List[str]:
+    """行に出てくるピラー(パス)。パスが無く「ピラー」とだけ書かれていれば ["ピラー"]。"""
+    named = [s for s in sorted(freeze.pillars) if _mentions(line, s)]
+    return named or (["ピラー"] if "ピラー" in line else [])
 
-    張り先禁止(46本)は、更新でもリンクでも名前が出た時点で違反。
-    ピラーは編集の動詞があるときだけ違反(張り先にするのは可)。
+
+def _is_pillar_link_change(line: str, freeze: Freeze) -> bool:
+    """ピラーのリンクを足す・外す提案か(46本へのリンクを指しうるもの)。"""
+    return bool(_pillars_in(line, freeze)) and _LINK_CHANGE.search(line) is not None
+
+
+def _edits_the_article(line: str, slug: str) -> bool:
+    """その記事の後ろ(次のパスか文の終わりまで)に、リンク以外の編集の動詞があるか。名前が何度出ても全部見る。"""
+    for m in re.finditer(rf"(?<![A-Za-z0-9_-]){re.escape(slug)}(?![A-Za-z0-9_-])", line):
+        rest = re.split(r"[。、]|https?://|/(?=[\w-]*[A-Za-z])[\w-]+/", line[m.end():], maxsplit=1)[0]
+        if _EDIT_WORDS.search(rest) is not None and "リンク" not in rest:
+            return True
+    return False
+
+
+def violations(line: str, freeze: Freeze) -> List[str]:
+    """推奨アクション1行が触れている凍結対象(統計46本・targets.csv)。
+
+    46本は、更新でもリンクでも名前が出た時点で違反(これまでどおり)。
+    例外：ピラーのリンクを足す・外す提案の中で、46本がリンク先として出てくるだけなら違反にせず
+    注意にする(pillar_cautions)。その行でも、46本そのものを編集する書き方なら違反。
+    ピラー2本・agentforce-pricing への編集の提案は違反にしない(2026-10-02 に凍結を解いた)。
     """
+    pillar_link = _is_pillar_link_change(line, freeze)
     found = []
-    for slug in sorted(freeze.edit_ban):
+    for slug in sorted(freeze.edit_ban - freeze.unfrozen):
         if not _mentions(line, slug):
             continue
-        if slug in freeze.link_ban or _EDIT_WORDS.search(line):
-            found.append(slug)
+        if pillar_link and not _edits_the_article(line, slug):
+            continue
+        found.append(slug)
     return found
+
+
+def pillar_cautions(report_md: str, freeze: Optional[Freeze]) -> List[str]:
+    """ピラーの推奨アクションに「46本へのリンクを足す・外す」が含まれる行の注意(違反ではない)。
+
+    46本の記事名(パス)があるか、パスが無くても 46本・子記事・関連記事などの語があるときに出す。
+    期間外(freeze=None)は出さない。"""
+    if freeze is None:
+        return []
+    out = []
+    for line in report_md.splitlines():
+        if not _ACTION_LINE.match(line) or freeze.note in line or not _is_pillar_link_change(line, freeze):
+            continue
+        pool = [s for s in sorted(freeze.link_ban) if _mentions(line, s)]
+        if not (pool or _POOL_WORDS.search(line)):
+            continue
+        where = "・".join(p if p == "ピラー" else f"/{p}/" for p in _pillars_in(line, freeze))
+        target = "・".join(f"/{s}/" for s in pool) or "46本"
+        out.append(f"注意(違反ではない): ピラー({where})の推奨アクションに、46本({target})へのリンクを足す・外す内容がある。"
+                   f"ピラーの編集は可だが、46本へのリンクの増減は実験期間中(〜{freeze.experiment_end})不可で、"
+                   f"seo-agent の apply_gate が書き込み時に止める: {line.strip()[:80]}")
+    return out
 
 
 def _is_own_page_update(line: str) -> bool:
