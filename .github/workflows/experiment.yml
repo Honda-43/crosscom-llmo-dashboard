@@ -96,7 +96,7 @@ jobs:
             ${{ inputs.date && format('--date {0}', inputs.date) || '' }}
 
       # 第3観測層 prompt_marketing の Gemini(2026-10-01)。実験の観測が**終わってから**同じジョブで走る。
-      # **2026-10-17 から日次・週次と同時に一時停止中**(run_marketing.py が何もせず終わる。config/observation_pause.yaml)。
+      # 2026-10-17〜21 は日次・週次と同時に一時停止。**2026-10-22 から一時停止の対象外**(config/observation_pause.yaml の exempt・本田さん決定)。
       # その日の実消費(日次・月次・実験・同日の marketing。再試行込み)を数え、20 からの残りが
       # 3回以上の日だけ、1本1回で残りの本数まで投げる。毎月1〜14日のほかは何もしない
       # (15日以降の最初の回だけ、終わらなかった分を quota_skipped として記録する)。

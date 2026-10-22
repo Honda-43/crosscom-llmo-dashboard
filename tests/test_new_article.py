@@ -121,3 +121,22 @@ def test_brand_search_monthly_csv():
     assert [second[k] for k in ("regex_clicks", "regex_impressions", "company_clicks", "company_impressions",
                                 "company_position", "brand_clicks", "brand_impressions", "brand_position")] == [
         "19", "97", "11", "16", "1.0", "7", "38", "2.6"]
+
+
+def test_the_baseline_period_is_corrected_without_deleting_the_first_row():
+    """9/18 基準の期間は 2026-08-20〜09-16(2026-10-22 本田さんが GSC で確認)。最初の行は消さず訂正の行を足す。"""
+    path = ROOT / "output" / "brand_search_monthly.csv"
+    with io.open(path, encoding="utf-8") as f:
+        rows = list(csv.DictReader(line for line in f if not line.startswith("#")))
+    assert rows[0]["start_date"] == "2026-08-22" and "【2026-10-22 訂正】" in rows[0]["note"]
+    fixed = [r for r in rows if r["start_date"] == "2026-08-20"]
+    assert len(fixed) == 1
+    r = fixed[0]
+    assert (r["end_date"], r["days"], r["regex_clicks"], r["regex_impressions"]) == ("2026-09-16", "28", "25", "97")
+    assert "クリック25・表示96" in r["note"] and "クリック24・表示101" in r["note"]
+
+
+def test_i54_records_the_marketing_gemini_exemption():
+    r = {x["intervention_id"]: x for x in interventions.load()}["I-54"]
+    assert (r["raw_date"], r["scope"], r["executor"], r["touches_pool46"]) == ("2026-10-22", "measurement", "本田さん決定", "no")
+    assert r["description"].startswith("一時停止（10/17〜・ダッシュボード作り直し）から第3観測層の Gemini のみ除外")

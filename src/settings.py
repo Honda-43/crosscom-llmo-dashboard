@@ -291,7 +291,8 @@ def experiment_claude_on(date: str) -> bool:
 # 日次・月次・週次の観測と配信の一時停止(2026-10-17〜・ダッシュボードの再設計のため・本田さん決定)
 # --------------------------------------------------------------------------
 # config/observation_pause.yaml の paused_from 〜 paused_until(null なら終わり未定)の日(JST)は、
-# 日次観測7本・月次観測12本・週次所見(生成と配信)・prompt_marketing の Gemini・日次の結果配信を止める。
+# 日次観測7本・月次観測12本・週次所見(生成と配信)・日次の結果配信を止める。prompt_marketing の Gemini も止めていたが、
+# 2026-10-22 から対象外(exempt: marketing_gemini・本田さん決定)。
 # 実験・GA4/GSC・各ワークフローの失敗通知は止めない。
 # 停止中は日次・月次が無いので、実験の Gemini は7日とも同じ本数(EXPERIMENT_PAUSE_DAILY_CAP)。
 # 再開は paused_until に最後の日を入れる(paused_from を消すと停止中の本数が変わり、巡回の割当が過去に遡ってずれる)
@@ -311,11 +312,37 @@ def observation_pause_window(path: Optional[Path] = None) -> Tuple[str, str]:
     return (str(start)[:10] if start else ""), (str(until)[:10] if start and until else "")
 
 
-def observation_paused(date: Optional[str] = None) -> bool:
-    """その日(既定: 今日の JST)が日次・月次・週次の観測と配信の停止期間か。"""
+# 停止の対象外にできる観測(observation_pause.yaml の exempt に書く名前)。
+# marketing_gemini … 第3観測層 prompt_marketing の Gemini(2026-10-22 本田さん決定で対象外。Claude は停止のまま)。
+# 実験の観測は元々停止を見ない(run_experiment.py は observation_paused を呼ばず、停止中は1日の本数だけ14本になる)
+PAUSE_EXEMPTABLE = ("marketing_gemini",)
+
+
+def observation_pause_exempt(path: Optional[Path] = None) -> Tuple[str, ...]:
+    """停止の対象外にした観測の名前(observation_pause.yaml の exempt)。知らない名前があれば止める。"""
+    try:
+        with open(path or OBSERVATION_PAUSE_FILE, encoding="utf-8") as fh:
+            data = yaml.safe_load(fh) or {}
+    except OSError:
+        return ()
+    names = tuple(str(x) for x in (data.get("exempt") or []))
+    unknown = [x for x in names if x not in PAUSE_EXEMPTABLE]
+    if unknown:
+        raise ValueError(f"observation_pause.yaml の exempt に知らない名前: {unknown}(使えるのは {PAUSE_EXEMPTABLE})")
+    return names
+
+
+def observation_paused(date: Optional[str] = None, job: Optional[str] = None) -> bool:
+    """その日(既定: 今日の JST)が日次・月次・週次の観測と配信の停止期間か。
+
+    ``job`` を渡すと、その観測が停止の対象外(exempt)なら停止期間でも False。
+    """
     start, until = observation_pause_window()
     day = str(date or _today_jst())[:10]
-    return bool(start) and day >= start and (not until or day <= until)
+    paused = bool(start) and day >= start and (not until or day <= until)
+    if paused and job and job in observation_pause_exempt():
+        return False
+    return paused
 
 
 def is_daily_llm_day(date: str) -> bool:

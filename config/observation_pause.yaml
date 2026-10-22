@@ -5,7 +5,7 @@
 #   - 日次観測7本(daily.yml の LLM 観測。火・木・土)と、毎日の結果の Slack 配信
 #   - 月次観測12本(monthly.yml。第1水・第1木)
 #   - 週次所見の生成と配信(weekly.yml の run_weekly.py。ルール・所見・Slack)
-#   - 第3観測層 prompt_marketing の Gemini(experiment.yml の中で実験のあとに走る分)
+#   - (2026-10-21 まで)第3観測層 prompt_marketing の Gemini → 2026-10-22 から対象外(下の exempt)
 # 止めないもの:
 #   - 実験観測46本(+ watch の E37。experiment.yml)と、その失敗時の Slack 通知
 #   - GA4・GSC の収集(daily.yml。無料で、後から遡って取れないため)と、daily.yml の失敗通知
@@ -13,6 +13,9 @@
 #     2026-10-17 に所見の停止から切り離した)
 #   - 週次の実験の付随処理(drift_check・実験の週次集計・503欠測/観測本数の行)
 #   - 実験日誌・interventions.csv の記録
+#   - 第3観測層 prompt_marketing の Gemini(2026-10-22 から・本田さん決定・exempt: marketing_gemini)。
+#     守るルールは変えない:実験優先(実験の実消費を引いた残りが3回以上の日だけ)・1日20回まで・1分あたりの間隔・
+#     層ブロック順・毎月1〜14日・実験の PerDay 欠測でその月の残りを止める(条件④)。Claude の prompt_marketing は止めたまま
 #
 # 停止中の実験の Gemini は毎日14本・予備6本(週98本。settings.EXPERIMENT_PAUSE_DAILY_CAP)。
 # 日次・月次が無いので7日とも同じ配分になる。
@@ -24,3 +27,6 @@
 # **再開前に実験の配分を決め直すこと**(README「観測と配信の一時停止」)。
 paused_from: "2026-10-17"
 paused_until: null
+# 停止の対象外(settings.PAUSE_EXEMPTABLE の名前だけ書ける)
+exempt:
+  - marketing_gemini

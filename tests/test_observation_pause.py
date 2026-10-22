@@ -201,3 +201,106 @@ def test_weekly_skips_the_insight_but_keeps_ahrefs_and_the_experiment_lines(paus
     with pytest.raises(SystemExit) as exited:
         run_weekly.main()
     assert exited.value.code == 0
+
+
+# --------------------------------------------------------------------------
+# 2026-10-22:第3観測層の Gemini を停止の対象外に(本田さん決定)。実験は元々対象外
+# --------------------------------------------------------------------------
+def _pause_exempting_marketing(monkeypatch, tmp_path):
+    path = tmp_path / "observation_pause.yaml"
+    path.write_text(f'paused_from: "{PAUSE_FROM}"' + chr(10) + "paused_until: null" + chr(10)
+                    + "exempt:" + chr(10) + "  - marketing_gemini" + chr(10), encoding="utf-8")
+    monkeypatch.setattr(settings, "OBSERVATION_PAUSE_FILE", path)
+    settings._EXPERIMENT_CURSOR.clear()
+
+
+def test_the_real_config_exempts_only_the_marketing_gemini():
+    real = settings.CONFIG_DIR / "observation_pause.yaml"
+    assert settings.observation_pause_exempt(real) == ("marketing_gemini",)
+
+
+def test_an_unknown_exempt_name_is_refused(monkeypatch, tmp_path):
+    path = tmp_path / "observation_pause.yaml"
+    path.write_text('paused_from: "2026-10-17"\nexempt:\n  - daily\n', encoding="utf-8")
+    with pytest.raises(ValueError):
+        settings.observation_pause_exempt(path)
+
+
+def test_only_the_marketing_gemini_runs_through_the_pause(monkeypatch, tmp_path):
+    _pause_exempting_marketing(monkeypatch, tmp_path)
+    for d in ("2026-10-22", "2026-11-02", "2026-12-15"):
+        assert settings.observation_paused(d)
+        assert not settings.observation_paused(d, job="marketing_gemini")
+        assert settings.observation_paused(d, job="marketing_claude")
+    assert not settings.is_daily_llm_day("2026-11-03")                  # 火曜でも日次は無い
+    assert settings.monthly_batch_on("2026-11-04") is None              # 第1水でも月次は無い
+
+
+def test_november_window_stays_within_20_and_finishes_57_with_the_three_new_ones(monkeypatch, tmp_path):
+    import marketing
+    _pause_exempting_marketing(monkeypatch, tmp_path)
+    order = [p["id"] for p in marketing.gemini_order(settings.marketing_prompts_for("2026-11"))]
+    assert len(order) == 57
+    done = 0
+    for day in range(1, 15):
+        d = f"2026-11-{day:02d}"
+        q = settings.gemini_requests_on(d)
+        assert (q["daily"], q["monthly"], q["experiment"]) == (0, 0, 14), d
+        take = min(settings.marketing_gemini_allowance(q["total"]), len(order) - done)
+        assert q["total"] + take <= 20, d
+        if {"PM-L1-19", "PM-L1-21"} <= set(order[done:done + take]):
+            assert d == "2026-11-09", "取り直しが無ければ IT研修業界3本は 11/9 に届く"
+        done += take
+    assert done == 57
+
+
+def test_marketing_gemini_throws_during_the_pause_but_claude_does_not(monkeypatch, tmp_path):
+    import marketing
+    import run_experiment
+    import run_marketing
+    _pause_exempting_marketing(monkeypatch, tmp_path)
+    monkeypatch.setattr(run_marketing, "DATA_RAW_MARKETING_DIR", tmp_path / "marketing")
+    monkeypatch.setattr(run_marketing, "gemini_used_today", lambda date: (14, "実験14 = 14"))
+    monkeypatch.setattr(run_marketing, "before_cutoff", lambda now: True)
+    monkeypatch.setattr(marketing, "experiment_perday_misses", lambda month, root=None: [])
+    monkeypatch.setenv("GEMINI_API_KEY", "x")
+    calls = []
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "gemini",
+                        lambda text, model: calls.append(text) or (f"{text} の答え", []))
+    monkeypatch.setitem(collect_llm._QUERY_FUNCS, "claude",
+                        lambda *a, **k: (_ for _ in ()).throw(AssertionError("Claude は投げない")))
+    summary = []
+    monkeypatch.setattr(run_experiment, "_job_summary", lambda lines: summary.extend(lines))
+    assert run_marketing.main(["--model", "gemini", "--date", "2026-11-02", "--no-sheets"]) == 0
+    assert len(calls) == 6, "実験14回の残り6回だけ(1日20回まで)"
+    monkeypatch.setattr(run_marketing, "MARKETING_CLAUDE_ENABLED", True)     # 変数を戻しても停止中は投げない
+    summary.clear()
+    assert run_marketing.main(["--model", "claude", "--date", "2026-11-02", "--no-sheets"]) == 0
+    assert any("停止中" in line for line in summary)
+
+
+def test_the_experiment_runs_its_plan_during_the_pause(monkeypatch, tmp_path):
+    """実験の観測(46本の巡回・E37 watch を含む)は停止の対象外:停止中も毎日14本を投げる。"""
+    import run_experiment
+    import sys as _sys
+    _pause_exempting_marketing(monkeypatch, tmp_path)
+    monkeypatch.setattr(run_experiment, "DATA_RAW_EXPERIMENT_DIR", tmp_path)
+    monkeypatch.setattr(run_experiment, "EXPERIMENT_JOURNAL_FILE", tmp_path / "journal.csv")
+    seen = {}
+
+    def fake_observe(date, plan, out_dir, failures, **kwargs):
+        seen[date] = [p["id"] for p in plan.get("gemini") or []]
+        return []
+
+    monkeypatch.setattr(run_experiment, "observe", fake_observe)
+    monkeypatch.setattr(run_experiment, "wait_for_prior_runs", lambda date: 0)
+    monkeypatch.setattr(notify_slack, "notify_experiment_warnings", lambda *a, **k: True)
+    for d in ("2026-10-22", "2026-11-02", "2026-11-04"):
+        monkeypatch.setattr(_sys, "argv", ["run_experiment.py", "--date", d, "--no-sheets"])
+        try:
+            run_experiment.main()
+        except SystemExit:
+            pass
+        assert seen[d] == [p["id"] for p in settings.experiment_plan(d)["gemini"]] and len(seen[d]) == 14, d
+    assert "observation_paused" not in open(run_experiment.__file__, encoding="utf-8").read(), \
+        "実験は停止を見ない(本数だけ settings.experiment_daily_count が14にする)"

@@ -221,9 +221,10 @@ def main(argv: Optional[List[str]] = None) -> int:
     if marketing.month_of(date) < MARKETING_FIRST_MONTH:
         print("\n".join(lines + [f"- 初回の月({MARKETING_FIRST_MONTH})より前のため何もしない"]))
         return 0
-    if observation_paused(date):
+    if observation_paused(date, job=f"marketing_{a.model}"):
         # 日次・月次・週次と同時に止める(2026-10-17〜・config/observation_pause.yaml)。投げず、quota_skipped も書かない
-        # (止めた月の行を欠測に見せないため)。再開は日次・週次と同時
+        # (止めた月の行を欠測に見せないため)。2026-10-22 から Gemini は対象外(exempt: marketing_gemini・本田さん決定)。
+        # Claude は止めたまま(MARKETING_CLAUDE_ENABLED でも止めている)
         start, until = observation_pause_window()
         run_experiment._job_summary(lines + [f"- 停止中({start}〜{until or '再開日未定'}・ダッシュボードの再設計のため)。何もしない"])
         return 0

@@ -163,7 +163,8 @@ crosscom-llmo-dashboard/
 | 月次観測12本(monthly.yml。第1水・第1木) | 各ワークフローの失敗通知(daily.yml・experiment.yml など) |
 | 週次所見の生成と配信(weekly.yml の run_weekly.py:ルール・所見・Slack) | 週次の実験の付随処理(drift_check・実験の週次集計・503欠測と観測本数の行) |
 | | Ahrefs の週次取得とシート(ahrefs_aio)への書き込み(weekly.yml の run_weekly.py。GA4・GSC と同じく後から遡って取れないため。2026-10-17 に所見の停止から切り離した) |
-| 第3観測層 prompt_marketing の Gemini(experiment.yml の中で実験のあとに走る分) | 実験日誌・`output/interventions.csv` の記録 |
+| ~~第3観測層 prompt_marketing の Gemini~~ → **2026-10-22 から対象外**(右の列) | 実験日誌・`output/interventions.csv` の記録 |
+| prompt_marketing の Claude(2026-10-03 から別に停止中) | **第3観測層 prompt_marketing の Gemini(2026-10-22 から・本田さん決定・I-54。`exempt: [marketing_gemini]`)** |
 
 - 停止は `config/observation_pause.yaml` の `paused_from: "2026-10-17"`(`settings.observation_paused()`)。日付で効くので、
   ワークフローは毎日これまでどおり起動し、止める部分だけ何もせずに終わる(停止中の日は失敗にしない)
@@ -172,7 +173,8 @@ crosscom-llmo-dashboard/
   停止中に観測した割当が過去に遡ってずれる
 - 日次:停止中は「LLM を観測しない日」と同じ扱い。GA4・GSC・Looker 用タブは毎日更新し、Slack は失敗・警告のときだけ出る。
   `daily_summary` の言及率は停止中の日は空欄(0% にしない)
-- prompt_marketing:停止中は投げず、`quota_skipped` の行も書かない(止めた月を欠測に見せないため)。再開は日次・週次と同時
+- prompt_marketing:停止中は投げず、`quota_skipped` の行も書かない(止めた月を欠測に見せないため)。**2026-10-22 から Gemini は停止の対象外**(`observation_pause.yaml` の `exempt`。実験優先・1日20回などのルールは同じ)。Claude は止めたまま
+- **実験の観測は停止の対象外**:`run_experiment.py` は停止を見ない(停止中は1日の本数だけ14本になる)。10/17〜10/22 は毎日14本の Gemini の行が入り欠測0(E37 の watch も予定の日に入る。2026-10-22 確認)。テストで固定
 - `output/interventions.csv` I-34(停止)・I-35(停止中の実験の配分)に記録
 
 **停止中の実験の配分:毎日14本・予備6本(週98本)。** 日次・月次が無いので7日とも同じ配分になる
@@ -1544,9 +1546,21 @@ Gemini(gemini-2.5-flash・検索接続ON)と Claude で**月1回・毎月第1週
   停止:2026-10-08 11:29:33 JST(その日の実験の観測のあとの prompt_marketing の段)。**10月分は取り直さない**。
   10/09・10/11・10/12・10/14 の予定分(各4本)はこのため投げていない。10月の期間(1〜14日)は 10/14 で終わっており、
   2026-10-17 からの一時停止(`config/observation_pause.yaml`)は10月分には関係しない
-- **2026-11 は、今の設定のままでは動かない**:`config/observation_pause.yaml` の `paused_until` が空(再開日未定)のため、
-  11/1〜14 も `run_marketing.py` は「停止中」で何もしない(quota_skipped も書かない)。再開は日次・週次と同時
-  (`paused_until` に最後の日を入れる)。PerDay 欠測による停止は月ごとに数え直すので、10月の停止は11月に持ち越さない
+- **2026-10-22 から、prompt_marketing の Gemini は一時停止の対象外(本田さん決定・interventions I-54)**:
+  `config/observation_pause.yaml` の `exempt: [marketing_gemini]`(`settings.observation_paused(date, job=...)`。書ける名前は
+  `settings.PAUSE_EXEMPTABLE` だけ)。日次・月次・週次所見と prompt_marketing の Claude は停止のまま。
+  守るルールは変えない:実験優先・1日20回まで・1分あたりの間隔・層ブロック順・毎月1〜14日・条件④。
+  PerDay 欠測による停止は月ごとに数え直すので、10月の停止は11月に持ち越さない
+- **2026-11 の Gemini の予定**(停止中の実験は毎日14本・日次と月次は0本。取り直しが無い場合):
+
+  | 日 | 実験 | marketing | 合計 | marketing の範囲 |
+  |---|---|---|---|---|
+  | 11/1〜11/9(9日) | 14 | 6 | 20 | 11/1 L0-01〜06 → 11/2 L0-07〜BS-02 → 11/3 BS-03〜08 → 11/4 BS-09〜BC-02 → 11/5 BC-03〜08 → 11/6〜8 L1-01〜18 → **11/9 L1-19〜21**・L2-01〜03 |
+  | 11/10 | 14 | 3 | 17 | L2-04〜06(57本が終わる) |
+  | 11/11〜11/14 | 14 | 0 | 14 | (予備。実験の取り直しで減った分をここで取り返す) |
+
+  実験の取り直しがあった日は、その分だけ marketing が減る(1日20回を超えない)。PM-L1-19〜21(IT研修業界3本)は
+  層ブロック順で MOFU_L1 の末尾なので、取り直しが無ければ 11/9 に届く(予備が4日あるので14日までに届く見込み)
 
 ## 指名検索の月次記録(2026-10-22・手作業・戦略管制塔の依頼)
 
@@ -1562,7 +1576,9 @@ Gemini(gemini-2.5-flash・検索接続ON)と Claude で**月1回・毎月第1週
   brand_clicks, brand_impressions, brand_position, note`(空欄は未取得)
 - **件数が少ないため、月ごとの差は偶然で動く。1〜数件の差で傾向は判断しない**
 - 最初の2行:2026-08-22〜09-18(28日・9/18 の基準値。②③は未取得)と 2026-09-23〜10-19(27日。GSC の最新日が 10/19 のため)。
-  9/18 基準の開始日 8/22 は依頼文による(リポジトリに取得期間の記録が無く、照合していない)
+- **【2026-10-22 訂正】9/18 基準の期間は 2026-08-20〜2026-09-16(28日)**。本田さんが GSC で確認:8/20〜9/16 は今クリック25・表示96
+  (クリック一致・表示の1件差は GSC の後からの数値の直し)、8/22〜9/18 はクリック24・表示101で不一致。
+  1行目は消さず note に訂正を書き、訂正の行(2026-08-20〜09-16・①クリック25・表示97〈当初の記録〉)を末尾に足した
 
 ## Phase 4:ローカル分析アプリ(Streamlit)
 
