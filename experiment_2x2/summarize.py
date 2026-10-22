@@ -1258,6 +1258,122 @@ def print_new_article_poaching(overlap, blind, groups=None):
     print("※ 表示だけで、判定の数値には使わない\n")
 
 
+# --------------------------------------------------------------------------
+# 観測の欠測の注記（2026-10-22・戦略管制塔との決まりに合わせて追加）
+# 日ごとの観測計画（settings.experiment_plan）と、実際に答えの取れた行を突き合わせ、抜けた日の日付と理由を自動で出す。
+# 理由は実験日誌（data/experiment_journal.csv）→ llm_experiment の error 列 の順に見る。どちらにも無ければ「記録なし」
+# （ジョブが動かなかった日は、行も日誌も残らないため）。組は出さない（11/2 より前でも出してよい内容だけ）
+# --------------------------------------------------------------------------
+GAP_HEADING = "観測の欠測（Gemini・日ごとの計画に対して観測できなかった分）"
+JOURNAL_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "experiment_journal.csv")
+GAP_REASON_LABELS = {"quota": "枠切れ（429）", "unavailable": "一時的な混雑・時間切れ（503）",
+                     "permanent": "認証・権限・課金のエラー", "error": "例外", "skipped": "投げなかった"}
+GAP_NO_RECORD = "記録なし（その日の行も実験日誌の記録も無い。ジョブが動かなかった可能性）"
+# 今の本数の決まり(月水金日16本・日次の実消費を待って引く。2026-09-21 13:25 に入った)で動いた最初の日。
+# これより前の日は、今の計画で数え直すと当時の本数と合わない(9/20・9/21 は14本の決まりで動いた)ので、
+# 行か実験日誌に記録のある観測だけを計画として扱う(記録の無い分は「記録なし」にしない)
+GAP_PLAN_FROM = "2026-09-22"
+GAP_CYCLE_START = "2026-09-19"   # 日ごとの計画(settings.EXPERIMENT_CYCLE_START)が始まった日。これより前は数えない
+
+
+def read_journal(path=None):
+    """実験日誌の行（無ければ空）。"""
+    path = path or JOURNAL_FILE
+    if not os.path.exists(path):
+        return []
+    with io.open(path, encoding="utf-8") as f:
+        return list(csv.DictReader(f))
+
+
+def gap_reason(code, detail=""):
+    """欠測の理由コード（collect_llm.REASON_*）と詳細を、注記の短い文にする。"""
+    code = str(code or "").strip()
+    if code != "skipped":
+        return GAP_REASON_LABELS.get(code, code or "理由不明")
+    text = str(detail or "").strip()
+    if text.startswith("time_budget"):
+        return "投げなかった（時間の予算切れ）"
+    head, sep, rest = text.partition(":")
+    why = rest.strip() if head.strip() == "skipped" else (f"{head.strip()}：{rest.strip()}" if sep else text)
+    why = why.split("。")[0][:60]
+    return f"投げなかった（{why}）" if why else GAP_REASON_LABELS["skipped"]
+
+
+def _default_plan(date):
+    import settings
+    return [p["id"] for p in settings.experiment_plan(date).get("gemini") or []]
+
+
+def observation_gaps(rows, spans, journal=(), plan=None, today=None):
+    """期間の各日（今日より前）について、計画のうち答えの取れなかった本数と理由。
+    返り値は [(日付, 計画の本数, 観測できた本数, {理由: 本数})]（欠測のある日だけ・日付順）。"""
+    import collect_llm
+    plan = plan or _default_plan
+    today = today or _now_jst().date()
+    ok = collections.defaultdict(set)
+    row_errors = {}
+    for r in rows:
+        if not str(r.get("model", "")).lower().startswith("gemini"):
+            continue
+        key = (str(r.get("date", ""))[:10], str(r.get("experiment_id", "")).strip())
+        err = str(r.get("error", "") or "").strip()
+        if err:
+            row_errors[key] = err
+        else:
+            ok[key[0]].add(key[1])
+    logged = {}
+    for j in journal:
+        if str(j.get("model", "")).lower().startswith("gemini"):
+            logged[(str(j.get("date", ""))[:10], str(j.get("experiment_id", "")).strip())] = (
+                j.get("reason", ""), j.get("detail", ""))
+    dates = set()
+    for start, end in spans:
+        d, last = datetime.date.fromisoformat(start), datetime.date.fromisoformat(end)
+        while d <= last and d < today:
+            if d.isoformat() >= GAP_CYCLE_START:
+                dates.add(d.isoformat())
+            d += datetime.timedelta(days=1)
+    out = []
+    for d in sorted(dates):
+        if d < GAP_PLAN_FROM:
+            planned = sorted({e for (day, e) in list(row_errors) + list(logged) if day == d} | ok[d])
+        else:
+            planned = list(plan(d))
+        missing = [e for e in planned if e not in ok[d]]
+        if not missing:
+            continue
+        reasons = collections.Counter()
+        for e in missing:
+            if (d, e) in logged:
+                reasons[gap_reason(*logged[(d, e)])] += 1
+            elif (d, e) in row_errors:
+                err = row_errors[(d, e)]
+                # 投げなかった行(skipped: …・job_timeout: …)は collect_llm.miss_reason では「例外」になるので先に見る
+                code = "skipped" if err.startswith(("skipped", "job_timeout")) else collect_llm.miss_reason(err)
+                reasons[gap_reason(code, err)] += 1
+            else:
+                reasons[GAP_NO_RECORD] += 1
+        out.append((d, len(planned), len(planned) - len(missing), dict(reasons)))
+    return out
+
+
+def print_observation_gaps(rows, spans, journal=None, plan=None, today=None):
+    """判定レポートの注記：観測の抜けた日の日付と理由。"""
+    gaps = observation_gaps(rows, spans, read_journal() if journal is None else journal, plan, today)
+    print(f"### {GAP_HEADING}")
+    if not gaps:
+        print("期間中（今日より前の日）に、計画に対する欠測は無い")
+    else:
+        lost = sum(n - got for _, n, got, _ in gaps)
+        print(f"欠測のある日 {len(gaps)}日・欠測 {lost}本。欠測は判定に数えない（引用なし＝0 としては扱わない）")
+        for d, n, got, reasons in gaps:
+            parts = "・".join(f"{k} {v}本" for k, v in reasons.items())
+            print(f"- {d}：計画 {n}本・観測 {got}本・欠測 {n - got}本（{parts}）")
+    print(f"※ 計画は日ごとの観測計画（settings.experiment_plan）、理由は実験日誌と llm_experiment の error 列から自動で出す。"
+          f"今日の分と、日ごとの計画が始まる前（{GAP_CYCLE_START} より前）の日は含めない。"
+          f"{GAP_PLAN_FROM} より前の日は本数の決まりが今と違うので、行か実験日誌に記録のある観測だけを数える\n")
+
+
 def _span(text):
     start, _, end = text.partition(":")
     return start, end or start
@@ -1323,6 +1439,7 @@ def main(argv=None):
     ap.add_argument("--after", help="アフター期間 YYYY-MM-DD:YYYY-MM-DD")
     ap.add_argument("--csv", help="llm_experiment を書き出した CSV（省略時はシートを読む）")
     ap.add_argument("--model", choices=MODELS, help="1モデルだけ出す（省略時は両方）")
+    ap.add_argument("--journal", help="実験日誌の CSV（省略時は data/experiment_journal.csv）。欠測の注記の理由に使う")
     ap.add_argument("--probe", nargs="+", metavar="CSV",
                     help="引用プローブの結果で集計する（参考。アフター [ビフォー]）")
     a = ap.parse_args(argv)
@@ -1361,6 +1478,8 @@ def main(argv=None):
             print(f"9/15〜16 に追記の入った{len(late)}本は {LATE_BASELINE_FROM} 以降の観測だけを使う")
         watch = sum(1 for r in rows if str(r.get("experiment_flag", "")).strip() == WATCH_FLAG)
         print(f"llm_experiment {len(rows)}行（watch {watch}行とプール外・欠測は数えない）\n")
+        if not a.model or a.model == "gemini":
+            print_observation_gaps(rows, [_span(a.before), _span(a.after)], read_journal(a.journal))
         if blind:
             print(f"**{BLIND_MESSAGE}**\n")
         if (not a.model or a.model == "gemini") and not blind:

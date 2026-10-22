@@ -198,6 +198,39 @@ crosscom-llmo-dashboard/
   7日・28日の窓の集計(Looker の lk_* タブ・board_daily)は、再開直後は窓の中の観測日が少ない。
   実験(Gemini の cited_article)の時系列は切れない(停止中も毎日観測する)。GA4・GSC も切れない
 
+### ダッシュボード作り直しの間、観測の実行と記録を変えない決まり(2026-10-22・戦略管制塔との決まり)
+
+**ダッシュボードの作り直しは表示の部分のみ。観測の実行と記録は、長期判定(12/28 の週)が終わるまで変更しない。
+変更が必要な場合は、事前に効果測定チャットと管制塔へ相談する。**
+
+変えてはいけないもの(`config/observation_lock.yaml` に一覧と中身の SHA-256 を記録。19件):
+
+| 何か | ファイル | 見張る範囲 |
+|---|---|---|
+| 実験の観測の実行(毎日 08:00 JST) | `.github/workflows/experiment.yml`・`src/run_experiment.py` | ファイル全体 |
+| Gemini の呼び出し(間隔・1回の時間切れ・再試行・掃き直し・時間の予算の打ち切り・欠測の理由) | `src/collect_llm.py` | ファイル全体 |
+| llm_experiment に書く判定の列(cited_article ほか)・転送URLの解決 | `src/experiment.py`・`src/retired_urls.py` | 前者は全体・後者は `resolve_redirect` まわりだけ |
+| llm_experiment・llm_marketing への書き込み(列・鍵・上書きの仕方・再試行) | `src/sheets_writer.py` | `write_experiment`・`_experiment_row`・`HEADERS_EXPERIMENT`・`_upsert` など20個だけ |
+| 観測計画(1日20回の枠・実験の本数・観測順の輪・時間の予算・呼び出しの間隔と再試行の値・一時停止・Claude の停止) | `src/settings.py` | `experiment_plan`・`experiment_cursor`・`GEMINI_DAILY_REQUEST_LIMIT`・`GEMINI_MIN_INTERVAL_SECONDS`・`MAX_RETRIES` など観測の関数・定数だけ |
+| 質問文・watch・割付 | `config/prompts_experiment.csv`・`config/prompts_watch.csv`・`experiment_2x2/allocation_v1.csv` | ファイル全体 |
+| 時間の予算・一時停止・Claude の停止 | `config/experiment_job.yaml`・`config/observation_pause.yaml`・`config/claude_budget.yaml`・`src/claude_budget.py` | ファイル全体 |
+| `--force` の置き換えの記録 | `src/force_log.py` | ファイル全体 |
+| 第3観測層(同じジョブ・同じ1日20回の枠) | `src/run_marketing.py`・`.github/workflows/marketing.yml`・`config/prompts_marketing.csv`・`src/marketing.py` | `marketing.py` は実行の関数(層ブロック順・条件④・quota_skipped など)だけ。月の比較・層ごとの率(表示)は見張らない |
+
+- **見張り**:`tests/test_observation_lock.py` がハッシュを計算し直し、違えば「観測の実行と記録は長期判定（12/28 の週）まで変更しない決まり。
+  変更が必要なら効果測定チャットと管制塔へ事前に相談」で失敗する。**2027-01-04 以降はこのテストを飛ばす**(長期判定の後)
+- 表示の部分と同じファイルに同居しているもの(`settings.py`・`sheets_writer.py`・`marketing.py`・`retired_urls.py`)は、観測に使う関数・定数だけをハッシュする。
+  表示の関数(Looker のタブ・週次の表など)を直しても失敗しない。名前を消す・変えるのは変更として止める。改行コード(CRLF/LF)の違いは同じ中身として扱う
+- **相談して承認された変更をする場合**:変更と同じコミットで `python src/observation_lock.py --update --reason "承認の経緯"` を実行する。
+  ハッシュを書き直し、同じ経緯を `observation_lock.yaml` の `history` と実験日誌に追記する(`--reason` が無い・変わったファイルが無いと止まる)。
+  **ハッシュの更新だけのコミットは作らない。ハッシュを手で書き換えない**
+- **一時停止の解除(`observation_pause.yaml` の `paused_until`)も一覧に入る。** 解くと実験の1日の本数が14本から 16/11 本に戻るため(上の項)。解く前に相談する
+- 一覧に入れていないもの:`requirements.txt`(`google-genai>=0.8.0` などの下限だけ。表示の作り直しで足す可能性があるため)、日次・月次・週次の観測のファイル(一時停止中)、
+  判定と集計(`experiment_2x2/summarize.py` など。観測の記録は変えない)
+- **観測の欠測は判定レポートに自動で載る**(`summarize.py` の「観測の欠測」の注記)。日ごとの観測計画(`settings.experiment_plan`)と
+  答えの取れた行を突き合わせ、抜けた日の日付・本数・理由(実験日誌 → llm_experiment の error 列。どちらにも無ければ「記録なし」＝ジョブが動かなかった可能性)を出す。
+  組は出さない。9/22 より前(9/19〜9/21)は本数の決まりが今と違う(16本の上限は 9/21 13:25 から)ので、記録のある欠測だけを数える
+
 ### Claude API の全停止(2026-10-06・費用ゼロ方針・本田さん決定)【計画の変更】
 
 **2026-10-06 Claude 観測を停止（費用ゼロ方針・本田さん決定）。アフター期間（10/6〜）の Claude データは0本のため、Claude は判定対象外とする。主指標は事前登録どおり Gemini のみで変更なし。この変更はアフター期間の実験データを見る前に行った。**

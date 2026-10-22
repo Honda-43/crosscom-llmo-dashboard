@@ -1,0 +1,78 @@
+# 観測の実行と記録の見張り(2026-10-22・戦略管制塔との決まり)。src/observation_lock.py と tests/test_observation_lock.py が読む。
+#
+# 決まり:ダッシュボードの作り直しは表示の部分のみ。観測の実行と記録は、長期判定(12/28 の週)が終わるまで変更しない。
+# 変更が必要な場合は、事前に効果測定チャットと管制塔へ相談する。
+#
+# - 下の一覧の中身のハッシュ(SHA-256)が変わるとテストが失敗する。2027-01-04 以降はテストを飛ばす(長期判定の後)
+# - symbols のあるものは、そのファイルの中の観測の実行と記録に使う関数・定数だけをハッシュする
+#   (表示の部分と同じファイルに同居しているため。表示の関数を直しても失敗しない)。名前を消す・変えるのも変更として止める
+# - 改行コード(CRLF/LF)の違いは同じ中身として扱う
+# - **相談して承認された変更をした場合**:python src/observation_lock.py --update --reason "承認の経緯"
+#   でハッシュを書き直す(history と実験日誌に同じ経緯が追記される)。変更と同じコミットにする。
+#   ハッシュの更新だけのコミットは作らない。ハッシュを手で書き換えない
+expires_on: "2027-01-04"
+files:
+  # 実験の観測の実行(毎日 08:00 JST)。計画 → Gemini の呼び出し → 判定 → raw・llm_experiment・実験日誌
+  - {path: .github/workflows/experiment.yml, sha256: 22d5970419add9012de094515e9002717442149c1b2047ec2c28a2bb3b3b7fe8}
+  - {path: src/run_experiment.py, sha256: 73664656ea9596646708c08dd05269a35f45ddefe52c7b8eb4cede6b961d4298}
+  # Gemini・Claude の呼び出し(間隔・1回の時間切れ・再試行・掃き直し・時間の予算・欠測の理由)
+  - {path: src/collect_llm.py, sha256: e7f7a5ebcf89aabf46148718655a9b57ec7d7073a283bb1ef03916d0c4e497bb}
+  # cited_article などの判定の列(llm_experiment に書く値)と、転送URLの解決
+  - {path: src/experiment.py, sha256: 3faa7c36c38c9b3b29dc20781255dad150896e381eb510e6509f99897ab0a39d}
+  - path: src/retired_urls.py
+    symbols: [REDIRECT_MARKER, RESOLVE_TIMEOUT_SECONDS, _RESOLVED, resolve_redirect]
+    sha256: d76aba3aec7c8bd199f8444e239842020eaefc8a551707867d4e6254f4836328
+  # llm_experiment・llm_marketing への書き込み(列・鍵・上書きの仕方)
+  - path: src/sheets_writer.py
+    symbols: [CELL_CHAR_LIMIT, QUOTA_RETRY_WAITS, _retrying_http_client, _open_spreadsheet, _ensure_worksheet,
+              _to_cell, _carry_forward, _upsert, _plan_upsert, HEADERS_EXPERIMENT, KEYS_EXPERIMENT,
+              _FORMULA_PREFIXES, _as_text, _experiment_row, write_experiment,
+              HEADERS_MARKETING, KEYS_MARKETING, marketing_key_range_end, _marketing_row, write_marketing]
+    sha256: 5bfb5925111ed2f762246c46be9a2c4b9c49894c8c831190ae6cd535e25209c1
+  # 観測計画・1日20回の枠・実験の本数・観測順の輪・時間の予算・呼び出しの間隔と再試行・一時停止・Claude の停止
+  - path: src/settings.py
+    symbols: [DATA_RAW_DIR, DATA_RAW_MONTHLY_DIR, PROMPTS_EXPERIMENT_FILE, PROMPTS_WATCH_FILE, PROMPTS_MARKETING_FILE,
+              EXPERIMENT_FLAG_POOL, EXPERIMENT_FLAG_WATCH, DATA_RAW_EXPERIMENT_DIR, DATA_RAW_MARKETING_DIR,
+              EXPERIMENT_JOURNAL_FILE, DAILY_LLM_WEEKDAYS, DAILY_LLM_COUNT, MONTHLY_BATCH_WEEKDAYS, MONTHLY_BATCH_SIZE,
+              GEMINI_DAILY_REQUEST_LIMIT, EXPERIMENT_CLAUDE_WEEKDAYS, EXPERIMENT_CLAUDE_WEEKLY_FROM,
+              EXPERIMENT_CLAUDE_WEEKDAYS_WEEKLY, EXPERIMENT_CYCLE_START, EXPERIMENT_OBSERVATION_END,
+              EXPERIMENT_DAILY_CAP, EXPERIMENT_DAILY_DAY_RESERVE, EXPERIMENT_OBSERVATIONS_PER_WEEK,
+              experiment_weekly_target, _weekday, experiment_job_deadline, experiment_claude_weekdays,
+              experiment_claude_on, OBSERVATION_PAUSE_FILE, EXPERIMENT_PAUSE_DAILY_CAP, observation_pause_window,
+              PAUSE_EXEMPTABLE, observation_pause_exempt, observation_paused, is_daily_llm_day,
+              daily_llm_requests_on, monthly_requests_on, monthly_batch_on, _load_prompt_csv,
+              load_experiment_prompts, load_watch_prompts, load_observation_prompts, observation_prompt_count,
+              experiment_prompt_count, experiment_number, experiment_daily_count, experiment_ended,
+              has_prior_gemini_run, experiment_gemini_allowance, experiment_cursor, experiment_plan,
+              MARKETING_FIRST_MONTH, MARKETING_WINDOW_LAST_DAY, MARKETING_MIN_SPARE, MARKETING_QUOTA_SKIPPED,
+              MARKETING_GEMINI_CUTOFF_JST, MARKETING_CLAUDE_ENABLED, MARKETING_RANK_ENABLED,
+              MARKETING_EXTRACTOR_STOPPED, MARKETING_STOPPED_ON, MARKETING_PROMPT_FIRST_MONTH,
+              marketing_prompt_active, marketing_prompts_for, load_marketing_prompts, in_marketing_window,
+              marketing_gemini_allowance, gemini_requests_on, _experiment_job_config,
+              EXPERIMENT_TIME_BUDGET_MINUTES, GEMINI_MIN_INTERVAL_SECONDS, GEMINI_CALL_TIMEOUT_SECONDS,
+              MODEL_CONFIG, CLAUDE_BUDGET_FILE, claude_planned_stop_from, _today_jst, claude_stopped,
+              enabled_models, MAX_RETRIES, BACKOFF_BASE_SECONDS, RETRY_DELAY_CAP_SECONDS,
+              SWEEP_COOLDOWN_SECONDS, TAB_EXPERIMENT, TAB_MARKETING]
+    sha256: afe0efec5feb035a74cb24ca1dc351d859844260bb6c0b02452713820bc51ab0
+  # 観測の設定(質問文・watch・割付・時間の予算・一時停止・Claude の停止)
+  - {path: config/prompts_experiment.csv, sha256: bb9aad243630c350c9e1fdd5817bb0963039fef818d53bf8c5009185c9c74c8a}
+  - {path: config/prompts_watch.csv, sha256: 6c59b4b3a39c2e5417fb3226ef96a617d6378d0258c2ed7ceb83ac9761fac5f6}
+  - {path: experiment_2x2/allocation_v1.csv, sha256: 34ea26f5ca6547e5c2a3e17d9a8bb3b216431583a595d4158eccb78ea5099b0e}
+  - {path: config/experiment_job.yaml, sha256: c6a5bb986dbd4f602a556dac65a29a4187414ce82485b6716acb5a57c4d2ba7f}
+  - {path: config/observation_pause.yaml, sha256: dc34b822eb77cb14bc4dd87f065cdb7b6c4209093946062802091ef1dd2655c6}
+  - {path: config/claude_budget.yaml, sha256: d5e2132b4651fc9b0958a13d17059cf8f779c57f94e0ec0ddd7c1c87b38c557a}
+  - {path: src/claude_budget.py, sha256: bcfda87c079e16e541bee75bad13a446f9daf501c61a9c8b9ecc7659d834f8d6}
+  # --force で既にある観測を置き換えたときの日誌への記録
+  - {path: src/force_log.py, sha256: 5811c91c97973cab71a9413e64075dbd9fc44d6335f0c70fb1e7493dd120498d}
+  # 第3観測層 prompt_marketing(実験と同じジョブで走り、同じ1日20回の枠を使う)
+  - {path: src/run_marketing.py, sha256: bc16988e3e335ba2a09b10d72af03bda86a90caf3c76949a72bbe2878760f282}
+  - {path: .github/workflows/marketing.yml, sha256: afc19aed7de26cd318bdab762a96092d7dd0bc50ef6b6b2cbb2c70c21f1e607f}
+  - {path: config/prompts_marketing.csv, sha256: 4b99a6b540ffbfbb41b1eb1ce6d06223676ae50096725d7909fb6f093d88c7a8}
+  - path: src/marketing.py
+    symbols: [MODELS, PERDAY_MARKER, EXTRACTOR_MODEL, GEMINI_LAYER_ORDER, _fold, mention_rank, parse_company_list,
+              list_companies_with_haiku, rank_enabled, refill_ranks, run_date_jst, evaluate, month_of,
+              month_records, done_ids, pending, gemini_order, experiment_perday_misses, is_last_window_day,
+              skipped_record]
+    sha256: 81974e93120ff9af0bf663f04dd1ff9bebd455814f2da5566a2d4713b11fe667
+# 承認された変更の記録(--update が追記する)
+history: []

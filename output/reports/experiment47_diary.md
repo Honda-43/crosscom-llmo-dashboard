@@ -1661,3 +1661,22 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
   - 10/23〜10/31 は10月の期間外で、10月分は 10/08 に閉じているので何も投げない
 - **9/18 基準値の期間の訂正**：本田さんが GSC で確認し、基準の期間は 2026-08-20〜2026-09-16（28日）。8/20〜9/16 は今クリック25・表示96（表示の1件差は GSC の後からの数値の直し）、
   8/22〜9/18 はクリック24・表示101で不一致。`output/brand_search_monthly.csv` の1行目は消さず note に訂正を書き、訂正の行を末尾に足した
+
+## 2026-10-22（続き）／ダッシュボード作り直しの間、観測の実行と記録を変えない決まり（戦略管制塔との決まり）と、その見張り
+
+- **決まり（2026-10-22・戦略管制塔と）**：ダッシュボードの作り直しは表示の部分のみ。観測の実行と記録は、長期判定（12/28 の週）が終わるまで変更しない。
+  変更が必要な場合は、事前に効果測定チャットと管制塔へ相談する
+- **変えてはいけないもの（19件）**：`.github/workflows/experiment.yml`・`src/run_experiment.py`・`src/collect_llm.py`・`src/experiment.py`・
+  `config/prompts_experiment.csv`・`config/prompts_watch.csv`・`experiment_2x2/allocation_v1.csv`・`config/experiment_job.yaml`・`config/observation_pause.yaml`・
+  `config/claude_budget.yaml`・`src/claude_budget.py`・`src/force_log.py`・`src/run_marketing.py`・`.github/workflows/marketing.yml`・`config/prompts_marketing.csv`（以上ファイル全体）、
+  `src/settings.py`（観測計画・枠・間隔・再試行・時間の予算・観測順の輪・一時停止・Claude の停止の関数と定数）・`src/sheets_writer.py`（llm_experiment・llm_marketing への書き込み）・
+  `src/marketing.py`（第3観測層の実行の関数）・`src/retired_urls.py`（転送URLの解決）は関数・定数の単位。一覧は README と `config/observation_lock.yaml`
+- **見張り**：`config/observation_lock.yaml` に今の中身の SHA-256 を記録。`tests/test_observation_lock.py` が違いを見つけたら決まりの文で失敗する。
+  2027-01-04 以降は飛ばす。承認された変更は `python src/observation_lock.py --update --reason "承認の経緯"` で、ハッシュ・history・この日誌を同じコミットで更新する
+  （ハッシュの更新だけのコミットは作らない）
+- 一時停止の解除（`paused_until`）も一覧に入る（実験の1日の本数が変わるため）。解く前に相談する
+- **欠測の注記**：判定レポート（summarize.py）に「観測の欠測」を足した。日ごとの計画と答えの取れた行を突き合わせ、抜けた日の日付・本数・理由を自動で出す
+  （理由は実験日誌 → error 列。どちらにも無ければ「記録なし」）。作り物のデータでテスト。組は出さない。
+  本物で確かめた結果（日付と理由だけ。ビフォー 9/15〜9/28・アフター 10/06〜）：9/19 枠切れ10本、10/07 枠切れ1本・503 4本、10/10 枠切れ2本、10/16 503 8本。
+  最初は 9/20・9/21 に「記録なし」各2本が出たが、今の計画（月水金日16本）で数え直したための誤り（16本の上限は 9/21 13:25 から。その2日の朝は14本の決まりで動いた）。
+  9/22 より前の日は記録のある欠測だけを数えるように直した
