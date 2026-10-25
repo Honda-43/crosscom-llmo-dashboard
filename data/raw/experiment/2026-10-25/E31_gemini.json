@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-25",
+  "prompt_id": "E31",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？",
+  "cep": null,
+  "timestamp": "2026-10-25T00:48:06.697465Z",
+  "answer": "Agentforce Employee Agentは、Salesforce上で従業員向けの社内問い合わせ対応や業務申請フローを自動化するAIエージェントです。従業員が情報を検索したり、ToDoを完了したり、チャネル間でパーソナライズされたサポートにアクセスしたりすることを目的として設計されており、ログインユーザーのコンテキストで実行されます。\n\n**社内問い合わせのどこまでを任せられるか：**\n\nAgentforce Employee Agentは、社内問い合わせにおいて広範囲な業務を自動化し、従業員の生産性向上に貢献します。\n\n*   **定型的な質問への自動応答**：総務、情シス、人事などの部門への「よくある問い合わせ」に対して、社内規定やナレッジ記事に基づいて即座に自動応答が可能です。これにより、担当部門と利用者双方の負担を大幅に軽減します。例としては、有給休暇に関する問い合わせ、経費精算の方法、パスワードのリセット、ソフトウェアへのアクセスなどが挙げられます。\n*   **業務申請フローの自動化**：会議室の予約や会議設定、コンプライアンス関連文書の収集、従業員エンゲージメント調査の配布と要約、業績評価サイクルのマネージャーへのガイドなど、多段階のワークフローを計画・実行できます。\n*   **適切な部門への自動エスカレーション**：AIが解決できない問い合わせについては、必要に応じて担当部署へスムーズにエスカレーションする機能を備えています。\n*   **マルチチャネルでのサポート**：Salesforce Lightning、モバイルアプリ、Slackなどの様々なチャネルを通じて、従業員はAIエージェントと会話できます。\n*   **24時間365日のサポート**：国内外に拠点を展開する企業において、時差に関係なく従業員に即時サポートを提供することが可能です。\n*   **パーソナライズされた支援**：異なるプラットフォームのリアルタイムデータにアクセスし、パーソナライズされた支援を提供します。\n\nSalesforce自身も「Customer Zero」としてEmployee Agentを社内展開しており、導入1年で30万件以上の会話を処理し、利用者による自己解決率は97.7%に達したと報告しています。これにより、基本的な一次問い合わせ件数が20%減少し、福利厚生の加入期間におけるサポート案件は58%減少しました。\n\nEmployee Agentは、部署ごとや用途ごとに複数作成でき、アクセス権限も細かく制御できるため、総務用、人事用といった形で専用のAI窓口を設けることが可能です。 主に社内規程やナレッジ記事を参照して回答を生成します。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGx6Dolb8uHnrJ-nM315TXQm76dEvBuxx5XinAdfAMaPeP27yLvumr-OY6QNEwH-3mTMXtHpd0miUQ5FIxuFB1Z1eCi2eK1SJ-qRhkQm8tWUALUHo9yBSdEsMDDkAPAS9SJWJ3NZ7ORxHpK6w==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEIRY0jWdPlPjObBseNnkQqjgibSpMCq0hM0KBFIKw8pbyvUAi8-E-d__50qm-YgeJ_TGvQNehTA1I011_PJENAnx8RHeSSEOLWzSiGJH-nEMjg4Y3fmJM28qa99RMU8kONSpEL8pe39VBmYoDoQYNssyVbxck=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHzwdDBnZzQGeVZ5r3P9_nEWXy_MWirEX19XH0ISMdU49PVZHY_SFNsl5VeTJu2ypazb9lmy4bN3fuSjdXMyahKNbUGmC7S_buk8K_gU7UC1ZHiFvHl7UnljCBjUG7lj5phRYjRAATnt0OCqbsdem7o4oqXtlDvo7rlKaVnp-FHlQixO6SARY_pjHY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGH8zLtrmcCyWfe-D9XwU3E34YodRaYTZduxCFJLpgLC1MrFV2UWE9UQwD4ODWHM6F4iN6W4uTmHFQMUayXpRpScd8PSjambse_5NVub0yqvncND-WS2D7K0VF_z_mAqRNhbqGVN3VXqc_p3gGElDSEvcZYPLUABAzYqjrLCQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEL1yQxDundJxJuZtCpbVh0dwLhyZDkAhD-mOmnKQBFNBp7gwYdtHmrKewo8NUTv8EVqCBwRA-Y6K-Hj_IIEfZSXsV8QemCJnXnhFHZ-5opyufEfN8VSE6tY-R6y-veuLFdKY_2KZk0",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFTUMPEujq51ir07Oz761kEudSYmWt18bKzYtVWf3xCXpGOZJggdP2baCHZA5oQ4lQZml7wExxUnOkCzRE8Q0Su8ltOU6uE5YZl31H1efeAJrsIRSME9d0xc3orXOOrG8TxjsVP",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF8KyR02VZfUJZpeKGPu_bYHudlamPBa0Yq4XODksjFSCVfbt5TcznBr1Y0qnp2d0flQR3zhFEA_dnFmHBaYTdi-6I-pcBCwLVwvFOt303rvR0iWMJiXJjwkdjsD_9o0-csE8QDjdxm6CjBNtFumExKn5MK"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E31",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-employee-agent/",
+  "answer_text": "Agentforce Employee Agentは、Salesforce上で従業員向けの社内問い合わせ対応や業務申請フローを自動化するAIエージェントです。従業員が情報を検索したり、ToDoを完了したり、チャネル間でパーソナライズされたサポートにアクセスしたりすることを目的として設計されており、ログインユーザーのコンテキストで実行されます。\n\n**社内問い合わせのどこまでを任せられるか：**\n\nAgentforce Employee Agentは、社内問い合わせにおいて広範囲な業務を自動化し、従業員の生産性向上に貢献します。\n\n*   **定型的な質問への自動応答**：総務、情シス、人事などの部門への「よくある問い合わせ」に対して、社内規定やナレッジ記事に基づいて即座に自動応答が可能です。これにより、担当部門と利用者双方の負担を大幅に軽減します。例としては、有給休暇に関する問い合わせ、経費精算の方法、パスワードのリセット、ソフトウェアへのアクセスなどが挙げられます。\n*   **業務申請フローの自動化**：会議室の予約や会議設定、コンプライアンス関連文書の収集、従業員エンゲージメント調査の配布と要約、業績評価サイクルのマネージャーへのガイドなど、多段階のワークフローを計画・実行できます。\n*   **適切な部門への自動エスカレーション**：AIが解決できない問い合わせについては、必要に応じて担当部署へスムーズにエスカレーションする機能を備えています。\n*   **マルチチャネルでのサポート**：Salesforce Lightning、モバイルアプリ、Slackなどの様々なチャネルを通じて、従業員はAIエージェントと会話できます。\n*   **24時間365日のサポート**：国内外に拠点を展開する企業において、時差に関係なく従業員に即時サポートを提供することが可能です。\n*   **パーソナライズされた支援**：異なるプラットフォームのリアルタイムデータにアクセスし、パーソナライズされた支援を提供します。\n\nSalesforce自身も「Customer Zero」としてEmployee Agentを社内展開しており、導入1年で30万件以上の会話を処理し、利用者による自己解決率は97.7%に達したと報告しています。これにより、基本的な一次問い合わせ件数が20%減少し、福利厚生の加入期間におけるサポート案件は58%減少しました。\n\nEmployee Agentは、部署ごとや用途ごとに複数作成でき、アクセス権限も細かく制御できるため、総務用、人事用といった形で専用のAI窓口を設けることが可能です。 主に社内規程やナレッジ記事を参照して回答を生成します。",
+  "cited_domain": 1,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "note.com",
+    "strh.co.jp",
+    "salesforce.com",
+    "cross-com.jp",
+    "zenn.dev"
+  ],
+  "resolved_urls": [
+    "https://note.com/samuraijuku_biz/n/n08b3a08e8d5d",
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://www.salesforce.com/agentforce/agentforce-for-employees/employee-agents/",
+    "https://www.salesforce.com/jp/agentforce/agentforce-for-employees/",
+    "https://note.com/aiworkwatch/n/nf99b3defb9c6",
+    "https://cross-com.jp/agentforce-coworker/",
+    "https://zenn.dev/pacific_creator/articles/bd665f463b4ccc"
+  ],
+  "unresolved_redirects": 0
+}

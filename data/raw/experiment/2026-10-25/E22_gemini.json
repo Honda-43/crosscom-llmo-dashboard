@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-25",
+  "prompt_id": "E22",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの出力が毎回変わって安定しない。モデル選択と推論制御の設定は？",
+  "cep": null,
+  "timestamp": "2026-10-25T00:48:56.159562Z",
+  "answer": "Agentforceの出力が毎回変わって安定しないとのこと、大規模言語モデル（LLM）の挙動は、モデルの特性と推論時の設定によって大きく左右されます。出力の安定性を高めるためには、以下のモデル選択と推論制御の設定を見直すことが重要です。\n\n### 1. モデル選択\n\nLLMは、その学習データやアーキテクチャによって得意なことや特性が異なります。出力の安定性を求める場合、以下の点を考慮してモデルを選択します。\n\n*   **特定のタスクに特化したモデルの利用:** 汎用モデルよりも、特定のタスク（要約、翻訳、QAなど）にファインチューニングされたモデルの方が、より安定した出力を提供する傾向があります。\n*   **比較的小規模なモデルの検討:** パラメータ数が多い大規模なモデルは、より複雑な推論や多様な表現が可能ですが、その分、出力のばらつきも大きくなることがあります。タスクの要件が明確で、創造性よりも一貫性が求められる場合は、比較的小規模なモデルの方が安定しやすい可能性があります。小規模モデルは計算コストやメモリ使用量を抑えやすいというメリットもあります。\n*   **Deterministic（決定的）な出力が期待されるモデル:** LLMは確率的なテキスト生成を行いますが、中にはより「決定的」な出力を目指して設計されたモデルもあります。評価データセットに対して一貫した結果を出すことが重視されるモデルを選ぶと良いでしょう。\n\n### 2. 推論制御の設定\n\nLLMの出力の多様性や一貫性は、推論時に設定するハイパーパラメータによって大きく変化します。出力の安定性を高めるためには、以下のパラメータを調整します。\n\n*   **Temperature (温度)**:\n    *   `temperature`は、出力のランダム性や多様性を制御するパラメータです。値が高いほど多様で創造的な出力になり、低いほど予測可能で一貫した出力になります。\n    *   **安定性を高めるには、`temperature`を低い値（例: 0.0〜0.3程度）に設定することをおすすめします。** 0に設定すると、最も確率の高いトークンが常に選択されるため、可能な限り決定的な出力が得られます。\n*   **Top-p (核サンプリング)** および **Top-k**:\n    *   これらは、次に生成されるトークンの候補を絞り込むためのパラメータです。\n    *   `top-p`は、確率の高いトークンから累積確率が指定した値になるまでの範囲でトークンを選択します。\n    *   `top-k`は、確率の高い上位k個のトークンから選択します。\n    *   **安定性を高めるには、`top-p`を低い値（例: 0.9以下）に、または`top-k`を小さい値に設定することで、出力の選択肢を狭め、一貫性を向上させることができます。** ただし、あまりに厳しくしすぎると、不自然な出力になる可能性もあるため、タスクに応じて調整が必要です。\n*   **Repetition Penalty (繰り返しペナルティ)**:\n    *   このパラメータは、すでに生成されたトークンの繰り返しを抑制します。\n    *   出力の単調さを防ぐ目的で使用されますが、**安定した出力が必要な場合は、適切な値（例: 1.0〜1.2程度）に設定することで、不必要な多様性や発散を防ぐことができます。**\n*   **Max New Tokens (最大トークン数)**:\n    *   生成される出力の最大長を制限します。長すぎる出力は意図しない内容を含む可能性を高めるため、**タスクに必要な最小限の長さに設定することで、出力の範囲を制御し、安定化に寄与します。**\n\n### 3. プロンプトエンジニアリング\n\nモデル選択や推論制御だけでなく、入力プロンプトの設計も出力の安定化に大きく影響します。\n\n*   **明確で具体的な指示:** LLMに何を求めているのかを具体的に、かつ明確に指示することが重要です。 曖昧な表現はモデルに解釈の余地を与え、出力のばらつきにつながります。\n*   **出力形式の指定:** JSON、Markdown、箇条書きなど、期待する出力の形式を厳密に指定することで、モデルはそれに沿った出力を生成しやすくなります。\n*   **Few-shot prompting (少数例の提示):** 期待する入力と出力のペアをいくつか例として示すことで、モデルはパターンを学習し、より一貫性のある応答を生成しやすくなります。\n*   **思考の連鎖 (Chain-of-Thought; CoT):** 複雑なタスクでは、モデルに段階的な思考プロセスを促すことで、推論の品質と一貫性が向上することがあります。\n*   **役割の明確化:** モデルに特定の役割（例：「あなたは社内ドキュメント検索システムです」）を与えることで、その役割に基づいた一貫性のある応答を引き出すことができます。\n\nこれらの設定とアプローチを組み合わせることで、「Agentforce」の出力をより安定させ、予測可能なものに近づけることができるはずです。まずは、`temperature`を低く設定し、プロンプトを具体的にすることから試してみることをお勧めします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGPsB4LoxAaHp9tQt0Juk3-LZyTtfkJmZPPth_j69qUI5mo064WfpzbXYPs436kqOKCFgPakX_eZfi4MIpA1CJfS2oyA10mrv2cOMD2Q9XQxneyJOh06tx-DQEhMnPEfQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHaTjrjGsnz8oIkxhjDHN_ezGgoKNpVRmUwSVyXeD3Pq0h7FmUVZvxvfIx1LusCBdE99huuzFsRFDXwE9fbT00gWFAC2T5kA6DzBZIgDQ-T7E1pipulknOcKZG7IK6WGsKFJwHNQg8N",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG17i_22DUQBzl6_KlntkLyvZ-LGyA59kG_ZmTtSc2SQbdPia8_BINBU4sSbg95GuKMWqROLl_6jATceE80MSIw8npq_83DPArbMLPQRWqGitxGkBXQOfhnepJ0seoJWNqo32act-ZsLG8i8rDSrVms",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGAhlXv7HyJN-GoDGsLvnmtSicipWII7K2CyNyrWa1gFSVekrMLTL7Hqs3ELvof6JdctZtmD7YYdSOrvl2eiWbY3oShczTCjtmuZziMu6UWvY0bpPy48LSgvwb74jmV_8XcqqjOmfJepabYb1v7p6iRhMAuGhsMaifLcFmf-MBhmPk7W808r9LAbQpjsot8SHsVToM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHUhuRZlCRkNPYsArndvDc3VPAaf85WXLT0uz5mLWozDm0X-SvWUhD3iDrWEuk4NkoHGfspP1S8ESL5jikX5_Yo5LsQYlkuuB37-mNWPdApxOOz26hivT5DzpCnH9EDptMAO3bhudCxgKZw6dz78BnWH1_hWEeVY4HOw40=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEEt_VlVHPur6KEGwwxW0SPhVhhwZllXlCBavzl4CulrTZJWfQiQC7jEFn9xPsl4NDo2e-o9HFmnG3B7csGDEWJIOs6IVW82qURl5WXi6L44IghYmnfmPV1aLcyU7MDkcMXOkraio7UX17z"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E22",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-reasoning-control/",
+  "answer_text": "Agentforceの出力が毎回変わって安定しないとのこと、大規模言語モデル（LLM）の挙動は、モデルの特性と推論時の設定によって大きく左右されます。出力の安定性を高めるためには、以下のモデル選択と推論制御の設定を見直すことが重要です。\n\n### 1. モデル選択\n\nLLMは、その学習データやアーキテクチャによって得意なことや特性が異なります。出力の安定性を求める場合、以下の点を考慮してモデルを選択します。\n\n*   **特定のタスクに特化したモデルの利用:** 汎用モデルよりも、特定のタスク（要約、翻訳、QAなど）にファインチューニングされたモデルの方が、より安定した出力を提供する傾向があります。\n*   **比較的小規模なモデルの検討:** パラメータ数が多い大規模なモデルは、より複雑な推論や多様な表現が可能ですが、その分、出力のばらつきも大きくなることがあります。タスクの要件が明確で、創造性よりも一貫性が求められる場合は、比較的小規模なモデルの方が安定しやすい可能性があります。小規模モデルは計算コストやメモリ使用量を抑えやすいというメリットもあります。\n*   **Deterministic（決定的）な出力が期待されるモデル:** LLMは確率的なテキスト生成を行いますが、中にはより「決定的」な出力を目指して設計されたモデルもあります。評価データセットに対して一貫した結果を出すことが重視されるモデルを選ぶと良いでしょう。\n\n### 2. 推論制御の設定\n\nLLMの出力の多様性や一貫性は、推論時に設定するハイパーパラメータによって大きく変化します。出力の安定性を高めるためには、以下のパラメータを調整します。\n\n*   **Temperature (温度)**:\n    *   `temperature`は、出力のランダム性や多様性を制御するパラメータです。値が高いほど多様で創造的な出力になり、低いほど予測可能で一貫した出力になります。\n    *   **安定性を高めるには、`temperature`を低い値（例: 0.0〜0.3程度）に設定することをおすすめします。** 0に設定すると、最も確率の高いトークンが常に選択されるため、可能な限り決定的な出力が得られます。\n*   **Top-p (核サンプリング)** および **Top-k**:\n    *   これらは、次に生成されるトークンの候補を絞り込むためのパラメータです。\n    *   `top-p`は、確率の高いトークンから累積確率が指定した値になるまでの範囲でトークンを選択します。\n    *   `top-k`は、確率の高い上位k個のトークンから選択します。\n    *   **安定性を高めるには、`top-p`を低い値（例: 0.9以下）に、または`top-k`を小さい値に設定することで、出力の選択肢を狭め、一貫性を向上させることができます。** ただし、あまりに厳しくしすぎると、不自然な出力になる可能性もあるため、タスクに応じて調整が必要です。\n*   **Repetition Penalty (繰り返しペナルティ)**:\n    *   このパラメータは、すでに生成されたトークンの繰り返しを抑制します。\n    *   出力の単調さを防ぐ目的で使用されますが、**安定した出力が必要な場合は、適切な値（例: 1.0〜1.2程度）に設定することで、不必要な多様性や発散を防ぐことができます。**\n*   **Max New Tokens (最大トークン数)**:\n    *   生成される出力の最大長を制限します。長すぎる出力は意図しない内容を含む可能性を高めるため、**タスクに必要な最小限の長さに設定することで、出力の範囲を制御し、安定化に寄与します。**\n\n### 3. プロンプトエンジニアリング\n\nモデル選択や推論制御だけでなく、入力プロンプトの設計も出力の安定化に大きく影響します。\n\n*   **明確で具体的な指示:** LLMに何を求めているのかを具体的に、かつ明確に指示することが重要です。 曖昧な表現はモデルに解釈の余地を与え、出力のばらつきにつながります。\n*   **出力形式の指定:** JSON、Markdown、箇条書きなど、期待する出力の形式を厳密に指定することで、モデルはそれに沿った出力を生成しやすくなります。\n*   **Few-shot prompting (少数例の提示):** 期待する入力と出力のペアをいくつか例として示すことで、モデルはパターンを学習し、より一貫性のある応答を生成しやすくなります。\n*   **思考の連鎖 (Chain-of-Thought; CoT):** 複雑なタスクでは、モデルに段階的な思考プロセスを促すことで、推論の品質と一貫性が向上することがあります。\n*   **役割の明確化:** モデルに特定の役割（例：「あなたは社内ドキュメント検索システムです」）を与えることで、その役割に基づいた一貫性のある応答を引き出すことができます。\n\nこれらの設定とアプローチを組み合わせることで、「Agentforce」の出力をより安定させ、予測可能なものに近づけることができるはずです。まずは、`temperature`を低く設定し、プロンプトを具体的にすることから試してみることをお勧めします。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "kentei.ai",
+    "blog.idcf.jp",
+    "ibm.com",
+    "media.tcdigital.jp",
+    "recruit.group.gmo",
+    "zenn.dev"
+  ],
+  "resolved_urls": [
+    "https://kentei.ai/blog/archives/3321",
+    "https://blog.idcf.jp/entry/PromptEngineering",
+    "https://www.ibm.com/jp-ja/think/topics/llm-parameters",
+    "https://media.tcdigital.jp/ai-knowledge-flow/articles/llm-temperature-topp-optimization/",
+    "https://recruit.group.gmo/engineer/jisedai/blog/prompt_template/",
+    "https://zenn.dev/tsuboi/articles/da19549dbdc6de"
+  ],
+  "unresolved_redirects": 0
+}
