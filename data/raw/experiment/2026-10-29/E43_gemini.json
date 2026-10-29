@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-29",
+  "prompt_id": "E43",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの設定は開発者なしで営業部門だけでできる？開発が必要になる範囲はどこから？",
+  "cep": null,
+  "timestamp": "2026-10-29T02:05:43.416549Z",
+  "answer": "Agentforceの設定は、開発者なしで営業部門だけでも進めることが可能です。Agentforce Builderは、コードを書かずにAIエージェントを作成できるポイント＆クリックのインターフェースとして設計されています。これにより、営業部門の担当者がApexコードやプラットフォームエンジニアリングの知識なしにエージェントを設定できます。\n\nAgentforce Builderは宣言的な設定ツールであり、ユーザーはエージェントに実行させたい内容を自然言語で記述することで、会話のルーティングやタスクの実行方法がプラットフォームの推論エンジンによって決定されます。エージェントの名前、ペルソナ、一般的な指示、エージェントが理解する意図のカテゴリであるトピック、そして各トピック内でエージェントが実際に実行するアクションのすべてを宣言的に設定できます。 Agentforce 2.0では、CRM、Tableau、Slack、AppExchange全体で利用できるエージェントスキル、既製のトピック、アクションのライブラリが提供されており、営業開発などの共通業務機能向けにカスタマイズされたソリューションを迅速に展開できます。\n\nただし、開発が必要になる範囲は以下の通りです。\n\n*   **複雑なアクションやカスタム連携:** 単純な質問への回答以上の動作（例：ケースレコードの作成、注文の検索、特定のパラメーターを含むメールの送信など）をエージェントに実行させる場合、少なくともシンプルなSalesforce Flowか、標準で提供されているアクションを連携させる必要があります。\n*   **Salesforce Flowでの詳細な自動化:** Flow Builder自体はノーコードツールですが、より具体的で複雑な自動化を実装するには、Flowの構築が必要となる場合があります。\n*   **ApexコードやAPI連携が必要なカスタムアクション:** 標準の機能やFlowでは対応できないような複雑なユースケースでカスタムアクションが必要な場合は、ApexコードやAPI連携のスキルが必要となります。\n*   **外部システムとの高度な連携:** AgentforceはCRMやSlackなど様々なチャネルで機能し、外部システムとの連携も可能ですが、複雑な外部システム連携には開発が必要となることがあります。\n*   **データの準備と品質向上:** Agentforceの実装において非常に重要なのはデータの準備です。高品質なデータがない場合、Agentforceの推論エンジンは期待通りに機能しません。統一された顧客プロファイル、クリーンなナレッジ記事、適切な個人情報（PII）のマスキングなどは成功のための前提条件であり、これには技術的なデータクレンジングや準備作業が必要となる場合があります。\n\n要するに、Agentforceは営業部門がエージェントの基本的な設定、ペルソナ定義、トピック設定、および既存のアクションの活用をノーコードツールで行うことを強力にサポートします。しかし、高度にカスタマイズされたアクション、複雑な外部システム連携、または標準の機能やFlowでは対応しきれないビジネスロジックの実装には、開発者の専門知識（Apex、API連携など）が必要になります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFOg_tp1Dr_3UHDXrgXIFFwQph33dfHrR0-QqNKzDyyXXBgmQ5a1djkeQZ7LNvH_En4xyer6gLbg7byS2k8FBVCEgN_6mnqKqqFm0KXXGy33NVZoLrAIiOKVZLJYQmy12M8N4wJn3MCfY1J_R1Y4D-D0HHs27jLp-U=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEw1qjeaRbnOFml5PZJ3mKsKXjeQr4D5TKEn8d_-tMLtr7Eyog6YSVUM-tH_cvPfkNqY9Q-dFFiE8wO1l-V0OuPStsoHDulPZcu1YFtzNm6ZvroMsrcsR8n-1VnSy2bUwlvHgQ_9eja5aZt-OGhR0lBO6ZXmEcsCryD",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQExyLRj4i66PvzG3gUmjKg57CpqatgIJKzgTXrp3w7Dig_8-AXTU6FAqgxa23Znb5I1Ok4SNfEQhgl7nwZBc6eEjdRocPfQNjTz8Y9TR0iEfOqFzR0If8Xmcv-sbdk0yt32CxZLgQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE21aj2pmnJRprLcbr137ZZnwP-HgKKV9ADqKdkzlWJH4eEFQL5pNCdTWeqtMSrPI29J9c5O-l5uSDajo3ehWK0xrrMKuwQZ5SdCGQtzEtZfWQn_s3N3W3zU6Bz-FscZpjK2zxBuWCql9yB3tp5j5f7LJSwWHaCQKzJNjryOD6hKx0="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E43",
+  "experiment_flag": "pool",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-no-code-scope/",
+  "answer_text": "Agentforceの設定は、開発者なしで営業部門だけでも進めることが可能です。Agentforce Builderは、コードを書かずにAIエージェントを作成できるポイント＆クリックのインターフェースとして設計されています。これにより、営業部門の担当者がApexコードやプラットフォームエンジニアリングの知識なしにエージェントを設定できます。\n\nAgentforce Builderは宣言的な設定ツールであり、ユーザーはエージェントに実行させたい内容を自然言語で記述することで、会話のルーティングやタスクの実行方法がプラットフォームの推論エンジンによって決定されます。エージェントの名前、ペルソナ、一般的な指示、エージェントが理解する意図のカテゴリであるトピック、そして各トピック内でエージェントが実際に実行するアクションのすべてを宣言的に設定できます。 Agentforce 2.0では、CRM、Tableau、Slack、AppExchange全体で利用できるエージェントスキル、既製のトピック、アクションのライブラリが提供されており、営業開発などの共通業務機能向けにカスタマイズされたソリューションを迅速に展開できます。\n\nただし、開発が必要になる範囲は以下の通りです。\n\n*   **複雑なアクションやカスタム連携:** 単純な質問への回答以上の動作（例：ケースレコードの作成、注文の検索、特定のパラメーターを含むメールの送信など）をエージェントに実行させる場合、少なくともシンプルなSalesforce Flowか、標準で提供されているアクションを連携させる必要があります。\n*   **Salesforce Flowでの詳細な自動化:** Flow Builder自体はノーコードツールですが、より具体的で複雑な自動化を実装するには、Flowの構築が必要となる場合があります。\n*   **ApexコードやAPI連携が必要なカスタムアクション:** 標準の機能やFlowでは対応できないような複雑なユースケースでカスタムアクションが必要な場合は、ApexコードやAPI連携のスキルが必要となります。\n*   **外部システムとの高度な連携:** AgentforceはCRMやSlackなど様々なチャネルで機能し、外部システムとの連携も可能ですが、複雑な外部システム連携には開発が必要となることがあります。\n*   **データの準備と品質向上:** Agentforceの実装において非常に重要なのはデータの準備です。高品質なデータがない場合、Agentforceの推論エンジンは期待通りに機能しません。統一された顧客プロファイル、クリーンなナレッジ記事、適切な個人情報（PII）のマスキングなどは成功のための前提条件であり、これには技術的なデータクレンジングや準備作業が必要となる場合があります。\n\n要するに、Agentforceは営業部門がエージェントの基本的な設定、ペルソナ定義、トピック設定、および既存のアクションの活用をノーコードツールで行うことを強力にサポートします。しかし、高度にカスタマイズされたアクション、複雑な外部システム連携、または標準の機能やFlowでは対応しきれないビジネスロジックの実装には、開発者の専門知識（Apex、API連携など）が必要になります。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "crmxai.com",
+    "salesforce.com",
+    "youtube.com",
+    "eesel.ai"
+  ],
+  "resolved_urls": [
+    "https://crmxai.com/blog/how-to-set-up-agentforce-agent-no-code",
+    "https://www.salesforce.com/blog/easy-to-use-agentforce-builder/",
+    "https://www.youtube.com/watch?v=sYHWi-d8h_0",
+    "https://www.eesel.ai/ja/blog/salesforce-agentforce-implementation-guide"
+  ],
+  "unresolved_redirects": 0
+}
