@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-01",
+  "prompt_id": "E31",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？",
+  "cep": null,
+  "timestamp": "2026-11-01T01:52:41.946980Z",
+  "answer": "Agentforce Employee Agentは、Salesforce上で動作する従業員向けのAIエージェントです。従業員が情報を検索したり、タスクを完了したり、チャネル間でパーソナライズされたサポートにアクセスしたりできるように設計されています。\n\n主な役割は、社内問い合わせへの対応や業務申請フローの自動化です。定型的な質問に対して即座に回答したり、必要に応じて適切な部門へ自動でエスカレーションしたりする機能を持ち、対応部門と利用者双方の負担を大幅に軽減します。\n\n従来のチャットボットが単純な「If-Then」ロジックに基づいているのに対し、Agentforce Employee Agentはより高度なAI機能を活用しています。また、ログインユーザーのコンテキストで実行され、既存の権限レベルを尊重するため、例えば下位の従業員が役員の給与情報など機密性の高いデータにアクセスできないように設定できます。さらに、総務用や人事用など、部署や用途ごとに複数のエージェントを作成し、アクセス権限を細かく制御することも可能です。\n\n社内問い合わせにおいてAgentforce Employee Agentに任せられる範囲は以下の通りです。\n\n*   **定型的な質問への自動応答**：社内のよくある問い合わせ（FAQ）に対して、ナレッジベースに基づいて自動で回答します。これにより、担当部門への問い合わせ集中を解消し、従業員は必要な情報を素早く自己解決できます。\n*   **タスクの実行と自動化**：質問に答えるだけでなく、会議の設定や会議室の予約といったタスクの実行も可能です。\n*   **適切な部門へのエスカレーション**：AIで解決できない複雑な問い合わせや、人間による対応が必要な場合は、適切な担当部署へスムーズにエスカレーションします。\n*   **多岐にわたる社内業務**：Salesforce社自身も、人事、社内制度、会議室予約、社内求人など、幅広い社内問い合わせにEmployee Agentを活用しています。導入から1年間で30万件以上の会話を処理し、97.7%の自己解決率を達成した実績もあります。\n*   **業務効率化**：基本的な一次問い合わせの件数を20%削減したり、福利厚生の加入期間に関するサポート案件を58%削減したり、紛失・盗難端末の処理時間を1時間超から約15分に短縮したりする効果が報告されています。\n*   **情報参照元**：CRMやSlackに加え、270以上のエンタープライズソースから横断的に情報を検索できます。\n\nただし、その効果を最大限に引き出すためには、既存のFAQや社内マニュアルなどのナレッジをどこまで整備すべきか、Slack連携やエスカレーションをどこまで自動化するのが適切かなど、導入時の計画と設定が重要になります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHK1TUrPci1WQpSzM1QR8aRGttkjhUnAj0kvoj7qnqNj1eJPgGo5QbNTLC7El0FCDZ5dkyKWTk-alOQvN3NWCjj0FlxC3OOAN5UdqF9t9DrnPwUMXu398S1z5lMn8Jwe7wyFciMRYlHJbzh",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGucRdUevEMQdaJmyIMz-IF4SrniT_A4YDInh7xK-1tkMbBn1DKVXqN0RXl-a_yXCfeuYGk0bjxB4I6RZuEWEcVY0g94wU8S_jea-WRKWMKQNVqT9t5EeCaqsU8u_DpMQB3PLOOAKkRLXMdEchQY0Ia63GmMJj7Qs9-zb9PE9fxxEeT6xdBndcXnw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGzQN0s8y_6rmMk3F5aajFJO5e3p-N8iN78F--OW1H5Gwnh4okYjiqjd6JPdsZ8nzDhfVDzNQ07nQdwyA0RTZUpHmbeDkWQhFF3vzABIWcTCzHYnmsLO5GSfjQtQXIXchV3dIy__jfqYFqcDExKA2t2FIvXyg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGFBzPNoF-dc1ayhI131JiVn0XcEwsaNYRa4T-6A19sA-Yv3uI6ggM_nLT0pG-v1E5z6c6-0CT_diSE5cLTW8HwWnv4TL4OT_Z9P0AavXi5p-pTYgA3QpGwUaxxZ0LZejSQ9SYMr5Mwz14=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGG_J40JPDqWc-Z8YuN7y8Ehoutb6gu03qIcz3ntm-eG8_hICyvVEqVTeedFdOqMbx47jLQZiiqlSnnCqKPH53QGrqwM834V7dyMONpO3WqIFVkbpm6axmT6WjkQ3-I71GP6l23b1v-4iUkVELe3CuXkUc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVAlShvpPq-TiHCgjVGOUILGAgRBdHFSlw72GZl4qFfvEx5EFMuEbUrEo5mZDy_bJrV9jaYS4BEvzZn_NXT7S4VFgZ8__UCG8sH-2LEZO0g0Jh4vQHb2haB7adGwOBxg4x-sgy1jk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEFlMkPHCIF0astBQsGVgOVe5pcrSpgAX5Os_aO6FjlsUM8sbqZzfNSHZmjy2aPzSYAb1VSx3bOmOiwaOKOkv0eQDToMokDpGHNEhiWhpeAbvqYvHewMLim_xUr4ze1bNtmVMTFXCBQg6g="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E31",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-employee-agent/",
+  "answer_text": "Agentforce Employee Agentは、Salesforce上で動作する従業員向けのAIエージェントです。従業員が情報を検索したり、タスクを完了したり、チャネル間でパーソナライズされたサポートにアクセスしたりできるように設計されています。\n\n主な役割は、社内問い合わせへの対応や業務申請フローの自動化です。定型的な質問に対して即座に回答したり、必要に応じて適切な部門へ自動でエスカレーションしたりする機能を持ち、対応部門と利用者双方の負担を大幅に軽減します。\n\n従来のチャットボットが単純な「If-Then」ロジックに基づいているのに対し、Agentforce Employee Agentはより高度なAI機能を活用しています。また、ログインユーザーのコンテキストで実行され、既存の権限レベルを尊重するため、例えば下位の従業員が役員の給与情報など機密性の高いデータにアクセスできないように設定できます。さらに、総務用や人事用など、部署や用途ごとに複数のエージェントを作成し、アクセス権限を細かく制御することも可能です。\n\n社内問い合わせにおいてAgentforce Employee Agentに任せられる範囲は以下の通りです。\n\n*   **定型的な質問への自動応答**：社内のよくある問い合わせ（FAQ）に対して、ナレッジベースに基づいて自動で回答します。これにより、担当部門への問い合わせ集中を解消し、従業員は必要な情報を素早く自己解決できます。\n*   **タスクの実行と自動化**：質問に答えるだけでなく、会議の設定や会議室の予約といったタスクの実行も可能です。\n*   **適切な部門へのエスカレーション**：AIで解決できない複雑な問い合わせや、人間による対応が必要な場合は、適切な担当部署へスムーズにエスカレーションします。\n*   **多岐にわたる社内業務**：Salesforce社自身も、人事、社内制度、会議室予約、社内求人など、幅広い社内問い合わせにEmployee Agentを活用しています。導入から1年間で30万件以上の会話を処理し、97.7%の自己解決率を達成した実績もあります。\n*   **業務効率化**：基本的な一次問い合わせの件数を20%削減したり、福利厚生の加入期間に関するサポート案件を58%削減したり、紛失・盗難端末の処理時間を1時間超から約15分に短縮したりする効果が報告されています。\n*   **情報参照元**：CRMやSlackに加え、270以上のエンタープライズソースから横断的に情報を検索できます。\n\nただし、その効果を最大限に引き出すためには、既存のFAQや社内マニュアルなどのナレッジをどこまで整備すべきか、Slack連携やエスカレーションをどこまで自動化するのが適切かなど、導入時の計画と設定が重要になります。",
+  "cited_domain": 1,
+  "cited_article": 1,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "note.com",
+    "salesforce.com",
+    "strh.co.jp",
+    "cross-com.jp",
+    "zenn.dev",
+    "upward.jp"
+  ],
+  "resolved_urls": [
+    "https://note.com/samuraijuku_biz/n/n08b3a08e8d5d",
+    "https://www.salesforce.com/agentforce/agentforce-for-employees/employee-agents/",
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://cross-com.jp/agentforce-employee-agent/",
+    "https://zenn.dev/pacific_creator/articles/bd665f463b4ccc",
+    "https://note.com/aiworkwatch/n/nf99b3defb9c6",
+    "https://upward.jp/weblog/salesforce-agentforce/"
+  ],
+  "unresolved_redirects": 0
+}
