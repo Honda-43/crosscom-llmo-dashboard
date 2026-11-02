@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-02",
+  "prompt_id": "E04",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Observabilityとは？定着と精度を測る指標はどう設計する？",
+  "cep": null,
+  "timestamp": "2026-11-02T02:08:06.153955Z",
+  "answer": "Agentforce Observabilityは、AIエージェントのパフォーマンスを監視、分析、最適化するための製品群です。Salesforceが提供しており、特にAgentforce Studioで構築されたAIエージェントの信頼性、安全性、ビジネス目標との整合性を確保することを目的としています。エージェントの意思決定プロセスや行動を可視化し、リアルタイムに近い形でパフォーマンスを計測・分析することで、継続的な品質改善を可能にします。\n\n主な機能としては、目標に対するエージェントのパフォーマンス追跡、効果と品質の測定、傾向の特定、エージェントの動作のトラブルシューティング、およびリアルタイムの健全性監視などが挙げられます。\n\nAgentforce Observabilityの「定着」と「精度」を測る指標は、それぞれ以下のように設計できます。\n\n### 定着を測る指標の設計\n\nAgentforce Observabilityの定着とは、このツールがユーザーによってどれだけ利用され、業務プロセスに組み込まれているかを示します。\n\n1.  **ユーザー数と利用頻度:**\n    *   **ユニークユーザー数:** Agentforce Observabilityにログインした、または特定の機能を利用したユニークなユーザー数。\n    *   **ログイン頻度:** 週次または月次での平均ログイン回数。\n    *   **機能利用率:** Agent Analytics、Insights、Session Analysisなど、提供されている各種機能がどれくらいのユーザーに利用されているかの割合。\n2.  **エンゲージメント指標:**\n    *   **セッション時間:** ユーザーがObservabilityダッシュボードやレポートで費やす平均時間。\n    *   **レポート生成数:** ユーザーがObservabilityから生成したカスタムレポートや分析の数。\n    *   **アラート設定数:** ユーザーがエージェントのパフォーマンス監視のために設定したアラートの数。\n3.  **改善アクションへの連携:**\n    *   **エージェント改修連携数:** Observabilityによって特定された課題に基づいて、実際にエージェントのロジックやナレッジが改修された回数。\n    *   **課題エスカレーション数:** Observabilityが検知した問題が、開発チームや運用チームにエスカレーションされ、対応された回数。\n\n### 精度を測る指標の設計\n\nAgentforce Observabilityにおける「精度」とは、Agentforce Observabilityを利用することで、監視対象であるAIエージェント自体の性能やアウトプットの質がどれだけ向上したか、または維持されているかを指します。\n\n1.  **AIエージェントの応答品質指標:**\n    *   **解決率:** AIエージェントがユーザーの問い合わせを完全に解決できた割合。\n    *   **正答率/精度:** AIエージェントの回答や提示された情報が、どれだけ正確であったかの割合。\n    *   **誤応答率/エスカレーション率:** AIエージェントが不適切な応答をしたり、人間による介入（エスカレーション）が必要になった会話の割合。\n    *   **顧客満足度（CSAT/NPS）:** AIエージェントとのやり取りに対する顧客の満足度や推奨度。\n    *   **会話フロー完了率:** AIエージェントが設計された会話フローを最後まで適切に完了した割合。\n2.  **ビジネス成果への貢献指標:**\n    *   **コスト削減効果:** AIエージェントの利用により、人件費や運用コストがどれだけ削減されたか。\n    *   **生産性向上効果:** AIエージェントが処理したタスク量や、従業員の業務効率化に貢献した度合い。\n    *   **売上向上への貢献:** AIエージェントが直接的または間接的に売上増加に貢献した額。\n3.  **エージェントの動作健全性指標:**\n    *   **エラー発生率:** AIエージェントが処理中に発生させた技術的なエラーの割合。\n    *   **予期せぬ挙動の検知数:** Observabilityツールが、エージェントの異常な動作や予期せぬアウトプットを検知した回数。\n    *   **モデル劣化の兆候:** 時間経過とともにエージェントのパフォーマンス指標が低下している兆候。\n\nこれらの指標を定期的に追跡し、分析することで、Agentforce Observabilityの定着度と、それによってもたらされるAIエージェントの精度の向上を評価し、さらなる改善につなげることができます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFT63jEXUetPsDyUnMI8bMoy0MemFkN6e-pcLKPT1zwvfz1NfcPZSQrS_yGZLzEfHVzalihQTfrduSPd_l37Ln6BgtUPFlwHij_s96SYXGVqJ_GHmSBQjXuvu3aobjuWvp7va4501t4UNTSipec47RLKg1WtfTUWzmYNtL4XLkNsBYGFw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHJzrzPrDtReoFgCBxAuGUo83lbMg8ZqokHcMUZVIs4TuX41H_1cFWSwM8wMsQREKz73gygFEEIYKUqXS39erlBiPDYSxq_lAhwJOnups-7CUobFIVLX46vvDTnmZF4Y-kLa93kX8U3vAzKsH4iNgQUrPE4",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHLMHDsZzM0-T1WCA1In5veq-bx8KlfqJAsq7qmCzIgJ5-DUj3wKTESKQceHHY_wxXJcDhlXoawtCT2sQ9RHf9SWAVKawwmMOO04WdTQz5fGqQ7TeE0DwmuFMQ3xom0wSySQ14qW5eExe3Dn3gGijo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHuLIkmQ6k5EA7lqLVV1hXUpdZbFkxzFhtne_GZYPoUX1dHg8PCR_CXAOO3ujTBdY-59grpdgMXm0B34f25tT6iVqQMU8CDM5wnrLwrzKA33AbrjKXlrO2oJqmB4QI1xLdI01WKcApP0A4nGFJafSMFBZFBxnWne8ojuGleMZplllr3NOlc29w=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFsKIeAeYzcRrJxteaNUUZQDRCwnzd6AqweYG8L1RYur4yHIdkBRkIyEP8AjT-RShXgiS-RjaM5NDbtpB7G9enMai61id7Xn8f191oWmQnNGrammYi3BbrTdxJedszqIw8F0_ezj5U="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E04",
+  "experiment_flag": "pool",
+  "layer": "古",
+  "target_url": "https://cross-com.jp/agentforce-observability/",
+  "answer_text": "Agentforce Observabilityは、AIエージェントのパフォーマンスを監視、分析、最適化するための製品群です。Salesforceが提供しており、特にAgentforce Studioで構築されたAIエージェントの信頼性、安全性、ビジネス目標との整合性を確保することを目的としています。エージェントの意思決定プロセスや行動を可視化し、リアルタイムに近い形でパフォーマンスを計測・分析することで、継続的な品質改善を可能にします。\n\n主な機能としては、目標に対するエージェントのパフォーマンス追跡、効果と品質の測定、傾向の特定、エージェントの動作のトラブルシューティング、およびリアルタイムの健全性監視などが挙げられます。\n\nAgentforce Observabilityの「定着」と「精度」を測る指標は、それぞれ以下のように設計できます。\n\n### 定着を測る指標の設計\n\nAgentforce Observabilityの定着とは、このツールがユーザーによってどれだけ利用され、業務プロセスに組み込まれているかを示します。\n\n1.  **ユーザー数と利用頻度:**\n    *   **ユニークユーザー数:** Agentforce Observabilityにログインした、または特定の機能を利用したユニークなユーザー数。\n    *   **ログイン頻度:** 週次または月次での平均ログイン回数。\n    *   **機能利用率:** Agent Analytics、Insights、Session Analysisなど、提供されている各種機能がどれくらいのユーザーに利用されているかの割合。\n2.  **エンゲージメント指標:**\n    *   **セッション時間:** ユーザーがObservabilityダッシュボードやレポートで費やす平均時間。\n    *   **レポート生成数:** ユーザーがObservabilityから生成したカスタムレポートや分析の数。\n    *   **アラート設定数:** ユーザーがエージェントのパフォーマンス監視のために設定したアラートの数。\n3.  **改善アクションへの連携:**\n    *   **エージェント改修連携数:** Observabilityによって特定された課題に基づいて、実際にエージェントのロジックやナレッジが改修された回数。\n    *   **課題エスカレーション数:** Observabilityが検知した問題が、開発チームや運用チームにエスカレーションされ、対応された回数。\n\n### 精度を測る指標の設計\n\nAgentforce Observabilityにおける「精度」とは、Agentforce Observabilityを利用することで、監視対象であるAIエージェント自体の性能やアウトプットの質がどれだけ向上したか、または維持されているかを指します。\n\n1.  **AIエージェントの応答品質指標:**\n    *   **解決率:** AIエージェントがユーザーの問い合わせを完全に解決できた割合。\n    *   **正答率/精度:** AIエージェントの回答や提示された情報が、どれだけ正確であったかの割合。\n    *   **誤応答率/エスカレーション率:** AIエージェントが不適切な応答をしたり、人間による介入（エスカレーション）が必要になった会話の割合。\n    *   **顧客満足度（CSAT/NPS）:** AIエージェントとのやり取りに対する顧客の満足度や推奨度。\n    *   **会話フロー完了率:** AIエージェントが設計された会話フローを最後まで適切に完了した割合。\n2.  **ビジネス成果への貢献指標:**\n    *   **コスト削減効果:** AIエージェントの利用により、人件費や運用コストがどれだけ削減されたか。\n    *   **生産性向上効果:** AIエージェントが処理したタスク量や、従業員の業務効率化に貢献した度合い。\n    *   **売上向上への貢献:** AIエージェントが直接的または間接的に売上増加に貢献した額。\n3.  **エージェントの動作健全性指標:**\n    *   **エラー発生率:** AIエージェントが処理中に発生させた技術的なエラーの割合。\n    *   **予期せぬ挙動の検知数:** Observabilityツールが、エージェントの異常な動作や予期せぬアウトプットを検知した回数。\n    *   **モデル劣化の兆候:** 時間経過とともにエージェントのパフォーマンス指標が低下している兆候。\n\nこれらの指標を定期的に追跡し、分析することで、Agentforce Observabilityの定着度と、それによってもたらされるAIエージェントの精度の向上を評価し、さらなる改善につなげることができます。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "salesforce.com",
+    "zenn.dev",
+    "accelirate.com",
+    "help.salesforce.com",
+    "youtube.com"
+  ],
+  "resolved_urls": [
+    "https://www.salesforce.com/agentforce/observability/agent-observability/",
+    "https://zenn.dev/pacific_creator/articles/5813ac7a23732a",
+    "https://www.accelirate.com/agentforce-observability/",
+    "https://help.salesforce.com/s/articleView?id=005226932&language=en_US&type=1",
+    "https://www.youtube.com/watch?v=QgSfsD3qwXI"
+  ],
+  "unresolved_redirects": 0
+}
