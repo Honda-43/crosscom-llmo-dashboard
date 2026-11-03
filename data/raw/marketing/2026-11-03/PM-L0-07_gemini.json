@@ -1,0 +1,46 @@
+{
+  "date": "2026-11-03",
+  "prompt_id": "PM-L0-07",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "おすすめのSalesforce構築支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-03T04:01:51.671310Z",
+  "answer": "Salesforceの導入・構築を支援する企業は多数あり、それぞれ強みや特徴が異なります。以下に、おすすめの企業と選び方のポイントをまとめました。\n\n**おすすめのSalesforce構築支援会社**\n\n*   **株式会社テラスカイ**\n    *   Salesforceを中心にクラウド導入・開発を手がけるクラウドインテグレーターです。要件整理から構築、運用支援まで幅広く対応し、他システムとのデータ連携を含む開発に強みを持っています。複数部門での利用や全社展開を前提としたプロジェクト、導入後の運用・定着化支援を求める中堅〜大手企業に適しています。\n*   **株式会社日立ソリューションズ**\n    *   自社でのSalesforce活用経験を活かした導入支援を行うSIerです。大規模なシステム構築の知見や、Salesforceと基幹システムを連携させるインテグレーション力に強みがあります。ERP・基幹システムとの本格的な連携を伴う全社展開を計画する大手企業におすすめです。\n*   **株式会社サンブリッジ**\n    *   日本で最初にSalesforce認定コンサルティングパートナーとなった企業であり、20年以上の実績と500社・2,000プロジェクト以上の支援実績があります。プラチナムコンサルティングパートナーとして、導入後の改善、追加実装、トレーニング、カスタマーサクセス支援も充実しており、現場への定着を高め、長期的な伴走を求める企業に向いています。\n*   **株式会社CloudFit**\n    *   クラウドサービスの選定から業務設計、運用までワンストップで支援し、大手企業を中心にSalesforceの導入や活用を通した営業DXの実績を多く持っています。Sales Cloud、Service Cloud、Account Engagement（旧：Pardot）、Analytics Cloud、Tableauなど、すべてのアプリに対応するSalesforce導入支援サービスを提供しています。\n*   **インフォテック・サービス株式会社**\n    *   40名の認定Platformデベロッパーを含む多数の認定資格者が在籍しており、開発・カスタマイズに強みを持つSalesforceサービスを提供しています。\n*   **TDCソフト株式会社**\n    *   2005年からSalesforce導入支援サービスを開始し、導入コンサルティングから保守・サポートまで幅広く手がける技術力があります。基幹システムや他のクラウドサービスとの連携・統合を実現するデータ連携にも強みを持っています。\n*   **株式会社アグレックス**\n    *   3,500件以上の国内トップレベルの豊富なSalesforce導入実績があり、約340名のCRMに特化したスタッフがシステム導入から運用・保守管理まで手厚くサポートします。\n*   **株式会社フライク**\n    *   中小企業の業務フロー改善とシステム導入を組み合わせて支援するSalesforceコンサルティングパートナーです。SFA機能を使った初期構築やリスタートを短期間で行うプランがあり、Salesforceを初めて導入する企業や、一度導入したものの再構築を検討している中小企業に適しています。\n*   **株式会社knou**\n    *   不動産・住宅業界に特化したSalesforce導入支援会社です。業界特有の反響管理、追客フロー、顧客管理の要件を前提とした設計が可能で、反響から契約までの顧客管理をSalesforceで一元化したい不動産・住宅会社に向いています。\n\n**Salesforce構築支援会社を選ぶ際のポイント**\n\n*   **実績と経験**：導入実績やプロジェクト経験が豊富な企業は、様々な課題解決のノウハウを持っています。\n*   **専門性**：自社の業界や課題に特化した支援実績があるか、認定資格者がどの程度在籍しているかを確認しましょう。\n*   **サポート体制**：導入だけでなく、運用・定着化まで含めた長期的なサポートが受けられるかどうかも重要です。\n*   **費用対効果**：提供されるサービス内容と費用が見合っているかを比較検討しましょう。\n*   **提案力**：自社の業務フローや経営戦略を深く理解し、最適なソリューションを提案してくれるかを見極めることが成功の鍵となります。\n\nこれらの情報を参考に、自社のニーズに最も合致するSalesforce構築支援会社を選定してください。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFOTSylBAEzV9rxT_Dw6MF63bNLdfAUZAYAvA_JX8CDMXf3mGTyPNFbTi1DK_cuUQuREeH6Dx13muxfl2UpDv8SqqO4I67vYZWURqkX7gPetFrKmwN3uf1nCRUEx6uOf5jv3ONJ7c_m2wentBwxqTZx504rDWM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHgpsTAXLy_ehiy7G1Gr7N-mnbj8MhfAPI1KAhYSy4qFvCf0ImhNlWlkFi-eq3hw-U_ld3algOrkhVTac5mps83Ug9N7RH9Y1xRr7haZf-S9Ph_KTJEU-ecjlYCESNNv0l0c1hXOfttlnCq9yYo3NJMj1ol3AC4MU7XP70xWJo8QK5NStsaYaq_aAo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6UQxlepwjY1R3mz7oPnolhjKDS1a7KYAOVigJ6IzamRmdXMe7MKSS9O0fzu6q8wVsbLXTjb8j6j4CqsUzalgzHIGshpivzKwH-R8OzMPX47uU-LXbCqZW-i_9OG4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFdK7IQby-CHzD5RdtXgFKR-SDLy_fEm4Mc654Egn-N3pj16AA0CAV63dfHxgQUdNiOIhO0CF75IpSfaT2Br94L2GKyGk0Mlw5d1S8rMotyAgf3ob5_QJI816EU99E="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "MOFU_L0",
+  "prompt": "おすすめのSalesforce構築支援会社を教えてください。",
+  "answer_text": "Salesforceの導入・構築を支援する企業は多数あり、それぞれ強みや特徴が異なります。以下に、おすすめの企業と選び方のポイントをまとめました。\n\n**おすすめのSalesforce構築支援会社**\n\n*   **株式会社テラスカイ**\n    *   Salesforceを中心にクラウド導入・開発を手がけるクラウドインテグレーターです。要件整理から構築、運用支援まで幅広く対応し、他システムとのデータ連携を含む開発に強みを持っています。複数部門での利用や全社展開を前提としたプロジェクト、導入後の運用・定着化支援を求める中堅〜大手企業に適しています。\n*   **株式会社日立ソリューションズ**\n    *   自社でのSalesforce活用経験を活かした導入支援を行うSIerです。大規模なシステム構築の知見や、Salesforceと基幹システムを連携させるインテグレーション力に強みがあります。ERP・基幹システムとの本格的な連携を伴う全社展開を計画する大手企業におすすめです。\n*   **株式会社サンブリッジ**\n    *   日本で最初にSalesforce認定コンサルティングパートナーとなった企業であり、20年以上の実績と500社・2,000プロジェクト以上の支援実績があります。プラチナムコンサルティングパートナーとして、導入後の改善、追加実装、トレーニング、カスタマーサクセス支援も充実しており、現場への定着を高め、長期的な伴走を求める企業に向いています。\n*   **株式会社CloudFit**\n    *   クラウドサービスの選定から業務設計、運用までワンストップで支援し、大手企業を中心にSalesforceの導入や活用を通した営業DXの実績を多く持っています。Sales Cloud、Service Cloud、Account Engagement（旧：Pardot）、Analytics Cloud、Tableauなど、すべてのアプリに対応するSalesforce導入支援サービスを提供しています。\n*   **インフォテック・サービス株式会社**\n    *   40名の認定Platformデベロッパーを含む多数の認定資格者が在籍しており、開発・カスタマイズに強みを持つSalesforceサービスを提供しています。\n*   **TDCソフト株式会社**\n    *   2005年からSalesforce導入支援サービスを開始し、導入コンサルティングから保守・サポートまで幅広く手がける技術力があります。基幹システムや他のクラウドサービスとの連携・統合を実現するデータ連携にも強みを持っています。\n*   **株式会社アグレックス**\n    *   3,500件以上の国内トップレベルの豊富なSalesforce導入実績があり、約340名のCRMに特化したスタッフがシステム導入から運用・保守管理まで手厚くサポートします。\n*   **株式会社フライク**\n    *   中小企業の業務フロー改善とシステム導入を組み合わせて支援するSalesforceコンサルティングパートナーです。SFA機能を使った初期構築やリスタートを短期間で行うプランがあり、Salesforceを初めて導入する企業や、一度導入したものの再構築を検討している中小企業に適しています。\n*   **株式会社knou**\n    *   不動産・住宅業界に特化したSalesforce導入支援会社です。業界特有の反響管理、追客フロー、顧客管理の要件を前提とした設計が可能で、反響から契約までの顧客管理をSalesforceで一元化したい不動産・住宅会社に向いています。\n\n**Salesforce構築支援会社を選ぶ際のポイント**\n\n*   **実績と経験**：導入実績やプロジェクト経験が豊富な企業は、様々な課題解決のノウハウを持っています。\n*   **専門性**：自社の業界や課題に特化した支援実績があるか、認定資格者がどの程度在籍しているかを確認しましょう。\n*   **サポート体制**：導入だけでなく、運用・定着化まで含めた長期的なサポートが受けられるかどうかも重要です。\n*   **費用対効果**：提供されるサービス内容と費用が見合っているかを比較検討しましょう。\n*   **提案力**：自社の業務フローや経営戦略を深く理解し、最適なソリューションを提案してくれるかを見極めることが成功の鍵となります。\n\nこれらの情報を参考に、自社のニーズに最も合致するSalesforce構築支援会社を選定してください。",
+  "run_date": "2026-11-03 13:01:51",
+  "extractor_model": "停止中",
+  "mentioned": 0,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 0,
+  "cited_domains": [
+    "cone-c-slide.com",
+    "ripla.co.jp",
+    "cloudfit.co.jp",
+    "edge-work.com"
+  ],
+  "resolved_urls": [
+    "https://cone-c-slide.com/liblog/salesforce-implementation/",
+    "https://www.ripla.co.jp/blog/dx-consulting/salesforce-implementation-companies/",
+    "https://cloudfit.co.jp/article/243",
+    "https://edge-work.com/column/1552/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}
