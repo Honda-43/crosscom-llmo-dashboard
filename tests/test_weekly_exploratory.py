@@ -109,11 +109,17 @@ def test_main_prints_the_weeks_last(monkeypatch, tmp_path, capsys):
 
 
 def test_main_holds_the_new_weeks_on_real_data_until_12_28(monkeypatch, tmp_path, capsys):
+    """2026-11-04 決定：11/2 以降を含むアフター期間では、週ごとの表示ごと長期判定まで出さない(主分析と同じ)。"""
     _main(monkeypatch, tmp_path, datetime.datetime(2026, 11, 4, 12, 0, tzinfo=JST), real=True)
-    tail = capsys.readouterr().out.split(f"## {summarize.WEEKLY_HEADING}")[1]
-    assert summarize.WEEKLY_HELD in tail
-    assert "11/03" not in tail and "11/08" not in tail
-    assert "| 10/06〜10/12 |" in tail
+    out = capsys.readouterr().out
+    assert summarize.WEEKLY_HEADING not in out and summarize.LONG_BLIND_MESSAGE in out
+
+
+def test_the_held_cut_still_guards_the_weeks(monkeypatch):
+    """週ごとの表の計算そのものも、held なら 11/01 で切る(二重の止め)。"""
+    monkeypatch.setattr(summarize, "baseline_start", lambda s: None)
+    weeks = summarize.weekly_cells(_rows(), ("2026-10-06", "2026-11-30"), "gemini", G, set(G), held=True)
+    assert max(hi for _, hi, _ in weeks) == "2026-11-01"
 
 
 def test_no_weekly_display_before_11_2(monkeypatch, tmp_path, capsys):

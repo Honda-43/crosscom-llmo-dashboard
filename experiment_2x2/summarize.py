@@ -1483,6 +1483,18 @@ WEEKLY_HELD = (f"{WEEKLY_SEEN_UNTIL} より後の観測（11/2 以降の週）�
                "（途中の数字を出さない。本物のデータで実行したとき）")
 
 
+LONG_BLIND_UNTIL_TEXT = f"長期判定（12/28 の週・{LONG_TERM_BLIND_UNTIL} 00:00 JST）"
+LONG_BLIND_MESSAGE = ("組ごとの数字（組別の率・差・差の差・p値・感度分析の表・早期解放の欄・参考の表・GSC 補助分析・週ごとの表示）は、"
+                      f"アフター期間に 11/2 以降の観測を含むため {LONG_BLIND_UNTIL_TEXT} まで計算も表示もしない"
+                      "（2026-11-04 決定。本物のデータで実行したとき。アフター期間の終わりが 2026-11-01 以前の短期判定の再実行は出す）")
+
+
+def holds_until_long_term(after_span, paths, now=None):
+    """主分析・感度分析の組ごとの数字を長期判定まで出さないか（2026-11-04 決定）。
+    アフター期間の終わりが 11/2 以降で、本物のデータで、実行した時刻が 12/28 00:00 JST より前なら True。"""
+    return after_span[1] >= GROUP_BLIND_UNTIL and long_term_blind(paths, now)
+
+
 def long_term_blind(paths, now=None):
     """11/2 以降の週の分を出さないか。本物のデータ（作り物でないファイルが1つでもある）で、12/28 00:00 JST より前なら True。"""
     now = _now_jst() if now is None else now
@@ -1554,6 +1566,10 @@ def main(argv=None):
                     help="引用プローブの結果で集計する（参考。アフター [ビフォー]）")
     a = ap.parse_args(argv)
     blind = group_blind(a.probe if a.probe else [a.csv])
+    # 11/2 以降の観測を含む組ごとの数字は長期判定まで出さない（2026-11-04 決定）。11/2 より前は blind が先に止める
+    long_blind = bool(not blind and not a.probe and a.after and holds_until_long_term(_span(a.after), [a.csv]))
+    hold = blind or long_blind
+    until_text = f"{GROUP_BLIND_UNTIL} の短期判定" if blind else LONG_BLIND_UNTIL_TEXT
 
     if a.probe and blind:
         print(f"※ 引用プローブ：{BLIND_MESSAGE}\n")
@@ -1593,10 +1609,12 @@ def main(argv=None):
             print_observation_gaps(rows, [_span(a.before), _span(a.after)], read_journal(a.journal))
         if blind:
             print(f"**{BLIND_MESSAGE}**\n")
-        if (not a.model or a.model == "gemini") and not blind:
+        elif long_blind:
+            print(f"**{LONG_BLIND_MESSAGE}**\n")
+        if (not a.model or a.model == "gemini") and not hold:
             print_fact_reference(rows, _span(a.after), groups, pool)
         elif not a.model or a.model == "gemini":
-            print(f"### {FACT_REFERENCE_HEADING}\n{GROUP_BLIND_UNTIL} の短期判定まで出さない（組ごとの結果を途中で見ないため）\n")
+            print(f"### {FACT_REFERENCE_HEADING}\n{until_text}まで出さない（組ごとの結果を途中で見ないため）\n")
         for model in ([a.model] if a.model else MODELS):
             if model_excluded(model, _span(a.after)):
                 # 欠測を0（引用なし）として数えない。ビフォー（9/15〜9/28）の Claude データは消さずに記録として残す
@@ -1608,9 +1626,9 @@ def main(argv=None):
             print(f"##### {model}（アフター {a.after} / ビフォー {a.before}）")
             if missing:
                 print(f"ビフォーに観測の無い記事 {len(missing)}本（ビフォーは0として扱う）: {', '.join(missing)}")
-            if blind:
+            if hold:
                 print_blind_overall(after, before, groups, pool, model)
-                print(f"感度分析・早期解放・ピラーの前後・GSC 補助分析：{GROUP_BLIND_UNTIL} の短期判定まで出さない\n")
+                print(f"感度分析・早期解放・ピラーの前後・GSC 補助分析・副指標・週ごとの表示：{until_text}まで出さない\n")
                 continue
             cut = fact_cut(rows, _span(a.after), model, groups, pool)
             both_ways(after, before, f"{model} ", cut)
@@ -1631,7 +1649,7 @@ def main(argv=None):
           "「9/15〜16 の追記」「鮮度更新の訂正」「FAQ の複数段落回答（<br> でつないだ変換）」「誤情報の修正（1本）」"
           "「事実訂正（導入実績の記述）」"
           "のどれかの影響として扱う。")
-    if (not a.probe and not blind and (not a.model or a.model == "gemini")
+    if (not a.probe and not hold and (not a.model or a.model == "gemini")
             and not model_excluded("gemini", _span(a.after))):
         print()
         print_weekly(rows, _span(a.after), groups, pool, held=long_term_blind([a.csv]))
