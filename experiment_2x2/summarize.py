@@ -163,11 +163,12 @@ def before_cut(row, until):
     return str(row.get("date", ""))[:10] < until.date().isoformat()
 
 
-def period(rows, span, model, groups, pool, rate=None, until=None):
+def period(rows, span, model, groups, pool, rate=None, until=None, metric="cited_article"):
     """{slug: (組, 値)}。値は Gemini が「期間中に1回でも cited_article=1 なら1」、
     Claude（RATE_MODELS）が「cited_article=1 の回数 ÷ 観測できた回数」の率（0〜1 の小数）。
     ``rate`` を渡すとモデルに関係なくどちらかに決める。
     ``until``（JST の datetime）を渡すと、その時刻より前の観測だけを使う（感度分析 B「事実訂正前で打ち切り」）。
+    ``metric`` は数える列。既定は主指標 cited_article。副指標は mentioned_v2（SUB_METRIC）。
 
     9/15〜16 に逆リンク追記が入った9本は、追記より前(9/16 まで)の観測を使わない
     (pool.baseline_start)。追記そのものが引用されやすさを動かすので、追記前後を
@@ -184,7 +185,7 @@ def period(rows, span, model, groups, pool, rate=None, until=None):
         limit = baseline_start(s)
         if limit and str(r.get("date", ""))[:10] < limit:
             continue
-        cited[s].append(str(r.get("cited_article", "")).strip() == "1")
+        cited[s].append(str(r.get(metric, "")).strip() == "1")
     rate = model in RATE_MODELS if rate is None else rate
     if rate:
         return {s: (groups.get(s, "（割付なし）"), sum(v) / len(v)) for s, v in cited.items()}
@@ -274,9 +275,12 @@ def summarize(after, before, exclude=(), label=""):
         print("組別 引用率（アフター） / 平均変化（差の差用）")
     for g in sorted(groups):
         vs = [v for v, _ in groups[g]]; ds = [d for _, d in groups[g]]
+        bs = [v - d for v, d in groups[g]]   # ビフォーの値（ビフォーに観測の無い記事は0）
         head = (f"平均 {sum(vs)/len(vs):.0%}（{len(vs)}本）" if rate
                 else f"{sum(vs)}/{len(vs)} = {sum(vs)/len(vs):.0%}")
-        print(f"  {g}: {head}   Δ平均 {sum(ds)/len(ds):+.2f}")
+        was = (f"平均 {sum(bs)/len(bs):.0%}" if rate
+               else f"{round(sum(bs))}/{len(bs)} = {sum(bs)/len(bs):.0%}")
+        print(f"  {g}: {head}   Δ平均 {sum(ds)/len(ds):+.2f}   ビフォー {was}・差 {sum(ds)/len(ds)*100:+.1f}ポイント")
     def line(name, on, off):
         a, an, c, cn, diff, p = effect(groups, on, off)
         if rate:
@@ -288,6 +292,10 @@ def summarize(after, before, exclude=(), label=""):
     print("主効果")
     line("結論要約リード", LEAD_ON, LEAD_OFF)
     line("FAQブロック化", FAQ_ON, FAQ_OFF)
+    dids = [(name, did_of(after, before, on, off, exclude)) for name, on, off in
+            (("リード（③＋④ 対 ①＋②）", LEAD_ON, LEAD_OFF), ("FAQ（②＋④ 対 ①＋③）", FAQ_ON, FAQ_OFF))]
+    print("差の差（組ごとの差＝アフター−ビフォーの平均を、あり側となし側で引いた値）：" + "／".join(
+        f"{name} {'計算できない' if v is None else f'{v:+.1f}ポイント'}" for name, v in dids))
     rr = randomization(after, exclude)
     if tested(rr):
         print(f"再ランダム化検定（同じ条件を満たす割付の中で。**判定の本線**。使用した割付数：{rr['n']:,}）"
@@ -295,6 +303,18 @@ def summarize(after, before, exclude=(), label=""):
     else:
         print(pool_note(rr))
     print()
+
+
+SUB_METRIC = "mentioned_v2"
+SUB_METRIC_HEADING = "副指標：mentioned_v2（答えの中でクロスコムに触れたか・記事単位で期間中に1回でも1なら1）"
+
+
+def print_sub_metric(rows, before_span, after_span, groups, pool):
+    """副指標 mentioned_v2 の、主分析と同じ表（組ごとの率・差の差・再ランダム化検定）。Gemini のみ。"""
+    after = period(rows, after_span, "gemini", groups, pool, metric=SUB_METRIC)
+    before = period(rows, before_span, "gemini", groups, pool, metric=SUB_METRIC)
+    print(f"## {SUB_METRIC_HEADING}")
+    summarize(after, before, (), f"副指標 {SUB_METRIC}（gemini）両方込み")
 
 
 def tested(rr):
@@ -1527,6 +1547,8 @@ def main(argv=None):
             gsc_rank_subgroups(after, before, f"{model} ")
             if model == "gemini" and is_short_judgement(_span(a.after)):
                 print_early_release(after, before, cut=cut)
+            if model == "gemini":
+                print_sub_metric(rows, _span(a.before), _span(a.after), groups, pool)
     print("判定: 差が +25pt 以上 かつ p<0.10 で「効いた」。どちらか欠ければ「この本数では判断できない」。")
     print("p は**再ランダム化検定**を本線にする（条件 a〜g の合格率が約 1/9,200 のため、"
           "同じ条件を満たす割付の中で数える）。フィッシャー正確検定は参考。")

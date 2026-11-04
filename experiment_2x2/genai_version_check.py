@@ -170,10 +170,48 @@ def version_table(rows):
     return out
 
 
+# 2026-10-22 の確認で見つかった「grounding が空になりやすい記事」：その日までの観測で grounding が空の行が1回以上あった記事(12本)
+EMPTY_PRONE_UNTIL = "2026-10-22"
+EMPTY_PRONE_HEADING = "grounding が空になりやすい記事の組ごとの本数（2026-10-22 の google-genai の版の確認で見つかったもの）"
+
+
+def empty_prone_articles(rows, until=EMPTY_PRONE_UNTIL):
+    """until までの観測で grounding が空の行が1回以上あった記事(slug)。"""
+    return sorted({r["article"] for r in rows if r["day"] <= until and r["empty_grounding"]})
+
+
+def print_empty_prone_groups(rows, groups, end):
+    """組ごとの本数(11/2 の短期判定から)。groups は {slug: 組}。end はアフター期間の最後の日。"""
+    import collections
+    import summarize
+    fixed = empty_prone_articles(rows)
+    later = [s for s in empty_prone_articles(rows, end) if s not in fixed]
+    count = lambda arts: collections.Counter(groups.get(s, "（割付なし）") for s in arts)  # noqa: E731
+    by = count(fixed)
+    print(f"### {EMPTY_PRONE_HEADING}")
+    print(f"定義：{EMPTY_PRONE_UNTIL} までの観測で grounding が空の行（cited_urls が空）が1回以上あった記事 {len(fixed)}本")
+    print("・".join(f"{g} {by.get(g, 0)}本" for g in summarize.GROUP_ORDER))
+    if later:
+        more = count(later)
+        print(f"※ 同じ定義で {end} までの観測にすると {len(fixed) + len(later)}本（増えた {len(later)}本："
+              + "・".join(f"{g} {more[g]}本" for g in summarize.GROUP_ORDER if more.get(g)) + "）")
+    print("※ 表示だけで、判定の数値には使わない\n")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--out", default=os.path.join(ROOT, "output", "reports", "genai_version_check_20261022.csv"))
+    ap.add_argument("--groups", metavar="YYYY-MM-DD",
+                    help="grounding が空になりやすい記事の組ごとの本数だけを出す(引数はアフター期間の最後の日)。"
+                         "11/2 00:00 JST より前は出さない")
     a = ap.parse_args(argv)
+    if a.groups:
+        import summarize
+        if summarize.group_blind([RAW_DIR]):
+            print(f"組ごとの本数は {summarize.GROUP_BLIND_UNTIL} の短期判定まで出さない")
+            return 0
+        print_empty_prone_groups(load_rows(), summarize.load_allocation(), a.groups)
+        return 0
     rows = load_rows()
     table, st, vt = daily(rows), steps(rows), version_table(rows)
     with io.open(a.out, "w", encoding="utf-8", newline="") as f:
