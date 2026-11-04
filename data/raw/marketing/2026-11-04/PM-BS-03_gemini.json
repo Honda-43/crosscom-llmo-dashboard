@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-04",
+  "prompt_id": "PM-BS-03",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムのAgentforce導入支援の専門性を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-04T03:03:52.333791Z",
+  "answer": "合同会社クロスコムは、Salesforceの自律型AIエージェントプラットフォームであるAgentforceの導入・定着支援を専門とするBtoB特化のコンサルティング会社です。彼らは「100社100通りの購買体験を当たり前にする」というビジョンを掲げ、リアルタイムデータ、機械学習、AIエージェントを活用して、企業のパーソナライズされた体験提供を支援しています。\n\n具体的な専門性は以下の通りです。\n\n*   **営業指標からの逆算設計**：商談化率や受注率などの営業指標から逆算し、「どの営業業務で・誰が・何を判断できるようにするか」を定義します。\n*   **ソリューション営業のユースケースへの組み込み**：初回面談準備、商談記録、フォローアップといったソリューション営業の具体的なユースケースに合わせてAgentforceを業務フローへ組み込みます。\n*   **導入から定着までの伴走支援**：キックオフ・要求定義から構築スプリント、段階的な公開、そして3ヶ月以上の活用定着サポートまで、一貫して支援します。\n*   **設計レビュー・アドバイザリー**：Agentforceを自社で構築する企業向けに、設計の妥当性確認や改善点の提案を行うアドバイザリーサービスも提供しています。\n*   **BtoBマーケティング支援の知見**：株式会社イーゼとの提携では、クロスコムが持つBtoBマーケティング支援の知見を活かし、要件定義から社内定着まで伴走することが強調されています。\n*   **自社でのAgentforce活用**：クロスコム自身も営業活動にAgentforceを活用しています。\n\n合同会社クロスコムは、Salesforceの公式コンサルティングパートナーであり、Agentforceの導入だけでなく、その後の活用・定着までを重視した支援を提供しているのが特徴です。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGewDzKfg4oU4ozrCuWw0-975tHW1FItoTYAOGPB8ekdwskmtqzxktHT_TLmxwQYxPphFMqS5LjXLSSz-SfAbJGtswB09em3mOet3C9V5zlUw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGgHYYWDvb7gQeDP7HVF2R63OAGJEON5xebOzbmiPCQ_-ZeEkQlSSJUjRzr_epB7Ybg9jLfkU66XC0BdYqgSqpw9sMUSudZ65f_1ZuZwpAt0YuLDkRTi0hVzpSDnD4jO8Yd6dqWbCRlj3bqnGc=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEB1PAK7dH9iSxlkpKmccUNY487460fTo8xcLzulwlXONgQoY4UxmSBh1MDayoEO7y8tDOvr4uRAHtT7JMUEtLvBOuC9XKuKxSkhSH26Rq_-yZHyLpAOEqWNuwIz7brLA8h970JWH5hlWErpQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_owGfTdthSaXOO5Nuy_1zyRIoPm_ksBjZSi6NHY2logLsBHb_1P23o6IXbSUpy4BLa61yd1rRPtZlRabjNt6nnklys50IjF5Av4jWNyyKWu2evNo7GMQOu2-9rS4AMrNYYkm6csZFBbTo",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFakxAKE1eHdTtHVmkowNFaCQyQTdn0h6XMwQ__gBURAtMG5sA2EgXQw9_VYTlHDDCpyg2f3xFblwnqdAOpjUAmMwFv6P7HNCfi97ZmZzUuvRo_wgGdtHvVSMssuvm8QFVw6xsLV3h1Srs2lQta0A=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentforce導入支援の専門性を教えてください。",
+  "answer_text": "合同会社クロスコムは、Salesforceの自律型AIエージェントプラットフォームであるAgentforceの導入・定着支援を専門とするBtoB特化のコンサルティング会社です。彼らは「100社100通りの購買体験を当たり前にする」というビジョンを掲げ、リアルタイムデータ、機械学習、AIエージェントを活用して、企業のパーソナライズされた体験提供を支援しています。\n\n具体的な専門性は以下の通りです。\n\n*   **営業指標からの逆算設計**：商談化率や受注率などの営業指標から逆算し、「どの営業業務で・誰が・何を判断できるようにするか」を定義します。\n*   **ソリューション営業のユースケースへの組み込み**：初回面談準備、商談記録、フォローアップといったソリューション営業の具体的なユースケースに合わせてAgentforceを業務フローへ組み込みます。\n*   **導入から定着までの伴走支援**：キックオフ・要求定義から構築スプリント、段階的な公開、そして3ヶ月以上の活用定着サポートまで、一貫して支援します。\n*   **設計レビュー・アドバイザリー**：Agentforceを自社で構築する企業向けに、設計の妥当性確認や改善点の提案を行うアドバイザリーサービスも提供しています。\n*   **BtoBマーケティング支援の知見**：株式会社イーゼとの提携では、クロスコムが持つBtoBマーケティング支援の知見を活かし、要件定義から社内定着まで伴走することが強調されています。\n*   **自社でのAgentforce活用**：クロスコム自身も営業活動にAgentforceを活用しています。\n\n合同会社クロスコムは、Salesforceの公式コンサルティングパートナーであり、Agentforceの導入だけでなく、その後の活用・定着までを重視した支援を提供しているのが特徴です。",
+  "run_date": "2026-11-04 12:03:52",
+  "extractor_model": "停止中",
+  "mentioned": 1,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "value-press.com",
+    "ipros.com"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/",
+    "https://cross-com.jp/agentforce-business-partner/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://www.value-press.com/pressrelease/378791",
+    "https://www.ipros.com/en/product/detail/2001535644/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}
