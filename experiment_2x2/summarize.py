@@ -264,7 +264,7 @@ LEAD_ON, LEAD_OFF = ("③リードのみ", "④両方"), ("①対照", "②FAQ�
 FAQ_ON, FAQ_OFF = ("②FAQのみ", "④両方"), ("①対照", "③リードのみ")
 
 
-def summarize(after, before, exclude=(), label=""):
+def summarize(after, before, exclude=(), label="", noun="引用率"):
     groups = tally(after, before, exclude)
     rate = is_rate(groups)
     n = sum(len(x) for x in groups.values())
@@ -272,7 +272,7 @@ def summarize(after, before, exclude=(), label=""):
     if rate:
         print("組別 記事ごとの引用率の平均（アフター。観測1回あたりの率） / 率の平均変化（差の差用）")
     else:
-        print("組別 引用率（アフター） / 平均変化（差の差用）")
+        print(f"組別 {noun}（アフター） / 平均変化（差の差用）")
     for g in sorted(groups):
         vs = [v for v, _ in groups[g]]; ds = [d for _, d in groups[g]]
         bs = [v - d for v, d in groups[g]]   # ビフォーの値（ビフォーに観測の無い記事は0）
@@ -314,7 +314,7 @@ def print_sub_metric(rows, before_span, after_span, groups, pool):
     after = period(rows, after_span, "gemini", groups, pool, metric=SUB_METRIC)
     before = period(rows, before_span, "gemini", groups, pool, metric=SUB_METRIC)
     print(f"## {SUB_METRIC_HEADING}")
-    summarize(after, before, (), f"副指標 {SUB_METRIC}（gemini）両方込み")
+    summarize(after, before, (), f"副指標 {SUB_METRIC}（gemini）両方込み", noun="言及率")
 
 
 def tested(rr):
@@ -1468,6 +1468,81 @@ def print_blind_overall(after, before, groups, pool, model):
     print()
 
 
+# --------------------------------------------------------------------------
+# 長期判定に向けた探索的表示：週ごと・組ごとの引用（2026-11-04 事前登録・短期判定の結果を見た後）
+# 判定の基準・主指標・感度分析には使わない。11/2 以降の週の分は、本物のデータでは長期判定（12/28 の週）まで出さない
+# （日付は実行した時刻の JST で決める。引数・環境変数では前倒しできない。作り物かどうかは group_blind と同じくファイルの場所で決める）
+# --------------------------------------------------------------------------
+WEEKLY_ANCHOR = "2026-10-06"            # 週の区切りの起点（アフター期間の初日）
+WEEKLY_SEEN_UNTIL = "2026-11-01"        # 短期判定で見た最後の日。これより後は長期判定まで出さない
+LONG_TERM_BLIND_UNTIL = "2026-12-28"    # 長期判定の週の初日（00:00 JST）
+LONG_TERM_BLIND_UNTIL_JST = datetime.datetime.fromisoformat(LONG_TERM_BLIND_UNTIL).replace(tzinfo=_JST)
+WEEKLY_HEADING = "探索的な表示：アフター期間の週ごと・組ごとの引用（Gemini）"
+WEEKLY_NOTE = "探索的な表示。判定には使わない（2026-11-04 に、短期判定の結果を見た後で登録）"
+WEEKLY_HELD = (f"{WEEKLY_SEEN_UNTIL} より後の観測（11/2 以降の週）は、長期判定（{LONG_TERM_BLIND_UNTIL} の週）のレポートで初めて出す"
+               "（途中の数字を出さない。本物のデータで実行したとき）")
+
+
+def long_term_blind(paths, now=None):
+    """11/2 以降の週の分を出さないか。本物のデータ（作り物でないファイルが1つでもある）で、12/28 00:00 JST より前なら True。"""
+    now = _now_jst() if now is None else now
+    if all(is_synthetic(p) for p in paths):
+        return False
+    return now < LONG_TERM_BLIND_UNTIL_JST
+
+
+def weekly_cells(rows, span, model, groups, pool, held=False):
+    """[(週の初日, 週の最後の日, {組: (引用された記事, 観測のある記事, 引用された観測, 観測)})]。
+    週は WEEKLY_ANCHOR から7日ずつ（期間の端で切る）。held なら WEEKLY_SEEN_UNTIL より後の観測を使わない。
+    数える行は主指標（period）と同じ：watch・プール外・欠測は数えず、9/15〜16 に追記の入った9本の追記前の観測は使わない。"""
+    start, end = span
+    if held:
+        end = min(end, WEEKLY_SEEN_UNTIL)
+    anchor = datetime.date.fromisoformat(WEEKLY_ANCHOR)
+    first, last = datetime.date.fromisoformat(start), datetime.date.fromisoformat(end)
+    obs = collections.defaultdict(list)   # (週の番号, slug) -> [0/1]
+    for r in rows:
+        day = str(r.get("date", ""))[:10]
+        if r.get("model") != model or not (start <= day <= end) or not counted(r, pool):
+            continue
+        s = slug(r["target_url"])
+        limit = baseline_start(s)
+        if limit and day < limit:
+            continue
+        week = (datetime.date.fromisoformat(day) - anchor).days // 7
+        obs[(week, s)].append(str(r.get("cited_article", "")).strip() == "1")
+    out = []
+    for week in sorted({w for w, _ in obs}):
+        lo = max(anchor + datetime.timedelta(days=7 * week), first)
+        hi = min(anchor + datetime.timedelta(days=7 * week + 6), last)
+        cell = {}
+        for g in GROUP_ORDER:
+            vs = [v for (w, s), v in obs.items() if w == week and groups.get(s) == g]
+            cell[g] = (sum(1 for v in vs if any(v)), len(vs), sum(sum(v) for v in vs), sum(len(v) for v in vs))
+        out.append((lo.isoformat(), hi.isoformat(), cell))
+    return out
+
+
+def print_weekly(rows, span, groups, pool, held=False, model="gemini"):
+    """レポートの最後に出す探索的表示（表示1・表示2）。"""
+    weeks = weekly_cells(rows, span, model, groups, pool, held)
+    pct = lambda a, n: f"{a}/{n}（{a / n:.0%}）" if n else "—"  # noqa: E731
+    print(f"## {WEEKLY_HEADING}")
+    print(f"**{WEEKLY_NOTE}**")
+    if held:
+        print(WEEKLY_HELD)
+    for title, idx in (("表示1：その週に1回でも引用された記事の割合（引用された記事 ÷ その週に観測のある記事）", (0, 1)),
+                       ("表示2：観測1回あたりの引用の割合（引用された観測の数 ÷ 観測の数）", (2, 3))):
+        print(f"\n### {title}")
+        print("| 週 | " + " | ".join(GROUP_ORDER) + " |")
+        print("|---|" + "---|" * len(GROUP_ORDER))
+        for lo, hi, cell in weeks:
+            days = (datetime.date.fromisoformat(hi) - datetime.date.fromisoformat(lo)).days + 1
+            label = f"{lo[5:].replace('-', '/')}〜{hi[5:].replace('-', '/')}" + ("" if days == 7 else f"（{days}日）")
+            print(f"| {label} | " + " | ".join(pct(cell[g][idx[0]], cell[g][idx[1]]) for g in GROUP_ORDER) + " |")
+    print(f"\n※ {WEEKLY_NOTE}\n")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description="2×2 の判定（llm_experiment）")
     ap.add_argument("--before", help="ビフォー期間 YYYY-MM-DD:YYYY-MM-DD")
@@ -1556,6 +1631,10 @@ def main(argv=None):
           "「9/15〜16 の追記」「鮮度更新の訂正」「FAQ の複数段落回答（<br> でつないだ変換）」「誤情報の修正（1本）」"
           "「事実訂正（導入実績の記述）」"
           "のどれかの影響として扱う。")
+    if (not a.probe and not blind and (not a.model or a.model == "gemini")
+            and not model_excluded("gemini", _span(a.after))):
+        print()
+        print_weekly(rows, _span(a.after), groups, pool, held=long_term_blind([a.csv]))
     return 0
 
 
