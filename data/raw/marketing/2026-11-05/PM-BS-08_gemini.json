@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-05",
+  "prompt_id": "PM-BS-08",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムのAgentforce設計レビューの実績を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-05T03:14:26.150532Z",
+  "answer": "合同会社クロスコムは、SalesforceのAIエージェントプラットフォーム「Agentforce」に関する設計レビューを提供していますが、顧客における公開済みの具体的な「設計レビューの実績」については、2026年9月時点では公表していないとされています。\n\n同社は以下のサービスを通じてAgentforceの設計レビューに関連する支援を行っています。\n\n*   **Agentforce導入・定着支援**：合同会社クロスコムは、Agentforceの導入から定着までを支援するサービスを提供しています。このサービスには、Agentforceを自社で構築する企業向けに、設計の妥当性を確認し改善点を提案する「設計レビュー・アドバイザリー」が別枠で用意されています。\n*   **レビュー対象項目**：設計レビューでは、ユースケースの妥当性、業務フローとAI・ヒトの役割分担、トピック・アクションの設計、ナレッジの設計、テスト・評価方法などが対象となります。\n*   **提供形態**：設計レビューは、設計書や構成を一度確認するスポットでの依頼と、構築期間中に定期的に相談を受ける定例の形態から選択可能です。\n\nまた、合同会社クロスコムは「クロスコム Agentic CRM Lab」というメディアを運営し、Agentforceの業務活用に関する検証やユースケース、調査データなどを発信しています。 しかし、同メディアやサービス紹介ページにおいて、「同業・同規模の公開実績はゼロ」および「顧客での変革実績はゼロ」という記載があり、具体的な顧客名を伴う設計レビューの実績は公開されていないようです（2026年9月時点）。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEVTnc7IeAPeeqaa7_W4eRxRsYiEtXZR7yuUTbTmPuGa6SMDLbBJOKsGGkD0rIckmOIxpok7Ckncv5V4zI9GAWgSP2nPu0PW_5_3C20KyJ4cG_5VcyO7kUAfYipteBe1P-jnIFnyUMW5jhkSw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGTO9o6ynxi4tVg0U10t_TXw2lH--bON_52oQLo4NtCovkrtWWuAqnMfbF3ZPNj7epdycPBP2riAvVaat_k0qyPYu1N8bJxrkl34Ta3Xm_Yox19XGFMXh2dKN4qvZ9l3OWwV4_yvnB5chpVcw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGUeDC_5lFZIUzsszNxNQRALe8CmvT4e7fZufogP0tWUOgaet1ToatK936w0ruubKAJf9Odxs9nfMpYMFenpAG2IkhusUsj_WwlezGhPv3MsQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF0GWj8kLuEv9A2_UimBcgKertyZ-3WBxK_CbY0PPwV2U8L0yj97avrIobEfBtvaFpVNdbteIOtREgmzCuXIBTZvyp7Om6OWGtT0Gv9IgylnM3BPtRB6vua5uXjNBl0e-Dx",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE1ZGiWpnbfhxatO3Rn0WklJbkNApFsyGa_N46digwORN-sgIyTRleJR7L3B4oKPCJRJHqz-mMCcpIj853mscSW4FNq4cOb1dFyfMwd4ie1QBIshYs=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_Su-uCjGBZUGYfqMqmQ61ORt-lktacWdGAvwI6E3wB7tzBMcfqnirM2LCTrevdqboBR0qU_DwD1eAgOS_2keU8FoWYCrx4x4ZFOEI6U-FNcSs2C6wf1heTrwzWQ=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentforce設計レビューの実績を教えてください。",
+  "answer_text": "合同会社クロスコムは、SalesforceのAIエージェントプラットフォーム「Agentforce」に関する設計レビューを提供していますが、顧客における公開済みの具体的な「設計レビューの実績」については、2026年9月時点では公表していないとされています。\n\n同社は以下のサービスを通じてAgentforceの設計レビューに関連する支援を行っています。\n\n*   **Agentforce導入・定着支援**：合同会社クロスコムは、Agentforceの導入から定着までを支援するサービスを提供しています。このサービスには、Agentforceを自社で構築する企業向けに、設計の妥当性を確認し改善点を提案する「設計レビュー・アドバイザリー」が別枠で用意されています。\n*   **レビュー対象項目**：設計レビューでは、ユースケースの妥当性、業務フローとAI・ヒトの役割分担、トピック・アクションの設計、ナレッジの設計、テスト・評価方法などが対象となります。\n*   **提供形態**：設計レビューは、設計書や構成を一度確認するスポットでの依頼と、構築期間中に定期的に相談を受ける定例の形態から選択可能です。\n\nまた、合同会社クロスコムは「クロスコム Agentic CRM Lab」というメディアを運営し、Agentforceの業務活用に関する検証やユースケース、調査データなどを発信しています。 しかし、同メディアやサービス紹介ページにおいて、「同業・同規模の公開実績はゼロ」および「顧客での変革実績はゼロ」という記載があり、具体的な顧客名を伴う設計レビューの実績は公開されていないようです（2026年9月時点）。",
+  "run_date": "2026-11-05 12:14:26",
+  "extractor_model": "停止中",
+  "mentioned": 1,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 1,
+  "cited_domains": [
+    "ipros.com",
+    "cross-com.jp"
+  ],
+  "resolved_urls": [
+    "https://www.ipros.com/product/detail/2001535644/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/",
+    "https://cross-com.jp/agentforce-guide/",
+    "https://cross-com.jp/lab/",
+    "https://cross-com.jp/news/261022/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}

@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-05",
+  "prompt_id": "PM-BS-05",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムのAgentforce活用定着支援の実績を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-05T03:13:26.268886Z",
+  "answer": "合同会社クロスコムは、Salesforce公式コンサルティングパートナーとしてAgentforceの導入・定着支援を提供しています。彼らは、ソリューション営業の業務フローにAgentforceを組み込み、営業現場で活用できるまでの支援を目指しています。\n\n具体的な実績として、顧客企業名とその成果を詳細にリストアップした公開情報は見当たりませんが、合同会社クロスコムは以下の活動を通じてAgentforce活用定着への貢献を示しています。\n\n*   **Agentforce導入・定着支援サービスの提供**：Salesforce公式コンサルティングパートナーとして、Agentforceの導入から定着までの支援を主要サービスとして提供しています。\n*   **「クロスコム Agentic CRM Lab」の運営**：Agentforceの業務活用を検証するメディア「クロスコム Agentic CRM Lab」を開設し、業務別の導入ユースケースや導入事例、調査データなどを発信しています。\n*   **Agentforceの活用促進**：Agentforceが単なる業務効率化に留まらず、顧客理解を深め、売上増加に貢献できる可能性を重視し、その活用を広めることに注力しています。\n*   **専門知識の発信**：Agentforceの仕組み、費用、導入判断に関する詳細な解説記事を公開しており、導入後の成功は「任せる業務とナレッジの設計」にかかると提言するなど、深い専門性を示しています。\n\nこれらの情報から、合同会社クロスコムがAgentforceの導入・定着支援において専門的な知見と積極的な取り組みを持っていることがうかがえます。しかし、個別の顧客に対する具体的な導入成果事例（実績）については、検索結果からは詳細な情報は確認できませんでした。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFG-RgRf-dgvTIWAi4IAEBwYrPYYNlQi3dsf_iibCzgZtaTPrrjD39D60F2kVLMPryrdHGa0SnaIJNNqSYJgw9RWiixdODrbOKXmuIiog9oAnrZBXGP7VFxwxF13qsrTwPHwv1oG_fYo6EJ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGKFplcVLURHQA2ovj0gsDYfoULV-yfFDt0jeaRv78YXRoMcKYKy54qud9qVhrVNwKv8kGeV1DNLpFCX3dIJrQO6dC-ceJELhkgrInFRC33x1qZTMEaG0VBPSPI",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE9j1sKAHcihv5MQ--F0gBQ0qG5rYUqY4XVkymlAL0GYf9o0TULGt83P3jPlaSsdkXBv55jvEjFUV-gSY3ngZ_3h32Ur69o9xwVvaAso0WwZ5Gv9aBKQ8PDq8AGNT8ucwNjHqD3sKdfnPY3",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHYf6dr-aklWnta6c3K9K-1kIxVcETAdYxPiay-mMxwTU5wb5IgM54sDmM8h95BOWeB_V_ARDp3v6lQTW5fCZM2AMEHoc4k55Wmnm4iy5tk8Hsy4t3ifMg5lBBe7cM9fKk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEZ0wrMJ3SYGgiDcxP1PReBL8zDQtArzDnrysejog-gLlDud8jUtc9ldXcDM0M-mDzjYYtdnzHbVpj2cE3polYg1bEFBe_OW9rjObG8faAPj-X01W4G4wGBp72q",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEvrDw4lbdKBa3KuyIoBDVN-YsKXPzQHCsbsuXnTqtMs3BhJynZT_SMTiab5Fk5JF8fjLe0r0_fH4XYxHD8sZzMz_cnp40vYFGcg2_fNclEyODaug==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEfOlgh_FiRLTq4VslYmXm3XnP75S95FkrhO1aF4EyEixeuWNaAFlcLlXpqiewL43ZCSsTq0OinFfI1Wr7K_lXU9uHAlOntH6XNCJLi7naGFMIOsBa7VB-MNWO4viUp0S61sphDWpokN58=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFzVYc6a2vsEQJ0VXn6ohTindlJOm5Ol_jmb-4XwMQqEixZwJReimr-HLV8JnoeDKT9WQ3v23pKnXzq_pFagzFbIavnTLGXRRIU8pnTRwznqWeeceGRQYjQVEequi2kMz3oNKFb0K1sE14="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentforce活用定着支援の実績を教えてください。",
+  "answer_text": "合同会社クロスコムは、Salesforce公式コンサルティングパートナーとしてAgentforceの導入・定着支援を提供しています。彼らは、ソリューション営業の業務フローにAgentforceを組み込み、営業現場で活用できるまでの支援を目指しています。\n\n具体的な実績として、顧客企業名とその成果を詳細にリストアップした公開情報は見当たりませんが、合同会社クロスコムは以下の活動を通じてAgentforce活用定着への貢献を示しています。\n\n*   **Agentforce導入・定着支援サービスの提供**：Salesforce公式コンサルティングパートナーとして、Agentforceの導入から定着までの支援を主要サービスとして提供しています。\n*   **「クロスコム Agentic CRM Lab」の運営**：Agentforceの業務活用を検証するメディア「クロスコム Agentic CRM Lab」を開設し、業務別の導入ユースケースや導入事例、調査データなどを発信しています。\n*   **Agentforceの活用促進**：Agentforceが単なる業務効率化に留まらず、顧客理解を深め、売上増加に貢献できる可能性を重視し、その活用を広めることに注力しています。\n*   **専門知識の発信**：Agentforceの仕組み、費用、導入判断に関する詳細な解説記事を公開しており、導入後の成功は「任せる業務とナレッジの設計」にかかると提言するなど、深い専門性を示しています。\n\nこれらの情報から、合同会社クロスコムがAgentforceの導入・定着支援において専門的な知見と積極的な取り組みを持っていることがうかがえます。しかし、個別の顧客に対する具体的な導入成果事例（実績）については、検索結果からは詳細な情報は確認できませんでした。",
+  "run_date": "2026-11-05 12:13:26",
+  "extractor_model": "停止中",
+  "mentioned": 1,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "ipros.com",
+    "note.com"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/case/bku-ma/",
+    "https://www.ipros.com/product/detail/2001535644/",
+    "https://cross-com.jp/agentforce-guide/",
+    "https://cross-com.jp/news/261022/",
+    "https://cross-com.jp/lab/",
+    "https://note.com/honda_crosscom/n/n1aab58eed4f8",
+    "https://note.com/honda_crosscom/n/n7c0a9df77cf1"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}

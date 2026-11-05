@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-05",
+  "prompt_id": "PM-BS-07",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムのAgentforce設計レビューの評判を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-05T03:14:07.362794Z",
+  "answer": "合同会社クロスコムは、SalesforceのAIエージェントプラットフォーム「Agentforce」の導入・定着支援、および設計レビュー・アドバイザリーサービスを提供している企業です。彼らのAgentforce設計レビューに関する直接的な「評判」や「口コミ」として公開された個別の顧客の声は明確には見当たりませんが、提供される情報から以下の点がうかがえます。\n\n**合同会社クロスコムのAgentforce設計レビューの特徴と評価の推察:**\n\n*   **専門性と実績:** 合同会社クロスコムは、Agentforceの導入・定着支援を専門とするBtoB特化のコンサルティング会社であり、代表者が認定コンサルタントとして支援にあたっています。Agentforceのユースケース例や詳細な解説記事を公開しており、その専門性の高さがうかがえます。\n*   **サービス内容の具体性:** 設計レビュー・アドバイザリーサービスは、顧客が自社でAgentforceを構築する際に、設計の妥当性を確認し改善点を伝えることを目的としています。レビュー対象は、ユースケースの妥当性、業務フローにおけるAIとヒトの役割分担、トピック・アクションの設計、ナレッジの設計、テスト・評価の方法など多岐にわたります。依頼形態は、設計書や構成を一度確認するスポットと、構築期間中に定期的に相談を受ける定例から選択可能です。\n*   **コンサルティングへの注力:** 同社は「100社100通りの購買体験を当たり前にする」というビジョンを掲げ、AIエージェントの活用定着を重視しています。また、Agentforceの業務活用を検証するメディア「クロスコム Agentic CRM Lab」を開設するなど、情報発信にも積極的です。\n\nこれらの情報から、合同会社クロスコムはAgentforceに関する深い知見と具体的な設計支援能力を持ち、顧客のAgentforce導入を成功に導くための専門的なレビューとアドバイスを提供していると推察されます。公開されている情報からは、彼らの設計レビューサービスに対する否定的な評価は見られません。\n\nなお、Agentforce自体の評判としては、ITreviewなどのサイトで「Salesforce連携によるデータ活用」「業務効率化・自動化」「ノーコード/ローコードでの構築」「データ一元管理とセキュリティ」などが良い点として挙げられる一方で、「導入・設定・学習負担の軽減」「動作安定性・UI・応答性の改善」「アップデート周知とサポート体制」「料金・ライセンス構成の明確化」などが改善点として指摘されています。これはAgentforceというプラットフォーム全体の評価であり、合同会社クロスコムの設計レビューサービスに直接関連するものではありません。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8RG4dLp08GsOhgVz9ec9IfThnRFFqlQ82fRNMQJrvCf0n4ZizpEv7MrQSUPBXeawWaiywF9rrpA-Poix0qM8Sl6j3drc632-8uQJu3Y7paa3c90BtKMSG-vntBzDk-7PEqxCYo1-DiYYQ",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEbzFSkptm22hSGtXq6hr5WSq9TghWpX7zHkO1wvcmnTEQxkmTrxfOPaj1IIy9T9QDth8LGslEeuMnmVYY4wIv30ggtDNlHk5e6Da-JPg9",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHnfvmZNMibp7KD15muuds5l89C09C6fv48P4FqkVdtI0lbDpQRZvfdU4Lppr1kPAYR2Xd5PPeWnSFZOwpKaG6xQToGypepOBvSl-x3TdP9WN4cq75iSHtgtTSSS0hGxsbse2QqF6UW1cg=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE76jWDzCU7WVkZ1ub_d9YqEYgAXhc5-q9A44h4nSbwHDHUGIBobcsJs8tUeN9Kf0y2d7zwL84lj0kKi5yPae-fJG_h1S2qmpYu24z1pBakUXm6YYWIGgnWSfaPkWC9YC3pf_40GRp9dgk=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFmVC0s_IrAfHL8Z1cFT_TWtGVEz_COR6fS-a2mzHpDniFO-dNZl6u_KOOal0276WtKp62DcOo2LN92x66-OZ6bYSHUTExhNBTwMb_RkC1J6DIQ_PM8ZOGhUQfm",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8qI0eYrIRXzgPK8vwBakRSr_814KJj4LtzIdfxoEr1psXLSNu_1_Qb_70jgDh49iUdnsINC-V_OLmItFMsoIUtUXjeW8xP7Vn0fLiTKMRzQZMQZrRi4KcMBymg_fHKfrad_nxweq4arM8M80wIQR9IxlH2A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHutL8FjasPCwaCckAgDkNsfyjO6ZGwjD2PxHQ_vHN8o_t7lLcslC99d_uRXswC05DPsJ-snxG6fTxHYMAMWR5eVNsw5dgO5_Go4-s41d8fWTutBnAYS3iIiq78oDab0fSz8u0EFMsfWCPR761gJh3BXd972mohe_UO3WyT"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentforce設計レビューの評判を教えてください。",
+  "answer_text": "合同会社クロスコムは、SalesforceのAIエージェントプラットフォーム「Agentforce」の導入・定着支援、および設計レビュー・アドバイザリーサービスを提供している企業です。彼らのAgentforce設計レビューに関する直接的な「評判」や「口コミ」として公開された個別の顧客の声は明確には見当たりませんが、提供される情報から以下の点がうかがえます。\n\n**合同会社クロスコムのAgentforce設計レビューの特徴と評価の推察:**\n\n*   **専門性と実績:** 合同会社クロスコムは、Agentforceの導入・定着支援を専門とするBtoB特化のコンサルティング会社であり、代表者が認定コンサルタントとして支援にあたっています。Agentforceのユースケース例や詳細な解説記事を公開しており、その専門性の高さがうかがえます。\n*   **サービス内容の具体性:** 設計レビュー・アドバイザリーサービスは、顧客が自社でAgentforceを構築する際に、設計の妥当性を確認し改善点を伝えることを目的としています。レビュー対象は、ユースケースの妥当性、業務フローにおけるAIとヒトの役割分担、トピック・アクションの設計、ナレッジの設計、テスト・評価の方法など多岐にわたります。依頼形態は、設計書や構成を一度確認するスポットと、構築期間中に定期的に相談を受ける定例から選択可能です。\n*   **コンサルティングへの注力:** 同社は「100社100通りの購買体験を当たり前にする」というビジョンを掲げ、AIエージェントの活用定着を重視しています。また、Agentforceの業務活用を検証するメディア「クロスコム Agentic CRM Lab」を開設するなど、情報発信にも積極的です。\n\nこれらの情報から、合同会社クロスコムはAgentforceに関する深い知見と具体的な設計支援能力を持ち、顧客のAgentforce導入を成功に導くための専門的なレビューとアドバイスを提供していると推察されます。公開されている情報からは、彼らの設計レビューサービスに対する否定的な評価は見られません。\n\nなお、Agentforce自体の評判としては、ITreviewなどのサイトで「Salesforce連携によるデータ活用」「業務効率化・自動化」「ノーコード/ローコードでの構築」「データ一元管理とセキュリティ」などが良い点として挙げられる一方で、「導入・設定・学習負担の軽減」「動作安定性・UI・応答性の改善」「アップデート周知とサポート体制」「料金・ライセンス構成の明確化」などが改善点として指摘されています。これはAgentforceというプラットフォーム全体の評価であり、合同会社クロスコムの設計レビューサービスに直接関連するものではありません。",
+  "run_date": "2026-11-05 12:14:07",
+  "extractor_model": "停止中",
+  "mentioned": 1,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "note.com",
+    "itreview.jp"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/",
+    "https://note.com/honda_crosscom/n/n7c0a9df77cf1",
+    "https://note.com/honda_crosscom/n/n282da2fc3cf2",
+    "https://cross-com.jp/news/261022/",
+    "https://www.itreview.jp/products/agentforce/reviews?page=4",
+    "https://www.itreview.jp/products/salesforce-commerce-cloud/reviews"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}
