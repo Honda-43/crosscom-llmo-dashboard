@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-06",
+  "prompt_id": "PM-BS-11",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムのAgentic CRM設計支援の実績を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-06T03:15:57.710387Z",
+  "answer": "合同会社クロスコムは、BtoBに特化したコンサルティング会社として、Agentic CRM設計支援を主要事業の一つとしています。このサービスでは、AIが読み書きすることを前提としたCRMシステムを顧客専用に設計・構築することを強みとしています。\n\n同社のAgentic CRM設計支援の主な特徴は以下の通りです。\n*   **貴社専用の判断基準を実案件から抽出**：トップセールスが持つ「この顧客の課題は何か」「どんな根拠が課題仮説を支えるか」「何をもって検証済みとするか」といった判断基準を、顧客と共に言語化し、データベースに組み込む設計を行います。\n*   **一貫した支援**：業務課題のヒアリングから業務設計、そして運用が定着するまでを一貫して支援します。\n*   **AIによる自動実行と精度向上**：AIが入力・更新作業を自動で実行し、活用するほどデータ学習が進み、AIの提案・実行精度が向上するように設計されています。\n\n現在、合同会社クロスコムのウェブサイトに掲載されている具体的な「支援事例」には、Agentic CRM設計支援に特化した実績として、顧客名や具体的な導入効果が直接的に示されているものはありません。以前はBtoB MA導入・運用支援などの事例が掲載されていましたが、これらは「提供終了」とされています。\n\nしかし、同社はAgentforceの業務活用を検証するメディア「クロスコム Agentic CRM Lab」を開設しており、そこではAgentforceの導入による業務変化や投資対効果、導入事例や調査データなどを発信していくとしています。 これは、Agentic CRMにおける実績構築と情報公開に積極的に取り組んでいることを示唆しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFlnucsA7PVTiy2wnvBCUjNAAaAX5I9-CNrT_wp49JCdwsLUGtUvjCrBi--cnb9JT1ax9wfXeiyTKC6qUStnc2J8u3Wccx2HYVwmqTwYWqnGA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGNvRSfmQXFDGYeLEbXuI6F3X7QyA5GiEi9-uB3jsM54Bx2WTbslAYqi8OXNvVQsi-Vbc7PGLTRdbgaB8np5rQM5xcwH8QZEtUTlQ7I-O2BnhsaT6WA0M2X1R2U6G2YADTbDBpfWtIU9mD5jw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeNnYPJKsQCMXamznJzKqsB_WICuRhjJRDJJASoTm0r2zzlGI2x4-zkfAqO_oVYGfGatL3btV1f_DlFSnSt5sfqZ95FPzhBywa_9KyxJlMAjEb-hNvor2hY7CmYg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFmNQTynuVog9gsJwKnyK2vpQ3_yVyq6xakp_pUJjKa-jpkireIjulZa3nMrkT06s7nuVLH6sBTq48f4lp4r4q2g0uRKDXr5JkaK_uRaojIEu8qjDbm",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHdXA71wMUj0hykaD5NLW_Xa2IcoD2r22bSESc4wgbxlgVlCbxu4DPbjelMAsD82mIzp7QY5c2dZM9CSjtuqq1T7puFVoEv0Iz1VxbUdIttnUF5KGFGNBrz_t80Kg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFV5OZ74mqVZRUMdo7ItuPeika9AcsOSbeV_p4ZbF6j6Ywq4pBH-m-Kx1o7MgfMdo-nToZClKgfi19tx4hbwJ2ouF9EJji4WNP-1uk0WU3ivQUjtDI="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentic CRM設計支援の実績を教えてください。",
+  "answer_text": "合同会社クロスコムは、BtoBに特化したコンサルティング会社として、Agentic CRM設計支援を主要事業の一つとしています。このサービスでは、AIが読み書きすることを前提としたCRMシステムを顧客専用に設計・構築することを強みとしています。\n\n同社のAgentic CRM設計支援の主な特徴は以下の通りです。\n*   **貴社専用の判断基準を実案件から抽出**：トップセールスが持つ「この顧客の課題は何か」「どんな根拠が課題仮説を支えるか」「何をもって検証済みとするか」といった判断基準を、顧客と共に言語化し、データベースに組み込む設計を行います。\n*   **一貫した支援**：業務課題のヒアリングから業務設計、そして運用が定着するまでを一貫して支援します。\n*   **AIによる自動実行と精度向上**：AIが入力・更新作業を自動で実行し、活用するほどデータ学習が進み、AIの提案・実行精度が向上するように設計されています。\n\n現在、合同会社クロスコムのウェブサイトに掲載されている具体的な「支援事例」には、Agentic CRM設計支援に特化した実績として、顧客名や具体的な導入効果が直接的に示されているものはありません。以前はBtoB MA導入・運用支援などの事例が掲載されていましたが、これらは「提供終了」とされています。\n\nしかし、同社はAgentforceの業務活用を検証するメディア「クロスコム Agentic CRM Lab」を開設しており、そこではAgentforceの導入による業務変化や投資対効果、導入事例や調査データなどを発信していくとしています。 これは、Agentic CRMにおける実績構築と情報公開に積極的に取り組んでいることを示唆しています。",
+  "run_date": "2026-11-06 12:15:57",
+  "extractor_model": "停止中",
+  "mentioned": 1,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/",
+    "https://cross-com.jp/service/agentic-crm-design/",
+    "https://cross-com.jp/case/bku-ma/",
+    "https://cross-com.jp/case/",
+    "https://cross-com.jp/news/261022/",
+    "https://cross-com.jp/lab/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}

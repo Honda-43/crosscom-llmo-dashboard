@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-06",
+  "prompt_id": "PM-BS-09",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムのAgentforce設計レビューの専門性を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-06T03:15:21.908194Z",
+  "answer": "合同会社クロスコムは、Salesforce Agentforceの設計レビューにおいて、以下の専門性を持っています。\n\n*   **BtoB特化のコンサルティング**：BtoB領域に特化したコンサルティング会社であり、Agentforceの導入・定着支援、およびAgentic CRM（AIエージェントを前提としたCRM）の設計支援を事業の中核としています。\n*   **業務設計とデータ設計の強み**：ツールの操作に先行する業務設計とデータ設計の段階でつまずくケースが多いという認識に基づき、ツール導入前の業務設計から支援することに強みを持っています。\n*   **Agentforce設計レビュー・アドバイザリー**：自社でAgentforceを構築する企業向けに、設計レビューおよびアドバイザリーサービスを提供しています。このサービスでは、構築は顧客側のチームが担当し、クロスコムは設計の妥当性を確認し改善点を提案します。\n    *   **レビュー対象項目**：ユースケースの妥当性（どの業務から始めるべきか）、業務フローにおけるAIとヒトの役割分担、トピック・アクションの設計、ナレッジの設計、テスト・評価方法、および構築中の設計判断への定例相談などが含まれます。\n    *   **提供形式**：設計書や構成を一度確認するスポットでの依頼と、構築期間中に定期的に相談を受ける定例の形式から選択可能です。\n*   **ソリューション営業プロセスへの特化**：代表者は専門商社でのBtoB営業経験を持ち、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援を提供しています。\n*   **認定コンサルタントによる支援**：認定コンサルタントである代表者が直接支援を行います。\n*   **自社でのAgentforce活用**：合同会社クロスコム自身もAgentforceを営業活動に活用しており、実践的な知見に基づいた支援が期待できます。\n*   **セキュリティ設計レビュー体制**：Agentforceのセキュリティ設計に関して、IT部門にレビュー体制が整っているとされています。\n*   **BtoBマーケティング支援の知見との融合**：BtoBマーケティング支援の知見とAgentforceの導入支援を組み合わせ、要件定義から社内定着まで一貫して伴走します。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHeKahc7b5G0eizphsRcSqGi2rsL7VUbX8BvLmYffM05PCib79z4IGzHl3rxbkn3kCkRHNchi4GU53AX5zmxt1Q4hethjYwGAt1hx6nsthw",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHfkdB-pHfiyw897Nd9UMdfE9QiwxKQxRrjgmWQT4zrLW994LpFEZOGCHQ3q-8jfLmKQJIQxH6wIGXhQauzJrP2l67qjx69Wjmc091WxeNdDCA1y2fWkVn2LFaNJK5VxePDVxqR0O4c",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGsphZC7Oo7UxOWdf_G1GOuLrAiCSkrHwBD-8nrBj9BMXe9LuZmKhjYaBwtBvzlbnkN9Yp9eJ_stqxeGTr0VM8HqSbQa2pdKa9SjBrTSo28N80C2lAFkUvoGHDSYEkFr0TU-FSy6lhKAloE",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHUKR3KrxvWlrlJ3AchVmGjwGx76jacVu_UMbIL7BfE6jEQg8_DqS_OKlN-7QZknkLb0XELz0GHBRml_NXkF2I_rsQoSVzJ9958KQkyRbdjbU8eWJEjuaQumXDrDU8OuUM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFx33_OLPfFZuYWbONrSih0ABxWpgtlWsiUalEfMO4ekNku3UlcEg-FnKIfZ5Dmbwf7tOdVT9rTe-T_iVVvcM77goGdJJ_tSIJp0VE35ciMP-E0GfbeazGneDfWcyPq37kr0eg2jF_MVGYWGXGQDdE=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGbFtLBIojEGcgyEDS3Phdb0zas7hWH-6A-XWuA6h8QvfsYmn6Q_MX7jv2dMeEHq44Fi5t2W7Lukp-Z20oep747kikz3ykTMey-cVxFEcO0S9cAOG3cG0_YqJ4mK4e4zPk_jRQcS196b-U="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentforce設計レビューの専門性を教えてください。",
+  "answer_text": "合同会社クロスコムは、Salesforce Agentforceの設計レビューにおいて、以下の専門性を持っています。\n\n*   **BtoB特化のコンサルティング**：BtoB領域に特化したコンサルティング会社であり、Agentforceの導入・定着支援、およびAgentic CRM（AIエージェントを前提としたCRM）の設計支援を事業の中核としています。\n*   **業務設計とデータ設計の強み**：ツールの操作に先行する業務設計とデータ設計の段階でつまずくケースが多いという認識に基づき、ツール導入前の業務設計から支援することに強みを持っています。\n*   **Agentforce設計レビュー・アドバイザリー**：自社でAgentforceを構築する企業向けに、設計レビューおよびアドバイザリーサービスを提供しています。このサービスでは、構築は顧客側のチームが担当し、クロスコムは設計の妥当性を確認し改善点を提案します。\n    *   **レビュー対象項目**：ユースケースの妥当性（どの業務から始めるべきか）、業務フローにおけるAIとヒトの役割分担、トピック・アクションの設計、ナレッジの設計、テスト・評価方法、および構築中の設計判断への定例相談などが含まれます。\n    *   **提供形式**：設計書や構成を一度確認するスポットでの依頼と、構築期間中に定期的に相談を受ける定例の形式から選択可能です。\n*   **ソリューション営業プロセスへの特化**：代表者は専門商社でのBtoB営業経験を持ち、ソリューション営業の業務プロセスに特化したAgentforce導入・定着支援を提供しています。\n*   **認定コンサルタントによる支援**：認定コンサルタントである代表者が直接支援を行います。\n*   **自社でのAgentforce活用**：合同会社クロスコム自身もAgentforceを営業活動に活用しており、実践的な知見に基づいた支援が期待できます。\n*   **セキュリティ設計レビュー体制**：Agentforceのセキュリティ設計に関して、IT部門にレビュー体制が整っているとされています。\n*   **BtoBマーケティング支援の知見との融合**：BtoBマーケティング支援の知見とAgentforceの導入支援を組み合わせ、要件定義から社内定着まで一貫して伴走します。",
+  "run_date": "2026-11-06 12:15:21",
+  "extractor_model": "停止中",
+  "mentioned": 1,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "ipros.com",
+    "value-press.com"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/",
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/service/agentforce-support/",
+    "https://cross-com.jp/author/cross-com/",
+    "https://cross-com.jp/agentforce-security-risk-design/",
+    "https://www.value-press.com/pressrelease/378791"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}

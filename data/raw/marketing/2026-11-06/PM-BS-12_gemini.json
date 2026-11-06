@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-06",
+  "prompt_id": "PM-BS-12",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムのAgentic CRM設計支援の専門性を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-06T03:16:18.607612Z",
+  "answer": "合同会社クロスコムは、BtoB領域に特化したコンサルティング会社として、Agentic CRM設計支援において以下の専門性を有しています。\n\n*   **BtoB特化のコンサルティング**：Salesforce Agentforceの導入・定着支援と並び、Agentic CRMの設計支援を主要事業として展開しており、BtoB企業に特化しています。\n*   **ツール導入前の業務設計を重視**：特定の製品に限定せず、CRMとAIの最適な組み合わせを設計段階から支援します。AIエージェントが自律的に動くことを前提に、マーケティング・営業・カスタマーサクセスに分散したデータと業務を再設計することを重視しています。ツール選定よりも、まず業務設計を固めることを最優先としています。\n*   **AIエージェント前提のCRM設計**：AIがデータを読み書きし、入力・分析・教育が不要な「AIネイティブなCRM」を企業専用に設計します。これにより、AIが自律的に入力・更新作業を実行し、活用するほどデータ学習が進み、AIの提案・実行精度が向上すると謳っています。\n*   **トップセールスの型を組織に展開**：クライアント企業のトップセールスが実際の商談で用いる判断基準を、実案件の分析から抽出し、CRMの構造として実装することで、そのノウハウを組織全体に展開することを目指します。\n*   **業務定着までの一貫した支援**：ツールの導入だけでなく、導入前の業務設計から、システムが現場に定着して運用が回る状態まで一貫して支援します。\n*   **実践的な知見に基づいた提案**：代表者の本田正憲氏が7年間のBtoB法人営業経験を持つため、営業現場で実際に機能する設計を提案できる点が強みです。\n*   **「100社100通りの購買体験」の実現**：すべての企業が顧客一人ひとりに合わせた購買体験を提供できる世界を目指し、データ活用を通じて企業のマーケティング・営業活動を支援しています。\n*   **Agentic CRM Labの運営**：SalesforceのAIエージェントプラットフォーム「Agentforce」の業務活用を検証するメディア「クロスコム Agentic CRM Lab」を運営し、「AI時代のCRM」における業務変化や投資対効果に関する情報を発信しています。\n\n合同会社クロスコムは、AIエージェントの導入における業務フローとの不整合、データ不足による精度低下、出力確認の手間といった課題に対応し、人とAIエージェントの新しい協働のあり方を模索する企業を支援しています。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0-B9Afg_Tc5BbBhZHrBx5rsmBn4V-Uxft8mGH7RNV9opdsGzMt9I4HYhkSMvXxiqbquCNg-zNXN_MMBcFLgLIOXAuAYtVUOJym0v-XnQjy9J9kikf",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF_6ZVnX96SDNlkf8MSpY8PP-LVzpqYhSNN-l29A6u-oiRq2dPHCxYXPyVNxt5BQDPoWp05g_Yj-SFsQ3fwPPFB_Ftpwoz_2Vn4_lPIJnur_fJjjdDcasTu4bZtzKccQ7ZQ0o4mZHjw",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEenvlJEfr2G90my9hG1PLDTvzIRXGPQUZUTb4tWeXBONeUV2KBwbop2ALwL9vrRo-nesaUV-6QxC43fHH3GRE8v9IYYrW7MrPuBUsA9gpm",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0PpYhQ_b201d2gvKt_tOny1qEVO3Xv61QDlDJdRitJE7XX9p6bUaALsfys__OffDO8EeKEcrCoZ_LmCVJ6v6C8LrT97sRT0XZMz5l2_PbyEOuixtirfMkCZHb6C5bpqhKPQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHNBSw1OKLzTaejB_crx_abLlbvZW_ZGpwf4A75Icr-7vPowQS2UR2mRarXTLJmbHdd1JpXjUlGkyCTNy0IVNDR0EcSbQ-ybeM7r3Uk944Nq079CjKuW__JZwkPeOGQ9bLvk9Fc1tCIARa",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG5CYpAponn10GTE4EWWbQUzjGWHwgsnIsJ3FC6bO2_RzCCwG9LHR6YTGL0P3vwtN-hTJIvdpmwsPx0gdpqqFRVey1H6eBgX3NkITsLfL-TKSVFK_eh934=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGcBoU2MKmJMfXWgJ_rTiwaW36cUfZzOtwZ6FpMTlpOGxySKcFKFZcSyNX8P7bLbCLvJTkq_A6ll9HPqJCv0fVvk_wDYu_HhB-he4WtArb5ToF0KpNFVPkcDR5r",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFN12bO1vG1wj1STCjZovqZg9xl141-7aBUDMj8_5PpriXT8QLy3KIFcaDXEb2tw6DePNA2fLPRF6cDBJupp5fShle57Jca5kG8i0akgFfWqiXRYA=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentic CRM設計支援の専門性を教えてください。",
+  "answer_text": "合同会社クロスコムは、BtoB領域に特化したコンサルティング会社として、Agentic CRM設計支援において以下の専門性を有しています。\n\n*   **BtoB特化のコンサルティング**：Salesforce Agentforceの導入・定着支援と並び、Agentic CRMの設計支援を主要事業として展開しており、BtoB企業に特化しています。\n*   **ツール導入前の業務設計を重視**：特定の製品に限定せず、CRMとAIの最適な組み合わせを設計段階から支援します。AIエージェントが自律的に動くことを前提に、マーケティング・営業・カスタマーサクセスに分散したデータと業務を再設計することを重視しています。ツール選定よりも、まず業務設計を固めることを最優先としています。\n*   **AIエージェント前提のCRM設計**：AIがデータを読み書きし、入力・分析・教育が不要な「AIネイティブなCRM」を企業専用に設計します。これにより、AIが自律的に入力・更新作業を実行し、活用するほどデータ学習が進み、AIの提案・実行精度が向上すると謳っています。\n*   **トップセールスの型を組織に展開**：クライアント企業のトップセールスが実際の商談で用いる判断基準を、実案件の分析から抽出し、CRMの構造として実装することで、そのノウハウを組織全体に展開することを目指します。\n*   **業務定着までの一貫した支援**：ツールの導入だけでなく、導入前の業務設計から、システムが現場に定着して運用が回る状態まで一貫して支援します。\n*   **実践的な知見に基づいた提案**：代表者の本田正憲氏が7年間のBtoB法人営業経験を持つため、営業現場で実際に機能する設計を提案できる点が強みです。\n*   **「100社100通りの購買体験」の実現**：すべての企業が顧客一人ひとりに合わせた購買体験を提供できる世界を目指し、データ活用を通じて企業のマーケティング・営業活動を支援しています。\n*   **Agentic CRM Labの運営**：SalesforceのAIエージェントプラットフォーム「Agentforce」の業務活用を検証するメディア「クロスコム Agentic CRM Lab」を運営し、「AI時代のCRM」における業務変化や投資対効果に関する情報を発信しています。\n\n合同会社クロスコムは、AIエージェントの導入における業務フローとの不整合、データ不足による精度低下、出力確認の手間といった課題に対応し、人とAIエージェントの新しい協働のあり方を模索する企業を支援しています。",
+  "run_date": "2026-11-06 12:16:18",
+  "extractor_model": "停止中",
+  "mentioned": 1,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "ipros.com",
+    "lancers.jp"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/about/",
+    "https://www.ipros.com/company/detail/2116989/",
+    "https://cross-com.jp/",
+    "https://www.lancers.jp/profile/mhonda829",
+    "https://cross-com.jp/service/agentic-crm-design/",
+    "https://cross-com.jp/service/",
+    "https://cross-com.jp/news/261022/",
+    "https://cross-com.jp/lab/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}

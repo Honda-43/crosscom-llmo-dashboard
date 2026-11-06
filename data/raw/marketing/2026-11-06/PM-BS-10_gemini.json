@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-06",
+  "prompt_id": "PM-BS-10",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "合同会社クロスコムのAgentic CRM設計支援の評判を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-06T03:15:39.429928Z",
+  "answer": "合同会社クロスコムのAgentic CRM設計支援に関する直接的な評判や顧客からのレビューは、現在の検索結果からは確認できませんでした。\n\n合同会社クロスコムは、BtoB領域に特化したコンサルティング会社で、Salesforce Agentforceの導入・定着支援と、Agentic CRM（AIエージェントを前提としたCRM）の設計支援を主な事業としています。同社は、AIエージェントを業務に組み込む際に企業がつまずく点を支援することに強みを持っているようです。\n\nAgentic CRM設計支援では、マーケティング、営業、カスタマーサービスに分散したデータと業務をAIが動く前提でCRMを設計し、仮説、根拠、検証結果まで記録するデータ構造で、トップセールスの型を組織全体に展開することを目指しています。また、AIが入力・更新作業を自動で実行し、活用するほどデータ学習し、AIの提案・実行精度が向上すると説明されています。さらに、AIの生成物をテキストだけでなく、構造的に情報整理できる図解に変換する機能も特徴として挙げられています。\n\n現時点では、これらのサービス内容に関する評判や評価を示す具体的な顧客の声は見当たりませんでした。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_T2JydJS8oE7TD0Y4SlhwDmhVSzZVr9u69alZroPIx9ys3BHjre2xscq3mHLjwsqZid4lFsCAo7pzULBvHGO3DTsmd5LZw1nxwyTM2fCCRg==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlNS7R7PidKZE2hnkFDOeQ6JCxD8hu1ggrR3gCNC_XK2k8dxPCiLmja9c55rIotifTRVa62SYbTX4tbYBdvjEV9yS-IqX8qYO-tfQP_dWA4kW-VGC_CwLPWNimru0pfqSsk1X7Aw5HDSRLmw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE_8yicim0wVyiInGsEbW3QdRtZZernCLiUijS1Qlq-NBgrTzncEnXLc7PBkPypCRhk0-d-Rsa1mx3TqaLd2eZI5SpwK0pG5f-YS6WAPOVstjSfMn7v6cXuc2UDrZwLpZsgZtD003Ggf_4=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEr_JmyLsxG6dmnikxKDTRFvDib8x6Jhss_DI3K2jB-xtKx-_HE-oZRrtOgMb4X9L7EEuuVtgu3nSXWeerQu332x0f5VFMbQGjU50eYSAwyg-maZHB2h76APdd-JCk28FKO6H2G_XjP2gM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpLU-0P4AMikg7TYXXwCPVy5KblaTOyHfqQTMLAEQasuOQMEDWd4RDZx49x22Jbp7lHkiNQ2GgQVTAEFIlEYM3XChCUa15W6tXy1U7SKDyCZBkBiPU6o9TMu4BTmuvo8bKjMQ-zMhCgfqpLQ=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "BOFU_single",
+  "prompt": "合同会社クロスコムのAgentic CRM設計支援の評判を教えてください。",
+  "answer_text": "合同会社クロスコムのAgentic CRM設計支援に関する直接的な評判や顧客からのレビューは、現在の検索結果からは確認できませんでした。\n\n合同会社クロスコムは、BtoB領域に特化したコンサルティング会社で、Salesforce Agentforceの導入・定着支援と、Agentic CRM（AIエージェントを前提としたCRM）の設計支援を主な事業としています。同社は、AIエージェントを業務に組み込む際に企業がつまずく点を支援することに強みを持っているようです。\n\nAgentic CRM設計支援では、マーケティング、営業、カスタマーサービスに分散したデータと業務をAIが動く前提でCRMを設計し、仮説、根拠、検証結果まで記録するデータ構造で、トップセールスの型を組織全体に展開することを目指しています。また、AIが入力・更新作業を自動で実行し、活用するほどデータ学習し、AIの提案・実行精度が向上すると説明されています。さらに、AIの生成物をテキストだけでなく、構造的に情報整理できる図解に変換する機能も特徴として挙げられています。\n\n現時点では、これらのサービス内容に関する評判や評価を示す具体的な顧客の声は見当たりませんでした。",
+  "run_date": "2026-11-06 12:15:39",
+  "extractor_model": "停止中",
+  "mentioned": 1,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "ipros.com",
+    "auba.eiicon.net"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/",
+    "https://www.ipros.com/product/detail/2001551509/",
+    "https://auba.eiicon.net/projects/23592/quality",
+    "https://auba.eiicon.net/projects/42960/quality",
+    "https://cross-com.jp/service/agentic-crm-design/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}
