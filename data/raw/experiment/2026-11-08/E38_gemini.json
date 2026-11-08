@@ -1,0 +1,49 @@
+{
+  "date": "2026-11-08",
+  "prompt_id": "E38",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceのサブエージェントはどういう単位で分ければいい？指示文の書き分け方も",
+  "cep": null,
+  "timestamp": "2026-11-08T02:00:52.131484Z",
+  "answer": "Agentforceにおけるサブエージェントの分割単位と指示文の書き分け方について、以下の点が重要となります。\n\n### サブエージェントの分割単位\n\nサブエージェントは、エージェントが「どの仕事を担当するか」を定義する単位です。効果的なルーティングとパフォーマンスのために、以下の観点で分割することが推奨されます。\n\n*   **目的・会話のゴールごと**：サブエージェントは、ユーザーが最終的に達成したい「単一の目的」に基づいて分割するのが最も重要です。例えば、「修理依頼を完了したい」「注文状況を確認したい」のように、会話のゴールを1文で明確に言い切れる状態にすることが推奨されます。目的が曖昧だと、サブエージェントの範囲が広がりすぎたり、複数の目的が混在したりする原因になります。一般的な例としては、「注文確認」「住所変更」「解約手続き」などが挙げられます。\n*   **タスク・機能ごと**：各サブエージェントに特定のタスクや機能を割り当てます。これにより、サブエージェントの役割が明確になり、エージェントのルーティング精度が高まります。\n*   **「何をするか」と「何をしないか」の明確化**：サブエージェントの説明文で、「何をするサブエージェントか」だけでなく、「このサブエージェントが扱わないケース」も明示的に記述することが効果的です。これにより、意図しないサブエージェントへのルーティングを防ぎます。\n*   **テンプレートの活用**：Agentforceでは、一般的なサブエージェントやツールがあらかじめ組み込まれたテンプレートが提供されているため、ゼロから設計する前にテンプレートを試すのがベストプラクティスとされています。\n*   **初期のグルーピングからの細分化**：サブエージェントの初期のグループ化が完了した後も、例えば製品の技術的な問題に関するサブエージェントと、一般的な注文管理に関するサブエージェントのように、範囲が広いものはさらに分割することが推奨されます。\n\n### 指示文の書き分け方\n\n指示文は、サブエージェントが「どのように振る舞うべきか」を自然言語で記述するもので、Atlas Reasoning Engine（LLM）がユーザーの発言に応じて最適なサブエージェントを選択し、そのサブエージェント内での挙動を決定するために参照します。\n\n*   **明確性と具体性**：「指示」には、曖昧さを排除し、サブエージェントの振る舞いを具体的に記述します。指示の記述が曖昧だとルーティング精度が低下する可能性があります。\n*   **「何をするか」「何をしないか」の明記**：サブエージェントがどのような問い合わせに対応し、どのようなケースは扱わないのかを明確に記述します。これは、LLMがサブエージェントへのルーティングを判断する際の重要な根拠となります。\n*   **ツールの利用に関する制約の明示**：「提供されたツールのデータ以外のSalesforceデータを使わないこと」のように、サブエージェントが利用できるデータの範囲やツールに関する制約を明示的に書くことがベストプラクティスとして推奨されています。\n*   **ビジネスフローに基づく設計**：サブエージェントの指示は、業務フローに基づいて設計することが有効です。どの順番で質問し、どのタイミングで判断や処理を行うのかを具体化することで、会話設計の精度を高めることにつながります。\n*   **API名形式での参照（Agent Script内）**：Agent Scriptの指示内でサブエージェントを参照する場合、API名形式（例：`Order_Confirmation`のようにスペースをアンダースコアに置き換えた形）で記述すると、LLMに認識されやすくなります。日本語名でも動作しますが、LLMとの相性を考慮すると英語のスネークケースが安全とされています。\n*   **コンテキストエンジニアリングの考え方**：プロンプトの言い回しだけでなく、サブエージェント、指示、アクションという仕組みそのものを設計する「コンテキストエンジニアリング」の視点を持つことが、再現性の高いAIエージェント構築には重要です。\n\nこれらのポイントを意識することで、Agentforceにおけるサブエージェントの適切な分割と、意図した通りのエージェント動作を実現するための指示文の作成が可能になります。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGH4i3CMM5EnbQBN3Kb53P72iJ07pc1FILRotguLsscB5CQfsRxxNr-D59BZiVCNuejddVp7lKABiCTbsktlRZHh_VbWF9LElqTnJdaYFkAlE6fIX-HpGa1ljOienfbdpTujJyGtb0vDHPeTyejEK_J7AoL",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGGqHkhrqPmTEIlmtvP7MZxu2usiM7y8Ee2hiDQBuz8XkX5bR87Oax7P7aRIXKGbL87WSgrDC4uqH7SV7UI2PplD4uzb7RUDt3Nvu39LtXY3LBsRyZZujhl5gFZTKhtAr4_3fVLxwJzXditi4rLnB-rnyFDBtC3",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHCtHzwAJvLzin_l2hdDuvacwd9PPinkNUs-qK0_Dl4mDSIlkB9d9jYvAOZ3_Bs014WY6XMsCZXcJWvlMiE3CwEzQwvIKx7-Lf9dBbhGsDQ3664o44WXwiUKOKiXPsZ3y8QpFZW7r_zCWdnYa7RN4skNHEQWPYk_cWbyiXb",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEUwBjWuotus6npoGX9KNQ7-lxDIbxddwaag5hGNkUjfubh70evRDumJJvc4qM7J4qp-dSaSi9DxyV56yHdKdm4Q2W0VEXLkK_Q2NCGCFtrxbf0qwdqsV6ZOGT5BQ8DCoZ5IwUMWlOKBLOVqGB8SJSBWe9HDIj9vxbY4A==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG2OfO4XvCAw05E_eI9w32HHS6t3c0KoFO_BBymhOzkfRrEihvZKoxXFkbCFYIQleurccX-6mewxyI0EDLH5TgFgoC_SLwlcr4ILm9M3Y5frAllSNHaU_zuTkQBgfXkc6uJ7RIQObj7akCC9k6_wjw5xy5egFFJ6DmiSw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEyjryTt0C8_bpSXswkkM2af36az3XfmBuousRg-8oSVcLXGCIidQKXr4jDOwFjuNlq8zWyYoj6iBHog_1avpzTtY5BrSoYe7SRBg8V1CcyzlqrQya_h17LvDPpUj3co287n6GwoaV-Ap3kAorawF5hVCFx0fgIpdYcAD0e"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E38",
+  "experiment_flag": "pool",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-subagents/",
+  "answer_text": "Agentforceにおけるサブエージェントの分割単位と指示文の書き分け方について、以下の点が重要となります。\n\n### サブエージェントの分割単位\n\nサブエージェントは、エージェントが「どの仕事を担当するか」を定義する単位です。効果的なルーティングとパフォーマンスのために、以下の観点で分割することが推奨されます。\n\n*   **目的・会話のゴールごと**：サブエージェントは、ユーザーが最終的に達成したい「単一の目的」に基づいて分割するのが最も重要です。例えば、「修理依頼を完了したい」「注文状況を確認したい」のように、会話のゴールを1文で明確に言い切れる状態にすることが推奨されます。目的が曖昧だと、サブエージェントの範囲が広がりすぎたり、複数の目的が混在したりする原因になります。一般的な例としては、「注文確認」「住所変更」「解約手続き」などが挙げられます。\n*   **タスク・機能ごと**：各サブエージェントに特定のタスクや機能を割り当てます。これにより、サブエージェントの役割が明確になり、エージェントのルーティング精度が高まります。\n*   **「何をするか」と「何をしないか」の明確化**：サブエージェントの説明文で、「何をするサブエージェントか」だけでなく、「このサブエージェントが扱わないケース」も明示的に記述することが効果的です。これにより、意図しないサブエージェントへのルーティングを防ぎます。\n*   **テンプレートの活用**：Agentforceでは、一般的なサブエージェントやツールがあらかじめ組み込まれたテンプレートが提供されているため、ゼロから設計する前にテンプレートを試すのがベストプラクティスとされています。\n*   **初期のグルーピングからの細分化**：サブエージェントの初期のグループ化が完了した後も、例えば製品の技術的な問題に関するサブエージェントと、一般的な注文管理に関するサブエージェントのように、範囲が広いものはさらに分割することが推奨されます。\n\n### 指示文の書き分け方\n\n指示文は、サブエージェントが「どのように振る舞うべきか」を自然言語で記述するもので、Atlas Reasoning Engine（LLM）がユーザーの発言に応じて最適なサブエージェントを選択し、そのサブエージェント内での挙動を決定するために参照します。\n\n*   **明確性と具体性**：「指示」には、曖昧さを排除し、サブエージェントの振る舞いを具体的に記述します。指示の記述が曖昧だとルーティング精度が低下する可能性があります。\n*   **「何をするか」「何をしないか」の明記**：サブエージェントがどのような問い合わせに対応し、どのようなケースは扱わないのかを明確に記述します。これは、LLMがサブエージェントへのルーティングを判断する際の重要な根拠となります。\n*   **ツールの利用に関する制約の明示**：「提供されたツールのデータ以外のSalesforceデータを使わないこと」のように、サブエージェントが利用できるデータの範囲やツールに関する制約を明示的に書くことがベストプラクティスとして推奨されています。\n*   **ビジネスフローに基づく設計**：サブエージェントの指示は、業務フローに基づいて設計することが有効です。どの順番で質問し、どのタイミングで判断や処理を行うのかを具体化することで、会話設計の精度を高めることにつながります。\n*   **API名形式での参照（Agent Script内）**：Agent Scriptの指示内でサブエージェントを参照する場合、API名形式（例：`Order_Confirmation`のようにスペースをアンダースコアに置き換えた形）で記述すると、LLMに認識されやすくなります。日本語名でも動作しますが、LLMとの相性を考慮すると英語のスネークケースが安全とされています。\n*   **コンテキストエンジニアリングの考え方**：プロンプトの言い回しだけでなく、サブエージェント、指示、アクションという仕組みそのものを設計する「コンテキストエンジニアリング」の視点を持つことが、再現性の高いAIエージェント構築には重要です。\n\nこれらのポイントを意識することで、Agentforceにおけるサブエージェントの適切な分割と、意図した通りのエージェント動作を実現するための指示文の作成が可能になります。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "zenn.dev",
+    "strh.co.jp",
+    "qiita.com",
+    "salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://zenn.dev/pacific_creator/articles/67d4e4710e2802",
+    "https://www.strh.co.jp/knowledge/agentforce-subagent-action",
+    "https://qiita.com/ubakichi_sr_mc_ai_06/items/726ba258360b79b76f0c",
+    "https://www.salesforce.com/jp/agentforce/levels-of-determinism/",
+    "https://qiita.com/Tadataka_Takahashi/items/daa60e339f8e260d870f",
+    "https://qiita.com/ubakichi_sr_mc_ai_06/items/3ea1943ae11227a2362b"
+  ],
+  "unresolved_redirects": 0
+}
