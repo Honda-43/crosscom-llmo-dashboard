@@ -57,7 +57,7 @@ def test_poaching_before_11_02_shows_counts_and_ids_but_no_groups(capsys):
     out = capsys.readouterr().out
     assert f"### {summarize.POACHING_HEADING}" in out
     assert "新記事 3本。46本の実験用プロンプトとの重なり：強（E16）・弱（E05）・重なりが要確認 1本（I-92）" in out
-    assert "- I-90 x-I-90：強（E16）・弱（E05）" in out and "- I-91 x-I-91：強0・弱0" in out and "- I-92 x-I-92：要確認" in out
+    assert "- I-90 x-I-90（公開 2026-10-10）：強（E16）・弱（E05）" in out and "- I-91 x-I-91（公開 2026-10-11）：強0・弱0" in out and "- I-92 x-I-92（公開 2026-10-12）：要確認" in out
     assert "組ごとの本数は 2026-11-02 の短期判定まで出さない" in out
     assert not any(g in out for g in summarize.GROUP_ORDER)
 
@@ -94,7 +94,7 @@ def test_claudeforce_line_in_the_report(capsys):
     summarize.print_new_article_poaching(overlap, blind=True)
     out = capsys.readouterr().out
     assert "46本の実験用プロンプトとの重なり：強0・弱（E16・E22・E14・E46・E11・E12）" in out
-    assert "- I-53 claudeforce：強0・弱（E16・E22・E14・E46・E11・E12）" in out
+    assert "- I-53 claudeforce（公開 2026-09-23）：強0・弱（E16・E22・E14・E46・E11・E12）" in out
     assert "組ごとの本数は 2026-11-02 の短期判定まで出さない" in out
     assert not any(g in out for g in summarize.GROUP_ORDER)
 

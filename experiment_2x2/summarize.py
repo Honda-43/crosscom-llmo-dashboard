@@ -832,10 +832,11 @@ def _pending_row(label, text=FACT_PENDING):
     return [label, text] + [""] * 10
 
 
-def sensitivity_table(after, before, title="", cut=None):
-    """感度分析（両方込み／9本抜き／features 抜き／…／事実訂正 A・B）を1つの表にする。
+def sensitivity_table(after, before, title="", cut=None, span=None):
+    """感度分析（両方込み／9本抜き／features 抜き／…／事実訂正 A・B／新記事の強の重なり抜き）を1つの表にする。
 
-    ``cut`` は fact_cut の結果（感度分析 B）。None か時刻が無ければ B は「記録待ち」の行。"""
+    ``cut`` は fact_cut の結果（感度分析 B）。None か時刻が無ければ B は「記録待ち」の行。
+    ``span`` はアフター期間（新記事の強の重なり抜きの行に使う。None なら行を出さない＝引用プローブ）。"""
     rows = []
     rr = None
     labels = variants()
@@ -853,6 +854,12 @@ def sensitivity_table(after, before, title="", cut=None):
         rows.append(_pending_row(cut["label"], "観測なし"))
     elif cut["status"] == "cut":
         rows.append(_table_row(cut["label"], cut["after"], before)[0])
+    ex = new_article_strong_exclusion(span) if span is not None else None
+    if ex is not None and ex["slugs"]:
+        rows.append(_table_row(new_article_strong_label(ex), after, before, ex["slugs"])[0])
+    elif ex is not None:
+        none = NEW_ARTICLE_STRONG_NONE + (f"（重なり要確認 {len(ex['unknown'])}本）" if ex["unknown"] else "")
+        rows.append(_pending_row(NEW_ARTICLE_STRONG_LABEL, none))
     head = ["感度分析" + (f"（{title.strip()}）" if title.strip() else ""), "本数",
             "①対照", "②FAQのみ", "③リードのみ", "④両方",
             "リード差", "p(再ランダム化)", "p(フィッシャー)",
@@ -875,7 +882,10 @@ def sensitivity_table(after, before, title="", cut=None):
     print(misinfo_fix_note())
     for line in fact_lines(after, cut):
         print(line)
+    if ex is not None:
+        print(new_article_strong_note(ex))
     print()
+    return ex
 
 
 def faq_by_multi_paragraph(after, before, title=""):
@@ -917,14 +927,16 @@ def faq_by_multi_paragraph(after, before, title=""):
     return out
 
 
-def both_ways(after, before, title="", cut=None):
-    """感度分析の表と、各通りの組別の内訳を出す。``cut`` は感度分析 B（fact_cut の結果）。"""
-    sensitivity_table(after, before, title, cut)
+def both_ways(after, before, title="", cut=None, span=None):
+    """感度分析の表と、各通りの組別の内訳を出す。``cut`` は感度分析 B（fact_cut の結果）。``span`` はアフター期間。"""
+    ex = sensitivity_table(after, before, title, cut, span)
     faq_by_multi_paragraph(after, before, title)
     for label, exclude in variants():
         summarize(after, before, exclude, f"{title}{label}")
     if cut is not None and cut["status"] == "cut":
         summarize(cut["after"], before, (), f"{title}{cut['label']}")
+    if ex is not None and ex["slugs"]:
+        summarize(after, before, ex["slugs"], f"{title}{new_article_strong_label(ex)}")
 
 
 def cut_signs(cut):
@@ -1239,7 +1251,11 @@ def new_article_overlap(row):
         weak_at = part.find("弱")
         strong_text, weak_text = (part, "") if weak_at < 0 else (part[:weak_at], part[weak_at:])
         strong = _ids_in_order(strong_text)
-        return "known", strong, [i for i in _ids_in_order(weak_text) if i not in strong]
+        weak = [i for i in _ids_in_order(weak_text) if i not in strong]
+        if not strong and not weak and "要確認" in part:
+            # 「実験用プロンプトとの重なり：seo-agent が確認中（要確認）」(2026-11-08 便VK)。確認結果の追記が来るまでは要確認
+            return "unknown", [], []
+        return "known", strong, weak
     m = _ANSWERABLE.search(note)
     if not m:
         return "unknown", [], []
@@ -1261,8 +1277,17 @@ def new_article_rows(rows):
     return [r for r in rows if scope_key(r.get("scope")) == NEW_ARTICLE_SCOPE]
 
 
+_SITE_URL = re.compile(r"https://cross-com\.jp/([^/\s。、（）」]+)/?")
+
+
 def _new_article_slug(row):
+    """「新記事公開：claudeforce」の形なら「：」の後。それ以外は description か note の最初の cross-com.jp の URL の slug。"""
     desc = str(row.get("description") or "")
+    if desc.startswith("新記事公開") and "：" in desc:
+        return desc.split("：", 1)[1].strip()
+    m = _SITE_URL.search(desc) or _SITE_URL.search(str(row.get("note") or ""))
+    if m:
+        return m.group(1)
     return desc.split("：", 1)[1].strip() if "：" in desc else desc
 
 
@@ -1280,7 +1305,8 @@ def print_new_article_poaching(overlap, blind, groups=None):
     print(f"判定期間に公開された新記事 {len(news)}本。46本の実験用プロンプトとの重なり：{overlap_text(strong, weak)}"
           + (f"・重なりが要確認 {len(unknown)}本（{'・'.join(r['intervention_id'] for r in unknown)}）" if unknown else ""))
     for r, k, st, wk in judged:
-        print(f"- {r['intervention_id']} {_new_article_slug(r)}：" + (overlap_text(st, wk) if k == "known" else "要確認"))
+        print(f"- {r['intervention_id']} {_new_article_slug(r)}（公開 {r.get('raw_date') or r.get('date') or '日付なし'}）："
+              + (overlap_text(st, wk) if k == "known" else "要確認"))
     if (strong or weak) and blind:
         print(f"組ごとの本数は {GROUP_BLIND_UNTIL} の短期判定まで出さない")
     elif strong or weak:
@@ -1291,6 +1317,41 @@ def print_new_article_poaching(overlap, blind, groups=None):
                 by = collections.Counter(groups.get(by_id.get(i), "（割付なし）") for i in ids)
                 print(f"{name}の E番号の組：" + "・".join(f"{g} {by.get(g, 0)}本" for g in GROUP_ORDER))
     print("※ 表示だけで、判定の数値には使わない\n")
+
+
+# --------------------------------------------------------------------------
+# 感度分析「新記事の強の重なり抜き」(2026-11-08 事前登録・実装の前。11/2 以降の組ごとの数字は誰も見ていない状態)
+# アフター期間中に公開された新記事(scope=new_article)のうち、実験用プロンプトとの重なりが「強」の記事について、
+# その重なり先の E番号を判定期間の全体(ビフォー・アフターとも・全組)から抜く。強が0本なら「該当なし」で計算しない。
+# 長期判定の感度分析の1行。variants() には入れない(早期解放の条件(3)・判定の基準には使わない)
+# --------------------------------------------------------------------------
+NEW_ARTICLE_STRONG_LABEL = "新記事の強の重なり抜き"
+NEW_ARTICLE_STRONG_NONE = "該当なし"
+
+
+def new_article_strong_exclusion(span, rows=None):
+    """{"news": アフター期間に公開された新記事の行, "strong": 強の E番号, "slugs": 抜く記事, "unknown": 重なり要確認の行}。"""
+    rows = interventions.load() if rows is None else rows
+    start, end = (datetime.date.fromisoformat(d) for d in span)
+    news = [r for r in new_article_rows(rows) if r.get("date") is not None and start <= r["date"] <= end]
+    judged = [(r, *new_article_overlap(r)) for r in news]
+    strong = list(dict.fromkeys(i for _, _, st, _ in judged for i in st))
+    by_id = {a["id"]: a["slug"] for a in load_pool()} if strong else {}
+    return {"news": news, "strong": strong, "slugs": {by_id[i] for i in strong if i in by_id},
+            "unknown": [r for r, k, _, _ in judged if k == "unknown"]}
+
+
+def new_article_strong_label(ex):
+    return f"{NEW_ARTICLE_STRONG_LABEL}（{'・'.join(ex['strong'])}・全組）" if ex["slugs"] else NEW_ARTICLE_STRONG_LABEL
+
+
+def new_article_strong_note(ex):
+    ids = "・".join(r["intervention_id"] for r in ex["news"])
+    text = (f"※ {NEW_ARTICLE_STRONG_LABEL}：アフター期間に公開された新記事 {len(ex['news'])}本" + (f"（{ids}）" if ids else "")
+            + f"・強の重なり {('・'.join(ex['strong']) if ex['strong'] else '0本')}")
+    if ex["unknown"]:
+        text += f"・重なりが要確認 {len(ex['unknown'])}本（{'・'.join(r['intervention_id'] for r in ex['unknown'])}）"
+    return text + "。長期判定の感度分析の1行で、早期解放の条件・判定の基準には使わない（2026-11-08 事前登録）"
 
 
 # --------------------------------------------------------------------------
@@ -1631,12 +1692,12 @@ def main(argv=None):
                 print(f"感度分析・早期解放・ピラーの前後・GSC 補助分析・副指標・週ごとの表示：{until_text}まで出さない\n")
                 continue
             cut = fact_cut(rows, _span(a.after), model, groups, pool)
-            both_ways(after, before, f"{model} ", cut)
+            both_ways(after, before, f"{model} ", cut, _span(a.after))
             # ピラー編集が 10/6 以降に完了した場合は、アフターをその前後に分けた結果も並べる
             for label, span in pillar_parts:
                 part = period(rows, span, model, groups, pool)
                 print(f"##### {model}（アフター {span[0]}〜{span[1]}・{label} / ビフォー {a.before}）")
-                both_ways(part, before, f"{model} {label} ", fact_cut(rows, span, model, groups, pool))
+                both_ways(part, before, f"{model} {label} ", fact_cut(rows, span, model, groups, pool), span)
             gsc_rank_subgroups(after, before, f"{model} ")
             if model == "gemini" and is_short_judgement(_span(a.after)):
                 print_early_release(after, before, cut=cut)
