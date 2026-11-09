@@ -1,0 +1,48 @@
+{
+  "date": "2026-11-09",
+  "prompt_id": "PM-L1-04",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "不動産業界におすすめのAgentforce導入支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-09T02:29:31.227660Z",
+  "answer": "不動産業界でAgentforceの導入支援を検討されている場合、以下の企業が有力な選択肢として挙げられます。\n\n*   **フロッグウェル株式会社**\n    フロッグウェル株式会社は、不動産業界特有の課題を深く理解し、Agentforceを活用した革新的なソリューションの導入支援サービスを提供しています。物件レコメンド機能の実現など、具体的な構築ステップと活用事例を提示しており、各企業の業務プロセスに最適化したシステム構築を支援しています。\n\n*   **コインタックス株式会社**\n    コインタックス株式会社は、不動産会社向けにAgentforceとAccount Engagementを活用した「AI搭載営業支援パッケージ」を提供しています。このパッケージは、顧客の希望条件に基づいた最適物件の自動提案や、継続的なフォローアップの自動化を目的としており、営業現場の工数削減と対応品質の標準化を実現します。\n\n*   **株式会社セールスフォース・ジャパン**\n    Agentforceを提供するSalesforce自身も、エンジニアリング、建設、不動産業界向けのソリューションとしてAgentforceの活用を推進しています。不動産開発における用地分析の高度化やプロジェクト管理の効率化を実現した株式会社フェイスネットワークの事例、また、不動産投資コンサルティングを手掛けるTAPPがAgentforceを導入し、顧客体験（CX）向上に挑戦した事例 など、豊富な導入実績とノウハウを有しています。\n\n*   **株式会社ウフル**\n    株式会社ウフルは、Salesforceのテクノロジーを活用した業務支援の経験を基に、Agentforceの導入・活用支援を提供しています。初期の焦点はカスタマーサービス領域向けの「Agentforce for Service」ですが、今後他のAgentforceサービスへの拡大も予定しています。\n\nこれらの企業は、不動産業界におけるAgentforceの導入において、それぞれの強みや専門性を活かしたサポートを提供しています。貴社の具体的なニーズに合わせて、各社のサービス内容を比較検討することをおすすめします。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHYrZ-b7tpDWvSzNo9JuarAhp8GRJGC38-jzYkV_yB_AIKUeCVFK_UFwK9IZUXj_32K3SkrZtQOC5urrXIIsyxsXY95bkMlyS2YNpgSgD4zOmU0dNx2qXAATY37sHSKKwUpmMU6LwNmimmDy-g=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGZDomsfinAmPYFFRyxTDZrF3ppPL1ZfTv-t87W5B6sUwOENVpFMCadvCcAhwtmy4X4l3HzaU-gtgNzfk1Q1NaiV7r5zkMr5vV2WdJ3UBLDcJV01uSNXW36yHiisqiEM9eUcbNWM7L3dLUARhiiZTeD6xeDSzY=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEDan7qohnDWGA8mMX-O6zTr9SUN7ceqGhgyaS_PnPG8bmsFvlskyQjRp4ig6Gus4PA4D1ZPGT5srJD7ABY-XM1_s1Yhx4YNd9S3S61Y2TIq8J7S9bRUB6IWxbzNMdKwGka_KKd5NcN_yFI8S0LiHp9wH4vDs8=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEgieNVsXu1FKv0v4Ls3cvdK435mbmdXUFfHhOYBuQkLHkNbzV9m6XcFuEWSrUBGo-caEim2-XlCXsGjr0Rd_mogktwtX-6pPO8pByTaY15E34GjvU2wiuc4Vcww0V7M9bXX9YdtsYk",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGd_U72DAnJ8wnU8LRJNw5KyxIvGEgz4zMqQT3Z2ua8guc2tf5JknbSlNV_azyxn1cuKH-hv6s1DHT8IQ7o0xHpHHWZjxlaDaxVsFjaMIUv3tWq1wwQgu_UqTtzDD8hic86UcP9-AS9ImNT"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "MOFU_L1",
+  "prompt": "不動産業界におすすめのAgentforce導入支援会社を教えてください。",
+  "answer_text": "不動産業界でAgentforceの導入支援を検討されている場合、以下の企業が有力な選択肢として挙げられます。\n\n*   **フロッグウェル株式会社**\n    フロッグウェル株式会社は、不動産業界特有の課題を深く理解し、Agentforceを活用した革新的なソリューションの導入支援サービスを提供しています。物件レコメンド機能の実現など、具体的な構築ステップと活用事例を提示しており、各企業の業務プロセスに最適化したシステム構築を支援しています。\n\n*   **コインタックス株式会社**\n    コインタックス株式会社は、不動産会社向けにAgentforceとAccount Engagementを活用した「AI搭載営業支援パッケージ」を提供しています。このパッケージは、顧客の希望条件に基づいた最適物件の自動提案や、継続的なフォローアップの自動化を目的としており、営業現場の工数削減と対応品質の標準化を実現します。\n\n*   **株式会社セールスフォース・ジャパン**\n    Agentforceを提供するSalesforce自身も、エンジニアリング、建設、不動産業界向けのソリューションとしてAgentforceの活用を推進しています。不動産開発における用地分析の高度化やプロジェクト管理の効率化を実現した株式会社フェイスネットワークの事例、また、不動産投資コンサルティングを手掛けるTAPPがAgentforceを導入し、顧客体験（CX）向上に挑戦した事例 など、豊富な導入実績とノウハウを有しています。\n\n*   **株式会社ウフル**\n    株式会社ウフルは、Salesforceのテクノロジーを活用した業務支援の経験を基に、Agentforceの導入・活用支援を提供しています。初期の焦点はカスタマーサービス領域向けの「Agentforce for Service」ですが、今後他のAgentforceサービスへの拡大も予定しています。\n\nこれらの企業は、不動産業界におけるAgentforceの導入において、それぞれの強みや専門性を活かしたサポートを提供しています。貴社の具体的なニーズに合わせて、各社のサービス内容を比較検討することをおすすめします。",
+  "run_date": "2026-11-09 11:29:31",
+  "extractor_model": "停止中",
+  "mentioned": 0,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 0,
+  "cited_domains": [
+    "frogwell.co.jp",
+    "prtimes.jp",
+    "callcenter-japan.com",
+    "uhuru.co.jp"
+  ],
+  "resolved_urls": [
+    "https://frogwell.co.jp/blogs/agentforce-hudousan/",
+    "https://prtimes.jp/main/html/rd/p/000000005.000111463.html",
+    "https://prtimes.jp/main/html/rd/p/000000406.000041550.html",
+    "https://callcenter-japan.com/article/8828/1/",
+    "https://uhuru.co.jp/service/agentforce_service/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}
