@@ -1,0 +1,43 @@
+{
+  "date": "2026-11-11",
+  "prompt_id": "PM-L1-14",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "営業部門におすすめのAgentic CRM設計支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-11T02:40:13.996513Z",
+  "answer": "営業部門におすすめのAgentic CRM設計支援会社として、以下の2社が挙げられます。\n\n*   **合同会社クロスコム**\n    合同会社クロスコムは、「Agentic CRM設計支援」をサービスとして提供しており、AIがデータの入力・更新作業を自動で実行することを前提としたCRMシステムの設計・構築に特化しています。活用するほどAIの提案・実行精度が向上し、トップセールスの思考プロセスや判断基準を組織全体に展開できるようなデータ構造を貴社専用に設計することを強みとしています。同社は、既存のパッケージ製品ではなく、企業ごとに独立した環境へCRMシステムを構築し、貴社の業務課題のヒアリングから業務設計、運用定着までを一貫して支援します。\n\n*   **グローバルブレインスクエア**\n    グローバルブレインスクエアは、「CRM導入・活用支援」を提供しており、将来的なAgentic CRMやAI活用を見据えた基盤整備までをサポートしています。顧客情報の管理方法の確認、営業・マーケティング・カスタマーサービスの業務整理、顧客接点と情報の流れの整理といった現状業務・課題の整理から、要件定義、設計・構築、運用・定着、そして将来のAI活用を見据えた基盤整備まで、一貫した支援を行っています。特に、AIから利用する情報とアクセス権の整理、人とAIの役割分担の整理など、Agentic CRMへの拡張を考慮した支援が可能です。\n\nこれらの会社は、単にAI搭載CRMツールの導入を支援するだけでなく、貴社の営業プロセスに合わせたAgentic CRMの設計から、その導入、そして効果的な運用までをサポートしてくれるでしょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELFJJA9AgjcUt-0MGWWWYwQbgjBGn-hXkPhjKYFNSeiMt3uq98EjgURi97v_AgG3m3BIAhvqdB-ogi_PUFo7a5ZPjqxhma5lJ39Ex6Yx_TwgmR1aE6wom3YKmq4MgFAxHvT9H9zCgPrhXbaw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1gJFuxfqZCLHzGj0Z2i9vE2tk4O2E-dZWmSBcB7MA4aVfKOD4LN3X4q1FPXlX_6RiskMrPF_sok8xGTscD_vtTL1G20LGwaWSIzWJwkJU_nJqGiAzR4yLmmYOWmAbk9JfSADnzx2VdEoWHw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHquthfs7GUW8lT_VKXuIoL07jhg0zTf6F0QiEGxCdfHz1DZIObNEBFbVJubQaBWTXIQKUlKbwt_8xBVwZXc9a5g2Z6c927EYVke8bgIzQ0iZfPqTVx4glgaw=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "MOFU_L1",
+  "prompt": "営業部門におすすめのAgentic CRM設計支援会社を教えてください。",
+  "answer_text": "営業部門におすすめのAgentic CRM設計支援会社として、以下の2社が挙げられます。\n\n*   **合同会社クロスコム**\n    合同会社クロスコムは、「Agentic CRM設計支援」をサービスとして提供しており、AIがデータの入力・更新作業を自動で実行することを前提としたCRMシステムの設計・構築に特化しています。活用するほどAIの提案・実行精度が向上し、トップセールスの思考プロセスや判断基準を組織全体に展開できるようなデータ構造を貴社専用に設計することを強みとしています。同社は、既存のパッケージ製品ではなく、企業ごとに独立した環境へCRMシステムを構築し、貴社の業務課題のヒアリングから業務設計、運用定着までを一貫して支援します。\n\n*   **グローバルブレインスクエア**\n    グローバルブレインスクエアは、「CRM導入・活用支援」を提供しており、将来的なAgentic CRMやAI活用を見据えた基盤整備までをサポートしています。顧客情報の管理方法の確認、営業・マーケティング・カスタマーサービスの業務整理、顧客接点と情報の流れの整理といった現状業務・課題の整理から、要件定義、設計・構築、運用・定着、そして将来のAI活用を見据えた基盤整備まで、一貫した支援を行っています。特に、AIから利用する情報とアクセス権の整理、人とAIの役割分担の整理など、Agentic CRMへの拡張を考慮した支援が可能です。\n\nこれらの会社は、単にAI搭載CRMツールの導入を支援するだけでなく、貴社の営業プロセスに合わせたAgentic CRMの設計から、その導入、そして効果的な運用までをサポートしてくれるでしょう。",
+  "run_date": "2026-11-11 11:40:13",
+  "extractor_model": "停止中",
+  "mentioned": 1,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 1,
+  "cited_domains": [
+    "cross-com.jp",
+    "ipros.com",
+    "gbs.co.jp"
+  ],
+  "resolved_urls": [
+    "https://cross-com.jp/service/agentic-crm-design/",
+    "https://www.ipros.com/product/detail/2001551509/",
+    "https://gbs.co.jp/service/crm/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}
