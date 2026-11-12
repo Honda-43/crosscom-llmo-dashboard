@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-12",
+  "prompt_id": "PM-L1-21",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "IT研修業界におすすめのSalesforce導入支援会社を教えてください。",
+  "cep": null,
+  "timestamp": "2026-11-12T03:45:11.486734Z",
+  "answer": "IT研修業界におすすめのSalesforce導入支援会社として、以下の企業が挙げられます。これらの企業は、教育業界や研修事業におけるSalesforceの導入・活用支援に強みを持っています。\n\n*   **furuCRM**\n    furuCRMは、Salesforce Education Cloudのコンサルティングを専門とし、教育機関の変革を支援しています。学生のエンゲージメント向上や運用効率化、入学改善など、教育プロセス全体の戦略と最適化をサポートします。不動産、金融、SaaSテクノロジー企業など多様な業界での経験も豊富です。\n\n*   **株式会社SUGo**\n    株式会社SUGoは、Salesforceを活用して教育機関と学習者の生涯にわたる関係を構築するソリューションを提供しています。入学前・在学中・卒業後まで、すべての学生情報をデータ化し、効率的な管理を実現します。Web出願ポータルや学生ポータル構築の支援も行っています。\n\n*   **株式会社サンブリッジ**\n    サンブリッジは、教育サービス業界でのSalesforce導入成功事例を持っています。具体的には、大学やスクールの運営、企業への教育研修・コンサルティングサービスを提供する企業の顧客管理や学生ポータル構築などを支援しています。Salesforce導入支援の一環として、ユーザー研修やオペレーションガイド作成も実施しており、定着化をサポートします。\n\n*   **株式会社セラクCCC**\n    セラクCCCは、Salesforceの定着・活用、改善、運用、導入までを支援しており、「人材育成パッケージ」や「研修構成・資料作成」といったサービスも提供しています。これにより、Salesforceの導入だけでなく、その後の社内での活用促進にも貢献が期待できます。\n\n*   **Attain Partners**\n    Attain Partnersは、Salesforce主催のEducation Summit Japan 2025に参加し、高等教育におけるAI、デジタルトランスフォーメーション、学生体験について講演しています。これは、同社が教育分野におけるSalesforce Education Cloudの深い専門知識を持っていることを示しています。\n\nこれらの企業は、IT研修業界の特性に合わせたSalesforceの導入から定着まで、幅広いサポートを提供できると考えられます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEPW60GP0F_5hnShwA7aNQaU5ri36ihc_MmycXAZD_YmdCbnK9Bp2Nyb4oNICRHIidFFq5qZ-WJa4zkps3lZ_0MQHiXuYaVKULPD1trWFociDTY0lUmMfbeRAzpQ2Ligo9g",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGAMI2lA7griT1HWNTZ8Dxcpc8cAHoDpoOEdFcl3JPinM7UzgaqsHCbQz5CZ0T2WlCzl0gZNLMEbSZnkrRvMhVzAt5p9zTwFY619g_3jVRJcnD-6b9j5uI-Sf3dUyusJYJkx1fS13aR",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8eH8OWKSIPM5qbU7w8TTO-7e6HpQqvn8utX4Po5Jhx2JyYJEGPyVXzMV3omqVe2LzYcuPn8LtGyq5dyMZrSVb1SH88msbo7pRmKqARods3rUm8vcsdY4133FCtQfZwWhlD-9HYJuK8wROxI6CIuw_Rjduv5yfPA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF-ORHEfNAjL7Ib92mAkMSG5ngFCscWte3ulbORRqrlvskl_t-M60LTjg6kSrHtX3mLqn9tbqtpSIlbBWXnKA9Fg-tK5LFKrmDNur9JK6K2LpksezqTBUd4gaYub2NQFyaMVrpBq9oluGRwzmxzE4qNhhOAqX-9h0LCtyM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFEMyxLSxJZm2TOuDMSNmuePppT1EvevnjqiuWpnlui0fetF9BRA3kUm7j_w2y5thdMMqSVOqNRMI2WUwuOfu1Dkii2lc1Eq_Aal-WJuoKlvzOgHDgy3Qes5L_5nEdts5W-2TMAEAc1bxIWPtld8QIAT30McQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGr4Y8CY9dBSWbQZcyVtD-0qj77q-pQRzxwBVNL9UA2hjojBE9WUZIisjM181cRxYq-GFqzeIWFkFGTB4x7gH-IR3zwfEIcldNJ9a9Q2m1uD5gJZN24trPJsb8ST1CaaMjIoFxxs0_ZrT_C_PlRk1JUzM4l9Baf0IE="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "layer": "MOFU_L1",
+  "prompt": "IT研修業界におすすめのSalesforce導入支援会社を教えてください。",
+  "answer_text": "IT研修業界におすすめのSalesforce導入支援会社として、以下の企業が挙げられます。これらの企業は、教育業界や研修事業におけるSalesforceの導入・活用支援に強みを持っています。\n\n*   **furuCRM**\n    furuCRMは、Salesforce Education Cloudのコンサルティングを専門とし、教育機関の変革を支援しています。学生のエンゲージメント向上や運用効率化、入学改善など、教育プロセス全体の戦略と最適化をサポートします。不動産、金融、SaaSテクノロジー企業など多様な業界での経験も豊富です。\n\n*   **株式会社SUGo**\n    株式会社SUGoは、Salesforceを活用して教育機関と学習者の生涯にわたる関係を構築するソリューションを提供しています。入学前・在学中・卒業後まで、すべての学生情報をデータ化し、効率的な管理を実現します。Web出願ポータルや学生ポータル構築の支援も行っています。\n\n*   **株式会社サンブリッジ**\n    サンブリッジは、教育サービス業界でのSalesforce導入成功事例を持っています。具体的には、大学やスクールの運営、企業への教育研修・コンサルティングサービスを提供する企業の顧客管理や学生ポータル構築などを支援しています。Salesforce導入支援の一環として、ユーザー研修やオペレーションガイド作成も実施しており、定着化をサポートします。\n\n*   **株式会社セラクCCC**\n    セラクCCCは、Salesforceの定着・活用、改善、運用、導入までを支援しており、「人材育成パッケージ」や「研修構成・資料作成」といったサービスも提供しています。これにより、Salesforceの導入だけでなく、その後の社内での活用促進にも貢献が期待できます。\n\n*   **Attain Partners**\n    Attain Partnersは、Salesforce主催のEducation Summit Japan 2025に参加し、高等教育におけるAI、デジタルトランスフォーメーション、学生体験について講演しています。これは、同社が教育分野におけるSalesforce Education Cloudの深い専門知識を持っていることを示しています。\n\nこれらの企業は、IT研修業界の特性に合わせたSalesforceの導入から定着まで、幅広いサポートを提供できると考えられます。",
+  "run_date": "2026-11-12 12:45:11",
+  "extractor_model": "停止中",
+  "mentioned": 0,
+  "mention_rank": "",
+  "is_first": "",
+  "cited_domain": 0,
+  "cited_domains": [
+    "furucrm.com",
+    "su-go.co.jp",
+    "sunbridge.com",
+    "ccc.seraku.co.jp",
+    "attainpartners.com"
+  ],
+  "resolved_urls": [
+    "https://www.furucrm.com/educationcloud",
+    "https://su-go.co.jp/lp/salesforce-education/",
+    "https://www.sunbridge.com/service/salesforce-implementation/",
+    "https://www.sunbridge.com/blog/useful/salesforce_case_education/",
+    "https://www.ccc.seraku.co.jp/service/salesforce/training/",
+    "https://attainpartners.com/event/education-summit-2025-japan/"
+  ],
+  "unresolved_redirects": 0,
+  "companies": []
+}
