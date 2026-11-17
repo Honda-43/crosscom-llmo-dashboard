@@ -1,0 +1,153 @@
+# 第3観測層(prompt_marketing)の回答から「挙げられた会社」を数えるための会社の一覧(2026-11-17)
+#
+# src/marketing_by_what.py が読む。順位の自動の抽出(Haiku)は 2026-10-03 から止めているため、
+# 回答の本文をこの一覧と照らして、どの会社が出たか・クロスコムが何番目に出たかを決める。
+#
+# - key   = 表に出す会社名
+# - value = 本文から探す正規表現(本文は NFKC・小文字にしてから照合する。パターンも小文字で書く)
+# - 製品・プラットフォームの提供元(Salesforce・Microsoft・Google)は支援会社ではないので入れない
+# - クロスコムは入れない(experiment.MENTION_TERMS_V2 の表記で別に探す)
+# - 提携先として出た会社(株式会社イーゼ)と、導入事例の顧客企業は入れない
+#
+# 毎月の集計で「一覧に無い会社名の候補」が出たら、支援会社として挙げられているものをここに足す
+# (コードの変更は要らない)。足した月より前の集計も、出し直すと同じ一覧で数え直される。
+companies:
+  日立ソリューションズ: 日立ソリューションズ
+  ウフル: ウフル|uhuru
+  enucolor: enucolor
+  メンバーズ: メンバーズ
+  サンブリッジ: サンブリッジ
+  テラスカイ: テラスカイ
+  CloudFit: cloudfit
+  TDCソフト: tdcソフト
+  三菱総研DCS: 三菱総研dcs
+  三菱総合研究所: 三菱総合研究所
+  toBeマーケティング: tobeマーケティング
+  フロッグウェル: フロッグウェル
+  K2 Partnering Solutions: k2 partnering
+  セラクCCC: セラク
+  テクノデジタルコンサルティング: テクノデジタル
+  インフォテック・サービス: インフォテック
+  SUGo: sugo
+  ripla: ripla|りぷら
+  サークレイス: サークレイス
+  日立コンサルティング: 日立コンサルティング
+  Kmetric: kmetric
+  アグレックス: アグレックス
+  IBM: \bibm\b
+  knou: knou|ノウ株式会社
+  いえらぶGROUP: いえらぶ
+  アーカス・ジャパン: アーカス
+  AI Revolution: ai revolution
+  コムチュア: コムチュア
+  富士通: 富士通
+  大和総研: 大和総研
+  Strh: strh
+  日本システムデザイン: 日本システムデザイン
+  日鉄ソリューションズ: 日鉄ソリューションズ|nssol
+  バーチャレクス・コンサルティング: バーチャレクス
+  富士ソフト: 富士ソフト
+  電通総研: 電通総研
+  アクセンチュア: アクセンチュア|accenture
+  デロイト: デロイト|deloitte
+  PwC: pwc
+  EY: \bey\b|eyストラテジー
+  アビームコンサルティング: アビーム|abeam
+  野村総合研究所: 野村総合研究所|\bnri\b(?!セキュア)
+  NRIセキュア: nriセキュア
+  ベイカレント: ベイカレント
+  NTTデータ: nttデータ(?!ビジネスシステムズ)
+  NTTデータビジネスシステムズ: nttデータビジネスシステムズ
+  NTTテクノクロス: nttテクノクロス
+  船井総研: 船井総
+  Capgemini: capgemini
+  HSO: \bhso\b
+  Forsys: forsys
+  プライムビズ: プライムビズ
+  ファネルAi: ファネルai
+  エイムネクスト: エイムネクスト
+  Sky: sky株式会社
+  feat: 株式会社feat
+  Belue Creative: belue
+  ロク: 株式会社ロク
+  フライク: フライク
+  Pro-D-use: pro-d-use
+  青山システムコンサルティング: 青山システム
+  パーソルワークスイッチコンサルティング: ワークスイッチ
+  TOMAコンサルタンツ: \btoma
+  サイバーエージェント: サイバーエージェント
+  モンスター・ラボ: モンスター・ラボ
+  Various.work: various\.work
+  MARKコンサルタンツ: markコンサル
+  BREEDIN: breedin|ブリーディン
+  Aoi: 株式会社aoi
+  atsumel: atsumel
+  ハマナス: ハマナス
+  SHO-SAN: sho-san
+  コインタックス: コインタックス
+  Arealinks: arealinks
+  Uravation: uravation
+  アセットコミュニケーションズ: アセットコミュニケーションズ
+  ForceBridge: forcebridge
+  ZENFORCE: zenforce
+  パーソルクロステクノロジー: パーソルクロス
+  AI総合研究所: ai総合研究所
+  AVILEN: avilen
+  Poksha: poksha
+  SORICH: sorich
+  Gene: 株式会社gene
+  フュージョン: フュージョン株式会社
+  電通デジタル: 電通デジタル
+  Elsant: elsant
+  エフ・ディー・シー: エフ・ディー・シー
+  中央システム: 中央システム
+  日本タタ・コンサルタンシー・サービシズ: タタ・コンサルタンシー|\btcs\b
+  グローバルブレインスクエア: グローバルブレイン
+  ワンマーケティング: ワンマーケティング
+  日本キャスト: 日本キャスト
+  Cloudfleek: cloudfleek
+  株式会社100: 株式会社100
+  豊田通商システムズ: 豊田通商システムズ
+  Hakuhodo DY ONE: hakuhodo dy one
+  アイディルートコンサルティング: アイディルート
+  カズテム: カズテム
+  ERAI: \berai\b
+  ハレフル: ハレフル
+  mtc.: \bmtc\.
+  エディフィストラーニング: エディフィスト
+  トレノケート: トレノケート
+  ユニファイド・サービス: ユニファイド
+  MIDCAI: midcai
+  Techcronus: techcronus
+  Autogility: autogility
+  Arnexa Tech: arnexa
+  Sietrix: sietrix
+  DevelopersHub: developershub
+  Girikon: girikon
+  Aekot: aekot
+  Melonleaf: melonleaf
+  Cyntexa: cyntexa
+  Everforth Quinnox: everforth
+  Tristella Advisors: tristella
+  TechForce: techforce
+  Argano: argano
+  Synebo: synebo
+  Wakencode Technologies: wakencode
+  VALiNTRY360: valintry
+  Slalom: slalom
+  Rosetree Solutions: rosetree
+  NeuraFlash: neuraflash
+  Centric Consulting: centric consulting
+  Wipfli: wipfli
+  Achieva AI: achieva
+  ラクボ: ラクボ
+  genne: genne
+  ブリッジプロセステクノロジー: ブリッジプロセス
+  Rockhopper: rockhopper|ロックホッパー
+  INDEX: \*\*index\*\*
+  ノテモ: notemo|ノテモ
+  オプティソース: オプティソース
+  ALION: \balion
+  コアコンセプト・テクノロジー: コアコンセプト
+  Attain Partners: attain partners
+  furuCRM: furucrm

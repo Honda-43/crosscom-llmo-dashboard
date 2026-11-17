@@ -1796,3 +1796,9 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - 4組をまとめた数だけを週ごとに出した（9/15 の週〜11/16 の週。11/16 の週は 11/16 の1日）。組ごと・E番号ごとの数字は出していない（12/28 まで出さない）
 **GA4 の AI 経由の訪問数**
 - シートの ga4_ai_traffic（daily.yml が毎日書く）から 9月・10月・11月（〜11/16）の月ごとに数えた。GA4 のプロパティ ID は GitHub の secrets にしかなく、手元から GA4 を直接は読めない
+
+## 2026-11-17／第3観測層の11月分を支援の種類で分けた表（本田さんの依頼）
+- 第3観測層（prompt_marketing）は凍結46本の実験とは別の観測。組ごとの数字のルールには当たらない
+- config/prompts_marketing.csv に支援の種類（What）の列は無いため、質問文の語で分けた（Agentforce導入支援・Agentforce活用定着支援・Agentic CRM設計支援・その他）。CSV は変えていない
+- 集計は src/marketing_by_what.py（毎月 `python src/marketing_by_what.py YYYY-MM` で同じ分け方で出せる）。何番目かと上位の会社は config/marketing_companies.yaml の会社の一覧で数える（Haiku の順位の抽出は 10/03 から停止中）
+- 10月の PM-L0-02 はこの数え方でも5番目で、停止前の Haiku の結果（5番目）と同じ
