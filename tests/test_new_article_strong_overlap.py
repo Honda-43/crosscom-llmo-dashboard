@@ -33,6 +33,24 @@ def _row(iid, date, note, scope="new_article"):
             "touches_pool46": "no", "note": note}
 
 
+OVERLAPS = {"I-56": ([], ["E18", "E44", "E30", "E05"]), "I-57": ([], ["E39", "E43", "E18"]),
+            "I-58": ([], ["E41", "E40", "E18", "E08", "E30", "E05"]), "I-59": ([], ["E18", "E44", "E30", "E05"]),
+            "I-60": (["E20"], ["E18", "E08", "E44", "E30", "E16", "E05"])}
+
+
+def test_the_strong_overlap_e20_is_dropped_in_the_long_term_row():
+    """強の重なりは I-60(sales-ai-case-study)と E20 の1本。事前登録の行で E20 の記事が抜かれる(組は見ない)。"""
+    ex = summarize.new_article_strong_exclusion(SPAN)
+    assert [r["intervention_id"] for r in ex["news"]] == ["I-56", "I-57", "I-58", "I-59", "I-60"]
+    assert ex["strong"] == ["E20"] and ex["slugs"] == {_eid()["E20"]} and ex["unknown"] == []
+    assert summarize.new_article_strong_label(ex) == "新記事の強の重なり抜き（E20・全組）"
+
+
+def test_dropped_ids_are_not_read_as_weak():
+    note = "実験用プロンプトとの重なり：強0・弱 E18・E44（…。外したもの：E16〔…〕・E08・E20）"
+    assert summarize.new_article_overlap({"note": note}) == ("known", [], ["E18", "E44"])
+
+
 def _eid():
     return {a["id"]: a["slug"] for a in summarize.load_pool()}
 
@@ -61,8 +79,9 @@ def test_the_15_rows_are_appended():
             "2026-11-08", "new_article", "seo-agent（a2846ad4）", "no")
         assert f"https://cross-com.jp/{slug}/。目次・記事内CTA（上下）" in r["description"]
         assert r["note"].startswith("本田さん OK（2026-11-08 便VK：アイキャッチ5本・図6枚）。凍結46本・編集保留の外。")
-        assert r["note"].endswith("保留14本へのリンクは構成案の計画どおり（注意・止めない）。" + PENDING)
-        assert summarize.new_article_overlap(r) == ("unknown", [], [])
+        assert ("保留14本へのリンクは構成案の計画どおり（注意・止めない）。" + PENDING + "　【2026-11-17 追記・seo-agent（a2846ad4）の原文"
+                "（bunVK/experiment_overlap_bunVK_20261117.md §6）】実験用プロンプトとの重なり：") in r["note"]
+        assert summarize.new_article_overlap(r) == ("known", *OVERLAPS[i])
     for i, slug in zip(ids[5:13], CTA):
         r = rows[i]
         assert r["scope"] == "site_content" and r["touches_pool46"] == "no"
@@ -81,13 +100,16 @@ def test_the_15_rows_are_confounder_candidates(capsys):
     assert out.count("｜scope=new_article｜touches_pool46=no") >= 6, "I-53 と新記事5本"
 
 
-def test_poaching_lists_publish_dates_and_pending_overlap(capsys):
+def test_poaching_lists_publish_dates_and_the_confirmed_overlap(capsys):
+    """2026-11-17 に seo-agent の確認結果(§6)を追記した後。組は出さない(groups は空)。"""
     overlap, _ = summarize.site_wide_interventions(dt.date(2026, 9, 15), dt.date(2026, 12, 27))
     summarize.print_new_article_poaching(overlap, blind=False, groups={})
     out = capsys.readouterr().out
-    assert "重なりが要確認 5本（I-56・I-57・I-58・I-59・I-60）" in out
+    assert "重なりが要確認" not in out, "重なりが要確認の新記事は無くなった"
+    assert "新記事 6本。46本の実験用プロンプトとの重なり：強（E20）・弱（" in out
     for n, slug in zip(range(56, 61), NEW):
-        assert f"- I-{n} {slug}（公開 2026-11-08）：要確認" in out
+        st, wk = OVERLAPS[f"I-{n}"]
+        assert f"- I-{n} {slug}（公開 2026-11-08）：{summarize.overlap_text(st, wk)}" in out
     assert "- I-53 claudeforce（公開 2026-09-23）：強0・弱（E16・E22・E14・E46・E11・E12）" in out
 
 

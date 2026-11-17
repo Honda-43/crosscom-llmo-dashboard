@@ -1248,6 +1248,9 @@ def new_article_overlap(row):
         part = note[at + len(OVERLAP_LABEL):]
         stop = part.find("・公開")
         part = part if stop < 0 else part[:stop]
+        # 「外したもの：E16〔…〕・E08」は重なりではない(2026-11-17 便VK の確認結果の書き方)。そこから後は読まない
+        dropped = part.find("外したもの")
+        part = part if dropped < 0 else part[:dropped]
         weak_at = part.find("弱")
         strong_text, weak_text = (part, "") if weak_at < 0 else (part[:weak_at], part[weak_at:])
         strong = _ids_in_order(strong_text)
