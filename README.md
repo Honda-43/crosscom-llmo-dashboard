@@ -1677,17 +1677,41 @@ Gemini(gemini-2.5-flash・検索接続ON)と Claude で**月1回・毎月第1週
 
   実験の取り直しがあった日は、その分だけ marketing が減る(1日20回を超えない)。PM-L1-19〜21(IT研修業界3本)は
   層ブロック順で MOFU_L1 の末尾なので、取り直しが無ければ 11/9 に届く(予備が4日あるので14日までに届く見込み)
-- **MOFU を「何の支援を聞いているか」で分けた月次の表(2026-11-17・本田さんの依頼)**:
-  `python src/marketing_by_what.py 2026-12`(月を省くと前月)。raw を読んで標準出力に表を出すだけで、シート・ファイルには書かない。
-  - 対象:会社名を含まない MOFU(L0・L1・L2・37本)の Gemini の観測(観測できた行だけ。同じ月に2回あれば後の日)
-  - 支援の種類:CSV に支援の種類の列は無いので、**質問文の語で決める**。「Agentforce導入支援」「Agentforce活用定着支援」
-    「Agentic CRM設計支援」、それ以外は「その他」(Salesforce導入支援・構築支援・設計レビュー・アドバイザリー・業務設計など)。
-    57本の内訳は 10・1・10・16本(テストで固定)
-  - 出すもの:種類ごとの観測本数・名前が出た本数・引用された本数、名前が出た質問の一覧と何番目か、多く挙げられた会社の上位5社
-    (その会社が出た回答の本数。5位と同数は全部出す)、会社の一覧に無い会社名の候補
+- **第3観測層の月次報告(2026-11-17 確定・戦略管制塔の採否)**:
+  `python src/marketing_by_what.py 2026-12 --write`(月を省くと前月。`output/reports/marketing_monthly_<月>.md` にも書く)。
+  raw を読むだけで、シートには書かない。対象は Gemini の答えが返った観測(同じ月に2回あれば後の日)。**件数で出し、率は出さない**
+  - 報告の順番:**(1)** 会社名を含まない MOFU の What が「Agentforce導入支援」「Agentforce活用定着支援」の質問で、名前が出た本数と
+    何番目の一覧(注記「2か月続けて変わったときだけ変化と読む」)。その下に **ChatGPT(B-2・手作業)** →
+    **(2)** What が「Agentic CRM設計支援」の同じ表 → **(3) 外部サイトの言及による推薦**:名前が出た MOFU の回答のうち
+    cross-com.jp を引用元にしていない本数と、名前が出た回答の引用元のうち cross-com.jp 以外のドメインの一覧(人が中身を確かめる) →
+    **(4)** BOFU(質問文に社名が入るもの)の名前が出た本数 → **(5)** 層ごとに多く挙げられた会社の上位5社
+    (その会社が出た回答の本数。5位と同数は全部)。最後に参考として MOFU の What ごとの本数と、会社の一覧に無い会社名の候補
+  - **What**:`config/marketing_what.yaml`(57本すべて)。出典は `output/reports/prompt_overlap_2026-10-10.md` の4軸の表の What の列。
+    **`config/prompts_marketing.csv` には What の列が無く(列は id, layer, prompt)、observation_lock の対象なので列を足していない**。
+    MOFU 37本の内訳:Agentforce導入支援 10・Agentforce活用定着支援 1・Agentic CRM設計支援 10・Salesforce導入支援 10・
+    設計レビュー／アドバイザリー／Salesforce構築支援／業務設計／業務改革／業務変革 各1(テストで固定)
   - 何番目:`marketing.mention_rank` と同じく本文での初出の位置で決める。会社の一覧は Haiku ではなく
     `config/marketing_companies.yaml`(順位の抽出は 2026-10-03 から停止中のため)。一覧に無い候補が出たら、支援会社として
     挙げられているものを yaml に足す(コード変更は不要)。法人格の無い社名は候補に出ないので、回答の本文も目で確かめる
+  - **ChatGPT の指標**:新しい観測は作らない。本田さんが毎月手作業で行う B-2 観測の ChatGPT 欄のうち
+    「②導入支援のおすすめ」「P2-1 定着」「P2-2 スモールスタート」の3本を、(1) の下に「ChatGPT(B-2・手作業)」として載せる。
+    B-2 の結果はシート(タブ一覧)にもリポジトリ(dashboard・seo-agent)にも記録が無かったため、本田さんが毎月入力する
+    `output/b2_chatgpt_monthly.csv`(month, prompt, mentioned, rank, cited_crosscom, note)を作った。prompt の欄は上の3つの名前を
+    そのまま書く。入力の無い月は「未入力」と出る
+
+### AI 経由の訪問の一覧(GA4 から取り直し・2026-11-17・手動実行)
+
+- ジョブ:`.github/workflows/ga4_ai_visits.yml`(**workflow_dispatch だけ**。日次ジョブ・実験のジョブは変えていない)。
+  `src/ga4_ai_visits.py` が GA4 Data API で取り、`output/reports/ai_visits_<開始>_<終了>.csv` と `.md` をコミットする
+- 単位:**日付 × 参照元 × 着地ページ**ごとに、セッション数・閲覧ページ数(screenPageViews)・フォーム到達・キーイベント数(keyEvents)。
+  **GA4 では訪問1回ごとの記録は取り出せない**(Data API は集計値だけを返す)ため、これが最も細かい単位
+- 参照元:sessionSource に `settings.AI_SOURCE_FRAGMENTS`(chatgpt.com・chat.openai.com・perplexity.ai・gemini.google.com・
+  copilot.microsoft.com・claude.ai・bing.com/chat)のどれかを含むもの。日次の ga4_ai_traffic と同じ一覧
+- フォーム到達:問い合わせフォームのページ(`^/(contact|download-paper)(/.*)?$`:/contact/ と資料請求の /download-paper/)を
+  見たセッションの数。ページで絞った2本目の問い合わせで取る(同じセッションで2ページ見ても1)
+- .md には月ごとの合計(参照元別も)と、シート ga4_ai_traffic のセッション数との違い(日付ごと・違う日だけ)を出す
+- 手動実行の手順:GitHub のリポジトリの「Actions」タブ → 左の一覧の「ga4_ai_visits」→ 右上の「Run workflow」→
+  開始日・終了日(既定 2026-09-01・2026-11-16)を確かめて緑の「Run workflow」。終わると結果がコミットされる
 
 ## 指名検索の月次記録(2026-10-22・手作業・戦略管制塔の依頼)
 

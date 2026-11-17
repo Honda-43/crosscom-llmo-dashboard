@@ -1,0 +1,66 @@
+# 第3観測層(prompt_marketing)の各質問の What(支援の種類)(2026-11-17)
+#
+# 出典:output/reports/prompt_overlap_2026-10-10.md の4軸の表(質問の型・What・Who・評価軸)の What の列。
+# config/prompts_marketing.csv は observation_lock の対象で列を足せないため(列は id, layer, prompt だけ)、ここに分けて置く。
+# src/marketing_by_what.py(第3観測層の月次報告)が読む。57本すべてに1つずつ書く(テストで確かめる)。
+#
+# 月次報告で使う分け方:
+#   (1) Agentforce導入支援・Agentforce活用定着支援   (2) Agentic CRM設計支援   それ以外は表の外(本数だけ出す)
+what:
+  PM-L0-01: Agentforce導入支援
+  PM-L0-02: Agentforce活用定着支援
+  PM-L0-03: Agentforce設計レビュー
+  PM-L0-04: Agentforceアドバイザリー
+  PM-L0-05: Agentic CRM設計支援
+  PM-L0-06: Salesforce導入支援
+  PM-L0-07: Salesforce構築支援
+  PM-L0-08: 業務設計支援
+  PM-L0-09: 業務改革支援
+  PM-L0-10: 業務変革支援
+  PM-L1-01: Agentforce導入支援
+  PM-L1-02: Agentic CRM設計支援
+  PM-L1-03: Salesforce導入支援
+  PM-L1-04: Agentforce導入支援
+  PM-L1-05: Agentic CRM設計支援
+  PM-L1-06: Salesforce導入支援
+  PM-L1-07: Agentforce導入支援
+  PM-L1-08: Agentic CRM設計支援
+  PM-L1-09: Salesforce導入支援
+  PM-L1-10: Agentforce導入支援
+  PM-L1-11: Agentic CRM設計支援
+  PM-L1-12: Salesforce導入支援
+  PM-L1-13: Agentforce導入支援
+  PM-L1-14: Agentic CRM設計支援
+  PM-L1-15: Salesforce導入支援
+  PM-L1-16: Agentforce導入支援
+  PM-L1-17: Agentic CRM設計支援
+  PM-L1-18: Salesforce導入支援
+  PM-L1-19: Agentforce導入支援
+  PM-L1-20: Agentic CRM設計支援
+  PM-L1-21: Salesforce導入支援
+  PM-L2-01: Agentforce導入支援
+  PM-L2-02: Agentic CRM設計支援
+  PM-L2-03: Salesforce導入支援
+  PM-L2-04: Agentforce導入支援
+  PM-L2-05: Agentic CRM設計支援
+  PM-L2-06: Salesforce導入支援
+  PM-BS-01: Agentforce導入支援
+  PM-BS-02: Agentforce導入支援
+  PM-BS-03: Agentforce導入支援
+  PM-BS-04: Agentforce活用定着支援
+  PM-BS-05: Agentforce活用定着支援
+  PM-BS-06: Agentforce活用定着支援
+  PM-BS-07: Agentforce設計レビュー
+  PM-BS-08: Agentforce設計レビュー
+  PM-BS-09: Agentforce設計レビュー
+  PM-BS-10: Agentic CRM設計支援
+  PM-BS-11: Agentic CRM設計支援
+  PM-BS-12: Agentic CRM設計支援
+  PM-BC-01: Agentforce導入支援
+  PM-BC-02: Agentforce導入支援
+  PM-BC-03: Agentic CRM設計支援
+  PM-BC-04: Agentic CRM設計支援
+  PM-BC-05: Agentforce導入支援
+  PM-BC-06: Agentforce導入支援
+  PM-BC-07: Agentic CRM設計支援
+  PM-BC-08: Agentic CRM設計支援

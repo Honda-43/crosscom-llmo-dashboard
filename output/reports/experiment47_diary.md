@@ -1802,3 +1802,16 @@ seo-agent の ef99696（便NL・2026-09-29 18:25）の報告から転記。
 - config/prompts_marketing.csv に支援の種類（What）の列は無いため、質問文の語で分けた（Agentforce導入支援・Agentforce活用定着支援・Agentic CRM設計支援・その他）。CSV は変えていない
 - 集計は src/marketing_by_what.py（毎月 `python src/marketing_by_what.py YYYY-MM` で同じ分け方で出せる）。何番目かと上位の会社は config/marketing_companies.yaml の会社の一覧で数える（Haiku の順位の抽出は 10/03 から停止中）
 - 10月の PM-L0-02 はこの数え方でも5番目で、停止前の Haiku の結果（5番目）と同じ
+
+## 2026-11-17／第3観測層の月次報告の形の確定・ChatGPT の指標・AI 経由の訪問の一覧（戦略管制塔の採否）
+**月次報告の形（src/marketing_by_what.py・毎月 `python src/marketing_by_what.py YYYY-MM --write`）**
+- 順番：(1) Agentforce導入支援・活用定着支援（名前が出た本数と何番目。注記「2か月続けて変わったときだけ変化と読む」）→ ChatGPT（B-2・手作業）→ (2) Agentic CRM設計支援 → (3) 外部サイトの言及による推薦 → (4) BOFU → (5) 層ごとの上位5社。件数で出し、率は出さない
+- What は config/marketing_what.yaml（出典：2026-10-10 の重複調査の4軸の表）。config/prompts_marketing.csv に What の列は無く、observation_lock の対象なので列は足していない（観測のファイルには触れていない）
+- MOFU 37本の What の本数（確定）：Agentforce導入支援 10・Agentforce活用定着支援 1・Agentic CRM設計支援 10・Salesforce導入支援 10・ほか6種 各1
+- 11月分を出し直し：output/reports/marketing_monthly_2026-11.md
+**ChatGPT の指標**
+- 新しい観測は作らない。B-2 観測（本田さんの手作業）の ChatGPT 欄の3本（②導入支援のおすすめ・P2-1 定着・P2-2 スモールスタート）を (1) の下に載せる
+- B-2 の結果の記録はシートにもリポジトリにも見つからなかったため、本田さんが毎月入力する output/b2_chatgpt_monthly.csv を作った（空。入力の無い月は「未入力」）
+**AI 経由の訪問の一覧**
+- 手動実行だけのジョブ ga4_ai_visits.yml を新設（日次・実験のジョブは変えていない）。GA4 Data API で 2026-09-01〜2026-11-16 を 日付 × 参照元 × 着地ページ で取り直す（セッション・閲覧ページ数・フォーム到達・キーイベント）。GA4 では訪問1回ごとの記録は取り出せない
+- まだ実行していない（本田さんが GitHub の画面で手動実行する）

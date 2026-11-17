@@ -1,0 +1,66 @@
+name: ga4_ai_visits
+
+# AI 経由の訪問の一覧を GA4 Data API から取り直す(2026-11-17・戦略管制塔の採否)。
+# **手動実行だけ**(schedule なし)。日次ジョブ(daily.yml)・実験のジョブ(experiment.yml)は変えない。
+# 結果は output/reports/ai_visits_<開始>_<終了>.csv と .md にコミットする。
+
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: '開始日(YYYY-MM-DD)'
+        type: string
+        required: true
+        default: '2026-09-01'
+      end:
+        description: '終了日(YYYY-MM-DD)'
+        type: string
+        required: true
+        default: '2026-11-16'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ga4-ai-visits
+  cancel-in-progress: false
+
+jobs:
+  ga4_ai_visits:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      GCP_SERVICE_ACCOUNT_JSON: ${{ secrets.GCP_SERVICE_ACCOUNT_JSON }}
+      SHEETS_SPREADSHEET_ID: ${{ secrets.SHEETS_SPREADSHEET_ID }}
+      GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Pull AI visits from GA4
+        env:
+          START: ${{ inputs.start }}
+          END: ${{ inputs.end }}
+        run: python src/ga4_ai_visits.py --start "$START" --end "$END"
+
+      - name: Commit the list
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/reports/ai_visits_*.csv output/reports/ai_visits_*.md
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "data: AI visits from GA4 ${{ inputs.start }}..${{ inputs.end }}"
+            git pull --rebase
+            git push
+          fi
