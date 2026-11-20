@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-20",
+  "prompt_id": "E21",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agent Scriptとは？Agentforceの設定を画面ではなくコードで管理すべきケースは？",
+  "cep": null,
+  "timestamp": "2026-11-20T03:52:09.549685Z",
+  "answer": "Agent Scriptは、SalesforceのAgentforceプラットフォーム上でAIエージェントを構築するための新しい言語です。これは、会話の流れを「ステップ」として明示的に定義できる機能であり、大規模言語モデル（LLM）に決定論的な厳密性を組み込むことを目的としています。\n\nAgent Scriptの主な特徴は以下の通りです。\n*   **会話構造の可視化**: 会話の流れをステップとして明確に定義し、構造を可視化します。\n*   **ハイブリッド推論**: 決定論的なコードと自然言語のプロンプトを組み合わせて、エージェントの動作を設計できます。\n*   **宣言型言語**: YAMLライクなキーと値のペアで記述される宣言型言語であり、読みやすさを重視しています。Pythonのようにインデントで構造を定義します。\n*   **機能**: 変数定義、アクション定義、変数の埋め込み、if文、明示的なアクションやトピック（サブエージェント）の呼び出しなどの機能を提供します。\n*   **開発環境**: VS CodeのAgentforce DX拡張機能やSalesforce組織のAgentforce Studioから利用できます。\n*   **提供開始**: Dreamforce 2025で発表され、2025年11月にパブリックベータが開始され、日本では2026年2月からベータ提供が始まりました。\n\n---\n\nAgentforceの設定を画面ではなくコードで管理すべきケースは、主に以下の点が挙げられます。\n\n1.  **バージョン管理と共同開発**:\n    *   Agentforce DXを利用することで、エージェントの設定をGitで管理できます。これにより、変更履歴の追跡、複数開発者による共同作業、変更のロールバックなどが容易になります。\n    *   大規模なチームでの開発や、エージェントの複雑性が高い場合に、コード管理は不可欠です。\n\n2.  **複雑なロジックと決定論的な制御**:\n    *   Agent Scriptは、ステップ、変数、条件分岐（if文）、アクションの明示的な呼び出しなど、プログラム的な制御を可能にします。\n    *   AIエージェントに予測可能で信頼性の高い動作を求める場合や、複雑なビジネスロジックを正確に実装する必要がある場合に、コードによる管理が適しています。\n\n3.  **自動化とCI/CDパイプライン**:\n    *   コードで設定を管理することで、継続的インテグレーション/継続的デリバリー（CI/CD）パイプラインに組み込み、エージェントのデプロイやテストを自動化できます。\n    *   これにより、開発プロセスの効率化と品質の向上が期待できます。\n\n4.  **標準化と再利用性**:\n    *   コードベースの設定は、複数のエージェントや環境間で再利用可能なテンプレートとして標準化しやすくなります。これにより、一貫性のあるエージェント開発を促進できます。\n\n5.  **UIでは対応が難しい細かな制御**:\n    *   Agent BuilderのようなローコードUIは、プログラミング知識がないユーザーでもエージェントを構築できるメリットがありますが、より高度なカスタマイズや、UIでは表現しにくい詳細な動作定義が必要な場合には、コードでの管理が強力な選択肢となります。\n\nAgentforceでは、UIとコード（Agent Script）の両方で管理できるハイブリッドなアプローチがサポートされており、状況に応じて使い分けることが推奨されています。例えば、初期開発や複雑なロジックの実装、バージョン管理にはコードを使用し、その後の微調整や非技術者による簡単な更新にはUIを利用するといった運用が考えられます。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE-99yciSoxlEcDVHhhjdc6ZU8ZPHgcfpnrBuU1qsw1-Jr1OKI3s9LetRAcJbfCenhn62tFUJVpkF5I5s3HPCkjmqjygYDz7P17SmGWyAwRK4QQtwl0EgmY0BNE6paWZAVC_Mn3qqQFrYxOly7GwVUq9gnrKK23o9p9P6G-lxCVjFdRpw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFPuL-hu090CKHATd01S4gw0nksDJq7rxV_GKbOuGXr63cbB3cVO7hKRYWtle94C3V-hEO-zTySReeHRtyCQbL_GXhsW7kHiu1JrjnVAcC_PT8K_2lPh9p-2cN8QMnIPCdlXNmlevqTsd1ldUDXoQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHJLtlWDHBOuTgC5ocZF83BxtMW6gdVRzhdvfZ90BSvhRHdrOmt-rK7x-S716hKn1MTP2CBIb0lNKniFh6qff43PEk7MJahEUHvZlhYKpXBEfxxa4neO50vBs9xtDPVHIQx60Lg0g==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF4gcsK6FkNx6GamBLGAADjrf63ebdmBS3lQim4cj0-5Rkd8QoTABqlge9Ax71yb-8XA_hVq_HGAj0GM4g_J-ZrKHmRBRXRyO8QvS-EnVnCgqoDwvayjnXWCtsUhwtWb9GSOQqRphgIgaf3LI4JWN2TypWIeeJPOoEFaLo6K16dLQPIMgxFBBKYEdNbKidIt-uLkuUxZksFrlTrYkntER8a6eWdYd0SH7miJWelyZtj",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHNjGPI9YKtRCAkp_Cbj1WDzCpuC62EhfxLCD-WMiFUZmkkEey2Zn_65t-wRi27ic0ivdaRfilYBKiunyKJ-eDWgTZ7Cs6JTRBDIPGxPqzPnkvffybt8xUHP1bIllWTaDYXBluY3bzqDRXd",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHx6MKPJ95KZCwCxHz-RnsD4eM8cQ4cp4ZuRlcry8v3-8csXlxEwiE7Mn1mzV2_ir9UY1foPJAE_E4FQDYRi-HmGDdl4NVffqtcs9RteHlMNLUqTuGojEEgknOPNnhIhsYKROk7wq0TOrKU6dWpfFtUqmyL",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFLDOEoB5ZdtzVZh4g6iSXEQzV2gkytm3tBLHa-HoafYe4GHsfmSlOANMHLzL0-uDAsY_p3x9EutqqNMgfwIkmGnXnC65WpxnY-QsAXlJOj2-lpNndwAAifAK-7kfX2HJw6ak6nMNPMTUMdKcZwyzVg"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E21",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-agent-script/",
+  "answer_text": "Agent Scriptは、SalesforceのAgentforceプラットフォーム上でAIエージェントを構築するための新しい言語です。これは、会話の流れを「ステップ」として明示的に定義できる機能であり、大規模言語モデル（LLM）に決定論的な厳密性を組み込むことを目的としています。\n\nAgent Scriptの主な特徴は以下の通りです。\n*   **会話構造の可視化**: 会話の流れをステップとして明確に定義し、構造を可視化します。\n*   **ハイブリッド推論**: 決定論的なコードと自然言語のプロンプトを組み合わせて、エージェントの動作を設計できます。\n*   **宣言型言語**: YAMLライクなキーと値のペアで記述される宣言型言語であり、読みやすさを重視しています。Pythonのようにインデントで構造を定義します。\n*   **機能**: 変数定義、アクション定義、変数の埋め込み、if文、明示的なアクションやトピック（サブエージェント）の呼び出しなどの機能を提供します。\n*   **開発環境**: VS CodeのAgentforce DX拡張機能やSalesforce組織のAgentforce Studioから利用できます。\n*   **提供開始**: Dreamforce 2025で発表され、2025年11月にパブリックベータが開始され、日本では2026年2月からベータ提供が始まりました。\n\n---\n\nAgentforceの設定を画面ではなくコードで管理すべきケースは、主に以下の点が挙げられます。\n\n1.  **バージョン管理と共同開発**:\n    *   Agentforce DXを利用することで、エージェントの設定をGitで管理できます。これにより、変更履歴の追跡、複数開発者による共同作業、変更のロールバックなどが容易になります。\n    *   大規模なチームでの開発や、エージェントの複雑性が高い場合に、コード管理は不可欠です。\n\n2.  **複雑なロジックと決定論的な制御**:\n    *   Agent Scriptは、ステップ、変数、条件分岐（if文）、アクションの明示的な呼び出しなど、プログラム的な制御を可能にします。\n    *   AIエージェントに予測可能で信頼性の高い動作を求める場合や、複雑なビジネスロジックを正確に実装する必要がある場合に、コードによる管理が適しています。\n\n3.  **自動化とCI/CDパイプライン**:\n    *   コードで設定を管理することで、継続的インテグレーション/継続的デリバリー（CI/CD）パイプラインに組み込み、エージェントのデプロイやテストを自動化できます。\n    *   これにより、開発プロセスの効率化と品質の向上が期待できます。\n\n4.  **標準化と再利用性**:\n    *   コードベースの設定は、複数のエージェントや環境間で再利用可能なテンプレートとして標準化しやすくなります。これにより、一貫性のあるエージェント開発を促進できます。\n\n5.  **UIでは対応が難しい細かな制御**:\n    *   Agent BuilderのようなローコードUIは、プログラミング知識がないユーザーでもエージェントを構築できるメリットがありますが、より高度なカスタマイズや、UIでは表現しにくい詳細な動作定義が必要な場合には、コードでの管理が強力な選択肢となります。\n\nAgentforceでは、UIとコード（Agent Script）の両方で管理できるハイブリッドなアプローチがサポートされており、状況に応じて使い分けることが推奨されています。例えば、初期開発や複雑なロジックの実装、バージョン管理にはコードを使用し、その後の微調整や非技術者による簡単な更新にはUIを利用するといった運用が考えられます。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "tech.feature-branch.co.jp",
+    "zenn.dev",
+    "note.com",
+    "developer.salesforce.com",
+    "salesforce.com",
+    "fsi.co.jp"
+  ],
+  "resolved_urls": [
+    "https://tech.feature-branch.co.jp/posts/2026/03/agentforce-agent-script/",
+    "https://zenn.dev/actbe_tech/articles/57561ffebaf9ed",
+    "https://note.com/atskimura/n/n1807e87358cd",
+    "https://developer.salesforce.com/jpblogs/2026/03/agent-script-decoded-intro-to-agent-script-language-fundamentals-jp",
+    "https://www.salesforce.com/jp/agentforce/guide/",
+    "https://zenn.dev/pacific_creator/articles/b1d90a18e71025",
+    "https://www.fsi.co.jp/Salesforce/column/column19.html"
+  ],
+  "unresolved_redirects": 0
+}
