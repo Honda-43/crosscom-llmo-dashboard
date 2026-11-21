@@ -1,0 +1,42 @@
+{
+  "date": "2026-11-21",
+  "prompt_id": "E31",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforce Employee Agentとは？社内問い合わせのどこまでを任せられる？",
+  "cep": null,
+  "timestamp": "2026-11-21T03:49:58.201114Z",
+  "answer": "Agentforce Employee Agentは、Salesforce上で社内からの問い合わせ対応や業務申請フローを自動化するために設計された、従業員向けのAIエージェントです。定型的な質問への即時回答や適切な部門への自動エスカレーション機能により、対応部門と利用者双方の負担を大幅に軽減します。\n\n**Agentforce Employee Agentで任せられる社内問い合わせの範囲:**\n\nAgentforce Employee Agentは、社内問い合わせの広範囲をカバーし、従業員の自己解決を促進します。具体的には以下の点が挙げられます。\n\n*   **よくある質問（FAQ）への即時回答** 社内のよくある定型的な質問に対して、AIエージェントが即座に回答を提供します。例えば、有給休暇に関する問い合わせや経費精算の方法など、人事や総務部門に多く寄せられる質問に対応できます。\n*   **担当部門への自動エスカレーション** 回答できない複雑な問い合わせや、人の介入が必要な場合には、内容に応じて適切な担当部門へ自動的にエスカレーションします。これにより、問い合わせがたらい回しになることを防ぎ、スムーズな問題解決を支援します。\n*   **申請手続きの開始と案内** SlackやSalesforceモバイルアプリなどのインターフェースから、各種申請手続きをすぐに開始できるようガイドします。\n*   **ナレッジを活用した情報提示** Salesforceのナレッジ記事と連携し、従業員が必要とする情報を提示することで、自己解決を促します。\n*   **専門分野に特化した対応** 特定の業務領域に特化したスペシャリストとして機能させることができます。例えば、営業サポート専門、カスタマーサービス専門といった形で、部署や用途ごとに複数のEmployee Agentを作成し、アクセス権を細かく制御することも可能です。\n\nAgentforce Employee Agentを導入することで、総務、情シス、人事などの部門が日々受ける「よくある問い合わせ」の対応工数を削減し、従業員の業務効率向上にも寄与します。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHzuWpPIj33bjicvDiQR5RbraYw51LSHR7mvDw-0R5e3aOtxo3dTkFv5ODr90XWOp_06WiacAXmJlmreQR5CWZJoP3QuV6Y8AYWSUj2T01rQJEd5uSPqVi5RgFjjIWORQPcLLtqGF_rOBa8N9WRngDCD_Dk_yw=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGeQ0lLIDpNz-hJdI44NDx8fLDVb9RI2Md0uHpFHcTlvL0qFgfrdh7XfumeijnTk51UOn_s4E9zmOKDfep4AGP0aY5hk0PLbyM_H5hMlzl04HwVLPoEBbKF0_PV2YhoSLvZQmGvP3oHOaFQwlWA0MOWhca-",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFTBGCRuXeSQLPkLgDDgXpSduBY38_Xh2WSZFzHYWPWX-DKe6FdoqXrBwCxdwOL_BdpFPPZ864siIR8EphKUjDW6MLdeCdSTU8iU7bvqtCuPQ5DoZDOUnLDRQZUiXSYVPfXTsJlGNo-rJdJ4qfZfw=="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E31",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-employee-agent/",
+  "answer_text": "Agentforce Employee Agentは、Salesforce上で社内からの問い合わせ対応や業務申請フローを自動化するために設計された、従業員向けのAIエージェントです。定型的な質問への即時回答や適切な部門への自動エスカレーション機能により、対応部門と利用者双方の負担を大幅に軽減します。\n\n**Agentforce Employee Agentで任せられる社内問い合わせの範囲:**\n\nAgentforce Employee Agentは、社内問い合わせの広範囲をカバーし、従業員の自己解決を促進します。具体的には以下の点が挙げられます。\n\n*   **よくある質問（FAQ）への即時回答** 社内のよくある定型的な質問に対して、AIエージェントが即座に回答を提供します。例えば、有給休暇に関する問い合わせや経費精算の方法など、人事や総務部門に多く寄せられる質問に対応できます。\n*   **担当部門への自動エスカレーション** 回答できない複雑な問い合わせや、人の介入が必要な場合には、内容に応じて適切な担当部門へ自動的にエスカレーションします。これにより、問い合わせがたらい回しになることを防ぎ、スムーズな問題解決を支援します。\n*   **申請手続きの開始と案内** SlackやSalesforceモバイルアプリなどのインターフェースから、各種申請手続きをすぐに開始できるようガイドします。\n*   **ナレッジを活用した情報提示** Salesforceのナレッジ記事と連携し、従業員が必要とする情報を提示することで、自己解決を促します。\n*   **専門分野に特化した対応** 特定の業務領域に特化したスペシャリストとして機能させることができます。例えば、営業サポート専門、カスタマーサービス専門といった形で、部署や用途ごとに複数のEmployee Agentを作成し、アクセス権を細かく制御することも可能です。\n\nAgentforce Employee Agentを導入することで、総務、情シス、人事などの部門が日々受ける「よくある問い合わせ」の対応工数を削減し、従業員の業務効率向上にも寄与します。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "strh.co.jp",
+    "zenn.dev",
+    "successjp.salesforce.com"
+  ],
+  "resolved_urls": [
+    "https://www.strh.co.jp/knowledge/agentforce-employee-agent",
+    "https://zenn.dev/pacific_creator/articles/bd665f463b4ccc",
+    "https://successjp.salesforce.com/article/NAI-001340"
+  ],
+  "unresolved_redirects": 0
+}
