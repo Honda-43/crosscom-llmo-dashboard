@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-25",
+  "prompt_id": "E43",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceの設定は開発者なしで営業部門だけでできる？開発が必要になる範囲はどこから？",
+  "cep": null,
+  "timestamp": "2026-11-25T05:13:57.132960Z",
+  "answer": "Agentforceの基本的な設定やエージェントの構築は、開発者の支援なしに営業部門だけでも十分可能です。特に、Agentforce内のローコードプラットフォームである「Agent Builder」を利用することで、既存のエージェントのカスタマイズや、新しいエージェントの作成を最小限のコーディングで実現できます。\n\nまた、Salesforceの「Agentforce を使用した設定」機能（ベータ版）を利用すれば、プログラミング不要で、AIとの会話形式でSalesforceの内部設定（ユーザー管理、アクセス権管理、フロー管理など）を確認・設定することも可能です。 これは、Salesforce管理者にとって大きな進化であり、基本的なエージェントの設定は直感的なノーコードツールで行えます。\n\nただし、以下の範囲では開発や専門知識が必要となります。\n\n*   **カスタムアクションと複雑なデータ連携**\n    *   特定の条件に基づいてレコードを自動更新するようなカスタムアクションを設計する場合、フローの作成や新しいトピック、アクションの設定が必要になることがあります。\n    *   Salesforce内のApexクラスと連携してレコード検索やデータ操作を行う場合、開発者の介入が必要となります。\n    *   AIが参照するデータの基盤構築（Data Cloudの整備、複数システムからのデータ統合）や、複雑なビジネス要件を反映したアクションフローの構築には、Salesforceの専門知識を持つ管理者や外部コンサルタントの支援が推奨されます。\n\n*   **カスタムUIの導入**\n    *   Agentforceのチャット画面をよりリッチに、独自のデザインでカスタマイズしたい場合、Custom Lightning Web Components (LWC) を組み込む必要があり、これは開発作業となります。\n\n*   **高度な適応と品質検証**\n    *   日本語特有の敬語やニュアンス、日本の商習慣にAgentforceを適応させるためには、入念なプロンプト設計と、人間による品質検証（監視）が不可欠とされています。\n\n要するに、Agentforceは基本的なエージェント作成や簡易な設定であれば営業部門だけでも対応可能ですが、システム連携、複雑なロジックの実装、カスタムUIの導入、および高度な業務要件への対応には開発者や専門知識を持つ人材が必要となるでしょう。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHf6F5Wp_XR5xD3NxYyML8NxP7Anz049NRkXNqeGAq5899d3wIxGwMbSg1JKb6B6bg-YPvw1W5Q8kbA3yYsIrXtquWkRSiiXiXDvhbF3jiv4IEbLjK2mn4tLTDrYzUnlrpQi4lwRqM7QGC5niyh-o2bHn3MZw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHdr12Zbew441pAAY1Wmh1WdtDVDNXDWNys3l1-Cn-I17J0cw3qqNbzcQqmoWar1EUfnT_IYZQWsNWaqw-r1k_wUPGdIjOLoEmp9ig2TmOOXUnExUruyv9Xb7ZKuHnw45nUfzvbquDi6-0XlSo=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_YYua3V0CSG2BSQlc90rWn35o9pAD9Gy9qYCaOxaNsfEZD0unqWfdtZJ5SUNVqkQhLZkOdmQifoXxhuBGvXe6VLKySLTC4GWaqozdat5NsNnzoWsZ9G-yAEfI7o2Xwb9Mqr49reKGzWQ=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0NAq68tJzeeonz7ZQO9bHlZqDxxRBYMbPuA34V2ni3MoPaMPkiEK_FQW1iEbFlUlUjH_m2Xe6CnQkuwJwzjQyU90Y6f1EfU5fSmQIHBAQ-iEH3JA_6QpUcAopHSH6PmbUFl83iA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGNTzt7Ka5DJONASnnEt9YGjsfSKICgXZKH1b7dVZkxjfMNL57XdeNWbA28SQMqfWuBvLPrMkSAUIG_phDeLFcJXQiOlUXMu4FzcqOZGAQ7KbSV7_1_gquVZgfN8XolblY-RuyB95-cVZ_0DA==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHpnAp1_UThG_syEeg0osarOXFbuu5pmVEJwywJXdXtyFY6BchF1jxp5J4fn_I7RlFzMf3Ew_4I1BBYD5-L5W5N39zq1lz2mTiGLPmfxVa3UBbogBU_hQ1Y7ycfaTy-V1DIbNLnZ2XoyYaiOW7CfmUfX3wE"
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E43",
+  "experiment_flag": "pool",
+  "layer": "新",
+  "target_url": "https://cross-com.jp/agentforce-no-code-scope/",
+  "answer_text": "Agentforceの基本的な設定やエージェントの構築は、開発者の支援なしに営業部門だけでも十分可能です。特に、Agentforce内のローコードプラットフォームである「Agent Builder」を利用することで、既存のエージェントのカスタマイズや、新しいエージェントの作成を最小限のコーディングで実現できます。\n\nまた、Salesforceの「Agentforce を使用した設定」機能（ベータ版）を利用すれば、プログラミング不要で、AIとの会話形式でSalesforceの内部設定（ユーザー管理、アクセス権管理、フロー管理など）を確認・設定することも可能です。 これは、Salesforce管理者にとって大きな進化であり、基本的なエージェントの設定は直感的なノーコードツールで行えます。\n\nただし、以下の範囲では開発や専門知識が必要となります。\n\n*   **カスタムアクションと複雑なデータ連携**\n    *   特定の条件に基づいてレコードを自動更新するようなカスタムアクションを設計する場合、フローの作成や新しいトピック、アクションの設定が必要になることがあります。\n    *   Salesforce内のApexクラスと連携してレコード検索やデータ操作を行う場合、開発者の介入が必要となります。\n    *   AIが参照するデータの基盤構築（Data Cloudの整備、複数システムからのデータ統合）や、複雑なビジネス要件を反映したアクションフローの構築には、Salesforceの専門知識を持つ管理者や外部コンサルタントの支援が推奨されます。\n\n*   **カスタムUIの導入**\n    *   Agentforceのチャット画面をよりリッチに、独自のデザインでカスタマイズしたい場合、Custom Lightning Web Components (LWC) を組み込む必要があり、これは開発作業となります。\n\n*   **高度な適応と品質検証**\n    *   日本語特有の敬語やニュアンス、日本の商習慣にAgentforceを適応させるためには、入念なプロンプト設計と、人間による品質検証（監視）が不可欠とされています。\n\n要するに、Agentforceは基本的なエージェント作成や簡易な設定であれば営業部門だけでも対応可能ですが、システム連携、複雑なロジックの実装、カスタムUIの導入、および高度な業務要件への対応には開発者や専門知識を持つ人材が必要となるでしょう。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "qiita.com",
+    "frogwell.co.jp",
+    "immedio.io",
+    "base.terrasky.co.jp",
+    "note.com",
+    "zenn.dev"
+  ],
+  "resolved_urls": [
+    "https://qiita.com/Keiji_otsubo/items/15042272e0ee9cd84b76",
+    "https://frogwell.co.jp/blogs/spring26-agentforce/",
+    "https://www.immedio.io/mag/what-is-agentforce/",
+    "https://base.terrasky.co.jp/articles/QiqHv",
+    "https://note.com/samuraijuku_biz/n/n8f1910ad5993",
+    "https://zenn.dev/pacific_creator/articles/ad67b79450a9a5"
+  ],
+  "unresolved_redirects": 0
+}
