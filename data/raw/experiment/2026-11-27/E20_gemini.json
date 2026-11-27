@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-27",
+  "prompt_id": "E20",
+  "pillar": "",
+  "category": "",
+  "target_brand": "",
+  "model": "gemini",
+  "model_name": "gemini-2.5-flash",
+  "question": "Agentforceで成果を出している営業組織の活用事例を知りたい",
+  "cep": null,
+  "timestamp": "2026-11-27T04:47:47.461152Z",
+  "answer": "Agentforceを活用して成果を出している営業組織の事例として、以下の企業が挙げられます。\n\n**1. ベルフェイス株式会社**\nベルフェイス株式会社は、イベントや施策後に発生するリード対応の「波」を、人の稼働だけでは吸収しきれないという課題に直面していました。そこでAgentforceを導入し、リード対応の「最初の一手」を自動化することで、初動対応の遅れによる機会損失を防ぐ体制を構築しました。その結果、受注工数を45%削減し、営業生産性を200%向上させることに成功しています。また、営業活動の振り返りや育成プロセスにもAgentforceを活用し、組織全体の生産性向上を実現しました。\n\n**2. 日野出**\n包装資材・家庭紙・店舗用品を取り扱う日野出は、営業基盤のSales Cloudに加え、AIエージェントプラットフォーム「Agentforce」を導入しました。これにより、全営業担当者がAgentforceを活用してロールプレイングを実施できるようになり、新規商談件数が127%増加しました。多忙なマネージャーによるロールプレイ機会の不足や、マネージャーごとの商談スタイルの違いによる新人教育の標準化が進んでいないという課題も解決し、育成面の強化にも繋がっています。\n\n**3. アビームコンサルティング株式会社**\nアビームコンサルティング株式会社は、最先端技術を顧客に提案する前にまず自社で実証する「自社実証」の一環として、営業組織にAgentforceを導入しました。トップ営業担当者の情報収集や判断の型をAIエージェントに落とし込むことで、報告業務やアカウントプランの更新を自動化しています。\n\nこれらの事例以外にも、AgentforceはSalesforceが提供するAIエージェントプラットフォームとして、複雑な業務プロセスを理解し、状況に応じて自律的に判断・行動できる特徴があります。営業組織においては、以下のような活用が可能です。\n\n*   **定型業務の自動化**: 見込み顧客の優先順位付けや自動フォロー、会議スケジューリングの自動化、個別化されたフォローアップメールの自動生成などが可能となり、営業担当者はより戦略的な活動に集中できます。\n*   **営業担当者のスキル向上**: 商談録音データやメールでのやり取り、CRMへの入力内容などを分析し、成功している営業担当者のパターンや改善点を特定。具体的なフィードバックや学習コンテンツの提案を通じて、属人化しがちな営業教育を標準化し、チーム全体のパフォーマンス向上に貢献します。\n*   **顧客対応の効率化**: ウェブサイト上のチャットボットやメールを通じて顧客からの問い合わせに一次対応し、内容に応じて最適な営業担当者やカスタマーサポートチームに自動でルーティングします。これにより、顧客の待ち時間を削減し、顧客満足度の向上にも繋がります。\n*   **営業戦略立案支援**: 過去の営業データ、市場トレンド、競合分析結果、外部経済指標などを統合的に分析し、売上予測の精度を高めます。また、KPIの達成状況をリアルタイムでモニタリングし、データに基づいた迅速な意思決定を支援します。",
+  "cited_urls": [
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFE3bBhMk82CVehwEw-NMh1JBn64PjyxEoB4i6YJUIV06P_wYUAxZ-GG9scHMWU_ExySWk6y-5eghU8rg49HyCjEv_KxN2DVh6CeTuG-JH9ndDs4Nhueg3yfy6DDw==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHwqRAko9FV7H9cFUCJ-sM2wJtpPS89zY77w46Z8Wl0AU0wglxg8Sm3yc0A1R2Bh_yn5g4mduUNNpNT4ydzJgw-qRUrGFticamJE39UWQwRkxc20rNZhl8lDlO9zuFK3P9k",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQExzNbe1I_k_ZMAr2hXtUUWNSeK38PaaX59nN6Cjnq82cBw07cgz4iNaHIa34XweDe-TuMXQ2WR0XmnRoM5NC6THT8flWBhDbRL6OsNf7xRVGduj3kZDKvEoGK6EFmscgAJ5reyaELQQMj04PZJ8PsaxbhaMfgdKOqhWvnR1OAP",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFBH-Lr-XRUWKfzxPNp0-PpsRMKnybZFGhG1iIZQJxcrLIZu6vwTTivRaDycrt8SQK1krdl9ZMxrwMGD5evKVQKhNKpIbeChqbUqAmtt7pQXJSBTCY5UH72h8jxfk5wbBzdFTVrEFeziGtojjs8ZKfUtGd7UfcqjQ==",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHWLcJ1-X1GnI2YFfYCg3hQu4Z106lKZaDyYYFXFyVIW4I3PtkvEfq8ImGMPKxtVLCACYxM6G911Awhz_xqqpP_IEclqZ2b0TjV6z8RW7LI2B11Bs8fRbAf9kaWKUGyyJCj5THBUcEaBb3CCvM=",
+    "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQErR7R_1Xr58l5BSJLkIfM7GB44CGB5InSMgl4BX1JAQ2CeMw6VuF7fhB3cr-qi8jALrlBV9atJWmYFKx-ev-RybPVYMVoRNbajx-zChIaXoTpapK04R1E359gOWq8qtQZFZNIUH-C56n_S1LBuhOg="
+  ],
+  "error": null,
+  "miss_reason": "",
+  "attempts": 1,
+  "stop_reason": "STOP",
+  "experiment_id": "E20",
+  "experiment_flag": "pool",
+  "layer": "中",
+  "target_url": "https://cross-com.jp/agentforce-use-cases/",
+  "answer_text": "Agentforceを活用して成果を出している営業組織の事例として、以下の企業が挙げられます。\n\n**1. ベルフェイス株式会社**\nベルフェイス株式会社は、イベントや施策後に発生するリード対応の「波」を、人の稼働だけでは吸収しきれないという課題に直面していました。そこでAgentforceを導入し、リード対応の「最初の一手」を自動化することで、初動対応の遅れによる機会損失を防ぐ体制を構築しました。その結果、受注工数を45%削減し、営業生産性を200%向上させることに成功しています。また、営業活動の振り返りや育成プロセスにもAgentforceを活用し、組織全体の生産性向上を実現しました。\n\n**2. 日野出**\n包装資材・家庭紙・店舗用品を取り扱う日野出は、営業基盤のSales Cloudに加え、AIエージェントプラットフォーム「Agentforce」を導入しました。これにより、全営業担当者がAgentforceを活用してロールプレイングを実施できるようになり、新規商談件数が127%増加しました。多忙なマネージャーによるロールプレイ機会の不足や、マネージャーごとの商談スタイルの違いによる新人教育の標準化が進んでいないという課題も解決し、育成面の強化にも繋がっています。\n\n**3. アビームコンサルティング株式会社**\nアビームコンサルティング株式会社は、最先端技術を顧客に提案する前にまず自社で実証する「自社実証」の一環として、営業組織にAgentforceを導入しました。トップ営業担当者の情報収集や判断の型をAIエージェントに落とし込むことで、報告業務やアカウントプランの更新を自動化しています。\n\nこれらの事例以外にも、AgentforceはSalesforceが提供するAIエージェントプラットフォームとして、複雑な業務プロセスを理解し、状況に応じて自律的に判断・行動できる特徴があります。営業組織においては、以下のような活用が可能です。\n\n*   **定型業務の自動化**: 見込み顧客の優先順位付けや自動フォロー、会議スケジューリングの自動化、個別化されたフォローアップメールの自動生成などが可能となり、営業担当者はより戦略的な活動に集中できます。\n*   **営業担当者のスキル向上**: 商談録音データやメールでのやり取り、CRMへの入力内容などを分析し、成功している営業担当者のパターンや改善点を特定。具体的なフィードバックや学習コンテンツの提案を通じて、属人化しがちな営業教育を標準化し、チーム全体のパフォーマンス向上に貢献します。\n*   **顧客対応の効率化**: ウェブサイト上のチャットボットやメールを通じて顧客からの問い合わせに一次対応し、内容に応じて最適な営業担当者やカスタマーサポートチームに自動でルーティングします。これにより、顧客の待ち時間を削減し、顧客満足度の向上にも繋がります。\n*   **営業戦略立案支援**: 過去の営業データ、市場トレンド、競合分析結果、外部経済指標などを統合的に分析し、売上予測の精度を高めます。また、KPIの達成状況をリアルタイムでモニタリングし、データに基づいた迅速な意思決定を支援します。",
+  "cited_domain": 0,
+  "cited_article": 0,
+  "mentioned": 0,
+  "mentioned_v2": 0,
+  "cited_domains": [
+    "bellface.co.jp",
+    "markezine.jp",
+    "salesforce.com",
+    "ctc-g.co.jp",
+    "frogwell.co.jp",
+    "aurant-technologies.com"
+  ],
+  "resolved_urls": [
+    "https://bellface.co.jp/news/7425/",
+    "https://markezine.jp/news/detail/78063",
+    "https://www.salesforce.com/jp/blog/jp-small-business-ai-agent-facts/",
+    "https://www.ctc-g.co.jp/keys/blog/detail/agentforce-use-case",
+    "https://frogwell.co.jp/blogs/agentforce-usecases/",
+    "https://aurant-technologies.com/blog/agentforce-950/"
+  ],
+  "unresolved_redirects": 0
+}
